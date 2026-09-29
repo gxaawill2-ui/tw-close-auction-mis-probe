@@ -1,0 +1,74 @@
+name: TWSE MIS Closing Auction Probe
+
+on:
+  schedule:
+    - cron: "7 5 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "dry-run does not wait for market times; live performs the real capture"
+        required: true
+        default: dry-run
+        type: choice
+        options:
+          - dry-run
+          - live
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: twse-mis-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      TZ: Asia/Taipei
+      STATUS_ISSUE_NUMBER: "1"
+      GITHUB_TOKEN: ${{ github.token }}
+      PROBE_MODE: ${{ github.event_name == 'schedule' && 'live' || inputs.mode }}
+    steps:
+      - name: Check out independent probe repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run probe
+        id: probe
+        run: |
+          python probe.py --mode "$PROBE_MODE" --output results
+
+      - name: Upload raw evidence and reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mis-probe-${{ github.run_id }}
+          path: |
+            results/
+            mis-probe-*.zip
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Mark unexpected workflow failure in status issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > issue-failure.md <<EOF
+          # ❌ FAILED
+
+          - trade date：$(TZ=Asia/Taipei date +%F)
+          - runner startedAt：$(date --iso-8601=seconds)
+          - phase：workflow failure
+          - error：請查看本次 Actions log 與 Artifact（若已產生）
+
+          > 不得事後補做 13:25 資料，也不得產生假的 ±3% 名單。
+          EOF
+          gh issue edit "$STATUS_ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file issue-failure.md
