@@ -19,15 +19,16 @@ import uuid
 import zipfile
 from dataclasses import asdict, dataclass
 from datetime import datetime, timedelta, timezone
-from html.parser import HTMLParser
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
 TZ = ZoneInfo("Asia/Taipei")
 MIS = "https://mis.twse.com.tw/stock/api/getStockInfo.jsp"
-ISIN_SOURCES = (
-    ("TWSE", "tse", "https://isin.twse.com.tw/isin/e_C_public.jsp?strMode=2"),
-    ("TPEx", "otc", "https://isin.twse.com.tw/isin/e_C_public.jsp?strMode=4"),
+UNIVERSE_SOURCES = (
+    ("TWSE", "tse", "https://openapi.twse.com.tw/v1/opendata/t187ap03_L",
+     "公司代號", "公司簡稱"),
+    ("TPEx", "otc", "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap03_O",
+     "SecuritiesCompanyCode", "CompanyAbbreviation"),
 )
 TWSE_CLOSE = "https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL"
 TPEX_CLOSE = "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes"
@@ -67,55 +68,43 @@ def wait_until(dt: datetime) -> None:
         time.sleep(min(remaining, 30))
 
 
-class TableParser(HTMLParser):
-    def __init__(self) -> None:
-        super().__init__()
-        self.rows: list[list[str]] = []
-        self.row: list[str] | None = None
-        self.cell: list[str] | None = None
-
-    def handle_starttag(self, tag: str, attrs) -> None:
-        if tag.lower() == "tr":
-            self.row = []
-        elif tag.lower() == "td" and self.row is not None:
-            self.cell = []
-
-    def handle_data(self, data: str) -> None:
-        if self.cell is not None:
-            self.cell.append(data)
-
-    def handle_endtag(self, tag: str) -> None:
-        if tag.lower() == "td" and self.cell is not None and self.row is not None:
-            self.row.append(" ".join("".join(self.cell).replace("\xa0", " ").split()))
-            self.cell = None
-        elif tag.lower() == "tr" and self.row is not None:
-            self.rows.append(self.row)
-            self.row = None
-
-
 def get_bytes(url: str, timeout: int = 30, headers: dict | None = None) -> tuple[int, bytes]:
     request = urllib.request.Request(url, headers=headers or HEADERS)
     with urllib.request.urlopen(request, timeout=timeout) as response:
         return response.status, response.read()
 
 
+def parse_universe_rows(rows: object, market_name: str, ex: str,
+                        code_key: str, name_key: str) -> list[dict]:
+    if not isinstance(rows, list):
+        raise RuntimeError(f"{market_name} official universe is not a JSON array")
+    parsed: list[dict] = []
+    for item in rows:
+        if not isinstance(item, dict):
+            continue
+        code = str(item.get(code_key, "")).strip()
+        name = str(item.get(name_key, "")).strip()
+        # Normal listed/OTC company shares use four-digit codes. 91xx are TDRs,
+        # not ordinary listed/OTC company shares for this strategy universe.
+        if (re.fullmatch(r"\d{4}", code) and not code.startswith(("0", "91"))
+                and name):
+            parsed.append({"code": code, "name": name, "market": market_name, "ex": ex})
+    return parsed
+
+
 def fetch_universe() -> list[dict]:
     universe: list[dict] = []
-    for market_name, ex, url in ISIN_SOURCES:
-        status, raw = get_bytes(url, 35, {"User-Agent": HEADERS["User-Agent"]})
+    for market_name, ex, url, code_key, name_key in UNIVERSE_SOURCES:
+        status, raw = get_bytes(url, 35, HEADERS)
         if status != 200:
             raise RuntimeError(f"{market_name} official universe HTTP {status}")
-        parser = TableParser()
-        parser.feed(raw.decode("utf-8", "replace"))
-        found = 0
-        for cells in parser.rows:
-            if not cells:
-                continue
-            match = re.match(r"^(\d{4})\s+(.+)$", cells[0])
-            if match and any(cell == "ESVUFR" for cell in cells):
-                universe.append({"code": match.group(1), "name": match.group(2),
-                                 "market": market_name, "ex": ex})
-                found += 1
+        try:
+            rows = json.loads(raw.decode("utf-8-sig"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise RuntimeError(f"{market_name} official universe JSON parse failed: {exc}") from exc
+        market_rows = parse_universe_rows(rows, market_name, ex, code_key, name_key)
+        found = len(market_rows)
+        universe.extend(market_rows)
         if found < 300:
             raise RuntimeError(f"{market_name} official universe parsed only {found} stocks")
     keys = {(x["ex"], x["code"]) for x in universe}
