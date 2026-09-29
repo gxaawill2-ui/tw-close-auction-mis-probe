@@ -1,12 +1,18 @@
 import unittest
-from probe import TableParser, analyze, FetchResult
+from probe import FetchResult, analyze, parse_universe_rows
 
 
 class ProbeTests(unittest.TestCase):
-    def test_universe_parser_shape(self):
-        parser = TableParser()
-        parser.feed("<table><tr><td>2330　TSMC</td><td>TW0002330008</td><td>ESVUFR</td></tr></table>")
-        self.assertEqual(parser.rows[0][0], "2330 TSMC")
+    def test_universe_parser_keeps_normal_stocks_only(self):
+        rows = [
+            {"code": "2330", "name": "台積電"},
+            {"code": "9105", "name": "TDR"},
+            {"code": "0050", "name": "ETF"},
+            {"code": "12345", "name": "not-four-digits"},
+        ]
+        parsed = parse_universe_rows(rows, "TWSE", "tse", "code", "name")
+        self.assertEqual(parsed, [{"code": "2330", "name": "台積電",
+                                   "market": "TWSE", "ex": "tse"}])
 
     def test_missing_and_duplicate(self):
         symbols = [{"ex": "tse", "code": "2330"}, {"ex": "otc", "code": "1240"}]
