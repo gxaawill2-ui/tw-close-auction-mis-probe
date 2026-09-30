@@ -1,0 +1,41 @@
+name: MIS 2026-10-01 10AM Full Market Benchmark
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/mis-morning-20261001.yml'
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: mis-morning-20261001
+  cancel-in-progress: false
+jobs:
+  morning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 260
+    env:
+      TZ: Asia/Taipei
+      GITHUB_TOKEN: ${{ github.token }}
+      STATUS_ISSUE_NUMBER: '1'
+    steps:
+      - name: Record actual runner start
+        run: |
+          MIS_MORNING_START=$(date '+%Y-%m-%dT%H:%M:%S.%3N%:z')
+          echo "RUNNER_STARTED_AT=$MIS_MORNING_START" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Wait and capture complete official universe at 10AM
+        run: python mis_morning_benchmark.py
+      - name: Save complete raw evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mis-morning-${{ github.run_id }}
+          path: |
+            morning-results/
+            mis-probe-*-morning.zip
+          retention-days: 30
+          if-no-files-found: error
