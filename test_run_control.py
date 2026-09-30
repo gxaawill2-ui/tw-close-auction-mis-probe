@@ -1,4 +1,5 @@
 import json
+import http.client
 import tempfile
 import unittest
 from datetime import datetime
@@ -46,5 +47,18 @@ class ControlTests(unittest.TestCase):
              patch.dict('os.environ',{'RUNNER_STARTED_AT':'2026-10-01T13:07:00+08:00'}):
             with self.assertRaisesRegex(RuntimeError,'failed_late_ready'):probe.live(Path(d))
             snapshot.assert_not_called()
+
+    def test_official_download_interruption_retries_without_old_pool(self):
+        tw=[{'公司代號':str(c),'公司簡稱':'test'} for c in range(2000,2501)]
+        tp=[{'SecuritiesCompanyCode':str(c),'CompanyAbbreviation':'test'} for c in range(3000,3501)]
+        with tempfile.TemporaryDirectory() as d,patch.object(probe,'get_bytes',side_effect=[
+            http.client.IncompleteRead(b'partial',10),(200,json.dumps(tw).encode()),
+            (200,json.dumps(tp).encode())]) as fetch,patch.object(probe.time,'sleep'):
+            universe=probe.fetch_universe(Path(d))
+            self.assertEqual(len(universe),1002)
+            self.assertEqual(fetch.call_count,3)
+            attempts=[json.loads(line) for line in (Path(d)/'universe_fetch_attempts.jsonl').read_text().splitlines()]
+            self.assertEqual(len(attempts),3)
+            self.assertIn('IncompleteRead',attempts[0]['error'])
 
 if __name__=='__main__':unittest.main()
