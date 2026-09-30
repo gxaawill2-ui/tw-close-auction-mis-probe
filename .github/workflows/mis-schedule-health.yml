@@ -1,0 +1,52 @@
+name: MIS Schedule Receipt and Health Check
+on:
+  schedule:
+    - cron: "57 3 * * 1-5"
+    - cron: "40,50 5 * * 1-5"
+    # One date-specific actual-schedule test. Health only, never market backfill.
+    - cron: "57 11 30 9 *"
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/mis-schedule-health.yml'
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: twse-mis-status-health
+  cancel-in-progress: false
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      TZ: Asia/Taipei
+      GITHUB_TOKEN: ${{ github.token }}
+      STATUS_ISSUE_NUMBER: "1"
+      SCHEDULE_CRON: ${{ github.event.schedule }}
+    steps:
+      - name: Record actual runner start
+        run: echo "RUNNER_STARTED_AT=$(date --iso-8601=milliseconds)" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify no-backfill and status separation
+        run: python -m unittest -v test_run_control.py
+      - name: Connectivity test on configuration push only
+        if: github.event_name == 'push'
+        run: python run_control.py --mode dry-run --output dry-results
+      - name: Persist receipt and check today's completion
+        if: always()
+        run: python run_control.py --mode health --output health-results
+      - name: Upload test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mis-control-${{ github.run_id }}
+          path: |
+            dry-results/
+            health-results/
+            mis-probe-*.zip
+          retention-days: 30
+          if-no-files-found: error
