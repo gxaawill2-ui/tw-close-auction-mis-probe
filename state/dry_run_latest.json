@@ -1,9 +1,9 @@
 {
-  "status": "dry_run_failed",
-  "run_id": "36710964140",
-  "finished_at": "2026-09-30T19:50:50.605+08:00",
-  "stock_universe_count": null,
-  "returned_count": null,
-  "error": "IncompleteRead:IncompleteRead(507512 bytes read, 566908 more expected)",
-  "updated_at": "2026-09-30T19:50:50.846+08:00"
+  "status": "dry_run_success",
+  "run_id": "36711548475",
+  "finished_at": "2026-09-30T19:56:07.072+08:00",
+  "stock_universe_count": 1978,
+  "returned_count": 8,
+  "error": null,
+  "updated_at": "2026-09-30T19:56:07.305+08:00"
 }
