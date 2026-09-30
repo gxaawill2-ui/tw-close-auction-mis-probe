@@ -89,7 +89,7 @@ def calendar_state(now, output):
     return state
 
 
-def render(now, record, dry, receipt, calendar=None):
+def render(now, record, dry, receipt, calendar=None, armed=None):
     date = now.date().isoformat()
     calendar=calendar or {}
     if record.get('trade_date') != date:record = {}
@@ -108,7 +108,8 @@ def render(now, record, dry, receipt, calendar=None):
     pre,close = performance.get('preclose',{}),performance.get('close',{})
     dry_good = dry.get('status') == 'dry_run_success'
     next_date=calendar.get('next_trade_date') if calendar.get('today')==date else None
-    return f'''# {heading}
+    armed=armed or {}
+    return f'''# {heading}｜{date}
 
 - trade date：`{date}`
 - 當日狀態：`{status}`
@@ -158,6 +159,15 @@ def render(now, record, dry, receipt, calendar=None):
 
 2026-09-29：missing / incomplete。2026-09-30 原排程直到 19:05 才啟動，failed_late_start；沒有補值。
 狀態永久保存在本獨立 repo 的 state/；這是資料驗證環境，沒有 Production 變更。
+
+## 10/1 已提前啟動的預備 workflow
+
+- 狀態：`{armed.get('status','尚未啟動')}`
+- 階段：`{armed.get('stage','—')}`
+- 下一個接力時間：`{armed.get('next_target','—')}`
+- workflow：[查看實際執行](https://github.com/{REPO}/actions/runs/{armed.get('run_id','')})
+- 這是今天先啟動、分段等待到明天 11:47 的一次性備援；明天不用由使用者操作。
+- 任一段 runner／接力出錯仍可能失敗，原有 cron 備援繼續保留。
 '''
 
 
@@ -167,7 +177,8 @@ def publish():
     dry,_ = read_state('state/dry_run_latest.json')
     receipt,_ = read_state('state/schedule_latest.json')
     calendar,_ = read_state('state/calendar_latest.json')
-    api('issues/'+str(ISSUE),'PATCH',{'body':render(now,record,dry,receipt,calendar)})
+    armed,_ = read_state('state/armed/2026-10-01.json')
+    api('issues/'+str(ISSUE),'PATCH',{'body':render(now,record,dry,receipt,calendar,armed)})
 
 
 def receipt():
