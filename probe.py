@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import concurrent.futures
 import csv
+import http.client
 import json
 import os
 import re
@@ -92,10 +93,29 @@ def parse_universe_rows(rows: object, market_name: str, ex: str,
     return parsed
 
 
-def fetch_universe() -> list[dict]:
+def fetch_universe(output: Path | None = None) -> list[dict]:
     universe: list[dict] = []
     for market_name, ex, url, code_key, name_key in UNIVERSE_SOURCES:
-        status, raw = get_bytes(url, 35, HEADERS)
+        for attempt in range(3):
+            began,tick=iso(),time.monotonic()
+            event={}
+            try:
+                status,raw=get_bytes(url,35,HEADERS)
+                event={'market':market_name,'attempt':attempt+1,'started_at':began,
+                       'finished_at':iso(),'http_status':status,'raw_bytes':len(raw),
+                       'latency_ms':round((time.monotonic()-tick)*1000,3)}
+                if output:(output/f'universe_source_{market_name}.json').write_bytes(raw)
+                break
+            except (http.client.HTTPException,urllib.error.URLError,TimeoutError,OSError) as exc:
+                event={'market':market_name,'attempt':attempt+1,'started_at':began,
+                       'finished_at':iso(),'error':f'{type(exc).__name__}:{exc}'}
+                if attempt==2 or isinstance(exc,urllib.error.HTTPError) and exc.code in (403,429):raise
+                time.sleep(.5*(attempt+1))
+            finally:
+                print(json.dumps({'universe_fetch':event},ensure_ascii=False),flush=True)
+                if output:
+                    with (output/'universe_fetch_attempts.jsonl').open('a') as log:
+                        log.write(json.dumps(event,ensure_ascii=False)+'\n')
         if status != 200:
             raise RuntimeError(f"{market_name} official universe HTTP {status}")
         try:
@@ -379,7 +399,7 @@ def dry_run(output: Path) -> int:
     started = iso()
     date = now_tpe().date().isoformat()
     github_issue(issue_body("🟡 DRY RUNNING", date, started, "fetch_universe"))
-    universe = fetch_universe()
+    universe = fetch_universe(output)
     probe = [x for x in universe if (x["ex"], x["code"]) in FIXED_PROBE]
     result = fetch_mis(probe, 0, 20)
     row = {"mode": "dry-run", "started_at": started, "finished_at": iso(),
@@ -410,7 +430,7 @@ def live(output: Path) -> int:
         package(output, date)
         github_issue(issue_body("❌ FAILED", date, iso(runner_started), "failed_late_start"))
         return 2
-    universe = fetch_universe()
+    universe = fetch_universe(output)
     (output / "universe.json").write_text(json.dumps(universe, ensure_ascii=False, indent=2), encoding="utf-8")
     probe_symbols = [x for x in universe if (x["ex"], x["code"]) in FIXED_PROBE]
     if len(probe_symbols) < 8:
