@@ -449,6 +449,9 @@ def live(output: Path) -> int:
         pre = pre_future.result()
         probe_rows = probe1_future.result()
 
+    github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "waiting_close", len(universe),
+                            {"preclose":pre['metrics']}))
+
     wait_until(target(date, "13:29:50"))
     github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "close_capture", len(universe), {"preclose": pre["metrics"]}))
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
