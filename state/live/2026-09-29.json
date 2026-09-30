@@ -1,0 +1,8 @@
+{
+  "trade_date": "2026-09-29",
+  "status": "failed_missing",
+  "phase": "missing",
+  "error": "No actual pre-13:25 MIS probe executed; missing / incomplete",
+  "preclose_captured": false,
+  "signals_generated": false
+}
