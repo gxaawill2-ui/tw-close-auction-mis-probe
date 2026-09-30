@@ -173,7 +173,7 @@ def fetch_mis(symbols: list[dict], retry: int = 1, timeout: int = 20) -> FetchRe
             status = exc.code
             raw = exc.read().decode("utf-8", "replace")
             error = f"HTTP_{exc.code}"
-        except (urllib.error.URLError, TimeoutError, socket.timeout, OSError) as exc:
+        except (http.client.HTTPException, urllib.error.URLError, TimeoutError, socket.timeout, OSError) as exc:
             error = f"{type(exc).__name__}:{exc}"
         last = FetchResult(iso(started), iso(), round((time.monotonic() - tick) * 1000),
                            status, attempt, error, raw, body)
