@@ -390,12 +390,16 @@ def dry_run(output: Path) -> int:
     (output / "run_summary.json").write_text(json.dumps(row, ensure_ascii=False, indent=2), encoding="utf-8")
     (output / "candidates.json").write_text(json.dumps({"status": "NOT_GENERATED", "reason": "dry-run"}, indent=2), encoding="utf-8")
     package(output, date)
-    github_issue(issue_body("🧪 DRY RUN SUCCESS", date, started, "completed", len(universe)))
-    return 0
+    good = (not result.error and result.http_status == 200 and
+            not row['analysis']['missing'] and not row['analysis']['empty'] and
+            len(probe) >= 8)
+    github_issue(issue_body("🧪 DRY RUN SUCCESS" if good else "❌ DRY RUN FAILED",
+                            date, started, "completed", len(universe)))
+    return 0 if good else 1
 
 
 def live(output: Path) -> int:
-    runner_started = now_tpe()
+    runner_started = datetime.fromisoformat(os.environ['RUNNER_STARTED_AT']) if os.getenv('RUNNER_STARTED_AT') else now_tpe()
     date = runner_started.date().isoformat()
     github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "starting"))
     if runner_started > target(date, "13:24:45"):
@@ -411,9 +415,13 @@ def live(output: Path) -> int:
     probe_symbols = [x for x in universe if (x["ex"], x["code"]) in FIXED_PROBE]
     if len(probe_symbols) < 8:
         raise RuntimeError(f"Only {len(probe_symbols)} fixed probe symbols remain in official universe")
+    if now_tpe() > target(date, "13:24:45"):
+        raise RuntimeError("failed_late_ready: official universe was not ready by 13:24:45; no preclose backfill")
     github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "waiting_preclose", len(universe)))
 
     wait_until(target(date, "13:24:50"))
+    if now_tpe() > target(date, "13:24:50") + timedelta(milliseconds=750):
+        raise RuntimeError("failed_late_capture: preclose start missed; no backfill")
     github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "preclose_capture", len(universe)))
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
         pre_future = pool.submit(snapshot, "preclose", target(date, "13:24:50"), universe, output)
@@ -442,14 +450,15 @@ def live(output: Path) -> int:
     errors = {"snapshot_errors": [{"phase": r["phase"], "batch": r["batch_no"], "error": r["error"],
                "missing": r["missing"], "empty": r["empty"], "duplicate": r["duplicate"]}
                for snap in snapshots for r in snap["records"] if r["error"] or r["missing"] or r["empty"] or r["duplicate"]],
-              "probe_errors": [{"planned_at": r["planned_at"], "error": r.get("error")}
-               for r in probe_rows if r.get("error")]}
+              "probe_errors": [{"planned_at": r["planned_at"], "error": r.get("error"),
+                                "missing":r.get('missing',[]), "empty":r.get('empty',[])}
+               for r in probe_rows if r.get("error") or r.get('missing') or r.get('empty') or r.get('duplicate')]}
     (output / "error_missing_report.json").write_text(json.dumps(errors, ensure_ascii=False, indent=2), encoding="utf-8")
     validation = official_validation(date, probe_symbols, delayed, output)
     candidates = {"status": "NOT_GENERATED", "candidate_count": 0,
         "reason": "First live run must prove MIS field semantics and exclude trial matching before signals are allowed."}
     (output / "candidates.json").write_text(json.dumps(candidates, ensure_ascii=False, indent=2), encoding="utf-8")
-    summary = {"status": "success_raw_capture" if all(x["metrics"]["symbol_set_equal"] for x in snapshots) else "partial",
+    summary = {"status": "success_raw_capture" if all(x["metrics"]["symbol_set_equal"] for x in snapshots) and not errors['probe_errors'] else "partial",
                "trade_date": date, "runner_started_at": iso(runner_started), "finished_at": iso(),
                "universe_count": len(universe), "snapshots": performance,
                "probe_scheduled_count": len(probe_rows), "official_validation": validation["status"],
