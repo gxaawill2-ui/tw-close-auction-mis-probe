@@ -1,0 +1,14 @@
+{
+  "test": "Replay prior 95 complete saved pages in 4096-byte increments",
+  "matched": 95,
+  "mismatch": 0,
+  "full_total_bytes": 12879687,
+  "prefix_total_bytes": 2334720,
+  "reduction_percent": 81.87,
+  "median_full_bytes": 61685,
+  "median_prefix_bytes": 24576,
+  "offline_only": true,
+  "network_savings_verified": false,
+  "source_run_id": 36678852867,
+  "signals_generated": false
+}
