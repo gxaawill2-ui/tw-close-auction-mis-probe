@@ -1,0 +1,56 @@
+name: PChome Full Market Benchmark
+
+on:
+  push:
+    paths:
+      - "pchome_benchmark.py"
+      - ".github/workflows/pchome-benchmark.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pchome-full-market-benchmark
+  cancel-in-progress: false
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      TZ: Asia/Taipei
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Full TWSE and TPEx market benchmark with concurrency 5
+        run: python pchome_benchmark.py
+      - name: Save raw pages, observations, failures and performance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pchome-benchmark-${{ github.run_id }}
+          path: |
+            pchome-benchmark.zip
+            pchome-results/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Show benchmark summary
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          p = Path("pchome-results/performance.json")
+          if p.exists():
+              s = json.loads(p.read_text())
+              with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as f:
+                  f.write("# PChome 全市場抓取測試\n\n")
+                  f.write("只做連線與效能驗證；資料日期、試撮排除、逐筆完整性未驗證，不產生策略訊號。\n\n")
+                  f.write("| Metric | Result |\n|---|---|\n")
+                  for k in ["universe_count", "concurrency", "wall_time_seconds", "parsed_stocks", "missing_count", "http_errors", "timeout", "retry", "rate_limit_429", "public_auto_form_count", "stocks_with_before_cutoff_row", "stocks_with_close_time_row"]:
+                      f.write(f"| {k} | {s[k]} |\n")
+          PY
