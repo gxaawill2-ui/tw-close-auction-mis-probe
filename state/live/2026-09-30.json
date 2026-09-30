@@ -2,8 +2,8 @@
   "trade_date": "2026-09-30",
   "status": "failed_late_start",
   "phase": "failed_late_start",
-  "runner_started_at": "2026-09-30T19:05:13.318+08:00",
-  "started_at_source": "Original probe.py recorded its Python entry time as runner_started_at",
+  "runner_started_at": "2026-09-30T19:05:10+08:00",
+  "started_at_source": "GitHub job API started_at; original Python entry timestamp is saved separately",
   "python_started_at": "2026-09-30T19:05:13.318+08:00",
   "cutoff": "2026-09-30T13:24:45.000+08:00",
   "error": "Original 13:07 schedule was only observed running at 19:05; start was after deadline. missing / incomplete",
@@ -12,5 +12,7 @@
   "artifact": "mis-probe-36706343364",
   "preclose_captured": false,
   "signals_generated": false,
-  "updated_at": "2026-09-30T19:51:00+08:00"
+  "updated_at": "2026-09-30T19:51:45+08:00",
+  "finished_at": "2026-09-30T19:05:18+08:00",
+  "artifact_upload": "success"
 }
