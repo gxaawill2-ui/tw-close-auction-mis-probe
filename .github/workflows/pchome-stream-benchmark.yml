@@ -1,0 +1,32 @@
+name: PChome streamed prefix benchmark
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/pchome-stream-benchmark.yml'
+permissions:
+  contents: read
+concurrency:
+  group: pchome-stream-benchmark
+  cancel-in-progress: false
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Stream to newest pre-13-25 trade group
+        run: python pchome_stream_benchmark.py
+      - name: Save raw prefixes and reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pchome-stream-${{ github.run_id }}
+          path: |
+            stream-results/
+            pchome-stream-benchmark.zip
+          retention-days: 30
+          if-no-files-found: error
