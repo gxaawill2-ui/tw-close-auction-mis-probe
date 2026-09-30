@@ -174,7 +174,7 @@ def receipt():
     if os.getenv('GITHUB_EVENT_NAME') != 'schedule':return
     data = {'event':'schedule','cron':os.getenv('SCHEDULE_CRON',''),
         'run_id':os.getenv('GITHUB_RUN_ID'),
-        'runner_started_at':os.getenv('RUNNER_STARTED_AT',probe.iso()),'received_at':probe.iso()}
+        'runner_started_at':os.getenv('RUNNER_STARTED_AT') or probe.iso(),'received_at':probe.iso()}
     merge_state('state/schedule_receipts/'+str(data['run_id'])+'.json',data)
     merge_state('state/schedule_latest.json',data)
     print(json.dumps({'schedule_receipt':data}),flush=True)
@@ -220,7 +220,7 @@ def run(mode, output):
         return 0
     date = probe.now_tpe().date().isoformat()
     run_id = os.getenv('GITHUB_RUN_ID','local')
-    started = os.getenv('RUNNER_STARTED_AT',probe.iso())
+    started = os.getenv('RUNNER_STARTED_AT') or probe.iso()
     if mode == 'live':
         record,_ = read_state(live_path(date))
         if skip_existing(record):
