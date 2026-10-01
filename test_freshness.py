@@ -97,6 +97,8 @@ class FreshnessTests(unittest.TestCase):
             out=f.write_report('2026-10-02',[],rs,rs[0]['symbols'],{'checks':[]},Path(directory))
             self.assertEqual(out['signals']['status'],'NOT_GENERATED')
             self.assertEqual(out['both_validated_count'],0)
+            self.assertEqual(out['checkpoints'][0]['checkpoint_status'],'NOT_SAMPLED')
+            self.assertIsNone(out['checkpoints'][0]['fresh_reference_seen'])
 
 
 if __name__=='__main__':unittest.main()

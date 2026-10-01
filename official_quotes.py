@@ -10,7 +10,7 @@ from freshness import decimal_value
 def quote_url(ex,date):
     if ex=='tse':
         return 'https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?'+urlencode({'date':date.replace('-',''),'type':'ALLBUT0999','response':'json'})
-    return 'https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?'+urlencode({'date':date.replace('-','/'),'id':'','response':'json'})
+    return 'https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?'+urlencode({'date':date.replace('-','/'),'response':'json'})
 
 
 def parse_quotes(ex,date,body):

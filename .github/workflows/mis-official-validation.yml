@@ -1,4 +1,5 @@
 name: MIS Saved Evidence Official Validation
+# Recheck only saved evidence after an official table becomes available.
 on:
   schedule:
     - cron: '50 6 * * 1-5'

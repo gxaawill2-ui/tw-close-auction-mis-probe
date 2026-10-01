@@ -216,6 +216,8 @@ def write_report(date,snapshots,probe_rows,universe,official,output):
     samples={(r['ex'],r['code']) for r in probe_observations}
     for clock in ('13:25:10',*PRECLOSE_CHECKPOINTS):
         cutoff=datetime.fromisoformat(date+'T'+clock).replace(tzinfo=TZ)
+        checkpoint_records=[r for r in probe_rows if (r.get('planned_at') or '')[:19]==date+'T'+clock]
+        checkpoint_status='SAMPLED' if checkpoint_records else 'NOT_SAMPLED'
         measured=available=fresh_seen=0
         for key in samples:
             series=[r for r in grouped[key] if r.get('phase') in ('preclose_window','close_window')]
@@ -227,7 +229,10 @@ def write_report(date,snapshots,probe_rows,universe,official,output):
             measured+=bool(matches)
             fresh_seen+=any(pre_eligible(r,date) for r in matches)
         checkpoints.append({'checkpoint':clock,'samples_with_observed_reference':available,
-                            'observed_reference_seen_by_checkpoint':measured,'fresh_reference_seen':fresh_seen,
+                            'checkpoint_status':checkpoint_status,
+                            'valid_checkpoint_responses':sum(not r.get('error') for r in checkpoint_records) if checkpoint_records else None,
+                            'observed_reference_seen_by_checkpoint':measured if checkpoint_records else None,
+                            'fresh_reference_seen':fresh_seen if checkpoint_records else None,
                             'validated_count':0,'warning':'Retrospective observed convergence only; not final-trade ground truth or reliability percentage'})
     report={'trade_date':date,'status':'RESEARCH_ONLY','timezone_status':TIMEZONE_STATUS,
             'cached_alive_semantics':'UNVERIFIED','p_before_validated_count':0,'p_close_validated_count':0,
@@ -237,6 +242,11 @@ def write_report(date,snapshots,probe_rows,universe,official,output):
             'note':'Three unchanged old cached payloads are not three distinct fresh responses.'}
     (output/'freshness_report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
     (output/'freshness_report.md').write_text(render_report(report),encoding='utf-8')
+    (output/'pending_close.json').write_text(json.dumps({'trade_date':date,'semantics':'pending evidence, not assumed delayed closing',
+        'securities':[{'ex':v['ex'],'code':v['code'],'previous_trade_time':v['p_before_trade_time'],
+                       'trade_time':v['close_trade_time'],'observed_at':v['close_observed_at'],'server_time':v['close_server_time'],
+                       'freshness_status':v['close_freshness_status'],'classification':v['close_classification'],
+                       'official_close':v['official_close']} for v in values if v['close_freshness_status']!='official_matched_candidate']},ensure_ascii=False,indent=2))
     return report
 
 
@@ -253,9 +263,10 @@ def render_report(report):
         pre=v['preclose_convergence']
         cols=[v['code'],v['p_before_trade_time'],v['p_before'],pre.get('first_observed_reference_at'),pre.get('stable_at'),pre['status'],v['close_trade_time'],v['p_close'],v['first_close_observed_at'],v['official_matches']]
         lines.append('|'+ '|'.join('—' if x is None else str(x) for x in cols)+'|')
-    lines.extend(['','|Checkpoint|有觀察參考值的樣本|已看到相同參考值|其中 fresh 候選|validated|','|---|---:|---:|---:|---:|'])
+    lines.extend(['','|Checkpoint|採樣狀態|有觀察參考值的樣本|已看到相同參考值|其中 fresh 候選|validated|','|---|---|---:|---:|---:|---:|'])
     for x in report['checkpoints']:
-        lines.append(f"|{x['checkpoint']}|{x['samples_with_observed_reference']}|{x['observed_reference_seen_by_checkpoint']}|{x['fresh_reference_seen']}|0|")
+        seen=x['observed_reference_seen_by_checkpoint'];fresh=x['fresh_reference_seen']
+        lines.append(f"|{x['checkpoint']}|{x['checkpoint_status']}|{x['samples_with_observed_reference']}|{seen if seen is not None else '—'}|{fresh if fresh is not None else '—'}|0|")
     lines.extend(['','P_before validated = 0；P_close validated = 0；both validated = 0。',
                   '這些 0 表示本版仍未啟用正式驗證規則，不表示 MIS 無法使用或沒有 ±3% 股票。',
                   '收盤量 UNVERIFIED；不產生策略名單。',
