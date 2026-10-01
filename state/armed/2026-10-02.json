@@ -1,11 +1,11 @@
 {
   "trade_date": "2026-10-02",
   "status": "armed_running",
-  "stage": "hold_1_completed",
+  "stage": "hold_2",
   "run_id": "36856545941",
-  "runner_started_at": "2026-10-01T19:37:43.532+08:00",
-  "next_target": "2026-10-02T00:47:00+08:00",
-  "stage_started_at": "2026-10-01T19:37:44.388+08:00",
-  "updated_at": "2026-10-02T00:47:00.241+08:00",
+  "runner_started_at": "2026-10-02T00:47:11.495+08:00",
+  "next_target": "2026-10-02T06:07:00+08:00",
+  "stage_started_at": "2026-10-02T00:47:12.214+08:00",
+  "updated_at": "2026-10-02T00:47:12.381+08:00",
   "stage_finished_at": "2026-10-02T00:47:00.000+08:00"
 }
