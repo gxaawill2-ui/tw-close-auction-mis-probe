@@ -1,0 +1,94 @@
+name: MIS 2026-10-02 Pre-armed Relay
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/mis-prearmed-20261002.yml'
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: mis-prearmed-20261002
+  cancel-in-progress: false
+env:
+  TZ: Asia/Taipei
+  GITHUB_TOKEN: ${{ github.token }}
+  STATUS_ISSUE_NUMBER: "1"
+jobs:
+  hold_1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - name: Record runner start
+        run: |
+          MIS_RELAY_START=$(date '+%Y-%m-%dT%H:%M:%S.%3N%:z')
+          echo "RUNNER_STARTED_AT=$MIS_RELAY_START" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+      - name: Persist pre-armed state and wait to 00:47
+        run: python3 arm_freshness_session.py --stage hold_1 --until 2026-10-02T00:47:00+08:00
+  hold_2:
+    needs: hold_1
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - name: Record runner start
+        run: |
+          MIS_RELAY_START=$(date '+%Y-%m-%dT%H:%M:%S.%3N%:z')
+          echo "RUNNER_STARTED_AT=$MIS_RELAY_START" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+      - name: Wait to 06:07
+        run: python3 arm_freshness_session.py --stage hold_2 --until 2026-10-02T06:07:00+08:00
+  hold_3:
+    needs: hold_2
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - name: Record runner start
+        run: |
+          MIS_RELAY_START=$(date '+%Y-%m-%dT%H:%M:%S.%3N%:z')
+          echo "RUNNER_STARTED_AT=$MIS_RELAY_START" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+      - name: Wait to 11:47
+        run: python3 arm_freshness_session.py --stage hold_3 --until 2026-10-02T11:47:00+08:00
+  live_capture:
+    needs: hold_3
+    runs-on: ubuntu-latest
+    timeout-minutes: 125
+    concurrency:
+      group: twse-mis-live
+      cancel-in-progress: false
+    steps:
+      - name: Record actual capture-runner start
+        run: |
+          MIS_CAPTURE_START=$(date '+%Y-%m-%dT%H:%M:%S.%3N%:z')
+          echo "RUNNER_STARTED_AT=$MIS_CAPTURE_START" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Capture only on the declared trade date
+        run: |
+          test "$(date +%F)" = '2026-10-02'
+          python run_control.py --mode live --output results
+      - name: Save raw evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mis-probe-${{ github.run_id }}
+          path: |
+            results/
+            mis-probe-*.zip
+          if-no-files-found: error
+          retention-days: 30
+      - name: Record relay result without overwriting capture evidence
+        if: always()
+        run: python arm_freshness_session.py --finish
+  relay_result:
+    needs: [hold_1, hold_2, hold_3, live_capture]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Mark relay outcome even if a waiting segment failed
+        run: python3 arm_freshness_session.py --finish

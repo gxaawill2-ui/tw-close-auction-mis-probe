@@ -89,7 +89,7 @@ def calendar_state(now, output):
     return state
 
 
-def render(now, record, dry, receipt, calendar=None, armed=None, validation=None):
+def render(now, record, dry, receipt, calendar=None, armed=None, validation=None, next_armed=None):
     date = now.date().isoformat()
     calendar=calendar or {}
     if record.get('trade_date') != date:record = {}
@@ -110,6 +110,7 @@ def render(now, record, dry, receipt, calendar=None, armed=None, validation=None
     next_date=calendar.get('next_trade_date') if calendar.get('today')==date else None
     armed=armed or {}
     validation=validation or {}
+    next_armed=next_armed or {}
     fresh=record.get('freshness',{})
     return f'''# {heading}｜{date}
 
@@ -152,6 +153,21 @@ def render(now, record, dry, receipt, calendar=None, armed=None, validation=None
 - Artifact：`{validation.get('artifact','—')}`。
 - 14:50／15:20／17:50 排程只重讀已保存 Artifact 及指定日期官方資料，不重抓 MIS，不補盤中資料。
 - 空表／錯誤日期維持 PENDING；保存實際檢查時間，發布確切時間未驗證。
+
+## 10/1 官方例外離線核對（歷史）
+
+- 6 筆不一致：未觀察到收盤新成交，nested trade 與官方收盤不同；原因仍未確定，不能直接宣稱 MIS 錯誤或延後成交。
+- 33 筆缺值：9 檔官方排除、10 檔官方當日成交股數為零、14 檔有成交股數但整股收盤價空白。
+- 已排除股票不計入 tradable 分母；24 檔無整股收盤價仍留在可交易池，禁止補零或沿用前日價格。
+- [逐檔證據與分類](https://github.com/{REPO}/blob/main/reports/2026-10-01/official-exception-review.md)。
+
+## 10/2 一次性預備等待任務
+
+- 日期：`{next_armed.get("trade_date","尚未啟動")}`；狀態：`{next_armed.get("status","尚未啟動")}`。
+- runner 啟動：`{next_armed.get("runner_started_at","—")}`；階段：`{next_armed.get("stage","—")}`。
+- 下一接力時間：`{next_armed.get("next_target","—")}`。
+- [實際等待任務](https://github.com/{REPO}/actions/runs/{next_armed.get("run_id","")})。
+- 沿用原本接力方式，最後在 11:47 啟動正式 runner；原 cron 備援保留，接力仍受 GitHub runner 可用性影響。
 
 ## 下一次預定執行
 
@@ -201,7 +217,11 @@ def publish():
     calendar,_ = read_state('state/calendar_latest.json')
     armed,_ = read_state('state/armed/2026-10-01.json')
     validation,_=read_state('state/validation/'+now.date().isoformat()+'.json')
-    api('issues/'+str(ISSUE),'PATCH',{'body':render(now,record,dry,receipt,calendar,armed,validation)})
+    armed_index,_=read_state('state/armed_latest.json')
+    next_armed={}
+    if armed_index.get('state_path'):
+        next_armed,_=read_state(armed_index['state_path'])
+    api('issues/'+str(ISSUE),'PATCH',{'body':render(now,record,dry,receipt,calendar,armed,validation,next_armed)})
 
 
 def receipt():
