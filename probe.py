@@ -18,10 +18,14 @@ import urllib.parse
 import urllib.request
 import uuid
 import zipfile
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
+
+import freshness
+import official_quotes
+import tradable
 
 TZ = ZoneInfo("Asia/Taipei")
 MIS = "https://mis.twse.com.tw/stock/api/getStockInfo.jsp"
@@ -89,7 +93,12 @@ def parse_universe_rows(rows: object, market_name: str, ex: str,
         # not ordinary listed/OTC company shares for this strategy universe.
         if (re.fullmatch(r"\d{4}", code) and not code.startswith(("0", "91"))
                 and name):
-            parsed.append({"code": code, "name": name, "market": market_name, "ex": ex})
+            symbol={"code": code, "name": name, "market": market_name, "ex": ex}
+            listing=item.get('上市日期') or item.get('DateOfListing')
+            if listing:symbol['listing_date']=listing
+            legal_name=item.get('公司名稱') or item.get('CompanyName')
+            if legal_name:symbol['company_name']=legal_name
+            parsed.append(symbol)
     return parsed
 
 
@@ -143,12 +152,17 @@ class FetchResult:
     error: str | None
     raw_body: str | None
     response: dict | None
+    attempts: list[dict] = field(default_factory=list)
 
 
-def fetch_mis(symbols: list[dict], retry: int = 1, timeout: int = 20) -> FetchResult:
+def fetch_mis(symbols: list[dict], retry: int = 1, timeout: int = 20, deadline: datetime | None = None) -> FetchResult:
     last: FetchResult | None = None
+    attempts = []
     for attempt in range(retry + 1):
         started = now_tpe()
+        if deadline and started >= deadline:
+            return FetchResult(iso(started),iso(started),0,None,attempt,
+                               'CAPTURE_DEADLINE_NO_REQUEST',None,None,list(attempts))
         tick = time.monotonic()
         params = urllib.parse.urlencode({
             "ex_ch": "|".join(f'{x["ex"]}_{x["code"]}.tw' for x in symbols),
@@ -159,7 +173,8 @@ def fetch_mis(symbols: list[dict], retry: int = 1, timeout: int = 20) -> FetchRe
         body = None
         error = None
         try:
-            status, raw_bytes = get_bytes(f"{MIS}?{params}", timeout, HEADERS)
+            request_timeout=min(timeout,max(.1,(deadline-started).total_seconds())) if deadline else timeout
+            status, raw_bytes = get_bytes(f"{MIS}?{params}", request_timeout, HEADERS)
             raw = raw_bytes.decode("utf-8", "replace")
             try:
                 body = json.loads(raw)
@@ -177,8 +192,13 @@ def fetch_mis(symbols: list[dict], retry: int = 1, timeout: int = 20) -> FetchRe
             error = f"{type(exc).__name__}:{exc}"
         last = FetchResult(iso(started), iso(), round((time.monotonic() - tick) * 1000),
                            status, attempt, error, raw, body)
+        if deadline and datetime.fromisoformat(last.received_at)>deadline:
+            last.error='RESPONSE_AFTER_CAPTURE_DEADLINE'+(':'+error if error else '')
+        attempts.append(asdict(last))
+        last.attempts = list(attempts)
         if not error:
             return last
+        if status in (403,429): return last
         if attempt < retry:
             time.sleep(0.5 * (attempt + 1))
     assert last is not None
@@ -190,7 +210,7 @@ def analyze(symbols: list[dict], result: FetchResult) -> dict:
     seen: set[str] = set()
     duplicate: list[str] = []
     empty: list[str] = []
-    items = result.response.get("msgArray", []) if isinstance(result.response, dict) else []
+    items = result.response.get("msgArray", []) if isinstance(result.response, dict) and not result.error else []
     for item in items if isinstance(items, list) else []:
         key = f'{item.get("ex")}:{item.get("c")}'
         if key not in expected:
@@ -204,12 +224,12 @@ def analyze(symbols: list[dict], result: FetchResult) -> dict:
             "duplicate": duplicate, "empty": empty}
 
 
-def snapshot(phase: str, planned: datetime, universe: list[dict], output: Path) -> dict:
+def snapshot(phase: str, planned: datetime, universe: list[dict], output: Path, deadline: datetime | None = None) -> dict:
     groups = [universe[i:i + BATCH_SIZE] for i in range(0, len(universe), BATCH_SIZE)]
     started = now_tpe()
     records: list[dict] = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=CONCURRENCY) as pool:
-        futures = [(i + 1, group, pool.submit(fetch_mis, group)) for i, group in enumerate(groups)]
+        futures = [(i + 1, group, pool.submit(fetch_mis, group,1,20,deadline)) for i, group in enumerate(groups)]
         for batch_no, group, future in futures:
             result = future.result()
             row = {"phase": phase, "planned_at": iso(planned), "batch_no": batch_no,
@@ -250,13 +270,8 @@ def snapshot(phase: str, planned: datetime, universe: list[dict], output: Path) 
 
 
 def per_second_probe(date: str, window_name: str, start: str, end: str,
-                     symbols: list[dict], output: Path) -> list[dict]:
-    first, last = target(date, start), target(date, end)
-    ticks: list[datetime] = []
-    tick = first
-    while tick <= last:
-        ticks.append(tick)
-        tick += timedelta(seconds=1)
+                     symbols: list[dict], output: Path, checkpoints=()) -> list[dict]:
+    ticks = freshness.planned_ticks(date,start,end,checkpoints)
     rows: list[dict] = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=24) as pool:
         futures: list[tuple[datetime, concurrent.futures.Future]] = []
@@ -265,12 +280,14 @@ def per_second_probe(date: str, window_name: str, start: str, end: str,
             late = time.time() - tick.timestamp()
             if late > .75:
                 rows.append({"window": window_name, "planned_at": iso(tick),
+                             "symbols":symbols,
                              "error": "SCHEDULER_LATE_NO_REQUEST", "late_ms": round(late * 1000)})
             else:
                 futures.append((tick, pool.submit(fetch_mis, symbols, 0, 18)))
         for tick, future in futures:
             result = future.result()
             rows.append({"window": window_name, "planned_at": iso(tick), **asdict(result),
+                         "symbols":symbols,
                          **analyze(symbols, result)})
     rows.sort(key=lambda x: x["planned_at"])
     path = output / "probe_raw.jsonl"
@@ -306,43 +323,21 @@ def normalized_csv(snapshots: list[dict], probe_rows: list[dict], output: Path) 
                     "received_at": record.get("received_at"), "market": item.get("ex"),
                     "code": item.get("c"), "name": item.get("n"),
                     **{k: item.get(k, "") for k in FIELDS}, "error": record.get("error")})
+    # Complete parsed outer/nested/server fields; missing values stay null/empty.
+    all_records=[r for snap in snapshots for r in snap['records']]+probe_rows
+    date=all_records[0]['planned_at'][:10] if all_records else now_tpe().date().isoformat()
+    expanded=freshness.observations(all_records,date)
+    if expanded:
+        with (output/'normalized_freshness.csv').open('w',encoding='utf-8-sig',newline='') as fh:
+            writer=csv.DictWriter(fh,fieldnames=list(expanded[0]));writer.writeheader()
+            for row in expanded:
+                writer.writerow({k:json.dumps(v,ensure_ascii=False) if isinstance(v,dict) else v for k,v in row.items()})
 
 
 def official_validation(date: str, probe_symbols: list[dict], close_snapshot: dict, output: Path) -> dict:
-    official: dict[tuple[str, str], dict] = {}
-    errors: list[str] = []
-    for ex, url in (("tse", TWSE_CLOSE), ("otc", TPEX_CLOSE)):
-        try:
-            status, raw = get_bytes(url, 45, {"Accept": "application/json", "User-Agent": HEADERS["User-Agent"]})
-            rows = json.loads(raw.decode("utf-8", "replace"))
-            if status != 200 or not isinstance(rows, list):
-                raise RuntimeError(f"HTTP {status} or invalid JSON")
-            for row in rows:
-                code = str(row.get("Code") or row.get("SecuritiesCompanyCode") or "").strip()
-                close = str(row.get("ClosingPrice") or row.get("Close") or "").strip().replace(",", "")
-                if code and close and close not in ("--", "---"):
-                    official[(ex, code)] = {"official_close": close, "raw": row}
-        except Exception as exc:
-            errors.append(f"{ex}:{type(exc).__name__}:{exc}")
-    latest_items: dict[tuple[str, str], dict] = {}
-    for record in close_snapshot["records"]:
-        items = record["response"].get("msgArray", []) if isinstance(record["response"], dict) else []
-        for item in items:
-            latest_items[(item.get("ex"), item.get("c"))] = item
-    checks = []
-    for symbol in probe_symbols:
-        key = (symbol["ex"], symbol["code"])
-        item, off = latest_items.get(key, {}), official.get(key, {})
-        checks.append({"market": symbol["market"], "code": symbol["code"], "name": symbol["name"],
-                       "mis_z": item.get("z"), "mis_pz": item.get("pz"),
-                       "official_close": off.get("official_close"),
-                       "z_matches": str(item.get("z", "")).rstrip("0").rstrip(".") == str(off.get("official_close", "")).rstrip("0").rstrip("."),
-                       "pz_matches": str(item.get("pz", "")).rstrip("0").rstrip(".") == str(off.get("official_close", "")).rstrip("0").rstrip(".")})
-    result = {"trade_date": date, "status": "observational_only_unverified",
-              "note": "Official close comparison does not by itself prove MIS field semantics or exclude trial matching.",
-              "source_errors": errors, "checks": checks}
-    (output / "official_validation.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
-    return result
+    return official_quotes.validate(date,probe_symbols,[close_snapshot],output,get_bytes)
+
+
 
 
 def github_issue(body: str) -> None:
@@ -399,16 +394,24 @@ def dry_run(output: Path) -> int:
     started = iso()
     date = now_tpe().date().isoformat()
     github_issue(issue_body("🟡 DRY RUNNING", date, started, "fetch_universe"))
-    universe = fetch_universe(output)
+    company = fetch_universe(output)
+    universe,universe_audit = tradable.build(date,company,output,get_bytes)
     probe = [x for x in universe if (x["ex"], x["code"]) in FIXED_PROBE]
     result = fetch_mis(probe, 0, 20)
     row = {"mode": "dry-run", "started_at": started, "finished_at": iso(),
            "stock_universe_count": len(universe), "probe_symbols": probe,
+           "company_universe_count":len(company),"universe_audit_status":universe_audit['status'],
            "mis": asdict(result), "analysis": analyze(probe, result),
            "note": "Connectivity only. No 13:25/13:30 data or strategy signals."}
     (output / "dry_run.json").write_text(json.dumps(row, ensure_ascii=False, indent=2), encoding="utf-8")
     (output / "run_summary.json").write_text(json.dumps(row, ensure_ascii=False, indent=2), encoding="utf-8")
     (output / "candidates.json").write_text(json.dumps({"status": "NOT_GENERATED", "reason": "dry-run"}, indent=2), encoding="utf-8")
+    (output/'freshness_schedule.json').write_text(json.dumps({
+        'preclose':[iso(x) for x in freshness.planned_ticks(date,'13:24:50','13:25:10',freshness.PRECLOSE_CHECKPOINTS)],
+        'close':[iso(x) for x in freshness.planned_ticks(date,'13:29:50','13:30:15',freshness.CLOSE_CHECKPOINTS)],
+        'note':'Plan only; dry-run never fabricates scheduled market evidence.'},indent=2))
+    dry_record={'phase':'dry_run','planned_at':result.requested_at,'symbols':probe,**asdict(result)}
+    freshness.write_report(date,[{'records':[dry_record]}],[],probe,{'checks':[]},output)
     package(output, date)
     good = (not result.error and result.http_status == 200 and
             not row['analysis']['missing'] and not row['analysis']['empty'] and
@@ -430,7 +433,10 @@ def live(output: Path) -> int:
         package(output, date)
         github_issue(issue_body("❌ FAILED", date, iso(runner_started), "failed_late_start"))
         return 2
-    universe = fetch_universe(output)
+    company = fetch_universe(output)
+    if now_tpe() > target(date, "13:24:45"):
+        raise RuntimeError("failed_late_ready: official universe was not ready by 13:24:45; no preclose backfill")
+    universe,universe_audit = tradable.build(date,company,output,get_bytes)
     (output / "universe.json").write_text(json.dumps(universe, ensure_ascii=False, indent=2), encoding="utf-8")
     probe_symbols = [x for x in universe if (x["ex"], x["code"]) in FIXED_PROBE]
     if len(probe_symbols) < 8:
@@ -445,7 +451,7 @@ def live(output: Path) -> int:
     github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "preclose_capture", len(universe)))
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
         pre_future = pool.submit(snapshot, "preclose", target(date, "13:24:50"), universe, output)
-        probe1_future = pool.submit(per_second_probe, date, "preclose_window", "13:24:50", "13:25:10", probe_symbols, output)
+        probe1_future = pool.submit(per_second_probe, date, "preclose_window", "13:24:50", "13:25:10", probe_symbols, output, freshness.PRECLOSE_CHECKPOINTS)
         pre = pre_future.result()
         probe_rows = probe1_future.result()
 
@@ -455,11 +461,11 @@ def live(output: Path) -> int:
     wait_until(target(date, "13:29:50"))
     github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "close_capture", len(universe), {"preclose": pre["metrics"]}))
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
-        probe2_future = pool.submit(per_second_probe, date, "close_window", "13:29:50", "13:33:15", probe_symbols, output)
+        probe2_future = pool.submit(per_second_probe, date, "close_window", "13:29:50", "13:30:15", probe_symbols, output, freshness.CLOSE_CHECKPOINTS)
         wait_until(target(date, "13:30:02"))
         close_future = pool.submit(snapshot, "close", target(date, "13:30:02"), universe, output)
-        wait_until(target(date, "13:33:15"))
-        delayed_future = pool.submit(snapshot, "delayed_close", target(date, "13:33:15"), universe, output)
+        wait_until(target(date, "13:32:30"))
+        delayed_future = pool.submit(snapshot, "delayed_close", target(date, "13:32:30"), universe, output,target(date,"13:33:15"))
         close = close_future.result()
         delayed = delayed_future.result()
         probe_rows.extend(probe2_future.result())
@@ -477,15 +483,20 @@ def live(output: Path) -> int:
                                 "missing":r.get('missing',[]), "empty":r.get('empty',[])}
                for r in probe_rows if r.get("error") or r.get('missing') or r.get('empty') or r.get('duplicate')]}
     (output / "error_missing_report.json").write_text(json.dumps(errors, ensure_ascii=False, indent=2), encoding="utf-8")
-    validation = official_validation(date, probe_symbols, delayed, output)
+    validation = official_quotes.validate(date,universe,snapshots,output,get_bytes)
+    freshness_report = freshness.write_report(date,snapshots,probe_rows,universe,validation,output)
     candidates = {"status": "NOT_GENERATED", "candidate_count": 0,
         "reason": "First live run must prove MIS field semantics and exclude trial matching before signals are allowed."}
     (output / "candidates.json").write_text(json.dumps(candidates, ensure_ascii=False, indent=2), encoding="utf-8")
-    summary = {"status": "success_raw_capture" if all(x["metrics"]["symbol_set_equal"] for x in snapshots) and not errors['probe_errors'] else "partial",
+    summary = {"status": "success_raw_capture" if all(x["metrics"]["symbol_set_equal"] for x in snapshots) and not errors['probe_errors'] and universe_audit['status']=='OFFICIAL_SOURCES_DATE_CHECKED' else "partial",
                "trade_date": date, "runner_started_at": iso(runner_started), "finished_at": iso(),
-               "universe_count": len(universe), "snapshots": performance,
+               "universe_count": len(universe), "company_universe_count":len(company),
+               "universe_audit_status":universe_audit['status'],"exclusion_count":universe_audit['excluded_symbol_count'],
+               "snapshots": performance,
                "probe_scheduled_count": len(probe_rows), "official_validation": validation["status"],
                "candidate_count": 0, "artifact": f"mis-probe-{os.getenv('GITHUB_RUN_ID', 'local')}"}
+    summary['freshness']={k:freshness_report[k] for k in ('status','p_before_validated_count','p_close_validated_count','both_validated_count')}
+    summary['freshness']['confirmed_candidate_count']=sum(v['p_before_freshness_status']=='confirmed_candidate' for v in freshness_report['securities'])
     (output / "run_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     package(output, date)
     headline = "✅ SUCCESS" if summary["status"] == "success_raw_capture" else "⚠️ PARTIAL"

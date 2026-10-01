@@ -1,5 +1,14 @@
 name: TWSE MIS Closing Auction Probe
 on:
+  push:
+    paths:
+      - 'probe.py'
+      - 'freshness.py'
+      - 'tradable.py'
+      - 'official_quotes.py'
+      - 'run_control.py'
+      - 'test_freshness.py'
+      - '.github/workflows/twse-mis-probe.yml'
   schedule:
     - cron: "47 3 * * 1-5"
     - cron: "7 5 * * 1-5"
@@ -28,7 +37,7 @@ jobs:
       TZ: Asia/Taipei
       STATUS_ISSUE_NUMBER: "1"
       GITHUB_TOKEN: ${{ github.token }}
-      PROBE_MODE: ${{ github.event_name == 'schedule' && 'live' || inputs.mode }}
+      PROBE_MODE: ${{ github.event_name == 'schedule' && 'live' || inputs.mode || 'dry-run' }}
       SCHEDULE_CRON: ${{ github.event.schedule }}
     steps:
       - name: Record actual runner start before setup
@@ -39,6 +48,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Verify freshness, date gates and no-backfill behavior
+        run: python -m unittest -v test_probe.py test_run_control.py test_freshness.py
       - name: Run controlled probe
         id: probe
         run: python run_control.py --mode "$PROBE_MODE" --output results

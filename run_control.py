@@ -89,7 +89,7 @@ def calendar_state(now, output):
     return state
 
 
-def render(now, record, dry, receipt, calendar=None, armed=None):
+def render(now, record, dry, receipt, calendar=None, armed=None, validation=None):
     date = now.date().isoformat()
     calendar=calendar or {}
     if record.get('trade_date') != date:record = {}
@@ -109,6 +109,8 @@ def render(now, record, dry, receipt, calendar=None, armed=None):
     dry_good = dry.get('status') == 'dry_run_success'
     next_date=calendar.get('next_trade_date') if calendar.get('today')==date else None
     armed=armed or {}
+    validation=validation or {}
+    fresh=record.get('freshness',{})
     return f'''# {heading}｜{date}
 
 - trade date：`{date}`
@@ -132,6 +134,25 @@ def render(now, record, dry, receipt, calendar=None, armed=None):
 - Artifact：`{record.get('artifact','—')}`
 - 最後成功更新：`{record.get('updated_at','—')}`
 
+## Freshness Probe（研究版）
+
+- 下一交易日保持同一組 8 檔；batch 50 / concurrency 5。
+- 13:24:50–13:25:10 每秒；13:25:15–13:26:10 每 5 秒。
+- 13:29:50–13:30:15 每秒；13:30:20／30／45、13:31:00／30、13:32:00／30、13:33:00／15。
+- 全市場最後補抓 13:32:30 開始；13:33:15 為 deadline，逾時回應保留但不算有效。
+- 公司池／可交易池：`{record.get('company_universe_count','—')} / {record.get('universe_count','—')}`；股票池核對：`{record.get('universe_audit_status','—')}`。
+- confirmed_candidate：`{fresh.get('confirmed_candidate_count','—')}`；P_before／P_close／both validated：`{fresh.get('p_before_validated_count','—')} / {fresh.get('p_close_validated_count','—')} / {fresh.get('both_validated_count','—')}`。
+- server_age 為 Asia/Taipei 研究假設；cachedAlive 的單位／語意仍 UNVERIFIED。候選不代表 validated。
+- [10/1 原始證據審查](https://github.com/{REPO}/tree/main/reports/2026-10-01)；新版時間線、收斂表、官方核對在每日 Artifact。
+
+## 盤後官方重新核對
+
+- 交易日期：`{validation.get('trade_date','尚未執行')}`；狀態：`{validation.get('status','PENDING')}`；檢查時間：`{validation.get('checked_at','—')}`。
+- 官方價格一致／不一致／缺值：`{validation.get('matches','—')} / {validation.get('mismatches','—')} / {validation.get('unavailable','—')}`。
+- Artifact：`{validation.get('artifact','—')}`。
+- 14:50／15:20／17:50 排程只重讀已保存 Artifact 及指定日期官方資料，不重抓 MIS，不補盤中資料。
+- 空表／錯誤日期維持 PENDING；保存實際檢查時間，發布確切時間未驗證。
+
 ## 下一次預定執行
 
 - Next run date：`{next_date or next_weekday(now)}`（{'官方開休市日曆已核對' if next_date else '平日排程；官方日曆待核對'}）
@@ -148,6 +169,7 @@ def render(now, record, dry, receipt, calendar=None, armed=None):
 - dry-run：`{'SUCCESS' if dry_good else dry.get('status','尚未執行')}`
 - 時間：`{dry.get('finished_at','—')}`；run：`{dry.get('run_id','—')}`
 - 股票池：`{dry.get('stock_universe_count','—')}`；MIS 回傳：`{dry.get('returned_count','—')}`
+- 公司池：`{dry.get('company_universe_count','—')}`；可交易池来源状态：`{dry.get('universe_audit_status','—')}`
 - dry-run 不會把上方當日失敗改成成功。
 
 ## 實際排程回執
@@ -160,13 +182,13 @@ def render(now, record, dry, receipt, calendar=None, armed=None):
 2026-09-29：missing / incomplete。2026-09-30 原排程直到 19:05 才啟動，failed_late_start；沒有補值。
 狀態永久保存在本獨立 repo 的 state/；這是資料驗證環境，沒有 Production 變更。
 
-## 10/1 已提前啟動的預備 workflow
+## 10/1 一次性預備 workflow（歷史紀錄）
 
 - 狀態：`{armed.get('status','尚未啟動')}`
 - 階段：`{armed.get('stage','—')}`
 - 下一個接力時間：`{armed.get('next_target','—')}`
 - workflow：[查看實際執行](https://github.com/{REPO}/actions/runs/{armed.get('run_id','')})
-- 這是今天先啟動、分段等待到明天 11:47 的一次性備援；明天不用由使用者操作。
+- 這是 9/30 先啟動、接力至 10/1 11:47 的一次性備援，並非下一交易日的預備工作。
 - 任一段 runner／接力出錯仍可能失敗，原有 cron 備援繼續保留。
 '''
 
@@ -178,7 +200,8 @@ def publish():
     receipt,_ = read_state('state/schedule_latest.json')
     calendar,_ = read_state('state/calendar_latest.json')
     armed,_ = read_state('state/armed/2026-10-01.json')
-    api('issues/'+str(ISSUE),'PATCH',{'body':render(now,record,dry,receipt,calendar,armed)})
+    validation,_=read_state('state/validation/'+now.date().isoformat()+'.json')
+    api('issues/'+str(ISSUE),'PATCH',{'body':render(now,record,dry,receipt,calendar,armed,validation)})
 
 
 def receipt():
@@ -220,6 +243,9 @@ def health(output):
 def run(mode, output):
     output.mkdir(parents=True,exist_ok=True)
     receipt()
+    if mode == 'validation':
+        import official_retry
+        return official_retry.run(probe.now_tpe().date().isoformat(),output,__import__(__name__),probe)
     if mode == 'health':return health(output)
     if mode == 'workflow-failure':
         date=probe.now_tpe().date().isoformat()
@@ -292,6 +318,7 @@ def run(mode, output):
             analysis=summary.get('analysis',{})
             merge_state('state/dry_run_latest.json',{'status':'dry_run_success' if code==0 and not failure else 'dry_run_failed',
                 'run_id':run_id,'finished_at':probe.iso(),'stock_universe_count':summary.get('stock_universe_count'),
+                'company_universe_count':summary.get('company_universe_count'),'universe_audit_status':summary.get('universe_audit_status'),
                 'returned_count':analysis.get('returned_count'),'error':(failure or {}).get('error')})
         else:
             patch=dict(summary,finished_at=probe.iso(),trade_date=date,run_id=run_id,
@@ -308,7 +335,7 @@ def run(mode, output):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
-    parser.add_argument('--mode',choices=['live','dry-run','health','workflow-failure'],required=True)
+    parser.add_argument('--mode',choices=['live','dry-run','health','workflow-failure','validation'],required=True)
     parser.add_argument('--output',type=Path,default=Path('results'))
     args=parser.parse_args()
     raise SystemExit(run(args.mode,args.output))

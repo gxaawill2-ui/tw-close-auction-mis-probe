@@ -1,0 +1,42 @@
+name: MIS Saved Evidence Official Validation
+on:
+  schedule:
+    - cron: '50 6 * * 1-5'
+    - cron: '20 7 * * 1-5'
+    - cron: '50 9 * * 1-5'
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/mis-official-validation.yml'
+permissions:
+  actions: read
+  contents: write
+  issues: write
+concurrency:
+  group: twse-mis-official-validation
+  cancel-in-progress: false
+jobs:
+  validate_saved_evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TZ: Asia/Taipei
+      GITHUB_TOKEN: ${{ github.token }}
+      STATUS_ISSUE_NUMBER: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Re-read saved capture and date-specific official close tables
+        run: python run_control.py --mode validation --output validation-results
+      - name: Save validation, publication checks and convergence tables
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mis-validation-${{ github.run_id }}
+          path: |
+            validation-results/
+            mis-probe-*.zip
+          retention-days: 30
+          if-no-files-found: error
