@@ -1,11 +1,11 @@
 {
   "status": "dry_run_success",
-  "run_id": "36827501147",
-  "finished_at": "2026-10-01T14:57:56.213+08:00",
+  "run_id": "36856545953",
+  "finished_at": "2026-10-01T19:38:02.167+08:00",
   "stock_universe_count": 1969,
   "returned_count": 8,
   "error": null,
-  "updated_at": "2026-10-01T14:57:56.495+08:00",
+  "updated_at": "2026-10-01T19:38:02.349+08:00",
   "company_universe_count": 1978,
   "universe_audit_status": "OFFICIAL_SOURCES_DATE_CHECKED"
 }
