@@ -1,0 +1,14 @@
+{
+  "trade_date": "2026-10-01",
+  "status": "running",
+  "phase": "starting",
+  "run_id": "36712518342",
+  "runner_started_at": "2026-10-01T11:47:12.351+08:00",
+  "python_started_at": "2026-10-01T11:47:16.208+08:00",
+  "artifact": "mis-probe-36712518342",
+  "error": null,
+  "finished_at": null,
+  "snapshots": {},
+  "official_validation": "unverified",
+  "updated_at": "2026-10-01T11:47:16.359+08:00"
+}
