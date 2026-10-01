@@ -1,10 +1,11 @@
 {
   "trade_date": "2026-10-01",
   "status": "⏳ WAITING",
-  "phase": "fetch_universe",
+  "phase": "waiting_1000",
   "run_id": "36786278549",
   "runner_started_at": "2026-10-01T06:34:24.204+08:00",
   "signals_generated": false,
   "comment_id": 5920893717,
-  "updated_at": "2026-10-01T09:50:00.837+08:00"
+  "updated_at": "2026-10-01T09:51:26.425+08:00",
+  "universe_count": 1978
 }
