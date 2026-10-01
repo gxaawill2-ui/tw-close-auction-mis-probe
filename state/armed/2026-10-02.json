@@ -1,0 +1,10 @@
+{
+  "trade_date": "2026-10-02",
+  "status": "armed_running",
+  "stage": "hold_1",
+  "run_id": "36856545941",
+  "runner_started_at": "2026-10-01T19:37:43.532+08:00",
+  "next_target": "2026-10-02T00:47:00+08:00",
+  "stage_started_at": "2026-10-01T19:37:44.388+08:00",
+  "updated_at": "2026-10-01T19:37:44.668+08:00"
+}
