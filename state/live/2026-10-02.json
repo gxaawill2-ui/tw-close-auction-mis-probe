@@ -1,7 +1,7 @@
 {
   "trade_date": "2026-10-02",
   "status": "running",
-  "phase": "close_capture",
+  "phase": "validation",
   "run_id": "36856545941",
   "runner_started_at": "2026-10-02T11:47:11.816+08:00",
   "python_started_at": "2026-10-02T11:47:14.977+08:00",
@@ -10,7 +10,7 @@
   "finished_at": null,
   "snapshots": {},
   "official_validation": "unverified",
-  "updated_at": "2026-10-02T13:29:50.173+08:00",
+  "updated_at": "2026-10-02T13:33:18.331+08:00",
   "preclose_captured": true,
   "universe_count": 1970
 }
