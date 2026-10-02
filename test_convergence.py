@@ -90,6 +90,16 @@ class ConvergenceTests(unittest.TestCase):
         self.assertEqual(out['status'], 'NOT_SAMPLED'); self.assertEqual(out['both_converged_count'], 0)
         self.assertIsNone(out['securities'][0]['p_before'])
 
+    def test_unknown_price_retains_original_AB_observation_times(self):
+        rs=all_references()
+        rs[1]['response']['msgArray'][0]['v']='11'
+        out=c.build_report(DATE,[{'records':rs}],[],[SYMBOL],{'checks':[]})['securities'][0]
+        self.assertIsNone(out['p_before'])
+        self.assertEqual(out['p_before_convergence_status'],'unknown')
+        self.assertEqual(out['p_before_observed_A'],rs[0]['received_at'])
+        self.assertEqual(out['p_before_observed_B'],rs[1]['received_at'])
+        self.assertEqual(out['p_before_server_time_B'],DATE+'T13:28:15+08:00')
+
     def test_normal_close_late_observed_does_not_become_delayed(self):
         rs = all_references()
         out = c.build_report(DATE, [{'records': rs}], [], [SYMBOL], {'checks': []})

@@ -189,8 +189,10 @@ def build_report(date, snapshots, probes, universe, official):
         for evidence, comparison in ((before, pre_probe), (closing, close_probe)):
             if comparison['status'] == 'PROBE_CONFLICT':
                 evidence.update(status='unknown', converged=False, reason='PROBE_CONFLICT')
-        pa, pb = (before['A'] or {}), (before['B'] or {})
-        ca, cb = (closing['A'] or {}), (closing['B'] or {})
+        # Unknown prices stay null, but do not erase the timestamps of rejected
+        # original observations from the CSV. Adopted pairs take precedence.
+        pa, pb = (before['A'] or before['original_A'] or {}), (before['B'] or before['original_B'] or {})
+        ca, cb = (closing['A'] or closing['original_A'] or {}), (closing['B'] or closing['original_B'] or {})
         pre_ok, close_ok = before['converged'], closing['converged']
         off = checks.get(key, {})
         official_price = f.decimal_value(off.get('official_close'))
