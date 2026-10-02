@@ -10,5 +10,6 @@
   "finished_at": null,
   "snapshots": {},
   "official_validation": "unverified",
-  "updated_at": "2026-10-02T11:47:15.143+08:00"
+  "updated_at": "2026-10-02T11:47:18.516+08:00",
+  "preclose_captured": false
 }
