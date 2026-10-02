@@ -8,6 +8,7 @@ import zipfile
 from pathlib import Path
 
 import freshness
+import convergence
 import official_quotes
 
 
@@ -35,14 +36,18 @@ def load_capture(archive):
     with zipfile.ZipFile(io.BytesIO(archive)) as z:
         for name in z.namelist():
             base=Path(name).name
-            if base in ('preclose_raw.jsonl','close_raw.jsonl','delayed_close_raw.jsonl','probe_raw.jsonl','universe.json','run_summary.json'):
+            phases = ('preclose','close','delayed_close',*convergence.REFERENCE_TIMES,'pre_targeted_retry','close_targeted_retry')
+            if base in tuple(p+'_raw.jsonl' for p in phases)+('probe_raw.jsonl','universe.json','run_summary.json'):
                 if base in files and files[base]!=z.read(name):raise RuntimeError('Conflicting artifact files '+base)
                 files[base]=z.read(name).decode('utf-8')
-    required=('preclose_raw.jsonl','close_raw.jsonl','delayed_close_raw.jsonl','probe_raw.jsonl','universe.json','run_summary.json')
+    required=('preclose_raw.jsonl','probe_raw.jsonl','universe.json','run_summary.json')
     missing=[name for name in required if name not in files]
     if missing:raise RuntimeError('Capture artifact missing '+','.join(missing))
     summary=json.loads(files['run_summary.json']);universe=json.loads(files['universe.json'])
-    snapshots=[{'records':[json.loads(s) for s in files[p+'_raw.jsonl'].splitlines()]} for p in ('preclose','close','delayed_close')]
+    capture_phases = ('preclose',*convergence.REFERENCE_TIMES) if summary.get('capture_architecture') == convergence.VERSION else ('preclose','close','delayed_close')
+    missing=[p+'_raw.jsonl' for p in capture_phases if p+'_raw.jsonl' not in files]
+    if missing:raise RuntimeError('Capture artifact missing '+','.join(missing))
+    snapshots=[{'records':[json.loads(s) for s in files[p+'_raw.jsonl'].splitlines()]} for p in (*capture_phases,'pre_targeted_retry','close_targeted_retry') if p+'_raw.jsonl' in files]
     probes=[json.loads(s) for s in files['probe_raw.jsonl'].splitlines()]
     return summary,universe,snapshots,probes
 
@@ -64,12 +69,17 @@ def run(date,output,control,probe):
         lookup={(s['ex'],s['code']):s for s in universe}
         for row in probes:
             if 'symbols' not in row:row['symbols']=[lookup[k] for k in probe.FIXED_PROBE if k in lookup]
-        validation=official_quotes.validate(date,universe,snapshots,output,probe.get_bytes)
+        selected = convergence.build_report(date,snapshots,probes,universe,{'checks':[]}) if summary.get('capture_architecture') == convergence.VERSION else None
+        validation=official_quotes.validate(date,universe,snapshots,output,probe.get_bytes,
+                                            selected_closes=selected['securities'] if selected else None)
         review=freshness.write_report(date,snapshots,probes,universe,validation,output)
+        dual=convergence.write_report(date,snapshots,probes,universe,validation,output)
         result.update({'status':validation['status'],'source_capture_run_id':capture_id,
                        'source_capture_artifact_id':matching[0]['id'],'official_validation':validation['status'],
                        'matches':validation['matches'],'mismatches':validation['mismatches'],'unavailable':validation['unavailable'],
                        'official_sources':validation['sources'],'freshness':{k:review[k] for k in ('p_before_validated_count','p_close_validated_count','both_validated_count')},
+                       'convergence':{k:v for k,v in dual.items() if k.endswith('_count') or k in ('status','version','validated')},
+                       'candidate_status':dual['status'],'candidate_count':dual['research_candidate_count'],
                        'artifact':'mis-validation-'+str(os.getenv('GITHUB_RUN_ID'))})
     path='state/validation/'+date+'.json'
     previous,_=control.read_state(path)

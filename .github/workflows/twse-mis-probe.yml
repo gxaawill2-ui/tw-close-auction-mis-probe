@@ -4,6 +4,9 @@ on:
     paths:
       - 'probe.py'
       - 'freshness.py'
+      - 'convergence.py'
+      - 'test_convergence.py'
+      - 'official_retry.py'
       - 'tradable.py'
       - 'official_quotes.py'
       - 'run_control.py'
@@ -49,7 +52,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Verify freshness, date gates and no-backfill behavior
-        run: python -m unittest -v test_probe.py test_run_control.py test_freshness.py
+        run: python -m unittest -v test_probe.py test_run_control.py test_freshness.py test_convergence.py
       - name: Run controlled probe
         id: probe
         run: python run_control.py --mode "$PROBE_MODE" --output results

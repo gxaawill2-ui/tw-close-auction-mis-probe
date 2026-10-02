@@ -105,13 +105,22 @@ def render(now, record, dry, receipt, calendar=None, armed=None, validation=None
         'nontrading_day':'⏸️ 官方休市日'}
     heading = titles.get(status,'❌ FAILED — '+status)
     performance = record.get('snapshots',{})
-    pre,close = performance.get('preclose',{}),performance.get('close',{})
+    pre,close = performance.get('preclose',{}),performance.get('close',performance.get('close_reference_B',{}))
     dry_good = dry.get('status') == 'dry_run_success'
     next_date=calendar.get('next_trade_date') if calendar.get('today')==date else None
     armed=armed or {}
     validation=validation or {}
     next_armed=next_armed or {}
     fresh=record.get('freshness',{})
+    dual=record.get('convergence',{})
+    official_dual=validation.get('convergence',{})
+    research=validation if official_dual.get('status') == 'RESEARCH_ONLY' else record
+    research_status=research.get('candidate_status','NOT_GENERATED')
+    research_count=research.get('candidate_count','—')
+    close_label='13:30' if 'close' in performance else '13:33:20 close B'
+    reference_table='\n'.join(
+        f"|{phase}|{performance.get(phase,{}).get('success_count','—')}/{performance.get(phase,{}).get('stock_universe_count','—')}|{performance.get(phase,{}).get('wall_time_seconds','—')}|{performance.get(phase,{}).get('first_request_started_at','—')}|"
+        for phase in probe.convergence.REFERENCE_TIMES)
     return f'''# {heading}｜{date}
 
 - trade date：`{date}`
@@ -123,15 +132,15 @@ def render(now, record, dry, receipt, calendar=None, armed=None, validation=None
 - executionId：`{record.get('run_id','—')}`
 - 股票池：`{record.get('universe_count','尚未取得')}`
 - 13:25 成功數／總數：`{pre.get('success_count','—')}/{pre.get('stock_universe_count','—')}`
-- 13:30 成功數／總數：`{close.get('success_count','—')}/{close.get('stock_universe_count','—')}`
+- {close_label} 成功數／總數：`{close.get('success_count','—')}/{close.get('stock_universe_count','—')}`
 - 13:33 回傳數（正式收盤辨識未驗證）：`{performance.get('delayed_close',{}).get('success_count','—')}`
-- 13:25／13:30 耗時：`{pre.get('wall_time_seconds','—')} / {close.get('wall_time_seconds','—')} 秒`
+- 13:24:50 研究快照／{close_label} 耗時：`{pre.get('wall_time_seconds','—')} / {close.get('wall_time_seconds','—')} 秒`
 - missing：`{pre.get('missing_count','—')} / {close.get('missing_count','—')}`
 - timeout：`{pre.get('timeouts','—')} / {close.get('timeouts','—')}`
 - retry：`{pre.get('retries','—')} / {close.get('retries','—')}`
 - error：`{record.get('error','—')}`
 - 官方核對：`{record.get('official_validation','未驗證')}`
-- ±3%：**未產生；價格與試撮欄位尚未驗證**
+- research ±3%：`{research_status}`／候選 ` {research_count} `；正式 validated=false，Production 訊號未產生。
 - Artifact：`{record.get('artifact','—')}`
 - 最後成功更新：`{record.get('updated_at','—')}`
 
@@ -140,7 +149,23 @@ def render(now, record, dry, receipt, calendar=None, armed=None, validation=None
 - 下一交易日保持同一組 8 檔；batch 50 / concurrency 5。
 - 13:24:50–13:25:10 每秒；13:25:15–13:26:10 每 5 秒。
 - 13:29:50–13:30:15 每秒；13:30:20／30／45、13:31:00／30、13:32:00／30、13:33:00／15。
-- 全市場最後補抓 13:32:30 開始；13:33:15 為 deadline，逾時回應保留但不算有效。
+- 下一版全市場 P_before：13:27:00 A／13:28:15 B；13:24:50 僅研究資料。
+- 下一版全市場 P_close：13:32:30 A／13:33:20 B；13:30 保留 8 檔探針研究。
+- A/B 必須為不同 fresh server observation，trade.t／trade.z／v 一致；單靠固定等待時間或 cachedAlive 不算 fresh。
+- 不一致／stale／server regression，只補 affected symbols；pre 最晚 13:29:30、close 最晚 13:35，未收斂 unknown，不補值。
+- 13:33 新成交變化先列 delayed candidate，再以定向新鮮觀察確認；晚看到 13:30 成交仍是正常收盤候選。
+- 當日無新收盤成交保留最後實際成交候選，之後官方核對；官方尚未發布 PENDING 不算失敗。
+- 當日雙快照版本：`{dual.get('version','尚未採樣此版')}`；狀態：`{dual.get('status','NOT_SAMPLED')}`。
+- P_before／P_close／both converged：`{dual.get('p_before_converged_count','—')} / {dual.get('p_close_converged_count','—')} / {dual.get('both_converged_count','—')}`。
+- stale batches／targeted retry requests：`{dual.get('stale_batch_count','—')} / {dual.get('targeted_retry_count','—')}`。
+- delayed-close candidates／無新收盤成交：`{dual.get('true_delayed_close_candidate_count','—')} / {dual.get('no_closing_new_trade_count','—')}`。
+- research 可計算股票數：`{research.get('research_calculable_count',research.get('convergence',{}).get('research_calculable_count','—'))}`。收盤量 UNVERIFIED。
+- 原始 A/B、替代配對、unknown 清單、探針交叉比較與 research 名單保存在 Artifact。
+
+|全市場 reference phase|成功／股票池|耗時秒|第一個 request|
+|---|---|---|---|
+{reference_table}
+
 - 公司池／可交易池：`{record.get('company_universe_count','—')} / {record.get('universe_count','—')}`；股票池核對：`{record.get('universe_audit_status','—')}`。
 - confirmed_candidate：`{fresh.get('confirmed_candidate_count','—')}`；P_before／P_close／both validated：`{fresh.get('p_before_validated_count','—')} / {fresh.get('p_close_validated_count','—')} / {fresh.get('both_validated_count','—')}`。
 - server_age 為 Asia/Taipei 研究假設；cachedAlive 的單位／語意仍 UNVERIFIED。候選不代表 validated。
@@ -175,7 +200,7 @@ def render(now, record, dry, receipt, calendar=None, armed=None, validation=None
 - 提前啟動：**11:47 Asia/Taipei**，UTC `47 3 * * 1-5`
 - 原排程保留：**13:07**，UTC `7 5 * * 1-5`
 - 備援：**13:12／13:17／13:22**，UTC `12,17,22 5 * * 1-5`
-- runner 內等待 **13:24:50／13:30:02**；13:24:45 後啟動不得補抓。
+- runner 內等待 **13:24:50／13:27:00／13:28:15／13:32:30／13:33:20**；13:24:45 後啟動不得補抓。
 - 同日完成或已有 preclose 證據就跳過備援，避免覆蓋原始資料。
 - 漏跑檢查預定：**13:40／13:50**。GitHub 排程可能延遲，這兩次檢查也不是準點保證。
 - 排程不需要 ChatGPT、Work 或使用者電腦開機。

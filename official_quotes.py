@@ -30,7 +30,7 @@ def parse_quotes(ex,date,body):
     return result,'AVAILABLE_SAME_DATE' if result else 'PENDING_EMPTY_TABLE'
 
 
-def validate(date,symbols,snapshots,output,get_bytes):
+def validate(date,symbols,snapshots,output,get_bytes,selected_closes=None):
     markets={};sources=[]
     for ex in ('tse','otc'):
         url=quote_url(ex,date);observed=datetime.now().astimezone().isoformat(timespec='milliseconds')
@@ -56,15 +56,23 @@ def validate(date,symbols,snapshots,output,get_bytes):
                 key=(item.get('ex'),item.get('c'))
                 if key not in latest or record['received_at']>latest[key][0]:latest[key]=(record['received_at'],item)
     checks=[]
+    selected = {(s['ex'],s['code']):s for s in selected_closes or []}
     for symbol in symbols:
         ex,code=symbol['ex'],symbol['code'];stamp,item=latest.get((ex,code),(None,{}))
         trade=item.get('trade') or {};off=markets[ex].get(code,{})
+        if selected_closes is not None:
+            evidence=selected.get((ex,code),{})
+            # Compare the selected converged price, never the latest stale payload.
+            # This derived comparison is distinct from unchanged saved raw evidence.
+            trade={'t':evidence.get('close_trade_time'),'z':evidence.get('p_close')}
+            stamp=evidence.get('close_observed_B')
+            item={'v':((evidence.get('close_pair_evidence') or {}).get('B') or {}).get('v')}
         mis_price,official_price=decimal_value(trade.get('z')),decimal_value(off.get('official_close'))
         state='MATCH' if mis_price is not None and official_price is not None and mis_price==official_price else 'MISMATCH'
         if mis_price is None or official_price is None:state='UNAVAILABLE'
         checks.append({**symbol,'mis_trade':trade,'mis_observed_at':stamp,'mis_total_v':item.get('v'),
                        **off,'price_result':state,'ex':ex,
-                       'price_source_semantics':'UNVERIFIED_NESTED_TRADE','validated':False})
+                       'price_source_semantics':'DUAL_CONVERGED_CLOSE_CANDIDATE' if selected_closes is not None else 'UNVERIFIED_NESTED_TRADE','validated':False})
     result={'trade_date':date,'status':'PENDING' if any(s['status']!='AVAILABLE_SAME_DATE' for s in sources) else 'SAME_DATE_COMPARISON_ONLY',
             'sources':sources,'checks':checks,'matches':sum(x['price_result']=='MATCH' for x in checks),
             'mismatches':sum(x['price_result']=='MISMATCH' for x in checks),

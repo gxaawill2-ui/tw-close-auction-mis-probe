@@ -24,6 +24,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 import freshness
+import convergence
 import official_quotes
 import tradable
 
@@ -238,7 +239,8 @@ def snapshot(phase: str, planned: datetime, universe: list[dict], output: Path, 
             records.append(row)
     raw_path = output / ({"preclose": "preclose_raw.jsonl", "close": "close_raw.jsonl",
                          "delayed_close": "delayed_close_raw.jsonl"}.get(phase, f"{phase}_raw.jsonl"))
-    raw_path.write_text("".join(json.dumps(x, ensure_ascii=False) + "\n" for x in records), encoding="utf-8")
+    with raw_path.open('a' if phase.endswith('_targeted_retry') else 'w', encoding='utf-8') as file:
+        file.write("".join(json.dumps(x, ensure_ascii=False) + "\n" for x in records))
     finished = now_tpe()
     latencies = sorted(x["latency_ms"] for x in records)
     successful = set()
@@ -267,6 +269,44 @@ def snapshot(phase: str, planned: datetime, universe: list[dict], output: Path, 
         "symbol_set_equal": len(successful) == len(universe),
     }
     return {"records": records, "metrics": metrics}
+
+
+def reference_capture(phase, date, universe, output, deadline):
+    planned = target(date, convergence.REFERENCE_TIMES[phase])
+    wait_until(planned)
+    if now_tpe() > planned+timedelta(milliseconds=750):
+        # Keep the missed attempt explicit. Targeted replacement observations are
+        # separately labelled and cannot masquerade as the scheduled A/B instant.
+        stamp = iso()
+        rows = []
+        for i in range(0, len(universe), BATCH_SIZE):
+            group = universe[i:i+BATCH_SIZE]
+            result = FetchResult(stamp, stamp, 0, None, 0, 'REFERENCE_NOT_SAMPLED', None, None)
+            rows.append({'phase': phase, 'planned_at': iso(planned), 'batch_no': i//BATCH_SIZE+1,
+                         'expected_count': len(group), 'symbols': group, **asdict(result), **analyze(group, result)})
+        (output/(phase+'_raw.jsonl')).write_text(''.join(json.dumps(r, ensure_ascii=False)+'\n' for r in rows))
+        return {'records': rows, 'metrics': {'phase': phase, 'status': 'NOT_SAMPLED',
+                'success_count': 0, 'stock_universe_count': len(universe), 'symbol_set_equal': False}}
+    return snapshot(phase, planned, universe, output, target(date, deadline))
+
+
+def targeted_retries(kind, date, snapshots, universe, output, probe_rows=()):
+    deadline = target(date, convergence.DEADLINES[kind])
+    rounds = []
+    while now_tpe() < deadline:
+        affected = convergence.unresolved(date, snapshots+rounds, universe, kind, probe_rows)
+        if not affected:
+            break
+        # A 403/429 stops retrying; do not turn a freshness study into a rate-limit loop.
+        if any(r.get('http_status') in (403, 429) for s in snapshots+rounds for r in s['records']):
+            break
+        planned = now_tpe()
+        replacement = snapshot(kind+'_targeted_retry', planned, affected, output, deadline)
+        replacement['metrics']['retry_round'] = len(rounds)+1
+        replacement['metrics']['affected_symbols'] = [s['ex']+':'+s['code'] for s in affected]
+        rounds.append(replacement)
+        wait_until(min(now_tpe()+timedelta(seconds=5), deadline))
+    return rounds
 
 
 def per_second_probe(date: str, window_name: str, start: str, end: str,
@@ -373,7 +413,7 @@ def issue_body(headline: str, date: str, started: str, phase: str, universe_coun
 - missing：`{pre.get('missing_count', '—')} / {close.get('missing_count', '—')}`
 - timeout：`{pre.get('timeouts', '—')} / {close.get('timeouts', '—')}`
 - retry：`{pre.get('retries', '—')} / {close.get('retries', '—')}`
-- ±3% 候選數：`0（欄位驗證完成前不產生）`
+- research ±3%：`{summary.get('candidate_count', '—')}`；validated=false，正式訊號未產生。
 - 官方核對結果：`observational_only_unverified`
 - Artifact 名稱：`mis-probe-{os.getenv('GITHUB_RUN_ID', 'local')}`
 
@@ -406,12 +446,14 @@ def dry_run(output: Path) -> int:
     (output / "dry_run.json").write_text(json.dumps(row, ensure_ascii=False, indent=2), encoding="utf-8")
     (output / "run_summary.json").write_text(json.dumps(row, ensure_ascii=False, indent=2), encoding="utf-8")
     (output / "candidates.json").write_text(json.dumps({"status": "NOT_GENERATED", "reason": "dry-run"}, indent=2), encoding="utf-8")
+    (output/'dual_snapshot_plan.json').write_text(json.dumps(convergence.plan(date), ensure_ascii=False, indent=2))
     (output/'freshness_schedule.json').write_text(json.dumps({
         'preclose':[iso(x) for x in freshness.planned_ticks(date,'13:24:50','13:25:10',freshness.PRECLOSE_CHECKPOINTS)],
         'close':[iso(x) for x in freshness.planned_ticks(date,'13:29:50','13:30:15',freshness.CLOSE_CHECKPOINTS)],
         'note':'Plan only; dry-run never fabricates scheduled market evidence.'},indent=2))
     dry_record={'phase':'dry_run','planned_at':result.requested_at,'symbols':probe,**asdict(result)}
     freshness.write_report(date,[{'records':[dry_record]}],[],probe,{'checks':[]},output)
+    convergence.write_report(date, [{'records':[dry_record]}], [], probe, {'checks':[]}, output)
     package(output, date)
     good = (not result.error and result.http_status == 200 and
             not row['analysis']['missing'] and not row['analysis']['empty'] and
@@ -455,26 +497,28 @@ def live(output: Path) -> int:
         pre = pre_future.result()
         probe_rows = probe1_future.result()
 
-    github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "waiting_close", len(universe),
-                            {"preclose":pre['metrics']}))
+    (output/'dual_snapshot_plan.json').write_text(json.dumps(convergence.plan(date), ensure_ascii=False, indent=2))
+    github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "pre_reference_A", len(universe)))
+    pre_a = reference_capture('pre_reference_A', date, universe, output, '13:28:15')
+    github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "pre_reference_B", len(universe)))
+    pre_b = reference_capture('pre_reference_B', date, universe, output, '13:29:30')
+    pre_retries = targeted_retries('pre', date, [pre_a, pre_b], universe, output, probe_rows)
 
     wait_until(target(date, "13:29:50"))
-    github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "close_capture", len(universe), {"preclose": pre["metrics"]}))
-    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
+    github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "close_probe_research", len(universe)))
+    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
         probe2_future = pool.submit(per_second_probe, date, "close_window", "13:29:50", "13:30:15", probe_symbols, output, freshness.CLOSE_CHECKPOINTS)
-        wait_until(target(date, "13:30:02"))
-        close_future = pool.submit(snapshot, "close", target(date, "13:30:02"), universe, output)
-        wait_until(target(date, "13:32:30"))
-        delayed_future = pool.submit(snapshot, "delayed_close", target(date, "13:32:30"), universe, output,target(date,"13:33:15"))
-        close = close_future.result()
-        delayed = delayed_future.result()
+        github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "close_reference_A", len(universe)))
+        close_a = reference_capture('close_reference_A', date, universe, output, '13:33:20')
+        github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "close_reference_B", len(universe)))
+        close_b = reference_capture('close_reference_B', date, universe, output, '13:35:00')
         probe_rows.extend(probe2_future.result())
-
-    github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "validation", len(universe),
-                            {"preclose": pre["metrics"], "close": close["metrics"], "delayed_close": delayed["metrics"]}))
-    snapshots = [pre, close, delayed]
+    close_retries = targeted_retries('close', date, [close_a, close_b], universe, output, probe_rows)
+    snapshots = [pre, pre_a, pre_b, *pre_retries, close_a, close_b, *close_retries]
+    github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "validation", len(universe)))
     normalized_csv(snapshots, probe_rows, output)
-    performance = {x["metrics"]["phase"]: x["metrics"] for x in snapshots}
+    performance = {x["metrics"]["phase"]: x["metrics"] for x in snapshots if not x['metrics']['phase'].endswith('_targeted_retry')}
+    performance['targeted_retry_rounds'] = [x['metrics'] for x in pre_retries+close_retries]
     (output / "performance_report.json").write_text(json.dumps(performance, ensure_ascii=False, indent=2), encoding="utf-8")
     errors = {"snapshot_errors": [{"phase": r["phase"], "batch": r["batch_no"], "error": r["error"],
                "missing": r["missing"], "empty": r["empty"], "duplicate": r["duplicate"]}
@@ -483,24 +527,31 @@ def live(output: Path) -> int:
                                 "missing":r.get('missing',[]), "empty":r.get('empty',[])}
                for r in probe_rows if r.get("error") or r.get('missing') or r.get('empty') or r.get('duplicate')]}
     (output / "error_missing_report.json").write_text(json.dumps(errors, ensure_ascii=False, indent=2), encoding="utf-8")
-    validation = official_quotes.validate(date,universe,snapshots,output,get_bytes)
-    freshness_report = freshness.write_report(date,snapshots,probe_rows,universe,validation,output)
-    candidates = {"status": "NOT_GENERATED", "candidate_count": 0,
-        "reason": "First live run must prove MIS field semantics and exclude trial matching before signals are allowed."}
-    (output / "candidates.json").write_text(json.dumps(candidates, ensure_ascii=False, indent=2), encoding="utf-8")
-    summary = {"status": "success_raw_capture" if all(x["metrics"]["symbol_set_equal"] for x in snapshots) and not errors['probe_errors'] and universe_audit['status']=='OFFICIAL_SOURCES_DATE_CHECKED' else "partial",
+    selected = convergence.build_report(date, snapshots, probe_rows, universe, {'checks': []})
+    validation = official_quotes.validate(date, universe, snapshots, output, get_bytes,
+                                         selected_closes=selected['securities'])
+    freshness_report = freshness.write_report(date, snapshots, probe_rows, universe, validation, output)
+    dual = convergence.write_report(date, snapshots, probe_rows, universe, validation, output)
+    # Research convergence and raw acquisition are separate outcomes. Pending
+    # official publication is not a capture error, nor is no new closing trade.
+    primary = [pre, pre_a, pre_b, close_a, close_b]
+    raw_complete = all(x['metrics']['symbol_set_equal'] for x in primary) and not errors['probe_errors']
+    summary = {"status": "success_raw_capture" if raw_complete and universe_audit['status']=='OFFICIAL_SOURCES_DATE_CHECKED' else "partial",
                "trade_date": date, "runner_started_at": iso(runner_started), "finished_at": iso(),
-               "universe_count": len(universe), "company_universe_count":len(company),
-               "universe_audit_status":universe_audit['status'],"exclusion_count":universe_audit['excluded_symbol_count'],
-               "snapshots": performance,
+               "universe_count": len(universe), "company_universe_count": len(company),
+               "universe_audit_status": universe_audit['status'], "exclusion_count": universe_audit['excluded_symbol_count'],
+               "snapshots": performance, 'capture_architecture': convergence.VERSION,
                "probe_scheduled_count": len(probe_rows), "official_validation": validation["status"],
-               "candidate_count": 0, "artifact": f"mis-probe-{os.getenv('GITHUB_RUN_ID', 'local')}"}
-    summary['freshness']={k:freshness_report[k] for k in ('status','p_before_validated_count','p_close_validated_count','both_validated_count')}
-    summary['freshness']['confirmed_candidate_count']=sum(v['p_before_freshness_status']=='confirmed_candidate' for v in freshness_report['securities'])
+               "candidate_count": dual['research_candidate_count'], 'research_calculable_count': dual['research_calculable_count'],
+               'candidate_status': 'RESEARCH_ONLY', 'validated': False,
+               "artifact": f"mis-probe-{os.getenv('GITHUB_RUN_ID', 'local')}"}
+    summary['freshness'] = {k:freshness_report[k] for k in ('status','p_before_validated_count','p_close_validated_count','both_validated_count')}
+    summary['freshness']['confirmed_candidate_count'] = sum(v['p_before_freshness_status']=='confirmed_candidate' for v in freshness_report['securities'])
+    summary['convergence'] = {k:v for k,v in dual.items() if k.endswith('_count') or k in ('status','version','validated')}
     (output / "run_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     package(output, date)
     headline = "✅ SUCCESS" if summary["status"] == "success_raw_capture" else "⚠️ PARTIAL"
-    github_issue(issue_body(headline, date, iso(runner_started), "completed", len(universe), performance))
+    github_issue(issue_body(headline, date, iso(runner_started), "completed", len(universe), summary))
     return 0 if headline == "✅ SUCCESS" else 3
 
 
