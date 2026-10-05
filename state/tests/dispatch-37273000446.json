@@ -1,0 +1,11 @@
+{
+  "run_id": "37273013346",
+  "status": "TEST_ONLY",
+  "scope": "DISPATCH_SAFETY_ONLY_NOT_MARKET_EVIDENCE",
+  "sentinel": "37273000446",
+  "started_at": "2026-10-05T14:34:21.738+08:00",
+  "capture_claimed": true,
+  "capture_owner_run_id": "37273013346",
+  "claimed_at": "2026-10-05T14:34:29.313+08:00",
+  "updated_at": "2026-10-05T14:34:29.314+08:00"
+}
