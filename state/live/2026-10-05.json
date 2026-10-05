@@ -1,0 +1,27 @@
+{
+  "trade_date": "2026-10-05",
+  "status": "missing_incomplete",
+  "phase": "not_run",
+  "reason": "missing / incomplete — scheduler did not trigger",
+  "error": "scheduler did not trigger; no 2026-10-05 preclose/close evidence; no backfill permitted",
+  "capture_blocked": true,
+  "preclose_captured": false,
+  "capture_claimed": false,
+  "runner_started_at": null,
+  "python_started_at": null,
+  "run_id": null,
+  "finished_at": null,
+  "universe_count": null,
+  "snapshots": {},
+  "candidate_status": "NOT_GENERATED",
+  "candidate_count": null,
+  "validated": false,
+  "recorded_at": "2026-10-05T14:08:03+08:00",
+  "scheduler_audit": {
+    "checked_at": "2026-10-05T14:08:03+08:00",
+    "total_runs": 34,
+    "today_run_count": 0,
+    "today_scheduled_count": 0,
+    "latest_run_id": 37030742993
+  }
+}
