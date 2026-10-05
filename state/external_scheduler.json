@@ -1,15 +1,27 @@
 {
   "provider": "cron-job.org",
-  "status": "PENDING_USER_SETUP",
+  "status": "DRAFT_SAVED_PENDING_TOKEN",
   "configured": false,
   "timezone": "Asia/Taipei",
-  "weekday_times": ["13:00", "13:10", "13:18"],
+  "weekday_times": [
+    "13:00",
+    "13:10",
+    "13:18"
+  ],
+  "cron_expression": "0,10,18 13 * * 1-5",
   "target_workflow": "twse-mis-probe.yml",
   "target_ref": "main",
   "mode": "live",
+  "live_job_id": 8581712,
+  "live_job_url": "https://console.cron-job.org/jobs/8581712",
+  "live_job_enabled": false,
+  "dry_run_job_id": 8581707,
+  "dry_run_job_enabled": false,
+  "draft_saved_at": "2026-10-05T15:18:01+08:00",
+  "next_planned_date": "2026-10-06",
   "verified_test_run_id": null,
   "test_request_succeeded": null,
   "test_runner_started": null,
   "test_artifact": null,
-  "note": "No PAT or credential belongs here. Do not mark VERIFIED based only on an input source declaration or HTTP 204. User must confirm three jobs configured and an actual cron-job.org Test matched to a successful workflow_dispatch run."
+  "note": "Two cron-job.org jobs actually saved via authenticated UI. One live job contains all three weekday trigger times; live remains disabled pending user-entered Authorization and a verified external dry-run. No PAT or credential is stored here. Do not mark VERIFIED from source declaration or HTTP 204 alone."
 }
