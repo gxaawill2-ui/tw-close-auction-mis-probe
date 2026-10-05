@@ -1,0 +1,11 @@
+{
+  "event": "push",
+  "cron": "",
+  "declared_source": "manual",
+  "source_verified": false,
+  "mode": "dry-run",
+  "run_id": "37273000454",
+  "runner_started_at": "2026-10-05T14:33:17.543+08:00",
+  "received_at": "2026-10-05T14:33:21.095+08:00",
+  "updated_at": "2026-10-05T14:33:23.962+08:00"
+}
