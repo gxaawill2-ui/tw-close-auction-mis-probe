@@ -1,11 +1,11 @@
 {
-  "event": "push",
+  "event": "workflow_dispatch",
   "cron": "",
-  "declared_source": "manual",
+  "declared_source": "dispatch-safety-test",
   "source_verified": false,
-  "mode": "dry-run",
-  "run_id": "37273000454",
-  "runner_started_at": "2026-10-05T14:33:17.543+08:00",
-  "received_at": "2026-10-05T14:33:21.095+08:00",
-  "updated_at": "2026-10-05T14:33:22.647+08:00"
+  "mode": "dispatch-safety",
+  "run_id": "37273013346",
+  "runner_started_at": "2026-10-05T14:34:21.738+08:00",
+  "received_at": "2026-10-05T14:34:24.052+08:00",
+  "updated_at": "2026-10-05T14:34:26.074+08:00"
 }
