@@ -1,0 +1,11 @@
+{
+  "event": "workflow_dispatch",
+  "cron": "",
+  "declared_source": "dispatch-safety-test",
+  "source_verified": false,
+  "mode": "dispatch-safety",
+  "run_id": "37273109267",
+  "runner_started_at": "2026-10-05T14:35:11.873+08:00",
+  "received_at": "2026-10-05T14:35:14.346+08:00",
+  "updated_at": "2026-10-05T14:35:14.585+08:00"
+}
