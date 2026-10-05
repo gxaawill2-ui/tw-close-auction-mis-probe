@@ -218,6 +218,16 @@ def build_report(date, snapshots, probes, universe, official):
                  'p_before_validated': False, 'p_close_validated': False, 'both_validated': False,
                  'pre_probe_comparison': pre_probe, 'close_probe_comparison': close_probe,
                  'volume_status': 'UNVERIFIED', 'volume_evidence': f.volume_evidence(full[key]+sample[key], date)}
+        value.update(p_before_A_server_time=pa.get('server_time'),p_before_B_server_time=pb.get('server_time'),
+                     p_close_A_server_time=ca.get('server_time'),p_close_B_server_time=cb.get('server_time'),
+                     p_close_convergence_status=('normal_close_converged_candidate' if category=='normal_close_candidate'
+                         else 'delayed_close_candidate' if category=='delayed_close_candidate'
+                         else 'no_closing_new_trade_converged_candidate' if category=='no_closing_new_trade_candidate'
+                         else 'unknown'),
+                     targeted_retry_count=sum(r.get('phase','').endswith('_targeted_retry')
+                         and r.get('error')!='CAPTURE_DEADLINE_NO_REQUEST' for r in full[key]),
+                     stale_seen=any(r['reason'] in ('stale_cache','server_time_regression')
+                                    for ev in (before,closing) for r in ev['rejections']))
         for label, evidence in (('pre', before), ('close', closing)):
             value[label+'_pair_evidence'] = {**evidence, **{k: compact(evidence.get(k)) for k in ('A', 'B', 'original_A', 'original_B')}}
         securities.append(value)
@@ -238,6 +248,7 @@ def build_report(date, snapshots, probes, universe, official):
     counts = {'p_before_converged_count': sum(v['p_before_convergence_status'] == 'p_before_converged_candidate' for v in securities),
               'p_close_converged_count': sum(v['close_convergence_status'] == 'p_close_converged_candidate' for v in securities),
               'both_converged_count': sum(v['both_converged'] for v in securities),
+              'unknown_count':sum(not v['both_converged'] for v in securities),
               'stale_batch_count': len(stale_batches), 'server_regression_response_count': len(set(regression_batches)),
               'targeted_retry_count': len(sent_targeted),
               'targeted_http_attempt_count': sum(len(r.get('attempts',[])) for r in targeted),
@@ -255,6 +266,7 @@ def build_report(date, snapshots, probes, universe, official):
             v['p_before_convergence_status' if kind == 'pre' else 'close_convergence_status'] == label+'_converged_candidate'
             and (v[('pre' if kind == 'pre' else 'close')+'_pair_evidence']['B'] or {}).get('phase', '').endswith('_targeted_retry')
             for v in securities)
+    counts['stale_response_count']=counts['stale_batch_count']
     has_references = all(any(r.get('phase') == p for r in reference_records) for p in REFERENCE_TIMES)
     return {'trade_date': date, 'version': VERSION, 'status': 'RESEARCH_ONLY' if has_references else 'NOT_SAMPLED',
             'universe_count': len(universe), 'rule': plan(date), **counts, 'stale_batches': stale_batches,
@@ -269,8 +281,11 @@ def research_candidates(report):
             continue
         change = f.decimal_value(v['p_close'])/f.decimal_value(v['p_before'])-1
         if abs(change) >= f.Decimal('0.03'):
-            values.append({k: v[k] for k in ('ex', 'code', 'name', 'market', 'p_before', 'p_close', 'official_price_result')} |
-                          {'tail_return': str(change), 'validated': False, 'status': 'RESEARCH_CANDIDATE'})
+            values.append({k: v[k] for k in ('ex','code','name','market','p_before','p_before_trade_time',
+                'p_close','close_trade_time','official_price_result','p_before_convergence_status','p_close_convergence_status',
+                'pre_pair_evidence','close_pair_evidence','targeted_retry_count','stale_seen')} |
+                          {'tail_return': str(change), 'tail_return_pct':str(change*100),
+                           'validated': False, 'status': 'RESEARCH_CANDIDATE'})
     return {'trade_date': report['trade_date'], 'status': 'NOT_SAMPLED' if report['status'] == 'NOT_SAMPLED' else 'RESEARCH_ONLY',
             'calculable_count': report['research_calculable_count'], 'candidate_count': len(values),
             'candidates': values, 'validated': False, 'production_signals': 'NOT_GENERATED',
@@ -283,10 +298,20 @@ def write_report(date, snapshots, probes, universe, official, output):
     report['research_candidate_count'] = candidates['candidate_count']
     (output/'convergence_report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2))
     (output/'candidates.json').write_text(json.dumps(candidates, ensure_ascii=False, indent=2))
+    (output/'research_candidates.json').write_text(json.dumps(candidates,ensure_ascii=False,indent=2))
+    candidate_columns=('code','name','market','p_before','p_before_trade_time','p_close','close_trade_time',
+        'tail_return','tail_return_pct','official_price_result','p_before_convergence_status','p_close_convergence_status',
+        'targeted_retry_count','stale_seen','pre_pair_evidence','close_pair_evidence','validated','status')
+    with (output/'research_candidates.csv').open('w',encoding='utf-8-sig',newline='') as file:
+        writer=csv.DictWriter(file,fieldnames=candidate_columns,extrasaction='ignore');writer.writeheader()
+        for row in candidates['candidates']:
+            writer.writerow({k:json.dumps(v,ensure_ascii=False) if isinstance(v,dict) else v for k,v in row.items()})
     columns = ('ex', 'code', 'name', 'market', 'p_before', 'p_before_trade_time', 'p_before_observed_A', 'p_before_observed_B',
                'p_before_server_time_A', 'p_before_server_time_B', 'p_before_convergence_status',
                'p_close', 'close_trade_time', 'close_observed_A', 'close_observed_B', 'close_server_time_A', 'close_server_time_B',
                'close_convergence_status', 'close_classification', 'official_close', 'official_price_result',
+               'p_before_A_server_time','p_before_B_server_time','p_close_A_server_time','p_close_B_server_time',
+               'p_close_convergence_status','targeted_retry_count','stale_seen',
                'both_converged', 'research_calculable', 'p_before_validated', 'p_close_validated', 'both_validated', 'volume_status')
     with (output/'convergence.csv').open('w', encoding='utf-8-sig', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=columns, extrasaction='ignore')
@@ -306,4 +331,9 @@ def write_report(date, snapshots, probes, universe, official, output):
     (output/'unknown_convergence.json').write_text(json.dumps({'trade_date': date, 'securities': [
         {k: v[k] for k in ('ex', 'code', 'p_before_convergence_status', 'close_convergence_status', 'pre_pair_evidence', 'close_pair_evidence')}
         for v in report['securities'] if not v['both_converged']]}, ensure_ascii=False, indent=2))
+    unknown={'trade_date':date,'unknown_count':report['unknown_count'],'securities':[
+        {k:v[k] for k in ('ex','code','name','market','p_before','p_close','p_before_convergence_status',
+                         'p_close_convergence_status','pre_pair_evidence','close_pair_evidence')}
+        for v in report['securities'] if not v['both_converged']]}
+    (output/'unknown_symbols.json').write_text(json.dumps(unknown,ensure_ascii=False,indent=2))
     return report

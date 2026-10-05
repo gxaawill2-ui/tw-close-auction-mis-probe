@@ -1,0 +1,15 @@
+{
+  "provider": "cron-job.org",
+  "status": "PENDING_USER_SETUP",
+  "configured": false,
+  "timezone": "Asia/Taipei",
+  "weekday_times": ["13:00", "13:10", "13:18"],
+  "target_workflow": "twse-mis-probe.yml",
+  "target_ref": "main",
+  "mode": "live",
+  "verified_test_run_id": null,
+  "test_request_succeeded": null,
+  "test_runner_started": null,
+  "test_artifact": null,
+  "note": "No PAT or credential belongs here. Do not mark VERIFIED based only on an input source declaration or HTTP 204. User must confirm three jobs configured and an actual cron-job.org Test matched to a successful workflow_dispatch run."
+}

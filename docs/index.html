@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>TWSE MIS 尾盤探針狀態</title>
+  <link rel="stylesheet" href="status.css">
+  <script defer src="status.js"></script>
+</head>
+<body>
+  <main>
+    <h1>尾盤探針執行狀態</h1>
+    <p id="today">正在讀取 Asia/Taipei 今日日期…</p>
+    <section class="headline" aria-live="polite">
+      <h2 id="headline">讀取狀態中</h2>
+      <p id="reason">只讀取今天的 state，昨天的成功不會算成今天。</p>
+    </section>
+    <p class="research">獨立研究環境 · validated=false · 不自動下單 · 收盤量 UNVERIFIED</p>
+    <p id="network" role="status"></p>
+    <dl id="details"></dl>
+    <h2>四份全市場參考</h2>
+    <div class="table-scroll"><table><thead><tr><th>參考</th><th>預定時間</th><th>實際狀態</th></tr></thead><tbody id="references"></tbody></table></div>
+    <h2>Research 收斂結果</h2>
+    <dl id="counts"></dl>
+    <h2>最近連線測試（不代表今日 capture）</h2>
+    <p id="dry-run">尚未取得。</p>
+    <p id="external-note">外部來源須以 cron-job.org Test + 真正 GitHub run 驗收，不能只看 HTTP 204。</p>
+    <button id="refresh" type="button">重新整理</button>
+    <nav>
+      <a href="https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/issues/1">Issue #1</a>
+      <a href="https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/actions">Actions / Artifacts</a>
+      <a href="https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/blob/main/docs/cron-job-setup.md">一次性外部排程設定</a>
+    </nav>
+    <p id="updated" class="small"></p>
+    <p class="small">每 60 秒讀取 public repo 的永久 state。頁面關閉不影響排程。連線失敗會明示，不沿用舊 SUCCESS。</p>
+  </main>
+</body>
+</html>

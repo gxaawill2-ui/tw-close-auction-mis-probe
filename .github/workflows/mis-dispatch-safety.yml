@@ -1,0 +1,34 @@
+name: MIS Real Duplicate Dispatch Safety Acceptance
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/mis-dispatch-safety.yml'
+      - 'dispatch_safety_driver.py'
+permissions:
+  actions: write
+  contents: write
+concurrency:
+  group: mis-dispatch-safety-driver
+  cancel-in-progress: false
+jobs:
+  test_dispatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      TZ: Asia/Taipei
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Dispatch twice and verify one immutable claim, one skipped capture
+        run: python dispatch_safety_driver.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mis-dispatch-safety-${{ github.run_id }}
+          path: dispatch-safety-results/
+          if-no-files-found: warn
+          retention-days: 30

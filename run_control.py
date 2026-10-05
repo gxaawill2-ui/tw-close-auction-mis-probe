@@ -30,7 +30,8 @@ def api(path, method='GET', payload=None):
                  'User-Agent':'independent-mis-probe'})
     try:
         with urllib.request.urlopen(req,timeout=8) as response:
-            return json.load(response)
+            raw=response.read()
+            return json.loads(raw) if raw else {}
     except urllib.error.HTTPError as exc:
         if exc.code == 404 and method == 'GET': return None
         raise
@@ -48,6 +49,8 @@ def merge_state(path, patch):
     for _ in range(4):
         current,sha = read_state(path)
         if patch.get('status') == 'failed_incomplete' and current.get('phase') == 'completed':
+            return current
+        if patch.get('status') == 'failed_missing' and (current.get('capture_claimed') or current.get('capture_blocked')):
             return current
         current.update(patch)
         current['updated_at'] = probe.iso()
@@ -86,10 +89,13 @@ def calendar_state(now, output):
         'next_trade_date':day.isoformat(),'today':now.date().isoformat(),
         'is_trading_day':now.weekday()<5 and now.date().isoformat() not in closed}
     merge_state('state/calendar_latest.json',state)
+    merge_state('state/calendars/'+str(year)+'.json',{'year':year,'closed_dates':sorted(closed),
+        'source':url,'verified_at':state['verified_at'],'status':'OFFICIAL_ANNUAL_CALENDAR',
+        'limitations':'Intraday emergency closures not independently monitored; live runner rechecks official calendar.'})
     return state
 
 
-def render(now, record, dry, receipt, calendar=None, armed=None, validation=None, next_armed=None):
+def render(now, record, dry, receipt, calendar=None, armed=None, validation=None, next_armed=None, external=None, execution=None):
     date = now.date().isoformat()
     calendar=calendar or {}
     if record.get('trade_date') != date:record = {}
@@ -99,6 +105,7 @@ def render(now, record, dry, receipt, calendar=None, armed=None, validation=None
     if not record and calendar.get('today')==date and not calendar.get('is_trading_day'):
         status = 'nontrading_day'
     titles = {'waiting':'⏳ 等待當日排程','running':'🟡 RUNNING',
+        'missing_incomplete':'❌ NOT RUN — missing / incomplete — scheduler did not trigger',
         'success_raw_capture':'✅ 原始資料擷取完成（欄位未驗證）','partial':'⚠️ PARTIAL',
         'failed_missing':'❌ FAILED — 當日漏跑','failed_late_start':'❌ FAILED — 啟動過晚',
         'failed_incomplete':'❌ FAILED — 13:40 尚未完成','failed':'❌ FAILED',
@@ -117,6 +124,8 @@ def render(now, record, dry, receipt, calendar=None, armed=None, validation=None
     research=validation if official_dual.get('status') == 'RESEARCH_ONLY' else record
     research_status=research.get('candidate_status','NOT_GENERATED')
     research_count=research.get('candidate_count','—')
+    external=external or {}
+    execution=execution or {}
     close_label='13:30' if 'close' in performance else '13:33:20 close B'
     reference_table='\n'.join(
         f"|{phase}|{performance.get(phase,{}).get('success_count','—')}/{performance.get(phase,{}).get('stock_universe_count','—')}|{performance.get(phase,{}).get('wall_time_seconds','—')}|{performance.get(phase,{}).get('first_request_started_at','—')}|"
@@ -143,6 +152,15 @@ def render(now, record, dry, receipt, calendar=None, armed=None, validation=None
 - research ±3%：`{research_status}`／候選 ` {research_count} `；正式 validated=false，Production 訊號未產生。
 - Artifact：`{record.get('artifact','—')}`
 - 最後成功更新：`{record.get('updated_at','—')}`
+
+## 外部主觸發／GitHub Pages
+
+- cron-job.org 設定狀態：`{external.get('status','PENDING_USER_SETUP')}`；實際外部 Test 證明：`{external.get('verified_test_run_id','尚未驗收')}`。
+- 主觸發 13:00、備援 13:10／13:18，Asia/Taipei。未完成外部 Test 前不能宣稱外部排程已設定成功。
+- GitHub Cron 僅第二層備援。workflow_dispatch 的 source 欄位只是呼叫端聲明，不能單憑它证明來自 cron-job.org。
+- [手機狀態頁](https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/)；未啟用時請 Settings → Pages → main /docs → Save。
+- 最近 workflow：`{execution.get('run_id','—')}`；event：`{execution.get('event','—')}`；宣告來源：`{execution.get('declared_source','—')}`。
+- 外部 Test、dry-run 或防重複測試，不能把今天漏跑改成 SUCCESS。
 
 ## Freshness Probe（研究版）
 
@@ -197,8 +215,9 @@ def render(now, record, dry, receipt, calendar=None, armed=None, validation=None
 ## 下一次預定執行
 
 - Next run date：`{next_date or next_weekday(now)}`（{'官方開休市日曆已核對' if next_date else '平日排程；官方日曆待核對'}）
-- 提前啟動：**11:47 Asia/Taipei**，UTC `47 3 * * 1-5`
-- 原排程保留：**13:07**，UTC `7 5 * * 1-5`
+- 外部主排程（待使用者設定／Test）：**13:00／13:10／13:18 Asia/Taipei**。
+- GitHub 第二層備援提前啟動：**11:47 Asia/Taipei**，UTC `47 3 * * 1-5`
+- GitHub 原排程保留：**13:07**，UTC `7 5 * * 1-5`
 - 備援：**13:12／13:17／13:22**，UTC `12,17,22 5 * * 1-5`
 - runner 內等待 **13:24:50／13:27:00／13:28:15／13:32:30／13:33:20**；13:24:45 後啟動不得補抓。
 - 同日完成或已有 preclose 證據就跳過備援，避免覆蓋原始資料。
@@ -246,21 +265,74 @@ def publish():
     next_armed={}
     if armed_index.get('state_path'):
         next_armed,_=read_state(armed_index['state_path'])
-    api('issues/'+str(ISSUE),'PATCH',{'body':render(now,record,dry,receipt,calendar,armed,validation,next_armed)})
+    external,_=read_state('state/external_scheduler.json')
+    execution,_=read_state('state/execution_latest.json')
+    api('issues/'+str(ISSUE),'PATCH',{'body':render(now,record,dry,receipt,calendar,armed,validation,next_armed,external,execution)})
 
 
 def receipt():
-    if os.getenv('GITHUB_EVENT_NAME') != 'schedule':return
-    data = {'event':'schedule','cron':os.getenv('SCHEDULE_CRON',''),
+    event=os.getenv('GITHUB_EVENT_NAME')
+    if event not in ('schedule','workflow_dispatch','push'):return
+    source=os.getenv('TRIGGER_SOURCE','manual')
+    if source not in ('manual','cron-job.org','cron-job.org-test','dispatch-safety-test'):source='unknown'
+    data = {'event':event,'cron':os.getenv('SCHEDULE_CRON',''),
+        'declared_source':source, 'source_verified':False,'mode':os.getenv('PROBE_MODE'),
         'run_id':os.getenv('GITHUB_RUN_ID'),
         'runner_started_at':os.getenv('RUNNER_STARTED_AT') or probe.iso(),'received_at':probe.iso()}
-    merge_state('state/schedule_receipts/'+str(data['run_id'])+'.json',data)
-    merge_state('state/schedule_latest.json',data)
-    print(json.dumps({'schedule_receipt':data}),flush=True)
+    kind='schedule' if event=='schedule' else 'dispatch'
+    merge_state('state/'+kind+'_receipts/'+str(data['run_id'])+'.json',data)
+    merge_state('state/'+kind+'_latest.json',data)
+    merge_state('state/execution_latest.json',data)
+    print(json.dumps({'execution_receipt':data}),flush=True)
 
 
 def skip_existing(record):
-    return record.get('status') in ('success_raw_capture','partial') or bool(record.get('preclose_captured'))
+    return (record.get('status') in ('success_raw_capture','partial') or bool(record.get('preclose_captured'))
+            or bool(record.get('capture_blocked')) or bool(record.get('capture_claimed'))
+            or record.get('status')=='running')
+
+
+def claim_capture(path, patch):
+    """Atomic claim: a 409/422 re-reads ownership rather than overwriting it.
+
+    Once claimed the day is never auto-unlocked, even after a crash. An orphaned
+    claim is failed/incomplete evidence, not permission to replay a market window.
+    """
+    for _ in range(4):
+        current,sha=read_state(path)
+        if skip_existing(current):return False,current,sha
+        current.update(patch)
+        current.update(capture_claimed=True,capture_owner_run_id=patch['run_id'],
+                       claimed_at=probe.iso(),updated_at=probe.iso())
+        payload={'message':'Claim isolated MIS daily capture','branch':'main',
+                 'content':base64.b64encode((json.dumps(current,ensure_ascii=False,indent=2)+'\n').encode()).decode()}
+        if sha:payload['sha']=sha
+        try:
+            result=api('contents/'+path,'PUT',payload)
+            return True,current,(result.get('content') or {}).get('sha')
+        except urllib.error.HTTPError as exc:
+            if exc.code not in (409,422):raise
+    raise RuntimeError('Daily capture claim conflict; refusing MIS capture')
+
+
+def dispatch_safety(output):
+    test_id=os.getenv('DISPATCH_TEST_ID','')
+    if not re.fullmatch(r'\d{1,24}',test_id):raise ValueError('Numeric dispatch test id required')
+    path='state/tests/dispatch-'+test_id+'.json'
+    run_id=os.getenv('GITHUB_RUN_ID','local')
+    claimed,state,sha=claim_capture(path,{'run_id':run_id,'status':'TEST_ONLY',
+        'scope':'DISPATCH_SAFETY_ONLY_NOT_MARKET_EVIDENCE','sentinel':test_id,
+        'started_at':os.getenv('RUNNER_STARTED_AT') or probe.iso()})
+    report={'test_id':test_id,'run_id':run_id,'decision':'CLAIMED_TEST_ONLY' if claimed else 'SKIPPED_EXISTING_CAPTURE',
+            'owner_run_id':state.get('capture_owner_run_id'),'state_sha':sha,'mis_requests':0,
+            'market_evidence_generated':False,'daily_live_state_mutated':False}
+    (output/'dispatch_safety.json').write_text(json.dumps(report,indent=2))
+    (output/'controller_status.json').write_text(json.dumps({'mode':'dispatch-safety','exit_code':0,'status_errors':[]}))
+    # Keep the first workflow active long enough to dispatch a queued duplicate.
+    if claimed:probe.wait_until(probe.now_tpe()+timedelta(seconds=30))
+    publish()
+    probe.package(output,probe.now_tpe().date().isoformat())
+    return 0
 
 
 def health(output):
@@ -288,6 +360,7 @@ def health(output):
 def run(mode, output):
     output.mkdir(parents=True,exist_ok=True)
     receipt()
+    if mode == 'dispatch-safety':return dispatch_safety(output)
     if mode == 'validation':
         import official_retry
         return official_retry.run(probe.now_tpe().date().isoformat(),output,__import__(__name__),probe)
@@ -323,10 +396,13 @@ def run(mode, output):
         if not calendar['is_trading_day']:
             (output/'skipped.json').write_text(json.dumps({'status':'official_nontrading_day'}))
             return 0
-        merge_state(live_path(date),{'trade_date':date,'status':'running','phase':'starting',
+        claimed,prior,_=claim_capture(live_path(date),{'trade_date':date,'status':'running','phase':'starting',
             'run_id':run_id,'runner_started_at':started,'python_started_at':probe.iso(),
             'artifact':'mis-probe-'+run_id,'error':None,'finished_at':None,
             'snapshots':{},'official_validation':'unverified'})
+        if not claimed:
+            (output/'skipped.json').write_text(json.dumps({'status':'skipped_existing_capture','prior_run':prior.get('run_id')}))
+            return 0
         publish()
     pool = concurrent.futures.ThreadPoolExecutor(max_workers=1)
     updates = []
@@ -338,6 +414,18 @@ def run(mode, output):
                 patch={'phase':phase.group(1) if phase else 'unknown',
                        'preclose_captured':(output/'preclose_raw.jsonl').exists()}
                 if count and count.group(1).isdigit():patch['universe_count']=int(count.group(1))
+                # A persisted progress view must not pretend an in-flight phase
+                # already completed; only an existing raw file provides counts.
+                for reference in probe.convergence.REFERENCE_TIMES:
+                    file=output/(reference+'_raw.jsonl')
+                    if file.exists():
+                        try:rows=[json.loads(line) for line in file.read_text().splitlines()]
+                        except (OSError,json.JSONDecodeError):continue
+                        phase_state={'status':'partial' if any(r.get('error') or r.get('missing') for r in rows) else 'captured','requested_at':min((r.get('requested_at') for r in rows),default=None),
+                            'received_at':max((r.get('received_at') for r in rows),default=None),
+                            'returned_count':sum(r.get('returned_count',0) for r in rows),
+                            'missing_count':sum(len(r.get('missing',[])) for r in rows)}
+                        patch.setdefault('reference_progress',{})[reference]=phase_state
                 merge_state(live_path(date),patch)
                 publish()
         updates.append(pool.submit(work))  # Never block the precise capture clock.
@@ -363,6 +451,7 @@ def run(mode, output):
             analysis=summary.get('analysis',{})
             merge_state('state/dry_run_latest.json',{'status':'dry_run_success' if code==0 and not failure else 'dry_run_failed',
                 'run_id':run_id,'finished_at':probe.iso(),'stock_universe_count':summary.get('stock_universe_count'),
+                'runner_started_at':started,'event':os.getenv('GITHUB_EVENT_NAME'),'declared_source':os.getenv('TRIGGER_SOURCE','manual'),
                 'company_universe_count':summary.get('company_universe_count'),'universe_audit_status':summary.get('universe_audit_status'),
                 'returned_count':analysis.get('returned_count'),'error':(failure or {}).get('error')})
         else:
@@ -380,7 +469,7 @@ def run(mode, output):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
-    parser.add_argument('--mode',choices=['live','dry-run','health','workflow-failure','validation'],required=True)
+    parser.add_argument('--mode',choices=['live','dry-run','health','workflow-failure','validation','dispatch-safety'],required=True)
     parser.add_argument('--output',type=Path,default=Path('results'))
     args=parser.parse_args()
     raise SystemExit(run(args.mode,args.output))
