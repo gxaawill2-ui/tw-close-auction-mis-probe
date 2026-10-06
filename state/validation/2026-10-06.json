@@ -1,6 +1,6 @@
 {
   "trade_date": "2026-10-06",
-  "checked_at": "2026-10-06T21:40:34.188+08:00",
+  "checked_at": "2026-10-06T22:13:38.789+08:00",
   "status": "PENDING",
   "execution_method": "saved artifact review via Codex; no new GitHub run",
   "source_capture_run_id": "37416416998",
@@ -14,7 +14,7 @@
     {
       "ex": "tse",
       "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261006&type=ALLBUT0999&response=json",
-      "checked_at": "2026-10-06T21:40:36.884+08:00",
+      "checked_at": "2026-10-06T22:13:41.127+08:00",
       "http_status": 200,
       "status": "AVAILABLE_SAME_DATE",
       "row_count": 1381,
@@ -23,9 +23,9 @@
     {
       "ex": "otc",
       "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F10%2F06&response=json",
-      "checked_at": "2026-10-06T21:40:38.576+08:00",
+      "checked_at": "2026-10-06T22:13:43.066+08:00",
       "status": "PENDING_SOURCE_ERROR",
-      "error": "IncompleteRead:IncompleteRead(1472729 bytes read)"
+      "error": "IncompleteRead:IncompleteRead(1587120 bytes read)"
     }
   ],
   "freshness": {
@@ -173,15 +173,15 @@
     "node_status_passed": 8
   },
   "limitations": "Official MATCH does not validate P_before or auction volume; no production signals generated.",
-  "run_id": "37472641563",
-  "artifact": "mis-validation-37472641563",
+  "run_id": "37477155642",
+  "artifact": "mis-validation-37477155642",
   "report_path": "reports/2026-10-06-review.md",
   "evidence_bundle": {
     "library_file_id": "libfile_593265db48408191a073197a89b05a2f",
     "file_id": "file_000000009a288206892d056adad92ce1",
     "sha256": "af9b2c307a203d243999087f6c98b960603f98a5b569f956d5c7e9e2ca586a1e"
   },
-  "updated_at": "2026-10-06T21:40:49.176+08:00",
+  "updated_at": "2026-10-06T22:13:54.849+08:00",
   "publication_observations": [
     {
       "checked_at": "2026-10-06T00:04:49.265+08:00",
@@ -236,6 +236,28 @@
           "checked_at": "2026-10-06T21:40:38.576+08:00",
           "status": "PENDING_SOURCE_ERROR",
           "error": "IncompleteRead:IncompleteRead(1472729 bytes read)"
+        }
+      ]
+    },
+    {
+      "checked_at": "2026-10-06T22:13:38.789+08:00",
+      "status": "PENDING",
+      "sources": [
+        {
+          "ex": "tse",
+          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261006&type=ALLBUT0999&response=json",
+          "checked_at": "2026-10-06T22:13:41.127+08:00",
+          "http_status": 200,
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 1381,
+          "response_date": "20261006"
+        },
+        {
+          "ex": "otc",
+          "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F10%2F06&response=json",
+          "checked_at": "2026-10-06T22:13:43.066+08:00",
+          "status": "PENDING_SOURCE_ERROR",
+          "error": "IncompleteRead:IncompleteRead(1587120 bytes read)"
         }
       ]
     }
