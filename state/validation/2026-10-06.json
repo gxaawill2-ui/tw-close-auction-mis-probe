@@ -1,8 +1,181 @@
 {
   "trade_date": "2026-10-06",
-  "checked_at": "2026-10-06T02:52:50.633+08:00",
-  "run_id": "37359258023",
-  "status": "PENDING_NO_CAPTURE",
+  "checked_at": "2026-10-06T07:11:45.198216+00:00",
+  "status": "SAME_DATE_COMPARISON_ONLY",
+  "execution_method": "saved artifact review via Codex; no new GitHub run",
+  "source_capture_run_id": "37416416998",
+  "source_capture_artifact_id": 11391549138,
+  "source_artifact_sha256": "7f89e906862b76f5d5c22edcd116d0a7308d9ce81d974d3730b090889dd0906a",
+  "official_validation": "SAME_DATE_COMPARISON_ONLY",
+  "matches": 1947,
+  "mismatches": 0,
+  "unavailable": 24,
+  "official_sources": [
+    {
+      "ex": "tse",
+      "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261006&type=ALLBUT0999&response=json",
+      "checked_at": "2026-10-06T07:11:45.197363+00:00",
+      "http_status": 200,
+      "status": "AVAILABLE_SAME_DATE",
+      "row_count": 1381,
+      "response_date": "20261006"
+    },
+    {
+      "ex": "otc",
+      "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F10%2F06&response=json",
+      "checked_at": "2026-10-06T07:11:45.198216+00:00",
+      "http_status": 200,
+      "status": "AVAILABLE_SAME_DATE",
+      "row_count": 12194,
+      "response_date": "20261006"
+    }
+  ],
+  "freshness": {
+    "p_before_validated_count": 0,
+    "p_close_validated_count": 0,
+    "both_validated_count": 0
+  },
+  "convergence": {
+    "version": "DUAL_SNAPSHOT_RESEARCH_V1",
+    "status": "RESEARCH_ONLY",
+    "universe_count": 1971,
+    "p_before_converged_count": 1897,
+    "p_close_converged_count": 1947,
+    "both_converged_count": 1897,
+    "unknown_count": 74,
+    "stale_batch_count": 19,
+    "server_regression_response_count": 0,
+    "targeted_retry_count": 38,
+    "targeted_http_attempt_count": 38,
+    "true_delayed_close_candidate_count": 3,
+    "delayed_transition_candidate_count": 2,
+    "no_closing_new_trade_count": 208,
+    "research_calculable_count": 1897,
+    "p_before_validated_count": 0,
+    "p_close_validated_count": 0,
+    "both_validated_count": 0,
+    "p_before_original_AB_converged_count": 1734,
+    "p_before_recovered_by_targeted_retry_count": 163,
+    "p_close_original_AB_converged_count": 1702,
+    "p_close_recovered_by_targeted_retry_count": 245,
+    "stale_response_count": 19,
+    "validated": false,
+    "research_candidate_count": 4
+  },
+  "candidate_status": "RESEARCH_ONLY",
+  "candidate_count": 4,
+  "candidate_summary": [
+    {
+      "ex": "otc",
+      "code": "3629",
+      "name": "地心引力",
+      "p_before": "14.4500",
+      "p_before_trade_time": "13:00:04",
+      "p_close": "12.8000",
+      "close_trade_time": "13:30:00",
+      "tail_return_pct": "-11.41868512110726643598615917",
+      "official_price_result": "MATCH",
+      "status": "RESEARCH_CANDIDATE",
+      "validated": false,
+      "official_close": "12.80"
+    },
+    {
+      "ex": "otc",
+      "code": "5398",
+      "name": "慕康生醫",
+      "p_before": "14.1000",
+      "p_before_trade_time": "13:24:17",
+      "p_close": "13.6500",
+      "close_trade_time": "13:30:00",
+      "tail_return_pct": "-3.191489361702127659574468090",
+      "official_price_result": "MATCH",
+      "status": "RESEARCH_CANDIDATE",
+      "validated": false,
+      "official_close": "13.65"
+    },
+    {
+      "ex": "otc",
+      "code": "7642",
+      "name": "昶瑞機電",
+      "p_before": "67.1000",
+      "p_before_trade_time": "12:49:06",
+      "p_close": "65.0000",
+      "close_trade_time": "13:30:00",
+      "tail_return_pct": "-3.129657228017883755588673620",
+      "official_price_result": "MATCH",
+      "status": "RESEARCH_CANDIDATE",
+      "validated": false,
+      "official_close": "65.00"
+    },
+    {
+      "ex": "tse",
+      "code": "1456",
+      "name": "怡華",
+      "p_before": "15.0000",
+      "p_before_trade_time": "13:24:30",
+      "p_close": "14.5500",
+      "close_trade_time": "13:30:00",
+      "tail_return_pct": "-3.00",
+      "official_price_result": "MATCH",
+      "status": "RESEARCH_CANDIDATE",
+      "validated": false,
+      "official_close": "14.55"
+    }
+  ],
+  "unknown_diagnosis": {
+    "trade_date": "2026-10-06",
+    "unknown_count": 74,
+    "pre_reasons": {
+      "stale_cache": 70,
+      "no_trade_or_incomplete_identity": 4
+    },
+    "close_reasons": {
+      "CONVERGED": 50,
+      "no_trade_or_incomplete_identity": 24
+    },
+    "joint_reasons": [
+      {
+        "pre": "stale_cache",
+        "close": "CONVERGED",
+        "count": 49
+      },
+      {
+        "pre": "no_trade_or_incomplete_identity",
+        "close": "CONVERGED",
+        "count": 1
+      },
+      {
+        "pre": "no_trade_or_incomplete_identity",
+        "close": "no_trade_or_incomplete_identity",
+        "count": 3
+      },
+      {
+        "pre": "stale_cache",
+        "close": "no_trade_or_incomplete_identity",
+        "count": 21
+      }
+    ],
+    "official_zero_volume_count": 7,
+    "inconsistent_proven_count": 0,
+    "note": "Reasons describe failed evidence, not certainty about the last exchange trade. A blank official close with positive share volume does not prove no trading. All 74 remain UNKNOWN."
+  },
+  "capture_status_preserved": "partial",
+  "next_trading_day": "2026-10-07",
+  "schedules_changed": false,
+  "tests": {
+    "python_passed": 50,
+    "node_status_passed": 8
+  },
+  "limitations": "Official MATCH does not validate P_before or auction volume; no production signals generated.",
+  "run_id": null,
+  "artifact": "MIS-2026-10-06-review.zip",
+  "report_path": "reports/2026-10-06-review.md",
+  "evidence_bundle": {
+    "library_file_id": "libfile_593265db48408191a073197a89b05a2f",
+    "file_id": "file_000000009a288206892d056adad92ce1",
+    "sha256": "af9b2c307a203d243999087f6c98b960603f98a5b569f956d5c7e9e2ca586a1e"
+  },
+  "updated_at": "2026-10-06T07:11:45.198216+00:00",
   "publication_observations": [
     {
       "checked_at": "2026-10-06T00:04:49.265+08:00",
@@ -13,8 +186,31 @@
       "checked_at": "2026-10-06T02:52:50.633+08:00",
       "status": "PENDING_NO_CAPTURE",
       "sources": []
+    },
+    {
+      "checked_at": "2026-10-06T07:11:45.198216+00:00",
+      "status": "SAME_DATE_COMPARISON_ONLY",
+      "sources": [
+        {
+          "ex": "tse",
+          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261006&type=ALLBUT0999&response=json",
+          "checked_at": "2026-10-06T07:11:45.197363+00:00",
+          "http_status": 200,
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 1381,
+          "response_date": "20261006"
+        },
+        {
+          "ex": "otc",
+          "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F10%2F06&response=json",
+          "checked_at": "2026-10-06T07:11:45.198216+00:00",
+          "http_status": 200,
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 12194,
+          "response_date": "20261006"
+        }
+      ]
     }
   ],
-  "publication_timing_note": "Only observed checks bound availability; exact release time is not assumed.",
-  "updated_at": "2026-10-06T02:52:50.900+08:00"
+  "publication_timing_note": "Only observed checks bound availability; exact release time is not assumed."
 }

@@ -177,14 +177,17 @@ def fetch_mis(symbols: list[dict], retry: int = 1, timeout: int = 20, deadline: 
             request_timeout=min(timeout,max(.1,(deadline-started).total_seconds())) if deadline else timeout
             status, raw_bytes = get_bytes(f"{MIS}?{params}", request_timeout, HEADERS)
             raw = raw_bytes.decode("utf-8", "replace")
-            try:
-                body = json.loads(raw)
-            except json.JSONDecodeError as exc:
-                error = f"JSON_PARSE_ERROR:{exc}"
+            if not raw.strip():
+                error = "MIS_EMPTY_BODY"
+            else:
+                try:
+                    body = json.loads(raw)
+                except json.JSONDecodeError as exc:
+                    error = f"JSON_PARSE_ERROR:{exc}"
             if status != 200:
                 error = f"HTTP_{status}"
-            elif not isinstance(body, dict) or body.get("rtcode") != "0000":
-                error = f"MIS_{body.get('rtcode') if isinstance(body, dict) else 'NO_RTCODE'}"
+            elif not error and (not isinstance(body, dict) or body.get("rtcode") != "0000"):
+                error = f"MIS_{body.get('rtcode', 'NO_RTCODE') if isinstance(body, dict) else 'NO_RTCODE'}"
         except urllib.error.HTTPError as exc:
             status = exc.code
             raw = exc.read().decode("utf-8", "replace")
