@@ -238,5 +238,118 @@ class ConvergenceTests(unittest.TestCase):
         self.assertEqual(c.pair(stock, DATE, 'pre')['reason'], 'NOT_SAMPLED')
 
 
+
+def c_reference(phase, server=None, price='100', volume='10'):
+    day='2026-10-07'
+    r=reference(phase,c.reference_times(day)[phase],server,price=price,volume=volume)
+    return json.loads(json.dumps(r).replace('2026-10-02','2026-10-07').replace('20261002','20261007'))
+
+
+class ThirdReferenceTests(unittest.TestCase):
+    day='2026-10-07'
+
+    def evidence(self, *records):
+        return c.pre_with_c(f.observations(records,self.day),self.day)
+
+    def test_abc_all_fresh_is_research_and_close_plan_unchanged(self):
+        records=[c_reference(p) for p in ('pre_reference_A','pre_reference_B','pre_reference_C')]
+        out=self.evidence(*records)
+        self.assertEqual(out['reference_classification'],'ABC_converged_candidate')
+        self.assertTrue(out['original_ab_converged']);self.assertFalse(out['validated'])
+        self.assertEqual(c.reference_times(self.day)['pre_reference_C'],'13:29:00')
+        self.assertEqual(c.reference_times(self.day)['close_reference_A'],'13:32:30')
+        self.assertEqual(c.reference_times(self.day)['close_reference_B'],'13:33:20')
+
+    def test_bc_and_ac_bridge_only_with_actual_fresh_C(self):
+        cases=[(c_reference('pre_reference_A',server='13:26:00'),c_reference('pre_reference_B'),'BC'),
+               (c_reference('pre_reference_A'),c_reference('pre_reference_B',server='13:27:00'),'AC')]
+        for a,b,label in cases:
+            out=self.evidence(a,b,c_reference('pre_reference_C'))
+            self.assertTrue(out['converged'])
+            self.assertFalse(out['original_ab_converged'])
+            self.assertEqual(out['reference_classification'],label+'_converged_candidate')
+            self.assertFalse(out['validated'])
+
+    def test_C_volume_conflict_stale_missing_and_fresh_contradiction_do_not_rescue(self):
+        a=c_reference('pre_reference_A',server='13:26:00');b=c_reference('pre_reference_B')
+        for third in (c_reference('pre_reference_C',volume='11'),c_reference('pre_reference_C',server='13:28:08')):
+            self.assertFalse(self.evidence(a,b,third)['converged'])
+        self.assertFalse(self.evidence(a,b)['converged'])
+        a=c_reference('pre_reference_A');b=c_reference('pre_reference_B',price='101')
+        self.assertFalse(self.evidence(a,b,c_reference('pre_reference_C'))['converged'])
+
+    def test_later_fresh_contradiction_blocks_C_recovery(self):
+        a=c_reference('pre_reference_A',server='13:26:00');b=c_reference('pre_reference_B');third=c_reference('pre_reference_C')
+        later=reference('pre_targeted_retry','13:29:10',price='101')
+        later=json.loads(json.dumps(later).replace('2026-10-02','2026-10-07').replace('20261002','20261007'))
+        self.assertFalse(self.evidence(a,b,third,later)['converged'])
+
+    def test_bad_C_cannot_erase_original_AB_and_old_artifacts_need_no_C(self):
+        a=c_reference('pre_reference_A');b=c_reference('pre_reference_B')
+        out=self.evidence(a,b,c_reference('pre_reference_C',server='13:28:08'))
+        self.assertTrue(out['converged']);self.assertEqual(out['reference_classification'],'AB_converged_candidate')
+        self.assertNotIn('pre_reference_C',c.reference_times('2026-10-06'))
+        self.assertTrue(c.pre_with_c(rows(reference('pre_reference_A'),reference('pre_reference_B')),DATE)['converged'])
+
+    def test_shadow_volume_only_difference_never_changes_formal_identity(self):
+        import analyze_pre_unresolved as analysis
+        rs=rows(reference('pre_reference_A'),reference('pre_reference_B',volume='11'))
+        self.assertFalse(analysis.shadow_pair(rs,DATE,'A')['converged'])
+        self.assertTrue(analysis.shadow_pair(rs,DATE,'B')['converged'])
+        self.assertFalse(c.pair(rs,DATE,'pre')['converged'])
+
+    def test_live_C_clock_saved_reports_and_loader(self):
+        day=self.day
+        symbols=[dict(ex=ex,code=code,market='TWSE' if ex=='tse' else 'TPEx',name='fixture') for ex,code in probe.FIXED_PROBE]
+        current=[probe.target(day,'13:07:00')];captured=[]
+        def wait(until):current[0]=max(current[0],until)
+        def snapshot(phase,planned,universe,output,deadline=None):
+            captured.append((phase,planned.strftime('%H:%M:%S')))
+            r=reference(phase,planned.strftime('%H:%M:%S'),price='104' if phase.startswith('close_') else '100',
+                        trade='13:30:00' if phase.startswith('close_') else '13:24:59')
+            r=json.loads(json.dumps(r).replace('2026-10-02',day).replace('20261002','20261007'))
+            r['symbols']=universe;item=r['response']['msgArray'][0]
+            r['response']['msgArray']=[{**copy.deepcopy(item),'ex':x['ex'],'c':x['code']} for x in universe]
+            r.update(missing=[],empty=[],duplicate=[])
+            (output/(phase+'_raw.jsonl')).write_text(json.dumps(r)+'\n')
+            return {'records':[r],'metrics':{'phase':phase,'success_count':len(universe),'stock_universe_count':len(universe),'symbol_set_equal':True}}
+        with tempfile.TemporaryDirectory() as d, patch.object(probe,'now_tpe',side_effect=lambda:current[0]), \
+             patch.object(probe,'wait_until',side_effect=wait),patch.object(probe,'github_issue'), \
+             patch.object(probe,'fetch_universe',return_value=symbols), \
+             patch.object(probe.tradable,'build',return_value=(symbols,{'status':'OFFICIAL_SOURCES_DATE_CHECKED','excluded_symbol_count':0})), \
+             patch.object(probe,'snapshot',side_effect=snapshot),patch.object(probe,'per_second_probe',return_value=[]), \
+             patch.object(probe.official_quotes,'validate',return_value={'status':'PENDING','checks':[]}), \
+             patch.dict('os.environ',{'RUNNER_STARTED_AT':probe.iso(current[0])}):
+            output=Path(d);self.assertEqual(probe.live(output),0)
+            report=json.loads((output/'pre_reference_C_summary.json').read_text())
+            self.assertEqual(report['exclusive_classes'],{'ABC':8,'AB':0,'AC':0,'BC':0})
+            self.assertFalse(report['validated']);self.assertEqual(report['unresolved'],0)
+            self.assertTrue((output/'research_candidates_2026-10-07.csv').exists())
+            self.assertFalse(json.loads((output/'research_candidates_2026-10-07.json').read_text())['validated'])
+            (output/'preclose_raw.jsonl').write_text('{}\n');(output/'probe_raw.jsonl').write_text('')
+            buff=io.BytesIO()
+            with zipfile.ZipFile(buff,'w') as z:
+                for file in output.iterdir():
+                    if file.is_file():z.write(file,file.name)
+            _,_,snaps,_=official_retry.load_capture(buff.getvalue())
+            self.assertTrue(any(r.get('phase')=='pre_reference_C' for snap in snaps for r in snap['records']))
+        self.assertEqual(captured,[('preclose','13:24:50'),*c.reference_times(day).items()])
+
+    def test_late_C_is_not_backfilled_and_retry_window_reserves_C(self):
+        late=probe.target(self.day,'13:29:01')
+        with tempfile.TemporaryDirectory() as d, patch.object(probe,'wait_until'), \
+             patch.object(probe,'now_tpe',return_value=late),patch.object(probe,'snapshot') as request:
+            snap=probe.reference_capture('pre_reference_C',self.day,[SYMBOL],Path(d),'13:29:30')
+            request.assert_not_called();self.assertFalse(snap['metrics']['symbol_set_equal'])
+            self.assertEqual(snap['records'][0]['error'],'REFERENCE_NOT_SAMPLED')
+        current=[probe.target(self.day,'13:28:57')];deadlines=[]
+        def snapshot(phase,planned,symbols,output,deadline):
+            deadlines.append(deadline);current[0]=deadline
+            return {'records':[],'metrics':{'phase':phase}}
+        with patch.object(probe,'now_tpe',side_effect=lambda:current[0]),patch.object(probe,'wait_until'), \
+             patch.object(c,'unresolved',return_value=[SYMBOL]),patch.object(probe,'snapshot',side_effect=snapshot):
+            rounds=probe.targeted_retries('pre',self.day,[],[SYMBOL],Path('.'),stop_at='13:28:58')
+        self.assertEqual(len(rounds),1);self.assertEqual(deadlines,[probe.target(self.day,'13:28:58')])
+
 if __name__ == '__main__':
     unittest.main()

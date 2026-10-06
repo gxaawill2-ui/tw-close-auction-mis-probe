@@ -129,7 +129,7 @@ def render(now, record, dry, receipt, calendar=None, armed=None, validation=None
     close_label='13:30' if 'close' in performance else '13:33:20 close B'
     reference_table='\n'.join(
         f"|{phase}|{performance.get(phase,{}).get('success_count','—')}/{performance.get(phase,{}).get('stock_universe_count','—')}|{performance.get(phase,{}).get('wall_time_seconds','—')}|{performance.get(phase,{}).get('first_request_started_at','—')}|"
-        for phase in probe.convergence.REFERENCE_TIMES)
+        for phase in probe.convergence.reference_times(date))
     return f'''# {heading}｜{date}
 
 - trade date：`{date}`
@@ -416,7 +416,7 @@ def run(mode, output):
                 if count and count.group(1).isdigit():patch['universe_count']=int(count.group(1))
                 # A persisted progress view must not pretend an in-flight phase
                 # already completed; only an existing raw file provides counts.
-                for reference in probe.convergence.REFERENCE_TIMES:
+                for reference in probe.convergence.reference_times(date):
                     file=output/(reference+'_raw.jsonl')
                     if file.exists():
                         try:rows=[json.loads(line) for line in file.read_text().splitlines()]

@@ -1,0 +1,30 @@
+{
+  "trade_date": "2026-10-07",
+  "status": "PREPARED_RESEARCH_ONLY",
+  "pre_references": {
+    "A": "13:27:00",
+    "B": "13:28:15",
+    "C": "13:29:00"
+  },
+  "close_references": {
+    "A": "13:32:30",
+    "B": "13:33:20"
+  },
+  "batch_size": 50,
+  "concurrency": 5,
+  "formal_AB_identity": "trade.t + trade.z + v",
+  "C_fallback_identity": "trade.t + trade.z + v",
+  "shadow_rule_changes_applied": false,
+  "validated": false,
+  "source_run_id": "37416416998",
+  "source_artifact_id": 11391549138,
+  "analysis_report": "reports/2026-10-06-pre-unresolved.md",
+  "analysis_bundle_library_file_id": "libfile_7176c382579081919a02f57de58c0b49",
+  "tests": {
+    "python": 58,
+    "node_status": 8
+  },
+  "schedules_changed": false,
+  "scheduler_verification": "Repository state retains three enabled jobs; actual 10/6 workflow_dispatch times matched 13:00/13:10/13:18. cron console live enabled flags were not re-read in this offline task.",
+  "next_trading_date_from_official_calendar": "2026-10-07"
+}

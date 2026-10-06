@@ -1,0 +1,224 @@
+{
+  "trade_date": "2026-10-06",
+  "source_run_id": "37416416998",
+  "source_artifact_id": 11391549138,
+  "source_sha256": "7f89e906862b76f5d5c22edcd116d0a7308d9ce81d974d3730b090889dd0906a",
+  "categories": {
+    "stale_cache": 70,
+    "server_time_regression": 0,
+    "inconsistent_trade_state": 0,
+    "no_trade_or_sparse_trade": 0,
+    "missing_trade_fields": 4,
+    "freshness_rule_too_strict": 0,
+    "other": 0,
+    "unknown": 0
+  },
+  "unresolved_count": 74,
+  "markets": {
+    "TWSE": {
+      "universe": 1083,
+      "unresolved": 0,
+      "unresolved_rate": 0.0,
+      "metadata_scope": "Distinct HTTP batches involving this market; mixed-market batches may belong to both. cachedAlive unit unverified.",
+      "query_time_age_ms": {
+        "count": 47,
+        "median": 1312.0,
+        "p95": 3408.0,
+        "min": 468.0,
+        "max": 3826.0
+      },
+      "cachedAlive_reported": {
+        "count": 0,
+        "median": null,
+        "p95": null,
+        "min": null,
+        "max": null
+      },
+      "by_phase": {
+        "pre_reference_A": {
+          "server_age_ms": {
+            "count": 23,
+            "median": 1125.0,
+            "p95": 2400.0,
+            "min": 468.0,
+            "max": 3114.0
+          },
+          "cachedAlive": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        "pre_reference_B": {
+          "server_age_ms": {
+            "count": 23,
+            "median": 1805.0,
+            "p95": 3697.0,
+            "min": 768.0,
+            "max": 3826.0
+          },
+          "cachedAlive": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        },
+        "pre_targeted_retry": {
+          "server_age_ms": {
+            "count": 1,
+            "median": 2828.0,
+            "p95": 2828.0,
+            "min": 2828.0,
+            "max": 2828.0
+          },
+          "cachedAlive": {
+            "count": 0,
+            "median": null,
+            "p95": null,
+            "min": null,
+            "max": null
+          }
+        }
+      },
+      "trade_time_transition_pattern": {
+        "unchanged": 1083,
+        "advanced": 1
+      },
+      "raw_server_time_regression_events": 0,
+      "stale_symbol_observations": 0,
+      "server_regression_symbols": 0,
+      "server_regression_events": 0,
+      "trade_time_changed_symbols": 1,
+      "v_changed_symbols": 0,
+      "original_AB_unresolved": 1,
+      "recovered_by_targeted_retry": 1,
+      "targeted_retry_success_rate": 1.0
+    },
+    "TPEx": {
+      "universe": 888,
+      "unresolved": 74,
+      "unresolved_rate": 0.08333333333333333,
+      "metadata_scope": "Distinct HTTP batches involving this market; mixed-market batches may belong to both. cachedAlive unit unverified.",
+      "query_time_age_ms": {
+        "count": 49,
+        "median": 2378.0,
+        "p95": 55515.0,
+        "min": 419.0,
+        "max": 62554.0
+      },
+      "cachedAlive_reported": {
+        "count": 13,
+        "median": 41078.0,
+        "p95": 61364.0,
+        "min": 7513.0,
+        "max": 61364.0
+      },
+      "by_phase": {
+        "pre_reference_A": {
+          "server_age_ms": {
+            "count": 18,
+            "median": 1503.5,
+            "p95": 55947.0,
+            "min": 419.0,
+            "max": 55947.0
+          },
+          "cachedAlive": {
+            "count": 4,
+            "median": 41422.0,
+            "p95": 55407.0,
+            "min": 41078.0,
+            "max": 55407.0
+          }
+        },
+        "pre_reference_B": {
+          "server_age_ms": {
+            "count": 18,
+            "median": 1812.0,
+            "p95": 8502.0,
+            "min": 702.0,
+            "max": 8502.0
+          },
+          "cachedAlive": {
+            "count": 1,
+            "median": 7656.0,
+            "p95": 7656.0,
+            "min": 7656.0,
+            "max": 7656.0
+          }
+        },
+        "pre_targeted_retry": {
+          "server_age_ms": {
+            "count": 13,
+            "median": 12411.0,
+            "p95": 62554.0,
+            "min": 1625.0,
+            "max": 62554.0
+          },
+          "cachedAlive": {
+            "count": 8,
+            "median": 33137.0,
+            "p95": 61364.0,
+            "min": 7513.0,
+            "max": 61364.0
+          }
+        }
+      },
+      "trade_time_transition_pattern": {
+        "advanced": 86,
+        "unchanged": 1334
+      },
+      "raw_server_time_regression_events": 0,
+      "stale_symbol_observations": 448,
+      "server_regression_symbols": 0,
+      "server_regression_events": 0,
+      "trade_time_changed_symbols": 86,
+      "v_changed_symbols": 0,
+      "original_AB_unresolved": 236,
+      "recovered_by_targeted_retry": 162,
+      "targeted_retry_success_rate": 0.6864406779661016
+    }
+  },
+  "shadow_comparison": [
+    {
+      "rule": "A",
+      "identity": "trade.t + trade.z + v",
+      "converged_count": 1897,
+      "unresolved_count": 74,
+      "rescued_from_74": 0,
+      "false_conflict_count": 0,
+      "false_conflict_definition": "Potential volume-only disagreement among fresh distinct observations with equal trade.t/trade.z; NOT proven false by independent trade truth.",
+      "proven_false_conflict_count": null
+    },
+    {
+      "rule": "B",
+      "identity": "trade.t + trade.z",
+      "converged_count": 1897,
+      "unresolved_count": 74,
+      "rescued_from_74": 0,
+      "false_conflict_count": 0,
+      "false_conflict_definition": "Potential volume-only disagreement among fresh distinct observations with equal trade.t/trade.z; NOT proven false by independent trade truth.",
+      "proven_false_conflict_count": null
+    },
+    {
+      "rule": "C",
+      "identity": "trade.t + trade.z + trade.v",
+      "converged_count": 1897,
+      "unresolved_count": 74,
+      "rescued_from_74": 0,
+      "false_conflict_count": 0,
+      "false_conflict_definition": "Potential volume-only disagreement among fresh distinct observations with equal trade.t/trade.z; NOT proven false by independent trade truth.",
+      "proven_false_conflict_count": null
+    }
+  ],
+  "unchanged_price_unresolved": 35,
+  "sparse_indicator_unresolved": 38,
+  "all_trades_before_1300_unresolved": 4,
+  "nonconsecutive_fresh_equal_shadow_rescued": 46,
+  "network_requests": 0,
+  "validated": false,
+  "note": "Single-day mixed-batch observational comparison; does not establish intrinsic TWSE/TPEx cache differences."
+}

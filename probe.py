@@ -275,7 +275,7 @@ def snapshot(phase: str, planned: datetime, universe: list[dict], output: Path, 
 
 
 def reference_capture(phase, date, universe, output, deadline):
-    planned = target(date, convergence.REFERENCE_TIMES[phase])
+    planned = target(date, convergence.reference_times(date)[phase])
     wait_until(planned)
     if now_tpe() > planned+timedelta(milliseconds=750):
         # Keep the missed attempt explicit. Targeted replacement observations are
@@ -293,8 +293,10 @@ def reference_capture(phase, date, universe, output, deadline):
     return snapshot(phase, planned, universe, output, target(date, deadline))
 
 
-def targeted_retries(kind, date, snapshots, universe, output, probe_rows=()):
+def targeted_retries(kind, date, snapshots, universe, output, probe_rows=(), stop_at=None, round_offset=0):
     deadline = target(date, convergence.DEADLINES[kind])
+    if stop_at:
+        deadline = min(deadline,target(date,stop_at))
     rounds = []
     while now_tpe() < deadline:
         affected = convergence.unresolved(date, snapshots+rounds, universe, kind, probe_rows)
@@ -305,7 +307,7 @@ def targeted_retries(kind, date, snapshots, universe, output, probe_rows=()):
             break
         planned = now_tpe()
         replacement = snapshot(kind+'_targeted_retry', planned, affected, output, deadline)
-        replacement['metrics']['retry_round'] = len(rounds)+1
+        replacement['metrics']['retry_round'] = round_offset+len(rounds)+1
         replacement['metrics']['affected_symbols'] = [s['ex']+':'+s['code'] for s in affected]
         rounds.append(replacement)
         wait_until(min(now_tpe()+timedelta(seconds=5), deadline))
@@ -504,8 +506,19 @@ def live(output: Path) -> int:
     github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "pre_reference_A", len(universe)))
     pre_a = reference_capture('pre_reference_A', date, universe, output, '13:28:15')
     github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "pre_reference_B", len(universe)))
-    pre_b = reference_capture('pre_reference_B', date, universe, output, '13:29:30')
-    pre_retries = targeted_retries('pre', date, [pre_a, pre_b], universe, output, probe_rows)
+    pre_b = reference_capture('pre_reference_B', date, universe, output,
+                              '13:28:58' if date >= convergence.PRE_C_START_DATE else '13:29:30')
+    pre_c = None
+    if date >= convergence.PRE_C_START_DATE:
+        # Serial requests keep batch concurrency at 5. End the first retry pass
+        # before the fixed C instant; never let a retry loop consume C's clock.
+        pre_retries = targeted_retries('pre', date, [pre_a, pre_b], universe, output, probe_rows, stop_at='13:28:58')
+        github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "pre_reference_C", len(universe)))
+        pre_c = reference_capture('pre_reference_C', date, universe, output, '13:29:30')
+        pre_retries += targeted_retries('pre', date, [pre_a,pre_b,*pre_retries,pre_c], universe, output,
+                                       probe_rows,round_offset=len(pre_retries))
+    else:
+        pre_retries = targeted_retries('pre', date, [pre_a, pre_b], universe, output, probe_rows)
 
     wait_until(target(date, "13:29:50"))
     github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "close_probe_research", len(universe)))
@@ -517,7 +530,7 @@ def live(output: Path) -> int:
         close_b = reference_capture('close_reference_B', date, universe, output, '13:35:00')
         probe_rows.extend(probe2_future.result())
     close_retries = targeted_retries('close', date, [close_a, close_b], universe, output, probe_rows)
-    snapshots = [pre, pre_a, pre_b, *pre_retries, close_a, close_b, *close_retries]
+    snapshots = [pre, pre_a, pre_b, *([pre_c] if pre_c else []), *pre_retries, close_a, close_b, *close_retries]
     github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "validation", len(universe)))
     normalized_csv(snapshots, probe_rows, output)
     performance = {x["metrics"]["phase"]: x["metrics"] for x in snapshots if not x['metrics']['phase'].endswith('_targeted_retry')}
@@ -544,6 +557,7 @@ def live(output: Path) -> int:
                "universe_count": len(universe), "company_universe_count": len(company),
                "universe_audit_status": universe_audit['status'], "exclusion_count": universe_audit['excluded_symbol_count'],
                "snapshots": performance, 'capture_architecture': convergence.VERSION,
+               'pre_reference_C_enabled': pre_c is not None,
                "probe_scheduled_count": len(probe_rows), "official_validation": validation["status"],
                "candidate_count": dual['research_candidate_count'], 'research_calculable_count': dual['research_calculable_count'],
                'candidate_status': 'RESEARCH_ONLY', 'validated': False,

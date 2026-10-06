@@ -13,10 +13,20 @@ REFERENCE_TIMES = {
 }
 DEADLINES = {'pre': '13:29:30', 'close': '13:35:00'}
 MAX_AGE_MS = 15000  # Research threshold, not a proven MIS cache guarantee.
+PRE_C_START_DATE = '2026-10-07'
+PRE_C_TIME = '13:29:00'
+
+
+def reference_times(date):
+    if date < PRE_C_START_DATE:
+        return dict(REFERENCE_TIMES)
+    return {**{k:v for k,v in REFERENCE_TIMES.items() if k.startswith('pre_')},
+            'pre_reference_C': PRE_C_TIME,
+            **{k:v for k,v in REFERENCE_TIMES.items() if k.startswith('close_')}}
 
 
 def plan(date):
-    return {'version': VERSION, 'trade_date': date, 'reference_times': REFERENCE_TIMES,
+    return {'version': VERSION, 'trade_date': date, 'reference_times': reference_times(date),
             'targeted_retry_deadlines': DEADLINES, 'batch_size': 50, 'concurrency': 5,
             'max_receive_server_age_ms': MAX_AGE_MS, 'cachedAlive_unit': 'UNVERIFIED',
             'validated': False, 'note': 'Plan only. Absent reference phases are NOT_SAMPLED.'}
@@ -118,6 +128,63 @@ def pair(series, date, kind):
     return result
 
 
+def pre_with_c(series, date):
+    """Keep original A/B+retry unchanged; C is optional research evidence only.
+
+    C pairs retain trade.t/trade.z/v identity. Relaxing v stays offline shadow.
+    A stale intervening B may be bridged, but fresh contradictions/regressions
+    between an adopted A/B and C block adoption.
+    """
+    original = pair(series, date, 'pre')
+    result = dict(original, original_ab_converged=original['converged'],
+                  reference_classification='AB_converged_candidate' if original['converged'] else 'unresolved',
+                  original_C=None, c_rejection=None)
+    if date < PRE_C_START_DATE:
+        return result
+    refs = {p:next((r for r in series if r.get('phase')==p),None)
+            for p in ('pre_reference_A','pre_reference_B','pre_reference_C')}
+    third = refs['pre_reference_C'];result['original_C'] = third
+    if not third:
+        result['c_rejection']='NOT_SAMPLED';return result
+    planned=f.parsed_time(third.get('planned_at'))
+    reason = rejection(third,date,'pre')
+    if not planned or planned.date().isoformat()!=date or planned.strftime('%H:%M:%S')!=PRE_C_TIME:
+        reason='INVALID_REFERENCE_SCHEDULE'
+    result['c_rejection']=reason
+    if reason:
+        return result  # A/B success cannot be erased by optional C.
+    fresh = {p:r for p,r in refs.items() if r and not rejection(r,date,'pre')
+             and f.parsed_time(r.get('planned_at'))
+             and f.parsed_time(r['planned_at']).strftime('%H:%M:%S')==reference_times(date)[p]}
+    abc = len(fresh)==3 and len({f.identity(r) for r in fresh.values()})==1 and (
+            fresh['pre_reference_A']['server_time'] < fresh['pre_reference_B']['server_time'] < third['server_time']) and (
+            not original['converged'] or f.identity(original['B'])==f.identity(third))
+    if abc:
+        result['reference_classification']='ABC_converged_candidate'
+    if original['converged']:
+        return result  # C never substitutes the already accepted original A/B.
+    # No original A or B instant may be fabricated.
+    if not refs['pre_reference_A'] or not refs['pre_reference_B']:
+        return result
+    for phase, label in (('pre_reference_B','BC_converged_candidate'),('pre_reference_A','AC_converged_candidate')):
+        prior=fresh.get(phase)
+        if not prior or prior['server_time']>=third['server_time'] or f.identity(prior)!=f.identity(third):
+            continue
+        between=[r for r in series if prior['received_at']<r.get('received_at','')<=third['received_at']
+                 and r.get('phase') in ('pre_reference_A','pre_reference_B','pre_reference_C','pre_targeted_retry')
+                 and not rejection(r,date,'pre')]
+        if any(r['server_time']<prior['server_time'] or f.identity(r)!=f.identity(prior) for r in between):
+            result['c_rejection']='FRESH_CONTRADICTION_OR_REGRESSION';continue
+        after=[r for r in series if r.get('received_at','')>third['received_at']
+               and r.get('phase')=='pre_targeted_retry' and not rejection(r,date,'pre')]
+        if any(r['server_time']<third['server_time'] or f.identity(r)!=f.identity(third) for r in after):
+            result['c_rejection']='LATER_FRESH_CONTRADICTION_OR_REGRESSION';continue
+        result.update(status='p_before_converged_candidate',converged=True,A=prior,B=third,reason=None,
+                      reference_classification='ABC_converged_candidate' if abc else label,validated=False)
+        return result
+    return result
+
+
 def grouped(snapshots, date):
     by_symbol = defaultdict(list)
     for snap in snapshots:
@@ -139,7 +206,7 @@ def unresolved(date, snapshots, universe, kind, probes=()):
     affected = []
     for symbol in universe:
         key = (symbol['ex'], symbol['code'])
-        evidence = pair(series[key], date, kind)
+        evidence = pre_with_c(series[key], date) if kind=='pre' else pair(series[key], date, kind)
         if not evidence['converged'] or probe_comparison(samples[key], evidence, date, kind)['status'] == 'PROBE_CONFLICT':
             affected.append(symbol)
     return affected
@@ -149,7 +216,7 @@ def compact(row):
     if not row:
         return None
     keys = ('phase', 'planned_at', 'requested_at', 'received_at', 'server_time', 'server_age_ms',
-            'server_age_at_receive_ms', 'cached_alive', 'trade_t', 'trade_z', 'v', 'batch_no', 'error')
+            'server_age_at_receive_ms', 'cached_alive', 'trade_t', 'trade_z', 'trade_v', 'v', 'batch_no', 'error')
     return {k: row.get(k) for k in keys}
 
 
@@ -183,7 +250,9 @@ def build_report(date, snapshots, probes, universe, official):
     securities = []
     for symbol in universe:
         key = (symbol['ex'], symbol['code'])
-        before, closing = pair(full[key], date, 'pre'), pair(full[key], date, 'close')
+        before, closing = pre_with_c(full[key], date), pair(full[key], date, 'close')
+        original_pre = pair(full[key],date,'pre')
+        original_pre_ok = original_pre['converged'] and probe_comparison(sample[key],original_pre,date,'pre')['status']!='PROBE_CONFLICT'
         pre_probe = probe_comparison(sample[key], before, date, 'pre')
         close_probe = probe_comparison(sample[key], closing, date, 'close')
         for evidence, comparison in ((before, pre_probe), (closing, close_probe)):
@@ -208,12 +277,15 @@ def build_report(date, snapshots, probes, universe, official):
                  'p_before_observed_A': pa.get('received_at'), 'p_before_observed_B': pb.get('received_at'),
                  'p_before_server_time_A': pa.get('server_time'), 'p_before_server_time_B': pb.get('server_time'),
                  'p_before_convergence_status': before['status'],
+                 'pre_reference_classification': before['reference_classification'] if pre_ok else 'unresolved',
+                 'original_AB_with_retry_converged':original_pre_ok,
                  'p_close': cb.get('trade_z') if close_ok else None, 'close_trade_time': t if close_ok else None,
                  'close_observed_A': ca.get('received_at'), 'close_observed_B': cb.get('received_at'),
                  'close_server_time_A': ca.get('server_time'), 'close_server_time_B': cb.get('server_time'),
                  'close_convergence_status': closing['status'], 'close_classification': category,
                  'delayed_transition_candidate': closing['delayed_transition_candidate'],
                  'official_close': off.get('official_close'), 'official_price_result': official_result,
+                 'official_volume_shares':off.get('official_volume_shares'),
                  'both_converged': pre_ok and close_ok, 'research_calculable': pre_ok and close_ok and official_result != 'MISMATCH',
                  'p_before_validated': False, 'p_close_validated': False, 'both_validated': False,
                  'pre_probe_comparison': pre_probe, 'close_probe_comparison': close_probe,
@@ -229,7 +301,7 @@ def build_report(date, snapshots, probes, universe, official):
                      stale_seen=any(r['reason'] in ('stale_cache','server_time_regression')
                                     for ev in (before,closing) for r in ev['rejections']))
         for label, evidence in (('pre', before), ('close', closing)):
-            value[label+'_pair_evidence'] = {**evidence, **{k: compact(evidence.get(k)) for k in ('A', 'B', 'original_A', 'original_B')}}
+            value[label+'_pair_evidence'] = {**evidence, **{k: compact(evidence.get(k)) for k in ('A', 'B', 'original_A', 'original_B','original_C') if k in evidence}}
         securities.append(value)
     reference_records = [r for s in snapshots for r in s['records'] if (r.get('phase') or '').startswith(('pre_reference', 'close_reference', 'pre_targeted', 'close_targeted'))]
     stale_batches = []
@@ -267,6 +339,24 @@ def build_report(date, snapshots, probes, universe, official):
             and (v[('pre' if kind == 'pre' else 'close')+'_pair_evidence']['B'] or {}).get('phase', '').endswith('_targeted_retry')
             for v in securities)
     counts['stale_response_count']=counts['stale_batch_count']
+    counts['p_before_original_AB_with_retry_converged_count'] = sum(v['original_AB_with_retry_converged'] for v in securities)
+    for label in ('ABC','AB','AC','BC'):
+        counts['p_before_'+label+'_converged_count']=sum(v['pre_reference_classification']==label+'_converged_candidate' for v in securities)
+    counts['p_before_unresolved_count'] = sum(v['p_before_convergence_status']!='p_before_converged_candidate' for v in securities)
+    for ex in ('tse','otc'):
+        counts['p_before_unresolved_'+ex+'_count']=sum(v['ex']==ex and v['p_before_convergence_status']!='p_before_converged_candidate' for v in securities)
+    reasons={'stale_cache':'stale_cache','server_time_regression':'server_time_regression',
+             'no_trade_or_incomplete_identity':'missing_trade_fields','PROBE_CONFLICT':'inconsistent_trade_state',
+             'not_converged':'unknown'}
+    categories = {k:0 for k in ('stale_cache','server_time_regression','inconsistent_trade_state',
+                              'no_trade_or_sparse_trade','missing_trade_fields','freshness_rule_too_strict','other','unknown')}
+    for value in securities:
+        if value['p_before_convergence_status']=='p_before_converged_candidate':continue
+        category=reasons.get(value['pre_pair_evidence'].get('reason'),'unknown')
+        if category=='missing_trade_fields' and f.decimal_value(value.get('official_volume_shares'))==0:
+            category='no_trade_or_sparse_trade'
+        categories[category]+=1
+    counts['p_before_unresolved_categories']=categories
     has_references = all(any(r.get('phase') == p for r in reference_records) for p in REFERENCE_TIMES)
     return {'trade_date': date, 'version': VERSION, 'status': 'RESEARCH_ONLY' if has_references else 'NOT_SAMPLED',
             'universe_count': len(universe), 'rule': plan(date), **counts, 'stale_batches': stale_batches,
@@ -283,7 +373,7 @@ def research_candidates(report):
         if abs(change) >= f.Decimal('0.03'):
             values.append({k: v[k] for k in ('ex','code','name','market','p_before','p_before_trade_time',
                 'p_close','close_trade_time','official_price_result','p_before_convergence_status','p_close_convergence_status',
-                'pre_pair_evidence','close_pair_evidence','targeted_retry_count','stale_seen')} |
+                'pre_pair_evidence','close_pair_evidence','targeted_retry_count','stale_seen','pre_reference_classification')} |
                           {'tail_return': str(change), 'tail_return_pct':str(change*100),
                            'validated': False, 'status': 'RESEARCH_CANDIDATE'})
     return {'trade_date': report['trade_date'], 'status': 'NOT_SAMPLED' if report['status'] == 'NOT_SAMPLED' else 'RESEARCH_ONLY',
@@ -299,13 +389,25 @@ def write_report(date, snapshots, probes, universe, official, output):
     (output/'convergence_report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2))
     (output/'candidates.json').write_text(json.dumps(candidates, ensure_ascii=False, indent=2))
     (output/'research_candidates.json').write_text(json.dumps(candidates,ensure_ascii=False,indent=2))
+    (output/f'research_candidates_{date}.json').write_text(json.dumps(candidates,ensure_ascii=False,indent=2))
     candidate_columns=('code','name','market','p_before','p_before_trade_time','p_close','close_trade_time',
         'tail_return','tail_return_pct','official_price_result','p_before_convergence_status','p_close_convergence_status',
-        'targeted_retry_count','stale_seen','pre_pair_evidence','close_pair_evidence','validated','status')
+        'targeted_retry_count','stale_seen','pre_pair_evidence','close_pair_evidence','pre_reference_classification','validated','status')
     with (output/'research_candidates.csv').open('w',encoding='utf-8-sig',newline='') as file:
         writer=csv.DictWriter(file,fieldnames=candidate_columns,extrasaction='ignore');writer.writeheader()
         for row in candidates['candidates']:
             writer.writerow({k:json.dumps(v,ensure_ascii=False) if isinstance(v,dict) else v for k,v in row.items()})
+    (output/f'research_candidates_{date}.csv').write_bytes((output/'research_candidates.csv').read_bytes())
+    (output/'pre_reference_C_summary.json').write_text(json.dumps({
+        'trade_date':date,'enabled':date>=PRE_C_START_DATE,'validated':False,
+        'original_AB_with_retry_converged':report['p_before_original_AB_with_retry_converged_count'],
+        'original_AB_reference_only_converged':report['p_before_original_AB_converged_count'],
+        'exclusive_classes':{label:report['p_before_'+label+'_converged_count'] for label in ('ABC','AB','AC','BC')},
+        'unresolved':report['p_before_unresolved_count'],
+        'unresolved_TWSE':report['p_before_unresolved_tse_count'],'unresolved_TPEx':report['p_before_unresolved_otc_count'],
+        'unresolved_categories':report['p_before_unresolved_categories'],
+        'rule':'Original AB/targeted-retry rule preserved. C fallback retains trade.t/trade.z/v; missing C never fabricated.',
+        'note':'Exclusive AB includes the original targeted-retry cohort; ABC means three raw fresh references agree. No independent P_before truth.'},ensure_ascii=False,indent=2))
     columns = ('ex', 'code', 'name', 'market', 'p_before', 'p_before_trade_time', 'p_before_observed_A', 'p_before_observed_B',
                'p_before_server_time_A', 'p_before_server_time_B', 'p_before_convergence_status',
                'p_close', 'close_trade_time', 'close_observed_A', 'close_observed_B', 'close_server_time_A', 'close_server_time_B',
