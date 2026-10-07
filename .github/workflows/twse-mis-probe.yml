@@ -1,5 +1,5 @@
 name: TWSE MIS Closing Auction Probe
-run-name: MIS ${{ inputs.mode || (github.event_name == 'schedule' && 'live') || 'dry-run' }} / ${{ inputs.trigger_source || github.event_name }} / ${{ inputs.dispatch_test_id || github.run_number }}
+run-name: MIS ${{ (github.event_name == 'push' && 'tests') || inputs.mode || (github.event_name == 'schedule' && 'live') || 'dry-run' }} / ${{ inputs.trigger_source || github.event_name }} / ${{ inputs.dispatch_test_id || github.run_number }}
 on:
   push:
     paths:
@@ -74,14 +74,15 @@ jobs:
         with:
           python-version: "3.12"
       - name: Verify freshness, date gates and no-backfill behavior
-        run: python -m unittest -v test_probe.py test_run_control.py test_freshness.py test_convergence.py test_dispatch.py
+        run: python -m unittest discover -v
       - name: Verify status page date, missing-day and credential-free gates
         run: node --test test_status.cjs
       - name: Run controlled probe
         id: probe
+        if: github.event_name != 'push'
         run: python run_control.py --mode "$PROBE_MODE" --output results
       - name: Upload raw evidence and reports
-        if: always()
+        if: always() && github.event_name != 'push'
         uses: actions/upload-artifact@v4
         with:
           name: mis-probe-${{ github.run_id }}
@@ -91,5 +92,5 @@ jobs:
           if-no-files-found: error
           retention-days: 30
       - name: Preserve specific failure and mark unexpected controller termination
-        if: failure()
+        if: failure() && github.event_name != 'push'
         run: python run_control.py --mode workflow-failure --output results

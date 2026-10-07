@@ -26,6 +26,7 @@ from zoneinfo import ZoneInfo
 import freshness
 import convergence
 import official_quotes
+import close_research
 import tradable
 
 TZ = ZoneInfo("Asia/Taipei")
@@ -527,10 +528,42 @@ def live(output: Path) -> int:
         github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "close_reference_A", len(universe)))
         close_a = reference_capture('close_reference_A', date, universe, output, '13:33:20')
         github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "close_reference_B", len(universe)))
-        close_b = reference_capture('close_reference_B', date, universe, output, '13:35:00')
+        live_close_research = date >= close_research.START_DATE
+        close_b = reference_capture('close_reference_B', date,
+            close_research.ordered_symbols(universe,'B') if live_close_research else universe,
+            output, '13:34:08' if live_close_research else '13:35:00')
         probe_rows.extend(probe2_future.result())
-    close_retries = targeted_retries('close', date, [close_a, close_b], universe, output, probe_rows)
-    snapshots = [pre, pre_a, pre_b, *([pre_c] if pre_c else []), *pre_retries, close_a, close_b, *close_retries]
+    close_c = None
+    if live_close_research:
+        affected = close_research.affected(date,[close_a,close_b],universe,probe_rows)
+        throttled = any(r.get('http_status') in (403,429) for s in (close_a,close_b) for r in s['records'])
+        if affected and not throttled:
+            github_issue(issue_body("🟡 RUNNING",date,iso(runner_started),'close_reference_C',len(universe)))
+            close_c = reference_capture('close_reference_C',date,
+                close_research.ordered_symbols(affected,'C'),output,'13:35:00')
+        else:
+            (output/'close_reference_C_raw.jsonl').write_text('')
+            close_c = {'records':[],'metrics':{'phase':'close_reference_C',
+                'status':'BLOCKED_HTTP_403_429' if throttled else 'NOT_REQUIRED',
+                'success_count':0,'stock_universe_count':0,'symbol_set_equal':not throttled}}
+        close_c['metrics']['affected_symbols']=[s['ex']+':'+s['code'] for s in affected]
+        close_retries = []  # One bounded targeted C replaces repeated same-key close retries.
+    else:
+        close_retries = targeted_retries('close', date, [close_a, close_b], universe, output, probe_rows)
+    snapshots = [pre, pre_a, pre_b, *([pre_c] if pre_c else []), *pre_retries,
+                 close_a,close_b,*([close_c] if close_c else []),*close_retries]
+    # Save the live research output before any optional postmarket network work.
+    # The scheduled official workflow will later compare unchanged saved evidence.
+    pending = {'status':'PENDING_SCHEDULED_POSTMARKET','checks':[],'sources':[]}
+    if live_close_research:
+        convergence.write_report(date,snapshots,probe_rows,universe,pending,output)
+        live_summary=json.loads((output/'live_research_summary.json').read_text())
+        live_summary['generated_at']=iso()
+        (output/'live_research_summary.json').write_text(json.dumps(live_summary,ensure_ascii=False,indent=2))
+        print(json.dumps({'live_research_summary':live_summary},ensure_ascii=False),flush=True)
+        if os.getenv('GITHUB_STEP_SUMMARY'):
+            with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as file:
+                file.write('\n### RESEARCH_ONLY close candidates\n\n```json\n'+json.dumps(live_summary,ensure_ascii=False,indent=2)+'\n```\n')
     github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "validation", len(universe)))
     normalized_csv(snapshots, probe_rows, output)
     performance = {x["metrics"]["phase"]: x["metrics"] for x in snapshots if not x['metrics']['phase'].endswith('_targeted_retry')}
@@ -544,10 +577,12 @@ def live(output: Path) -> int:
                for r in probe_rows if r.get("error") or r.get('missing') or r.get('empty') or r.get('duplicate')]}
     (output / "error_missing_report.json").write_text(json.dumps(errors, ensure_ascii=False, indent=2), encoding="utf-8")
     selected = convergence.build_report(date, snapshots, probe_rows, universe, {'checks': []})
-    validation = official_quotes.validate(date, universe, snapshots, output, get_bytes,
-                                         selected_closes=selected['securities'])
+    validation = pending if live_close_research else official_quotes.validate(
+        date,universe,snapshots,output,get_bytes,selected_closes=selected['securities'])
     freshness_report = freshness.write_report(date, snapshots, probe_rows, universe, validation, output)
-    dual = convergence.write_report(date, snapshots, probe_rows, universe, validation, output)
+    dual = selected if live_close_research else convergence.write_report(date,snapshots,probe_rows,universe,validation,output)
+    if live_close_research:
+        dual['research_candidate_count']=len(convergence.research_candidates(dual)['candidates'])
     # Research convergence and raw acquisition are separate outcomes. Pending
     # official publication is not a capture error, nor is no new closing trade.
     primary = [pre, pre_a, pre_b, close_a, close_b]
@@ -558,6 +593,8 @@ def live(output: Path) -> int:
                "universe_audit_status": universe_audit['status'], "exclusion_count": universe_audit['excluded_symbol_count'],
                "snapshots": performance, 'capture_architecture': convergence.VERSION,
                'pre_reference_C_enabled': pre_c is not None,
+               'close_reference_C_enabled': close_c is not None,
+               'live_close_research_enabled': live_close_research,
                "probe_scheduled_count": len(probe_rows), "official_validation": validation["status"],
                "candidate_count": dual['research_candidate_count'], 'research_calculable_count': dual['research_calculable_count'],
                'candidate_status': 'RESEARCH_ONLY', 'validated': False,
@@ -565,6 +602,8 @@ def live(output: Path) -> int:
     summary['freshness'] = {k:freshness_report[k] for k in ('status','p_before_validated_count','p_close_validated_count','both_validated_count')}
     summary['freshness']['confirmed_candidate_count'] = sum(v['p_before_freshness_status']=='confirmed_candidate' for v in freshness_report['securities'])
     summary['convergence'] = {k:v for k,v in dual.items() if k.endswith('_count') or k in ('status','version','validated')}
+    if live_close_research:
+        summary['live_research_summary']=live_summary
     (output / "run_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     package(output, date)
     headline = "✅ SUCCESS" if summary["status"] == "success_raw_capture" else "⚠️ PARTIAL"

@@ -36,7 +36,7 @@ def load_capture(archive):
     with zipfile.ZipFile(io.BytesIO(archive)) as z:
         for name in z.namelist():
             base=Path(name).name
-            phases = ('preclose','close','delayed_close',*convergence.REFERENCE_TIMES,'pre_reference_C','pre_targeted_retry','close_targeted_retry')
+            phases = ('preclose','close','delayed_close',*convergence.REFERENCE_TIMES,'pre_reference_C','close_reference_C','pre_targeted_retry','close_targeted_retry')
             if base in tuple(p+'_raw.jsonl' for p in phases)+('probe_raw.jsonl','universe.json','run_summary.json'):
                 if base in files and files[base]!=z.read(name):raise RuntimeError('Conflicting artifact files '+base)
                 files[base]=z.read(name).decode('utf-8')
@@ -47,6 +47,8 @@ def load_capture(archive):
     capture_phases = ('preclose',*convergence.REFERENCE_TIMES) if summary.get('capture_architecture') == convergence.VERSION else ('preclose','close','delayed_close')
     if summary.get('pre_reference_C_enabled'):
         capture_phases = (*capture_phases,'pre_reference_C')
+    if summary.get('close_reference_C_enabled'):
+        capture_phases = (*capture_phases,'close_reference_C')
     missing=[p+'_raw.jsonl' for p in capture_phases if p+'_raw.jsonl' not in files]
     if missing:raise RuntimeError('Capture artifact missing '+','.join(missing))
     snapshots=[{'records':[json.loads(s) for s in files[p+'_raw.jsonl'].splitlines()]} for p in (*capture_phases,'pre_targeted_retry','close_targeted_retry') if p+'_raw.jsonl' in files]

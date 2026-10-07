@@ -5,6 +5,7 @@ import json
 import re
 
 import freshness as f
+import close_research
 
 VERSION = 'DUAL_SNAPSHOT_RESEARCH_V1'
 REFERENCE_TIMES = {
@@ -22,7 +23,8 @@ def reference_times(date):
         return dict(REFERENCE_TIMES)
     return {**{k:v for k,v in REFERENCE_TIMES.items() if k.startswith('pre_')},
             'pre_reference_C': PRE_C_TIME,
-            **{k:v for k,v in REFERENCE_TIMES.items() if k.startswith('close_')}}
+            **{k:v for k,v in REFERENCE_TIMES.items() if k.startswith('close_')},
+            **({'close_reference_C':close_research.C_TIME} if date>=close_research.START_DATE else {})}
 
 
 def plan(date):
@@ -241,7 +243,8 @@ def probe_comparison(series, evidence, date, kind):
             'validated': False}
 
 
-def build_report(date, snapshots, probes, universe, official):
+def build_report(date, snapshots, probes, universe, official, close_research_enabled=None):
+    live_research = date >= close_research.START_DATE if close_research_enabled is None else close_research_enabled
     full = grouped(snapshots, date)
     sample = defaultdict(list)
     for row in f.observations(probes, date):
@@ -302,6 +305,25 @@ def build_report(date, snapshots, probes, universe, official):
                                     for ev in (before,closing) for r in ev['rejections']))
         for label, evidence in (('pre', before), ('close', closing)):
             value[label+'_pair_evidence'] = {**evidence, **{k: compact(evidence.get(k)) for k in ('A', 'B', 'original_A', 'original_B','original_C') if k in evidence}}
+        if live_research:
+            research = close_research.assess(full[key], date)
+            research_probe = probe_comparison(sample[key],
+                {'converged':bool(research['selected']), 'B':research['selected']}, date, 'close')
+            if research_probe['status']=='PROBE_CONFLICT':
+                research.update(classification='unresolved',confidence_level=None,p_close=None,
+                                trade_time=None,converged=False,reason='PROBE_CONFLICT')
+            price = f.decimal_value(research['p_close'])
+            research_official = 'PENDING' if official_price is None else (
+                'MATCH' if price is not None and price==official_price else
+                'MISMATCH' if price is not None else 'UNKNOWN_MIS_CLOSE')
+            value.update(research_p_close=research['p_close'],research_close_trade_time=research['trade_time'],
+                P_close_convergence_type=research['classification'],confidence_level=research['confidence_level'],
+                P_before_convergence_type=before['reference_classification'],
+                close_research_evidence={**research,'selected':compact(research['selected']),
+                    'pair':[compact(r) for r in research['pair']] if research['pair'] else None},
+                research_official_price_result=research_official,
+                research_calculable=pre_ok and research['classification'] in close_research.TYPES
+                    and research_official!='MISMATCH')
         securities.append(value)
     reference_records = [r for s in snapshots for r in s['records'] if (r.get('phase') or '').startswith(('pre_reference', 'close_reference', 'pre_targeted', 'close_targeted'))]
     stale_batches = []
@@ -357,10 +379,14 @@ def build_report(date, snapshots, probes, universe, official):
             category='no_trade_or_sparse_trade'
         categories[category]+=1
     counts['p_before_unresolved_categories']=categories
+    if live_research:
+        for label in (*close_research.TYPES,'delayed_close_candidate','unresolved'):
+            counts['research_close_'+label+'_count']=sum(v['P_close_convergence_type']==label for v in securities)
     has_references = all(any(r.get('phase') == p for r in reference_records) for p in REFERENCE_TIMES)
     return {'trade_date': date, 'version': VERSION, 'status': 'RESEARCH_ONLY' if has_references else 'NOT_SAMPLED',
             'universe_count': len(universe), 'rule': plan(date), **counts, 'stale_batches': stale_batches,
             'securities': securities, 'formal_signals': 'NOT_GENERATED', 'validated': False,
+            'live_close_research_enabled': live_research,
             'note': 'Dual equality is a convergence candidate, not proof of the final exchange trade. Official MATCH does not validate P_before.'}
 
 
@@ -369,21 +395,33 @@ def research_candidates(report):
     for v in report['securities']:
         if not v['research_calculable']:
             continue
-        change = f.decimal_value(v['p_close'])/f.decimal_value(v['p_before'])-1
+        research = report.get('live_close_research_enabled',False)
+        close = v['research_p_close'] if research else v['p_close']
+        change = f.decimal_value(close)/f.decimal_value(v['p_before'])-1
         if abs(change) >= f.Decimal('0.03'):
-            values.append({k: v[k] for k in ('ex','code','name','market','p_before','p_before_trade_time',
+            row = ({k: v[k] for k in ('ex','code','name','market','p_before','p_before_trade_time',
                 'p_close','close_trade_time','official_price_result','p_before_convergence_status','p_close_convergence_status',
                 'pre_pair_evidence','close_pair_evidence','targeted_retry_count','stale_seen','pre_reference_classification')} |
                           {'tail_return': str(change), 'tail_return_pct':str(change*100),
-                           'validated': False, 'status': 'RESEARCH_CANDIDATE'})
+                           'validated': False, 'status': 'RESEARCH_ONLY'})
+            row.update(P_before=v['p_before'],P_before_trade_time=v['p_before_trade_time'],P_close=close,
+                P_close_trade_time=v['research_close_trade_time'] if research else v['close_trade_time'],
+                P_before_convergence_type=v['pre_reference_classification'],
+                P_close_convergence_type=v.get('P_close_convergence_type','AB_converged'),
+                confidence_level=v.get('confidence_level','HIGH_RESEARCH'))
+            if research:
+                row.update(p_close=close,close_trade_time=v['research_close_trade_time'],
+                           official_price_result=v['research_official_price_result'],
+                           close_research_evidence=v['close_research_evidence'])
+            values.append(row)
     return {'trade_date': report['trade_date'], 'status': 'NOT_SAMPLED' if report['status'] == 'NOT_SAMPLED' else 'RESEARCH_ONLY',
             'calculable_count': report['research_calculable_count'], 'candidate_count': len(values),
             'candidates': values, 'validated': False, 'production_signals': 'NOT_GENERATED',
-            'note': 'Only both-converged prices; official mismatch excluded. PENDING remains explicitly unverified research.'}
+            'note': 'Existing P_before convergence plus explicit close research hierarchy; all validated=false. Official mismatch excluded; pending official remains unverified research.'}
 
 
-def write_report(date, snapshots, probes, universe, official, output):
-    report = build_report(date, snapshots, probes, universe, official)
+def write_report(date, snapshots, probes, universe, official, output, close_research_enabled=None):
+    report = build_report(date, snapshots, probes, universe, official, close_research_enabled)
     candidates = research_candidates(report)
     report['research_candidate_count'] = candidates['candidate_count']
     (output/'convergence_report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2))
@@ -392,7 +430,9 @@ def write_report(date, snapshots, probes, universe, official, output):
     (output/f'research_candidates_{date}.json').write_text(json.dumps(candidates,ensure_ascii=False,indent=2))
     candidate_columns=('code','name','market','p_before','p_before_trade_time','p_close','close_trade_time',
         'tail_return','tail_return_pct','official_price_result','p_before_convergence_status','p_close_convergence_status',
-        'targeted_retry_count','stale_seen','pre_pair_evidence','close_pair_evidence','pre_reference_classification','validated','status')
+        'targeted_retry_count','stale_seen','pre_pair_evidence','close_pair_evidence','pre_reference_classification',
+        'P_before','P_before_trade_time','P_close','P_close_trade_time','P_before_convergence_type',
+        'P_close_convergence_type','confidence_level','close_research_evidence','validated','status')
     with (output/'research_candidates.csv').open('w',encoding='utf-8-sig',newline='') as file:
         writer=csv.DictWriter(file,fieldnames=candidate_columns,extrasaction='ignore');writer.writeheader()
         for row in candidates['candidates']:
@@ -414,6 +454,7 @@ def write_report(date, snapshots, probes, universe, official, output):
                'close_convergence_status', 'close_classification', 'official_close', 'official_price_result',
                'p_before_A_server_time','p_before_B_server_time','p_close_A_server_time','p_close_B_server_time',
                'p_close_convergence_status','targeted_retry_count','stale_seen',
+               'research_p_close','research_close_trade_time','P_close_convergence_type','confidence_level',
                'both_converged', 'research_calculable', 'p_before_validated', 'p_close_validated', 'both_validated', 'volume_status')
     with (output/'convergence.csv').open('w', encoding='utf-8-sig', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=columns, extrasaction='ignore')
@@ -438,4 +479,12 @@ def write_report(date, snapshots, probes, universe, official, output):
                          'p_close_convergence_status','pre_pair_evidence','close_pair_evidence')}
         for v in report['securities'] if not v['both_converged']]}
     (output/'unknown_symbols.json').write_text(json.dumps(unknown,ensure_ascii=False,indent=2))
+    if report['live_close_research_enabled']:
+        summary={'trade_date':date,'status':'RESEARCH_ONLY','validated':False,
+            'tradable_universe':len(universe),'P_before_converged':report['p_before_converged_count'],
+            'P_close':{k:report['research_close_'+k+'_count'] for k in (*close_research.TYPES,'delayed_close_candidate','unresolved')},
+            'research_calculable_count':report['research_calculable_count'],
+            'candidate_count':candidates['candidate_count'],
+            'candidates':[{k:r[k] for k in ('code','name','tail_return','confidence_level','validated')} for r in candidates['candidates']]}
+        (output/'live_research_summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2))
     return report
