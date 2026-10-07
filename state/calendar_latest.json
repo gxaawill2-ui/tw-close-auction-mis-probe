@@ -1,9 +1,9 @@
 {
-  "verified_at": "2026-10-07T18:50:21.870+08:00",
+  "verified_at": "2026-10-07T19:59:03.152+08:00",
   "source": "https://www.twse.com.tw/rwd/zh/holidaySchedule/holidaySchedule?response=json&queryYear=115",
   "year": 2026,
   "next_trade_date": "2026-10-08",
   "today": "2026-10-07",
   "is_trading_day": true,
-  "updated_at": "2026-10-07T18:50:22.132+08:00"
+  "updated_at": "2026-10-07T19:59:03.344+08:00"
 }
