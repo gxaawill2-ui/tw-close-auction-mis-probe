@@ -1,10 +1,32 @@
 """Date-gated official close tables. Empty/stale tables are PENDING, never today."""
 import json
+import http.client
+import time
+import urllib.error
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlencode
 
 from freshness import decimal_value
+
+
+def download_tpex(url, get_bytes, max_attempts=5):
+    """Retry transport failures and truncated JSON with a fresh request each time."""
+    for attempt in range(max_attempts):
+        try:
+            status, raw = get_bytes(url, 25)
+            if status >= 500:
+                raise urllib.error.HTTPError(url, status, 'TPEx server error', None, None)
+            body = json.loads(raw.decode('utf-8-sig'))
+            return status, raw, body
+        except (http.client.IncompleteRead, http.client.RemoteDisconnected,
+                ConnectionError, TimeoutError, urllib.error.URLError,
+                json.JSONDecodeError, UnicodeDecodeError) as exc:
+            if isinstance(exc, urllib.error.HTTPError) and exc.code < 500:
+                raise
+            if attempt == max_attempts - 1:
+                raise
+            time.sleep(2 ** attempt)
 
 
 def quote_url(ex,date):
@@ -35,9 +57,12 @@ def validate(date,symbols,snapshots,output,get_bytes,selected_closes=None):
     for ex in ('tse','otc'):
         url=quote_url(ex,date);observed=datetime.now().astimezone().isoformat(timespec='milliseconds')
         try:
-            status,raw=get_bytes(url,25)
+            if ex == 'otc':
+                status,raw,body=download_tpex(url,get_bytes)
+            else:
+                status,raw=get_bytes(url,25)
+                body=json.loads(raw.decode('utf-8-sig'))
             (output/f'official_close_{ex}.json').write_bytes(raw)
-            body=json.loads(raw.decode('utf-8-sig'))
             rows,state=parse_quotes(ex,date,body)
             if status!=200:rows,state={},'PENDING_HTTP_ERROR'
             markets[ex]=rows
