@@ -4,7 +4,7 @@
   "source": "https://www.twse.com.tw/rwd/zh/holidaySchedule/holidaySchedule?response=json&queryYear=115",
   "source_capture_artifact": "mis-probe-36856545941",
   "source_file": "official_calendar.json",
-  "verified_at": "2026-10-07T18:50:21.870+08:00",
+  "verified_at": "2026-10-07T19:59:03.152+08:00",
   "closed_dates": [
     "2026-01-01",
     "2026-02-12",
@@ -32,5 +32,5 @@
     "2026-12-25"
   ],
   "limitations": "Intraday emergency closures not independently monitored; live runner rechecks official calendar.",
-  "updated_at": "2026-10-07T18:50:23.928+08:00"
+  "updated_at": "2026-10-07T19:59:04.860+08:00"
 }
