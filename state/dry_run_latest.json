@@ -1,14 +1,14 @@
 {
   "status": "dry_run_success",
-  "run_id": "37428638913",
-  "finished_at": "2026-10-06T15:18:08.220+08:00",
-  "stock_universe_count": 1971,
+  "run_id": "37597264349",
+  "finished_at": "2026-10-07T16:59:11.054+08:00",
+  "stock_universe_count": 1969,
   "returned_count": 8,
   "error": null,
-  "updated_at": "2026-10-06T15:18:08.526+08:00",
-  "company_universe_count": 1977,
+  "updated_at": "2026-10-07T16:59:11.418+08:00",
+  "company_universe_count": 1978,
   "universe_audit_status": "OFFICIAL_SOURCES_DATE_CHECKED",
-  "runner_started_at": "2026-10-06T15:16:32.056+08:00",
+  "runner_started_at": "2026-10-07T16:57:35.998+08:00",
   "event": "push",
   "declared_source": "manual"
 }
