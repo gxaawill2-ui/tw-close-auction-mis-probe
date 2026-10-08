@@ -4,3 +4,4 @@ results/
 validation-results/
 mis-probe-*.zip
 node_modules/
+browser-results/

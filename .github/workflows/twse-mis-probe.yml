@@ -26,6 +26,7 @@ on:
       - 'test_dashboard.cjs'
       - 'package.json'
       - 'package-lock.json'
+      - 'browser_acceptance.cjs'
       - '.github/workflows/twse-mis-probe.yml'
   schedule:
     - cron: "47 3 * * 1-5"
@@ -64,6 +65,31 @@ concurrency:
   group: twse-mis-live
   cancel-in-progress: false
 jobs:
+  dashboard-browser:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Install official Chromium and WebKit test browsers
+        run: npx playwright install --with-deps chromium webkit
+      - name: Verify actual desktop, iPhone layout and public Pages
+        run: node browser_acceptance.cjs
+      - name: Save browser acceptance screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dashboard-browser-${{ github.run_id }}
+          path: browser-results/
+          if-no-files-found: warn
+          retention-days: 14
   probe:
     runs-on: ubuntu-latest
     timeout-minutes: 125

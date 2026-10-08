@@ -2,8 +2,8 @@
   "schema_version": "DAILY_RESEARCH_PUBLICATION_V1",
   "trade_date": "2026-10-08",
   "generated_at": "2026-10-08T13:34:12.719+08:00",
-  "published_at": "2026-10-08T18:25:10.419+08:00",
-  "updated_at": "2026-10-08T18:25:10.419+08:00",
+  "published_at": "2026-10-08T18:30:29+08:00",
+  "updated_at": "2026-10-08T18:37:12.400+08:00",
   "publication_mode": "OFFLINE_SAVED_CAPTURE",
   "capture_run_id": "37730234383",
   "source_artifact": "mis-probe-37730234383",
@@ -1364,7 +1364,7 @@
       "official_close": "7.77"
     }
   ],
-  "publication_code_sha": null,
+  "publication_code_sha": "8f2dc82419b7b2021581bd503a8d57b3e47d8d7b",
   "price_limitation": "P_before is converged MIS research evidence, without independent official pre-13:25 validation.",
   "price_fingerprint": "3951327c7d3f99fc46ebee67380c2498fc4ebb6014f255c7090bf2f1ef5ffa39",
   "postmarket_verified_at": "2026-10-08T15:20:18.859+08:00",
