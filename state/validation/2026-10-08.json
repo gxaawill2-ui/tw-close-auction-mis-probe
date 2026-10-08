@@ -1,15 +1,114 @@
 {
   "trade_date": "2026-10-08",
-  "checked_at": "2026-10-08T01:03:03.472+08:00",
-  "run_id": "37655721402",
-  "status": "PENDING_NO_CAPTURE",
+  "checked_at": "2026-10-08T14:50:18.986+08:00",
+  "run_id": "37739824168",
+  "status": "PENDING",
   "publication_observations": [
     {
       "checked_at": "2026-10-08T01:03:03.472+08:00",
       "status": "PENDING_NO_CAPTURE",
       "sources": []
+    },
+    {
+      "checked_at": "2026-10-08T14:50:18.986+08:00",
+      "status": "PENDING",
+      "sources": [
+        {
+          "ex": "tse",
+          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261008&type=ALLBUT0999&response=json",
+          "checked_at": "2026-10-08T14:50:21.492+08:00",
+          "http_status": 200,
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 1380,
+          "response_date": "20261008"
+        },
+        {
+          "ex": "otc",
+          "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F10%2F08&response=json",
+          "checked_at": "2026-10-08T14:50:23.495+08:00",
+          "http_status": 200,
+          "status": "PENDING_EMPTY_TABLE",
+          "row_count": 0,
+          "response_date": "20261008"
+        }
+      ]
     }
   ],
   "publication_timing_note": "Only observed checks bound availability; exact release time is not assumed.",
-  "updated_at": "2026-10-08T01:03:03.797+08:00"
+  "updated_at": "2026-10-08T14:50:28.900+08:00",
+  "source_capture_run_id": "37730234383",
+  "source_capture_artifact_id": 11530906396,
+  "official_validation": "PENDING",
+  "matches": 1079,
+  "mismatches": 0,
+  "unavailable": 889,
+  "official_sources": [
+    {
+      "ex": "tse",
+      "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261008&type=ALLBUT0999&response=json",
+      "checked_at": "2026-10-08T14:50:21.492+08:00",
+      "http_status": 200,
+      "status": "AVAILABLE_SAME_DATE",
+      "row_count": 1380,
+      "response_date": "20261008"
+    },
+    {
+      "ex": "otc",
+      "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F10%2F08&response=json",
+      "checked_at": "2026-10-08T14:50:23.495+08:00",
+      "http_status": 200,
+      "status": "PENDING_EMPTY_TABLE",
+      "row_count": 0,
+      "response_date": "20261008"
+    }
+  ],
+  "freshness": {
+    "p_before_validated_count": 0,
+    "p_close_validated_count": 0,
+    "both_validated_count": 0
+  },
+  "convergence": {
+    "version": "DUAL_SNAPSHOT_RESEARCH_V1",
+    "status": "RESEARCH_ONLY",
+    "universe_count": 1968,
+    "p_before_converged_count": 1943,
+    "p_close_converged_count": 1939,
+    "both_converged_count": 1936,
+    "unknown_count": 32,
+    "stale_batch_count": 40,
+    "server_regression_response_count": 0,
+    "targeted_retry_count": 5,
+    "targeted_http_attempt_count": 5,
+    "true_delayed_close_candidate_count": 0,
+    "delayed_transition_candidate_count": 7,
+    "no_closing_new_trade_count": 192,
+    "research_calculable_count": 1943,
+    "p_before_validated_count": 0,
+    "p_close_validated_count": 0,
+    "both_validated_count": 0,
+    "p_before_original_AB_converged_count": 1829,
+    "p_before_recovered_by_targeted_retry_count": 114,
+    "p_close_original_AB_converged_count": 1939,
+    "p_close_recovered_by_targeted_retry_count": 0,
+    "stale_response_count": 40,
+    "p_before_original_AB_with_retry_converged_count": 1943,
+    "p_before_ABC_converged_count": 0,
+    "p_before_AB_converged_count": 1943,
+    "p_before_AC_converged_count": 0,
+    "p_before_BC_converged_count": 0,
+    "p_before_unresolved_count": 25,
+    "p_before_unresolved_tse_count": 5,
+    "p_before_unresolved_otc_count": 20,
+    "research_close_AB_converged_count": 1939,
+    "research_close_AC_converged_count": 0,
+    "research_close_BC_converged_count": 7,
+    "research_close_A_1330_fresh_candidate_count": 0,
+    "research_close_delayed_close_candidate_count": 0,
+    "research_close_unresolved_count": 22,
+    "validated": false,
+    "research_candidate_count": 7
+  },
+  "candidate_status": "RESEARCH_ONLY",
+  "candidate_count": 7,
+  "artifact": "mis-validation-37739824168"
 }
