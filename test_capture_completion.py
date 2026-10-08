@@ -102,7 +102,7 @@ class CompletionTests(unittest.TestCase):
         (self.out/'research_candidates.json').unlink()
         self.assertEqual(self.classify()['exit_code'],1)
 
-    def controller(self,side_effect=None,code=0):
+    def controller(self,side_effect=None,code=0,publication_error=None):
         now=probe.target(DAY,'13:00:00')
         def live(out):
             if side_effect:raise side_effect
@@ -112,11 +112,19 @@ class CompletionTests(unittest.TestCase):
              patch.object(run_control,'read_state',return_value=({},None)),patch.object(run_control,'claim_capture',return_value=(True,{},None)), \
              patch.object(run_control,'calendar_state',return_value={'is_trading_day':True}), \
              patch.object(run_control,'publish'),patch.object(run_control,'merge_state') as merge, \
-             patch.object(probe,'live',side_effect=live),patch.dict(os.environ,{'RUNNER_STARTED_AT':now.isoformat(),'GITHUB_RUN_ID':'test'}):
+             patch.object(probe,'live',side_effect=live), \
+             patch.object(run_control.candidate_publication,'publish_live',return_value={'status':'PUBLISHED'},side_effect=publication_error), \
+             patch.dict(os.environ,{'RUNNER_STARTED_AT':now.isoformat(),'GITHUB_RUN_ID':'test'}):
             return run_control.run('live',self.out),merge
 
     def test_controller_keeps_partial_success_exit_zero(self):
         self.assertEqual(self.controller()[0],0)
+
+    def test_publication_failure_nonzero_keeps_capture_partial(self):
+        code,merge=self.controller(publication_error=RuntimeError('publish unavailable'))
+        self.assertEqual(code,4)
+        self.assertEqual(merge.call_args.args[1]['capture_outcome'],'CAPTURE_PARTIAL')
+        self.assertEqual(merge.call_args.args[1]['candidate_publication']['status'],'FAILED')
 
     def test_controller_true_exception_is_nonzero(self):
         code,merge=self.controller(RuntimeError('core interrupted'))

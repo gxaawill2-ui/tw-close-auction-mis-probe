@@ -1,6 +1,6 @@
 const test=require('node:test');
 const assert=require('node:assert/strict');
-const s=require('./docs/status.js');
+const s=require('./docs/diagnostic.js');
 const calendar={year:2026,closed_dates:['2026-10-09']};
 const now=new Date('2026-10-05T06:08:00Z');
 test('Taipei date uses +08 even when execution clock is UTC',()=>{

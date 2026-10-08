@@ -1,0 +1,1349 @@
+{
+  "schema_version": "DAILY_RESEARCH_PUBLICATION_V1",
+  "trade_date": "2026-10-08",
+  "generated_at": "2026-10-08T13:34:12.719+08:00",
+  "published_at": null,
+  "updated_at": null,
+  "publication_mode": "OFFLINE_SAVED_CAPTURE",
+  "capture_run_id": "37730234383",
+  "source_artifact": "mis-probe-37730234383",
+  "source_artifact_sha256": "1b4caf9efcbb0575771726b356751f177bba37439179cb14bfc9b8a9bc9a88e0",
+  "status": "RESEARCH_ONLY",
+  "validated": false,
+  "completion_status": "PARTIAL",
+  "capture_outcome": "CAPTURE_PARTIAL",
+  "coverage": {
+    "tradable_universe": 1968,
+    "research_calculable": 1943,
+    "unknown": 25
+  },
+  "candidate_count": 7,
+  "candidate_list": [
+    {
+      "code": "3259",
+      "name": "鑫創",
+      "market": "TPEx",
+      "P_before": "10.9500",
+      "P_close": "11.9500",
+      "P_before_trade_time": "11:29:53",
+      "P_close_trade_time": "13:33:00",
+      "P_before_convergence_type": "AB_converged_candidate",
+      "P_close_convergence_type": "BC_converged",
+      "confidence_level": "HIGH_RESEARCH",
+      "validated": false,
+      "ex": "otc",
+      "tail_return_pct": "9.132420091324200913242009100",
+      "price_research_status": "RESEARCH_ONLY",
+      "closing_auction_volume": "1",
+      "intraday_total_volume": "8",
+      "closing_volume_ratio_pct": "12.500",
+      "volume_unit": "張",
+      "volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "closing_volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "intraday_volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "volume_source": "MIS_REGULAR_SAVED_OBSERVATIONS",
+      "volume_verified_at": "2026-10-08T18:07:03.716800+08:00",
+      "volume_evidence": {
+        "contract_version": "MIS_REGULAR_VOLUME_CONTRACT_20261008",
+        "source_unit": "TRADING_UNIT",
+        "independent_official_volume_validation": false,
+        "scope": "General board-lot market, opening to final 13:30/13:33 auction; excludes postmarket/odd-lot",
+        "reason": null,
+        "pre_observations": [
+          {
+            "phase": "pre_reference_A",
+            "request_started_at": "2026-10-08T13:27:00.001+08:00",
+            "received_at": "2026-10-08T13:27:02.516+08:00",
+            "server_time": "2026-10-08T13:27:01+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 8338,
+              "stockInfo": 8784,
+              "sessionStr": "UserSession",
+              "sysTime": "13:27:01",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "11:29:53",
+              "v": 1,
+              "z": "10.9500",
+              "ft": 20
+            },
+            "t": "13:25:29",
+            "z": "-",
+            "pz": "-",
+            "v": "7",
+            "tv": "-",
+            "s": "-",
+            "ts": "1",
+            "d": "20261008",
+            "market_channel": "otc_3259.tw"
+          },
+          {
+            "phase": "pre_reference_B",
+            "request_started_at": "2026-10-08T13:28:15.001+08:00",
+            "received_at": "2026-10-08T13:28:18.427+08:00",
+            "server_time": "2026-10-08T13:28:17+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 4444,
+              "stockInfo": 11963,
+              "sessionStr": "UserSession",
+              "sysTime": "13:28:17",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "11:29:53",
+              "v": 1,
+              "z": "10.9500",
+              "ft": 20
+            },
+            "t": "13:25:29",
+            "z": "-",
+            "pz": "-",
+            "v": "7",
+            "tv": "-",
+            "s": "-",
+            "ts": "1",
+            "d": "20261008",
+            "market_channel": "otc_3259.tw"
+          }
+        ],
+        "close_observations": [
+          {
+            "phase": "close_reference_B",
+            "request_started_at": "2026-10-08T13:33:51.379+08:00",
+            "received_at": "2026-10-08T13:33:52.395+08:00",
+            "server_time": "2026-10-08T13:33:52+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 5956,
+              "stockInfo": 11303,
+              "sessionStr": "UserSession",
+              "sysTime": "13:33:52",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:33:00",
+              "v": 1,
+              "z": "11.9500",
+              "ft": 20
+            },
+            "t": "13:33:00",
+            "z": "11.9500",
+            "pz": "12.0000",
+            "v": "8",
+            "tv": "1",
+            "s": "1",
+            "ts": "0",
+            "d": "20261008",
+            "market_channel": "otc_3259.tw"
+          },
+          {
+            "phase": "close_reference_C",
+            "request_started_at": "2026-10-08T13:34:10.000+08:00",
+            "received_at": "2026-10-08T13:34:10.842+08:00",
+            "server_time": "2026-10-08T13:34:10+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 2524,
+              "stockInfo": 2653,
+              "sessionStr": "UserSession",
+              "sysTime": "13:34:10",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:33:00",
+              "v": 1,
+              "z": "11.9500",
+              "ft": 20
+            },
+            "t": "13:33:00",
+            "z": "11.9500",
+            "pz": "12.0000",
+            "v": "8",
+            "tv": "1",
+            "s": "1",
+            "ts": "0",
+            "d": "20261008",
+            "market_channel": "otc_3259.tw"
+          }
+        ],
+        "observed_pre_v": [
+          "7",
+          "7"
+        ],
+        "observed_close_v": [
+          "8",
+          "8"
+        ],
+        "observed_trade_v": [
+          1,
+          1
+        ],
+        "observed_tv": [
+          "1",
+          "1"
+        ],
+        "observed_s": [
+          "1",
+          "1"
+        ],
+        "cumulative_delta_raw": "1",
+        "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
+        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00"
+      },
+      "official_price_result": "PENDING",
+      "postmarket_verified_at": null
+    },
+    {
+      "code": "2024",
+      "name": "志聯",
+      "market": "TWSE",
+      "P_before": "13.6000",
+      "P_close": "12.8500",
+      "P_before_trade_time": "13:20:47",
+      "P_close_trade_time": "13:30:00",
+      "P_before_convergence_type": "AB_converged_candidate",
+      "P_close_convergence_type": "AB_converged",
+      "confidence_level": "HIGH_RESEARCH",
+      "validated": false,
+      "ex": "tse",
+      "tail_return_pct": "-5.514705882352941176470588240",
+      "price_research_status": "RESEARCH_ONLY",
+      "closing_auction_volume": "7",
+      "intraday_total_volume": "73",
+      "closing_volume_ratio_pct": "9.589041095890410958904109589",
+      "volume_unit": "張",
+      "volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "closing_volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "intraday_volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "volume_source": "MIS_REGULAR_SAVED_OBSERVATIONS",
+      "volume_verified_at": "2026-10-08T18:07:03.716800+08:00",
+      "volume_evidence": {
+        "contract_version": "MIS_REGULAR_VOLUME_CONTRACT_20261008",
+        "source_unit": "TRADING_UNIT",
+        "independent_official_volume_validation": false,
+        "scope": "General board-lot market, opening to final 13:30/13:33 auction; excludes postmarket/odd-lot",
+        "reason": null,
+        "pre_observations": [
+          {
+            "phase": "pre_reference_A",
+            "request_started_at": "2026-10-08T13:27:14.141+08:00",
+            "received_at": "2026-10-08T13:27:16.114+08:00",
+            "server_time": "2026-10-08T13:27:15+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 9614,
+              "stockInfo": 61375,
+              "sessionStr": "UserSession",
+              "sysTime": "13:27:15",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:20:47",
+              "v": 1,
+              "z": "13.6000",
+              "ft": 20
+            },
+            "t": "13:25:32",
+            "z": "-",
+            "pz": "13.6000",
+            "v": "66",
+            "tv": "-",
+            "s": "-",
+            "ts": "1",
+            "d": "20261008",
+            "market_channel": "tse_2024.tw"
+          },
+          {
+            "phase": "pre_reference_B",
+            "request_started_at": "2026-10-08T13:28:32.041+08:00",
+            "received_at": "2026-10-08T13:28:36.608+08:00",
+            "server_time": "2026-10-08T13:28:34+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 5838,
+              "stockInfo": 11963,
+              "sessionStr": "UserSession",
+              "sysTime": "13:28:34",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:20:47",
+              "v": 1,
+              "z": "13.6000",
+              "ft": 20
+            },
+            "t": "13:27:48",
+            "z": "-",
+            "pz": "12.8000",
+            "v": "66",
+            "tv": "-",
+            "s": "-",
+            "ts": "1",
+            "d": "20261008",
+            "market_channel": "tse_2024.tw"
+          }
+        ],
+        "close_observations": [
+          {
+            "phase": "close_reference_A",
+            "request_started_at": "2026-10-08T13:32:37.358+08:00",
+            "received_at": "2026-10-08T13:32:38.841+08:00",
+            "server_time": "2026-10-08T13:32:38+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 5258,
+              "stockInfo": 20015,
+              "sessionStr": "UserSession",
+              "sysTime": "13:32:38",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:30:00",
+              "v": 7,
+              "z": "12.8500",
+              "ft": 20
+            },
+            "t": "13:30:00",
+            "z": "12.8500",
+            "pz": "12.8500",
+            "v": "73",
+            "tv": "7",
+            "s": "7",
+            "ts": "0",
+            "d": "20261008",
+            "market_channel": "tse_2024.tw"
+          },
+          {
+            "phase": "close_reference_B",
+            "request_started_at": "2026-10-08T13:33:35.627+08:00",
+            "received_at": "2026-10-08T13:33:38.084+08:00",
+            "server_time": "2026-10-08T13:33:36+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 7109,
+              "stockInfo": 21545,
+              "sessionStr": "UserSession",
+              "sysTime": "13:33:36",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:30:00",
+              "v": 7,
+              "z": "12.8500",
+              "ft": 20
+            },
+            "t": "13:30:00",
+            "z": "12.8500",
+            "pz": "12.8500",
+            "v": "73",
+            "tv": "7",
+            "s": "7",
+            "ts": "0",
+            "d": "20261008",
+            "market_channel": "tse_2024.tw"
+          }
+        ],
+        "observed_pre_v": [
+          "66",
+          "66"
+        ],
+        "observed_close_v": [
+          "73",
+          "73"
+        ],
+        "observed_trade_v": [
+          7,
+          7
+        ],
+        "observed_tv": [
+          "7",
+          "7"
+        ],
+        "observed_s": [
+          "7",
+          "7"
+        ],
+        "cumulative_delta_raw": "7",
+        "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
+        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00"
+      },
+      "official_price_result": "PENDING",
+      "postmarket_verified_at": null
+    },
+    {
+      "code": "3073",
+      "name": "天方能源",
+      "market": "TPEx",
+      "P_before": "21.5000",
+      "P_close": "22.4500",
+      "P_before_trade_time": "13:08:54",
+      "P_close_trade_time": "13:33:00",
+      "P_before_convergence_type": "AB_converged_candidate",
+      "P_close_convergence_type": "BC_converged",
+      "confidence_level": "HIGH_RESEARCH",
+      "validated": false,
+      "ex": "otc",
+      "tail_return_pct": "4.418604651162790697674418600",
+      "price_research_status": "RESEARCH_ONLY",
+      "closing_auction_volume": "17",
+      "intraday_total_volume": "44",
+      "closing_volume_ratio_pct": "38.63636363636363636363636364",
+      "volume_unit": "張",
+      "volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "closing_volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "intraday_volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "volume_source": "MIS_REGULAR_SAVED_OBSERVATIONS",
+      "volume_verified_at": "2026-10-08T18:07:03.716800+08:00",
+      "volume_evidence": {
+        "contract_version": "MIS_REGULAR_VOLUME_CONTRACT_20261008",
+        "source_unit": "TRADING_UNIT",
+        "independent_official_volume_validation": false,
+        "scope": "General board-lot market, opening to final 13:30/13:33 auction; excludes postmarket/odd-lot",
+        "reason": null,
+        "pre_observations": [
+          {
+            "phase": "pre_reference_A",
+            "request_started_at": "2026-10-08T13:27:00.001+08:00",
+            "received_at": "2026-10-08T13:27:01.962+08:00",
+            "server_time": "2026-10-08T13:27:01+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 8339,
+              "stockInfo": 8784,
+              "sessionStr": "UserSession",
+              "sysTime": "13:27:01",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:08:54",
+              "v": 1,
+              "z": "21.5000",
+              "ft": 20
+            },
+            "t": "13:26:06",
+            "z": "-",
+            "pz": "-",
+            "v": "27",
+            "tv": "-",
+            "s": "-",
+            "ts": "1",
+            "d": "20261008",
+            "market_channel": "otc_3073.tw"
+          },
+          {
+            "phase": "pre_reference_B",
+            "request_started_at": "2026-10-08T13:28:15.000+08:00",
+            "received_at": "2026-10-08T13:28:17.913+08:00",
+            "server_time": "2026-10-08T13:28:17+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 4465,
+              "stockInfo": 11963,
+              "sessionStr": "UserSession",
+              "sysTime": "13:28:17",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:08:54",
+              "v": 1,
+              "z": "21.5000",
+              "ft": 20
+            },
+            "t": "13:28:07",
+            "z": "-",
+            "pz": "21.4500",
+            "v": "27",
+            "tv": "-",
+            "s": "-",
+            "ts": "1",
+            "d": "20261008",
+            "market_channel": "otc_3073.tw"
+          }
+        ],
+        "close_observations": [
+          {
+            "phase": "close_reference_B",
+            "request_started_at": "2026-10-08T13:33:51.379+08:00",
+            "received_at": "2026-10-08T13:33:52.395+08:00",
+            "server_time": "2026-10-08T13:33:52+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 5956,
+              "stockInfo": 11303,
+              "sessionStr": "UserSession",
+              "sysTime": "13:33:52",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:33:00",
+              "v": 17,
+              "z": "22.4500",
+              "ft": 20
+            },
+            "t": "13:33:00",
+            "z": "22.4500",
+            "pz": "22.4500",
+            "v": "44",
+            "tv": "17",
+            "s": "17",
+            "ts": "0",
+            "d": "20261008",
+            "market_channel": "otc_3073.tw"
+          },
+          {
+            "phase": "close_reference_C",
+            "request_started_at": "2026-10-08T13:34:10.000+08:00",
+            "received_at": "2026-10-08T13:34:10.842+08:00",
+            "server_time": "2026-10-08T13:34:10+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 2524,
+              "stockInfo": 2653,
+              "sessionStr": "UserSession",
+              "sysTime": "13:34:10",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:33:00",
+              "v": 17,
+              "z": "22.4500",
+              "ft": 20
+            },
+            "t": "13:33:00",
+            "z": "22.4500",
+            "pz": "22.4500",
+            "v": "44",
+            "tv": "17",
+            "s": "17",
+            "ts": "0",
+            "d": "20261008",
+            "market_channel": "otc_3073.tw"
+          }
+        ],
+        "observed_pre_v": [
+          "27",
+          "27"
+        ],
+        "observed_close_v": [
+          "44",
+          "44"
+        ],
+        "observed_trade_v": [
+          17,
+          17
+        ],
+        "observed_tv": [
+          "17",
+          "17"
+        ],
+        "observed_s": [
+          "17",
+          "17"
+        ],
+        "cumulative_delta_raw": "17",
+        "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
+        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00"
+      },
+      "official_price_result": "PENDING",
+      "postmarket_verified_at": null
+    },
+    {
+      "code": "4706",
+      "name": "大恭",
+      "market": "TPEx",
+      "P_before": "47.0500",
+      "P_close": "45.0000",
+      "P_before_trade_time": "13:24:23",
+      "P_close_trade_time": "13:30:00",
+      "P_before_convergence_type": "AB_converged_candidate",
+      "P_close_convergence_type": "AB_converged",
+      "confidence_level": "HIGH_RESEARCH",
+      "validated": false,
+      "ex": "otc",
+      "tail_return_pct": "-4.357066950053134962805526040",
+      "price_research_status": "RESEARCH_ONLY",
+      "closing_auction_volume": "36",
+      "intraday_total_volume": "498",
+      "closing_volume_ratio_pct": "7.228915662650602409638554217",
+      "volume_unit": "張",
+      "volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "closing_volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "intraday_volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "volume_source": "MIS_REGULAR_SAVED_OBSERVATIONS",
+      "volume_verified_at": "2026-10-08T18:07:03.716800+08:00",
+      "volume_evidence": {
+        "contract_version": "MIS_REGULAR_VOLUME_CONTRACT_20261008",
+        "source_unit": "TRADING_UNIT",
+        "independent_official_volume_validation": false,
+        "scope": "General board-lot market, opening to final 13:30/13:33 auction; excludes postmarket/odd-lot",
+        "reason": null,
+        "pre_observations": [
+          {
+            "phase": "pre_reference_B",
+            "request_started_at": "2026-10-08T13:28:17.866+08:00",
+            "received_at": "2026-10-08T13:28:24.259+08:00",
+            "server_time": "2026-10-08T13:28:19+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 4681,
+              "stockInfo": 11963,
+              "sessionStr": "UserSession",
+              "sysTime": "13:28:19",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:24:23",
+              "v": 1,
+              "z": "47.0500",
+              "ft": 12
+            },
+            "t": "13:28:09",
+            "z": "-",
+            "pz": "45.2500",
+            "v": "462",
+            "tv": "-",
+            "s": "-",
+            "ts": "1",
+            "d": "20261008",
+            "market_channel": "otc_4706.tw"
+          },
+          {
+            "phase": "pre_targeted_retry",
+            "request_started_at": "2026-10-08T13:28:48.458+08:00",
+            "received_at": "2026-10-08T13:28:52.051+08:00",
+            "server_time": "2026-10-08T13:28:50+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 6754,
+              "stockInfo": 11963,
+              "sessionStr": "UserSession",
+              "sysTime": "13:28:50",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:24:23",
+              "v": 1,
+              "z": "47.0500",
+              "ft": 12
+            },
+            "t": "13:28:09",
+            "z": "-",
+            "pz": "45.2500",
+            "v": "462",
+            "tv": "-",
+            "s": "-",
+            "ts": "1",
+            "d": "20261008",
+            "market_channel": "otc_4706.tw"
+          }
+        ],
+        "close_observations": [
+          {
+            "phase": "close_reference_A",
+            "request_started_at": "2026-10-08T13:32:31.496+08:00",
+            "received_at": "2026-10-08T13:32:33.031+08:00",
+            "server_time": "2026-10-08T13:32:32+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 4811,
+              "stockInfo": 20015,
+              "sessionStr": "UserSession",
+              "sysTime": "13:32:32",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:30:00",
+              "v": 36,
+              "z": "45.0000",
+              "ft": 20
+            },
+            "t": "13:30:00",
+            "z": "45.0000",
+            "pz": "45.0000",
+            "v": "498",
+            "tv": "36",
+            "s": "36",
+            "ts": "0",
+            "d": "20261008",
+            "market_channel": "otc_4706.tw"
+          },
+          {
+            "phase": "close_reference_B",
+            "request_started_at": "2026-10-08T13:33:48.994+08:00",
+            "received_at": "2026-10-08T13:33:53.518+08:00",
+            "server_time": "2026-10-08T13:33:51+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 7863,
+              "stockInfo": 21545,
+              "sessionStr": "UserSession",
+              "sysTime": "13:33:51",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:30:00",
+              "v": 36,
+              "z": "45.0000",
+              "ft": 20
+            },
+            "t": "13:30:00",
+            "z": "45.0000",
+            "pz": "45.0000",
+            "v": "498",
+            "tv": "36",
+            "s": "36",
+            "ts": "0",
+            "d": "20261008",
+            "market_channel": "otc_4706.tw"
+          }
+        ],
+        "observed_pre_v": [
+          "462",
+          "462"
+        ],
+        "observed_close_v": [
+          "498",
+          "498"
+        ],
+        "observed_trade_v": [
+          36,
+          36
+        ],
+        "observed_tv": [
+          "36",
+          "36"
+        ],
+        "observed_s": [
+          "36",
+          "36"
+        ],
+        "cumulative_delta_raw": "36",
+        "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
+        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00"
+      },
+      "official_price_result": "PENDING",
+      "postmarket_verified_at": null
+    },
+    {
+      "code": "3684",
+      "name": "榮昌",
+      "market": "TPEx",
+      "P_before": "59.9000",
+      "P_close": "62.5000",
+      "P_before_trade_time": "13:20:20",
+      "P_close_trade_time": "13:33:00",
+      "P_before_convergence_type": "AB_converged_candidate",
+      "P_close_convergence_type": "BC_converged",
+      "confidence_level": "HIGH_RESEARCH",
+      "validated": false,
+      "ex": "otc",
+      "tail_return_pct": "4.340567612687813021702838100",
+      "price_research_status": "RESEARCH_ONLY",
+      "closing_auction_volume": "66",
+      "intraday_total_volume": "1255",
+      "closing_volume_ratio_pct": "5.258964143426294820717131474",
+      "volume_unit": "張",
+      "volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "closing_volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "intraday_volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "volume_source": "MIS_REGULAR_SAVED_OBSERVATIONS",
+      "volume_verified_at": "2026-10-08T18:07:03.716800+08:00",
+      "volume_evidence": {
+        "contract_version": "MIS_REGULAR_VOLUME_CONTRACT_20261008",
+        "source_unit": "TRADING_UNIT",
+        "independent_official_volume_validation": false,
+        "scope": "General board-lot market, opening to final 13:30/13:33 auction; excludes postmarket/odd-lot",
+        "reason": null,
+        "pre_observations": [
+          {
+            "phase": "pre_reference_A",
+            "request_started_at": "2026-10-08T13:27:00.002+08:00",
+            "received_at": "2026-10-08T13:27:02.217+08:00",
+            "server_time": "2026-10-08T13:27:01+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 8341,
+              "stockInfo": 8784,
+              "sessionStr": "UserSession",
+              "sysTime": "13:27:01",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:20:20",
+              "v": 5,
+              "z": "59.9000",
+              "ft": 12
+            },
+            "t": "13:26:45",
+            "z": "-",
+            "pz": "59.1000",
+            "v": "1189",
+            "tv": "-",
+            "s": "-",
+            "ts": "1",
+            "d": "20261008",
+            "market_channel": "otc_3684.tw"
+          },
+          {
+            "phase": "pre_reference_B",
+            "request_started_at": "2026-10-08T13:28:15.002+08:00",
+            "received_at": "2026-10-08T13:28:18.182+08:00",
+            "server_time": "2026-10-08T13:28:17+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 4529,
+              "stockInfo": 11963,
+              "sessionStr": "UserSession",
+              "sysTime": "13:28:17",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:20:20",
+              "v": 5,
+              "z": "59.9000",
+              "ft": 12
+            },
+            "t": "13:27:55",
+            "z": "-",
+            "pz": "58.4000",
+            "v": "1189",
+            "tv": "-",
+            "s": "-",
+            "ts": "1",
+            "d": "20261008",
+            "market_channel": "otc_3684.tw"
+          }
+        ],
+        "close_observations": [
+          {
+            "phase": "close_reference_B",
+            "request_started_at": "2026-10-08T13:33:50.386+08:00",
+            "received_at": "2026-10-08T13:33:51.378+08:00",
+            "server_time": "2026-10-08T13:33:51+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 5956,
+              "stockInfo": 11303,
+              "sessionStr": "UserSession",
+              "sysTime": "13:33:51",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:33:00",
+              "v": 66,
+              "z": "62.5000",
+              "ft": 20
+            },
+            "t": "13:33:00",
+            "z": "62.5000",
+            "pz": "62.5000",
+            "v": "1255",
+            "tv": "66",
+            "s": "66",
+            "ts": "0",
+            "d": "20261008",
+            "market_channel": "otc_3684.tw"
+          },
+          {
+            "phase": "close_reference_C",
+            "request_started_at": "2026-10-08T13:34:10.000+08:00",
+            "received_at": "2026-10-08T13:34:10.842+08:00",
+            "server_time": "2026-10-08T13:34:10+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 2524,
+              "stockInfo": 2653,
+              "sessionStr": "UserSession",
+              "sysTime": "13:34:10",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:33:00",
+              "v": 66,
+              "z": "62.5000",
+              "ft": 20
+            },
+            "t": "13:33:00",
+            "z": "62.5000",
+            "pz": "62.5000",
+            "v": "1255",
+            "tv": "66",
+            "s": "66",
+            "ts": "0",
+            "d": "20261008",
+            "market_channel": "otc_3684.tw"
+          }
+        ],
+        "observed_pre_v": [
+          "1189",
+          "1189"
+        ],
+        "observed_close_v": [
+          "1255",
+          "1255"
+        ],
+        "observed_trade_v": [
+          66,
+          66
+        ],
+        "observed_tv": [
+          "66",
+          "66"
+        ],
+        "observed_s": [
+          "66",
+          "66"
+        ],
+        "cumulative_delta_raw": "66",
+        "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
+        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00"
+      },
+      "official_price_result": "PENDING",
+      "postmarket_verified_at": null
+    },
+    {
+      "code": "5543",
+      "name": "桓鼎-KY",
+      "market": "TPEx",
+      "P_before": "27.8000",
+      "P_close": "26.6000",
+      "P_before_trade_time": "09:39:11",
+      "P_close_trade_time": "13:30:00",
+      "P_before_convergence_type": "AB_converged_candidate",
+      "P_close_convergence_type": "AB_converged",
+      "confidence_level": "HIGH_RESEARCH",
+      "validated": false,
+      "ex": "otc",
+      "tail_return_pct": "-4.316546762589928057553956830",
+      "price_research_status": "RESEARCH_ONLY",
+      "closing_auction_volume": "6",
+      "intraday_total_volume": "8",
+      "closing_volume_ratio_pct": "75.00",
+      "volume_unit": "張",
+      "volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "closing_volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "intraday_volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "volume_source": "MIS_REGULAR_SAVED_OBSERVATIONS",
+      "volume_verified_at": "2026-10-08T18:07:03.716800+08:00",
+      "volume_evidence": {
+        "contract_version": "MIS_REGULAR_VOLUME_CONTRACT_20261008",
+        "source_unit": "TRADING_UNIT",
+        "independent_official_volume_validation": false,
+        "scope": "General board-lot market, opening to final 13:30/13:33 auction; excludes postmarket/odd-lot",
+        "reason": null,
+        "pre_observations": [
+          {
+            "phase": "pre_reference_A",
+            "request_started_at": "2026-10-08T13:27:02.538+08:00",
+            "received_at": "2026-10-08T13:27:11.057+08:00",
+            "server_time": "2026-10-08T13:27:04+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 8537,
+              "stockInfo": 8784,
+              "sessionStr": "UserSession",
+              "sysTime": "13:27:04",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "09:39:11",
+              "v": 1,
+              "z": "27.8000",
+              "ft": 20
+            },
+            "t": "13:25:34",
+            "z": "-",
+            "pz": "-",
+            "v": "2",
+            "tv": "-",
+            "s": "-",
+            "ts": "1",
+            "d": "20261008",
+            "market_channel": "otc_5543.tw"
+          },
+          {
+            "phase": "pre_reference_B",
+            "request_started_at": "2026-10-08T13:28:18.428+08:00",
+            "received_at": "2026-10-08T13:28:22.712+08:00",
+            "server_time": "2026-10-08T13:28:21+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 4831,
+              "stockInfo": 11963,
+              "sessionStr": "UserSession",
+              "sysTime": "13:28:21",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "09:39:11",
+              "v": 1,
+              "z": "27.8000",
+              "ft": 20
+            },
+            "t": "13:25:34",
+            "z": "-",
+            "pz": "-",
+            "v": "2",
+            "tv": "-",
+            "s": "-",
+            "ts": "1",
+            "d": "20261008",
+            "market_channel": "otc_5543.tw"
+          }
+        ],
+        "close_observations": [
+          {
+            "phase": "close_reference_A",
+            "request_started_at": "2026-10-08T13:32:31.998+08:00",
+            "received_at": "2026-10-08T13:32:33.394+08:00",
+            "server_time": "2026-10-08T13:32:32+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 4828,
+              "stockInfo": 20015,
+              "sessionStr": "UserSession",
+              "sysTime": "13:32:32",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:30:00",
+              "v": 6,
+              "z": "26.6000",
+              "ft": 20
+            },
+            "t": "13:30:00",
+            "z": "26.6000",
+            "pz": "26.6000",
+            "v": "8",
+            "tv": "6",
+            "s": "6",
+            "ts": "0",
+            "d": "20261008",
+            "market_channel": "otc_5543.tw"
+          },
+          {
+            "phase": "close_reference_B",
+            "request_started_at": "2026-10-08T13:33:46.553+08:00",
+            "received_at": "2026-10-08T13:33:51.126+08:00",
+            "server_time": "2026-10-08T13:33:49+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 7757,
+              "stockInfo": 21545,
+              "sessionStr": "UserSession",
+              "sysTime": "13:33:49",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:30:00",
+              "v": 6,
+              "z": "26.6000",
+              "ft": 20
+            },
+            "t": "13:30:00",
+            "z": "26.6000",
+            "pz": "26.6000",
+            "v": "8",
+            "tv": "6",
+            "s": "6",
+            "ts": "0",
+            "d": "20261008",
+            "market_channel": "otc_5543.tw"
+          }
+        ],
+        "observed_pre_v": [
+          "2",
+          "2"
+        ],
+        "observed_close_v": [
+          "8",
+          "8"
+        ],
+        "observed_trade_v": [
+          6,
+          6
+        ],
+        "observed_tv": [
+          "6",
+          "6"
+        ],
+        "observed_s": [
+          "6",
+          "6"
+        ],
+        "cumulative_delta_raw": "6",
+        "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
+        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00"
+      },
+      "official_price_result": "PENDING",
+      "postmarket_verified_at": null
+    },
+    {
+      "code": "5355",
+      "name": "佳總",
+      "market": "TPEx",
+      "P_before": "7.5000",
+      "P_close": "7.7700",
+      "P_before_trade_time": "13:03:40",
+      "P_close_trade_time": "13:30:00",
+      "P_before_convergence_type": "AB_converged_candidate",
+      "P_close_convergence_type": "AB_converged",
+      "confidence_level": "HIGH_RESEARCH",
+      "validated": false,
+      "ex": "otc",
+      "tail_return_pct": "3.600",
+      "price_research_status": "RESEARCH_ONLY",
+      "closing_auction_volume": "1",
+      "intraday_total_volume": "121",
+      "closing_volume_ratio_pct": "0.8264462809917355371900826446",
+      "volume_unit": "張",
+      "volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "closing_volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "intraday_volume_status": "MIS_EVIDENCE_CONFIRMED",
+      "volume_source": "MIS_REGULAR_SAVED_OBSERVATIONS",
+      "volume_verified_at": "2026-10-08T18:07:03.716800+08:00",
+      "volume_evidence": {
+        "contract_version": "MIS_REGULAR_VOLUME_CONTRACT_20261008",
+        "source_unit": "TRADING_UNIT",
+        "independent_official_volume_validation": false,
+        "scope": "General board-lot market, opening to final 13:30/13:33 auction; excludes postmarket/odd-lot",
+        "reason": null,
+        "pre_observations": [
+          {
+            "phase": "pre_reference_A",
+            "request_started_at": "2026-10-08T13:27:02.517+08:00",
+            "received_at": "2026-10-08T13:27:05.800+08:00",
+            "server_time": "2026-10-08T13:27:04+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 8523,
+              "stockInfo": 8784,
+              "sessionStr": "UserSession",
+              "sysTime": "13:27:04",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:03:40",
+              "v": 2,
+              "z": "7.5000",
+              "ft": 20
+            },
+            "t": "13:25:49",
+            "z": "-",
+            "pz": "-",
+            "v": "120",
+            "tv": "-",
+            "s": "-",
+            "ts": "1",
+            "d": "20261008",
+            "market_channel": "otc_5355.tw"
+          },
+          {
+            "phase": "pre_reference_B",
+            "request_started_at": "2026-10-08T13:28:18.183+08:00",
+            "received_at": "2026-10-08T13:28:21.676+08:00",
+            "server_time": "2026-10-08T13:28:20+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 4791,
+              "stockInfo": 11963,
+              "sessionStr": "UserSession",
+              "sysTime": "13:28:20",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:03:40",
+              "v": 2,
+              "z": "7.5000",
+              "ft": 20
+            },
+            "t": "13:27:25",
+            "z": "-",
+            "pz": "7.7700",
+            "v": "120",
+            "tv": "-",
+            "s": "-",
+            "ts": "1",
+            "d": "20261008",
+            "market_channel": "otc_5355.tw"
+          }
+        ],
+        "close_observations": [
+          {
+            "phase": "close_reference_A",
+            "request_started_at": "2026-10-08T13:32:31.852+08:00",
+            "received_at": "2026-10-08T13:32:33.029+08:00",
+            "server_time": "2026-10-08T13:32:32+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 4811,
+              "stockInfo": 20015,
+              "sessionStr": "UserSession",
+              "sysTime": "13:32:32",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:30:00",
+              "v": 1,
+              "z": "7.7700",
+              "ft": 20
+            },
+            "t": "13:30:00",
+            "z": "7.7700",
+            "pz": "7.7700",
+            "v": "121",
+            "tv": "1",
+            "s": "1",
+            "ts": "0",
+            "d": "20261008",
+            "market_channel": "otc_5355.tw"
+          },
+          {
+            "phase": "close_reference_B",
+            "request_started_at": "2026-10-08T13:33:48.126+08:00",
+            "received_at": "2026-10-08T13:33:50.385+08:00",
+            "server_time": "2026-10-08T13:33:49+08:00",
+            "queryTime": {
+              "sysDate": "20261008",
+              "stockInfoItem": 7749,
+              "stockInfo": 21545,
+              "sessionStr": "UserSession",
+              "sysTime": "13:33:49",
+              "showChart": false,
+              "sessionFromTime": -1,
+              "sessionLatestTime": -1
+            },
+            "cachedAlive": null,
+            "trade": {
+              "t": "13:30:00",
+              "v": 1,
+              "z": "7.7700",
+              "ft": 20
+            },
+            "t": "13:30:00",
+            "z": "7.7700",
+            "pz": "7.7700",
+            "v": "121",
+            "tv": "1",
+            "s": "1",
+            "ts": "0",
+            "d": "20261008",
+            "market_channel": "otc_5355.tw"
+          }
+        ],
+        "observed_pre_v": [
+          "120",
+          "120"
+        ],
+        "observed_close_v": [
+          "121",
+          "121"
+        ],
+        "observed_trade_v": [
+          1,
+          1
+        ],
+        "observed_tv": [
+          "1",
+          "1"
+        ],
+        "observed_s": [
+          "1",
+          "1"
+        ],
+        "cumulative_delta_raw": "1",
+        "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
+        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00"
+      },
+      "official_price_result": "PENDING",
+      "postmarket_verified_at": null
+    }
+  ],
+  "publication_code_sha": null,
+  "price_limitation": "P_before is converged MIS research evidence, without independent official pre-13:25 validation.",
+  "price_fingerprint": "3951327c7d3f99fc46ebee67380c2498fc4ebb6014f255c7090bf2f1ef5ffa39"
+}

@@ -76,6 +76,19 @@ def run(date,output,control,probe):
         selected = convergence.build_report(date,snapshots,probes,universe,{'checks':[]}) if summary.get('capture_architecture') == convergence.VERSION else None
         validation=official_quotes.validate(date,universe,snapshots,output,probe.get_bytes,
                                             selected_closes=selected['securities'] if selected else None)
+        # Saved capture only; annotate BC research closes independently too.
+        publication={'status':'NOT_APPLICABLE'}
+        if summary.get('live_close_research_enabled'):
+            import candidate_publication
+            try:
+                current,_=control.read_state('state/candidates/'+date+'.json')
+                payload=current or candidate_publication.from_archive(saved,date,capture_id)
+                payload=candidate_publication.enrich(payload,validation,result['checked_at'],os.getenv('GITHUB_RUN_ID'))
+                publication=candidate_publication.put(payload,control.api,probe.iso)
+            except Exception as exc:
+                # Preserve official reports/state even if the independent website
+                # publication fails. Failure remains visible and retryable.
+                publication={'status':'FAILED','error':type(exc).__name__+':'+str(exc)}
         review=freshness.write_report(date,snapshots,probes,universe,validation,output)
         dual=convergence.write_report(date,snapshots,probes,universe,validation,output)
         result.update({'status':validation['status'],'source_capture_run_id':capture_id,
@@ -85,6 +98,7 @@ def run(date,output,control,probe):
                        'convergence':{k:v for k,v in dual.items() if k.endswith('_count') or k in ('status','version','validated')},
                        'candidate_status':dual['status'],'candidate_count':dual['research_candidate_count'],
                        'artifact':'mis-validation-'+str(os.getenv('GITHUB_RUN_ID'))})
+        result['candidate_publication']=publication
     path='state/validation/'+date+'.json'
     previous,_=control.read_state(path)
     history=previous.get('publication_observations',[])
@@ -96,4 +110,4 @@ def run(date,output,control,probe):
     control.merge_state(path,result)
     control.publish()
     probe.package(output,date)
-    return 0
+    return 4 if result.get('candidate_publication',{}).get('status')=='FAILED' else 0

@@ -1,0 +1,55 @@
+{
+  "version": "MIS_REGULAR_VOLUME_CONTRACT_20261008",
+  "verified_at": "2026-10-08T18:07:03.716800+08:00",
+  "status": "OFFICIAL_FRONTEND_MAPPING_CONFIRMED",
+  "supported_ex": [
+    "tse",
+    "otc"
+  ],
+  "security_scope": "Ordinary company stocks only; four digits, exclude 0xxx/91xx. Existing official company universe; no ETF/TDR/foreign second listing.",
+  "source_unit": "TRADING_UNIT",
+  "shares_per_trading_unit": 1000,
+  "display_unit": "張",
+  "fields": {
+    "trade.v": "Last actual transaction volume (official fallback into tv/s)",
+    "tv": "Transaction volume shown by regular trading table",
+    "v": "Accumulated trading volume shown by regular trading table",
+    "s": "Detailed display volume; not relied upon independently"
+  },
+  "excluded_sessions": [
+    "odd_lot",
+    "block",
+    "off_hour_fixed_price",
+    "auction",
+    "tender_offer"
+  ],
+  "sources": [
+    {
+      "url": "https://mis.twse.com.tw/stock/assets/index-DAKXIY-H.js",
+      "sha256": "52d5c655d87c51b183895d2c21dcab44d6aae41f96f9de116fd9f06199a42cfb",
+      "bytes": 941715
+    },
+    {
+      "url": "https://mis.twse.com.tw/stock/assets/ListedTransactions-zj9Jpdt4.js",
+      "sha256": "9749a9001601b73750a6f3d4ff2c4c87bcbdfaf59c5273951191bc105649d13c",
+      "bytes": 5152
+    },
+    {
+      "url": "https://mis.twse.com.tw/stock/assets/OtcTransactions-i3wH5T4B.js",
+      "sha256": "a34d462498bcdbc78b75eb668773b02e82b99105dc31c2c0c0a1f70b1989a93a",
+      "bytes": 5203
+    },
+    {
+      "url": "https://mis.twse.com.tw/stock/assets/tradeFallback-Du5LDleq.js",
+      "sha256": "a6debd9d7e137ea9085527a179bd24c0a47e0cfd136f385736cbaedcdf6dc255",
+      "bytes": 481
+    }
+  ],
+  "evidence_notes": [
+    "TWSE and TPEx regular quote tables map TRADE_VOLUME to tv and ACC_TRADE_VOLUME_N to v.",
+    "Official frontend fallback takes trade.v and supplies missing tv and s after choosing nested actual trade.z/t.",
+    "Official UI labels regular quotations in trading units and notes normal stock trading units are 1000 shares.",
+    "Official MIS scope note excludes odd-lot, block, off-hour, auction and tender trades."
+  ],
+  "limitations": "Semantic/unit contract confirmed; per-stock volume must separately pass fresh two-observation agreement and cumulative-delta checks. Official daily total has a different scope and does not independently validate these volumes."
+}

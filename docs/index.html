@@ -3,37 +3,36 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="color-scheme" content="light dark">
-  <title>TWSE MIS 尾盤探針狀態</title>
-  <link rel="stylesheet" href="status.css">
-  <script defer src="status.js"></script>
+  <meta name="theme-color" content="#f5f7fb">
+  <meta name="description" content="自動顯示當日台股尾盤漲跌達 ±3% 的研究股票，附收盤成交時間、最後一盤成交量及全日盤中成交量。">
+  <title>台股尾盤 ±3% 自動選股看板</title>
+  <link rel="stylesheet" href="status.css?v=dashboard1">
+  <script defer src="status.js?v=dashboard1"></script>
 </head>
 <body>
-  <main>
-    <h1>尾盤探針執行狀態</h1>
-    <p id="today">正在讀取 Asia/Taipei 今日日期…</p>
-    <section class="headline" aria-live="polite">
-      <h2 id="headline">讀取狀態中</h2>
-      <p id="reason">只讀取今天的 state，昨天的成功不會算成今天。</p>
-    </section>
-    <p class="research">獨立研究環境 · validated=false · 不自動下單 · 收盤量 UNVERIFIED</p>
-    <p id="network" role="status"></p>
-    <dl id="details"></dl>
-    <h2>四份全市場參考</h2>
-    <div class="table-scroll"><table><thead><tr><th>參考</th><th>預定時間</th><th>實際狀態</th></tr></thead><tbody id="references"></tbody></table></div>
-    <h2>Research 收斂結果</h2>
-    <dl id="counts"></dl>
-    <h2>最近連線測試（不代表今日 capture）</h2>
-    <p id="dry-run">尚未取得。</p>
-    <p id="external-note">外部來源須以 cron-job.org Test + 真正 GitHub run 驗收，不能只看 HTTP 204。</p>
-    <button id="refresh" type="button">重新整理</button>
-    <nav>
-      <a href="https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/issues/1">Issue #1</a>
-      <a href="https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/actions">Actions / Artifacts</a>
-      <a href="https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/blob/main/docs/cron-job-setup.md">一次性外部排程設定</a>
-    </nav>
-    <p id="updated" class="small"></p>
-    <p class="small">每 60 秒讀取 public repo 的永久 state。頁面關閉不影響排程。連線失敗會明示，不沿用舊 SUCCESS。</p>
-  </main>
+<main>
+  <header class="page-header">
+    <p class="eyebrow"><span class="live-dot"></span> 每個交易日自動更新 <span class="research-tag">研究名單</span></p>
+    <h1>台股尾盤 <span>±3%</span><br class="mobile-break"> 自動選股看板</h1>
+    <p class="subtitle">比較 13:25 前最後成交價與正式收盤價。</p>
+    <div class="date-line"><span id="today">讀取台北日期…</span><span id="market-state">確認交易狀態中</span></div>
+  </header>
+  <section class="overview" aria-label="今日資料概況">
+    <div class="overview-primary"><span>符合 ±3%</span><strong id="candidate-count">—</strong><span>檔研究股票</span></div>
+    <div class="coverage"><div><span>可交易</span><strong id="universe">—</strong></div><div><span>可計算</span><strong id="calculable">—</strong></div><div><span>資料不足</span><strong id="unknown">—</strong></div></div>
+  </section>
+  <section class="status-line" aria-live="polite"><h2 id="headline">正在讀取今日資料</h2><p id="message">打開網頁後自動載入，無須操作。</p></section>
+  <p id="network" class="network" role="status"></p>
+  <div class="list-heading"><h2>今日尾盤研究名單</h2><span>依漲跌幅絕對值排序</span></div>
+  <section id="mobile-list" class="mobile-list" aria-label="股票研究卡片"></section>
+  <div id="desktop-wrap" class="desktop-wrap" hidden><table id="candidate-table"><caption class="sr-only">今日尾盤 ±3% 股票，成交量單位為張</caption><thead><tr><th>股票</th><th>市場</th><th>尾盤漲跌</th><th>13:25 前價</th><th>收盤價</th><th>最後成交時間</th><th>最後一盤量<br><small>張</small></th><th>全日盤中量<br><small>張</small></th><th>收盤量占比</th><th>價格核對</th><th>研究可信程度</th></tr></thead><tbody id="desktop-list"></tbody></table></div>
+  <p id="empty" class="empty">正在確認當日結果…</p>
+  <footer>
+    <p id="updated">最近資料更新：—</p><p id="generated">研究名單產生時間：—</p>
+    <p>全日盤中量為一般整股市場開盤至最後收盤撮合，含延後至 13:33 的收盤；排除零股與盤後定價。</p>
+    <p>— 代表未驗證。價格與成交量分開核對；13:25 前價仍為 MIS 收斂研究證據。全部為 RESEARCH_ONLY，非買賣訊號。</p>
+    <a href="diagnostic.html">資料診斷</a>
+  </footer>
+</main>
 </body>
 </html>

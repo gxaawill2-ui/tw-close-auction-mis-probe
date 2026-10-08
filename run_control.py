@@ -13,6 +13,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 import probe
+import candidate_publication
 
 REPO = 'gxaawill2-ui/tw-close-auction-mis-probe'
 ISSUE = 1
@@ -436,8 +437,19 @@ def run(mode, output):
     probe.github_issue = status_update
     code = 1
     failure = None
+    candidate_publication_result = None
     try:
         code = probe.dry_run(output) if mode == 'dry-run' else probe.live(output)
+        if mode == 'live' and code == 0:
+            # After raw packaging; before waiting for diagnostic status IO.
+            # This never delays a market snapshot.
+            try:
+                candidate_publication_result = candidate_publication.publish_live(
+                    output,date,run_id,__import__(__name__),probe)
+            except Exception as exc:
+                candidate_publication_result = {'status':'FAILED','error':type(exc).__name__+':'+str(exc)}
+                (output/'candidate_publication.json').write_text(json.dumps(candidate_publication_result,ensure_ascii=False,indent=2))
+                code = 4  # Publication failure; retain the true capture outcome.
     except Exception as exc:
         failure = {'status':'failed','capture_outcome':'CAPTURE_FAILED','error':f'{type(exc).__name__}:{exc}',
                    'finished_at':probe.iso(),'trade_date':date,'run_id':run_id}
@@ -469,6 +481,8 @@ def run(mode, output):
                 runner_started_at=started,preclose_captured=(output/'preclose_raw.jsonl').exists())
             if failure:patch.update(failure)
             if status_errors:patch['status_update_errors']=status_errors
+            if candidate_publication_result:
+                patch['candidate_publication']=candidate_publication_result
             merge_state(live_path(date),patch)
         publish()
         (output/'controller_status.json').write_text(json.dumps({'mode':mode,'exit_code':code,

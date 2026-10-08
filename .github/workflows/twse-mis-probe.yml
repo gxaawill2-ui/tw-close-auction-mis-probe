@@ -18,6 +18,14 @@ on:
       - 'test_dispatch.py'
       - 'test_status.cjs'
       - 'docs/status.js'
+      - 'docs/**'
+      - 'candidate_publication.py'
+      - 'volume_evidence.py'
+      - 'volume_contract.json'
+      - 'test_candidate_publication.py'
+      - 'test_dashboard.cjs'
+      - 'package.json'
+      - 'package-lock.json'
       - '.github/workflows/twse-mis-probe.yml'
   schedule:
     - cron: "47 3 * * 1-5"
@@ -78,8 +86,14 @@ jobs:
           python-version: "3.12"
       - name: Verify freshness, date gates and no-backfill behavior
         run: python -m unittest discover -v
-      - name: Verify status page date, missing-day and credential-free gates
-        run: node --test test_status.cjs
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install pinned DOM test dependencies
+        run: npm ci --ignore-scripts
+      - name: Verify dashboard DOM, dates, volumes and diagnostic page
+        run: npm test
       - name: Run controlled probe
         id: probe
         if: github.event_name != 'push'
