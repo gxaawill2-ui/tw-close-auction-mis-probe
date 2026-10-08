@@ -1,0 +1,114 @@
+{
+  "verified_at": "2026-10-08T10:39:07.163Z",
+  "commit_sha": "8b95c09d39ed4698f1356bc0ef943dfe5cf7bfe1",
+  "checks": [
+    {
+      "name": "chromium-desktop",
+      "result": "PASS",
+      "width": 1440,
+      "seven_candidates": true,
+      "no_buttons": true,
+      "no_horizontal_overflow": true
+    },
+    {
+      "name": "chromium-desktop/no-data",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-desktop/holiday",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-desktop/zero",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-desktop/wrong-date",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-desktop/unverified-volume",
+      "result": "PASS"
+    },
+    {
+      "name": "public/chromium-desktop",
+      "result": "PASS",
+      "date": "2026-10-08 · 台北",
+      "no_buttons": true,
+      "no_horizontal_overflow": true,
+      "url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/"
+    },
+    {
+      "name": "chromium-mobile",
+      "result": "PASS",
+      "width": 390,
+      "seven_candidates": true,
+      "no_buttons": true,
+      "no_horizontal_overflow": true
+    },
+    {
+      "name": "chromium-mobile/no-data",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-mobile/holiday",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-mobile/zero",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-mobile/wrong-date",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-mobile/unverified-volume",
+      "result": "PASS"
+    },
+    {
+      "name": "public/chromium-mobile",
+      "result": "PASS",
+      "date": "2026-10-08 · 台北",
+      "no_buttons": true,
+      "no_horizontal_overflow": true,
+      "url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/"
+    },
+    {
+      "name": "webkit-iphone",
+      "result": "PASS",
+      "width": 390,
+      "seven_candidates": true,
+      "no_buttons": true,
+      "no_horizontal_overflow": true
+    },
+    {
+      "name": "webkit-iphone/no-data",
+      "result": "PASS"
+    },
+    {
+      "name": "webkit-iphone/holiday",
+      "result": "PASS"
+    },
+    {
+      "name": "webkit-iphone/zero",
+      "result": "PASS"
+    },
+    {
+      "name": "webkit-iphone/wrong-date",
+      "result": "PASS"
+    },
+    {
+      "name": "webkit-iphone/unverified-volume",
+      "result": "PASS"
+    },
+    {
+      "name": "public/webkit-iphone",
+      "result": "PASS",
+      "date": "2026-10-08 · 台北",
+      "no_buttons": true,
+      "no_horizontal_overflow": true,
+      "url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/"
+    }
+  ]
+}

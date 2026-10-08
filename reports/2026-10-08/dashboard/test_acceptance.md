@@ -20,3 +20,9 @@ deployment_acceptance.json after deployment; this file does not claim they have
 already run. Mobile DOM/CSS tests confirm card layout, viewport meta, no homepage
 manual controls, red-up/green-down, unit labels and stable updates without node
 replacement when the list is unchanged.
+
+Actual browser acceptance: PASS, 21 checks across Chromium desktop, Chromium
+390px mobile and WebKit iPhone profile, including the deployed anonymous public
+Pages URL. No horizontal overflow or homepage controls. Branch run 37764761846,
+main CI 37764953838 and Pages deployment 37764953367 all succeeded. Browser tests
+are push-only and do not install/run during scheduled live captures.
