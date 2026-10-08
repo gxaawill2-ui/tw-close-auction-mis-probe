@@ -13,5 +13,6 @@
   "capture_claimed": true,
   "capture_owner_run_id": "37730234383",
   "claimed_at": "2026-10-08T13:00:54.363+08:00",
-  "updated_at": "2026-10-08T13:00:54.363+08:00"
+  "updated_at": "2026-10-08T13:00:57.243+08:00",
+  "preclose_captured": false
 }
