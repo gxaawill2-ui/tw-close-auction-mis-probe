@@ -1,5 +1,31 @@
 {
   "trade_date": "2026-10-08",
+  "capture_outcome": "CAPTURE_PARTIAL",
+  "artifact_upload_status": "SUCCESS",
+  "capture_completion": {
+    "version": "CAPTURE_COMPLETION_V1_OFFLINE_REVIEW",
+    "core_capture_complete": true,
+    "research_unresolved_count": 25,
+    "warnings": [
+      {"reason": "RESEARCH_PROBE_ERRORS", "count": 23},
+      {"reason": "SNAPSHOT_OR_TARGETED_RETRY_ERRORS", "count": 1},
+      {"reason": "RESEARCH_UNRESOLVED", "count": 25}
+    ],
+    "errors": [],
+    "report": "reports/2026-10-08/capture_completion_replay.json"
+  },
+  "completion_review": {
+    "reviewed_at": "2026-10-08T16:54:40.906+08:00",
+    "capture_run_id": "37730234383",
+    "capture_artifact_id": 11530906396,
+    "verification_code_commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+    "original_controller_exit_code": 3,
+    "original_workflow_conclusion": "failure",
+    "reclassified_offline": true,
+    "corrected_exit_code": 0,
+    "mis_requests": 0,
+    "note": "Original run remains historical failure; only completion semantics reviewed offline. Raw Artifact and price rules unchanged."
+  },
   "status": "partial",
   "phase": "completed",
   "run_id": "37730234383",

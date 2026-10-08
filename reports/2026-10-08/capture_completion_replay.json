@@ -1,0 +1,411 @@
+{
+  "provenance": {
+    "trade_date": "2026-10-08",
+    "verified_at": "2026-10-08T16:54:40.906+08:00",
+    "capture_run_id": 37730234383,
+    "capture_artifact_id": 11530906396,
+    "capture_artifact_name": "mis-probe-37730234383",
+    "capture_archive_sha256": "1b4caf9efcbb0575771726b356751f177bba37439179cb14bfc9b8a9bc9a88e0",
+    "official_validation_run_id": 37742790398,
+    "official_validation_artifact_id": 11534034875,
+    "official_validation_checked_at": "2026-10-08T15:20:18.859+08:00",
+    "research_candidate_version": "DUAL_SNAPSHOT_RESEARCH_V1 + live close hierarchy (2026-10-08)",
+    "capture_commit_sha": "2dd62b249a181d7045c957f0c33501cc574723cd",
+    "verification_code_commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+    "commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+    "data_sources": [
+      {
+        "ex": "tse",
+        "file": "official_close_tse.json",
+        "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261008&type=ALLBUT0999&response=json",
+        "sha256": "805f5790765588a45f8c98f209e86262522df8afbb37aac4aeeba9af3f1503e1",
+        "response_date": "20261008",
+        "status": "AVAILABLE_SAME_DATE",
+        "row_count": 1380
+      },
+      {
+        "ex": "otc",
+        "file": "official_close_otc.json",
+        "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F10%2F08&response=json",
+        "sha256": "c735f3feaa5fe5682ac875447eb69cb5cf6394c1094aa9bf18e0be355a8d167d",
+        "response_date": "20261008",
+        "status": "AVAILABLE_SAME_DATE",
+        "row_count": 12221
+      }
+    ],
+    "status": "RESEARCH_ONLY",
+    "validated": false
+  },
+  "completion": {
+    "version": "CAPTURE_COMPLETION_V1",
+    "capture_outcome": "CAPTURE_PARTIAL",
+    "status": "partial",
+    "exit_code": 0,
+    "core_capture_complete": true,
+    "official_validation": "PENDING_SCHEDULED_POSTMARKET",
+    "research_unresolved_count": 25,
+    "phases": {
+      "preclose": {
+        "returned_unique": 1968,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "pre_reference_A": {
+        "returned_unique": 1968,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "pre_reference_B": {
+        "returned_unique": 1968,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "close_reference_A": {
+        "returned_unique": 1968,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "close_reference_B": {
+        "returned_unique": 1968,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "pre_reference_C": {
+        "returned_unique": 1968,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "close_reference_C": {
+        "returned_unique": 29,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      }
+    },
+    "warnings": [
+      {
+        "reason": "RESEARCH_PROBE_ERRORS",
+        "count": 23,
+        "details": [
+          {
+            "planned_at": "2026-10-08T13:24:51.000+08:00",
+            "error": "MIS_EMPTY_BODY",
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:1341",
+              "tse:1410",
+              "tse:2317",
+              "tse:2330",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:29:59.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:00.000+08:00",
+            "error": "MIS_EMPTY_BODY",
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:1341",
+              "tse:1410",
+              "tse:2317",
+              "tse:2330",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:01.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:02.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:03.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:04.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:05.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:06.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:07.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:08.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:09.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:10.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:11.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:12.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:13.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:14.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:15.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:20.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:30.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:30:45.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:31:00.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-08T13:33:15.000+08:00",
+            "error": "TimeoutError:The read operation timed out",
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:1341",
+              "tse:1410",
+              "tse:2317",
+              "tse:2330",
+              "tse:2454"
+            ],
+            "empty": []
+          }
+        ]
+      },
+      {
+        "reason": "SNAPSHOT_OR_TARGETED_RETRY_ERRORS",
+        "count": 1,
+        "details": [
+          {
+            "phase": "pre_targeted_retry",
+            "batch": 1,
+            "error": "CAPTURE_DEADLINE_NO_REQUEST",
+            "missing": [
+              "otc:2073",
+              "otc:2718",
+              "otc:3332",
+              "otc:4183",
+              "otc:5276",
+              "otc:5520",
+              "otc:5703",
+              "otc:6198",
+              "otc:6212",
+              "otc:6236",
+              "otc:6242",
+              "otc:6661",
+              "otc:6662",
+              "otc:6680",
+              "otc:6762",
+              "otc:6904",
+              "otc:7820",
+              "otc:8067",
+              "otc:8455",
+              "otc:9949",
+              "tse:1583",
+              "tse:4581",
+              "tse:5906",
+              "tse:8488",
+              "tse:9937"
+            ],
+            "empty": [],
+            "duplicate": []
+          }
+        ]
+      },
+      {
+        "reason": "RESEARCH_UNRESOLVED",
+        "count": 25
+      }
+    ],
+    "errors": [],
+    "artifact_upload_status": "AWAITING_GITHUB_UPLOAD_STEP"
+  }
+}

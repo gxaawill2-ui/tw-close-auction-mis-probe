@@ -1,0 +1,1256 @@
+{
+  "provenance": {
+    "trade_date": "2026-10-08",
+    "verified_at": "2026-10-08T16:54:40.906+08:00",
+    "capture_run_id": 37730234383,
+    "capture_artifact_id": 11530906396,
+    "capture_artifact_name": "mis-probe-37730234383",
+    "capture_archive_sha256": "1b4caf9efcbb0575771726b356751f177bba37439179cb14bfc9b8a9bc9a88e0",
+    "official_validation_run_id": 37742790398,
+    "official_validation_artifact_id": 11534034875,
+    "official_validation_checked_at": "2026-10-08T15:20:18.859+08:00",
+    "research_candidate_version": "DUAL_SNAPSHOT_RESEARCH_V1 + live close hierarchy (2026-10-08)",
+    "capture_commit_sha": "2dd62b249a181d7045c957f0c33501cc574723cd",
+    "verification_code_commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+    "commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+    "data_sources": [
+      {
+        "ex": "tse",
+        "file": "official_close_tse.json",
+        "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261008&type=ALLBUT0999&response=json",
+        "sha256": "805f5790765588a45f8c98f209e86262522df8afbb37aac4aeeba9af3f1503e1",
+        "response_date": "20261008",
+        "status": "AVAILABLE_SAME_DATE",
+        "row_count": 1380
+      },
+      {
+        "ex": "otc",
+        "file": "official_close_otc.json",
+        "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F10%2F08&response=json",
+        "sha256": "c735f3feaa5fe5682ac875447eb69cb5cf6394c1094aa9bf18e0be355a8d167d",
+        "response_date": "20261008",
+        "status": "AVAILABLE_SAME_DATE",
+        "row_count": 12221
+      }
+    ],
+    "status": "RESEARCH_ONLY",
+    "validated": false
+  },
+  "candidates": [
+    {
+      "code": "3073",
+      "name": "天方能源",
+      "market": "TPEx",
+      "P_before": "21.5000",
+      "P_before_trade_time": "13:08:54",
+      "P_before_convergence_type": "AB_converged_candidate",
+      "P_close": "22.4500",
+      "P_close_trade_time": "13:33:00",
+      "P_close_convergence_type": "BC_converged",
+      "confidence_level": "HIGH_RESEARCH",
+      "official_close": "22.45",
+      "tail_return": "0.044186046511627906976744186",
+      "tail_return_pct": "4.418604651162790697674418600",
+      "official_comparison": "MATCH",
+      "difference": "0.0000",
+      "threshold_passed": true,
+      "pre_1325_trade_candidate": true,
+      "close_trade_classification": "DELAYED_TRADE_CONFIRMED_TWO_FRESH_OBSERVATIONS",
+      "source_evidence": [
+        {
+          "phase": "pre_reference_A",
+          "request_started_at": "2026-10-08T13:27:00.001+08:00",
+          "received_at": "2026-10-08T13:27:01.962+08:00",
+          "trade": {
+            "t": "13:08:54",
+            "v": 1,
+            "z": "21.5000",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 8339,
+            "stockInfo": 8784,
+            "sessionStr": "UserSession",
+            "sysTime": "13:27:01",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "27",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "pre_reference_B",
+          "request_started_at": "2026-10-08T13:28:15.000+08:00",
+          "received_at": "2026-10-08T13:28:17.913+08:00",
+          "trade": {
+            "t": "13:08:54",
+            "v": 1,
+            "z": "21.5000",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 4465,
+            "stockInfo": 11963,
+            "sessionStr": "UserSession",
+            "sysTime": "13:28:17",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "27",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "close_reference_B",
+          "request_started_at": "2026-10-08T13:33:51.379+08:00",
+          "received_at": "2026-10-08T13:33:52.395+08:00",
+          "trade": {
+            "t": "13:33:00",
+            "v": 17,
+            "z": "22.4500",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 5956,
+            "stockInfo": 11303,
+            "sessionStr": "UserSession",
+            "sysTime": "13:33:52",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "44",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "close_reference_C",
+          "request_started_at": "2026-10-08T13:34:10.000+08:00",
+          "received_at": "2026-10-08T13:34:10.842+08:00",
+          "trade": {
+            "t": "13:33:00",
+            "v": 17,
+            "z": "22.4500",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 2524,
+            "stockInfo": 2653,
+            "sessionStr": "UserSession",
+            "sysTime": "13:34:10",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "44",
+          "source": "nested trade.z, not top-level simulation z"
+        }
+      ],
+      "official_row": {
+        "代號": "3073",
+        "名稱": "天方能源",
+        "收盤": "22.45",
+        "漲跌": "+2.00",
+        "開盤": "20.45",
+        "最高": "22.45",
+        "最低": "20.40",
+        "均價": "21.40",
+        "成交股數": "48,861",
+        "成交金額(元)": "1,045,565",
+        "成交筆數": "82",
+        "最後買價": "22.45",
+        "最後買量(張數)": "5",
+        "最後賣價": "0.00",
+        "最後賣量(張數)": "0",
+        "發行股數": "39,511,028",
+        "次日 參考價": "22.45",
+        "次日 漲停價": "24.65",
+        "次日 跌停價": "20.25"
+      },
+      "trade_date": "2026-10-08",
+      "verified_at": "2026-10-08T16:54:40.906+08:00",
+      "capture_run_id": 37730234383,
+      "capture_artifact_id": 11530906396,
+      "capture_artifact_name": "mis-probe-37730234383",
+      "capture_archive_sha256": "1b4caf9efcbb0575771726b356751f177bba37439179cb14bfc9b8a9bc9a88e0",
+      "official_validation_run_id": 37742790398,
+      "official_validation_artifact_id": 11534034875,
+      "official_validation_checked_at": "2026-10-08T15:20:18.859+08:00",
+      "research_candidate_version": "DUAL_SNAPSHOT_RESEARCH_V1 + live close hierarchy (2026-10-08)",
+      "capture_commit_sha": "2dd62b249a181d7045c957f0c33501cc574723cd",
+      "verification_code_commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+      "commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+      "data_sources": [
+        {
+          "ex": "tse",
+          "file": "official_close_tse.json",
+          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261008&type=ALLBUT0999&response=json",
+          "sha256": "805f5790765588a45f8c98f209e86262522df8afbb37aac4aeeba9af3f1503e1",
+          "response_date": "20261008",
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 1380
+        },
+        {
+          "ex": "otc",
+          "file": "official_close_otc.json",
+          "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F10%2F08&response=json",
+          "sha256": "c735f3feaa5fe5682ac875447eb69cb5cf6394c1094aa9bf18e0be355a8d167d",
+          "response_date": "20261008",
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 12221
+        }
+      ],
+      "status": "RESEARCH_ONLY",
+      "validated": false
+    },
+    {
+      "code": "3259",
+      "name": "鑫創",
+      "market": "TPEx",
+      "P_before": "10.9500",
+      "P_before_trade_time": "11:29:53",
+      "P_before_convergence_type": "AB_converged_candidate",
+      "P_close": "11.9500",
+      "P_close_trade_time": "13:33:00",
+      "P_close_convergence_type": "BC_converged",
+      "confidence_level": "HIGH_RESEARCH",
+      "official_close": "11.95",
+      "tail_return": "0.091324200913242009132420091",
+      "tail_return_pct": "9.132420091324200913242009100",
+      "official_comparison": "MATCH",
+      "difference": "0.0000",
+      "threshold_passed": true,
+      "pre_1325_trade_candidate": true,
+      "close_trade_classification": "DELAYED_TRADE_CONFIRMED_TWO_FRESH_OBSERVATIONS",
+      "source_evidence": [
+        {
+          "phase": "pre_reference_A",
+          "request_started_at": "2026-10-08T13:27:00.001+08:00",
+          "received_at": "2026-10-08T13:27:02.516+08:00",
+          "trade": {
+            "t": "11:29:53",
+            "v": 1,
+            "z": "10.9500",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 8338,
+            "stockInfo": 8784,
+            "sessionStr": "UserSession",
+            "sysTime": "13:27:01",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "7",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "pre_reference_B",
+          "request_started_at": "2026-10-08T13:28:15.001+08:00",
+          "received_at": "2026-10-08T13:28:18.427+08:00",
+          "trade": {
+            "t": "11:29:53",
+            "v": 1,
+            "z": "10.9500",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 4444,
+            "stockInfo": 11963,
+            "sessionStr": "UserSession",
+            "sysTime": "13:28:17",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "7",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "close_reference_B",
+          "request_started_at": "2026-10-08T13:33:51.379+08:00",
+          "received_at": "2026-10-08T13:33:52.395+08:00",
+          "trade": {
+            "t": "13:33:00",
+            "v": 1,
+            "z": "11.9500",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 5956,
+            "stockInfo": 11303,
+            "sessionStr": "UserSession",
+            "sysTime": "13:33:52",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "8",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "close_reference_C",
+          "request_started_at": "2026-10-08T13:34:10.000+08:00",
+          "received_at": "2026-10-08T13:34:10.842+08:00",
+          "trade": {
+            "t": "13:33:00",
+            "v": 1,
+            "z": "11.9500",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 2524,
+            "stockInfo": 2653,
+            "sessionStr": "UserSession",
+            "sysTime": "13:34:10",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "8",
+          "source": "nested trade.z, not top-level simulation z"
+        }
+      ],
+      "official_row": {
+        "代號": "3259",
+        "名稱": "鑫創",
+        "收盤": "11.95",
+        "漲跌": "+0.45",
+        "開盤": "11.10",
+        "最高": "11.95",
+        "最低": "10.95",
+        "均價": "11.17",
+        "成交股數": "8,099",
+        "成交金額(元)": "90,492",
+        "成交筆數": "9",
+        "最後買價": "11.00",
+        "最後買量(張數)": "4",
+        "最後賣價": "12.00",
+        "最後賣量(張數)": "4",
+        "發行股數": "72,965,934",
+        "次日 參考價": "11.95",
+        "次日 漲停價": "13.10",
+        "次日 跌停價": "10.80"
+      },
+      "trade_date": "2026-10-08",
+      "verified_at": "2026-10-08T16:54:40.906+08:00",
+      "capture_run_id": 37730234383,
+      "capture_artifact_id": 11530906396,
+      "capture_artifact_name": "mis-probe-37730234383",
+      "capture_archive_sha256": "1b4caf9efcbb0575771726b356751f177bba37439179cb14bfc9b8a9bc9a88e0",
+      "official_validation_run_id": 37742790398,
+      "official_validation_artifact_id": 11534034875,
+      "official_validation_checked_at": "2026-10-08T15:20:18.859+08:00",
+      "research_candidate_version": "DUAL_SNAPSHOT_RESEARCH_V1 + live close hierarchy (2026-10-08)",
+      "capture_commit_sha": "2dd62b249a181d7045c957f0c33501cc574723cd",
+      "verification_code_commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+      "commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+      "data_sources": [
+        {
+          "ex": "tse",
+          "file": "official_close_tse.json",
+          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261008&type=ALLBUT0999&response=json",
+          "sha256": "805f5790765588a45f8c98f209e86262522df8afbb37aac4aeeba9af3f1503e1",
+          "response_date": "20261008",
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 1380
+        },
+        {
+          "ex": "otc",
+          "file": "official_close_otc.json",
+          "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F10%2F08&response=json",
+          "sha256": "c735f3feaa5fe5682ac875447eb69cb5cf6394c1094aa9bf18e0be355a8d167d",
+          "response_date": "20261008",
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 12221
+        }
+      ],
+      "status": "RESEARCH_ONLY",
+      "validated": false
+    },
+    {
+      "code": "3684",
+      "name": "榮昌",
+      "market": "TPEx",
+      "P_before": "59.9000",
+      "P_before_trade_time": "13:20:20",
+      "P_before_convergence_type": "AB_converged_candidate",
+      "P_close": "62.5000",
+      "P_close_trade_time": "13:33:00",
+      "P_close_convergence_type": "BC_converged",
+      "confidence_level": "HIGH_RESEARCH",
+      "official_close": "62.50",
+      "tail_return": "0.043405676126878130217028381",
+      "tail_return_pct": "4.340567612687813021702838100",
+      "official_comparison": "MATCH",
+      "difference": "0.0000",
+      "threshold_passed": true,
+      "pre_1325_trade_candidate": true,
+      "close_trade_classification": "DELAYED_TRADE_CONFIRMED_TWO_FRESH_OBSERVATIONS",
+      "source_evidence": [
+        {
+          "phase": "pre_reference_A",
+          "request_started_at": "2026-10-08T13:27:00.002+08:00",
+          "received_at": "2026-10-08T13:27:02.217+08:00",
+          "trade": {
+            "t": "13:20:20",
+            "v": 5,
+            "z": "59.9000",
+            "ft": 12
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 8341,
+            "stockInfo": 8784,
+            "sessionStr": "UserSession",
+            "sysTime": "13:27:01",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "1189",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "pre_reference_B",
+          "request_started_at": "2026-10-08T13:28:15.002+08:00",
+          "received_at": "2026-10-08T13:28:18.182+08:00",
+          "trade": {
+            "t": "13:20:20",
+            "v": 5,
+            "z": "59.9000",
+            "ft": 12
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 4529,
+            "stockInfo": 11963,
+            "sessionStr": "UserSession",
+            "sysTime": "13:28:17",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "1189",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "close_reference_B",
+          "request_started_at": "2026-10-08T13:33:50.386+08:00",
+          "received_at": "2026-10-08T13:33:51.378+08:00",
+          "trade": {
+            "t": "13:33:00",
+            "v": 66,
+            "z": "62.5000",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 5956,
+            "stockInfo": 11303,
+            "sessionStr": "UserSession",
+            "sysTime": "13:33:51",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "1255",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "close_reference_C",
+          "request_started_at": "2026-10-08T13:34:10.000+08:00",
+          "received_at": "2026-10-08T13:34:10.842+08:00",
+          "trade": {
+            "t": "13:33:00",
+            "v": 66,
+            "z": "62.5000",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 2524,
+            "stockInfo": 2653,
+            "sessionStr": "UserSession",
+            "sysTime": "13:34:10",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "1255",
+          "source": "nested trade.z, not top-level simulation z"
+        }
+      ],
+      "official_row": {
+        "代號": "3684",
+        "名稱": "榮昌",
+        "收盤": "62.50",
+        "漲跌": "+2.00",
+        "開盤": "62.10",
+        "最高": "66.50",
+        "最低": "58.50",
+        "均價": "64.73",
+        "成交股數": "1,275,775",
+        "成交金額(元)": "82,584,850",
+        "成交筆數": "1,361",
+        "最後買價": "59.30",
+        "最後買量(張數)": "1",
+        "最後賣價": "62.60",
+        "最後賣量(張數)": "2",
+        "發行股數": "30,309,737",
+        "次日 參考價": "62.50",
+        "次日 漲停價": "68.70",
+        "次日 跌停價": "56.30"
+      },
+      "trade_date": "2026-10-08",
+      "verified_at": "2026-10-08T16:54:40.906+08:00",
+      "capture_run_id": 37730234383,
+      "capture_artifact_id": 11530906396,
+      "capture_artifact_name": "mis-probe-37730234383",
+      "capture_archive_sha256": "1b4caf9efcbb0575771726b356751f177bba37439179cb14bfc9b8a9bc9a88e0",
+      "official_validation_run_id": 37742790398,
+      "official_validation_artifact_id": 11534034875,
+      "official_validation_checked_at": "2026-10-08T15:20:18.859+08:00",
+      "research_candidate_version": "DUAL_SNAPSHOT_RESEARCH_V1 + live close hierarchy (2026-10-08)",
+      "capture_commit_sha": "2dd62b249a181d7045c957f0c33501cc574723cd",
+      "verification_code_commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+      "commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+      "data_sources": [
+        {
+          "ex": "tse",
+          "file": "official_close_tse.json",
+          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261008&type=ALLBUT0999&response=json",
+          "sha256": "805f5790765588a45f8c98f209e86262522df8afbb37aac4aeeba9af3f1503e1",
+          "response_date": "20261008",
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 1380
+        },
+        {
+          "ex": "otc",
+          "file": "official_close_otc.json",
+          "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F10%2F08&response=json",
+          "sha256": "c735f3feaa5fe5682ac875447eb69cb5cf6394c1094aa9bf18e0be355a8d167d",
+          "response_date": "20261008",
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 12221
+        }
+      ],
+      "status": "RESEARCH_ONLY",
+      "validated": false
+    },
+    {
+      "code": "4706",
+      "name": "大恭",
+      "market": "TPEx",
+      "P_before": "47.0500",
+      "P_before_trade_time": "13:24:23",
+      "P_before_convergence_type": "AB_converged_candidate",
+      "P_close": "45.0000",
+      "P_close_trade_time": "13:30:00",
+      "P_close_convergence_type": "AB_converged",
+      "confidence_level": "HIGH_RESEARCH",
+      "official_close": "45.00",
+      "tail_return": "-0.0435706695005313496280552604",
+      "tail_return_pct": "-4.357066950053134962805526040",
+      "official_comparison": "MATCH",
+      "difference": "0.0000",
+      "threshold_passed": true,
+      "pre_1325_trade_candidate": true,
+      "close_trade_classification": "NORMAL_1330_TRADE",
+      "source_evidence": [
+        {
+          "phase": "pre_reference_B",
+          "request_started_at": "2026-10-08T13:28:17.866+08:00",
+          "received_at": "2026-10-08T13:28:24.259+08:00",
+          "trade": {
+            "t": "13:24:23",
+            "v": 1,
+            "z": "47.0500",
+            "ft": 12
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 4681,
+            "stockInfo": 11963,
+            "sessionStr": "UserSession",
+            "sysTime": "13:28:19",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "462",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "pre_targeted_retry",
+          "request_started_at": "2026-10-08T13:28:48.458+08:00",
+          "received_at": "2026-10-08T13:28:52.051+08:00",
+          "trade": {
+            "t": "13:24:23",
+            "v": 1,
+            "z": "47.0500",
+            "ft": 12
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 6754,
+            "stockInfo": 11963,
+            "sessionStr": "UserSession",
+            "sysTime": "13:28:50",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "462",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "close_reference_A",
+          "request_started_at": "2026-10-08T13:32:31.496+08:00",
+          "received_at": "2026-10-08T13:32:33.031+08:00",
+          "trade": {
+            "t": "13:30:00",
+            "v": 36,
+            "z": "45.0000",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 4811,
+            "stockInfo": 20015,
+            "sessionStr": "UserSession",
+            "sysTime": "13:32:32",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "498",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "close_reference_B",
+          "request_started_at": "2026-10-08T13:33:48.994+08:00",
+          "received_at": "2026-10-08T13:33:53.518+08:00",
+          "trade": {
+            "t": "13:30:00",
+            "v": 36,
+            "z": "45.0000",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 7863,
+            "stockInfo": 21545,
+            "sessionStr": "UserSession",
+            "sysTime": "13:33:51",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "498",
+          "source": "nested trade.z, not top-level simulation z"
+        }
+      ],
+      "official_row": {
+        "代號": "4706",
+        "名稱": "大恭",
+        "收盤": "45.00",
+        "漲跌": "+1.85",
+        "開盤": "47.45",
+        "最高": "47.45",
+        "最低": "44.20",
+        "均價": "46.70",
+        "成交股數": "506,741",
+        "成交金額(元)": "23,665,724",
+        "成交筆數": "671",
+        "最後買價": "44.65",
+        "最後買量(張數)": "1",
+        "最後賣價": "47.25",
+        "最後賣量(張數)": "1",
+        "發行股數": "79,030,093",
+        "次日 參考價": "45.00",
+        "次日 漲停價": "49.50",
+        "次日 跌停價": "40.50"
+      },
+      "trade_date": "2026-10-08",
+      "verified_at": "2026-10-08T16:54:40.906+08:00",
+      "capture_run_id": 37730234383,
+      "capture_artifact_id": 11530906396,
+      "capture_artifact_name": "mis-probe-37730234383",
+      "capture_archive_sha256": "1b4caf9efcbb0575771726b356751f177bba37439179cb14bfc9b8a9bc9a88e0",
+      "official_validation_run_id": 37742790398,
+      "official_validation_artifact_id": 11534034875,
+      "official_validation_checked_at": "2026-10-08T15:20:18.859+08:00",
+      "research_candidate_version": "DUAL_SNAPSHOT_RESEARCH_V1 + live close hierarchy (2026-10-08)",
+      "capture_commit_sha": "2dd62b249a181d7045c957f0c33501cc574723cd",
+      "verification_code_commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+      "commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+      "data_sources": [
+        {
+          "ex": "tse",
+          "file": "official_close_tse.json",
+          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261008&type=ALLBUT0999&response=json",
+          "sha256": "805f5790765588a45f8c98f209e86262522df8afbb37aac4aeeba9af3f1503e1",
+          "response_date": "20261008",
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 1380
+        },
+        {
+          "ex": "otc",
+          "file": "official_close_otc.json",
+          "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F10%2F08&response=json",
+          "sha256": "c735f3feaa5fe5682ac875447eb69cb5cf6394c1094aa9bf18e0be355a8d167d",
+          "response_date": "20261008",
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 12221
+        }
+      ],
+      "status": "RESEARCH_ONLY",
+      "validated": false
+    },
+    {
+      "code": "5355",
+      "name": "佳總",
+      "market": "TPEx",
+      "P_before": "7.5000",
+      "P_before_trade_time": "13:03:40",
+      "P_before_convergence_type": "AB_converged_candidate",
+      "P_close": "7.7700",
+      "P_close_trade_time": "13:30:00",
+      "P_close_convergence_type": "AB_converged",
+      "confidence_level": "HIGH_RESEARCH",
+      "official_close": "7.77",
+      "tail_return": "0.036",
+      "tail_return_pct": "3.600",
+      "official_comparison": "MATCH",
+      "difference": "0.0000",
+      "threshold_passed": true,
+      "pre_1325_trade_candidate": true,
+      "close_trade_classification": "NORMAL_1330_TRADE",
+      "source_evidence": [
+        {
+          "phase": "pre_reference_A",
+          "request_started_at": "2026-10-08T13:27:02.517+08:00",
+          "received_at": "2026-10-08T13:27:05.800+08:00",
+          "trade": {
+            "t": "13:03:40",
+            "v": 2,
+            "z": "7.5000",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 8523,
+            "stockInfo": 8784,
+            "sessionStr": "UserSession",
+            "sysTime": "13:27:04",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "120",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "pre_reference_B",
+          "request_started_at": "2026-10-08T13:28:18.183+08:00",
+          "received_at": "2026-10-08T13:28:21.676+08:00",
+          "trade": {
+            "t": "13:03:40",
+            "v": 2,
+            "z": "7.5000",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 4791,
+            "stockInfo": 11963,
+            "sessionStr": "UserSession",
+            "sysTime": "13:28:20",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "120",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "close_reference_A",
+          "request_started_at": "2026-10-08T13:32:31.852+08:00",
+          "received_at": "2026-10-08T13:32:33.029+08:00",
+          "trade": {
+            "t": "13:30:00",
+            "v": 1,
+            "z": "7.7700",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 4811,
+            "stockInfo": 20015,
+            "sessionStr": "UserSession",
+            "sysTime": "13:32:32",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "121",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "close_reference_B",
+          "request_started_at": "2026-10-08T13:33:48.126+08:00",
+          "received_at": "2026-10-08T13:33:50.385+08:00",
+          "trade": {
+            "t": "13:30:00",
+            "v": 1,
+            "z": "7.7700",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 7749,
+            "stockInfo": 21545,
+            "sessionStr": "UserSession",
+            "sysTime": "13:33:49",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "121",
+          "source": "nested trade.z, not top-level simulation z"
+        }
+      ],
+      "official_row": {
+        "代號": "5355",
+        "名稱": "佳總",
+        "收盤": "7.77",
+        "漲跌": "+0.01",
+        "開盤": "7.76",
+        "最高": "7.80",
+        "最低": "7.50",
+        "均價": "7.76",
+        "成交股數": "121,065",
+        "成交金額(元)": "939,367",
+        "成交筆數": "88",
+        "最後買價": "7.40",
+        "最後買量(張數)": "1",
+        "最後賣價": "7.77",
+        "最後賣量(張數)": "5",
+        "發行股數": "166,122,792",
+        "次日 參考價": "7.77",
+        "次日 漲停價": "8.54",
+        "次日 跌停價": "7.00"
+      },
+      "trade_date": "2026-10-08",
+      "verified_at": "2026-10-08T16:54:40.906+08:00",
+      "capture_run_id": 37730234383,
+      "capture_artifact_id": 11530906396,
+      "capture_artifact_name": "mis-probe-37730234383",
+      "capture_archive_sha256": "1b4caf9efcbb0575771726b356751f177bba37439179cb14bfc9b8a9bc9a88e0",
+      "official_validation_run_id": 37742790398,
+      "official_validation_artifact_id": 11534034875,
+      "official_validation_checked_at": "2026-10-08T15:20:18.859+08:00",
+      "research_candidate_version": "DUAL_SNAPSHOT_RESEARCH_V1 + live close hierarchy (2026-10-08)",
+      "capture_commit_sha": "2dd62b249a181d7045c957f0c33501cc574723cd",
+      "verification_code_commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+      "commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+      "data_sources": [
+        {
+          "ex": "tse",
+          "file": "official_close_tse.json",
+          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261008&type=ALLBUT0999&response=json",
+          "sha256": "805f5790765588a45f8c98f209e86262522df8afbb37aac4aeeba9af3f1503e1",
+          "response_date": "20261008",
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 1380
+        },
+        {
+          "ex": "otc",
+          "file": "official_close_otc.json",
+          "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F10%2F08&response=json",
+          "sha256": "c735f3feaa5fe5682ac875447eb69cb5cf6394c1094aa9bf18e0be355a8d167d",
+          "response_date": "20261008",
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 12221
+        }
+      ],
+      "status": "RESEARCH_ONLY",
+      "validated": false
+    },
+    {
+      "code": "5543",
+      "name": "桓鼎-KY",
+      "market": "TPEx",
+      "P_before": "27.8000",
+      "P_before_trade_time": "09:39:11",
+      "P_before_convergence_type": "AB_converged_candidate",
+      "P_close": "26.6000",
+      "P_close_trade_time": "13:30:00",
+      "P_close_convergence_type": "AB_converged",
+      "confidence_level": "HIGH_RESEARCH",
+      "official_close": "26.60",
+      "tail_return": "-0.0431654676258992805755395683",
+      "tail_return_pct": "-4.316546762589928057553956830",
+      "official_comparison": "MATCH",
+      "difference": "0.0000",
+      "threshold_passed": true,
+      "pre_1325_trade_candidate": true,
+      "close_trade_classification": "NORMAL_1330_TRADE",
+      "source_evidence": [
+        {
+          "phase": "pre_reference_A",
+          "request_started_at": "2026-10-08T13:27:02.538+08:00",
+          "received_at": "2026-10-08T13:27:11.057+08:00",
+          "trade": {
+            "t": "09:39:11",
+            "v": 1,
+            "z": "27.8000",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 8537,
+            "stockInfo": 8784,
+            "sessionStr": "UserSession",
+            "sysTime": "13:27:04",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "2",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "pre_reference_B",
+          "request_started_at": "2026-10-08T13:28:18.428+08:00",
+          "received_at": "2026-10-08T13:28:22.712+08:00",
+          "trade": {
+            "t": "09:39:11",
+            "v": 1,
+            "z": "27.8000",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 4831,
+            "stockInfo": 11963,
+            "sessionStr": "UserSession",
+            "sysTime": "13:28:21",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "2",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "close_reference_A",
+          "request_started_at": "2026-10-08T13:32:31.998+08:00",
+          "received_at": "2026-10-08T13:32:33.394+08:00",
+          "trade": {
+            "t": "13:30:00",
+            "v": 6,
+            "z": "26.6000",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 4828,
+            "stockInfo": 20015,
+            "sessionStr": "UserSession",
+            "sysTime": "13:32:32",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "8",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "close_reference_B",
+          "request_started_at": "2026-10-08T13:33:46.553+08:00",
+          "received_at": "2026-10-08T13:33:51.126+08:00",
+          "trade": {
+            "t": "13:30:00",
+            "v": 6,
+            "z": "26.6000",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 7757,
+            "stockInfo": 21545,
+            "sessionStr": "UserSession",
+            "sysTime": "13:33:49",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "8",
+          "source": "nested trade.z, not top-level simulation z"
+        }
+      ],
+      "official_row": {
+        "代號": "5543",
+        "名稱": "桓鼎-KY",
+        "收盤": "26.60",
+        "漲跌": "+0.10",
+        "開盤": "28.25",
+        "最高": "28.25",
+        "最低": "26.60",
+        "均價": "26.96",
+        "成交股數": "8,010",
+        "成交金額(元)": "215,920",
+        "成交筆數": "7",
+        "最後買價": "26.50",
+        "最後買量(張數)": "1",
+        "最後賣價": "27.00",
+        "最後賣量(張數)": "1",
+        "發行股數": "46,703,593",
+        "次日 參考價": "26.60",
+        "次日 漲停價": "29.25",
+        "次日 跌停價": "23.95"
+      },
+      "trade_date": "2026-10-08",
+      "verified_at": "2026-10-08T16:54:40.906+08:00",
+      "capture_run_id": 37730234383,
+      "capture_artifact_id": 11530906396,
+      "capture_artifact_name": "mis-probe-37730234383",
+      "capture_archive_sha256": "1b4caf9efcbb0575771726b356751f177bba37439179cb14bfc9b8a9bc9a88e0",
+      "official_validation_run_id": 37742790398,
+      "official_validation_artifact_id": 11534034875,
+      "official_validation_checked_at": "2026-10-08T15:20:18.859+08:00",
+      "research_candidate_version": "DUAL_SNAPSHOT_RESEARCH_V1 + live close hierarchy (2026-10-08)",
+      "capture_commit_sha": "2dd62b249a181d7045c957f0c33501cc574723cd",
+      "verification_code_commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+      "commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+      "data_sources": [
+        {
+          "ex": "tse",
+          "file": "official_close_tse.json",
+          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261008&type=ALLBUT0999&response=json",
+          "sha256": "805f5790765588a45f8c98f209e86262522df8afbb37aac4aeeba9af3f1503e1",
+          "response_date": "20261008",
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 1380
+        },
+        {
+          "ex": "otc",
+          "file": "official_close_otc.json",
+          "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F10%2F08&response=json",
+          "sha256": "c735f3feaa5fe5682ac875447eb69cb5cf6394c1094aa9bf18e0be355a8d167d",
+          "response_date": "20261008",
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 12221
+        }
+      ],
+      "status": "RESEARCH_ONLY",
+      "validated": false
+    },
+    {
+      "code": "2024",
+      "name": "志聯",
+      "market": "TWSE",
+      "P_before": "13.6000",
+      "P_before_trade_time": "13:20:47",
+      "P_before_convergence_type": "AB_converged_candidate",
+      "P_close": "12.8500",
+      "P_close_trade_time": "13:30:00",
+      "P_close_convergence_type": "AB_converged",
+      "confidence_level": "HIGH_RESEARCH",
+      "official_close": "12.85",
+      "tail_return": "-0.0551470588235294117647058824",
+      "tail_return_pct": "-5.514705882352941176470588240",
+      "official_comparison": "MATCH",
+      "difference": "0.0000",
+      "threshold_passed": true,
+      "pre_1325_trade_candidate": true,
+      "close_trade_classification": "NORMAL_1330_TRADE",
+      "source_evidence": [
+        {
+          "phase": "pre_reference_A",
+          "request_started_at": "2026-10-08T13:27:14.141+08:00",
+          "received_at": "2026-10-08T13:27:16.114+08:00",
+          "trade": {
+            "t": "13:20:47",
+            "v": 1,
+            "z": "13.6000",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 9614,
+            "stockInfo": 61375,
+            "sessionStr": "UserSession",
+            "sysTime": "13:27:15",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "66",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "pre_reference_B",
+          "request_started_at": "2026-10-08T13:28:32.041+08:00",
+          "received_at": "2026-10-08T13:28:36.608+08:00",
+          "trade": {
+            "t": "13:20:47",
+            "v": 1,
+            "z": "13.6000",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 5838,
+            "stockInfo": 11963,
+            "sessionStr": "UserSession",
+            "sysTime": "13:28:34",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "66",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "close_reference_A",
+          "request_started_at": "2026-10-08T13:32:37.358+08:00",
+          "received_at": "2026-10-08T13:32:38.841+08:00",
+          "trade": {
+            "t": "13:30:00",
+            "v": 7,
+            "z": "12.8500",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 5258,
+            "stockInfo": 20015,
+            "sessionStr": "UserSession",
+            "sysTime": "13:32:38",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "73",
+          "source": "nested trade.z, not top-level simulation z"
+        },
+        {
+          "phase": "close_reference_B",
+          "request_started_at": "2026-10-08T13:33:35.627+08:00",
+          "received_at": "2026-10-08T13:33:38.084+08:00",
+          "trade": {
+            "t": "13:30:00",
+            "v": 7,
+            "z": "12.8500",
+            "ft": 20
+          },
+          "queryTime": {
+            "sysDate": "20261008",
+            "stockInfoItem": 7109,
+            "stockInfo": 21545,
+            "sessionStr": "UserSession",
+            "sysTime": "13:33:36",
+            "showChart": false,
+            "sessionFromTime": -1,
+            "sessionLatestTime": -1
+          },
+          "cachedAlive": null,
+          "total_v": "73",
+          "source": "nested trade.z, not top-level simulation z"
+        }
+      ],
+      "official_row": {
+        "證券代號": "2024",
+        "證券名稱": "志聯",
+        "成交股數": "74,329",
+        "成交筆數": "77",
+        "成交金額": "981,564",
+        "開盤價": "12.75",
+        "最高價": "13.60",
+        "最低價": "12.75",
+        "收盤價": "12.85",
+        "漲跌(+/-)": "<p style= color:red>+</p>",
+        "漲跌價差": "0.10",
+        "最後揭示買價": "12.85",
+        "最後揭示買量": "1",
+        "最後揭示賣價": "13.50",
+        "最後揭示賣量": "1",
+        "本益比": "44.31"
+      },
+      "trade_date": "2026-10-08",
+      "verified_at": "2026-10-08T16:54:40.906+08:00",
+      "capture_run_id": 37730234383,
+      "capture_artifact_id": 11530906396,
+      "capture_artifact_name": "mis-probe-37730234383",
+      "capture_archive_sha256": "1b4caf9efcbb0575771726b356751f177bba37439179cb14bfc9b8a9bc9a88e0",
+      "official_validation_run_id": 37742790398,
+      "official_validation_artifact_id": 11534034875,
+      "official_validation_checked_at": "2026-10-08T15:20:18.859+08:00",
+      "research_candidate_version": "DUAL_SNAPSHOT_RESEARCH_V1 + live close hierarchy (2026-10-08)",
+      "capture_commit_sha": "2dd62b249a181d7045c957f0c33501cc574723cd",
+      "verification_code_commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+      "commit_sha": "9e32bc6e8975782916bd06b527f0dac31d0a7031",
+      "data_sources": [
+        {
+          "ex": "tse",
+          "file": "official_close_tse.json",
+          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261008&type=ALLBUT0999&response=json",
+          "sha256": "805f5790765588a45f8c98f209e86262522df8afbb37aac4aeeba9af3f1503e1",
+          "response_date": "20261008",
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 1380
+        },
+        {
+          "ex": "otc",
+          "file": "official_close_otc.json",
+          "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F10%2F08&response=json",
+          "sha256": "c735f3feaa5fe5682ac875447eb69cb5cf6394c1094aa9bf18e0be355a8d167d",
+          "response_date": "20261008",
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 12221
+        }
+      ],
+      "status": "RESEARCH_ONLY",
+      "validated": false
+    }
+  ]
+}
