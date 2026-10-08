@@ -13,7 +13,7 @@ import convergence as c
 import freshness as f
 import official_retry
 import probe
-from test_convergence import reference, SYMBOL
+from test_convergence import reference, SYMBOL, saved_probe_fixture
 
 DAY = '2026-10-08'
 
@@ -152,7 +152,7 @@ class CloseResearchTests(unittest.TestCase):
              patch.object(probe,'wait_until',side_effect=wait),patch.object(probe,'github_issue'), \
              patch.object(probe,'fetch_universe',return_value=symbols), \
              patch.object(probe.tradable,'build',return_value=(symbols,{'status':'OFFICIAL_SOURCES_DATE_CHECKED','excluded_symbol_count':0})), \
-             patch.object(probe,'snapshot',side_effect=snapshot),patch.object(probe,'per_second_probe',return_value=[]), \
+             patch.object(probe,'snapshot',side_effect=snapshot),patch.object(probe,'per_second_probe',side_effect=saved_probe_fixture), \
              patch.object(probe.official_quotes,'validate') as official, \
              patch.dict('os.environ',{'RUNNER_STARTED_AT':probe.iso(current[0])}):
             out=Path(d);self.assertEqual(probe.live(out),0);official.assert_not_called()

@@ -38,6 +38,16 @@ def all_references():
             reference('close_reference_B', price='104', trade='13:30:00', volume='20')]
 
 
+def saved_probe_fixture(date, phase, start, end, symbols, output, checkpoints):
+    """Persist mock execution evidence as the real probe does (no HTTP calls)."""
+    row={'phase':phase,'planned_at':date+'T'+start+'+08:00',
+         'requested_at':date+'T'+start+'+08:00','received_at':date+'T'+start+'+08:00',
+         'error':'FIXTURE_PROBE_UNAVAILABLE','http_status':200,'response':{},
+         'symbols':symbols,'missing':[],'empty':[],'duplicate':[]}
+    with (output/'probe_raw.jsonl').open('a') as file: file.write(json.dumps(row)+'\n')
+    return [row]
+
+
 class ConvergenceTests(unittest.TestCase):
     def test_dual_equal_is_candidate_never_validated(self):
         out = c.pair(rows(reference('pre_reference_A'), reference('pre_reference_B')), DATE, 'pre')
@@ -215,7 +225,7 @@ class ConvergenceTests(unittest.TestCase):
              patch.object(probe, 'wait_until', side_effect=wait), patch.object(probe, 'github_issue'), \
              patch.object(probe, 'fetch_universe', return_value=symbols), \
              patch.object(probe.tradable, 'build', return_value=(symbols, {'status':'OFFICIAL_SOURCES_DATE_CHECKED','excluded_symbol_count':0})), \
-             patch.object(probe, 'snapshot', side_effect=snapshot), patch.object(probe, 'per_second_probe', return_value=[]), \
+             patch.object(probe, 'snapshot', side_effect=snapshot), patch.object(probe, 'per_second_probe', side_effect=saved_probe_fixture), \
              patch.object(probe.official_quotes, 'validate', return_value={'status':'PENDING','checks':[]}), \
              patch.dict('os.environ', {'RUNNER_STARTED_AT':probe.iso(current[0])}):
             self.assertEqual(probe.live(Path(d)), 0)
@@ -317,7 +327,7 @@ class ThirdReferenceTests(unittest.TestCase):
              patch.object(probe,'wait_until',side_effect=wait),patch.object(probe,'github_issue'), \
              patch.object(probe,'fetch_universe',return_value=symbols), \
              patch.object(probe.tradable,'build',return_value=(symbols,{'status':'OFFICIAL_SOURCES_DATE_CHECKED','excluded_symbol_count':0})), \
-             patch.object(probe,'snapshot',side_effect=snapshot),patch.object(probe,'per_second_probe',return_value=[]), \
+             patch.object(probe,'snapshot',side_effect=snapshot),patch.object(probe,'per_second_probe',side_effect=saved_probe_fixture), \
              patch.object(probe.official_quotes,'validate',return_value={'status':'PENDING','checks':[]}), \
              patch.dict('os.environ',{'RUNNER_STARTED_AT':probe.iso(current[0])}):
             output=Path(d);self.assertEqual(probe.live(output),0)

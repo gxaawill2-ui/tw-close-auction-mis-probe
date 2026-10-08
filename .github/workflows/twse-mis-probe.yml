@@ -11,6 +11,9 @@ on:
       - 'tradable.py'
       - 'official_quotes.py'
       - 'run_control.py'
+      - 'capture_completion.py'
+      - 'test_capture_completion.py'
+      - 'reports/2026-10-08/**'
       - 'test_freshness.py'
       - 'test_dispatch.py'
       - 'test_status.cjs'
@@ -82,6 +85,7 @@ jobs:
         if: github.event_name != 'push'
         run: python run_control.py --mode "$PROBE_MODE" --output results
       - name: Upload raw evidence and reports
+        id: artifact
         if: always() && github.event_name != 'push'
         uses: actions/upload-artifact@v4
         with:
@@ -93,4 +97,6 @@ jobs:
           retention-days: 30
       - name: Preserve specific failure and mark unexpected controller termination
         if: failure() && github.event_name != 'push'
+        env:
+          ARTIFACT_UPLOAD_OUTCOME: ${{ steps.artifact.outcome }}
         run: python run_control.py --mode workflow-failure --output results

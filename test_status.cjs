@@ -38,3 +38,9 @@ test('Page independently detects unfinished execution after 13:40',()=>{
  assert.equal(s.model(now,{calendar,live:{trade_date:'2026-10-05',status:'running'}}).status,'FAILED');
  assert.equal(s.model(new Date('2026-10-05T05:00:00Z'),{calendar,live:{trade_date:'2026-10-05',status:'running'}}).status,'RUNNING');
 });
+test('Explicit capture outcome is separate from official PENDING and research counts',()=>{
+ const live={trade_date:'2026-10-05',status:'partial',capture_outcome:'CAPTURE_PARTIAL',official_validation:'PENDING'};
+ assert.equal(s.model(now,{calendar,live}).status,'PARTIAL');
+ live.capture_outcome='CAPTURE_SUCCESS';assert.equal(s.model(now,{calendar,live}).status,'SUCCESS');
+ live.capture_outcome='CAPTURE_FAILED';assert.equal(s.model(now,{calendar,live}).status,'FAILED');
+});

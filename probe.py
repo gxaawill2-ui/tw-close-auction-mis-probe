@@ -605,10 +605,16 @@ def live(output: Path) -> int:
     if live_close_research:
         summary['live_research_summary']=live_summary
     (output / "run_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
-    package(output, date)
-    headline = "✅ SUCCESS" if summary["status"] == "success_raw_capture" else "⚠️ PARTIAL"
+    import capture_completion
+    completion = capture_completion.classify(output, summary)
+    summary.update(status=completion['status'],capture_outcome=completion['capture_outcome'],
+                   capture_completion=completion)
+    (output/'capture_completion.json').write_text(json.dumps(completion,ensure_ascii=False,indent=2))
+    (output/'run_summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2))
+    package(output, date)  # Failure here remains an exception/non-zero.
+    headline = {'CAPTURE_SUCCESS':'✅ SUCCESS','CAPTURE_PARTIAL':'⚠️ PARTIAL','CAPTURE_FAILED':'❌ FAILED'}[completion['capture_outcome']]
     github_issue(issue_body(headline, date, iso(runner_started), "completed", len(universe), summary))
-    return 0 if headline == "✅ SUCCESS" else 3
+    return completion['exit_code']
 
 
 def main() -> int:

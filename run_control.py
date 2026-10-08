@@ -148,6 +148,7 @@ def render(now, record, dry, receipt, calendar=None, armed=None, validation=None
 - timeout：`{pre.get('timeouts','—')} / {close.get('timeouts','—')}`
 - retry：`{pre.get('retries','—')} / {close.get('retries','—')}`
 - error：`{record.get('error','—')}`
+- capture outcome：`{record.get('capture_outcome',status)}`；warning 數：`{len(record.get('capture_completion',{}).get('warnings',[]))}`；研究無法計算：`{record.get('capture_completion',{}).get('research_unresolved_count','—')}`。
 - 官方核對：`{record.get('official_validation','未驗證')}`
 - research ±3%：`{research_status}`／候選 ` {research_count} `；正式 validated=false，Production 訊號未產生。
 - Artifact：`{record.get('artifact','—')}`
@@ -368,9 +369,12 @@ def run(mode, output):
     if mode == 'workflow-failure':
         date=probe.now_tpe().date().isoformat()
         record,_=read_state(live_path(date))
-        if record.get('run_id')==os.getenv('GITHUB_RUN_ID') and record.get('status')=='running':
-            merge_state(live_path(date),{'status':'failed','phase':'workflow_failure',
-                'finished_at':probe.iso(),'error':'Workflow stopped unexpectedly; inspect Actions logs'})
+        upload_failed=os.getenv('ARTIFACT_UPLOAD_OUTCOME')=='failure'
+        if record.get('run_id')==os.getenv('GITHUB_RUN_ID') and (record.get('status')=='running' or upload_failed):
+            merge_state(live_path(date),{'status':'failed','phase':'artifact_upload_failed' if upload_failed else 'workflow_failure',
+                'capture_outcome':'CAPTURE_FAILED',
+                'artifact_upload_status':'FAILED' if upload_failed else record.get('artifact_upload_status','UNKNOWN'),
+                'finished_at':probe.iso(),'error':'ARTIFACT_UPLOAD_FAILED' if upload_failed else 'Workflow stopped unexpectedly; inspect Actions logs'})
         publish()
         return 0
     date = probe.now_tpe().date().isoformat()
@@ -435,10 +439,16 @@ def run(mode, output):
     try:
         code = probe.dry_run(output) if mode == 'dry-run' else probe.live(output)
     except Exception as exc:
-        failure = {'status':'failed','error':f'{type(exc).__name__}:{exc}',
+        failure = {'status':'failed','capture_outcome':'CAPTURE_FAILED','error':f'{type(exc).__name__}:{exc}',
                    'finished_at':probe.iso(),'trade_date':date,'run_id':run_id}
         (output/'run_summary.json').write_text(json.dumps(failure,ensure_ascii=False,indent=2))
-        probe.package(output,date)
+        try:
+            probe.package(output,date)
+        except Exception as exc:
+            if mode == 'live':
+                merge_state(live_path(date),{'status':'failed','capture_outcome':'CAPTURE_FAILED',
+                    'phase':'artifact_package_failed','error':f'{type(exc).__name__}:{exc}'})
+            raise
     finally:
         pool.shutdown(wait=True)
         status_errors = []
@@ -463,7 +473,13 @@ def run(mode, output):
         publish()
         (output/'controller_status.json').write_text(json.dumps({'mode':mode,'exit_code':code,
             'status_errors':status_errors,'finished_at':probe.iso()},ensure_ascii=False,indent=2))
-        probe.package(output,date)
+        try:
+            probe.package(output,date)
+        except Exception as exc:
+            if mode == 'live':
+                merge_state(live_path(date),{'status':'failed','capture_outcome':'CAPTURE_FAILED',
+                    'phase':'artifact_package_failed','error':f'{type(exc).__name__}:{exc}'})
+            raise
     return code
 
 

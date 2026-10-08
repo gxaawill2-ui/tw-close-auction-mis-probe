@@ -44,6 +44,10 @@
       else if(live&&live.status==='running'&&t.clock<'13:40:00'){state='PENDING_CAPTURE';}
       return {name,time,status:state};
     });
+    if(live&&live.capture_outcome){
+      status=live.capture_outcome==='CAPTURE_FAILED'?'FAILED':live.capture_outcome==='CAPTURE_PARTIAL'?'PARTIAL':'SUCCESS';
+      reason=live.capture_outcome+'；擷取完成程度與官方驗證分開，研究候選 validated=false。';
+    }
     return {today:t.date,clock:t.clock,isTradingDay:trade,status,reason,live,official,dual,references:phaseStates,
       externalConfigured:ext.configured===true&&ext.status==='VERIFIED'&&Boolean(ext.verified_test_run_id),
       external:ext,execution:input.execution||{},dry:input.dry||{},research:review||{}};
@@ -69,6 +73,9 @@
       ['最近 workflow run id',e.run_id],['最近 event / mode',(e.event||'—')+' / '+(e.mode||'—')],
       ['今日正式 run id',v.run_id],['正式 runner startedAt',v.runner_started_at],['phase',v.phase||'not_run'],
       ['tradable universe',v.universe_count],['finishedAt',v.finished_at],
+      ['capture outcome',v.capture_outcome||v.status],
+      ['capture warnings',(v.capture_completion||{}).warnings?.length??'—'],
+      ['research 無法計算',(v.capture_completion||{}).research_unresolved_count??'—'],
       ['官方核對',view.official&&view.official.status||v.official_validation||'PENDING'],
       ['官方 MATCH / MISMATCH / UNAVAILABLE',view.official?[view.official.matches??'—',view.official.mismatches??'—',view.official.unavailable??'—'].join(' / '):'— / — / —']]);
     const rows=document.getElementById('references');rows.replaceChildren();
