@@ -31,7 +31,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: index-event-calendar
+  group: index-event-calendar${{ inputs.self_test == true && '-self-test' || '' }}
   cancel-in-progress: false
 jobs:
   tests:
