@@ -98,6 +98,11 @@ class ImportanceTests(unittest.TestCase):
     def test_different_quarters(self):
         second={**self.event,'event_id':'second','implementation_window':{'dates':['2026-12-01']}}
         rows=build([self.event,second],[self.fund],[self.metric],NOW);self.assertEqual({r['importance_level'] for r in rows},{'HIGH','MEDIUM'})
+    def test_unchanged_source_check_does_not_rewrite_history(self):
+        old=build([self.event],[self.fund],[self.metric],NOW)
+        self.metric['last_checked_at']='2026-10-11T17:20:00+08:00'
+        new=build([self.event],[self.fund],[self.metric],'2026-10-11T17:20:00+08:00',old)
+        self.assertEqual(new[0]['rating_history'],[]);self.assertEqual(new[0]['information_available_as_of'],NOW)
     def test_correction_history(self):
         old=build([self.event],[self.fund],[self.metric],NOW);self.metric['fund_aum']=1e9
         new=build([self.event],[self.fund],[self.metric],'2026-10-11T17:20:00+08:00',old);self.assertEqual(len(new[0]['rating_history']),1);self.assertEqual(new[0]['first_rated_at'],NOW)

@@ -50,7 +50,7 @@ def evaluate(fund, event, metric, as_of):
     amount=metric.get('fund_aum')
     if not isinstance(amount,(int,float)) or isinstance(amount,bool) or amount<=0:
         result['importance_reason']=['官方基金規模格式未確認。'];return result
-    result.update(fund_aum=amount,aum_as_of=metric['aum_as_of'],importance_evidence=[copy.deepcopy(metric)])
+    result.update(fund_aum=amount,aum_as_of=metric['aum_as_of'],importance_evidence=[{k:copy.deepcopy(v) for k,v in metric.items() if k!='last_checked_at'}])
     if pattern=='UNKNOWN':
         result['importance_reason']=['缺少收盤觀察日或多日調整方式；規模不足以單獨評級。'];return result
     # Explicit coarse policy thresholds in TWD; these are priorities, not fitted probabilities.
@@ -65,7 +65,7 @@ def evaluate(fund, event, metric, as_of):
             f'本次已公布異動檔數分數{breadth}；未知不視為零異動。',
             '粗略研究優先順序；未以歷史成交量驗證。'])
     # An exposure estimate is only possible with exact official before/after weights.
-    if stocks and all(isinstance(s.get('weight_before'),(int,float)) and isinstance(s.get('weight_after'),(int,float)) for s in stocks):
+    if stocks and all(s.get('weight_unit')=='fraction' and s.get('market_status')=='OFFICIAL_CONFIRMED' and isinstance(s.get('weight_before'),(int,float)) and isinstance(s.get('weight_after'),(int,float)) for s in stocks):
         change=sum(abs(s['weight_after']-s['weight_before']) for s in stocks)
         if 0<=change<=2: result.update(affected_weight_change=change,estimated_exposure_change={'twd':amount*change,'kind':'MODEL_GROSS_EXPOSURE_NOT_ACTUAL_ORDERS','weight_unit':'fraction'})
     return result

@@ -1,0 +1,70 @@
+{
+  "baseline": "5fc6341ef1e2c8195b586df014aec290a41cb0a9",
+  "protected": [
+    {
+      "path": ".github/workflows/mis-dispatch-safety.yml",
+      "unchanged": true,
+      "sha256": "3b3c93c79ee4542eb5dcd52834811654b4203f1174face05c5c1b5323046463e"
+    },
+    {
+      "path": ".github/workflows/mis-morning-20261001.yml",
+      "unchanged": true,
+      "sha256": "d344bdc9cc12dc7f5f93264922f3644211b17b98887c8d0e4adb2d37093a27b9"
+    },
+    {
+      "path": ".github/workflows/mis-official-validation.yml",
+      "unchanged": true,
+      "sha256": "45a83a3437fe1bb3b9982fc44d567f8be96465e596a82526a682048c50b38698"
+    },
+    {
+      "path": ".github/workflows/mis-prearmed-20261001.yml",
+      "unchanged": true,
+      "sha256": "1213db7c7ff48b55cb1b69910c91dc1d97f2f1dec58c507e030bbacfc08f2b96"
+    },
+    {
+      "path": ".github/workflows/mis-prearmed-20261002.yml",
+      "unchanged": true,
+      "sha256": "fdc4cd8bb7f78938091fdc33d3c45af13e92ebabb53c5ce0a2238584145424e2"
+    },
+    {
+      "path": ".github/workflows/mis-schedule-health.yml",
+      "unchanged": true,
+      "sha256": "d46e8abb17218699aa8d113753997c4ed9d6de2f279f6f3e96d5b7a288868322"
+    },
+    {
+      "path": ".github/workflows/pchome-benchmark.yml",
+      "unchanged": true,
+      "sha256": "942e0488f781ca0f48b1289b659ddb9014ae0e98ba34d539093918a2ac73a0e6"
+    },
+    {
+      "path": ".github/workflows/pchome-stream-benchmark.yml",
+      "unchanged": true,
+      "sha256": "a6beb02bdd1874f7b83c879461f88762ad1a4b4db6add0ce58ec1f1b53c023c2"
+    },
+    {
+      "path": ".github/workflows/twse-mis-probe.yml",
+      "unchanged": true,
+      "sha256": "7ca847cab185626af7c0ae8a11563e8041581719f98d97de0a305f9842f0441c"
+    },
+    {
+      "path": "docs/status.css",
+      "unchanged": true,
+      "sha256": "15dfdd742684d967c48c92840bcdc09ab68f07c5e543c7773986ca3850dbc350"
+    },
+    {
+      "path": "docs/status.js",
+      "unchanged": true,
+      "sha256": "9b05ad08217e3aff0c67894952513d8d1f0bb67ba8ca6eb475fddc6c6d8ec71d"
+    },
+    {
+      "path": "probe.py",
+      "unchanged": true,
+      "sha256": "e5285d15dcb38b3fa003e2574b0fa3c7b35f5150dfa71cef91e83a5bad8bc936"
+    },
+    {
+      "path": "state/candidates/2026-10-08.json",
+      "unchanged": true,
+      "sha256": "794cdb1749a7318612fad5003bceb47b126b5d03a8cbda16abf14332954c111b"
+    }
+  ]
+}
