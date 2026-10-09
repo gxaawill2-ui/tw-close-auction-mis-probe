@@ -9,7 +9,7 @@ from urllib.error import HTTPError
 
 from event_scheduler import identify, claim, finish, recovery_scope, freshness_blocks_recovery, git
 from event_dispatch import dispatch
-from fund_importance import evaluate, build
+from fund_importance import evaluate, build, MODEL_AVAILABLE_SINCE, refresh
 from index_events import Fetcher,parse_tpex_etf_observations,parse_yuanta_aum
 
 ROOT=Path(__file__).parent
@@ -116,6 +116,16 @@ class ImportanceTests(unittest.TestCase):
         self.metric['last_checked_at']='2026-10-11T17:20:00+08:00'
         new=build([self.event],[self.fund],[self.metric],'2026-10-11T17:20:00+08:00',old)
         self.assertEqual(new[0]['rating_history'],[]);self.assertEqual(new[0]['information_available_as_of'],NOW)
+    def test_legacy_snapshot_time_is_not_rating_availability(self):
+        old=build([self.event],[self.fund],[self.metric],NOW)
+        old[0]['first_rated_at']=old[0]['information_available_as_of']='2026-10-10T00:14:21+08:00'
+        new=build([self.event],[self.fund],[self.metric],NOW,old)[0]
+        self.assertEqual(new['information_available_as_of'],NOW)
+        self.assertEqual(new['first_rated_at'],NOW)
+        self.assertTrue(new['rating_history'][-1]['invalid_for_asof_backtest'])
+    def test_model_not_backdated_before_rollout(self):
+        rows=build([self.event],[self.fund],[],'2026-10-09T13:25:00+08:00')
+        self.assertEqual(rows[0]['information_available_as_of'],MODEL_AVAILABLE_SINCE)
     def test_correction_history(self):
         old=build([self.event],[self.fund],[self.metric],NOW);self.metric['fund_aum']=1e9
         new=build([self.event],[self.fund],[self.metric],'2026-10-11T17:20:00+08:00',old);self.assertEqual(len(new[0]['rating_history']),1);self.assertEqual(new[0]['first_rated_at'],NOW)

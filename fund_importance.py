@@ -8,8 +8,12 @@ import hashlib
 import json
 from datetime import datetime, timedelta
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 VERSION = 'observation-priority-v1'
+# Conservative public availability boundary: creation of the first main rollout
+# run 38006035935. Earlier prototype timestamps must not become backtest signals.
+MODEL_AVAILABLE_SINCE = '2026-10-10T07:46:14+08:00'
 AUM_MAX_AGE_DAYS = 30
 
 
@@ -74,6 +78,7 @@ def evaluate(fund, event, metric, as_of):
 def build(events, mappings, metrics, as_of, previous=None):
     prior={r['fund_event_id']:r for r in (previous or [])};metric_lookup={r['fund_code']:r for r in metrics}
     rows=[]
+    rating_time=max(timestamp(as_of),timestamp(MODEL_AVAILABLE_SINCE)).isoformat()
     for event in events:
         for code in event['related_etf_codes']:
             fund=next((m for m in mappings if m['etf_code']==code),None)
@@ -85,10 +90,22 @@ def build(events, mappings, metrics, as_of, previous=None):
                 'management_type':fund.get('management_type','UNKNOWN'),'index_name':event['index_name'],
                 **{k:copy.deepcopy(event.get(k)) for k in ('announcement_date','effective_date','closing_impact_date','implementation_window','close_date_status')},
                 **rating,'source_urls':list(dict.fromkeys([event['source_url'],fund['source_url']]+([metric_lookup[code]['source_url']] if code in metric_lookup else []))),
-                'information_available_as_of':as_of,'rating_generated_at':as_of,'first_rated_at':as_of,
-                'last_updated_at':as_of,'rating_history':[]}
+                'information_available_as_of':rating_time,'rating_generated_at':rating_time,'first_rated_at':rating_time,
+                'last_updated_at':rating_time,'model_available_since':MODEL_AVAILABLE_SINCE,'rating_history':[]}
             old=prior.get(key)
+            if old and timestamp(old['first_rated_at'])<timestamp(MODEL_AVAILABLE_SINCE):
+                row['as_of_correction']={'corrected_at':rating_time,
+                    'reason':'PROTOTYPE_USED_EVENT_SNAPSHOT_TIME; INVALID_FOR_PREOBSERVATION_BACKTEST',
+                    'previous_first_rated_at':old['first_rated_at'],
+                    'previous_information_available_as_of':old['information_available_as_of']}
+                row['rating_history']=old.get('rating_history',[])+[{'superseded_at':rating_time,
+                    'invalid_for_asof_backtest':True,'previous_version':{k:v for k,v in old.items() if k!='rating_history'}}]
+                for entry in row['rating_history']:
+                    if timestamp(entry['previous_version'].get('information_available_as_of',MODEL_AVAILABLE_SINCE))<timestamp(MODEL_AVAILABLE_SINCE):entry['invalid_for_asof_backtest']=True
+                rows.append(row)
+                continue
             if old:
+                if old.get('as_of_correction'):row['as_of_correction']=old['as_of_correction']
                 row['first_rated_at']=old['first_rated_at'];row['rating_history']=old.get('rating_history',[])
                 keys=['importance_level','importance_score','importance_reason','importance_evidence','expected_execution_pattern','close_date_status','closing_impact_date','effective_date','implementation_window']
                 if any(old.get(k)!=row.get(k) for k in keys):
@@ -103,7 +120,7 @@ def refresh(root=Path(__file__).resolve().parent, as_of=None):
     base=root/'state/events'
     read=lambda n:json.loads((base/n).read_text())
     events=read('events-index.json');mappings=read('etf-index-map.json')['mappings']
-    now=as_of or events['generated_at']
+    now=as_of or datetime.now(ZoneInfo('Asia/Taipei')).isoformat()
     metrics=read('fund-metrics.json')['funds'] if (base/'fund-metrics.json').exists() else []
     old=read('fund-events.json')['fund_events'] if (base/'fund-events.json').exists() else []
     rows=build(events['events'],mappings,metrics,now,old)
