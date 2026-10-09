@@ -2,6 +2,8 @@ import copy
 import hashlib
 import json
 import subprocess
+import tempfile
+from datetime import datetime
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -123,6 +125,18 @@ class ImportanceTests(unittest.TestCase):
         self.assertEqual(new['information_available_as_of'],NOW)
         self.assertEqual(new['first_rated_at'],NOW)
         self.assertTrue(new['rating_history'][-1]['invalid_for_asof_backtest'])
+    def test_refresh_uses_real_generation_clock_not_event_snapshot(self):
+        class Clock(datetime):
+            @classmethod
+            def now(cls,tz=None):return cls.fromisoformat(NOW)
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);base=root/'state/events';base.mkdir(parents=True)
+            payloads={'events-index.json':{'generated_at':'2026-10-10T00:14:21+08:00','events':[self.event]},
+                'etf-index-map.json':{'mappings':[self.fund]},'fund-metrics.json':{'funds':[self.metric]}}
+            for name,payload in payloads.items():(base/name).write_text(json.dumps(payload))
+            with patch('fund_importance.datetime',Clock):result=refresh(root)
+        self.assertEqual(result['generated_at'],NOW)
+        self.assertEqual(result['fund_events'][0]['first_rated_at'],NOW)
     def test_model_not_backdated_before_rollout(self):
         rows=build([self.event],[self.fund],[],'2026-10-09T13:25:00+08:00')
         self.assertEqual(rows[0]['information_available_as_of'],MODEL_AVAILABLE_SINCE)
