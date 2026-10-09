@@ -77,7 +77,7 @@ def claim(previous, identity, now, run_id):
     now = instant(now)
     old = copy.deepcopy(previous or {})
     if not identity['eligible']: return old, 'UNATTRIBUTED_DELAYED_NATIVE' if identity['trigger_source']=='GITHUB_SCHEDULE' else 'OUTSIDE_BACKUP_WINDOW'
-    if old.get('result') in ('ON_TIME','DELAYED','RECOVERED_BY_BACKUP') and old.get('published_at'):
+    if old.get('result') in ('ON_TIME','DELAYED','RECOVERED_BY_BACKUP','ADHOC_PUBLISHED') and old.get('published_at'):
         return old, 'DUPLICATE_SUCCESS'
     if old.get('lease_expires_at') and instant(old['lease_expires_at']) > now:
         return old, 'LEASE_HELD'
@@ -95,10 +95,13 @@ def claim(previous, identity, now, run_id):
 def finish(receipt, run_id, now, success, health=None, published_commit=None):
     if receipt.get('lease_owner') != str(run_id): raise ValueError('Lease ownership changed; reject publication')
     out = copy.deepcopy(receipt)
+    completed_delay=(instant(now)-instant(out['planned_for'])).total_seconds() if out.get('planned_for') else None
+    out['policy_completion_delay_seconds']=completed_delay
     out.update(scan_finished_at=now, lease_expires_at=now, source_health=health,
         published_at=now if success else None, published_commit=published_commit if success else None,
-        result='RECOVERED_BY_BACKUP' if success and out['trigger_source']=='EXTERNAL_BACKUP' else
-            'ON_TIME' if success and not out.get('original_slot_not_fulfilled') and (out.get('policy_delay_seconds') or 0)<=900 else 'DELAYED' if success else 'FAILED')
+        result='ADHOC_PUBLISHED' if success and out['trigger_source']=='ADHOC' else
+            'RECOVERED_BY_BACKUP' if success and out['trigger_source']=='EXTERNAL_BACKUP' else
+            'ON_TIME' if success and completed_delay is not None and completed_delay<=900 else 'DELAYED' if success else 'FAILED')
     return out
 
 
