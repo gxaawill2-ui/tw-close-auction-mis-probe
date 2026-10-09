@@ -114,9 +114,10 @@ class EventTests(unittest.TestCase):
     def test_scan_workflow_isolated_and_never_market_dispatch(self):
         text=(ROOT/'.github/workflows/index-events.yml').read_text()
         self.assertIn("20 0,9 * * *",text)
-        self.assertNotIn('probe.py',text);self.assertNotIn('dispatches',text)
+        self.assertNotIn('probe.py',text);self.assertNotIn('/dispatches',text)
         self.assertNotIn('secrets.',text)
-        self.assertIn("github.event_name != 'push'",text)
+        self.assertIn("github.ref == 'refs/heads/main'",text)
+        self.assertIn("REQUIRE_PUBLIC_EVENTS: 'true'",text)
 
     def test_oct8_candidate_evidence_exactly_preserved(self):
         data=load(ROOT/'state/candidates/2026-10-08.json')

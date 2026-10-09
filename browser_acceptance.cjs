@@ -154,6 +154,12 @@ async function main(){
    assert.equal(await publicPage.evaluate(()=>getComputedStyle(document.documentElement).backgroundColor),'rgb(13, 20, 35)');
    assert.equal(await publicPage.title(),'台股尾盤 ±3% 自動選股看板');
    assert.equal(await publicPage.locator('button,input,select,form,[role="button"]').count(),0);
+   if(process.env.REQUIRE_PUBLIC_EVENTS==='true'){
+    await publicPage.waitForFunction(()=>document.querySelectorAll('#event-upcoming .event-row').length>0);
+    assert.ok(await publicPage.locator('#event-today-title').count());
+    assert.ok(await publicPage.locator('#event-upcoming a').count()>0);
+    assert.notEqual(await publicPage.locator('#event-today-title').innerText(),'事件資料確認中');
+   }
    assert.equal(await publicPage.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
    const date=await publicPage.locator('#today').textContent();
    if(date.includes('2026-10-08'))assert.equal(await publicPage.locator('#candidate-count').textContent(),'7');

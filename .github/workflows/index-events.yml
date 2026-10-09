@@ -36,7 +36,7 @@ jobs:
   source-smoke:
     needs: tests
     # Read-only smoke on push; no dispatch of MIS and no writes to state/main.
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && github.ref != 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -60,7 +60,9 @@ jobs:
           retention-days: 30
   scan:
     needs: tests
-    if: github.ref == 'refs/heads/main' && github.event_name != 'push'
+    # First main rollout also publishes observed source health. This never
+    # dispatches a market workflow; later data-only bot commits don't match paths.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -74,7 +76,9 @@ jobs:
           python-version: '3.12'
       - run: pip install pypdf
       - name: Bounded public-source scan; errors preserve prior facts
-        run: python index_events.py > index-events-scan.json
+        run: |
+          python index_events.py > index-events-scan.json
+          cat index-events-scan.json
       - name: Publish only event addenda; leave MIS state and evidence untouched
         run: |
           git config user.name github-actions[bot]
@@ -101,4 +105,41 @@ jobs:
           path: |
             index-events-scan.json
             state/events/source-health.json
+          retention-days: 30
+  public-acceptance:
+    needs: tests
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium webkit
+      - name: Await actual Pages release with anonymous HTTP
+        run: |
+          python - <<'PY'
+          import urllib.request,time
+          url='https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/'
+          for attempt in range(30):
+              try:
+                  text=urllib.request.urlopen(url+'?acceptance='+str(time.time()),timeout=10).read().decode()
+                  if 'events.js?v=events1' in text:
+                      print('Public Pages event calendar deployed');break
+              except Exception as error: print(type(error).__name__)
+              time.sleep(15)
+          else: raise SystemExit('Pages event release not observed within bounded wait')
+          PY
+      - name: Verify public event DOM and all desktop/mobile regression scenarios
+        env:
+          REQUIRE_PUBLIC_EVENTS: 'true'
+        run: node browser_acceptance.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: index-events-public-browser-${{ github.run_id }}
+          path: browser-results/
           retention-days: 30
