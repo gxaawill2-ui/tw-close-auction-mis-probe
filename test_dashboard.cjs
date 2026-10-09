@@ -90,3 +90,17 @@ test('postmarket price match is separate from MIS volume and research qualificat
  assert.match(doc.querySelector('[data-code="3259"]').textContent,/成交量：MIS 證據一致/);
  assert.match(doc.querySelector('[data-code="3259"]').textContent,/RESEARCH_ONLY/);
 });
+
+
+test('automatic dark appearance follows system preference without any UI switch',()=>{
+ const css=fs.readFileSync('docs/status.css','utf8'),diagnostic=fs.readFileSync('docs/diagnostic.css','utf8'),doc=dom();
+ assert.match(css,/@media\s*\(prefers-color-scheme:\s*dark\)/);
+ assert.match(css,/color-scheme:light dark/);
+ assert.match(css,/\.overview, \.desktop-wrap, \.candidate-card, \.empty/);
+ assert.match(css,/--red:\s*#ff788a/);
+ assert.match(css,/--green:\s*#53dcb7/);
+ assert.equal(doc.querySelectorAll('meta[name="theme-color"]').length,2);
+ assert.equal(doc.querySelector('meta[media="(prefers-color-scheme: dark)"]').getAttribute('content'),'#0d1423');
+ assert.equal(doc.querySelectorAll('button,input,select,form,[role="button"]').length,0);
+ assert.match(diagnostic,/light-dark\(#f5f7fb,#0d1423\)/);
+});
