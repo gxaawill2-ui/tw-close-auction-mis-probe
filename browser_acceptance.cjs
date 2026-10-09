@@ -64,6 +64,15 @@ async function main(){
    await page.screenshot({path:path.join(OUT,'dashboard-'+name+'.png'),fullPage:true});
    assert.deepEqual(errors,[]);checks.push({name,result:'PASS',width:options.viewport.width,seven_candidates:true,no_buttons:true,no_horizontal_overflow:true});
    await context.close();
+   const diagnosticContext=await fixtureContext(browser,options,'2026-10-09T13:35:00+08:00',null);
+   const diagnostic=await diagnosticContext.newPage(),diagnosticErrors=[];
+   diagnostic.on('pageerror',error=>diagnosticErrors.push(error.message));
+   await diagnostic.goto(base+'diagnostic.html');
+   await diagnostic.locator('#headline').filter({hasText:'NON TRADING'}).waitFor();
+   assert.equal(await diagnostic.locator('button,input,select,form,[role="button"]').count(),0);
+   assert.deepEqual(diagnosticErrors,[]);
+   checks.push({name:name+'/diagnostic',result:'PASS',automatic_initial_load:true,no_buttons:true});
+   await diagnosticContext.close();
    for(const [scenario,date,payload,expected] of [
     ['no-data','2026-10-08T08:00:00+08:00',null,'今日尚未產生尾盤研究資料'],
     ['holiday','2026-10-09T13:35:00+08:00',null,'今日休市'],
@@ -86,6 +95,10 @@ async function main(){
    assert.equal(await publicPage.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
    const date=await publicPage.locator('#today').textContent();
    if(date.includes('2026-10-08'))assert.equal(await publicPage.locator('#candidate-count').textContent(),'7');
+   if(date.includes('2026-10-09')){
+    await publicPage.locator('#headline').filter({hasText:'今日休市'}).waitFor();
+    assert.equal(await publicPage.locator('.candidate-card').count(),0);
+   }
    await publicPage.screenshot({path:path.join(OUT,'public-'+name+'.png'),fullPage:true});
    checks.push({name:'public/'+name,result:'PASS',date,no_buttons:true,no_horizontal_overflow:true,url:publicPage.url()});
    await publicContext.close();

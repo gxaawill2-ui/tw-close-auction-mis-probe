@@ -110,6 +110,5 @@
       render(model(now,{live,official,calendar,calendarLatest,external,execution,dry}),errors);
     }finally{running=false;}
   }
-  document.getElementById('refresh').addEventListener('click',refresh);
   refresh();setInterval(refresh,60000);
 })(typeof globalThis!=='undefined'?globalThis:this);

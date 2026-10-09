@@ -44,3 +44,29 @@ test('Explicit capture outcome is separate from official PENDING and research co
  live.capture_outcome='CAPTURE_SUCCESS';assert.equal(s.model(now,{calendar,live}).status,'SUCCESS');
  live.capture_outcome='CAPTURE_FAILED';assert.equal(s.model(now,{calendar,live}).status,'FAILED');
 });
+test('diagnostic opens and refreshes automatically without manual controls',async()=>{
+ const fs=require('node:fs'),vm=require('node:vm'),{parseHTML}=require('linkedom');
+ const {document}=parseHTML(fs.readFileSync('docs/diagnostic.html','utf8'));
+ assert.equal(document.querySelectorAll('button,input,select,form,[role="button"]').length,0);
+ let requests=0,interval;
+ const fixtures={
+  'state/calendars/2026.json':calendar,
+  'state/calendar_latest.json':{today:'2026-10-09',is_trading_day:false},
+  'state/external_scheduler.json':{},
+ };
+ const RealDate=Date;
+ class Clock extends RealDate{constructor(...args){super(...(args.length?args:['2026-10-09T13:35:00+08:00']));}static now(){return new RealDate('2026-10-09T13:35:00+08:00').getTime();}}
+ const context={document,Date:Clock,Intl,AbortController,setTimeout,clearTimeout,
+  setInterval:(callback,ms)=>{assert.equal(ms,60000);interval=callback;},
+  fetch:async(url,options)=>{
+   requests++;assert.equal(options.cache,'no-store');
+   const path=new URL(url).pathname.split('/main/')[1];
+   return {status:path in fixtures?200:404,ok:path in fixtures,json:async()=>fixtures[path]};
+  }};
+ vm.runInNewContext(fs.readFileSync('docs/diagnostic.js','utf8'),context);
+ await new Promise(resolve=>setImmediate(resolve));
+ assert.equal(requests,7);assert.equal(document.getElementById('headline').textContent,'NON TRADING');
+ await interval();assert.equal(requests,14);
+ assert.equal(document.getElementById('headline').textContent,'NON TRADING');
+ assert.equal(document.getElementById('network').textContent,'');
+});
