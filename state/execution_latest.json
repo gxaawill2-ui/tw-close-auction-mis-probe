@@ -1,11 +1,11 @@
 {
-  "event": "workflow_dispatch",
-  "cron": "",
+  "event": "schedule",
+  "cron": "47 3 * * 1-5",
   "declared_source": "manual",
   "source_verified": false,
-  "mode": null,
-  "run_id": "37913808546",
-  "runner_started_at": "2026-10-09T17:50:16.934+08:00",
-  "received_at": "2026-10-09T17:50:16.934+08:00",
-  "updated_at": "2026-10-09T17:50:19.993+08:00"
+  "mode": "live",
+  "run_id": "37920588064",
+  "runner_started_at": "2026-10-09T18:55:46.392+08:00",
+  "received_at": "2026-10-09T18:55:52.269+08:00",
+  "updated_at": "2026-10-09T18:55:55.661+08:00"
 }
