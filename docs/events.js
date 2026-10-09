@@ -2,7 +2,7 @@
  'use strict';
  const RAW='https://raw.githubusercontent.com/gxaawill2-ui/tw-close-auction-mis-probe/main/';
  const label={announcement_date:'公告',effective_date:'生效',closing_impact_date:'收盤觀察',implementation_window:'過渡期間'};
- const statuses={CONFIRMED_CLOSE_IMPLEMENTATION:'官方確認收盤實施',EXPECTED_CLOSE_WATCH_DATE:'預估觀察日',DATE_UNVERIFIED:'收盤日未確認'};
+ const statuses={CONFIRMED_CLOSE_IMPLEMENTATION:'官方確認收盤實施',EXPECTED_CLOSE_WATCH_DATE:'預估觀察日',EXPECTED_MULTIDAY_TRANSITION:'預估多日換股期間',DATE_UNVERIFIED:'收盤日未確認'};
  const esc=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  function taipei(now){return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);}
  function valid(data,now){
@@ -23,6 +23,7 @@
   const end=limit.toISOString().slice(0,10),entries=[];
   for(const event of events){
    if(Date.parse(event.first_seen_at)>now.getTime())continue;
+   if(event.event_status==='CONFLICT')continue;
    for(const key of ['announcement_date','closing_impact_date','effective_date'])if(event[key])entries.push({date:event[key],type:key,event});
    for(const d of (event.implementation_window||{}).dates||[])entries.push({date:d,type:'implementation_window',event});
   }
@@ -36,8 +37,9 @@
   else headline=incomplete?'事件資料尚未完整確認':'今日無已確認的重大指數調整事件';
   let upcoming=entries.filter(x=>x.date>day&&x.date<=end),range='未來 30 天';
   if(!upcoming.length){const next=entries.find(x=>x.date>day);if(next){upcoming=entries.filter(x=>x.date===next.date);range='30 天以外 · 下一個已知日期';}}
+  const conflicts=events.filter(e=>e.event_status==='CONFLICT'&&Date.parse(e.information_available_as_of)<=now.getTime()).length;
   return {day,today,headline,upcoming,range,error,incomplete,sourceStale,
-   note:incomplete?'部分來源受限、未更新或僅追蹤日程；未列出不代表沒有事件。':'已完成已設定官方來源掃描。'};
+   note:(incomplete?'部分來源受限、未更新或僅追蹤日程；未列出不代表沒有事件。':'已完成已設定官方來源掃描。')+(conflicts?' '+conflicts+' 筆來源日期衝突，暫不列入觀察日。':'')};
  }
  function htmlEntry(x){
   const e=x.event,expected=e.event_status==='EXPECTED'||['closing_impact_date','implementation_window'].includes(x.type)&&e.close_date_status!=='CONFIRMED_CLOSE_IMPLEMENTATION';
@@ -65,7 +67,7 @@
   }
  }
  function relation(row,events,day,asOf){
-  const cutoff=Date.parse(asOf),dayEvents=events.filter(e=>Date.parse(e.information_available_as_of)<=cutoff&&
+  const cutoff=Date.parse(asOf),dayEvents=events.filter(e=>e.event_status!=='CONFLICT'&&Date.parse(e.information_available_as_of)<=cutoff&&
    (e.closing_impact_date===day||(e.implementation_window?.dates||[]).includes(day)));
   const matches=[];
   for(const e of dayEvents)for(const s of e.affected_stocks)if(s.code===row.code&&s.market===row.market&&s.market_status==='OFFICIAL_CONFIRMED')matches.push({event:e,stock:s});

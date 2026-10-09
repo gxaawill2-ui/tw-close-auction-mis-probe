@@ -48,3 +48,14 @@
 範圍內32筆事件＝29筆官方公告／生效期程＋3筆FTSE規則推估；官方確認的未來收盤實施事件為0。完整資料庫36筆，另外4筆MSCI期程超出所要求範圍。對應表14筆。來源完整性維持PARTIAL。這次沒有足夠資料支持任何隔日修正統計結論。
 
 可用来源與未完成來源分別記錄於source-research.md、limitations.md及公開source-health.json。未把robots禁止、授權限制、HTTP400或未解析結果當成自動追蹤成功。完整部署執行ID與資料提交記錄見deployment.json。
+
+
+## 第二階段承接（45e2085，2026-10-09）
+
+已實作TWSE ETF開放主檔、元大四頁日期解析、TIP公開兩篇明確實施日期、多來源衝突去重、完整性統計。初次本機完整掃描2026-10-09 16:28:59完成，271主檔、64確認對應、2名稱衝突、4歷史元大生效事件；初次掃描開始時TIP新Parser尚未載入，9筆TIP收盤事實由後續獨立CI正常HTTP掃描驗證並發布。
+
+本機初步188 Python＋39 Node PASS；新增三個TIP公告測試後完整Python應為191，最終CI及正式驗收結果待追加。網站只增加衝突提示與多日標籤，維持無按鈕、深色及既有股票資訊。
+
+繼續入口：source-recovery.md、automatic-etf-discovery.md、source-coverage-comparison.json、next-steps.md與git status；不要再seed或重抓MIS。所有現有MIS workflow及候選證據需在最終部署前再比對。
+
+2026-10-09 補測：再次掃描官方期程不降低已確認實施等級，且保留期程與實施兩個來源；Python總計192項、Node39項，本機PASS。GitHub完整瀏覽器及正式發布證據待本次CI完成後補入。

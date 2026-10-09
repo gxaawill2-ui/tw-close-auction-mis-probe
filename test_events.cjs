@@ -72,3 +72,15 @@ test('source errors leave the event-independent stock UI intact',()=>{
  assert.equal(doc.querySelectorAll('.candidate-card').length,7);
  assert.match(doc.getElementById('event-note').textContent,/股票名單仍獨立更新/);
 });
+test('conflicting dates cannot appear as confirmed calendar or stock relationships',()=>{
+ const conflict={...event,event_status:'CONFLICT',closing_impact_date:'2026-10-09',affected_stocks:[{code:'2330',market:'TWSE',market_status:'OFFICIAL_CONFIRMED',change_type:'ADDITION'}]};
+ const v=ui.model(now,{...data,events:[conflict]},health);
+ assert.equal(v.today.length,0);assert.equal(v.upcoming.length,0);assert.match(v.note,/來源日期衝突/);
+ assert.equal(ui.relation({code:'2330',market:'TWSE'},[conflict],'2026-10-09',now.toISOString()).matches.length,0);
+});
+test('expected multiday status supported without upgrading to official close',()=>{
+ const multi={...event,closing_impact_date:null,close_date_status:'EXPECTED_MULTIDAY_TRANSITION',implementation_window:{dates:['2026-10-09','2026-10-12']}};
+ const v=ui.model(now,{...data,events:[multi]},health),doc=dom();ui.render(doc,v);
+ assert.match(v.headline,/預估/);assert.match(doc.getElementById('event-today-list').textContent,/預估/);
+ assert.doesNotMatch(doc.getElementById('event-today-list').textContent,/官方確認收盤實施/);
+});

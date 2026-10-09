@@ -5,7 +5,8 @@
     "parser": "calendar",
     "year": 2026,
     "enabled": true,
-    "coverage": "ANNUAL_OFFICIAL"
+    "coverage": "ANNUAL_OFFICIAL",
+    "capability": "VERIFIED_AUTOMATIC"
   },
   {
     "source_id": "twse-calendar-2027",
@@ -13,7 +14,8 @@
     "parser": "calendar",
     "year": 2027,
     "enabled": true,
-    "coverage": "ANNUAL_OFFICIAL"
+    "coverage": "ANNUAL_OFFICIAL",
+    "capability": "VERIFIED_AUTOMATIC"
   },
   {
     "source_id": "twse-company-metadata",
@@ -21,7 +23,8 @@
     "parser": "market_metadata",
     "market": "TWSE",
     "enabled": true,
-    "coverage": "COMPANY_IDENTITY_ONLY"
+    "coverage": "COMPANY_IDENTITY_ONLY",
+    "capability": "VERIFIED_AUTOMATIC"
   },
   {
     "source_id": "tpex-company-metadata",
@@ -29,7 +32,8 @@
     "parser": "market_metadata",
     "market": "TPEx",
     "enabled": true,
-    "coverage": "COMPANY_IDENTITY_ONLY"
+    "coverage": "COMPANY_IDENTITY_ONLY",
+    "capability": "VERIFIED_AUTOMATIC"
   },
   {
     "source_id": "msci-calendar",
@@ -37,7 +41,8 @@
     "parser": "msci_schedule",
     "enabled": true,
     "coverage": "PUBLIC_DATES_ONLY",
-    "limitation": "僅公開審核期程；MSCI授權成分與權重資料不擷取、不重製。"
+    "limitation": "僅公開審核期程；MSCI授權成分與權重資料不擷取、不重製。",
+    "capability": "DATE_ONLY"
   },
   {
     "source_id": "msci-constituents",
@@ -45,21 +50,24 @@
     "enabled": false,
     "restricted": true,
     "coverage": "UNKNOWN",
-    "limitation": "成分、權重資料之使用及再散布涉及MSCI授權；本免費公開服務未取得授權。"
+    "limitation": "成分、權重資料之使用及再散布涉及MSCI授權；本免費公開服務未取得授權。",
+    "capability": "VERIFIED_AUTOMATIC"
   },
   {
     "source_id": "tip-schedule",
     "url": "https://taiwanindex.com.tw/downloads/technical_notice?category_id=3&page=1",
     "parser": "tip_feed",
     "enabled": true,
-    "coverage": "LATEST_10_DOCUMENTS"
+    "coverage": "LATEST_10_DOCUMENTS",
+    "capability": "VERIFIED_AUTOMATIC"
   },
   {
     "source_id": "tip-notices",
     "url": "https://taiwanindex.com.tw/downloads/technical_notice?page=1",
     "parser": "tip_feed",
     "enabled": true,
-    "coverage": "LATEST_10_DOCUMENTS"
+    "coverage": "LATEST_10_DOCUMENTS",
+    "capability": "VERIFIED_AUTOMATIC"
   },
   {
     "source_id": "ftse-notices",
@@ -67,76 +75,130 @@
     "enabled": false,
     "restricted": true,
     "coverage": "UNKNOWN",
-    "limitation": "完整技術公告需要註冊／訂閱；改追蹤TIP公開摘要，無法保證臨時事件完整性。"
+    "limitation": "完整技術公告需要註冊／訂閱；改追蹤TIP公開摘要，無法保證臨時事件完整性。",
+    "capability": "VERIFIED_AUTOMATIC"
   },
   {
     "source_id": "tip-etf-map-452",
     "url": "https://taiwanindex.com.tw/news/452",
     "parser": "map_html",
     "enabled": true,
-    "coverage": "OFFICIAL_PUBLIC_TABLE"
+    "coverage": "OFFICIAL_PUBLIC_TABLE",
+    "capability": "VERIFIED_AUTOMATIC"
   },
   {
     "source_id": "tip-etf-map-454",
     "url": "https://taiwanindex.com.tw/news/454",
     "parser": "map_html",
     "enabled": true,
-    "coverage": "OFFICIAL_PUBLIC_TABLE"
+    "coverage": "OFFICIAL_PUBLIC_TABLE",
+    "capability": "VERIFIED_AUTOMATIC"
   },
   {
     "source_id": "tip-new-etf-mappings",
     "url": "https://taiwanindex.com.tw/news",
     "parser": "map_feed",
     "enabled": true,
-    "coverage": "LATEST_PUBLIC_NEWS"
-  },
-  {
-    "source_id": "yuanta-announcements",
-    "url": "https://www.yuantaetfs.com/",
-    "parser": "monitor_html",
-    "enabled": true,
-    "coverage": "MONITOR_ONLY"
+    "coverage": "LATEST_PUBLIC_NEWS",
+    "capability": "VERIFIED_AUTOMATIC"
   },
   {
     "source_id": "cathay-announcements",
     "url": "https://www.cathaysite.com.tw/ETF/index-trend?keyword=00878",
     "parser": "monitor_html",
     "enabled": true,
-    "coverage": "MONITOR_ONLY"
+    "coverage": "MONITOR_ONLY",
+    "capability": "MONITOR_ONLY"
   },
   {
     "source_id": "capital-announcements",
     "url": "https://www.capitalfund.com.tw/etf/product/detail/195",
     "parser": "monitor_html",
     "enabled": true,
-    "coverage": "MONITOR_ONLY"
+    "coverage": "MONITOR_ONLY",
+    "capability": "MONITOR_ONLY"
   },
   {
     "source_id": "fuhhwa-announcements",
     "url": "https://www.fhtrust.com.tw/ETF/etf_detail/ETF21",
     "parser": "monitor_html",
     "enabled": true,
-    "coverage": "MONITOR_ONLY"
+    "coverage": "MONITOR_ONLY",
+    "capability": "MONITOR_ONLY"
   },
   {
     "source_id": "fubon-announcements",
     "url": "https://websys.fsit.com.tw/FubonETF/Fund/IndexIntro.aspx?stkId=006208",
     "parser": "monitor_html",
     "enabled": true,
-    "coverage": "MONITOR_ONLY"
+    "coverage": "MONITOR_ONLY",
+    "capability": "MONITOR_ONLY"
   },
   {
     "source_id": "ftse-rule-0",
     "url": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-twse-taiwan-index-series-ground-rules.pdf",
     "parser": "monitor_pdf",
     "enabled": true,
-    "coverage": "RULE_MONITOR_ONLY"
+    "coverage": "RULE_MONITOR_ONLY",
+    "capability": "MONITOR_ONLY"
   },
   {
     "source_id": "ftse-rule-1",
     "url": "https://www.twse.com.tw/downloads/en/products/indices/IndexSen20.pdf",
     "parser": "monitor_pdf",
     "enabled": true,
-    "coverage": "RULE_MONITOR_ONLY"
+    "coverage": "RULE_MONITOR_ONLY",
+    "capability": "MONITOR_ONLY"
+  },
+  {
+    "source_id": "twse-etf-master",
+    "url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+    "parser": "etf_master",
+    "enabled": true,
+    "coverage": "TWSE_FUND_MASTER; CURRENT_LISTING_STATUS_UNKNOWN",
+    "capability": "VERIFIED_AUTOMATIC",
+    "license_url": "https://data.gov.tw/dataset/157399",
+    "license": "Open Government Data License v1",
+    "limitation": "主檔每月更新頻率，不保證即時上市／下市；無發行公司名稱欄位保留UNKNOWN；不含TPEx完整基金主檔。"
+  },
+  {
+    "source_id": "yuanta-review-0050",
+    "url": "https://www.yuantaetfs.com/product/detail/0050/Basic_information",
+    "parser": "yuanta_profile",
+    "etf_code": "0050",
+    "enabled": true,
+    "coverage": "LATEST_INDEX_EFFECTIVE_DATE_ONLY",
+    "capability": "DATE_ONLY",
+    "limitation": "僅官方發行商標示的指數生效日及檔數；非ETF實際交易時間，無個股新增刪除清單。"
+  },
+  {
+    "source_id": "yuanta-review-0051",
+    "url": "https://www.yuantaetfs.com/product/detail/0051/Basic_information",
+    "parser": "yuanta_profile",
+    "etf_code": "0051",
+    "enabled": true,
+    "coverage": "LATEST_INDEX_EFFECTIVE_DATE_ONLY",
+    "capability": "DATE_ONLY",
+    "limitation": "僅官方發行商標示的指數生效日及檔數；非ETF實際交易時間，無個股新增刪除清單。"
+  },
+  {
+    "source_id": "yuanta-review-0056",
+    "url": "https://www.yuantaetfs.com/product/detail/0056/Basic_information",
+    "parser": "yuanta_profile",
+    "etf_code": "0056",
+    "enabled": true,
+    "coverage": "LATEST_INDEX_EFFECTIVE_DATE_ONLY",
+    "capability": "DATE_ONLY",
+    "limitation": "僅官方發行商標示的指數生效日及檔數；非ETF實際交易時間，無個股新增刪除清單。"
+  },
+  {
+    "source_id": "yuanta-review-006203",
+    "url": "https://www.yuantaetfs.com/product/detail/006203/Basic_information",
+    "parser": "yuanta_profile",
+    "etf_code": "006203",
+    "enabled": true,
+    "coverage": "LATEST_INDEX_EFFECTIVE_DATE_ONLY",
+    "capability": "DATE_ONLY",
+    "limitation": "僅官方發行商標示的指數生效日及檔數；非ETF實際交易時間，無個股新增刪除清單。"
   }
 ]

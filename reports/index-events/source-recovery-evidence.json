@@ -1,0 +1,216 @@
+{
+  "observed_at": "2026-10-09T16:22:00+08:00",
+  "method": "匿名標準HTTP，原Fetcher robots與請求限制；不登入、不繞過；頁面200不等於資料成功",
+  "candidates": [
+    {
+      "id": "twse-etf-master",
+      "url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+      "bytes": 341166,
+      "http": 200,
+      "checked_at": "2026-10-09T16:07:14+08:00",
+      "count": 271,
+      "login_used": false,
+      "auth_bypass": false,
+      "classification": "VERIFIED_AUTOMATIC",
+      "license": "Open Government Data License v1",
+      "license_url": "https://data.gov.tw/dataset/157399",
+      "integrated": true,
+      "can_parse_implementation": false,
+      "can_parse_constituents": false
+    },
+    {
+      "id": "tpex-swagger",
+      "url": "https://www.tpex.org.tw/openapi/swagger.json",
+      "bytes": 476923,
+      "http": 200,
+      "checked_at": "2026-10-09T16:07:42+08:00",
+      "login_used": false,
+      "auth_bypass": false,
+      "classification": "MONITOR_ONLY",
+      "integrated": false,
+      "note": "官方OpenAPI目錄未列ETF基本資料；不是ETF主檔來源。"
+    },
+    {
+      "id": "yuanta-0050",
+      "url": "https://www.yuantaetfs.com/product/detail/0050/Basic_information",
+      "http": 200,
+      "bytes": 1097468,
+      "checked_at": "2026-10-09T16:07:33+08:00",
+      "login_used": false,
+      "auth_bypass": false,
+      "classification": "DATE_ONLY",
+      "license": "Public factual dates only; no licensed constituent redistribution; robots checked per request",
+      "integrated": true,
+      "can_parse_implementation": false,
+      "can_parse_constituents": false
+    },
+    {
+      "id": "tip-news",
+      "url": "https://taiwanindex.com.tw/news",
+      "http": 200,
+      "bytes": 240991,
+      "checked_at": "2026-10-09T16:07:51+08:00",
+      "login_used": false,
+      "auth_bypass": false,
+      "classification": "UNAVAILABLE",
+      "integrated": false
+    },
+    {
+      "id": "tip-robots",
+      "url": "https://taiwanindex.com.tw/robots.txt",
+      "error": "HTTP Error 404: Not Found",
+      "checked_at": "2026-10-09T16:07:59+08:00",
+      "login_used": false,
+      "auth_bypass": false,
+      "classification": "UNAVAILABLE",
+      "integrated": false
+    },
+    {
+      "id": "cathay-detail",
+      "url": "https://www.cathaysite.com.tw/ETF/detail/ECN",
+      "error": "<urlopen error timed out>",
+      "checked_at": "2026-10-09T16:09:59+08:00",
+      "login_used": false,
+      "auth_bypass": false,
+      "classification": "UNAVAILABLE",
+      "integrated": false
+    },
+    {
+      "id": "fubon-public",
+      "url": "https://www.fubon.com/asset-management/ph/Taiwan50/intro.html",
+      "http": 200,
+      "checked_at": "2026-10-09T16:10:32+08:00",
+      "bytes": 7547,
+      "login_used": false,
+      "auth_bypass": false,
+      "classification": "UNAVAILABLE",
+      "integrated": false,
+      "note": "HTTP200但回傳富邦維修頁，非資料成功。"
+    },
+    {
+      "id": "capital-notices",
+      "url": "https://www.capitalfund.com.tw/service/news",
+      "http": 200,
+      "checked_at": "2026-10-09T16:10:50+08:00",
+      "bytes": 314083,
+      "login_used": false,
+      "auth_bypass": false,
+      "classification": "MONITOR_ONLY",
+      "integrated": false,
+      "note": "200且有公告連結；未證明完整解析換股實施／股票清單。"
+    },
+    {
+      "id": "tpex-filter",
+      "url": "https://info.tpex.org.tw/ETF/zh/filter.html",
+      "http": 200,
+      "checked_at": "2026-10-09T16:11:31+08:00",
+      "bytes": 16822,
+      "login_used": false,
+      "auth_bypass": false,
+      "classification": "RESTRICTED",
+      "integrated": false,
+      "note": "網站條款要求同意才可自動下載；未找到此ETF主檔的政府開放資料授權。不使用頁面内部POST API。"
+    },
+    {
+      "id": "yuanta-0051",
+      "url": "https://www.yuantaetfs.com/product/detail/0051/Basic_information",
+      "http": 200,
+      "checked_at": "2026-10-09T16:11:35+08:00",
+      "bytes": 1096822,
+      "login_used": false,
+      "auth_bypass": false,
+      "classification": "DATE_ONLY",
+      "license": "Public factual dates only; no licensed constituent redistribution; robots checked per request",
+      "integrated": true,
+      "can_parse_implementation": false,
+      "can_parse_constituents": false
+    },
+    {
+      "id": "yuanta-0056",
+      "url": "https://www.yuantaetfs.com/product/detail/0056/Basic_information",
+      "http": 200,
+      "checked_at": "2026-10-09T16:11:47+08:00",
+      "bytes": 1099157,
+      "login_used": false,
+      "auth_bypass": false,
+      "classification": "DATE_ONLY",
+      "license": "Public factual dates only; no licensed constituent redistribution; robots checked per request",
+      "integrated": true,
+      "can_parse_implementation": false,
+      "can_parse_constituents": false
+    },
+    {
+      "id": "yuanta-006203",
+      "url": "https://www.yuantaetfs.com/product/detail/006203/Basic_information",
+      "http": 200,
+      "checked_at": "2026-10-09T16:12:05+08:00",
+      "bytes": 1096531,
+      "login_used": false,
+      "auth_bypass": false,
+      "classification": "DATE_ONLY",
+      "license": "Public factual dates only; no licensed constituent redistribution; robots checked per request",
+      "integrated": true,
+      "can_parse_implementation": false,
+      "can_parse_constituents": false
+    },
+    {
+      "id": "tpex-terms",
+      "url": "https://www.tpex.org.tw/web/inc/gtsm_disclaimer.php?l=zh-tw",
+      "http": 200,
+      "checked_at": "2026-10-09T16:19:29+08:00",
+      "login_used": false,
+      "auth_bypass": false,
+      "classification": "RESTRICTED",
+      "integrated": false,
+      "note": "網站條款要求同意才可自動下載；未找到此ETF主檔的政府開放資料授權。不使用頁面内部POST API。"
+    },
+    {
+      "id": "tpex-main-js",
+      "url": "https://info.tpex.org.tw/ETF/rsrc/js/main.js",
+      "http": 200,
+      "checked_at": "2026-10-09T16:19:53+08:00",
+      "login_used": false,
+      "auth_bypass": false,
+      "classification": "RESTRICTED",
+      "integrated": false,
+      "note": "網站條款要求同意才可自動下載；未找到此ETF主檔的政府開放資料授權。不使用頁面内部POST API。"
+    }
+  ],
+  "public_tip_checks": [
+    {
+      "id": "tip-home",
+      "url": "https://taiwanindex.com.tw/",
+      "http": 200,
+      "checked_at": "2026-10-09T16:25:05+08:00",
+      "links": [],
+      "bytes": 321732
+    },
+    {
+      "id": "tip-452",
+      "url": "https://taiwanindex.com.tw/news/452",
+      "http": 200,
+      "checked_at": "2026-10-09T16:25:14+08:00",
+      "links": [
+        [
+          "/en/news/452",
+          "ENGLISH"
+        ]
+      ],
+      "bytes": 273351
+    },
+    {
+      "id": "tip-454",
+      "url": "https://taiwanindex.com.tw/news/454",
+      "http": 200,
+      "checked_at": "2026-10-09T16:25:22+08:00",
+      "links": [
+        [
+          "/en/news/454",
+          "ENGLISH"
+        ]
+      ],
+      "bytes": 263635
+    }
+  ],
+  "updated_at": "2026-10-09T16:34:00+08:00"
+}
