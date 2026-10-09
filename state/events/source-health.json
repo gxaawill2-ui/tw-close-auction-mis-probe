@@ -1,111 +1,171 @@
 {
-  "last_attempt_at": null,
-  "last_successful_scan_at": null,
+  "last_attempt_at": "2026-10-09T10:54:07+08:00",
+  "last_successful_scan_at": "2026-10-09T10:54:07+08:00",
   "coverage_status": "PARTIAL",
+  "request_attempts": 28,
   "sources": [
     {
-      "source_id": "msci-calendar",
-      "status": "MANUALLY_CHECKED",
-      "last_checked_at": "2026-10-09T10:33:57+08:00",
+      "source_id": "twse-calendar-2026",
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
+      "last_success_at": "2026-10-09T10:54:07+08:00",
+      "status": "SUCCESS",
+      "error": null,
+      "coverage": "ANNUAL_OFFICIAL",
+      "parsed_event_count": 0
+    },
+    {
+      "source_id": "twse-calendar-2027",
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
       "last_success_at": null,
-      "error": "僅公開審核期程；MSCI授權成分與權重資料不擷取、不重製。",
-      "coverage": "PUBLIC_DATES_ONLY"
+      "status": "UNKNOWN",
+      "error": "Official annual calendar not published for requested year",
+      "coverage": "ANNUAL_OFFICIAL"
+    },
+    {
+      "source_id": "twse-company-metadata",
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
+      "last_success_at": "2026-10-09T10:54:07+08:00",
+      "status": "SUCCESS",
+      "error": null,
+      "coverage": "COMPANY_IDENTITY_ONLY",
+      "parsed_event_count": 0
+    },
+    {
+      "source_id": "tpex-company-metadata",
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
+      "last_success_at": "2026-10-09T10:54:07+08:00",
+      "status": "SUCCESS",
+      "error": null,
+      "coverage": "COMPANY_IDENTITY_ONLY",
+      "parsed_event_count": 0
+    },
+    {
+      "source_id": "msci-calendar",
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
+      "last_success_at": "2026-10-09T10:54:07+08:00",
+      "status": "SUCCESS",
+      "error": null,
+      "coverage": "PUBLIC_DATES_ONLY",
+      "parsed_event_count": 8
     },
     {
       "source_id": "msci-constituents",
-      "status": "RESTRICTED",
-      "last_checked_at": "2026-10-09T10:33:57+08:00",
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
       "last_success_at": null,
+      "status": "RESTRICTED",
       "error": "成分、權重資料之使用及再散布涉及MSCI授權；本免費公開服務未取得授權。",
       "coverage": "UNKNOWN"
     },
     {
       "source_id": "tip-schedule",
-      "status": "MANUALLY_CHECKED",
-      "last_checked_at": "2026-10-09T10:33:57+08:00",
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
       "last_success_at": null,
-      "error": null,
+      "status": "UNKNOWN",
+      "error": "ROBOTS_DISALLOWED",
       "coverage": "LATEST_10_DOCUMENTS"
     },
     {
       "source_id": "tip-notices",
-      "status": "MANUALLY_CHECKED",
-      "last_checked_at": "2026-10-09T10:33:57+08:00",
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
       "last_success_at": null,
-      "error": null,
+      "status": "UNKNOWN",
+      "error": "ROBOTS_DISALLOWED",
       "coverage": "LATEST_10_DOCUMENTS"
     },
     {
       "source_id": "ftse-notices",
-      "status": "RESTRICTED",
-      "last_checked_at": "2026-10-09T10:33:57+08:00",
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
       "last_success_at": null,
+      "status": "RESTRICTED",
       "error": "完整技術公告需要註冊／訂閱；改追蹤TIP公開摘要，無法保證臨時事件完整性。",
       "coverage": "UNKNOWN"
     },
     {
       "source_id": "tip-etf-map-452",
-      "status": "MANUALLY_CHECKED",
-      "last_checked_at": "2026-10-09T10:33:57+08:00",
-      "last_success_at": null,
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
+      "last_success_at": "2026-10-09T10:54:07+08:00",
+      "status": "SUCCESS",
       "error": null,
-      "coverage": "OFFICIAL_PUBLIC_TABLE"
+      "coverage": "OFFICIAL_PUBLIC_TABLE",
+      "parsed_event_count": 0
     },
     {
       "source_id": "tip-etf-map-454",
-      "status": "MANUALLY_CHECKED",
-      "last_checked_at": "2026-10-09T10:33:57+08:00",
-      "last_success_at": null,
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
+      "last_success_at": "2026-10-09T10:54:07+08:00",
+      "status": "SUCCESS",
       "error": null,
-      "coverage": "OFFICIAL_PUBLIC_TABLE"
+      "coverage": "OFFICIAL_PUBLIC_TABLE",
+      "parsed_event_count": 0
     },
     {
       "source_id": "tip-new-etf-mappings",
-      "status": "MANUALLY_CHECKED",
-      "last_checked_at": "2026-10-09T10:33:57+08:00",
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
       "last_success_at": null,
-      "error": null,
+      "status": "UNKNOWN",
+      "error": "Mapping table unavailable; not an empty ETF universe",
       "coverage": "LATEST_PUBLIC_NEWS"
     },
     {
       "source_id": "yuanta-announcements",
-      "status": "MANUALLY_CHECKED",
-      "last_checked_at": "2026-10-09T10:33:57+08:00",
-      "last_success_at": null,
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
+      "last_success_at": "2026-10-09T10:54:07+08:00",
+      "status": "MONITOR_ONLY",
       "error": null,
-      "coverage": "MONITOR_ONLY"
+      "coverage": "MONITOR_ONLY",
+      "parsed_event_count": 0
     },
     {
       "source_id": "cathay-announcements",
-      "status": "MANUALLY_CHECKED",
-      "last_checked_at": "2026-10-09T10:33:57+08:00",
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
       "last_success_at": null,
-      "error": null,
+      "status": "UNKNOWN",
+      "error": "HTTP Error 400: Bad Request",
       "coverage": "MONITOR_ONLY"
     },
     {
       "source_id": "capital-announcements",
-      "status": "MANUALLY_CHECKED",
-      "last_checked_at": "2026-10-09T10:33:57+08:00",
-      "last_success_at": null,
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
+      "last_success_at": "2026-10-09T10:54:07+08:00",
+      "status": "MONITOR_ONLY",
       "error": null,
-      "coverage": "MONITOR_ONLY"
+      "coverage": "MONITOR_ONLY",
+      "parsed_event_count": 0
     },
     {
       "source_id": "fuhhwa-announcements",
-      "status": "MANUALLY_CHECKED",
-      "last_checked_at": "2026-10-09T10:33:57+08:00",
-      "last_success_at": null,
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
+      "last_success_at": "2026-10-09T10:54:07+08:00",
+      "status": "MONITOR_ONLY",
       "error": null,
-      "coverage": "MONITOR_ONLY"
+      "coverage": "MONITOR_ONLY",
+      "parsed_event_count": 0
     },
     {
       "source_id": "fubon-announcements",
-      "status": "MANUALLY_CHECKED",
-      "last_checked_at": "2026-10-09T10:33:57+08:00",
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
       "last_success_at": null,
-      "error": null,
+      "status": "UNKNOWN",
+      "error": "ROBOTS_DISALLOWED",
       "coverage": "MONITOR_ONLY"
+    },
+    {
+      "source_id": "ftse-rule-0",
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
+      "last_success_at": "2026-10-09T10:54:07+08:00",
+      "status": "MONITOR_ONLY",
+      "error": null,
+      "coverage": "RULE_MONITOR_ONLY",
+      "parsed_event_count": 0
+    },
+    {
+      "source_id": "ftse-rule-1",
+      "last_checked_at": "2026-10-09T10:54:07+08:00",
+      "last_success_at": "2026-10-09T10:54:07+08:00",
+      "status": "MONITOR_ONLY",
+      "error": null,
+      "coverage": "RULE_MONITOR_ONLY",
+      "parsed_event_count": 0
     }
   ]
 }

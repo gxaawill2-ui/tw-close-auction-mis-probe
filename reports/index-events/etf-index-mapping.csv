@@ -1,15 +1,15 @@
 etf_code,etf_name,index_name,management_type,mapping_status,source_url,first_seen_at
 0050,元大台灣50,FTSE TWSE Taiwan 50 Index,PASSIVE,CONFIRMED,https://www.yuantaetfs.com/product/detail/0050/Basic_information,2026-10-09T10:33:57+08:00
-006208,富邦台50,FTSE TWSE Taiwan 50 Index,PASSIVE,CONFIRMED,https://websys.fsit.com.tw/FubonETF/Fund/IndexIntro.aspx?stkId=006208,2026-10-09T10:33:57+08:00
 0051,元大中型100,FTSE TWSE Taiwan Mid-Cap 100 Index,PASSIVE,CONFIRMED,https://www.yuantaetfs.com/product/domestic,2026-10-09T10:33:57+08:00
 0056,元大高股息,FTSE TWSE Taiwan Dividend+ Index,PASSIVE,CONFIRMED,https://www.yuantaetfs.com/product/detail/0056/Basic_information,2026-10-09T10:33:57+08:00
+006208,富邦台50,FTSE TWSE Taiwan 50 Index,PASSIVE,CONFIRMED,https://websys.fsit.com.tw/FubonETF/Fund/IndexIntro.aspx?stkId=006208,2026-10-09T10:33:57+08:00
 00878,國泰永續高股息,MSCI臺灣ESG永續高股息精選30指數,PASSIVE,CONFIRMED,https://www.cathaysite.com.tw/ETF/index-trend?keyword=00878,2026-10-09T10:33:57+08:00
-00904,台新臺灣半導體30,臺灣指數公司臺灣全市場半導體精選30指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/452,2026-10-09T10:33:57+08:00
-00919,群益台灣精選高息,臺灣指數公司特選臺灣上市上櫃精選高息指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/452,2026-10-09T10:33:57+08:00
-00929,復華台灣科技優息,臺灣指數公司特選臺灣上市上櫃科技優息指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/452,2026-10-09T10:33:57+08:00
-00934,中信成長高股息,臺灣指數公司特選臺灣上市上櫃優選成長高股息指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/452,2026-10-09T10:33:57+08:00
-009802,富邦旗艦50,臺灣指數公司台灣上市上櫃旗艦動能50指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/452,2026-10-09T10:33:57+08:00
-00923,群益台ESG低碳50,臺灣指數公司特選臺灣ESG低碳50指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/454,2026-10-09T10:33:57+08:00
-00930,永豐ESG低碳高息,臺灣指數公司特選臺灣上市上櫃ESG低碳高息40指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/454,2026-10-09T10:33:57+08:00
-00936,台新永續高息中小,臺灣指數公司特選臺灣上市上櫃永續高息中小型股指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/454,2026-10-09T10:33:57+08:00
-00939,統一台灣高息動能,臺灣指數公司特選臺灣上市上櫃高息動能指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/454,2026-10-09T10:33:57+08:00
+00904,台新臺灣半導體30ETF,臺灣指數公司臺灣全市場半導體精選30指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/452,2026-10-09T10:33:57+08:00
+00919,群益台灣精選高息ETF,臺灣指數公司特選臺灣上市上櫃精選高息指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/452,2026-10-09T10:33:57+08:00
+00923,群益台ESG低碳50ETF,臺灣指數公司特選臺灣ESG低碳50指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/454,2026-10-09T10:33:57+08:00
+00929,復華台灣科技優息ETF,臺灣指數公司特選臺灣上市上櫃科技優息指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/452,2026-10-09T10:33:57+08:00
+00930,永豐ESG低碳高息ETF,臺灣指數公司特選臺灣上市上櫃ESG低碳高息40指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/454,2026-10-09T10:33:57+08:00
+00934,中信成長高股息ETF,臺灣指數公司特選臺灣上市上櫃優選成長高股息指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/452,2026-10-09T10:33:57+08:00
+00936,台新永續高息中小ETF,臺灣指數公司特選臺灣上市上櫃永續高息中小型股指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/454,2026-10-09T10:33:57+08:00
+00939,統一台灣高息動能ETF,臺灣指數公司特選臺灣上市上櫃高息動能指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/454,2026-10-09T10:33:57+08:00
+009802,富邦旗艦50ETF,臺灣指數公司台灣上市上櫃旗艦動能50指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/452,2026-10-09T10:33:57+08:00
