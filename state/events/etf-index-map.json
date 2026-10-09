@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-09T16:45:18+08:00",
+  "updated_at": "2026-10-09T16:52:46+08:00",
   "coverage_status": "PARTIAL",
   "mappings": [
     {
@@ -22,9 +22,10 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
+      "change_history": [],
       "evidence_sources": [
         {
           "source_url": "https://www.yuantaetfs.com/product/detail/0050/Basic_information",
@@ -36,8 +37,7 @@
           "index_name": "臺灣50指數",
           "first_seen_at": "2026-10-09T16:45:18+08:00"
         }
-      ],
-      "change_history": []
+      ]
     },
     {
       "etf_code": "0051",
@@ -59,9 +59,10 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
+      "change_history": [],
       "evidence_sources": [
         {
           "source_url": "https://www.yuantaetfs.com/product/domestic",
@@ -73,8 +74,7 @@
           "index_name": "臺灣中型100指數",
           "first_seen_at": "2026-10-09T16:45:18+08:00"
         }
-      ],
-      "change_history": []
+      ]
     },
     {
       "etf_code": "0052",
@@ -96,9 +96,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣資訊科技指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "0053",
@@ -120,9 +128,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "電子類加權股價指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "0054",
@@ -144,9 +160,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "S&P台商收成指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "0055",
@@ -168,9 +192,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "MSCI台灣金融指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "0056",
@@ -192,9 +224,10 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
+      "change_history": [],
       "evidence_sources": [
         {
           "source_url": "https://www.yuantaetfs.com/product/detail/0056/Basic_information",
@@ -206,8 +239,7 @@
           "index_name": "臺灣高股息指數",
           "first_seen_at": "2026-10-09T16:45:18+08:00"
         }
-      ],
-      "change_history": []
+      ]
     },
     {
       "etf_code": "0057",
@@ -229,9 +261,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "MSCI臺灣指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "0058",
@@ -253,9 +293,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣發達指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "0059",
@@ -277,9 +325,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "金融保險類股指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "0060",
@@ -301,9 +357,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "未含電子股50指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "006203",
@@ -325,9 +389,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "MSCI®臺灣指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "006204",
@@ -349,9 +421,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣證券交易所發行量加權股價指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "006208",
@@ -373,9 +453,10 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
+      "change_history": [],
       "evidence_sources": [
         {
           "source_url": "https://websys.fsit.com.tw/FubonETF/Fund/IndexIntro.aspx?stkId=006208",
@@ -387,8 +468,7 @@
           "index_name": "臺灣50指數",
           "first_seen_at": "2026-10-09T16:45:18+08:00"
         }
-      ],
-      "change_history": []
+      ]
     },
     {
       "etf_code": "00690",
@@ -410,9 +490,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "藍籌30指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00692",
@@ -434,9 +522,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣證券交易所公司治理100指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00701",
@@ -458,9 +554,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司低波動股利精選30指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00713",
@@ -482,9 +586,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選高股息低波動指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00728",
@@ -506,9 +618,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣工業菁英30指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00730",
@@ -530,9 +650,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "道瓊斯台灣優質高股息30指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00731",
@@ -554,9 +682,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "富時台灣高股息低波動指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00733",
@@ -578,9 +714,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司中小型A級動能50指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00742",
@@ -602,9 +746,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選內需高收益指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00850",
@@ -626,9 +778,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣永續指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00878",
@@ -650,9 +810,10 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
+      "change_history": [],
       "evidence_sources": [
         {
           "source_url": "https://www.cathaysite.com.tw/ETF/index-trend?keyword=00878",
@@ -664,8 +825,7 @@
           "index_name": "MSCI臺灣ESG永續高股息精選30指數",
           "first_seen_at": "2026-10-09T16:45:18+08:00"
         }
-      ],
-      "change_history": []
+      ]
     },
     {
       "etf_code": "00881",
@@ -687,9 +847,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選臺灣上市上櫃FactSet科技龍頭通訊指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00891",
@@ -711,9 +879,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "NYSE FactSet 臺灣ESG永續關鍵半導體指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00892",
@@ -735,9 +911,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "NYSE FactSet台灣核心半導體指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00894",
@@ -759,9 +943,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選小資高價30指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00896",
@@ -783,9 +975,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選臺灣上市上櫃綠能及電動車指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00900",
@@ -807,9 +1007,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選臺灣上市上櫃高股息30指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00901",
@@ -831,9 +1039,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選上市上櫃臺灣智能車供應鏈聯盟指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00904",
@@ -855,9 +1071,10 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
+      "change_history": [],
       "evidence_sources": [
         {
           "source_url": "https://taiwanindex.com.tw/news/452",
@@ -869,8 +1086,7 @@
           "index_name": "臺灣指數公司臺灣全市場半導體精選30指數",
           "first_seen_at": "2026-10-09T16:45:18+08:00"
         }
-      ],
-      "change_history": []
+      ]
     },
     {
       "etf_code": "00905",
@@ -892,9 +1108,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選Smart多因子指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00907",
@@ -916,9 +1140,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選臺灣優選入息存股指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00912",
@@ -940,9 +1172,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選臺灣上市上櫃智慧50指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00913",
@@ -964,9 +1204,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣晶圓製造指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00915",
@@ -988,9 +1236,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選臺灣上市上櫃多因子優選高股息30指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00918",
@@ -1012,9 +1268,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "特選台灣優利高填息30指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00919",
@@ -1036,9 +1300,10 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
+      "change_history": [],
       "evidence_sources": [
         {
           "source_url": "https://taiwanindex.com.tw/news/452",
@@ -1050,8 +1315,7 @@
           "index_name": "臺灣指數公司特選臺灣上市上櫃精選高息指數",
           "first_seen_at": "2026-10-09T16:45:18+08:00"
         }
-      ],
-      "change_history": []
+      ]
     },
     {
       "etf_code": "00921",
@@ -1073,9 +1337,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "特選臺灣產業龍頭存股等權重指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00922",
@@ -1097,9 +1369,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "MSCI台灣領袖50精選指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00923",
@@ -1121,9 +1401,10 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
+      "change_history": [],
       "evidence_sources": [
         {
           "source_url": "https://taiwanindex.com.tw/news/454",
@@ -1135,8 +1416,7 @@
           "index_name": "臺灣指數公司特選臺灣ESG低碳50指數",
           "first_seen_at": "2026-10-09T16:45:18+08:00"
         }
-      ],
-      "change_history": []
+      ]
     },
     {
       "etf_code": "00927",
@@ -1158,9 +1438,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選臺灣上市上櫃半導體收益指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00929",
@@ -1182,9 +1470,10 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
+      "change_history": [],
       "evidence_sources": [
         {
           "source_url": "https://taiwanindex.com.tw/news/452",
@@ -1196,8 +1485,7 @@
           "index_name": "臺灣指數公司特選臺灣上市上櫃科技優息指數",
           "first_seen_at": "2026-10-09T16:45:18+08:00"
         }
-      ],
-      "change_history": []
+      ]
     },
     {
       "etf_code": "00930",
@@ -1219,9 +1507,10 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
+      "change_history": [],
       "evidence_sources": [
         {
           "source_url": "https://taiwanindex.com.tw/news/454",
@@ -1233,8 +1522,7 @@
           "index_name": "臺灣指數公司特選臺灣上市上櫃ESG低碳高息40指數",
           "first_seen_at": "2026-10-09T16:45:18+08:00"
         }
-      ],
-      "change_history": []
+      ]
     },
     {
       "etf_code": "00932",
@@ -1256,9 +1544,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣ESG永續高股息等權重指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00934",
@@ -1280,9 +1576,10 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
+      "change_history": [],
       "evidence_sources": [
         {
           "source_url": "https://taiwanindex.com.tw/news/452",
@@ -1294,8 +1591,7 @@
           "index_name": "臺灣指數公司特選臺灣上市上櫃優選成長高股息指數",
           "first_seen_at": "2026-10-09T16:45:18+08:00"
         }
-      ],
-      "change_history": []
+      ]
     },
     {
       "etf_code": "00935",
@@ -1317,9 +1613,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選臺灣上市上櫃FactSet創新科技50指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00936",
@@ -1341,21 +1645,9 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFLICT",
-      "evidence_sources": [
-        {
-          "source_url": "https://taiwanindex.com.tw/news/454",
-          "index_name": "臺灣指數公司特選臺灣上市上櫃永續高息中小型股指數",
-          "first_seen_at": "2026-10-09T10:33:57+08:00"
-        },
-        {
-          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
-          "index_name": "台灣永續高息中小型指數",
-          "first_seen_at": "2026-10-09T16:45:18+08:00"
-        }
-      ],
       "change_history": [
         {
           "observed_at": "2026-10-09T16:45:18+08:00",
@@ -1376,6 +1668,18 @@
               }
             ]
           }
+        }
+      ],
+      "evidence_sources": [
+        {
+          "source_url": "https://taiwanindex.com.tw/news/454",
+          "index_name": "臺灣指數公司特選臺灣上市上櫃永續高息中小型股指數",
+          "first_seen_at": "2026-10-09T10:33:57+08:00"
+        },
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "台灣永續高息中小型指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
         }
       ],
       "conflicting_index_names": [
@@ -1403,9 +1707,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選臺灣上市上櫃優選多因子30指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00939",
@@ -1427,21 +1739,9 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFLICT",
-      "evidence_sources": [
-        {
-          "source_url": "https://taiwanindex.com.tw/news/454",
-          "index_name": "臺灣指數公司特選臺灣上市上櫃高息動能指數",
-          "first_seen_at": "2026-10-09T10:33:57+08:00"
-        },
-        {
-          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
-          "index_name": "特選臺灣高息動能指數",
-          "first_seen_at": "2026-10-09T16:45:18+08:00"
-        }
-      ],
       "change_history": [
         {
           "observed_at": "2026-10-09T16:45:18+08:00",
@@ -1462,6 +1762,18 @@
               }
             ]
           }
+        }
+      ],
+      "evidence_sources": [
+        {
+          "source_url": "https://taiwanindex.com.tw/news/454",
+          "index_name": "臺灣指數公司特選臺灣上市上櫃高息動能指數",
+          "first_seen_at": "2026-10-09T10:33:57+08:00"
+        },
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "特選臺灣高息動能指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
         }
       ],
       "conflicting_index_names": [
@@ -1489,9 +1801,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選臺灣價值高息指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00943",
@@ -1513,9 +1833,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣電子成長高息等權重指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00944",
@@ -1537,9 +1865,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選臺灣上市上櫃FactSet臺灣趨勢動能高股息指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00946",
@@ -1561,9 +1897,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選臺灣上市上櫃科技高息成長指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00947",
@@ -1585,9 +1929,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "台灣IC設計動能指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00952",
@@ -1609,9 +1961,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選臺灣上市上櫃FactSet優選AI 50指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00961",
@@ -1633,9 +1993,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "NYSE臺灣ESG高息指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "00962",
@@ -1657,9 +2025,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "台灣AI優息動能指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "009802",
@@ -1681,9 +2057,10 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
+      "change_history": [],
       "evidence_sources": [
         {
           "source_url": "https://taiwanindex.com.tw/news/452",
@@ -1695,8 +2072,7 @@
           "index_name": "臺灣指數公司台灣上市上櫃旗艦動能50指數",
           "first_seen_at": "2026-10-09T16:45:18+08:00"
         }
-      ],
-      "change_history": []
+      ]
     },
     {
       "etf_code": "009803",
@@ -1718,9 +2094,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選FactSet臺灣市值動能50指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "009804",
@@ -1742,9 +2126,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "富時臺灣證券交易所臺灣50權重上限30%指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "009808",
@@ -1766,9 +2158,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣護城河概念優選 50 指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "009809",
@@ -1790,9 +2190,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "S&P TIP臺灣淨零轉型ESG 50指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     },
     {
       "etf_code": "009816",
@@ -1814,9 +2222,17 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "calendar_eligible": true,
-      "mapping_status": "CONFIRMED"
+      "mapping_status": "CONFIRMED",
+      "change_history": [],
+      "evidence_sources": [
+        {
+          "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+          "index_name": "臺灣指數公司特選臺灣TOP 50指數",
+          "first_seen_at": "2026-10-09T16:45:18+08:00"
+        }
+      ]
     }
   ]
 }

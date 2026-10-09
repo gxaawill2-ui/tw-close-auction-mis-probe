@@ -5,7 +5,7 @@
     "2026-10-09",
     "2027-10-31"
   ],
-  "generated_at": "2026-10-09T16:45:18+08:00",
+  "generated_at": "2026-10-09T16:52:46+08:00",
   "coverage_status": "PARTIAL",
   "events": [
     {
@@ -33,10 +33,73 @@
       "source_url": "https://www.yuantaetfs.com/product/detail/0056/Basic_information",
       "source_document": "https://www.yuantaetfs.com/product/detail/0056/Basic_information",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
-      "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
-      "updated_at": "2026-10-09T16:45:18+08:00",
-      "change_history": [],
+      "information_available_as_of": "2026-10-09T16:52:46+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
+      "updated_at": "2026-10-09T16:52:46+08:00",
+      "change_history": [
+        {
+          "observed_at": "2026-10-09T16:52:46+08:00",
+          "changes": {
+            "date_conflicts": {
+              "old": null,
+              "new": {}
+            }
+          },
+          "previous_version": {
+            "event_id": "165e6e1735be4bb74963",
+            "event_name": "臺灣高股息指數 · 2026-06",
+            "review_cycle": "2026-06",
+            "event_type": "ISSUER_INDEX_REVIEW",
+            "source_organization": "YUANTA",
+            "index_name": "臺灣高股息指數",
+            "related_etf_codes": [
+              "0056"
+            ],
+            "announcement_date": null,
+            "announcement_time": null,
+            "review_date": null,
+            "effective_date": "2026-06-26",
+            "closing_impact_date": null,
+            "implementation_window": null,
+            "affected_stocks": [],
+            "constituent_details_status": "COUNTS_ONLY",
+            "event_status": "DATE_ONLY",
+            "evidence_level": "OFFICIAL_ISSUER_DATE_ONLY",
+            "close_date_status": "DATE_UNVERIFIED",
+            "importance": "PENDING",
+            "source_url": "https://www.yuantaetfs.com/product/detail/0056/Basic_information",
+            "source_document": "https://www.yuantaetfs.com/product/detail/0056/Basic_information",
+            "first_seen_at": "2026-10-09T16:45:18+08:00",
+            "information_available_as_of": "2026-10-09T16:45:18+08:00",
+            "last_checked_at": "2026-10-09T16:45:18+08:00",
+            "updated_at": "2026-10-09T16:45:18+08:00",
+            "date_evidence": [
+              "EXPLICIT_ISSUER_EFFECTIVE_DATE_LABEL"
+            ],
+            "original_dates": {},
+            "scope_note": "發行商揭露指數調整生效日與檔數，未提供本基金實際下單日期；官方指數公告仍為準。",
+            "constituent_counts": {
+              "additions": 0,
+              "deletions": 4
+            },
+            "source_evidence": [
+              {
+                "source_url": "https://www.yuantaetfs.com/product/detail/0056/Basic_information",
+                "source_organization": "YUANTA",
+                "evidence_level": "OFFICIAL_ISSUER_DATE_ONLY",
+                "observed_at": "2026-10-09T16:45:18+08:00",
+                "announcement_date": null,
+                "review_date": null,
+                "effective_date": "2026-06-26",
+                "closing_impact_date": null,
+                "announcement_time": null,
+                "close_date_status": "DATE_UNVERIFIED",
+                "implementation_window": null
+              }
+            ]
+          }
+        }
+      ],
       "date_evidence": [
         "EXPLICIT_ISSUER_EFFECTIVE_DATE_LABEL"
       ],
@@ -60,7 +123,8 @@
           "close_date_status": "DATE_UNVERIFIED",
           "implementation_window": null
         }
-      ]
+      ],
+      "date_conflicts": {}
     },
     {
       "event_id": "c1f4d7424ad5078daee0",
@@ -88,10 +152,74 @@
       "source_url": "https://www.yuantaetfs.com/product/detail/006203/Basic_information",
       "source_document": "https://www.yuantaetfs.com/product/detail/006203/Basic_information",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
-      "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
-      "updated_at": "2026-10-09T16:45:18+08:00",
-      "change_history": [],
+      "information_available_as_of": "2026-10-09T16:52:46+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
+      "updated_at": "2026-10-09T16:52:46+08:00",
+      "change_history": [
+        {
+          "observed_at": "2026-10-09T16:52:46+08:00",
+          "changes": {
+            "date_conflicts": {
+              "old": null,
+              "new": {}
+            }
+          },
+          "previous_version": {
+            "event_id": "c1f4d7424ad5078daee0",
+            "event_name": "MSCI®臺灣指數 · 2026-09",
+            "review_cycle": "2026-09",
+            "event_type": "ISSUER_INDEX_REVIEW",
+            "source_organization": "YUANTA",
+            "index_name": "MSCI®臺灣指數",
+            "related_etf_codes": [
+              "0057",
+              "006203"
+            ],
+            "announcement_date": null,
+            "announcement_time": null,
+            "review_date": null,
+            "effective_date": "2026-09-01",
+            "closing_impact_date": null,
+            "implementation_window": null,
+            "affected_stocks": [],
+            "constituent_details_status": "COUNTS_ONLY",
+            "event_status": "DATE_ONLY",
+            "evidence_level": "OFFICIAL_ISSUER_DATE_ONLY",
+            "close_date_status": "DATE_UNVERIFIED",
+            "importance": "PENDING",
+            "source_url": "https://www.yuantaetfs.com/product/detail/006203/Basic_information",
+            "source_document": "https://www.yuantaetfs.com/product/detail/006203/Basic_information",
+            "first_seen_at": "2026-10-09T16:45:18+08:00",
+            "information_available_as_of": "2026-10-09T16:45:18+08:00",
+            "last_checked_at": "2026-10-09T16:45:18+08:00",
+            "updated_at": "2026-10-09T16:45:18+08:00",
+            "date_evidence": [
+              "EXPLICIT_ISSUER_EFFECTIVE_DATE_LABEL"
+            ],
+            "original_dates": {},
+            "scope_note": "發行商揭露指數調整生效日與檔數，未提供本基金實際下單日期；官方指數公告仍為準。",
+            "constituent_counts": {
+              "additions": 3,
+              "deletions": 6
+            },
+            "source_evidence": [
+              {
+                "source_url": "https://www.yuantaetfs.com/product/detail/006203/Basic_information",
+                "source_organization": "YUANTA",
+                "evidence_level": "OFFICIAL_ISSUER_DATE_ONLY",
+                "observed_at": "2026-10-09T16:45:18+08:00",
+                "announcement_date": null,
+                "review_date": null,
+                "effective_date": "2026-09-01",
+                "closing_impact_date": null,
+                "announcement_time": null,
+                "close_date_status": "DATE_UNVERIFIED",
+                "implementation_window": null
+              }
+            ]
+          }
+        }
+      ],
       "date_evidence": [
         "EXPLICIT_ISSUER_EFFECTIVE_DATE_LABEL"
       ],
@@ -115,7 +243,8 @@
           "close_date_status": "DATE_UNVERIFIED",
           "implementation_window": null
         }
-      ]
+      ],
+      "date_conflicts": {}
     },
     {
       "event_id": "0cba14be4a0b5b70b88a",
@@ -142,10 +271,71 @@
       "source_url": "https://taiwanindex.com.tw/news/452",
       "source_document": "https://taiwanindex.com.tw/news/452",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
-      "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
-      "updated_at": "2026-10-09T16:45:18+08:00",
-      "change_history": [],
+      "information_available_as_of": "2026-10-09T16:52:46+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
+      "updated_at": "2026-10-09T16:52:46+08:00",
+      "change_history": [
+        {
+          "observed_at": "2026-10-09T16:52:46+08:00",
+          "changes": {
+            "date_conflicts": {
+              "old": null,
+              "new": {}
+            }
+          },
+          "previous_version": {
+            "event_id": "0cba14be4a0b5b70b88a",
+            "event_name": "臺灣指數公司特選臺灣上市上櫃科技優息指數 · 2026-09",
+            "review_cycle": "2026-09",
+            "event_type": "INDEX_REVIEW",
+            "source_organization": "TIP",
+            "index_name": "臺灣指數公司特選臺灣上市上櫃科技優息指數",
+            "related_etf_codes": [
+              "00929"
+            ],
+            "announcement_date": "2026-09-16",
+            "announcement_time": "17:13",
+            "review_date": null,
+            "effective_date": "2026-09-17",
+            "closing_impact_date": "2026-09-16",
+            "implementation_window": null,
+            "affected_stocks": [],
+            "constituent_details_status": "NOT_PUBLISHED",
+            "event_status": "ANNOUNCED",
+            "evidence_level": "OFFICIAL_IMPLEMENTATION",
+            "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+            "importance": "GENERAL",
+            "source_url": "https://taiwanindex.com.tw/news/452",
+            "source_document": "https://taiwanindex.com.tw/news/452",
+            "first_seen_at": "2026-10-09T16:45:18+08:00",
+            "information_available_as_of": "2026-10-09T16:45:18+08:00",
+            "last_checked_at": "2026-10-09T16:45:18+08:00",
+            "updated_at": "2026-10-09T16:45:18+08:00",
+            "date_evidence": [
+              "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
+            ],
+            "original_dates": {},
+            "implementation_scope": "INDEX_AFTER_CLOSE; ETF_TRADE_TIME_UNKNOWN",
+            "scope_note": "確認指數收盤後實施，未證實ETF實際下單時點；無公開個股名單不得標記股票。",
+            "official_announced_at": "2026-09-16T17:13:00+08:00",
+            "source_evidence": [
+              {
+                "source_url": "https://taiwanindex.com.tw/news/452",
+                "source_organization": "TIP",
+                "evidence_level": "OFFICIAL_IMPLEMENTATION",
+                "observed_at": "2026-10-09T16:45:18+08:00",
+                "announcement_date": "2026-09-16",
+                "review_date": null,
+                "effective_date": "2026-09-17",
+                "closing_impact_date": "2026-09-16",
+                "announcement_time": "17:13",
+                "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+                "implementation_window": null
+              }
+            ]
+          }
+        }
+      ],
       "date_evidence": [
         "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
       ],
@@ -167,7 +357,8 @@
           "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
           "implementation_window": null
         }
-      ]
+      ],
+      "date_conflicts": {}
     },
     {
       "event_id": "312afb4c024a50c001a4",
@@ -194,10 +385,71 @@
       "source_url": "https://taiwanindex.com.tw/news/452",
       "source_document": "https://taiwanindex.com.tw/news/452",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
-      "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
-      "updated_at": "2026-10-09T16:45:18+08:00",
-      "change_history": [],
+      "information_available_as_of": "2026-10-09T16:52:46+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
+      "updated_at": "2026-10-09T16:52:46+08:00",
+      "change_history": [
+        {
+          "observed_at": "2026-10-09T16:52:46+08:00",
+          "changes": {
+            "date_conflicts": {
+              "old": null,
+              "new": {}
+            }
+          },
+          "previous_version": {
+            "event_id": "312afb4c024a50c001a4",
+            "event_name": "臺灣指數公司特選臺灣上市上櫃精選高息指數 · 2026-09",
+            "review_cycle": "2026-09",
+            "event_type": "INDEX_REVIEW",
+            "source_organization": "TIP",
+            "index_name": "臺灣指數公司特選臺灣上市上櫃精選高息指數",
+            "related_etf_codes": [
+              "00919"
+            ],
+            "announcement_date": "2026-09-16",
+            "announcement_time": "17:13",
+            "review_date": null,
+            "effective_date": "2026-09-17",
+            "closing_impact_date": "2026-09-16",
+            "implementation_window": null,
+            "affected_stocks": [],
+            "constituent_details_status": "NOT_PUBLISHED",
+            "event_status": "ANNOUNCED",
+            "evidence_level": "OFFICIAL_IMPLEMENTATION",
+            "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+            "importance": "GENERAL",
+            "source_url": "https://taiwanindex.com.tw/news/452",
+            "source_document": "https://taiwanindex.com.tw/news/452",
+            "first_seen_at": "2026-10-09T16:45:18+08:00",
+            "information_available_as_of": "2026-10-09T16:45:18+08:00",
+            "last_checked_at": "2026-10-09T16:45:18+08:00",
+            "updated_at": "2026-10-09T16:45:18+08:00",
+            "date_evidence": [
+              "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
+            ],
+            "original_dates": {},
+            "implementation_scope": "INDEX_AFTER_CLOSE; ETF_TRADE_TIME_UNKNOWN",
+            "scope_note": "確認指數收盤後實施，未證實ETF實際下單時點；無公開個股名單不得標記股票。",
+            "official_announced_at": "2026-09-16T17:13:00+08:00",
+            "source_evidence": [
+              {
+                "source_url": "https://taiwanindex.com.tw/news/452",
+                "source_organization": "TIP",
+                "evidence_level": "OFFICIAL_IMPLEMENTATION",
+                "observed_at": "2026-10-09T16:45:18+08:00",
+                "announcement_date": "2026-09-16",
+                "review_date": null,
+                "effective_date": "2026-09-17",
+                "closing_impact_date": "2026-09-16",
+                "announcement_time": "17:13",
+                "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+                "implementation_window": null
+              }
+            ]
+          }
+        }
+      ],
       "date_evidence": [
         "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
       ],
@@ -219,7 +471,8 @@
           "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
           "implementation_window": null
         }
-      ]
+      ],
+      "date_conflicts": {}
     },
     {
       "event_id": "57b0144fbb0be8efca5a",
@@ -246,10 +499,71 @@
       "source_url": "https://taiwanindex.com.tw/news/452",
       "source_document": "https://taiwanindex.com.tw/news/452",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
-      "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
-      "updated_at": "2026-10-09T16:45:18+08:00",
-      "change_history": [],
+      "information_available_as_of": "2026-10-09T16:52:46+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
+      "updated_at": "2026-10-09T16:52:46+08:00",
+      "change_history": [
+        {
+          "observed_at": "2026-10-09T16:52:46+08:00",
+          "changes": {
+            "date_conflicts": {
+              "old": null,
+              "new": {}
+            }
+          },
+          "previous_version": {
+            "event_id": "57b0144fbb0be8efca5a",
+            "event_name": "臺灣指數公司臺灣全市場半導體精選30指數 · 2026-09",
+            "review_cycle": "2026-09",
+            "event_type": "INDEX_REVIEW",
+            "source_organization": "TIP",
+            "index_name": "臺灣指數公司臺灣全市場半導體精選30指數",
+            "related_etf_codes": [
+              "00904"
+            ],
+            "announcement_date": "2026-09-16",
+            "announcement_time": "17:13",
+            "review_date": null,
+            "effective_date": "2026-09-17",
+            "closing_impact_date": "2026-09-16",
+            "implementation_window": null,
+            "affected_stocks": [],
+            "constituent_details_status": "NOT_PUBLISHED",
+            "event_status": "ANNOUNCED",
+            "evidence_level": "OFFICIAL_IMPLEMENTATION",
+            "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+            "importance": "GENERAL",
+            "source_url": "https://taiwanindex.com.tw/news/452",
+            "source_document": "https://taiwanindex.com.tw/news/452",
+            "first_seen_at": "2026-10-09T16:45:18+08:00",
+            "information_available_as_of": "2026-10-09T16:45:18+08:00",
+            "last_checked_at": "2026-10-09T16:45:18+08:00",
+            "updated_at": "2026-10-09T16:45:18+08:00",
+            "date_evidence": [
+              "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
+            ],
+            "original_dates": {},
+            "implementation_scope": "INDEX_AFTER_CLOSE; ETF_TRADE_TIME_UNKNOWN",
+            "scope_note": "確認指數收盤後實施，未證實ETF實際下單時點；無公開個股名單不得標記股票。",
+            "official_announced_at": "2026-09-16T17:13:00+08:00",
+            "source_evidence": [
+              {
+                "source_url": "https://taiwanindex.com.tw/news/452",
+                "source_organization": "TIP",
+                "evidence_level": "OFFICIAL_IMPLEMENTATION",
+                "observed_at": "2026-10-09T16:45:18+08:00",
+                "announcement_date": "2026-09-16",
+                "review_date": null,
+                "effective_date": "2026-09-17",
+                "closing_impact_date": "2026-09-16",
+                "announcement_time": "17:13",
+                "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+                "implementation_window": null
+              }
+            ]
+          }
+        }
+      ],
       "date_evidence": [
         "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
       ],
@@ -271,7 +585,8 @@
           "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
           "implementation_window": null
         }
-      ]
+      ],
+      "date_conflicts": {}
     },
     {
       "event_id": "62a9a3992fcdfe48af1a",
@@ -298,10 +613,71 @@
       "source_url": "https://taiwanindex.com.tw/news/452",
       "source_document": "https://taiwanindex.com.tw/news/452",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
-      "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
-      "updated_at": "2026-10-09T16:45:18+08:00",
-      "change_history": [],
+      "information_available_as_of": "2026-10-09T16:52:46+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
+      "updated_at": "2026-10-09T16:52:46+08:00",
+      "change_history": [
+        {
+          "observed_at": "2026-10-09T16:52:46+08:00",
+          "changes": {
+            "date_conflicts": {
+              "old": null,
+              "new": {}
+            }
+          },
+          "previous_version": {
+            "event_id": "62a9a3992fcdfe48af1a",
+            "event_name": "臺灣指數公司台灣上市上櫃旗艦動能50指數 · 2026-09",
+            "review_cycle": "2026-09",
+            "event_type": "INDEX_REVIEW",
+            "source_organization": "TIP",
+            "index_name": "臺灣指數公司台灣上市上櫃旗艦動能50指數",
+            "related_etf_codes": [
+              "009802"
+            ],
+            "announcement_date": "2026-09-16",
+            "announcement_time": "17:13",
+            "review_date": null,
+            "effective_date": "2026-09-17",
+            "closing_impact_date": "2026-09-16",
+            "implementation_window": null,
+            "affected_stocks": [],
+            "constituent_details_status": "NOT_PUBLISHED",
+            "event_status": "ANNOUNCED",
+            "evidence_level": "OFFICIAL_IMPLEMENTATION",
+            "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+            "importance": "GENERAL",
+            "source_url": "https://taiwanindex.com.tw/news/452",
+            "source_document": "https://taiwanindex.com.tw/news/452",
+            "first_seen_at": "2026-10-09T16:45:18+08:00",
+            "information_available_as_of": "2026-10-09T16:45:18+08:00",
+            "last_checked_at": "2026-10-09T16:45:18+08:00",
+            "updated_at": "2026-10-09T16:45:18+08:00",
+            "date_evidence": [
+              "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
+            ],
+            "original_dates": {},
+            "implementation_scope": "INDEX_AFTER_CLOSE; ETF_TRADE_TIME_UNKNOWN",
+            "scope_note": "確認指數收盤後實施，未證實ETF實際下單時點；無公開個股名單不得標記股票。",
+            "official_announced_at": "2026-09-16T17:13:00+08:00",
+            "source_evidence": [
+              {
+                "source_url": "https://taiwanindex.com.tw/news/452",
+                "source_organization": "TIP",
+                "evidence_level": "OFFICIAL_IMPLEMENTATION",
+                "observed_at": "2026-10-09T16:45:18+08:00",
+                "announcement_date": "2026-09-16",
+                "review_date": null,
+                "effective_date": "2026-09-17",
+                "closing_impact_date": "2026-09-16",
+                "announcement_time": "17:13",
+                "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+                "implementation_window": null
+              }
+            ]
+          }
+        }
+      ],
       "date_evidence": [
         "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
       ],
@@ -323,7 +699,8 @@
           "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
           "implementation_window": null
         }
-      ]
+      ],
+      "date_conflicts": {}
     },
     {
       "event_id": "fbb15ad5bf4040fa1557",
@@ -350,10 +727,71 @@
       "source_url": "https://taiwanindex.com.tw/news/452",
       "source_document": "https://taiwanindex.com.tw/news/452",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
-      "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
-      "updated_at": "2026-10-09T16:45:18+08:00",
-      "change_history": [],
+      "information_available_as_of": "2026-10-09T16:52:46+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
+      "updated_at": "2026-10-09T16:52:46+08:00",
+      "change_history": [
+        {
+          "observed_at": "2026-10-09T16:52:46+08:00",
+          "changes": {
+            "date_conflicts": {
+              "old": null,
+              "new": {}
+            }
+          },
+          "previous_version": {
+            "event_id": "fbb15ad5bf4040fa1557",
+            "event_name": "臺灣指數公司特選臺灣上市上櫃優選成長高股息指數 · 2026-09",
+            "review_cycle": "2026-09",
+            "event_type": "INDEX_REVIEW",
+            "source_organization": "TIP",
+            "index_name": "臺灣指數公司特選臺灣上市上櫃優選成長高股息指數",
+            "related_etf_codes": [
+              "00934"
+            ],
+            "announcement_date": "2026-09-16",
+            "announcement_time": "17:13",
+            "review_date": null,
+            "effective_date": "2026-09-17",
+            "closing_impact_date": "2026-09-16",
+            "implementation_window": null,
+            "affected_stocks": [],
+            "constituent_details_status": "NOT_PUBLISHED",
+            "event_status": "ANNOUNCED",
+            "evidence_level": "OFFICIAL_IMPLEMENTATION",
+            "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+            "importance": "GENERAL",
+            "source_url": "https://taiwanindex.com.tw/news/452",
+            "source_document": "https://taiwanindex.com.tw/news/452",
+            "first_seen_at": "2026-10-09T16:45:18+08:00",
+            "information_available_as_of": "2026-10-09T16:45:18+08:00",
+            "last_checked_at": "2026-10-09T16:45:18+08:00",
+            "updated_at": "2026-10-09T16:45:18+08:00",
+            "date_evidence": [
+              "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
+            ],
+            "original_dates": {},
+            "implementation_scope": "INDEX_AFTER_CLOSE; ETF_TRADE_TIME_UNKNOWN",
+            "scope_note": "確認指數收盤後實施，未證實ETF實際下單時點；無公開個股名單不得標記股票。",
+            "official_announced_at": "2026-09-16T17:13:00+08:00",
+            "source_evidence": [
+              {
+                "source_url": "https://taiwanindex.com.tw/news/452",
+                "source_organization": "TIP",
+                "evidence_level": "OFFICIAL_IMPLEMENTATION",
+                "observed_at": "2026-10-09T16:45:18+08:00",
+                "announcement_date": "2026-09-16",
+                "review_date": null,
+                "effective_date": "2026-09-17",
+                "closing_impact_date": "2026-09-16",
+                "announcement_time": "17:13",
+                "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+                "implementation_window": null
+              }
+            ]
+          }
+        }
+      ],
       "date_evidence": [
         "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
       ],
@@ -375,7 +813,8 @@
           "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
           "implementation_window": null
         }
-      ]
+      ],
+      "date_conflicts": {}
     },
     {
       "event_id": "c807f23f5e4fec961cbc",
@@ -402,10 +841,73 @@
       "source_url": "https://www.yuantaetfs.com/product/detail/0051/Basic_information",
       "source_document": "https://www.yuantaetfs.com/product/detail/0051/Basic_information",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
-      "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
-      "updated_at": "2026-10-09T16:45:18+08:00",
-      "change_history": [],
+      "information_available_as_of": "2026-10-09T16:52:46+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
+      "updated_at": "2026-10-09T16:52:46+08:00",
+      "change_history": [
+        {
+          "observed_at": "2026-10-09T16:52:46+08:00",
+          "changes": {
+            "date_conflicts": {
+              "old": null,
+              "new": {}
+            }
+          },
+          "previous_version": {
+            "event_id": "c807f23f5e4fec961cbc",
+            "event_name": "臺灣中型100指數 · 2026-09",
+            "review_cycle": "2026-09",
+            "event_type": "ISSUER_INDEX_REVIEW",
+            "source_organization": "YUANTA",
+            "index_name": "臺灣中型100指數",
+            "related_etf_codes": [
+              "0051"
+            ],
+            "announcement_date": null,
+            "announcement_time": null,
+            "review_date": null,
+            "effective_date": "2026-09-21",
+            "closing_impact_date": null,
+            "implementation_window": null,
+            "affected_stocks": [],
+            "constituent_details_status": "COUNTS_ONLY",
+            "event_status": "DATE_ONLY",
+            "evidence_level": "OFFICIAL_ISSUER_DATE_ONLY",
+            "close_date_status": "DATE_UNVERIFIED",
+            "importance": "PENDING",
+            "source_url": "https://www.yuantaetfs.com/product/detail/0051/Basic_information",
+            "source_document": "https://www.yuantaetfs.com/product/detail/0051/Basic_information",
+            "first_seen_at": "2026-10-09T16:45:18+08:00",
+            "information_available_as_of": "2026-10-09T16:45:18+08:00",
+            "last_checked_at": "2026-10-09T16:45:18+08:00",
+            "updated_at": "2026-10-09T16:45:18+08:00",
+            "date_evidence": [
+              "EXPLICIT_ISSUER_EFFECTIVE_DATE_LABEL"
+            ],
+            "original_dates": {},
+            "scope_note": "發行商揭露指數調整生效日與檔數，未提供本基金實際下單日期；官方指數公告仍為準。",
+            "constituent_counts": {
+              "additions": 4,
+              "deletions": 4
+            },
+            "source_evidence": [
+              {
+                "source_url": "https://www.yuantaetfs.com/product/detail/0051/Basic_information",
+                "source_organization": "YUANTA",
+                "evidence_level": "OFFICIAL_ISSUER_DATE_ONLY",
+                "observed_at": "2026-10-09T16:45:18+08:00",
+                "announcement_date": null,
+                "review_date": null,
+                "effective_date": "2026-09-21",
+                "closing_impact_date": null,
+                "announcement_time": null,
+                "close_date_status": "DATE_UNVERIFIED",
+                "implementation_window": null
+              }
+            ]
+          }
+        }
+      ],
       "date_evidence": [
         "EXPLICIT_ISSUER_EFFECTIVE_DATE_LABEL"
       ],
@@ -429,7 +931,8 @@
           "close_date_status": "DATE_UNVERIFIED",
           "implementation_window": null
         }
-      ]
+      ],
+      "date_conflicts": {}
     },
     {
       "event_id": "cff8d343574bcc301972",
@@ -457,10 +960,74 @@
       "source_url": "https://www.yuantaetfs.com/product/detail/0050/Basic_information",
       "source_document": "https://www.yuantaetfs.com/product/detail/0050/Basic_information",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
-      "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
-      "updated_at": "2026-10-09T16:45:18+08:00",
-      "change_history": [],
+      "information_available_as_of": "2026-10-09T16:52:46+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
+      "updated_at": "2026-10-09T16:52:46+08:00",
+      "change_history": [
+        {
+          "observed_at": "2026-10-09T16:52:46+08:00",
+          "changes": {
+            "date_conflicts": {
+              "old": null,
+              "new": {}
+            }
+          },
+          "previous_version": {
+            "event_id": "cff8d343574bcc301972",
+            "event_name": "臺灣50指數 · 2026-09",
+            "review_cycle": "2026-09",
+            "event_type": "ISSUER_INDEX_REVIEW",
+            "source_organization": "YUANTA",
+            "index_name": "臺灣50指數",
+            "related_etf_codes": [
+              "0050",
+              "006208"
+            ],
+            "announcement_date": null,
+            "announcement_time": null,
+            "review_date": null,
+            "effective_date": "2026-09-21",
+            "closing_impact_date": null,
+            "implementation_window": null,
+            "affected_stocks": [],
+            "constituent_details_status": "COUNTS_ONLY",
+            "event_status": "DATE_ONLY",
+            "evidence_level": "OFFICIAL_ISSUER_DATE_ONLY",
+            "close_date_status": "DATE_UNVERIFIED",
+            "importance": "PENDING",
+            "source_url": "https://www.yuantaetfs.com/product/detail/0050/Basic_information",
+            "source_document": "https://www.yuantaetfs.com/product/detail/0050/Basic_information",
+            "first_seen_at": "2026-10-09T16:45:18+08:00",
+            "information_available_as_of": "2026-10-09T16:45:18+08:00",
+            "last_checked_at": "2026-10-09T16:45:18+08:00",
+            "updated_at": "2026-10-09T16:45:18+08:00",
+            "date_evidence": [
+              "EXPLICIT_ISSUER_EFFECTIVE_DATE_LABEL"
+            ],
+            "original_dates": {},
+            "scope_note": "發行商揭露指數調整生效日與檔數，未提供本基金實際下單日期；官方指數公告仍為準。",
+            "constituent_counts": {
+              "additions": 1,
+              "deletions": 1
+            },
+            "source_evidence": [
+              {
+                "source_url": "https://www.yuantaetfs.com/product/detail/0050/Basic_information",
+                "source_organization": "YUANTA",
+                "evidence_level": "OFFICIAL_ISSUER_DATE_ONLY",
+                "observed_at": "2026-10-09T16:45:18+08:00",
+                "announcement_date": null,
+                "review_date": null,
+                "effective_date": "2026-09-21",
+                "closing_impact_date": null,
+                "announcement_time": null,
+                "close_date_status": "DATE_UNVERIFIED",
+                "implementation_window": null
+              }
+            ]
+          }
+        }
+      ],
       "date_evidence": [
         "EXPLICIT_ISSUER_EFFECTIVE_DATE_LABEL"
       ],
@@ -484,7 +1051,8 @@
           "close_date_status": "DATE_UNVERIFIED",
           "implementation_window": null
         }
-      ]
+      ],
+      "date_conflicts": {}
     },
     {
       "event_id": "67bd4c1e866467b040ce",
@@ -511,10 +1079,71 @@
       "source_url": "https://taiwanindex.com.tw/news/454",
       "source_document": "https://taiwanindex.com.tw/news/454",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
-      "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
-      "updated_at": "2026-10-09T16:45:18+08:00",
-      "change_history": [],
+      "information_available_as_of": "2026-10-09T16:52:46+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
+      "updated_at": "2026-10-09T16:52:46+08:00",
+      "change_history": [
+        {
+          "observed_at": "2026-10-09T16:52:46+08:00",
+          "changes": {
+            "date_conflicts": {
+              "old": null,
+              "new": {}
+            }
+          },
+          "previous_version": {
+            "event_id": "67bd4c1e866467b040ce",
+            "event_name": "臺灣指數公司特選臺灣上市上櫃高息動能指數 · 2026-10",
+            "review_cycle": "2026-10",
+            "event_type": "INDEX_REVIEW",
+            "source_organization": "TIP",
+            "index_name": "臺灣指數公司特選臺灣上市上櫃高息動能指數",
+            "related_etf_codes": [
+              "00939"
+            ],
+            "announcement_date": "2026-10-02",
+            "announcement_time": "17:00",
+            "review_date": null,
+            "effective_date": "2026-10-05",
+            "closing_impact_date": "2026-10-02",
+            "implementation_window": null,
+            "affected_stocks": [],
+            "constituent_details_status": "NOT_PUBLISHED",
+            "event_status": "ANNOUNCED",
+            "evidence_level": "OFFICIAL_IMPLEMENTATION",
+            "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+            "importance": "GENERAL",
+            "source_url": "https://taiwanindex.com.tw/news/454",
+            "source_document": "https://taiwanindex.com.tw/news/454",
+            "first_seen_at": "2026-10-09T16:45:18+08:00",
+            "information_available_as_of": "2026-10-09T16:45:18+08:00",
+            "last_checked_at": "2026-10-09T16:45:18+08:00",
+            "updated_at": "2026-10-09T16:45:18+08:00",
+            "date_evidence": [
+              "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
+            ],
+            "original_dates": {},
+            "implementation_scope": "INDEX_AFTER_CLOSE; ETF_TRADE_TIME_UNKNOWN",
+            "scope_note": "確認指數收盤後實施，未證實ETF實際下單時點；無公開個股名單不得標記股票。",
+            "official_announced_at": "2026-10-02T17:00:00+08:00",
+            "source_evidence": [
+              {
+                "source_url": "https://taiwanindex.com.tw/news/454",
+                "source_organization": "TIP",
+                "evidence_level": "OFFICIAL_IMPLEMENTATION",
+                "observed_at": "2026-10-09T16:45:18+08:00",
+                "announcement_date": "2026-10-02",
+                "review_date": null,
+                "effective_date": "2026-10-05",
+                "closing_impact_date": "2026-10-02",
+                "announcement_time": "17:00",
+                "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+                "implementation_window": null
+              }
+            ]
+          }
+        }
+      ],
       "date_evidence": [
         "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
       ],
@@ -536,7 +1165,8 @@
           "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
           "implementation_window": null
         }
-      ]
+      ],
+      "date_conflicts": {}
     },
     {
       "event_id": "8e3372c5307402dd5051",
@@ -563,10 +1193,71 @@
       "source_url": "https://taiwanindex.com.tw/news/454",
       "source_document": "https://taiwanindex.com.tw/news/454",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
-      "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
-      "updated_at": "2026-10-09T16:45:18+08:00",
-      "change_history": [],
+      "information_available_as_of": "2026-10-09T16:52:46+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
+      "updated_at": "2026-10-09T16:52:46+08:00",
+      "change_history": [
+        {
+          "observed_at": "2026-10-09T16:52:46+08:00",
+          "changes": {
+            "date_conflicts": {
+              "old": null,
+              "new": {}
+            }
+          },
+          "previous_version": {
+            "event_id": "8e3372c5307402dd5051",
+            "event_name": "臺灣指數公司特選臺灣上市上櫃ESG低碳高息40指數 · 2026-10",
+            "review_cycle": "2026-10",
+            "event_type": "INDEX_REVIEW",
+            "source_organization": "TIP",
+            "index_name": "臺灣指數公司特選臺灣上市上櫃ESG低碳高息40指數",
+            "related_etf_codes": [
+              "00930"
+            ],
+            "announcement_date": "2026-10-02",
+            "announcement_time": "17:00",
+            "review_date": null,
+            "effective_date": "2026-10-05",
+            "closing_impact_date": "2026-10-02",
+            "implementation_window": null,
+            "affected_stocks": [],
+            "constituent_details_status": "NOT_PUBLISHED",
+            "event_status": "ANNOUNCED",
+            "evidence_level": "OFFICIAL_IMPLEMENTATION",
+            "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+            "importance": "GENERAL",
+            "source_url": "https://taiwanindex.com.tw/news/454",
+            "source_document": "https://taiwanindex.com.tw/news/454",
+            "first_seen_at": "2026-10-09T16:45:18+08:00",
+            "information_available_as_of": "2026-10-09T16:45:18+08:00",
+            "last_checked_at": "2026-10-09T16:45:18+08:00",
+            "updated_at": "2026-10-09T16:45:18+08:00",
+            "date_evidence": [
+              "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
+            ],
+            "original_dates": {},
+            "implementation_scope": "INDEX_AFTER_CLOSE; ETF_TRADE_TIME_UNKNOWN",
+            "scope_note": "確認指數收盤後實施，未證實ETF實際下單時點；無公開個股名單不得標記股票。",
+            "official_announced_at": "2026-10-02T17:00:00+08:00",
+            "source_evidence": [
+              {
+                "source_url": "https://taiwanindex.com.tw/news/454",
+                "source_organization": "TIP",
+                "evidence_level": "OFFICIAL_IMPLEMENTATION",
+                "observed_at": "2026-10-09T16:45:18+08:00",
+                "announcement_date": "2026-10-02",
+                "review_date": null,
+                "effective_date": "2026-10-05",
+                "closing_impact_date": "2026-10-02",
+                "announcement_time": "17:00",
+                "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+                "implementation_window": null
+              }
+            ]
+          }
+        }
+      ],
       "date_evidence": [
         "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
       ],
@@ -588,7 +1279,8 @@
           "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
           "implementation_window": null
         }
-      ]
+      ],
+      "date_conflicts": {}
     },
     {
       "event_id": "e469d28dc64cc6e075a0",
@@ -615,10 +1307,71 @@
       "source_url": "https://taiwanindex.com.tw/news/454",
       "source_document": "https://taiwanindex.com.tw/news/454",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
-      "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
-      "updated_at": "2026-10-09T16:45:18+08:00",
-      "change_history": [],
+      "information_available_as_of": "2026-10-09T16:52:46+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
+      "updated_at": "2026-10-09T16:52:46+08:00",
+      "change_history": [
+        {
+          "observed_at": "2026-10-09T16:52:46+08:00",
+          "changes": {
+            "date_conflicts": {
+              "old": null,
+              "new": {}
+            }
+          },
+          "previous_version": {
+            "event_id": "e469d28dc64cc6e075a0",
+            "event_name": "臺灣指數公司特選臺灣上市上櫃永續高息中小型股指數 · 2026-10",
+            "review_cycle": "2026-10",
+            "event_type": "INDEX_REVIEW",
+            "source_organization": "TIP",
+            "index_name": "臺灣指數公司特選臺灣上市上櫃永續高息中小型股指數",
+            "related_etf_codes": [
+              "00936"
+            ],
+            "announcement_date": "2026-10-02",
+            "announcement_time": "17:00",
+            "review_date": null,
+            "effective_date": "2026-10-05",
+            "closing_impact_date": "2026-10-02",
+            "implementation_window": null,
+            "affected_stocks": [],
+            "constituent_details_status": "NOT_PUBLISHED",
+            "event_status": "ANNOUNCED",
+            "evidence_level": "OFFICIAL_IMPLEMENTATION",
+            "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+            "importance": "GENERAL",
+            "source_url": "https://taiwanindex.com.tw/news/454",
+            "source_document": "https://taiwanindex.com.tw/news/454",
+            "first_seen_at": "2026-10-09T16:45:18+08:00",
+            "information_available_as_of": "2026-10-09T16:45:18+08:00",
+            "last_checked_at": "2026-10-09T16:45:18+08:00",
+            "updated_at": "2026-10-09T16:45:18+08:00",
+            "date_evidence": [
+              "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
+            ],
+            "original_dates": {},
+            "implementation_scope": "INDEX_AFTER_CLOSE; ETF_TRADE_TIME_UNKNOWN",
+            "scope_note": "確認指數收盤後實施，未證實ETF實際下單時點；無公開個股名單不得標記股票。",
+            "official_announced_at": "2026-10-02T17:00:00+08:00",
+            "source_evidence": [
+              {
+                "source_url": "https://taiwanindex.com.tw/news/454",
+                "source_organization": "TIP",
+                "evidence_level": "OFFICIAL_IMPLEMENTATION",
+                "observed_at": "2026-10-09T16:45:18+08:00",
+                "announcement_date": "2026-10-02",
+                "review_date": null,
+                "effective_date": "2026-10-05",
+                "closing_impact_date": "2026-10-02",
+                "announcement_time": "17:00",
+                "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+                "implementation_window": null
+              }
+            ]
+          }
+        }
+      ],
       "date_evidence": [
         "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
       ],
@@ -640,7 +1393,8 @@
           "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
           "implementation_window": null
         }
-      ]
+      ],
+      "date_conflicts": {}
     },
     {
       "event_id": "f5973ad13090adf92096",
@@ -667,10 +1421,71 @@
       "source_url": "https://taiwanindex.com.tw/news/454",
       "source_document": "https://taiwanindex.com.tw/news/454",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
-      "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
-      "updated_at": "2026-10-09T16:45:18+08:00",
-      "change_history": [],
+      "information_available_as_of": "2026-10-09T16:52:46+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
+      "updated_at": "2026-10-09T16:52:46+08:00",
+      "change_history": [
+        {
+          "observed_at": "2026-10-09T16:52:46+08:00",
+          "changes": {
+            "date_conflicts": {
+              "old": null,
+              "new": {}
+            }
+          },
+          "previous_version": {
+            "event_id": "f5973ad13090adf92096",
+            "event_name": "臺灣指數公司特選臺灣ESG低碳50指數 · 2026-10",
+            "review_cycle": "2026-10",
+            "event_type": "INDEX_REVIEW",
+            "source_organization": "TIP",
+            "index_name": "臺灣指數公司特選臺灣ESG低碳50指數",
+            "related_etf_codes": [
+              "00923"
+            ],
+            "announcement_date": "2026-10-02",
+            "announcement_time": "17:00",
+            "review_date": null,
+            "effective_date": "2026-10-05",
+            "closing_impact_date": "2026-10-02",
+            "implementation_window": null,
+            "affected_stocks": [],
+            "constituent_details_status": "NOT_PUBLISHED",
+            "event_status": "ANNOUNCED",
+            "evidence_level": "OFFICIAL_IMPLEMENTATION",
+            "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+            "importance": "GENERAL",
+            "source_url": "https://taiwanindex.com.tw/news/454",
+            "source_document": "https://taiwanindex.com.tw/news/454",
+            "first_seen_at": "2026-10-09T16:45:18+08:00",
+            "information_available_as_of": "2026-10-09T16:45:18+08:00",
+            "last_checked_at": "2026-10-09T16:45:18+08:00",
+            "updated_at": "2026-10-09T16:45:18+08:00",
+            "date_evidence": [
+              "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
+            ],
+            "original_dates": {},
+            "implementation_scope": "INDEX_AFTER_CLOSE; ETF_TRADE_TIME_UNKNOWN",
+            "scope_note": "確認指數收盤後實施，未證實ETF實際下單時點；無公開個股名單不得標記股票。",
+            "official_announced_at": "2026-10-02T17:00:00+08:00",
+            "source_evidence": [
+              {
+                "source_url": "https://taiwanindex.com.tw/news/454",
+                "source_organization": "TIP",
+                "evidence_level": "OFFICIAL_IMPLEMENTATION",
+                "observed_at": "2026-10-09T16:45:18+08:00",
+                "announcement_date": "2026-10-02",
+                "review_date": null,
+                "effective_date": "2026-10-05",
+                "closing_impact_date": "2026-10-02",
+                "announcement_time": "17:00",
+                "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
+                "implementation_window": null
+              }
+            ]
+          }
+        }
+      ],
       "date_evidence": [
         "EXPLICIT_PUBLIC_INDEX_AFTER_CLOSE_IMPLEMENTATION"
       ],
@@ -692,7 +1507,8 @@
           "close_date_status": "CONFIRMED_CLOSE_IMPLEMENTATION",
           "implementation_window": null
         }
-      ]
+      ],
+      "date_conflicts": {}
     },
     {
       "event_id": "0ea76ce5b01aefd60192",
@@ -1422,7 +2238,7 @@
       "source_document": "https://www.msci.com/eqb/pressreleases/archive/ir_dates.pdf",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "updated_at": "2026-10-09T16:45:18+08:00",
       "change_history": [
         {
@@ -1867,7 +2683,7 @@
       "source_document": "https://www.msci.com/eqb/pressreleases/archive/ir_dates.pdf",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "updated_at": "2026-10-09T16:45:18+08:00",
       "change_history": [
         {
@@ -1978,7 +2794,7 @@
       "source_document": "https://www.msci.com/eqb/pressreleases/archive/ir_dates.pdf",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "updated_at": "2026-10-09T16:45:18+08:00",
       "change_history": [
         {
@@ -2089,7 +2905,7 @@
       "source_document": "https://www.msci.com/eqb/pressreleases/archive/ir_dates.pdf",
       "first_seen_at": "2026-10-09T10:33:57+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "updated_at": "2026-10-09T16:45:18+08:00",
       "change_history": [
         {
@@ -2200,7 +3016,7 @@
       "source_document": "https://www.msci.com/eqb/pressreleases/archive/ir_dates.pdf",
       "first_seen_at": "2026-10-09T10:54:07+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "updated_at": "2026-10-09T16:45:18+08:00",
       "change_history": [
         {
@@ -2311,7 +3127,7 @@
       "source_document": "https://www.msci.com/eqb/pressreleases/archive/ir_dates.pdf",
       "first_seen_at": "2026-10-09T10:54:07+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "updated_at": "2026-10-09T16:45:18+08:00",
       "change_history": [
         {
@@ -2422,7 +3238,7 @@
       "source_document": "https://www.msci.com/eqb/pressreleases/archive/ir_dates.pdf",
       "first_seen_at": "2026-10-09T10:54:07+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "updated_at": "2026-10-09T16:45:18+08:00",
       "change_history": [
         {
@@ -2533,7 +3349,7 @@
       "source_document": "https://www.msci.com/eqb/pressreleases/archive/ir_dates.pdf",
       "first_seen_at": "2026-10-09T10:54:07+08:00",
       "information_available_as_of": "2026-10-09T16:45:18+08:00",
-      "last_checked_at": "2026-10-09T16:45:18+08:00",
+      "last_checked_at": "2026-10-09T16:52:46+08:00",
       "updated_at": "2026-10-09T16:45:18+08:00",
       "change_history": [
         {
