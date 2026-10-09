@@ -1,11 +1,11 @@
 {
   "event": "schedule",
-  "cron": "57 3 * * 1-5",
+  "cron": "7 5 * * 1-5",
   "declared_source": "manual",
   "source_verified": false,
-  "mode": null,
-  "run_id": "37921739590",
-  "runner_started_at": "2026-10-09T19:07:01.827+08:00",
-  "received_at": "2026-10-09T19:07:03.630+08:00",
-  "updated_at": "2026-10-09T19:07:06.444+08:00"
+  "mode": "live",
+  "run_id": "37926019721",
+  "runner_started_at": "2026-10-09T19:48:42.126+08:00",
+  "received_at": "2026-10-09T19:48:47.525+08:00",
+  "updated_at": "2026-10-09T19:48:50.738+08:00"
 }
