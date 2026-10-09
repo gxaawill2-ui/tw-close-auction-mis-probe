@@ -28,5 +28,17 @@
     "sha256": "ff2c882477fa19e6a12ea2e78d08797e7b9ca15e273386a9fa45efcee9cb6f92",
     "status": "ISSUER_NOTICE_REQUIRES_DATE_REVIEW",
     "seen_at": "2026-10-09T10:54:07+08:00"
+  },
+  {
+    "url": "https://www.yuantaetfs.com/",
+    "sha256": "73fefe5b1c0a7657b9ecea6ffbea3f21c23f9b4b707bc2c926260f831526a362",
+    "status": "ISSUER_NOTICE_REQUIRES_DATE_REVIEW",
+    "seen_at": "2026-10-09T11:00:24+08:00"
+  },
+  {
+    "url": "https://www.capitalfund.com.tw/etf/product/detail/195",
+    "sha256": "525d5ee6aab804feac5de6283a9ad0854777e24d5d76a05a9bcdfb05fb777581",
+    "status": "ISSUER_NOTICE_REQUIRES_DATE_REVIEW",
+    "seen_at": "2026-10-09T11:00:24+08:00"
   }
 ]
