@@ -1,0 +1,98 @@
+{
+  "verified_at": "2026-10-09T11:04:00+08:00",
+  "timezone": "Asia/Taipei",
+  "baseline_main": "491b7b07f6a0b355e627e0f1b7f4e949acb10eee",
+  "code_commit": "382439f5a82870197cc41eee76587e6fb544d61d",
+  "published_data_commit": "fc9a5fb9e9f3564a7a803c100cac08d7786665f2",
+  "public_url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/",
+  "requested_range": [
+    "2026-10-09",
+    "2027-10-31"
+  ],
+  "counts": {
+    "requested_range_events": 32,
+    "official_schedule_events": 29,
+    "rule_expected_events": 3,
+    "confirmed_future_close_implementations": 0,
+    "all_database_events": 36,
+    "etf_mappings": 14
+  },
+  "tests": {
+    "python": 160,
+    "node": 37,
+    "dom_and_state": 27,
+    "browser_scenarios": 36,
+    "engines": [
+      "Chromium desktop",
+      "Chromium mobile",
+      "WebKit iPhone"
+    ],
+    "result": "PASS"
+  },
+  "runs": {
+    "original_regression_and_browsers": 37876684412,
+    "final_independent_branch": 37877015574,
+    "final_main_tests_scan_public_browser": 37877204478,
+    "code_pages": 37877204392,
+    "data_pages": 37877406492
+  },
+  "jobs": {
+    "final_tests": 113648423522,
+    "final_scan": 113648519787,
+    "final_public_browser": 113648519715
+  },
+  "automation": {
+    "cron_utc": "20 0,9 * * *",
+    "scheduled_taipei": [
+      "08:20",
+      "17:20"
+    ],
+    "max_requests": 60,
+    "max_attempts_per_url": 2,
+    "timeout_seconds": 10,
+    "last_attempt_at": "2026-10-09T11:00:24+08:00",
+    "last_successful_scan_at": "2026-10-09T11:02:14+08:00",
+    "observed_request_attempts": 28,
+    "mis_dispatch": false
+  },
+  "preservation": {
+    "all_existing_mis_workflows_unchanged": true,
+    "candidates_unchanged": true,
+    "core_price_volume_selection_unchanged": true,
+    "oct8_candidate_sha256": "794cdb1749a7318612fad5003bceb47b126b5d03a8cbda16abf14332954c111b"
+  },
+  "coverage": "PARTIAL",
+  "limitations": [
+    "TIP new schedules/notices robots-disallowed; 25 initial schedules manually verified from official PDFs",
+    "FTSE complete notices require registration/subscription; rules monitor only",
+    "MSCI licensed constituent/weight redistribution not authorized",
+    "2027 official Taiwan trading calendar not published",
+    "Cathay target HTTP400; Fubon target robots-disallowed",
+    "New ETF dynamic listing parser unavailable; 14 mappings are partial",
+    "Issuer announcements monitored for changes, not fully parsed into confirmed ETF close implementation dates"
+  ],
+  "next_close_watch": [
+    {
+      "date": "2026-11-30",
+      "organization": "MSCI",
+      "status": "EXPECTED_CLOSE_WATCH_DATE"
+    },
+    {
+      "date": "2026-12-18",
+      "organization": "FTSE Taiwan50/MidCap100",
+      "status": "EXPECTED_CLOSE_WATCH_DATE"
+    },
+    {
+      "dates": [
+        "2026-12-21",
+        "2026-12-22",
+        "2026-12-23",
+        "2026-12-24",
+        "2026-12-28"
+      ],
+      "organization": "FTSE Taiwan Dividend+ /0056",
+      "status": "EXPECTED_MULTIDAY_TRANSITION"
+    }
+  ],
+  "statistics_claimed": false
+}
