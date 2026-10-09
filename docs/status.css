@@ -1,4 +1,4 @@
-:root{color-scheme:light dark;font:15px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif;color:#142033;background:#f5f7fb;--red:#d6384b;--green:#158063;--muted:#738096;--line:#e5eaf2}
+:root{color-scheme:dark;font:15px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif;color:#e8f0fc;background:#0d1423;--red:#d6384b;--green:#158063;--muted:#738096;--line:#e5eaf2}
 *{box-sizing:border-box}body{margin:0}main{max-width:1440px;margin:auto;padding:42px 32px 36px}h1,h2,p{margin:0}h1{font-size:clamp(26px,3vw,40px);line-height:1.25;letter-spacing:-.8px;margin:12px 0}h1 span{color:#4264dd}.eyebrow{font-size:12px;font-weight:650;letter-spacing:.6px;color:#65748b;display:flex;align-items:center;gap:8px}.live-dot{width:7px;height:7px;border-radius:50%;background:#4e74e6}.research-tag{color:#4264dd;background:#e9eefc;padding:3px 8px;border-radius:5px;letter-spacing:0}.subtitle{color:#68768b;font-size:14px}.date-line{display:flex;gap:14px;align-items:center;margin-top:18px;font-size:13px}#today{font-weight:650}#market-state{font-size:11px;background:#e9edf5;padding:3px 9px;border-radius:20px;color:#5d6e85}
 .overview{margin:24px 0 18px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 3px 12px #14203303}.overview-primary{display:flex;align-items:baseline;gap:12px;color:#65748b;font-size:13px}.overview-primary strong{font-size:46px;line-height:1.1;color:#142033;font-weight:750;font-variant-numeric:tabular-nums}.coverage{display:flex;gap:40px}.coverage div{display:flex;flex-direction:column;gap:3px;text-align:right}.coverage span{color:var(--muted);font-size:12px}.coverage strong{font-size:21px;font-weight:650;font-variant-numeric:tabular-nums}
 .status-line{border-left:3px solid #6584e9;padding:3px 0 3px 12px}.status-line h2{font-size:14px;font-weight:650}.status-line p{font-size:12px;color:#748096;margin-top:3px}.network:empty{display:none}.network{color:#8b650f;background:#fff5dd;border:1px solid #f5e5b9;border-radius:8px;padding:10px 12px;font-size:12px;margin-top:14px}.list-heading{display:flex;justify-content:space-between;align-items:center;margin:28px 0 12px}.list-heading h2{font-size:17px}.list-heading span{font-size:11px;color:var(--muted)}
@@ -7,10 +7,9 @@
 @media(max-width:350px){main{padding:20px 12px}.candidate-card{padding:15px 12px}.card-heading h3{font-size:15px}.card-heading .tail{font-size:24px}.metric strong{font-size:13px}.list-heading span{font-size:9px}}
 
 
-/* Automatic night mode: follows iOS / Android / Windows / macOS appearance.
-   No interactive switch: the dashboard remains a hands-free read-only view. */
-@media (prefers-color-scheme: dark) {
-  :root {
+
+/* Permanent dark mode on every device. No system preference or switch. */
+:root {
     color-scheme: dark;
     color: #e8f0fc;
     background: #0d1423;
@@ -47,4 +46,3 @@
   .card-footer { border-top-color: var(--line); }
   footer { color: #a6b6c9; }
   footer a { color: #b7caff; }
-}

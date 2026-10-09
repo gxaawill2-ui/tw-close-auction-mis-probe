@@ -62,32 +62,36 @@ async function main(){
     assert.match(await page.locator('[data-code="5543"]').innerText(),/75/);
    }
    await page.screenshot({path:path.join(OUT,'dashboard-'+name+'.png'),fullPage:true});
-   const lightTheme=await page.evaluate(()=>({
-     background:getComputedStyle(document.documentElement).backgroundColor,
-     panel:getComputedStyle(document.querySelector('.overview')).backgroundColor,
-     text:getComputedStyle(document.documentElement).color
-   }));
-   await page.emulateMedia({colorScheme:'dark'});
-   const darkTheme=await page.evaluate(()=>({
-     active:matchMedia('(prefers-color-scheme: dark)').matches,
+   await page.emulateMedia({colorScheme:'light'});
+   const fixedDark=await page.evaluate(()=>({
      background:getComputedStyle(document.documentElement).backgroundColor,
      panel:getComputedStyle(document.querySelector('.overview')).backgroundColor,
      text:getComputedStyle(document.documentElement).color,
+     controls:getComputedStyle(document.documentElement).colorScheme,
      rise:getComputedStyle(document.querySelector('.tail.up')).color,
      fall:getComputedStyle(document.querySelector('.tail.down')).color
    }));
-   assert.equal(darkTheme.active,true);
-   assert.equal(darkTheme.background,'rgb(13, 20, 35)');
-   assert.equal(darkTheme.panel,'rgb(22, 33, 50)');
-   assert.notEqual(darkTheme.text,lightTheme.text);
-   assert.notEqual(darkTheme.rise,darkTheme.fall);
+   assert.equal(fixedDark.background,'rgb(13, 20, 35)');
+   assert.equal(fixedDark.panel,'rgb(22, 33, 50)');
+   assert.equal(fixedDark.controls,'dark');
+   assert.notEqual(fixedDark.rise,fixedDark.fall);
+   await page.emulateMedia({colorScheme:'dark'});
+   const darkPreference=await page.evaluate(()=>({
+     background:getComputedStyle(document.documentElement).backgroundColor,
+     panel:getComputedStyle(document.querySelector('.overview')).backgroundColor,
+     text:getComputedStyle(document.documentElement).color,
+     controls:getComputedStyle(document.documentElement).colorScheme,
+     rise:getComputedStyle(document.querySelector('.tail.up')).color,
+     fall:getComputedStyle(document.querySelector('.tail.down')).color
+   }));
+   assert.deepEqual(darkPreference,fixedDark);
    assert.equal(await page.locator('button,input,select,form,[role="button"]').count(),0);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
    if(mobile)assert.equal(await page.locator('.candidate-card').first().evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(22, 33, 50)');
-   await page.screenshot({path:path.join(OUT,'dashboard-'+name+'-dark.png'),fullPage:true});
-   checks.push({name:name+'/night-mode',result:'PASS',system_preference:true,contrast_checked:true,no_buttons:true});
+   await page.screenshot({path:path.join(OUT,'dashboard-'+name+'-dark-only.png'),fullPage:true});
+   checks.push({name:name+'/dark-only',result:'PASS',independent_of_system_theme:true,no_buttons:true});
    await page.emulateMedia({colorScheme:'light'});
-   assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).backgroundColor),lightTheme.background);
+   assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).backgroundColor),'rgb(13, 20, 35)');
    assert.deepEqual(errors,[]);checks.push({name,result:'PASS',width:options.viewport.width,seven_candidates:true,no_buttons:true,no_horizontal_overflow:true});
    await context.close();
    const diagnosticContext=await fixtureContext(browser,options,'2026-10-09T13:35:00+08:00',null);
@@ -95,9 +99,10 @@ async function main(){
    diagnostic.on('pageerror',error=>diagnosticErrors.push(error.message));
    await diagnostic.goto(base+'diagnostic.html');
    await diagnostic.locator('#headline').filter({hasText:'NON TRADING'}).waitFor();
+   await diagnostic.emulateMedia({colorScheme:'light'});
+   assert.equal(await diagnostic.evaluate(()=>getComputedStyle(document.body).backgroundColor),'rgb(13, 20, 35)');
    await diagnostic.emulateMedia({colorScheme:'dark'});
    assert.equal(await diagnostic.evaluate(()=>getComputedStyle(document.body).backgroundColor),'rgb(13, 20, 35)');
-   await diagnostic.emulateMedia({colorScheme:'light'});
    assert.equal(await diagnostic.locator('button,input,select,form,[role="button"]').count(),0);
    assert.deepEqual(diagnosticErrors,[]);
    checks.push({name:name+'/diagnostic',result:'PASS',automatic_initial_load:true,no_buttons:true});
@@ -119,6 +124,10 @@ async function main(){
    // Future runs do not expect yesterday's October 8 candidates as today's list.
    const publicContext=await browser.newContext({...options,timezoneId:'Asia/Taipei'}),publicPage=await publicContext.newPage();
    await publicPage.goto(PUBLIC);await publicPage.waitForFunction(()=>!document.querySelector('#today').textContent.includes('讀取'));
+   await publicPage.emulateMedia({colorScheme:'light'});
+   assert.equal(await publicPage.evaluate(()=>getComputedStyle(document.documentElement).backgroundColor),'rgb(13, 20, 35)');
+   await publicPage.emulateMedia({colorScheme:'dark'});
+   assert.equal(await publicPage.evaluate(()=>getComputedStyle(document.documentElement).backgroundColor),'rgb(13, 20, 35)');
    assert.equal(await publicPage.title(),'台股尾盤 ±3% 自動選股看板');
    assert.equal(await publicPage.locator('button,input,select,form,[role="button"]').count(),0);
    assert.equal(await publicPage.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
