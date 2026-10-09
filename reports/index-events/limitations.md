@@ -24,3 +24,5 @@
 - 第一個本機全來源掃描中TWSE日曆及舊FTSE規則URL遇HTTP307，保留先前成功證據並標STALE。GitHub runner需另實測，不以本機失敗推定所有來源永久不可用。
 - 新來源分類中的VERIFIED_AUTOMATIC只描述該設定入口的取得／解析，不代表所有公告皆完整；DATE_ONLY與MONITOR_ONLY不算基金實際換股日期解析成功。
 - 多來源同期間日期衝突會清除相爭欄位的單一值、保留全部來源與歷史，CONFLICT不進當日觀察或個股關聯。更正以新的可用時點入歷史，不回填舊live_as_of。
+
+第二階段最終核對：2026-10-09T16:57:01+08:00，正式CI37907579895與Pages37907698117 SUCCESS；源掃描49事件／64確認ETF對應／2衝突，來源11成功取得解析（6自動完整語義來源＋5日期）但PARTIAL。193 Python、39 Node、36瀏覽器場景PASS。完整證據見deployment.json及source-recovery-validation.json；待審10文件不是已確認事件。

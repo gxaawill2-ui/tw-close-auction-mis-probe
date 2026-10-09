@@ -1,0 +1,117 @@
+[
+  {
+    "path": "probe.py",
+    "sha256": "e5285d15dcb38b3fa003e2574b0fa3c7b35f5150dfa71cef91e83a5bad8bc936",
+    "byte_identical": true
+  },
+  {
+    "path": "freshness.py",
+    "sha256": "fc94ff4cb20c3c8e3b6f793fb228a16613fccbe260e66b4955c52586bdd5bf8d",
+    "byte_identical": true
+  },
+  {
+    "path": "convergence.py",
+    "sha256": "67d114c0dd364bdffeea0c17cc57321d5276bbd6f3b97fdc0540d91773a9d72b",
+    "byte_identical": true
+  },
+  {
+    "path": "official_retry.py",
+    "sha256": "84088a646588853c76773b7b823cdd05cc83adf45b8e828b6795bc811574f4bc",
+    "byte_identical": true
+  },
+  {
+    "path": "tradable.py",
+    "sha256": "7f7b7f19baa5992c61e554f9d45b2ef4ce612a4772a402fcee068f62ccde039b",
+    "byte_identical": true
+  },
+  {
+    "path": "official_quotes.py",
+    "sha256": "b24fe6432dd091f7970ecb2c3e680dc15d9bfbc0c7351bc4b318ab33dc81b0c4",
+    "byte_identical": true
+  },
+  {
+    "path": "run_control.py",
+    "sha256": "3309876ac18abdd765710dace4a74cff43a0bcbff6570dd630b64e5e8e8d9ca5",
+    "byte_identical": true
+  },
+  {
+    "path": "capture_completion.py",
+    "sha256": "f622d17ae783065ee44897c166bb7974514637fe80b16fee31d03e9e378d3047",
+    "byte_identical": true
+  },
+  {
+    "path": "candidate_publication.py",
+    "sha256": "d8f918eba74882bfcb57e683312081643bcba1625a29b0630ca0d3459d8a9eeb",
+    "byte_identical": true
+  },
+  {
+    "path": "volume_evidence.py",
+    "sha256": "59320479779fd8dbfa893de6c671c7e6f4cfc3a30ca371cc3e3d4763a013ac99",
+    "byte_identical": true
+  },
+  {
+    "path": "volume_contract.json",
+    "sha256": "3248644fdcd54b952d99cfb160c2e9ffa600b0aa56a670df69272d85ada4c0cf",
+    "byte_identical": true
+  },
+  {
+    "path": "docs/index.html",
+    "sha256": "3a2f2e31844a73a62a35a126742b5bdbcf03ef1921dcdf32709b61aeaa711a90",
+    "byte_identical": true
+  },
+  {
+    "path": "docs/status.js",
+    "sha256": "9b05ad08217e3aff0c67894952513d8d1f0bb67ba8ca6eb475fddc6c6d8ec71d",
+    "byte_identical": true
+  },
+  {
+    "path": "state/candidates/2026-10-08.json",
+    "sha256": "794cdb1749a7318612fad5003bceb47b126b5d03a8cbda16abf14332954c111b",
+    "byte_identical": true
+  },
+  {
+    "path": ".github/workflows/pchome-benchmark.yml",
+    "sha256": "942e0488f781ca0f48b1289b659ddb9014ae0e98ba34d539093918a2ac73a0e6",
+    "byte_identical": true
+  },
+  {
+    "path": ".github/workflows/mis-dispatch-safety.yml",
+    "sha256": "3b3c93c79ee4542eb5dcd52834811654b4203f1174face05c5c1b5323046463e",
+    "byte_identical": true
+  },
+  {
+    "path": ".github/workflows/mis-morning-20261001.yml",
+    "sha256": "d344bdc9cc12dc7f5f93264922f3644211b17b98887c8d0e4adb2d37093a27b9",
+    "byte_identical": true
+  },
+  {
+    "path": ".github/workflows/twse-mis-probe.yml",
+    "sha256": "7ca847cab185626af7c0ae8a11563e8041581719f98d97de0a305f9842f0441c",
+    "byte_identical": true
+  },
+  {
+    "path": ".github/workflows/mis-schedule-health.yml",
+    "sha256": "d46e8abb17218699aa8d113753997c4ed9d6de2f279f6f3e96d5b7a288868322",
+    "byte_identical": true
+  },
+  {
+    "path": ".github/workflows/mis-official-validation.yml",
+    "sha256": "45a83a3437fe1bb3b9982fc44d567f8be96465e596a82526a682048c50b38698",
+    "byte_identical": true
+  },
+  {
+    "path": ".github/workflows/mis-prearmed-20261001.yml",
+    "sha256": "1213db7c7ff48b55cb1b69910c91dc1d97f2f1dec58c507e030bbacfc08f2b96",
+    "byte_identical": true
+  },
+  {
+    "path": ".github/workflows/mis-prearmed-20261002.yml",
+    "sha256": "fdc4cd8bb7f78938091fdc33d3c45af13e92ebabb53c5ce0a2238584145424e2",
+    "byte_identical": true
+  },
+  {
+    "path": ".github/workflows/pchome-stream-benchmark.yml",
+    "sha256": "a6beb02bdd1874f7b83c879461f88762ad1a4b4db6add0ce58ec1f1b53c023c2",
+    "byte_identical": true
+  }
+]

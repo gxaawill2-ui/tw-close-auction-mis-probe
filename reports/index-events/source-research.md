@@ -73,3 +73,5 @@ TIP `/downloads/technical_notice` 的robots禁止自動讀取，沒有下載該�
 TWSE e添富及TPEx一般ETF篩選頁使用條款限制自動下載；未找到允許ETF主檔的TPEx開放資料，因此不調用內部API。富邦替代網址200但維修頁、國泰替代入口逾時、TIP首頁與news列表未取得可用新公告連結，均不是成功。MSCI完整成分、FTSE完整通知仍受限。
 
 全部更新仍由08:20／17:20獨立Actions執行。source-health新增A至E實際能力分類、最近失敗、解析新增／更正、衝突、待審文件、新ETF及未知對應；來源未抓到與已抓到但沒有新解析事件分開。保留PARTIAL。
+
+第二階段最終核對：2026-10-09T16:57:01+08:00，正式CI37907579895與Pages37907698117 SUCCESS；源掃描49事件／64確認ETF對應／2衝突，來源11成功取得解析（6自動完整語義來源＋5日期）但PARTIAL。193 Python、39 Node、36瀏覽器場景PASS。完整證據見deployment.json及source-recovery-validation.json；待審10文件不是已確認事件。

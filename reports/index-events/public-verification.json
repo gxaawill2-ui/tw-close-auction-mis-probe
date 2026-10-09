@@ -1,0 +1,79 @@
+{
+  "pages": {
+    "url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/",
+    "checks": {
+      "index.html": {
+        "http": 200,
+        "bytes": 3855,
+        "sha256": "3a2f2e31844a73a62a35a126742b5bdbcf03ef1921dcdf32709b61aeaa711a90",
+        "events_script": true,
+        "today_block": true,
+        "calendar_block": true,
+        "no_button": true,
+        "dark_meta": true
+      },
+      "events.js": {
+        "http": 200,
+        "bytes": 9193,
+        "sha256": "3bcc796842308bb326ce5fcff04d010b52a7f79918ecd119d40e3ad1ef3d8f78",
+        "matches_local": true
+      },
+      "state/events/source-coverage.json": {
+        "error": "HTTP Error 404: Not Found"
+      },
+      "state/candidates/2026-10-08.json": {
+        "error": "HTTP Error 404: Not Found"
+      }
+    }
+  },
+  "public_json": {
+    "state/events/source-coverage.json": {
+      "http": 200,
+      "sha256": "d62cd6f3c3cdfd67af2f9dec7c5166b42ded4c955315b3364595e8b8fba810c0",
+      "bytes": 683,
+      "metrics": {
+        "generated_at": "2026-10-09T16:45:18+08:00",
+        "coverage_status": "PARTIAL",
+        "source_total": 23,
+        "source_classes": {
+          "VERIFIED_AUTOMATIC": 6,
+          "DATE_ONLY": 5,
+          "MONITOR_ONLY": 4,
+          "RESTRICTED": 5,
+          "UNAVAILABLE": 3
+        },
+        "new_events": 13,
+        "corrected_events": 0,
+        "conflicting_events": 0,
+        "pending_review_documents": 9,
+        "newly_observed_etfs": 271,
+        "corrected_etfs": 0,
+        "confirmed_etf_mappings": 64,
+        "new_confirmed_etf_mappings": 50,
+        "unconfirmed_etf_mappings": 2,
+        "etf_master_total": 271,
+        "issuer_unknown_etfs": 271,
+        "listing_status_unknown_etfs": 271,
+        "etf_discovery_coverage": "TWSE_OPEN_MASTER_ONLY; TPEx full master not verified"
+      }
+    },
+    "state/events/events-index.json": {
+      "http": 200,
+      "sha256": "89326198fb2a3185957251c07c8591f10d0d8447951beb98ea29cfc98416f299",
+      "bytes": 110847,
+      "events": 49
+    },
+    "state/events/etf-index-map.json": {
+      "http": 200,
+      "sha256": "6df589439f3ca4847db975dce060f4868bd9fce9e5c44a2f230e1e6b5a718d32",
+      "bytes": 75066,
+      "mappings": 66
+    },
+    "state/candidates/2026-10-08.json": {
+      "http": 200,
+      "sha256": "794cdb1749a7318612fad5003bceb47b126b5d03a8cbda16abf14332954c111b",
+      "bytes": 45125
+    }
+  },
+  "note": "首頁及JS由Pages匿名HTTP提供；網站既有資料路徑使用GitHub raw公開JSON。Pages /state 路徑並非既有資料服務，404不偽裝為成功。"
+}

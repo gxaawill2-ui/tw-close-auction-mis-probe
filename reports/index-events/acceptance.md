@@ -50,14 +50,26 @@
 可用来源與未完成來源分別記錄於source-research.md、limitations.md及公開source-health.json。未把robots禁止、授權限制、HTTP400或未解析結果當成自動追蹤成功。完整部署執行ID與資料提交記錄見deployment.json。
 
 
-## 第二階段承接（45e2085，2026-10-09）
+## 第二階段正式驗收（2026-10-09T16:57:01+08:00）
 
-已實作TWSE ETF開放主檔、元大四頁日期解析、TIP公開兩篇明確實施日期、多來源衝突去重、完整性統計。初次本機完整掃描2026-10-09 16:28:59完成，271主檔、64確認對應、2名稱衝突、4歷史元大生效事件；初次掃描開始時TIP新Parser尚未載入，9筆TIP收盤事實由後續獨立CI正常HTTP掃描驗證並發布。
+本次承接45e2085；程式94cb366cd32af8ce9b0dd70eef498ab01ff7b6d1，正式資料d5ba3b1c0ca40c365a9ca240d632a28f0c6f6d06。正式main CI 37907579895 SUCCESS；193 Python、39 Node（29 DOM／狀態）、36 Chromium桌機／手機／WebKit iPhone場景PASS。Pages程式37907579165及資料37907698117 SUCCESS。完整執行URL：https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/actions/runs/37907579895 。
 
-本機初步188 Python＋39 Node PASS；新增三個TIP公告測試後完整Python應為191，最終CI及正式驗收結果待追加。網站只增加衝突提示與多日標籤，維持無按鈕、深色及既有股票資訊。
+|驗收範圍|結果與證據|
+|---|---|
+|官方API、400／403、robots、timeout、PDF改版|實際TWSE主檔／元大／TIP匿名HTTP加獨立GitHub掃描；錯誤回復與拒絕繞過測試PASS；source-recovery-evidence.json及source-recovery-validation.json|
+|新被動、主動、境外、槓反、未知類型、下市／缺漏、更名|官方基金類型分類；缺漏不猜下市、明確下市日期才生效；193 Python內各情境PASS|
+|公告／生效／收盤／多日過渡|四元大頁只DATE_ONLY；TIP兩篇9指數明確歷史收盤後實施；未來MSCI／FTSE維持預估，0056五日過渡跳12/25|
+|重複公告、更正、衝突|精確指數身分、跨來源source_evidence及previous_version；不同官方日期CONFLICT；相同兩來源反覆掃描不製造更正；39 Node內衝突排除與多日標籤PASS|
+|股票與市場、未公布清單、as-of|未取得正式股票清單不產生納入／刪除；首次取得與官方公告分開；10/8 live_as_of仍無10/9新知；掃描完成時間才可用|
+|失敗保留與未取得≠沒有公告|PARTIAL；FETCH_FAILED_NOT_NO_ANNOUNCEMENTS／UNKNOWN；舊事件、主檔及來源證據保留；503瀏覽器仍顯示七檔fixture|
+|原始MIS／七檔／成交量|23個保護檔案含全部9個原MIS workflow逐位元一致；10/8候選SHA256=794cdb1749a7318612fad5003bceb47b126b5d03a8cbda16abf14332954c111b，匿名公開JSON再次一致；regression-preservation.json|
+|深色、無按鈕、手機／桌機、公開事件|三瀏覽器全PASS；公開HTML／新版JS HTTP200且內容相符；今天10/9休市，按原邏輯顯示休市，不借用昨天名單|
+|事件與MIS隔離|事件排程仍UTC20 0,9 * * *，台北08:20／17:20；沒有MIS dispatch、沒有市場抓取；push只既有tests；來源失敗不拖慢MIS發布|
 
-繼續入口：source-recovery.md、automatic-etf-discovery.md、source-coverage-comparison.json、next-steps.md與git status；不要再seed或重抓MIS。所有現有MIS workflow及候選證據需在最終部署前再比對。
+初次正式掃描新增13筆歷史事實，庫36→49；指定期間仍32＝29官方期程＋3規則推估，未來確認收盤實施仍0。9筆確認為歷史指數收盤後實施（9/16、10/2），不是ETF實際下單時點。其他4筆為元大歷史指數生效日。
 
-2026-10-09 補測：再次掃描官方期程不降低已確認實施等級，且保留期程與實施兩個來源；Python總計192項、Node39項，本機PASS。GitHub完整瀏覽器及正式發布證據待本次CI完成後補入。
+23來源：VERIFIED_AUTOMATIC 6、DATE_ONLY 5、MONITOR_ONLY 4、RESTRICTED 5、UNAVAILABLE 3；原本6個成功取得／解析來源→11個，其中5個只日期。ETF對應14→66（64確認、2衝突），271主檔紀錄不是271檔目前掛牌ETF。最新重複掃描2026-10-09T16:52:46+08:00：0新事件、0更正、0新主檔紀錄、64確認與2衝突不變，請求32次／上限60。待審文件10；變動監測不等於新公告。
 
-初次GitHub驗收37906146267在MIS tests發現錯誤HTML先import可選pypdf套件；僅將事件PDF magic檢查移至import前，不修改MIS workflow。獨立event tests已192／39 PASS；修正後重跑完整CI。
+公開JSON維持既有GitHub raw免費只讀資料路徑；Pages首頁直接讀取。Pages /state 不是既有資料服務，不將其404宣稱成功。來源／完整性證據、公開HTTP與JSON雜湊見public-verification.json、source-coverage-comparison.json及deployment.json。
+
+首次GitHub MIS tests因假PDF在magic檢查前import可選套件而失敗，已僅調整事件解析器檢查順序；修正後CI全PASS，未更動MIS workflow。正式觀察日與成分仍不得猜測，沒有宣稱回測收益或隔日修正規律。
