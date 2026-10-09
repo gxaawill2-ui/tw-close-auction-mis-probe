@@ -1,0 +1,48 @@
+{
+  "schedule_slot": "ADHOC",
+  "scheduled_for": null,
+  "scheduled_for_evidence": "NOT_EXPOSED_BY_GITHUB",
+  "actual_trigger_at": "2026-10-10T07:46:14+08:00",
+  "trigger_source": "ADHOC",
+  "workflow_run_id": "38006035935",
+  "github_event_schedule": null,
+  "delay_seconds": null,
+  "origin_date_verified": false,
+  "identity": "adhoc-38006035935",
+  "planned_for": null,
+  "execution_scope_date": null,
+  "eligible": true,
+  "runner_started_at": "2026-10-10T07:46:39.316254+08:00",
+  "decision": "CLAIMED",
+  "result": "CLAIMED",
+  "duplicate_trigger": false,
+  "source_health": {
+    "last_successful_scan_at": "2026-10-10T00:14:21+08:00",
+    "metrics": {
+      "source_total": 23,
+      "source_classes": {
+        "VERIFIED_AUTOMATIC": 5,
+        "DATE_ONLY": 5,
+        "MONITOR_ONLY": 4,
+        "RESTRICTED": 5,
+        "UNAVAILABLE": 4
+      },
+      "new_events": 0,
+      "corrected_events": 0,
+      "conflicting_events": 0,
+      "pending_review_documents": 11,
+      "newly_observed_etfs": 0,
+      "corrected_etfs": 0,
+      "confirmed_etf_mappings": 64,
+      "new_confirmed_etf_mappings": 0,
+      "unconfirmed_etf_mappings": 2,
+      "etf_master_total": 271,
+      "issuer_unknown_etfs": 271,
+      "listing_status_unknown_etfs": 271,
+      "etf_discovery_coverage": "TWSE_OPEN_MASTER_ONLY; TPEx full master not verified"
+    }
+  },
+  "scan_started_at": null,
+  "scan_finished_at": null,
+  "published_at": null
+}
