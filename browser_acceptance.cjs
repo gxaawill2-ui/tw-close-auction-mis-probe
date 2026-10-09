@@ -69,9 +69,9 @@ async function main(){
    assert.ok(await page.locator('#event-upcoming a').count()>0);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
    if(mobile){
-    assert.match(await page.locator('[data-code="3259"]').innerText(),/13:33:00/);
-    assert.match(await page.locator('[data-code="3684"]').innerText(),/1,255/);
-    assert.match(await page.locator('[data-code="5543"]').innerText(),/75/);
+    assert.match(await page.locator('.candidate-card[data-code="3259"]').innerText(),/13:33:00/);
+    assert.match(await page.locator('.candidate-card[data-code="3684"]').innerText(),/1,255/);
+    assert.match(await page.locator('.candidate-card[data-code="5543"]').innerText(),/75/);
    }
    await page.screenshot({path:path.join(OUT,'dashboard-'+name+'.png'),fullPage:true});
    await page.emulateMedia({colorScheme:'light'});

@@ -287,7 +287,7 @@ def annotate(candidate, events, as_of):
 
 
 class Fetcher:
-    """At most 40 HTTP attempts/run, two attempts/URL, 10s timeout, 6MiB limit.
+    """At most 60 HTTP attempts/run, two attempts/URL, 10s timeout, 6MiB limit.
 
     Robots, access walls and explicit 401/403 are respected; no browser bypass.
     """

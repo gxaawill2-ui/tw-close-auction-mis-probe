@@ -17,7 +17,7 @@ test('unknown or partial source coverage never means no events',()=>{
 test('stale, timeout, malformed and future snapshots fail closed',()=>{
  const stale={...health,last_successful_scan_at:'2026-10-01T08:20:00+08:00'};
  assert.equal(ui.model(now,{...data,coverage_status:'COMPLETE'},stale).incomplete,true);
- assert.equal(ui.model(now,data,health,'timeout').incomplete,'timeout');
+ assert.equal(ui.model(now,data,health,'timeout').incomplete,true);
  const future={...data,generated_at:'2026-12-01T00:00:00Z'};
  assert.match(ui.model(now,future,health).error,/時間/);
  assert.match(ui.model(now,{...data,events:[event,event]},health).error,/證據/);

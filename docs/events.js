@@ -29,7 +29,7 @@
   entries.sort((a,b)=>a.date.localeCompare(b.date)||a.event.event_name.localeCompare(b.event.event_name)||a.type.localeCompare(b.type));
   const today=entries.filter(x=>x.date===day),close=today.filter(x=>['closing_impact_date','implementation_window'].includes(x.type));
   const sourceStale=!health||!health.last_successful_scan_at||now.getTime()-Date.parse(health.last_successful_scan_at)>36*3600*1000;
-  const incomplete=error||sourceStale||data?.coverage_status!=='COMPLETE'||health?.sources?.some(s=>s.status!=='SUCCESS');
+  const incomplete=Boolean(error||sourceStale||data?.coverage_status!=='COMPLETE'||health?.sources?.some(s=>s.status!=='SUCCESS'));
   let headline;
   if(close.length)headline=close.some(x=>x.event.close_date_status==='CONFIRMED_CLOSE_IMPLEMENTATION')?'今日有官方確認的指數收盤實施':'今日有預估觀察日／換股過渡期間';
   else if(today.length)headline='今日有指數'+[...new Set(today.map(x=>label[x.type]))].join('／')+'；收盤集中交易未確認';
@@ -44,12 +44,24 @@
   const type=x.type==='announcement_date'&&e.announcement_timezone==='SOURCE_DATE_TIME_UNPUBLISHED'?'公告 · 來源日期（台北時間待確認）':label[x.type];
   return '<li class="event-row"><div class="event-date">'+esc(x.date)+'<small>'+esc(type)+'</small></div><div class="event-description"><strong>'+esc(e.event_name)+'</strong><div>'+esc(e.related_etf_codes.length?'ETF '+e.related_etf_codes.join('、'):e.index_name)+'</div><span class="event-tag'+(expected?' expected':'')+'">'+esc(expected?'預估 · 依官方規則／交易日推算':x.type==='closing_impact_date'?statuses[e.close_date_status]:'官方日期 · 收盤實施另確認')+'</span><a href="'+esc(e.source_url)+'" target="_blank" rel="noopener noreferrer">官方來源</a></div></li>';
  }
+ function grouped(rows){
+  const groups=new Map();
+  for(const x of rows){const e=x.event,key=x.date+':'+x.type+':'+e.source_organization+':'+e.source_url+':'+e.close_date_status;
+   if(!groups.has(key))groups.set(key,[]);groups.get(key).push(x);}
+  return [...groups.values()].map(items=>{
+   if(items.length===1)return htmlEntry(items[0]);
+   const x=items[0],e=x.event,etfs=[...new Set(items.flatMap(v=>v.event.related_etf_codes))];
+   const entry={...x,event:{...e,event_name:e.source_organization+' 指數定審 · '+items.length+' 項',related_etf_codes:etfs,
+     index_name:items.map(v=>v.event.index_name.replace(/^臺灣指數公司/,'')).join('；')}};
+   return htmlEntry(entry);
+  }).join('');
+ }
  function render(doc,view){
   const set=(id,text)=>{doc.getElementById(id).textContent=text;};
   set('event-today-title',view.headline);set('event-note',view.error?'事件資料更新失敗；股票名單仍獨立更新。 '+view.note:view.note);
   set('event-range',view.range);set('event-empty',view.upcoming.length?'':'已取得範圍內尚無近期日期；其餘期程未公布／未確認。');
   for(const [id,rows] of [['event-today-list',view.today],['event-upcoming',view.upcoming]]){
-   const element=doc.getElementById(id),html=rows.map(htmlEntry).join('');if(element.dataset.rendered!==html){element.innerHTML=html;element.dataset.rendered=html;}
+   const element=doc.getElementById(id),html=grouped(rows);if(element.dataset.rendered!==html){element.innerHTML=html;element.dataset.rendered=html;}
   }
  }
  function relation(row,events,day,asOf){
