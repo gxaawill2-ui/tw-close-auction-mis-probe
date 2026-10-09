@@ -46,7 +46,10 @@ jobs:
           python-version: '3.12'
       - run: pip install pypdf
       - name: Read official sources in an isolated checkout
-        run: python index_events.py > source-smoke.json
+        run: |
+          python index_events.py > source-smoke.json
+          cat source-smoke.json
+          python -c "import json; d=json.load(open('state/events/events-index.json')); print('Persisted events:', len(d['events']))"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
