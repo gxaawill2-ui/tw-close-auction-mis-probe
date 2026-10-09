@@ -1,6 +1,7 @@
 (function(root){
  'use strict';
  const RAW='https://raw.githubusercontent.com/gxaawill2-ui/tw-close-auction-mis-probe/main/';
+ const priorities={HIGH:'高',MEDIUM:'中',LOW:'低',DATA_INSUFFICIENT:'資料不足'};
  const label={announcement_date:'公告',effective_date:'生效',closing_impact_date:'收盤觀察',implementation_window:'過渡期間'};
  const statuses={CONFIRMED_CLOSE_IMPLEMENTATION:'官方確認收盤實施',EXPECTED_CLOSE_WATCH_DATE:'預估觀察日',EXPECTED_MULTIDAY_TRANSITION:'預估多日換股期間',DATE_UNVERIFIED:'收盤日未確認'};
  const esc=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -17,8 +18,9 @@
   }
   return data;
  }
- function model(now,data,health,error=''){
+ function model(now,data,health,error='',fundData=null){
   let events=[];try{if(data)events=valid(data,now).events;}catch(e){error=e.message;}
+  events=events.map(e=>({...e,fund_events:(fundData?.fund_events||[]).filter(r=>r.event_id===e.event_id&&Date.parse(r.information_available_as_of)<=now.getTime())}));
   const day=taipei(now),limit=new Date(day+'T12:00:00Z');limit.setUTCDate(limit.getUTCDate()+30);
   const end=limit.toISOString().slice(0,10),entries=[];
   for(const event of events){
@@ -41,10 +43,13 @@
   return {day,today,headline,upcoming,range,error,incomplete,sourceStale,
    note:(incomplete?'部分來源受限、未更新或僅追蹤日程；未列出不代表沒有事件。':'已完成已設定官方來源掃描。')+(conflicts?' '+conflicts+' 筆來源日期衝突，暫不列入觀察日。':'')};
  }
+ function fundLabels(rows){
+  return rows.slice().sort((a,b)=>({HIGH:0,MEDIUM:1,LOW:2,DATA_INSUFFICIENT:3}[a.importance_level]??3)-({HIGH:0,MEDIUM:1,LOW:2,DATA_INSUFFICIENT:3}[b.importance_level]??3)||a.fund_code.localeCompare(b.fund_code)).map(r=>'<div class="fund-priority">'+esc(r.fund_code+' '+(r.fund_name||''))+' · 重要程度：'+esc(priorities[r.importance_level]||'資料不足')+(r.importance_confidence==='PROVISIONAL'?'（暫定）':'')+'</div>').join('');
+ }
  function htmlEntry(x){
   const e=x.event,expected=e.event_status==='EXPECTED'||['closing_impact_date','implementation_window'].includes(x.type)&&e.close_date_status!=='CONFIRMED_CLOSE_IMPLEMENTATION';
   const type=x.type==='announcement_date'&&e.announcement_timezone==='SOURCE_DATE_TIME_UNPUBLISHED'?'公告 · 來源日期（台北時間待確認）':label[x.type];
-  return '<li class="event-row"><div class="event-date">'+esc(x.date)+'<small>'+esc(type)+'</small></div><div class="event-description"><strong>'+esc(e.event_name)+'</strong><div>'+esc(e.related_etf_codes.length?'ETF '+e.related_etf_codes.join('、'):e.index_name)+'</div><span class="event-tag'+(expected?' expected':'')+'">'+esc(expected?(x.type==='implementation_window'?'預估多日換股期間 · 依官方規則／交易日推算':'預估 · 依官方規則／交易日推算'):x.type==='closing_impact_date'?statuses[e.close_date_status]:'官方日期 · 收盤實施另確認')+'</span><a href="'+esc(e.source_url)+'" target="_blank" rel="noopener noreferrer">官方來源</a></div></li>';
+  return '<li class="event-row"><div class="event-date">'+esc(x.date)+'<small>'+esc(type)+'</small></div><div class="event-description"><strong>'+esc(e.event_name)+'</strong><div>'+esc(e.related_etf_codes.length?'ETF '+e.related_etf_codes.join('、'):e.index_name)+'</div>'+fundLabels(e.fund_events||[])+'<span class="event-tag'+(expected?' expected':'')+'">'+esc(expected?(x.type==='implementation_window'?'預估多日換股期間 · 依官方規則／交易日推算':'預估 · 依官方規則／交易日推算'):x.type==='closing_impact_date'?statuses[e.close_date_status]:'官方日期 · 收盤實施另確認')+'</span><a href="'+esc(e.source_url)+'" target="_blank" rel="noopener noreferrer">官方來源</a></div></li>';
  }
  function grouped(rows){
   const groups=new Map();
@@ -54,7 +59,7 @@
    if(items.length===1)return htmlEntry(items[0]);
    const x=items[0],e=x.event,etfs=[...new Set(items.flatMap(v=>v.event.related_etf_codes))];
    const entry={...x,event:{...e,event_name:e.source_organization+' 指數定審 · '+items.length+' 項',related_etf_codes:etfs,
-     index_name:items.map(v=>v.event.index_name.replace(/^臺灣指數公司/,'')).join('；')}};
+     fund_events:items.flatMap(v=>v.event.fund_events||[]),index_name:items.map(v=>v.event.index_name.replace(/^臺灣指數公司/,'')).join('；')}};
    return htmlEntry(entry);
   }).join('');
  }
@@ -74,10 +79,10 @@
   return {matches,label:matches.length?matches.map(x=>x.event.event_name+' · '+({ADDITION:'納入',DELETION:'刪除',WEIGHT_CHANGE:'權重調整'}[x.stock.change_type]||'官方異動')).join('；'):
     dayEvents.length?'當日有指數調整事件，個股關聯未確認':'個股事件關聯未確認'};
  }
- const api={valid,model,render,relation,taipei};
+ const api={valid,model,render,relation,taipei,fundLabels};
  if(typeof module!=='undefined'&&module.exports){module.exports=api;return;}
  root.IndexEvents=api;
- let lastGood=null,lastHealth=null,running=false;
+ let lastGood=null,lastHealth=null,lastFunds=null,running=false;
  async function read(name){const c=new AbortController(),timer=setTimeout(()=>c.abort(),12000);try{
   const r=await fetch(RAW+'state/events/'+name+'?v='+Math.floor(Date.now()/300000),{cache:'no-store',signal:c.signal});
   if(!r.ok)throw new Error('HTTP '+r.status);return await r.json();
@@ -95,7 +100,7 @@
  }
  document.addEventListener('tail-dashboard-updated',annotate);
  async function refresh(){if(running)return;running=true;let error='';const now=new Date();
-  try{const [data,health]=await Promise.all([read('events-index.json'),read('source-health.json')]);valid(data,now);lastGood=data;lastHealth=health;}catch(e){error=e.message;}
-  finally{render(document,model(now,lastGood,lastHealth,error));annotate();running=false;setTimeout(refresh,300000);}}
+  try{const [data,health,funds]=await Promise.all([read('events-index.json'),read('source-health.json'),read('fund-events.json').catch(()=>null)]);valid(data,now);lastGood=data;lastHealth=health;lastFunds=funds;}catch(e){error=e.message;}
+  finally{render(document,model(now,lastGood,lastHealth,error,lastFunds));annotate();running=false;setTimeout(refresh,300000);}}
  refresh();
 })(typeof globalThis!=='undefined'?globalThis:this);

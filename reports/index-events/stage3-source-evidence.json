@@ -1,0 +1,98 @@
+[
+  {
+    "source": "twse-spec",
+    "url": "https://openapi.twse.com.tw/v1/swagger.json",
+    "checked_at": "2026-10-10T07:11:48+08:00",
+    "http": 200,
+    "bytes": 309960
+  },
+  {
+    "source": "tpex-spec",
+    "url": "https://www.tpex.org.tw/openapi/swagger.json",
+    "checked_at": "2026-10-10T07:12:03+08:00",
+    "http": 200,
+    "bytes": 476923
+  },
+  {
+    "source": "master",
+    "url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+    "checked_at": "2026-10-10T07:12:22+08:00",
+    "http": 200,
+    "bytes": 341166
+  },
+  {
+    "source": "yuanta0050",
+    "url": "https://www.yuantaetfs.com/product/detail/0050/Basic_information",
+    "checked_at": "2026-10-10T07:12:31+08:00",
+    "http": 200,
+    "bytes": 1097468
+  },
+  {
+    "source": "msci-public",
+    "url": "https://www.msci.com/eqb/gimi/stdindex/index_review.html",
+    "checked_at": "2026-10-10T07:12:46+08:00",
+    "http": 200,
+    "bytes": 223857
+  },
+  {
+    "name": "tpex-quotes",
+    "url": "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes",
+    "checked_at": "2026-10-10T07:18:19+08:00",
+    "bytes": 4782391,
+    "http": 200
+  },
+  {
+    "name": "msci-standard",
+    "url": "https://www.msci.com/eqb/gimi/stdindex/MSCI_Aug26_STPublicList.pdf",
+    "checked_at": "2026-10-10T07:18:32+08:00",
+    "bytes": 15440,
+    "http": 200
+  },
+  {
+    "name": "msci-small",
+    "url": "https://www.msci.com/eqb/gimi/smallcap/MSCI_Aug26_SCPublicList.pdf",
+    "checked_at": "2026-10-10T07:18:39+08:00",
+    "bytes": 23104,
+    "http": 200
+  },
+  {
+    "source": "yuanta-pcf-0050",
+    "url": "https://www.yuantaetfs.com/tradeInfo/pcf/0050",
+    "checked_at": "2026-10-10T07:28:34+08:00",
+    "http": 200,
+    "bytes": 1068981,
+    "sha256": "3b75760e53fcd2021225649cd89884ca07f0482b5ac002dce48c5dbe7fec91ca",
+    "robots": "ALLOWED",
+    "republication_scope": "NET_ASSETS_FACTS_ONLY; NOT_LICENSED_INDEX_CONSTITUENT_DATABASE"
+  },
+  {
+    "source": "yuanta-pcf-0051",
+    "url": "https://www.yuantaetfs.com/tradeInfo/pcf/0051",
+    "checked_at": "2026-10-10T07:28:34+08:00",
+    "http": 200,
+    "bytes": 1077415,
+    "sha256": "8a1ca10114fa4bee3fe49623891d842624b8d35e9797cb2dd981063ef348dd61",
+    "robots": "ALLOWED",
+    "republication_scope": "NET_ASSETS_FACTS_ONLY; NOT_LICENSED_INDEX_CONSTITUENT_DATABASE"
+  },
+  {
+    "source": "yuanta-pcf-0056",
+    "url": "https://www.yuantaetfs.com/tradeInfo/pcf/0056",
+    "checked_at": "2026-10-10T07:28:34+08:00",
+    "http": 200,
+    "bytes": 1068922,
+    "sha256": "d4501f246fe8eee73baac43df15746db8ada57b801a66aa52d586ea054c637c3",
+    "robots": "ALLOWED",
+    "republication_scope": "NET_ASSETS_FACTS_ONLY; NOT_LICENSED_INDEX_CONSTITUENT_DATABASE"
+  },
+  {
+    "source": "yuanta-pcf-006201",
+    "url": "https://www.yuantaetfs.com/tradeInfo/pcf/006201",
+    "checked_at": "2026-10-10T07:28:34+08:00",
+    "http": 200,
+    "bytes": 1075656,
+    "sha256": "eb272ac5db14e15305f0e9b6254bdc02b341554e910b67fd4e9c2b93085e2d4f",
+    "robots": "ALLOWED",
+    "republication_scope": "NET_ASSETS_FACTS_ONLY; NOT_LICENSED_INDEX_CONSTITUENT_DATABASE"
+  }
+]

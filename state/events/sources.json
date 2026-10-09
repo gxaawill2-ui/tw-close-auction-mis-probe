@@ -200,5 +200,41 @@
     "coverage": "LATEST_INDEX_EFFECTIVE_DATE_ONLY",
     "capability": "DATE_ONLY",
     "limitation": "僅官方發行商標示的指數生效日及檔數；非ETF實際交易時間，無個股新增刪除清單。"
+  },
+  {
+    "source_id": "tpex-etf-quote-observations",
+    "url": "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes",
+    "parser": "tpex_quotes",
+    "enabled": true,
+    "coverage": "DATED_QUOTE_OBSERVATIONS_NOT_FULL_FUND_MASTER",
+    "capability": "VERIFIED_AUTOMATIC",
+    "license_url": "https://data.gov.tw/dataset/11370"
+  },
+  {
+    "source_id": "yuanta-aum-0050",
+    "url": "https://www.yuantaetfs.com/tradeInfo/pcf/0050",
+    "parser": "fund_aum",
+    "etf_code": "0050",
+    "enabled": true,
+    "coverage": "FUND_NET_ASSETS_ONLY_NOT_ACTUAL_ORDERS",
+    "capability": "VERIFIED_AUTOMATIC"
+  },
+  {
+    "source_id": "yuanta-aum-0051",
+    "url": "https://www.yuantaetfs.com/tradeInfo/pcf/0051",
+    "parser": "fund_aum",
+    "etf_code": "0051",
+    "enabled": true,
+    "coverage": "FUND_NET_ASSETS_ONLY_NOT_ACTUAL_ORDERS",
+    "capability": "VERIFIED_AUTOMATIC"
+  },
+  {
+    "source_id": "yuanta-aum-0056",
+    "url": "https://www.yuantaetfs.com/tradeInfo/pcf/0056",
+    "parser": "fund_aum",
+    "etf_code": "0056",
+    "enabled": true,
+    "coverage": "FUND_NET_ASSETS_ONLY_NOT_ACTUAL_ORDERS",
+    "capability": "VERIFIED_AUTOMATIC"
   }
 ]

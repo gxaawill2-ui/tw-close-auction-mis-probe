@@ -132,7 +132,8 @@ class EventTests(unittest.TestCase):
 
     def test_scan_workflow_isolated_and_never_market_dispatch(self):
         text=(ROOT/'.github/workflows/index-events.yml').read_text()
-        self.assertIn("20 0,9 * * *",text)
+        self.assertIn("20 0 * * *",text)
+        self.assertIn("20 9 * * *",text)
         self.assertNotIn('probe.py',text);self.assertNotIn('/dispatches',text)
         self.assertNotIn('secrets.',text)
         self.assertIn("github.ref == 'refs/heads/main'",text)

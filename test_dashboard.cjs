@@ -73,7 +73,7 @@ test('real homepage DOM displays all seven, three delayed and four normal closes
 });
 test('homepage has no buttons, forms, date selectors, login or manual control',()=>{
  const doc=dom();ui.render(doc,model());assert.equal(doc.querySelectorAll('button,input,select,form,[role="button"]').length,0);
- assert.equal(doc.querySelectorAll('a').length,1);assert.equal(doc.querySelector('a').getAttribute('href'),'diagnostic.html');
+ assert.deepEqual([...doc.querySelectorAll('a')].map(a=>a.getAttribute('href')).sort(),['diagnostic.html','fund-events.html']);
 });
 test('render unchanged list keeps DOM nodes and avoids refresh flicker',()=>{
  const doc=dom();ui.render(doc,model());const node=doc.querySelector('.candidate-card');ui.render(doc,model());assert.equal(doc.querySelector('.candidate-card'),node);

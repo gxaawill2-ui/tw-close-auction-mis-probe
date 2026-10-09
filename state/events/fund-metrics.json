@@ -1,0 +1,41 @@
+{
+  "updated_at": "2026-10-10T07:20:57+08:00",
+  "funds": [
+    {
+      "fund_code": "0050",
+      "fund_aum": 2551521434557.0,
+      "currency": "TWD",
+      "aum_as_of": "2026-10-08",
+      "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
+      "source_uploaded_at": "2026-10-08T15:51:37+08:00",
+      "information_available_as_of": "2026-10-10T07:20:57+08:00",
+      "last_checked_at": "2026-10-10T07:20:57+08:00",
+      "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0050",
+      "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
+    },
+    {
+      "fund_code": "0051",
+      "fund_aum": 3823531781.0,
+      "currency": "TWD",
+      "aum_as_of": "2026-10-08",
+      "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
+      "source_uploaded_at": "2026-10-08T15:56:00+08:00",
+      "information_available_as_of": "2026-10-10T07:20:57+08:00",
+      "last_checked_at": "2026-10-10T07:20:57+08:00",
+      "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0051",
+      "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
+    },
+    {
+      "fund_code": "0056",
+      "fund_aum": 829080886073.0,
+      "currency": "TWD",
+      "aum_as_of": "2026-10-08",
+      "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
+      "source_uploaded_at": "2026-10-08T16:43:10+08:00",
+      "information_available_as_of": "2026-10-10T07:20:57+08:00",
+      "last_checked_at": "2026-10-10T07:20:57+08:00",
+      "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0056",
+      "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
+    }
+  ]
+}

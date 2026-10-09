@@ -1,0 +1,68 @@
+name: Event backup HTTP acceptance
+on:
+  push:
+    branches: ['improve/**']
+    paths: ['event_dispatch.py', 'event_scheduler.py', 'test_event_reliability.py', '.github/workflows/index-event-dispatch-test.yml', '.github/workflows/index-events.yml']
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: event-backup-http-test
+  cancel-in-progress: false
+jobs:
+  dispatch-event-self-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Real HTTP dispatch to event self-test only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python event_dispatch.py > event-dispatch-acceptance.json
+      - name: Await real child workflow receipt test
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json,os,time,urllib.request
+          url='https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/actions/runs?event=workflow_dispatch&per_page=30'
+          started=int(os.environ['GITHUB_RUN_ID'])
+          for attempt in range(60):
+              request=urllib.request.Request(url,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+              with urllib.request.urlopen(request,timeout=10) as response: data=json.load(response)
+              matches=[r for r in data['workflow_runs'] if r['id']>started and r['head_sha']==os.environ['GITHUB_SHA'] and r['name']=='Index event calendar']
+              if matches and matches[0]['status']=='completed':
+                  result={k:matches[0][k] for k in ('id','html_url','event','conclusion','created_at','head_sha')}
+                  open('event-dispatch-child.json','w').write(json.dumps(result,indent=2))
+                  if result['conclusion']!='success': raise SystemExit('Event HTTP child tests failed')
+                  print(result); break
+              time.sleep(10)
+          else: raise SystemExit('Child event self-test not completed within bounded wait')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: event-backup-http-acceptance
+          path: event-dispatch-*.json
+  browsers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium webkit
+      - run: node browser_acceptance.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: event-priority-browser-predeployment
+          path: browser-results/

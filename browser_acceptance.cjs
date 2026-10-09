@@ -4,6 +4,7 @@ const {chromium,webkit,devices}=require('playwright');
 const ROOT=__dirname,calendar=JSON.parse(fs.readFileSync('state/calendars/2026.json','utf8'));
 const data=JSON.parse(fs.readFileSync('state/candidates/2026-10-08.json','utf8'));
 const eventsData=JSON.parse(fs.readFileSync('state/events/events-index.json','utf8'));
+const fundsData=JSON.parse(fs.readFileSync('state/events/fund-events.json','utf8'));
 const PUBLIC='https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/';
 const OUT=path.join(ROOT,'browser-results');fs.mkdirSync(OUT,{recursive:true});
 const server=http.createServer((request,response)=>{
@@ -28,6 +29,7 @@ async function fixtureContext(browser,options,date='2026-10-08T18:30:00+08:00',p
   if(url.includes('/state/events/')){
    if(eventFailure)return route.fulfill({status:503,body:'Source temporarily unavailable'});
    if(url.includes('events-index.json'))return route.fulfill({json:eventFixture});
+   if(url.includes('fund-events.json'))return route.fulfill({json:fundsData});
    if(url.includes('source-health.json'))return route.fulfill({json:{last_successful_scan_at:date,coverage_status:'PARTIAL',sources:[{status:'SUCCESS'}]}});
   }
   if(url.includes('/state/calendars/'))return route.fulfill({json:calendar});
@@ -144,6 +146,20 @@ async function main(){
     else assert.equal(await p.locator('.candidate-card').count(),0);
     checks.push({name:name+'/'+scenario,result:'PASS'});await ctx.close();
    }
+   const fundContext=await fixtureContext(browser,options,'2026-12-17T18:30:00+08:00',null),fundPage=await fundContext.newPage();
+   await fundPage.goto(base);await fundPage.locator('#event-upcoming .fund-priority').first().waitFor();
+   assert.match(await fundPage.locator('#event-upcoming').textContent(),/重要程度：高/);
+   assert.match(await fundPage.locator('#event-upcoming').textContent(),/重要程度：中/);
+   assert.match(await fundPage.locator('#event-upcoming').textContent(),/預估/);
+   assert.equal(await fundPage.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
+   checks.push({name:name+'/per-fund-priority',result:'PASS',date_confidence_independent:true});
+   await fundPage.goto(base+'fund-events.html');await fundPage.locator('#funds article').first().waitFor();
+   assert.equal(await fundPage.locator('#funds article').count(),fundsData.fund_events.length);
+   assert.equal(await fundPage.locator('button,input,select,form,[role="button"]').count(),0);
+   await fundPage.emulateMedia({colorScheme:'light'});assert.equal(await fundPage.evaluate(()=>getComputedStyle(document.body).backgroundColor),'rgb(11, 16, 26)');
+   assert.equal(await fundPage.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
+   await fundPage.screenshot({path:path.join(OUT,'funds-'+name+'.png'),fullPage:true});
+   checks.push({name:name+'/fund-readonly-page',result:'PASS',all_priorities_visible:true});await fundContext.close();
    // Public smoke uses the real Taipei day, normal anonymous HTTP and no routes.
    // Future runs do not expect yesterday's October 8 candidates as today's list.
    const publicContext=await browser.newContext({...options,timezoneId:'Asia/Taipei'}),publicPage=await publicContext.newPage();

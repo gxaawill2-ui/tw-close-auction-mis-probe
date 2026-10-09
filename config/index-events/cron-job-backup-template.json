@@ -1,0 +1,8 @@
+{
+  "status": "NOT_ACTIVATED; cron-job.org login and a new repository-scoped credential required",
+  "credential_requirements": "New fine-grained GitHub PAT: only gxaawill2-ui/tw-close-auction-mis-probe; Actions read/write. Store only in cron-job.org Authorization header. Never use MIS token.",
+  "jobs": [
+    {"job":{"title":"TW index events backup 08:35","enabled":false,"url":"https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/actions/workflows/index-events.yml/dispatches","saveResponses":false,"requestMethod":1,"requestTimeout":20,"extendedData":{"headers":{"Authorization":"Bearer REPLACE_IN_CRON_JOB_SECURE_CONFIGURATION_ONLY","Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"},"body":"{\"ref\":\"main\",\"inputs\":{\"schedule_slot\":\"08:20\",\"self_test\":false}}"},"schedule":{"timezone":"Asia/Taipei","hours":[8],"minutes":[35],"mdays":[-1],"months":[-1],"wdays":[-1]}}},
+    {"job":{"title":"TW index events backup 17:35","enabled":false,"url":"https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/actions/workflows/index-events.yml/dispatches","saveResponses":false,"requestMethod":1,"requestTimeout":20,"extendedData":{"headers":{"Authorization":"Bearer REPLACE_IN_CRON_JOB_SECURE_CONFIGURATION_ONLY","Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"},"body":"{\"ref\":\"main\",\"inputs\":{\"schedule_slot\":\"17:20\",\"self_test\":false}}"},"schedule":{"timezone":"Asia/Taipei","hours":[17],"minutes":[35],"mdays":[-1],"months":[-1],"wdays":[-1]}}}
+  ]
+}

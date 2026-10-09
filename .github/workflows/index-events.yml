@@ -1,10 +1,25 @@
 name: Index event calendar
 on:
   schedule:
-    - cron: '20 0,9 * * *'
+    - cron: '20 0 * * *'
+    - cron: '20 9 * * *'
   workflow_dispatch:
+    inputs:
+      schedule_slot:
+        description: 'Backup slot; empty means an independent manual scan'
+        type: choice
+        options: ['', '08:20', '17:20']
+        default: ''
+      self_test:
+        description: 'Receipt tests only; no source requests or publication'
+        type: boolean
+        default: false
   push:
     paths:
+      - 'event_scheduler.py'
+      - 'fund_importance.py'
+      - 'test_event_reliability.py'
+      - 'docs/fund-events.*'
       - 'index_events.py'
       - 'test_index_events.py'
       - 'test_source_recovery.py'
@@ -65,11 +80,12 @@ jobs:
     needs: tests
     # First main rollout also publishes observed source health. This never
     # dispatches a market workflow; later data-only bot commits don't match paths.
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && inputs.self_test != true
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
       contents: write
+      actions: read
     steps:
       - uses: actions/checkout@v4
         with:
@@ -78,16 +94,59 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install pypdf
+      - name: Read actual run metadata (GitHub does not expose scheduled date)
+        id: metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PYMETA'
+          import json,os,urllib.request
+          url='https://api.github.com/repos/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs/'+os.environ['GITHUB_RUN_ID']
+          request=urllib.request.Request(url,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+          with urllib.request.urlopen(request,timeout=10) as r: data=json.load(r)
+          request=urllib.request.Request(url+'/jobs',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+          with urllib.request.urlopen(request,timeout=10) as r: jobs=json.load(r)['jobs']
+          runner=next(j['started_at'] for j in jobs if j['name']=='scan')
+          with open(os.environ['GITHUB_OUTPUT'],'a') as out:
+              out.write('created_at='+data['created_at']+'\n')
+              out.write('runner_started_at='+runner+'\n')
+          PYMETA
+      - name: Claim date-slot lease through bounded git CAS
+        id: claim
+        env:
+          EVENT_CREATED_AT: ${{ steps.metadata.outputs.created_at }}
+          EVENT_RUNNER_STARTED_AT: ${{ steps.metadata.outputs.runner_started_at }}
+          EVENT_RECEIPT_ID: ${{ steps.claim.outputs.receipt_identity }}
+          EVENT_CRON: ${{ github.event.schedule }}
+          EVENT_SLOT: ${{ inputs.schedule_slot }}
+        run: python event_scheduler.py claim
+      - name: Mark scan start and synchronize event checkout
+        if: steps.claim.outputs.decision == 'CLAIMED'
+        env:
+          EVENT_CREATED_AT: ${{ steps.metadata.outputs.created_at }}
+          EVENT_RUNNER_STARTED_AT: ${{ steps.metadata.outputs.runner_started_at }}
+          EVENT_RECEIPT_ID: ${{ steps.claim.outputs.receipt_identity }}
+          EVENT_CRON: ${{ github.event.schedule }}
+          EVENT_SLOT: ${{ inputs.schedule_slot }}
+        run: |
+          python event_scheduler.py start
+          git fetch origin main
+          git rebase origin/main
       - name: Bounded public-source scan; errors preserve prior facts
+        id: source-scan
+        if: steps.claim.outputs.decision == 'CLAIMED'
         run: |
           python index_events.py > index-events-scan.json
           cat index-events-scan.json
+          echo "finished_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
       - name: Publish only event addenda; leave MIS state and evidence untouched
+        id: publish
+        if: steps.claim.outputs.decision == 'CLAIMED'
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add state/events reports/index-events/*.csv reports/index-events/source-coverage-comparison.json
-          if git diff --cached --quiet; then exit 0; fi
+          if git diff --cached --quiet; then echo "published=true" >> "$GITHUB_OUTPUT"; echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"; exit 0; fi
           git commit -m "Update official index event calendar and source health"
           for attempt in 1 2 3; do
             git fetch origin main
@@ -96,11 +155,23 @@ jobs:
               echo "Concurrent event-data change: publication rejected; scan artifact retained"
               exit 1
             fi
-            if git push origin HEAD:main; then exit 0; fi
+            if git push origin HEAD:main; then echo "published=true" >> "$GITHUB_OUTPUT"; echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"; exit 0; fi
             sleep 2
           done
           echo "Event calendar publication failed after three attempts"
           exit 1
+      - name: Record publication acknowledgement or failed lease
+        if: always() && steps.claim.outputs.decision == 'CLAIMED'
+        env:
+          EVENT_CREATED_AT: ${{ steps.metadata.outputs.created_at }}
+          EVENT_RUNNER_STARTED_AT: ${{ steps.metadata.outputs.runner_started_at }}
+          EVENT_RECEIPT_ID: ${{ steps.claim.outputs.receipt_identity }}
+          EVENT_CRON: ${{ github.event.schedule }}
+          EVENT_SLOT: ${{ inputs.schedule_slot }}
+          EVENT_PUBLISHED: ${{ steps.publish.outputs.published }}
+          EVENT_SCAN_FINISHED_AT: ${{ steps.source-scan.outputs.finished_at }}
+          EVENT_DATA_COMMIT: ${{ steps.publish.outputs.commit }}
+        run: python event_scheduler.py finish
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -130,7 +201,7 @@ jobs:
           for attempt in range(30):
               try:
                   text=urllib.request.urlopen(url+'?acceptance='+str(time.time()),timeout=10).read().decode()
-                  if 'events.js?v=events1' in text:
+                  if 'events.js?v=events2' in text:
                       print('Public Pages event calendar deployed');break
               except Exception as error: print(type(error).__name__)
               time.sleep(15)
@@ -146,3 +217,13 @@ jobs:
           name: index-events-public-browser-${{ github.run_id }}
           path: browser-results/
           retention-days: 30
+  receipt-self-test:
+    if: github.event_name == 'workflow_dispatch' && inputs.self_test == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest test_event_reliability -v

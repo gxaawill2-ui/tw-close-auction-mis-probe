@@ -84,3 +84,22 @@ test('expected multiday status supported without upgrading to official close',()
  assert.match(v.headline,/預估/);assert.match(doc.getElementById('event-today-list').textContent,/預估多日換股期間/);
  assert.doesNotMatch(doc.getElementById('event-today-list').textContent,/官方確認收盤實施/);
 });
+
+test('per-fund priorities and date evidence are separate DOM labels',()=>{
+ const d=copy(data);d.events[0].closing_impact_date='2026-10-20';
+ const funds={fund_events:[{event_id:'e1',fund_code:'0050',fund_name:'test large',importance_level:'HIGH',importance_confidence:'PROVISIONAL',information_available_as_of:seen},{event_id:'e1',fund_code:'0051',fund_name:'test small',importance_level:'MEDIUM',importance_confidence:'PROVISIONAL',information_available_as_of:seen}]};
+ const doc=dom();ui.render(doc,ui.model(now,d,health,'',funds));
+ assert.match(doc.getElementById('event-upcoming').textContent,/0050 test large · 重要程度：高（暫定）/);
+ assert.match(doc.getElementById('event-upcoming').textContent,/0051 test small · 重要程度：中（暫定）/);
+ assert.match(doc.getElementById('event-upcoming').textContent,/預估/);
+});
+test('future rating availability cannot leak into prior calendar',()=>{
+ const funds={fund_events:[{event_id:'e1',fund_code:'0050',importance_level:'HIGH',information_available_as_of:'2026-11-01T00:00:00+08:00'}]};
+ assert.equal(ui.model(now,data,health,'',funds).upcoming[0].event.fund_events.length,0);
+});
+test('complete readonly fund page stays dark and has no controls',()=>{
+ const doc=parseHTML(fs.readFileSync('docs/fund-events.html','utf8')).document;
+ assert.equal(doc.querySelectorAll('button,input,select,form,[role="button"]').length,0);
+ assert.match(doc.querySelector('style').textContent,/color-scheme:dark/);
+ assert.match(doc.body.textContent,/與日期可信程度分開/);
+});

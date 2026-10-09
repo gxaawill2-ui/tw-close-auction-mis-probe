@@ -8,6 +8,7 @@ import copy
 import csv
 import hashlib
 import io
+from http.client import IncompleteRead
 import json
 import re
 import time
@@ -52,6 +53,52 @@ def official_date(value):
     if len(digits) == 8 and digits.isdigit():
         return date(int(digits[:4]), int(digits[4:6]), int(digits[6:])).isoformat()
     raise ValueError('Official date layout unrecognized: ' + value[:40])
+
+
+def parse_yuanta_aum(raw, source, code, seen):
+    text = re.sub(r'<(script|style)\b[^>]*>.*?</\1>', '', raw.decode('utf-8'), flags=re.I|re.S)
+    plain = ' '.join(''.join(HTML(text).parts).split())
+    if not re.search(r'(?<!\d)'+re.escape(code)+r'(?!\d)', plain): raise ValueError('PCF fund identity mismatch')
+    amount = re.search(r'基金淨資產價值\s+NTD\s+\$?([\d,]+(?:\.\d+)?)',plain)
+    valuation = re.search(r'(20\d{2}/\d{2}/\d{2})\s+每受益權單位淨資產價值',plain)
+    uploaded = re.search(r'上傳時間[：:]\s*(20\d{2}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})',plain)
+    if not amount or not valuation or not uploaded: raise ValueError('PCF AUM/date layout unrecognized')
+    dated = official_date(valuation[1]); published=uploaded[1].replace(' ','T')+'+08:00'
+    if dated > datetime.fromisoformat(seen).date().isoformat() or datetime.fromisoformat(published)>datetime.fromisoformat(seen):
+        raise ValueError('PCF facts not yet available')
+    return {'fund_code':code,'fund_aum':float(amount[1].replace(',','')),'currency':'TWD',
+        'aum_as_of':dated,'aum_date_basis':'NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF',
+        'source_uploaded_at':published,'information_available_as_of':seen,'last_checked_at':seen,
+        'source_url':source,'evidence_kind':'OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT'}
+
+
+def parse_tpex_etf_observations(raw, source, seen):
+    """Open government quotes establish dated observations, not a full master.
+
+    ETF-format codes are candidates until a fund master/issuer proves type.
+    Capitals is deliberately NOT treated as fund NAV/AUM.
+    """
+    data = json.loads(raw)
+    if not isinstance(data, list) or not data: raise ValueError('TPEx quotes unavailable')
+    required = {'Date', 'SecuritiesCompanyCode', 'CompanyName'}
+    if any(not required <= row.keys() for row in data): raise ValueError('TPEx quote schema changed')
+    dates = [official_date(row['Date']) for row in data]
+    latest = max(dates)
+    if latest > datetime.fromisoformat(seen).date().isoformat(): raise ValueError('Future TPEx quote date')
+    rows = []
+    for row, day in zip(data, dates):
+        code = str(row['SecuritiesCompanyCode']).strip()
+        if day != latest or not re.fullmatch(r'00\d{3,4}[A-Z]?', code): continue
+        rows.append({'fund_code': code, 'fund_name': row['CompanyName'], 'market': 'TPEx',
+            'identity_status': 'ETF_FORMAT_CODE_CANDIDATE', 'management_type':'UNKNOWN',
+            'index_name':None, 'fund_type':'UNKNOWN', 'issuer_name':None,
+            'listing_date':None, 'delisting_date':None, 'calendar_eligible':False,
+            'listing_status':'OBSERVED_IN_OFFICIAL_QUOTES_AS_OF_DATE', 'source_date':day,
+            'source_url':source,'license_url':'https://data.gov.tw/dataset/11370',
+            'information_available_as_of':seen, 'first_seen_at':seen})
+    if not rows: raise ValueError('No ETF-format quotes; not proof of delisting')
+    if len({r['fund_code'] for r in rows}) != len(rows): raise ValueError('Duplicate TPEx security codes')
+    return rows
 
 
 def parse_etf_master(raw, source, seen):
@@ -530,6 +577,26 @@ class Fetcher:
         self.cache[url] = raw
         return raw
 
+    def get_json(self, url):
+        """Retry malformed/truncated JSON once without retaining poisoned cache.
+
+        Two content retrievals at most; the global request budget still applies.
+        Diagnostics contain hashes and parse offsets, never credentials or names.
+        """
+        self.json_diagnostics = getattr(self, 'json_diagnostics', [])
+        for attempt in range(2):
+            raw = self.get(url)
+            try:
+                json.loads(raw)
+                return raw
+            except (json.JSONDecodeError, UnicodeDecodeError) as error:
+                self.json_diagnostics.append({'source_url': url, 'bytes': len(raw),
+                    'sha256': hashlib.sha256(raw).hexdigest(), 'error': str(error)[:200],
+                    'attempt': attempt + 1})
+                self.cache.pop(url, None)
+                if attempt == 1: raise
+        raise ValueError('JSON_UNAVAILABLE')
+
     def _request(self, url):
         for attempt in range(2):
             if self.attempts >= self.max_attempts: raise RuntimeError('REQUEST_BUDGET_EXCEEDED')
@@ -539,10 +606,12 @@ class Fetcher:
                     if any(s in response.url.lower() for s in ('/login', '/loggedout', '/signin')): raise RuntimeError('ACCESS_RESTRICTED')
                     raw = response.read(6 * 1024 * 1024 + 1)
                     if len(raw) > 6 * 1024 * 1024: raise ValueError('SOURCE_TOO_LARGE')
+                    declared = response.headers.get('Content-Length')
+                    if declared and int(declared) != len(raw): raise OSError('TRUNCATED_HTTP_RESPONSE')
                     return raw
             except HTTPError as error:
                 if error.code in (401, 403, 404) or attempt == 1: raise
-            except (TimeoutError, OSError):
+            except (TimeoutError, OSError, IncompleteRead):
                 if attempt == 1: raise
             time.sleep(1)
 
@@ -610,8 +679,9 @@ def run(root=ROOT, fetcher=None):
             entry.update(status='RESTRICTED' if spec.get('restricted') else 'NOT_IMPLEMENTED', error=spec['limitation'])
             health.append(entry); continue
         try:
-            url = spec['url']; raw = client.get(url)
-            kind = spec['parser']; found = []
+            url = spec['url']; kind = spec['parser']
+            raw = client.get_json(url) if kind in ('etf_master', 'market_metadata', 'tpex_quotes') and hasattr(client, 'get_json') else client.get(url)
+            found = []
             if kind == 'msci_schedule': found = parse_msci_schedule(pdf_text(raw), url, seen)
             elif kind == 'etf_master':
                 fresh_master = parse_etf_master(raw, url, seen)
@@ -623,6 +693,30 @@ def run(root=ROOT, fetcher=None):
                 mapping = next((r for r in mappings if r['etf_code'] == spec['etf_code'] and r.get('mapping_status') == 'CONFIRMED'), None)
                 if not mapping: raise ValueError('Issuer profile tracked index unavailable/conflicting')
                 found = parse_yuanta_profile(raw, url, seen, mapping)
+            elif kind == 'fund_aum':
+                metric = parse_yuanta_aum(raw, url, spec['etf_code'], now_iso())
+                metrics = load(base / 'fund-metrics.json', {'funds':[]})
+                previous = next((r for r in metrics['funds'] if r['fund_code']==metric['fund_code']),None)
+                if previous and all(previous.get(k)==metric.get(k) for k in ('fund_aum','aum_as_of','source_url')):
+                    metric['information_available_as_of']=previous['information_available_as_of']
+                metrics['funds']=[r for r in metrics['funds'] if r['fund_code']!=metric['fund_code']]+[metric]
+                metrics['updated_at']=now_iso()
+                write(base / 'fund-metrics.json',metrics)
+                entry.update(source_date=metric['aum_as_of'],parsed_fund_metrics=1)
+            elif kind == 'tpex_quotes':
+                observations = parse_tpex_etf_observations(raw, url, seen)
+                previous = load(base / 'tpex-etf-observations.json', {'funds':[]})
+                prior = {r['fund_code']:r for r in previous['funds']}
+                for row in observations:
+                    if row['fund_code'] in prior: row['first_seen_at'] = prior[row['fund_code']]['first_seen_at']
+                current = {r['fund_code']:r for r in observations}
+                for code, row in prior.items():
+                    if code not in current:
+                        current[code] = {**row,'listing_status':'NOT_IN_LATEST_QUOTES; DELISTING_UNVERIFIED'}
+                write(base / 'tpex-etf-observations.json', {'updated_at':now_iso(),'coverage_status':'PARTIAL',
+                    'funds':sorted(current.values(),key=lambda x:x['fund_code']),
+                    'note':'報價日期的市場身分觀察；不是完整ETF主檔，不代表永遠掛牌，發行股數不等於淨資產。'})
+                entry.update(parsed_etf_count=len(observations),source_date=max(r['source_date'] for r in observations))
             elif kind == 'market_metadata':
                 data = json.loads(raw)
                 if not isinstance(data, list) or not data: raise ValueError('Official market metadata unavailable')
@@ -742,6 +836,7 @@ def run(root=ROOT, fetcher=None):
           'last_successful_scan_at': finished if any(s['status'] == 'SUCCESS' for s in health) else health_old.get('last_successful_scan_at'),
           'last_failure_at': max((s['last_failure_at'] for s in health if s.get('last_failure_at')),default=None),
           'coverage_status': 'PARTIAL', 'request_attempts': getattr(client, 'attempts', None), 'sources': health,'metrics':metrics})
+    write(base / 'fetch-diagnostics.json', {'checked_at':finished,'json_failures':getattr(client,'json_diagnostics',[])})
     write(base / 'document-registry.json', registry)
     write(base / 'review-queue.json', list(keyed.values()))
     write(base / 'etf-index-map.json', {'updated_at': finished, 'coverage_status': 'PARTIAL', 'mappings': mappings})
@@ -759,6 +854,8 @@ def run(root=ROOT, fetcher=None):
         'note':'SUCCESS包含DATE_ONLY，不等於能解析基金實際交易時間。來源數與全市場事件涵蓋率不同。'}
     write(root / 'reports/index-events/source-coverage-comparison.json', comparison)
     rebuild_sidecars(root, events, finished)
+    from fund_importance import refresh
+    refresh(root, finished)
     return health
 
 
