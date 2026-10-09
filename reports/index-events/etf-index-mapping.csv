@@ -1,15 +1,67 @@
 etf_code,etf_name,index_name,management_type,mapping_status,source_url,first_seen_at
-0050,元大台灣50,FTSE TWSE Taiwan 50 Index,PASSIVE,CONFIRMED,https://www.yuantaetfs.com/product/detail/0050/Basic_information,2026-10-09T10:33:57+08:00
-0051,元大中型100,FTSE TWSE Taiwan Mid-Cap 100 Index,PASSIVE,CONFIRMED,https://www.yuantaetfs.com/product/domestic,2026-10-09T10:33:57+08:00
-0056,元大高股息,FTSE TWSE Taiwan Dividend+ Index,PASSIVE,CONFIRMED,https://www.yuantaetfs.com/product/detail/0056/Basic_information,2026-10-09T10:33:57+08:00
-006208,富邦台50,FTSE TWSE Taiwan 50 Index,PASSIVE,CONFIRMED,https://websys.fsit.com.tw/FubonETF/Fund/IndexIntro.aspx?stkId=006208,2026-10-09T10:33:57+08:00
-00878,國泰永續高股息,MSCI臺灣ESG永續高股息精選30指數,PASSIVE,CONFIRMED,https://www.cathaysite.com.tw/ETF/index-trend?keyword=00878,2026-10-09T10:33:57+08:00
-00904,台新臺灣半導體30ETF,臺灣指數公司臺灣全市場半導體精選30指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/452,2026-10-09T10:33:57+08:00
-00919,群益台灣精選高息ETF,臺灣指數公司特選臺灣上市上櫃精選高息指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/452,2026-10-09T10:33:57+08:00
-00923,群益台ESG低碳50ETF,臺灣指數公司特選臺灣ESG低碳50指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/454,2026-10-09T10:33:57+08:00
-00929,復華台灣科技優息ETF,臺灣指數公司特選臺灣上市上櫃科技優息指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/452,2026-10-09T10:33:57+08:00
-00930,永豐ESG低碳高息ETF,臺灣指數公司特選臺灣上市上櫃ESG低碳高息40指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/454,2026-10-09T10:33:57+08:00
-00934,中信成長高股息ETF,臺灣指數公司特選臺灣上市上櫃優選成長高股息指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/452,2026-10-09T10:33:57+08:00
-00936,台新永續高息中小ETF,臺灣指數公司特選臺灣上市上櫃永續高息中小型股指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/454,2026-10-09T10:33:57+08:00
-00939,統一台灣高息動能ETF,臺灣指數公司特選臺灣上市上櫃高息動能指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/454,2026-10-09T10:33:57+08:00
-009802,富邦旗艦50ETF,臺灣指數公司台灣上市上櫃旗艦動能50指數,PASSIVE,CONFIRMED,https://taiwanindex.com.tw/news/452,2026-10-09T10:33:57+08:00
+0050,元大台灣50,臺灣50指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T10:33:57+08:00
+0051,元大中型100,臺灣中型100指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T10:33:57+08:00
+0052,富邦科技,臺灣資訊科技指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+0053,元大電子,電子類加權股價指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+0054,元大台商50,S&P台商收成指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+0055,元大MSCI金融,MSCI台灣金融指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+0056,元大高股息,臺灣高股息指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T10:33:57+08:00
+0057,富邦摩台,MSCI臺灣指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+0058,富邦發達,臺灣發達指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+0059,富邦金融,金融保險類股指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+0060,新台灣,未含電子股50指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+006203,元大MSCI台灣,MSCI®臺灣指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+006204,永豐臺灣加權,臺灣證券交易所發行量加權股價指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+006208,富邦台50,臺灣50指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T10:33:57+08:00
+00690,兆豐藍籌30,藍籌30指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00692,富邦公司治理,臺灣證券交易所公司治理100指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00701,國泰股利精選30,臺灣指數公司低波動股利精選30指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00713,元大台灣高息低波,臺灣指數公司特選高股息低波動指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00728,第一金工業30,臺灣工業菁英30指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00730,富邦臺灣優質高息,道瓊斯台灣優質高股息30指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00731,復華富時高息低波,富時台灣高股息低波動指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00733,臺灣中小A級動能50 ETF基金,臺灣指數公司中小型A級動能50指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00742,新光內需收益,臺灣指數公司特選內需高收益指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00850,元大臺灣ESG永續,臺灣永續指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00878,國泰永續高股息,MSCI臺灣ESG永續高股息精選30指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T10:33:57+08:00
+00881,國泰台灣科技龍頭,臺灣指數公司特選臺灣上市上櫃FactSet科技龍頭通訊指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00891,中信關鍵半導體,NYSE FactSet 臺灣ESG永續關鍵半導體指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00892,富邦台灣半導體,NYSE FactSet台灣核心半導體指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00894,中信小資高價30,臺灣指數公司特選小資高價30指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00896,中信綠能及電動車,臺灣指數公司特選臺灣上市上櫃綠能及電動車指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00900,富邦特選高股息30,臺灣指數公司特選臺灣上市上櫃高股息30指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00901,永豐智能車供應鏈,臺灣指數公司特選上市上櫃臺灣智能車供應鏈聯盟指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00904,台新臺灣半導體30,臺灣指數公司臺灣全市場半導體精選30指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T10:33:57+08:00
+00905,FT臺灣Smart,臺灣指數公司特選Smart多因子指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00907,永豐優息存股,臺灣指數公司特選臺灣優選入息存股指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00912,中信臺灣智慧50,臺灣指數公司特選臺灣上市上櫃智慧50指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00913,兆豐台灣晶圓製造ETF,臺灣晶圓製造指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00915,凱基優選高股息30,臺灣指數公司特選臺灣上市上櫃多因子優選高股息30指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00918,大華優利高填息30 ETF,特選台灣優利高填息30指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00919,群益台灣精選高息,臺灣指數公司特選臺灣上市上櫃精選高息指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T10:33:57+08:00
+00921,兆豐龍頭等權重,特選臺灣產業龍頭存股等權重指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00922,國泰台灣領袖50 ETF基金,MSCI台灣領袖50精選指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00923,群益台ESG低碳50,臺灣指數公司特選臺灣ESG低碳50指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T10:33:57+08:00
+00927,群益半導體收益,臺灣指數公司特選臺灣上市上櫃半導體收益指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00929,復華台灣科技優息,臺灣指數公司特選臺灣上市上櫃科技優息指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T10:33:57+08:00
+00930,永豐ESG低碳高息,臺灣指數公司特選臺灣上市上櫃ESG低碳高息40指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T10:33:57+08:00
+00932,兆豐永續高息等權,臺灣ESG永續高股息等權重指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00934,中信成長高股息,臺灣指數公司特選臺灣上市上櫃優選成長高股息指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T10:33:57+08:00
+00935,野村臺灣新科技50,臺灣指數公司特選臺灣上市上櫃FactSet創新科技50指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00936,台新永續高息中小型ETF,台灣永續高息中小型指數,PASSIVE,CONFLICT,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T10:33:57+08:00
+00938,凱基優選30,臺灣指數公司特選臺灣上市上櫃優選多因子30指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00939,統一台灣高息動能ETF基金,特選臺灣高息動能指數,PASSIVE,CONFLICT,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T10:33:57+08:00
+00940,元大台灣價值高息,臺灣指數公司特選臺灣價值高息指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00943,兆豐電子高息等權,臺灣電子成長高息等權重指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00944,野村趨勢動能高息,臺灣指數公司特選臺灣上市上櫃FactSet臺灣趨勢動能高股息指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00946,群益科技高息成長,臺灣指數公司特選臺灣上市上櫃科技高息成長指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00947,台新臺灣IC設計動能ETF基金,台灣IC設計動能指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00952,凱基台灣AI 50,臺灣指數公司特選臺灣上市上櫃FactSet優選AI 50指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00961,FT臺灣永續高息,NYSE臺灣ESG高息指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+00962,台新AI優息動能基金,台灣AI優息動能指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+009802,富邦旗艦50,臺灣指數公司台灣上市上櫃旗艦動能50指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T10:33:57+08:00
+009803,玉山市值動能50,臺灣指數公司特選FactSet臺灣市值動能50指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+009804,聯邦台灣精彩50ETF基金,富時臺灣證券交易所臺灣50權重上限30%指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+009808,華南永昌優選50,臺灣護城河概念優選 50 指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+009809,富邦淨零ESG50,S&P TIP臺灣淨零轉型ESG 50指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+009816,凱基台灣TOP50,臺灣指數公司特選臺灣TOP 50指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00

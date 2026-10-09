@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-10-09T16:45:18+08:00",
+  "coverage_status": "PARTIAL",
+  "source_total": 23,
+  "source_classes": {
+    "VERIFIED_AUTOMATIC": 6,
+    "DATE_ONLY": 5,
+    "MONITOR_ONLY": 4,
+    "RESTRICTED": 5,
+    "UNAVAILABLE": 3
+  },
+  "new_events": 13,
+  "corrected_events": 0,
+  "conflicting_events": 0,
+  "pending_review_documents": 9,
+  "newly_observed_etfs": 271,
+  "corrected_etfs": 0,
+  "confirmed_etf_mappings": 64,
+  "new_confirmed_etf_mappings": 50,
+  "unconfirmed_etf_mappings": 2,
+  "etf_master_total": 271,
+  "issuer_unknown_etfs": 271,
+  "listing_status_unknown_etfs": 271,
+  "etf_discovery_coverage": "TWSE_OPEN_MASTER_ONLY; TPEx full master not verified"
+}

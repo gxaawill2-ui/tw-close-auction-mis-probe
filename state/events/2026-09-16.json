@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-16",
+  "as_of": "2026-10-09T16:45:18+08:00",
+  "references": [
+    [
+      "0cba14be4a0b5b70b88a",
+      "announcement_date"
+    ],
+    [
+      "0cba14be4a0b5b70b88a",
+      "closing_impact_date"
+    ],
+    [
+      "312afb4c024a50c001a4",
+      "announcement_date"
+    ],
+    [
+      "312afb4c024a50c001a4",
+      "closing_impact_date"
+    ],
+    [
+      "57b0144fbb0be8efca5a",
+      "announcement_date"
+    ],
+    [
+      "57b0144fbb0be8efca5a",
+      "closing_impact_date"
+    ],
+    [
+      "62a9a3992fcdfe48af1a",
+      "announcement_date"
+    ],
+    [
+      "62a9a3992fcdfe48af1a",
+      "closing_impact_date"
+    ],
+    [
+      "fbb15ad5bf4040fa1557",
+      "announcement_date"
+    ],
+    [
+      "fbb15ad5bf4040fa1557",
+      "closing_impact_date"
+    ]
+  ]
+}
