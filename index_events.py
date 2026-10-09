@@ -131,7 +131,9 @@ def merge_mappings(existing, incoming, seen):
                 if old['source_url'] != row['source_url']:
                     row['mapping_status'] = 'CONFLICT'
                     row['conflicting_index_names'] = sorted({old['index_name'], row['index_name']})
-                row['change_history'] += [{'observed_at': seen, 'previous_version': {k:v for k,v in old.items() if k != 'change_history'}}]
+                # Alternating unchanged sources are not repeated corrections.
+                if previous_source is None or index_identity(previous_source.get('index_name')) != index_identity(row['index_name']):
+                    row['change_history'] += [{'observed_at': seen, 'previous_version': {k:v for k,v in old.items() if k != 'change_history'}}]
             names = {e['index_name'] for e in evidence if e.get('index_name')}
             if len({index_identity(n) for n in names})>1:
                 row['mapping_status'] = 'CONFLICT'

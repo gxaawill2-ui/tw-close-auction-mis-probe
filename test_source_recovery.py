@@ -69,6 +69,12 @@ class SourceRecoveryTests(unittest.TestCase):
         x=next(r for r in self.rows() if r['etf_code']=='0050');y={**x,'index_name':'另一個指數','source_url':'https://example.org/issuer'}
         out=merge_mappings([x],[y],LATER);self.assertEqual(out[0]['mapping_status'],'CONFLICT')
         self.assertEqual(merge_mappings(out,[y],LATER)[0]['mapping_status'],'CONFLICT')
+    def test_repeated_cross_source_conflict_scan_does_not_invent_corrections(self):
+        x=next(r for r in self.rows() if r['etf_code']=='0050');y={**x,'index_name':'另一個指數','source_url':'https://example.org/issuer'}
+        first=merge_mappings([], [x,y], SEEN)
+        second=merge_mappings(first,[x,y],LATER)
+        self.assertEqual(second[0]['change_history'],first[0]['change_history'])
+        self.assertEqual(second[0]['mapping_status'],'CONFLICT')
     def test_reviewed_alias_does_not_merge_different_variants(self):
         self.assertEqual(index_identity('臺灣50指數'),index_identity('FTSE TWSE Taiwan 50 Index'))
         self.assertNotEqual(index_identity('臺灣50正向兩倍指數'),index_identity('臺灣50指數'))

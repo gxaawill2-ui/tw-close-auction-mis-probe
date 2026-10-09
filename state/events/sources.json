@@ -51,7 +51,7 @@
     "restricted": true,
     "coverage": "UNKNOWN",
     "limitation": "成分、權重資料之使用及再散布涉及MSCI授權；本免費公開服務未取得授權。",
-    "capability": "VERIFIED_AUTOMATIC"
+    "capability": "RESTRICTED"
   },
   {
     "source_id": "tip-schedule",
@@ -76,7 +76,7 @@
     "restricted": true,
     "coverage": "UNKNOWN",
     "limitation": "完整技術公告需要註冊／訂閱；改追蹤TIP公開摘要，無法保證臨時事件完整性。",
-    "capability": "VERIFIED_AUTOMATIC"
+    "capability": "RESTRICTED"
   },
   {
     "source_id": "tip-etf-map-452",
@@ -100,7 +100,7 @@
     "parser": "map_feed",
     "enabled": true,
     "coverage": "LATEST_PUBLIC_NEWS",
-    "capability": "VERIFIED_AUTOMATIC"
+    "capability": "UNAVAILABLE"
   },
   {
     "source_id": "cathay-announcements",
