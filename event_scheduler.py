@@ -72,6 +72,12 @@ def recovery_scope(identity, last_success):
     return out
 
 
+def freshness_blocks_recovery(identity, health, now):
+    last=health.get('last_successful_scan_at')
+    return bool(identity.get('original_slot_not_fulfilled') and last and
+        (instant(now)-instant(last)).total_seconds()<7200)
+
+
 def claim(previous, identity, now, run_id):
     """Pure CAS proposal; caller must publish against the current git parent."""
     now = instant(now)
@@ -87,6 +93,7 @@ def claim(previous, identity, now, run_id):
         'lease_owner':str(run_id), 'lease_expires_at':(now+timedelta(seconds=LEASE_SECONDS)).isoformat(),
         'scan_attempts':old.get('scan_attempts',0)+1, 'duplicate_trigger':False,
         'missed_slot':identity['trigger_source']=='EXTERNAL_BACKUP',
+        'slot_state_before_claim':'MISSED' if identity['trigger_source']=='EXTERNAL_BACKUP' else 'UNVERIFIED_ORIGIN' if identity.get('original_slot_not_fulfilled') else 'PENDING',
         'missed_slot_definition':'NO_SUCCESS_RECEIPT_BY_BACKUP_CHECK; NOT_PROOF_GITHUB_DROPPED_TRIGGER',
         'source_health':None, 'history':old.get('history',[]) + ([old] if old else [])}
     return out, 'CLAIMED'
@@ -166,10 +173,11 @@ def main():
     def update(path):
         previous=read(path/relative)
         if args.operation=='claim':
-            proposal,decision=claim(previous,identity,now,run_id)
+            current_health=read(path/'state/events/source-health.json')
+            proposal,decision=(previous,'FRESH_DATA_UNATTRIBUTED_NATIVE') if freshness_blocks_recovery(identity,current_health,now) else claim(previous,identity,now,run_id)
             observation={**identity,'runner_started_at':now,'decision':decision,
                 'result':decision,'duplicate_trigger':decision in ('DUPLICATE_SUCCESS','LEASE_HELD'),
-                'source_health':None,'scan_started_at':None,'scan_finished_at':None,'published_at':None}
+                'source_health':{'last_successful_scan_at':current_health.get('last_successful_scan_at'),'metrics':current_health.get('metrics')},'scan_started_at':None,'scan_finished_at':None,'published_at':None}
             changes={audit:observation}
             if decision=='CLAIMED': changes[relative]=proposal
             return decision, changes

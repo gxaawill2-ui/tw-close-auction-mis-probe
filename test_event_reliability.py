@@ -6,7 +6,7 @@ from pathlib import Path
 from unittest.mock import patch
 from urllib.error import HTTPError
 
-from event_scheduler import identify, claim, finish, recovery_scope
+from event_scheduler import identify, claim, finish, recovery_scope, freshness_blocks_recovery
 from event_dispatch import dispatch
 from fund_importance import evaluate, build
 from index_events import Fetcher,parse_tpex_etf_observations,parse_yuanta_aum
@@ -42,6 +42,9 @@ class SchedulerTests(unittest.TestCase):
         p,_=claim({},self.native(),NOW,'1');p=finish(p,'1',NOW,False)
         p,_=claim(p,self.native(),NOW,'2');p=finish(p,'2',NOW,False)
         self.assertEqual(claim(p,self.native(),NOW,'3')[1],'RETRY_LIMIT')
+    def test_backup_published_while_late_native_waited(self):
+        recovery=recovery_scope(self.native('2026-10-11T00:13:06+08:00'),'2026-10-10T17:20:00+08:00')
+        self.assertTrue(freshness_blocks_recovery(recovery,{'last_successful_scan_at':'2026-10-11T00:14:00+08:00'},'2026-10-11T00:15:00+08:00'))
     def test_unknown_cron(self):
         with self.assertRaises(ValueError):identify('schedule','20 0,9 * * *','',NOW,'1')
     def test_early_backup_rejected(self):self.assertFalse(identify('workflow_dispatch','','17:20',NOW,'2')['eligible'])
