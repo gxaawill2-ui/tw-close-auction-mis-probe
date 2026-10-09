@@ -557,6 +557,8 @@ class Fetcher:
         self.cache, self.robots = {}, {}
 
     def get(self, url):
+        if urlparse(url).netloc in ('www.lseg.com','research.ftserussell.com','www.ftserussell.com','www.ftse.com','ftse.com'):
+            raise RuntimeError('TERMS_AUTOMATION_RESTRICTED: LSEG website terms section 10')
         if url in self.cache: return self.cache[url]
         if urlparse(url).scheme != 'https': raise ValueError('HTTPS required')
         from urllib.robotparser import RobotFileParser
@@ -769,7 +771,7 @@ def run(root=ROOT, fetcher=None):
             entry.update(last_success_at=seen, parsed_event_count=len(found))
             entry['scan_outcome'] = 'FETCHED_AND_PARSED'
         except Exception as error:
-            restriction = 'ROBOTS_DISALLOWED' in str(error) or 'ACCESS_RESTRICTED' in str(error) or isinstance(error, HTTPError) and error.code in (401,403)
+            restriction = 'TERMS_AUTOMATION_RESTRICTED' in str(error) or 'ROBOTS_DISALLOWED' in str(error) or 'ACCESS_RESTRICTED' in str(error) or isinstance(error, HTTPError) and error.code in (401,403)
             entry.update(status='RESTRICTED' if restriction else 'STALE' if entry['last_success_at'] else 'UNKNOWN',
                 error=str(error)[:300], last_failure_at=seen, scan_outcome='FETCH_FAILED_NOT_NO_ANNOUNCEMENTS')
         health.append(entry)

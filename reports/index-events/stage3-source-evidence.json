@@ -94,5 +94,17 @@
     "sha256": "eb272ac5db14e15305f0e9b6254bdc02b341554e910b67fd4e9c2b93085e2d4f",
     "robots": "ALLOWED",
     "republication_scope": "NET_ASSETS_FACTS_ONLY; NOT_LICENSED_INDEX_CONSTITUENT_DATABASE"
+  },
+  {
+    "url": "https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2621873",
+    "checked_at": "2026-10-10T07:32:30+08:00",
+    "http": 200,
+    "bytes": 41414
+  },
+  {
+    "url": "https://research.ftserussell.com/products/index-notices/home/getnotice/?id=2622097",
+    "checked_at": "2026-10-10T07:32:37+08:00",
+    "http": 200,
+    "bytes": 100041
   }
 ]

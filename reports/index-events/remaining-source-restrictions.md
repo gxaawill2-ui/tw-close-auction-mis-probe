@@ -17,3 +17,11 @@ TPEx API：https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes 
 未來MSCI11/30為EXPECTED_CLOSE_WATCH_DATE，公告來源日期11/11，生效12/1；FTSE50/Mid10012/18為規則預估、12/21生效；0056推估五日12/21,22,23,24,28。仍沒有新找到未來官方ETF實際單一收盤委託時間。TIP既有9筆歷史指數實施證據保留，不冒稱ETF基金交易。來源狀態維持PARTIAL。
 
 實際研究／更新時間：2026-10-10T07:28:34+08:00
+
+## FTSE重新核對的實質差異
+
+2621873、2622097兩份官方公開notice確實匿名HTTP200，分別明確區分9/18收盤與9/21正式生效、高股息9/21,22,23,24,29五日過渡，以及臨時調整延期／反轉不得沿用原日期。它們不是完整licensed成分資料庫；附件股票名單另有使用條件，不以可閱讀當成可自由自動取得。
+
+PDF Terms of Use實際連到https://www.lseg.com/en/policies/website-terms-of-use 。第9節限個人非專業複製，第10節明確禁止bot/script等自動存取，涵蓋其營運網站。因此沒有把新PDF整合成自動來源，並停止舊lseg規則PDF監測（ftse-rule-0改RESTRICTED），Fetcher也對已知受限FTSE/LSEG主機在發送請求前拒絕。既有日期與歷史證據保留，FTSE事件依TIP合法摘要、issuer公開資料與已保存期程補充，未強制把PARTIAL改COMPLETE。
+
+這次成功HTTP不等於合法持續自動化，將「匿名可閱讀／免費日期公告／完整授權名單／權重及自由流通量／自动及再散布權」各自列明。

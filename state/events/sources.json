@@ -50,7 +50,7 @@
     "enabled": false,
     "restricted": true,
     "coverage": "UNKNOWN",
-    "limitation": "成分、權重資料之使用及再散布涉及MSCI授權；本免費公開服務未取得授權。",
+    "limitation": "公開Standard／Small Cap新增刪除PDF可匿名閱讀，但附資訊授權及重製限制；與完整授權成分庫、權重及自由流通量分列，未取得本站自動使用與再散布權。",
     "capability": "RESTRICTED"
   },
   {
@@ -138,9 +138,12 @@
     "source_id": "ftse-rule-0",
     "url": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-twse-taiwan-index-series-ground-rules.pdf",
     "parser": "monitor_pdf",
-    "enabled": true,
+    "enabled": false,
     "coverage": "RULE_MONITOR_ONLY",
-    "capability": "MONITOR_ONLY"
+    "capability": "RESTRICTED",
+    "restricted": true,
+    "limitation": "LSEG Website Terms of Use第10節明確禁止bot/script自動存取；停止規則PDF自動監測，保留既有研究事實與TIP/發行商替代來源。",
+    "terms_url": "https://www.lseg.com/en/policies/website-terms-of-use"
   },
   {
     "source_id": "ftse-rule-1",

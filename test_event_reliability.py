@@ -103,6 +103,10 @@ class ImportanceTests(unittest.TestCase):
         new=build([self.event],[self.fund],[self.metric],'2026-10-11T17:20:00+08:00',old);self.assertEqual(len(new[0]['rating_history']),1);self.assertEqual(new[0]['first_rated_at'],NOW)
 
 class SourceReliabilityTests(unittest.TestCase):
+    def test_terms_restriction_before_network(self):
+        client=Fetcher()
+        with self.assertRaisesRegex(RuntimeError,'TERMS_AUTOMATION_RESTRICTED'):client.get('https://www.lseg.com/public.pdf')
+        self.assertEqual(client.attempts,0)
     def test_truncated_json_retry(self):
         c=Fetcher();c.get=lambda url: next(responses);responses=iter([b'[{"name":"cut',b'[{"name":"ok"}]'])
         self.assertEqual(json.loads(c.get_json('https://official.example/api'))[0]['name'],'ok');self.assertEqual(len(c.json_diagnostics),1)
