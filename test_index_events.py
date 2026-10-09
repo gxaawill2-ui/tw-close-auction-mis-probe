@@ -86,6 +86,25 @@ class EventTests(unittest.TestCase):
         x=self.event();x['first_seen_at']='2026-11-30T17:00:00+08:00';x['closing_impact_date']='2026-11-30'
         self.assertIsNone(as_of_version(x,'2026-11-30T13:35:00+08:00'))
 
+    def test_scan_started_before_close_but_retrieved_after_close_is_late(self):
+        class Fake:
+            attempts=1
+            def get(self,url): return b'%PDF-test'
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);base=root/'state/events'
+            write(base/'sources.json',[{'source_id':'msci','enabled':True,'parser':'msci_schedule','url':URL}])
+            write(root/'state/calendars/2026.json',CAL['2026'])
+            candidate={'trade_date':'2026-11-30','generated_at':'2026-11-30T13:35:00+08:00','candidate_list':[{'code':'2330','market':'TWSE'}]}
+            write(root/'state/candidates/2026-11-30.json',candidate)
+            text='November 2026 Index Review\nAnnouncement date: November 11, 2026\nEffective date: December 01, 2026'
+            with patch('index_events.pdf_text',return_value=text),patch('index_events.now_iso',side_effect=['2026-11-30T13:34:00+08:00','2026-11-30T13:36:00+08:00']):
+                run(root,Fake())
+            event=load(base/'events-index.json')['events'][0]
+            self.assertEqual(event['first_seen_at'],'2026-11-30T13:36:00+08:00')
+            side=load(base/'candidate-annotations/2026-11-30.json')
+            self.assertEqual(side['live_as_of']['event_ids'],[])
+            self.assertEqual(len(side['latest_as_of']['event_ids']),1)
+
     def test_source_timeout_preserves_events_and_never_empty_success(self):
         class Fail:
             attempts=2

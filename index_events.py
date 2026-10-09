@@ -455,25 +455,37 @@ def run(root=ROOT, fetcher=None):
             entry.update(status='STALE' if entry['last_success_at'] else 'UNKNOWN', error=str(error)[:300])
         health.append(entry)
     # Mapping refresh can amend relationships but never supplies constituent lists.
+    # A scan can start before the close and finish afterwards. Observations are
+    # available only after retrieval/processing, never at the scan start time.
+    finished = now_iso()
+    for item in incoming:
+        for key in ('first_seen_at', 'information_available_as_of', 'last_checked_at', 'updated_at'):
+            item[key] = finished
+    for entry in health:
+        entry['last_checked_at'] = finished
+        if entry['status'] in ('SUCCESS', 'MONITOR_ONLY'): entry['last_success_at'] = finished
+    for mapping in mappings:
+        if mapping.get('first_seen_at') == seen: mapping['first_seen_at'] = finished
+        if mapping.get('last_checked_at') == seen: mapping['last_checked_at'] = finished
     incoming = attach_mapping(incoming, mappings)
     # Renormalize previously observed future dates only when calendars arrive.
     # Preserve as-of lineage and never fabricate a fresh source check.
     for prior in old['events']:
         normalized = normalize_dates(prior, calendars)
         if normalized != prior: incoming.insert(0, normalized)
-    events = merge_events(old['events'], incoming, seen)
+    events = merge_events(old['events'], incoming, finished)
     write(base / 'events-index.json', {'schema_version': 1, 'timezone': 'Asia/Taipei', 'range': [START, END],
-          'generated_at': seen, 'coverage_status': 'PARTIAL', 'events': events,
+          'generated_at': finished, 'coverage_status': 'PARTIAL', 'events': events,
           'limitations': '未公布、受限或解析失敗的來源不等於沒有事件。2027交易日曆未取得時不推算收盤日。'})
     write(base / 'source-health.json', {'last_attempt_at': seen,
-          'last_successful_scan_at': seen if any(s['status'] == 'SUCCESS' for s in health) else health_old.get('last_successful_scan_at'),
+          'last_successful_scan_at': finished if any(s['status'] == 'SUCCESS' for s in health) else health_old.get('last_successful_scan_at'),
           'coverage_status': 'PARTIAL', 'request_attempts': getattr(client, 'attempts', None), 'sources': health})
     write(base / 'document-registry.json', registry)
     existing_queue = load(base / 'review-queue.json', [])
     keyed = {(q['url'], q['sha256']): q for q in existing_queue + queue}
     write(base / 'review-queue.json', list(keyed.values()))
-    write(base / 'etf-index-map.json', {'updated_at': seen, 'coverage_status': 'PARTIAL', 'mappings': mappings})
-    rebuild_sidecars(root, events, seen)
+    write(base / 'etf-index-map.json', {'updated_at': finished, 'coverage_status': 'PARTIAL', 'mappings': mappings})
+    rebuild_sidecars(root, events, finished)
     return health
 
 
