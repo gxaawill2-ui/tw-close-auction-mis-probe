@@ -44,7 +44,7 @@
  function htmlEntry(x){
   const e=x.event,expected=e.event_status==='EXPECTED'||['closing_impact_date','implementation_window'].includes(x.type)&&e.close_date_status!=='CONFIRMED_CLOSE_IMPLEMENTATION';
   const type=x.type==='announcement_date'&&e.announcement_timezone==='SOURCE_DATE_TIME_UNPUBLISHED'?'公告 · 來源日期（台北時間待確認）':label[x.type];
-  return '<li class="event-row"><div class="event-date">'+esc(x.date)+'<small>'+esc(type)+'</small></div><div class="event-description"><strong>'+esc(e.event_name)+'</strong><div>'+esc(e.related_etf_codes.length?'ETF '+e.related_etf_codes.join('、'):e.index_name)+'</div><span class="event-tag'+(expected?' expected':'')+'">'+esc(expected?'預估 · 依官方規則／交易日推算':x.type==='closing_impact_date'?statuses[e.close_date_status]:'官方日期 · 收盤實施另確認')+'</span><a href="'+esc(e.source_url)+'" target="_blank" rel="noopener noreferrer">官方來源</a></div></li>';
+  return '<li class="event-row"><div class="event-date">'+esc(x.date)+'<small>'+esc(type)+'</small></div><div class="event-description"><strong>'+esc(e.event_name)+'</strong><div>'+esc(e.related_etf_codes.length?'ETF '+e.related_etf_codes.join('、'):e.index_name)+'</div><span class="event-tag'+(expected?' expected':'')+'">'+esc(expected?(x.type==='implementation_window'?'預估多日換股期間 · 依官方規則／交易日推算':'預估 · 依官方規則／交易日推算'):x.type==='closing_impact_date'?statuses[e.close_date_status]:'官方日期 · 收盤實施另確認')+'</span><a href="'+esc(e.source_url)+'" target="_blank" rel="noopener noreferrer">官方來源</a></div></li>';
  }
  function grouped(rows){
   const groups=new Map();

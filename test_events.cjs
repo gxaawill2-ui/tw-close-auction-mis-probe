@@ -81,6 +81,6 @@ test('conflicting dates cannot appear as confirmed calendar or stock relationshi
 test('expected multiday status supported without upgrading to official close',()=>{
  const multi={...event,closing_impact_date:null,close_date_status:'EXPECTED_MULTIDAY_TRANSITION',implementation_window:{dates:['2026-10-09','2026-10-12']}};
  const v=ui.model(now,{...data,events:[multi]},health),doc=dom();ui.render(doc,v);
- assert.match(v.headline,/預估/);assert.match(doc.getElementById('event-today-list').textContent,/預估/);
+ assert.match(v.headline,/預估/);assert.match(doc.getElementById('event-today-list').textContent,/預估多日換股期間/);
  assert.doesNotMatch(doc.getElementById('event-today-list').textContent,/官方確認收盤實施/);
 });
