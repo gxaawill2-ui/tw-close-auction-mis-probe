@@ -2,10 +2,10 @@
   "trade_date": "2026-10-09",
   "status": "failed_late_start",
   "phase": "failed_late_start",
-  "runner_started_at": "2026-10-09T18:55:46.392+08:00",
-  "run_id": "37920588064",
-  "python_started_at": "2026-10-09T18:55:57.022+08:00",
+  "runner_started_at": "2026-10-09T19:48:42.126+08:00",
+  "run_id": "37926019721",
+  "python_started_at": "2026-10-09T19:48:52.124+08:00",
   "error": "Started after 13:24:45; no backfill permitted",
-  "artifact": "mis-probe-37920588064",
-  "updated_at": "2026-10-09T18:55:57.237+08:00"
+  "artifact": "mis-probe-37926019721",
+  "updated_at": "2026-10-09T19:48:52.398+08:00"
 }
