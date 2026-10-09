@@ -12,3 +12,5 @@
 10. GitHub Actions日程允許延遲；設置08:20／17:20不等於保证準時。來源robots拒絕、401／403及登入牆停止，不更換身分繞過。HTTP每run最多60次，每URL最多2次，10秒逾時，6MiB大小限制，workflow 15分鐘上限。
 11. 來源失敗保留前次事件、成功時間及錯誤；發布失敗由Actions失敗紀錄與scan artifact保存。每日事件JSON及版本歷史在Git，不依賴30天artifact存活。
 12. 未來10/12的MIS Live尚未發生，不能宣稱已測試其實際結果。原盤中／盤後workflow、Token、Secrets、cron-job.org全部未改。
+
+13. 已確認實際自動化限制：TIP期程／技術通知入口ROBOTS_DISALLOWED，無法自動取得新日程或新成分名單。現在25筆TIP期程來自初始人工官方核對。TIP news/452、454的對應表可自動核對，但新news動態列表未解析，尚不能宣稱新上市ETF自動納入。富邦指定頁robots禁止，國泰指定頁HTTP400。

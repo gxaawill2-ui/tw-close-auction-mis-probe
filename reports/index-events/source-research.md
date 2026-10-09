@@ -56,3 +56,9 @@ FTSE臺灣50與中型100：12/18收盤、12/21生效為官方規則衍生的EXPE
 所有日期記錄first_seen_at、information_available_as_of、last_checked_at、updated_at。來源原始公告時間與本站首次取得時間分開。更正保留previous_version與observed_at，可還原舊資訊版本。10/8候選的live_as_of採原generated_at；事件10/9才由本站取得，不回填假裝10/8已知。
 
 研究sidecar位於state/events/candidate-annotations/YYYY-MM-DD.json。它不改state/candidates、不改变選股門檻、不宣稱因果、無買賣方向。受影響名單必须有官方代號、市場及身分确认才关联。公司簡稱不符或市場不明時留UNKNOWN；未公布權重留null。
+
+## 已執行的來源驗收
+
+GitHub source-smoke run 37876233638（2026-10-09 10:49台北），正常公開HTTP與robots檢查：MSCI期程8筆解析成功，2026交易日曆、TWSE／TPEx公司資料及TIP news/452、news/454對應表成功；FTSE公開規則及元大／群益／復華頁面為變更監控。
+
+TIP `/downloads/technical_notice` 的robots禁止自動讀取，沒有下載該入口；只保留先前人工核對的25筆期程。富邦ETF指定頁亦robots禁止；國泰指定入口HTTP400；TIP動態news列表未取得可解析的新增對應表。這些來源沒有被說成自動成功。2027交易日曆回應未公布。完整結果見source-smoke-health.json。
