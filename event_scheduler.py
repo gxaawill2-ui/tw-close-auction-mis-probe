@@ -113,7 +113,12 @@ def finish(receipt, run_id, now, success, health=None, published_commit=None):
 
 
 def git(args, cwd):
-    return subprocess.check_output(['git',*args],cwd=cwd,text=True,stderr=subprocess.DEVNULL).strip()
+    try:
+        return subprocess.check_output(['git',*args],cwd=cwd,text=True,stderr=subprocess.DEVNULL,timeout=45).strip()
+    except (subprocess.CalledProcessError,subprocess.TimeoutExpired):
+        # CalledProcessError normally embeds argv, which can contain checkout's
+        # Authorization extraheader. Never let those arguments reach a traceback.
+        raise RuntimeError('EVENT_GIT_'+str(args[0]).upper()+'_FAILED_OR_TIMED_OUT') from None
 
 
 def transaction(update):
@@ -149,7 +154,7 @@ def transaction(update):
             try:
                 git(['push','--quiet','origin','HEAD:main'],path)
                 return output
-            except subprocess.CalledProcessError:
+            except RuntimeError:
                 if attempt==2: raise RuntimeError('RECEIPT_CAS_FAILED_AFTER_3_ATTEMPTS') from None
     raise RuntimeError('RECEIPT_UNAVAILABLE')
 

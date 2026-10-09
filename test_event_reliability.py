@@ -1,12 +1,13 @@
 import copy
 import hashlib
 import json
+import subprocess
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 from urllib.error import HTTPError
 
-from event_scheduler import identify, claim, finish, recovery_scope, freshness_blocks_recovery
+from event_scheduler import identify, claim, finish, recovery_scope, freshness_blocks_recovery, git
 from event_dispatch import dispatch
 from fund_importance import evaluate, build
 from index_events import Fetcher,parse_tpex_etf_observations,parse_yuanta_aum
@@ -70,6 +71,15 @@ class SchedulerTests(unittest.TestCase):
         def opener(req,timeout):
             self.assertEqual(req.method,'POST');self.assertIn('index-events.yml',req.full_url);self.assertTrue(json.loads(req.data)['inputs']['self_test']);return Response()
         self.assertEqual(dispatch('redacted-test','improve/test',opener)['http_status'],204)
+    def test_git_errors_never_disclose_header(self):
+        sensitive=['git','config','header','private-test-credential']
+        with patch('event_scheduler.subprocess.check_output',side_effect=subprocess.CalledProcessError(1,sensitive)):
+            with self.assertRaises(RuntimeError) as error:git(sensitive[1:],ROOT)
+        self.assertNotIn('private-test-credential',str(error.exception))
+    def test_git_network_timeout_is_bounded(self):
+        with patch('event_scheduler.subprocess.check_output',side_effect=subprocess.TimeoutExpired(['git','fetch'],45)) as mock:
+            with self.assertRaises(RuntimeError):git(['fetch','origin','main'],ROOT)
+        self.assertEqual(mock.call_args.kwargs['timeout'],45)
     def test_no_mis_change(self):
         p=ROOT/'state/candidates/2026-10-08.json'
         self.assertEqual(hashlib.sha256(p.read_bytes()).hexdigest(),'794cdb1749a7318612fad5003bceb47b126b5d03a8cbda16abf14332954c111b')
