@@ -7,8 +7,8 @@ permissions:
   contents: read
   actions: write
 concurrency:
-  group: event-backup-http-test
-  cancel-in-progress: false
+  group: event-backup-http-test-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   dispatch-event-self-test:
     runs-on: ubuntu-latest
