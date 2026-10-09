@@ -546,8 +546,8 @@ class Fetcher:
 
 
 def pdf_text(raw):
-    from pypdf import PdfReader
     if not raw.startswith(b'%PDF'): raise ValueError('Expected a PDF, received a login/error page')
+    from pypdf import PdfReader
     return '\n'.join(p.extract_text(extraction_mode='layout') or '' for p in PdfReader(io.BytesIO(raw)).pages)
 
 

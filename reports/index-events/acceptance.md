@@ -59,3 +59,5 @@
 繼續入口：source-recovery.md、automatic-etf-discovery.md、source-coverage-comparison.json、next-steps.md與git status；不要再seed或重抓MIS。所有現有MIS workflow及候選證據需在最終部署前再比對。
 
 2026-10-09 補測：再次掃描官方期程不降低已確認實施等級，且保留期程與實施兩個來源；Python總計192項、Node39項，本機PASS。GitHub完整瀏覽器及正式發布證據待本次CI完成後補入。
+
+初次GitHub驗收37906146267在MIS tests發現錯誤HTML先import可選pypdf套件；僅將事件PDF magic檢查移至import前，不修改MIS workflow。獨立event tests已192／39 PASS；修正後重跑完整CI。
