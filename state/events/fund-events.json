@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Taipei",
-  "generated_at": "2026-10-10T07:20:57+08:00",
+  "generated_at": "2026-10-10T07:47:48+08:00",
   "method_version": "observation-priority-v1",
   "coverage_status": "PARTIAL",
   "fund_events": [
@@ -35,7 +35,6 @@
           "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
           "source_uploaded_at": "2026-10-08T16:43:10+08:00",
           "information_available_as_of": "2026-10-10T07:20:57+08:00",
-          "last_checked_at": "2026-10-10T07:20:57+08:00",
           "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0056",
           "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
         }
@@ -51,10 +50,10 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
         "https://www.yuantaetfs.com/tradeInfo/pcf/0056"
       ],
-      "information_available_as_of": "2026-10-10T07:20:57+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "information_available_as_of": "2026-10-10T07:47:48+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
-      "last_updated_at": "2026-10-10T07:20:57+08:00",
+      "last_updated_at": "2026-10-10T07:47:48+08:00",
       "rating_history": [
         {
           "superseded_at": "2026-10-10T07:20:57+08:00",
@@ -95,6 +94,60 @@
             "first_rated_at": "2026-10-10T00:14:21+08:00",
             "last_updated_at": "2026-10-10T00:14:21+08:00"
           }
+        },
+        {
+          "superseded_at": "2026-10-10T07:47:48+08:00",
+          "previous_version": {
+            "fund_event_id": "f813962fdbae24133a87",
+            "event_id": "165e6e1735be4bb74963",
+            "event_name": "臺灣高股息指數 · 2026-06",
+            "fund_code": "0056",
+            "fund_name": "元大高股息",
+            "fund_type": "國內成分證券指數股票型基金",
+            "management_type": "PASSIVE",
+            "index_name": "臺灣高股息指數",
+            "announcement_date": null,
+            "effective_date": "2026-06-26",
+            "closing_impact_date": null,
+            "implementation_window": null,
+            "close_date_status": "DATE_UNVERIFIED",
+            "importance_level": "DATA_INSUFFICIENT",
+            "importance_score": null,
+            "importance_reason": [
+              "缺少收盤觀察日或多日調整方式；規模不足以單獨評級。"
+            ],
+            "importance_method_version": "observation-priority-v1",
+            "importance_confidence": "DATA_INSUFFICIENT",
+            "importance_evidence": [
+              {
+                "fund_code": "0056",
+                "fund_aum": 829080886073.0,
+                "currency": "TWD",
+                "aum_as_of": "2026-10-08",
+                "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
+                "source_uploaded_at": "2026-10-08T16:43:10+08:00",
+                "information_available_as_of": "2026-10-10T07:20:57+08:00",
+                "last_checked_at": "2026-10-10T07:20:57+08:00",
+                "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0056",
+                "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
+              }
+            ],
+            "fund_aum": 829080886073.0,
+            "aum_as_of": "2026-10-08",
+            "affected_stock_count": 4,
+            "affected_weight_change": null,
+            "estimated_exposure_change": null,
+            "expected_execution_pattern": "UNKNOWN",
+            "source_urls": [
+              "https://www.yuantaetfs.com/product/detail/0056/Basic_information",
+              "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+              "https://www.yuantaetfs.com/tradeInfo/pcf/0056"
+            ],
+            "information_available_as_of": "2026-10-10T07:20:57+08:00",
+            "rating_generated_at": "2026-10-10T07:20:57+08:00",
+            "first_rated_at": "2026-10-10T00:14:21+08:00",
+            "last_updated_at": "2026-10-10T07:20:57+08:00"
+          }
         }
       ]
     },
@@ -131,7 +184,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T00:14:21+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
       "last_updated_at": "2026-10-10T00:14:21+08:00",
       "rating_history": []
@@ -169,7 +222,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T00:14:21+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
       "last_updated_at": "2026-10-10T00:14:21+08:00",
       "rating_history": []
@@ -207,7 +260,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T00:14:21+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
       "last_updated_at": "2026-10-10T00:14:21+08:00",
       "rating_history": []
@@ -245,7 +298,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T00:14:21+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
       "last_updated_at": "2026-10-10T00:14:21+08:00",
       "rating_history": []
@@ -283,7 +336,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T00:14:21+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
       "last_updated_at": "2026-10-10T00:14:21+08:00",
       "rating_history": []
@@ -321,7 +374,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T00:14:21+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
       "last_updated_at": "2026-10-10T00:14:21+08:00",
       "rating_history": []
@@ -359,7 +412,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T00:14:21+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
       "last_updated_at": "2026-10-10T00:14:21+08:00",
       "rating_history": []
@@ -394,7 +447,6 @@
           "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
           "source_uploaded_at": "2026-10-08T15:51:37+08:00",
           "information_available_as_of": "2026-10-10T07:20:57+08:00",
-          "last_checked_at": "2026-10-10T07:20:57+08:00",
           "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0050",
           "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
         }
@@ -410,10 +462,10 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
         "https://www.yuantaetfs.com/tradeInfo/pcf/0050"
       ],
-      "information_available_as_of": "2026-10-10T07:20:57+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "information_available_as_of": "2026-10-10T07:47:48+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
-      "last_updated_at": "2026-10-10T07:20:57+08:00",
+      "last_updated_at": "2026-10-10T07:47:48+08:00",
       "rating_history": [
         {
           "superseded_at": "2026-10-10T07:20:57+08:00",
@@ -454,6 +506,60 @@
             "first_rated_at": "2026-10-10T00:14:21+08:00",
             "last_updated_at": "2026-10-10T00:14:21+08:00"
           }
+        },
+        {
+          "superseded_at": "2026-10-10T07:47:48+08:00",
+          "previous_version": {
+            "fund_event_id": "3854b6d65fd693af4915",
+            "event_id": "cff8d343574bcc301972",
+            "event_name": "臺灣50指數 · 2026-09",
+            "fund_code": "0050",
+            "fund_name": "元大台灣50",
+            "fund_type": "國內成分證券指數股票型基金",
+            "management_type": "PASSIVE",
+            "index_name": "臺灣50指數",
+            "announcement_date": null,
+            "effective_date": "2026-09-21",
+            "closing_impact_date": null,
+            "implementation_window": null,
+            "close_date_status": "DATE_UNVERIFIED",
+            "importance_level": "DATA_INSUFFICIENT",
+            "importance_score": null,
+            "importance_reason": [
+              "缺少收盤觀察日或多日調整方式；規模不足以單獨評級。"
+            ],
+            "importance_method_version": "observation-priority-v1",
+            "importance_confidence": "DATA_INSUFFICIENT",
+            "importance_evidence": [
+              {
+                "fund_code": "0050",
+                "fund_aum": 2551521434557.0,
+                "currency": "TWD",
+                "aum_as_of": "2026-10-08",
+                "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
+                "source_uploaded_at": "2026-10-08T15:51:37+08:00",
+                "information_available_as_of": "2026-10-10T07:20:57+08:00",
+                "last_checked_at": "2026-10-10T07:20:57+08:00",
+                "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0050",
+                "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
+              }
+            ],
+            "fund_aum": 2551521434557.0,
+            "aum_as_of": "2026-10-08",
+            "affected_stock_count": 2,
+            "affected_weight_change": null,
+            "estimated_exposure_change": null,
+            "expected_execution_pattern": "UNKNOWN",
+            "source_urls": [
+              "https://www.yuantaetfs.com/product/detail/0050/Basic_information",
+              "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+              "https://www.yuantaetfs.com/tradeInfo/pcf/0050"
+            ],
+            "information_available_as_of": "2026-10-10T07:20:57+08:00",
+            "rating_generated_at": "2026-10-10T07:20:57+08:00",
+            "first_rated_at": "2026-10-10T00:14:21+08:00",
+            "last_updated_at": "2026-10-10T07:20:57+08:00"
+          }
         }
       ]
     },
@@ -487,7 +593,6 @@
           "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
           "source_uploaded_at": "2026-10-08T15:56:00+08:00",
           "information_available_as_of": "2026-10-10T07:20:57+08:00",
-          "last_checked_at": "2026-10-10T07:20:57+08:00",
           "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0051",
           "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
         }
@@ -503,10 +608,10 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
         "https://www.yuantaetfs.com/tradeInfo/pcf/0051"
       ],
-      "information_available_as_of": "2026-10-10T07:20:57+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "information_available_as_of": "2026-10-10T07:47:48+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
-      "last_updated_at": "2026-10-10T07:20:57+08:00",
+      "last_updated_at": "2026-10-10T07:47:48+08:00",
       "rating_history": [
         {
           "superseded_at": "2026-10-10T07:20:57+08:00",
@@ -547,6 +652,60 @@
             "first_rated_at": "2026-10-10T00:14:21+08:00",
             "last_updated_at": "2026-10-10T00:14:21+08:00"
           }
+        },
+        {
+          "superseded_at": "2026-10-10T07:47:48+08:00",
+          "previous_version": {
+            "fund_event_id": "3f6c5c6c82bf00b6b33f",
+            "event_id": "c807f23f5e4fec961cbc",
+            "event_name": "臺灣中型100指數 · 2026-09",
+            "fund_code": "0051",
+            "fund_name": "元大中型100",
+            "fund_type": "國內成分證券指數股票型基金",
+            "management_type": "PASSIVE",
+            "index_name": "臺灣中型100指數",
+            "announcement_date": null,
+            "effective_date": "2026-09-21",
+            "closing_impact_date": null,
+            "implementation_window": null,
+            "close_date_status": "DATE_UNVERIFIED",
+            "importance_level": "DATA_INSUFFICIENT",
+            "importance_score": null,
+            "importance_reason": [
+              "缺少收盤觀察日或多日調整方式；規模不足以單獨評級。"
+            ],
+            "importance_method_version": "observation-priority-v1",
+            "importance_confidence": "DATA_INSUFFICIENT",
+            "importance_evidence": [
+              {
+                "fund_code": "0051",
+                "fund_aum": 3823531781.0,
+                "currency": "TWD",
+                "aum_as_of": "2026-10-08",
+                "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
+                "source_uploaded_at": "2026-10-08T15:56:00+08:00",
+                "information_available_as_of": "2026-10-10T07:20:57+08:00",
+                "last_checked_at": "2026-10-10T07:20:57+08:00",
+                "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0051",
+                "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
+              }
+            ],
+            "fund_aum": 3823531781.0,
+            "aum_as_of": "2026-10-08",
+            "affected_stock_count": 8,
+            "affected_weight_change": null,
+            "estimated_exposure_change": null,
+            "expected_execution_pattern": "UNKNOWN",
+            "source_urls": [
+              "https://www.yuantaetfs.com/product/detail/0051/Basic_information",
+              "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+              "https://www.yuantaetfs.com/tradeInfo/pcf/0051"
+            ],
+            "information_available_as_of": "2026-10-10T07:20:57+08:00",
+            "rating_generated_at": "2026-10-10T07:20:57+08:00",
+            "first_rated_at": "2026-10-10T00:14:21+08:00",
+            "last_updated_at": "2026-10-10T07:20:57+08:00"
+          }
         }
       ]
     },
@@ -583,7 +742,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T00:14:21+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
       "last_updated_at": "2026-10-10T00:14:21+08:00",
       "rating_history": []
@@ -621,7 +780,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T00:14:21+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
       "last_updated_at": "2026-10-10T00:14:21+08:00",
       "rating_history": []
@@ -659,7 +818,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T00:14:21+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
       "last_updated_at": "2026-10-10T00:14:21+08:00",
       "rating_history": []
@@ -697,7 +856,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T00:14:21+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
       "last_updated_at": "2026-10-10T00:14:21+08:00",
       "rating_history": []
@@ -735,7 +894,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T00:14:21+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
       "last_updated_at": "2026-10-10T00:14:21+08:00",
       "rating_history": []
@@ -773,7 +932,6 @@
           "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
           "source_uploaded_at": "2026-10-08T15:51:37+08:00",
           "information_available_as_of": "2026-10-10T07:20:57+08:00",
-          "last_checked_at": "2026-10-10T07:20:57+08:00",
           "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0050",
           "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
         }
@@ -789,10 +947,10 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
         "https://www.yuantaetfs.com/tradeInfo/pcf/0050"
       ],
-      "information_available_as_of": "2026-10-10T07:20:57+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "information_available_as_of": "2026-10-10T07:47:48+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
-      "last_updated_at": "2026-10-10T07:20:57+08:00",
+      "last_updated_at": "2026-10-10T07:47:48+08:00",
       "rating_history": [
         {
           "superseded_at": "2026-10-10T07:20:57+08:00",
@@ -833,6 +991,63 @@
             "first_rated_at": "2026-10-10T00:14:21+08:00",
             "last_updated_at": "2026-10-10T00:14:21+08:00"
           }
+        },
+        {
+          "superseded_at": "2026-10-10T07:47:48+08:00",
+          "previous_version": {
+            "fund_event_id": "1f43b8d1b4266478cd81",
+            "event_id": "aa933d96e5db1386316c",
+            "event_name": "FTSE TWSE Taiwan 50 Index · 2026-12",
+            "fund_code": "0050",
+            "fund_name": "元大台灣50",
+            "fund_type": "國內成分證券指數股票型基金",
+            "management_type": "PASSIVE",
+            "index_name": "FTSE TWSE Taiwan 50 Index",
+            "announcement_date": null,
+            "effective_date": "2026-12-21",
+            "closing_impact_date": "2026-12-18",
+            "implementation_window": null,
+            "close_date_status": "EXPECTED_CLOSE_WATCH_DATE",
+            "importance_level": "HIGH",
+            "importance_score": 5,
+            "importance_reason": [
+              "官方淨資產規模級距分數3（1000億／100億門檻）。",
+              "指數單一收盤觀察分數2；不代表基金實際委託時間。",
+              "本次已公布異動檔數分數0；未知不視為零異動。",
+              "粗略研究優先順序；未以歷史成交量驗證。"
+            ],
+            "importance_method_version": "observation-priority-v1",
+            "importance_confidence": "PROVISIONAL",
+            "importance_evidence": [
+              {
+                "fund_code": "0050",
+                "fund_aum": 2551521434557.0,
+                "currency": "TWD",
+                "aum_as_of": "2026-10-08",
+                "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
+                "source_uploaded_at": "2026-10-08T15:51:37+08:00",
+                "information_available_as_of": "2026-10-10T07:20:57+08:00",
+                "last_checked_at": "2026-10-10T07:20:57+08:00",
+                "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0050",
+                "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
+              }
+            ],
+            "fund_aum": 2551521434557.0,
+            "aum_as_of": "2026-10-08",
+            "affected_stock_count": null,
+            "affected_weight_change": null,
+            "estimated_exposure_change": null,
+            "expected_execution_pattern": "INDEX_SINGLE_CLOSE_EXPECTED",
+            "source_urls": [
+              "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-twse-taiwan-index-series-ground-rules.pdf",
+              "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+              "https://www.yuantaetfs.com/tradeInfo/pcf/0050"
+            ],
+            "information_available_as_of": "2026-10-10T07:20:57+08:00",
+            "rating_generated_at": "2026-10-10T07:20:57+08:00",
+            "first_rated_at": "2026-10-10T00:14:21+08:00",
+            "last_updated_at": "2026-10-10T07:20:57+08:00"
+          }
         }
       ]
     },
@@ -869,7 +1084,6 @@
           "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
           "source_uploaded_at": "2026-10-08T15:56:00+08:00",
           "information_available_as_of": "2026-10-10T07:20:57+08:00",
-          "last_checked_at": "2026-10-10T07:20:57+08:00",
           "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0051",
           "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
         }
@@ -885,10 +1099,10 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
         "https://www.yuantaetfs.com/tradeInfo/pcf/0051"
       ],
-      "information_available_as_of": "2026-10-10T07:20:57+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "information_available_as_of": "2026-10-10T07:47:48+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
-      "last_updated_at": "2026-10-10T07:20:57+08:00",
+      "last_updated_at": "2026-10-10T07:47:48+08:00",
       "rating_history": [
         {
           "superseded_at": "2026-10-10T07:20:57+08:00",
@@ -929,6 +1143,63 @@
             "first_rated_at": "2026-10-10T00:14:21+08:00",
             "last_updated_at": "2026-10-10T00:14:21+08:00"
           }
+        },
+        {
+          "superseded_at": "2026-10-10T07:47:48+08:00",
+          "previous_version": {
+            "fund_event_id": "e150c7c1bfaacc4bdc76",
+            "event_id": "2d6f73cc66424ff13adb",
+            "event_name": "FTSE TWSE Taiwan Mid-Cap 100 Index · 2026-12",
+            "fund_code": "0051",
+            "fund_name": "元大中型100",
+            "fund_type": "國內成分證券指數股票型基金",
+            "management_type": "PASSIVE",
+            "index_name": "FTSE TWSE Taiwan Mid-Cap 100 Index",
+            "announcement_date": null,
+            "effective_date": "2026-12-21",
+            "closing_impact_date": "2026-12-18",
+            "implementation_window": null,
+            "close_date_status": "EXPECTED_CLOSE_WATCH_DATE",
+            "importance_level": "MEDIUM",
+            "importance_score": 3,
+            "importance_reason": [
+              "官方淨資產規模級距分數1（1000億／100億門檻）。",
+              "指數單一收盤觀察分數2；不代表基金實際委託時間。",
+              "本次已公布異動檔數分數0；未知不視為零異動。",
+              "粗略研究優先順序；未以歷史成交量驗證。"
+            ],
+            "importance_method_version": "observation-priority-v1",
+            "importance_confidence": "PROVISIONAL",
+            "importance_evidence": [
+              {
+                "fund_code": "0051",
+                "fund_aum": 3823531781.0,
+                "currency": "TWD",
+                "aum_as_of": "2026-10-08",
+                "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
+                "source_uploaded_at": "2026-10-08T15:56:00+08:00",
+                "information_available_as_of": "2026-10-10T07:20:57+08:00",
+                "last_checked_at": "2026-10-10T07:20:57+08:00",
+                "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0051",
+                "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
+              }
+            ],
+            "fund_aum": 3823531781.0,
+            "aum_as_of": "2026-10-08",
+            "affected_stock_count": null,
+            "affected_weight_change": null,
+            "estimated_exposure_change": null,
+            "expected_execution_pattern": "INDEX_SINGLE_CLOSE_EXPECTED",
+            "source_urls": [
+              "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-twse-taiwan-index-series-ground-rules.pdf",
+              "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+              "https://www.yuantaetfs.com/tradeInfo/pcf/0051"
+            ],
+            "information_available_as_of": "2026-10-10T07:20:57+08:00",
+            "rating_generated_at": "2026-10-10T07:20:57+08:00",
+            "first_rated_at": "2026-10-10T00:14:21+08:00",
+            "last_updated_at": "2026-10-10T07:20:57+08:00"
+          }
         }
       ]
     },
@@ -965,7 +1236,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T00:14:21+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
       "last_updated_at": "2026-10-10T00:14:21+08:00",
       "rating_history": []
@@ -1015,7 +1286,6 @@
           "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
           "source_uploaded_at": "2026-10-08T16:43:10+08:00",
           "information_available_as_of": "2026-10-10T07:20:57+08:00",
-          "last_checked_at": "2026-10-10T07:20:57+08:00",
           "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0056",
           "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
         }
@@ -1031,10 +1301,10 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
         "https://www.yuantaetfs.com/tradeInfo/pcf/0056"
       ],
-      "information_available_as_of": "2026-10-10T07:20:57+08:00",
-      "rating_generated_at": "2026-10-10T07:20:57+08:00",
+      "information_available_as_of": "2026-10-10T07:47:48+08:00",
+      "rating_generated_at": "2026-10-10T07:47:48+08:00",
       "first_rated_at": "2026-10-10T00:14:21+08:00",
-      "last_updated_at": "2026-10-10T07:20:57+08:00",
+      "last_updated_at": "2026-10-10T07:47:48+08:00",
       "rating_history": [
         {
           "superseded_at": "2026-10-10T07:20:57+08:00",
@@ -1086,6 +1356,75 @@
             "rating_generated_at": "2026-10-10T00:14:21+08:00",
             "first_rated_at": "2026-10-10T00:14:21+08:00",
             "last_updated_at": "2026-10-10T00:14:21+08:00"
+          }
+        },
+        {
+          "superseded_at": "2026-10-10T07:47:48+08:00",
+          "previous_version": {
+            "fund_event_id": "57c93f2ef4f097c0a6f7",
+            "event_id": "c5d4b2dabbae721f5941",
+            "event_name": "FTSE TWSE Taiwan Dividend+ Index · 2026-12",
+            "fund_code": "0056",
+            "fund_name": "元大高股息",
+            "fund_type": "國內成分證券指數股票型基金",
+            "management_type": "PASSIVE",
+            "index_name": "FTSE TWSE Taiwan Dividend+ Index",
+            "announcement_date": null,
+            "effective_date": "2026-12-21",
+            "closing_impact_date": null,
+            "implementation_window": {
+              "start": "2026-12-21",
+              "trading_days": 5,
+              "status": "EXPECTED_RULE_DERIVED",
+              "dates": [
+                "2026-12-21",
+                "2026-12-22",
+                "2026-12-23",
+                "2026-12-24",
+                "2026-12-28"
+              ],
+              "end": "2026-12-28"
+            },
+            "close_date_status": "EXPECTED_MULTIDAY_TRANSITION",
+            "importance_level": "MEDIUM",
+            "importance_score": 3,
+            "importance_reason": [
+              "官方淨資產規模級距分數3（1000億／100億門檻）。",
+              "指數單一收盤觀察分數0；不代表基金實際委託時間。",
+              "本次已公布異動檔數分數0；未知不視為零異動。",
+              "粗略研究優先順序；未以歷史成交量驗證。"
+            ],
+            "importance_method_version": "observation-priority-v1",
+            "importance_confidence": "PROVISIONAL",
+            "importance_evidence": [
+              {
+                "fund_code": "0056",
+                "fund_aum": 829080886073.0,
+                "currency": "TWD",
+                "aum_as_of": "2026-10-08",
+                "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
+                "source_uploaded_at": "2026-10-08T16:43:10+08:00",
+                "information_available_as_of": "2026-10-10T07:20:57+08:00",
+                "last_checked_at": "2026-10-10T07:20:57+08:00",
+                "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0056",
+                "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
+              }
+            ],
+            "fund_aum": 829080886073.0,
+            "aum_as_of": "2026-10-08",
+            "affected_stock_count": null,
+            "affected_weight_change": null,
+            "estimated_exposure_change": null,
+            "expected_execution_pattern": "MULTIDAY",
+            "source_urls": [
+              "https://www.twse.com.tw/downloads/en/products/indices/IndexSen20.pdf",
+              "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
+              "https://www.yuantaetfs.com/tradeInfo/pcf/0056"
+            ],
+            "information_available_as_of": "2026-10-10T07:20:57+08:00",
+            "rating_generated_at": "2026-10-10T07:20:57+08:00",
+            "first_rated_at": "2026-10-10T00:14:21+08:00",
+            "last_updated_at": "2026-10-10T07:20:57+08:00"
           }
         }
       ]
