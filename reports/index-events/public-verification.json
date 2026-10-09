@@ -75,5 +75,38 @@
       "bytes": 45125
     }
   },
-  "note": "首頁及JS由Pages匿名HTTP提供；網站既有資料路徑使用GitHub raw公開JSON。Pages /state 路徑並非既有資料服務，404不偽裝為成功。"
+  "note": "首頁及JS由Pages匿名HTTP提供；網站既有資料路徑使用GitHub raw公開JSON。Pages /state 路徑並非既有資料服務，404不偽裝為成功。",
+  "final_public_json_recheck": {
+    "checked_at": "2026-10-09T17:01:51+08:00",
+    "method": "Public GitHub read connector; successful raw JSON parsing",
+    "checks": [
+      {
+        "file": "source-coverage.json",
+        "generated_at": "2026-10-09T16:52:46+08:00",
+        "source_classes": {
+          "VERIFIED_AUTOMATIC": 6,
+          "DATE_ONLY": 5,
+          "MONITOR_ONLY": 4,
+          "RESTRICTED": 5,
+          "UNAVAILABLE": 3
+        },
+        "new_events": 0,
+        "corrected_events": 0
+      },
+      {
+        "file": "events-index.json",
+        "generated_at": "2026-10-09T16:52:46+08:00",
+        "events": 49
+      },
+      {
+        "file": "etf-index-map.json",
+        "generated_at": "2026-10-09T16:52:46+08:00",
+        "mappings": 66
+      }
+    ]
+  },
+  "shell_proxy_retry": {
+    "result": "TIMEOUT; no new success or new hash claimed",
+    "note": "Earlier anonymous HTTP200 evidence retained; final anonymous production browsers PASS in GitHub CI37907579895."
+  }
 }
