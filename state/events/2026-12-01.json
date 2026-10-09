@@ -1,0 +1,18 @@
+{
+  "date": "2026-12-01",
+  "as_of": "2026-10-09T10:33:57+08:00",
+  "references": [
+    [
+      "342c378ff8b715cfdc10",
+      "effective_date"
+    ],
+    [
+      "4f949c23cddb64658a23",
+      "announcement_date"
+    ],
+    [
+      "a13fd22f6e6a3a2e4a8c",
+      "announcement_date"
+    ]
+  ]
+}

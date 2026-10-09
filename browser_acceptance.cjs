@@ -3,6 +3,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const {chromium,webkit,devices}=require('playwright');
 const ROOT=__dirname,calendar=JSON.parse(fs.readFileSync('state/calendars/2026.json','utf8'));
 const data=JSON.parse(fs.readFileSync('state/candidates/2026-10-08.json','utf8'));
+const eventsData=JSON.parse(fs.readFileSync('state/events/events-index.json','utf8'));
 const PUBLIC='https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/';
 const OUT=path.join(ROOT,'browser-results');fs.mkdirSync(OUT,{recursive:true});
 const server=http.createServer((request,response)=>{
@@ -13,14 +14,22 @@ const server=http.createServer((request,response)=>{
  catch{response.writeHead(404).end();}
 });
 const copy=x=>JSON.parse(JSON.stringify(x));
-async function fixtureContext(browser,options,date='2026-10-08T18:30:00+08:00',payload=data){
+async function fixtureContext(browser,options,date='2026-10-08T18:30:00+08:00',payload=data,eventFailure=false){
  const context=await browser.newContext({...options,timezoneId:'Asia/Taipei'});
+ const eventFixture=copy(eventsData);eventFixture.generated_at=date;
+ // Synthetic UI clock only. Production first-seen timestamps are untouched.
+ for(const e of eventFixture.events){e.first_seen_at=e.information_available_as_of='2026-10-07T00:00:00+08:00';}
  await context.addInitScript(fixed=>{
   const RealDate=Date;class Clock extends RealDate{constructor(...args){super(...(args.length?args:[fixed]));}static now(){return new RealDate(fixed).getTime();}}
   window.Date=Clock;
  },date);
  await context.route('https://raw.githubusercontent.com/**',route=>{
   const url=route.request().url();
+  if(url.includes('/state/events/')){
+   if(eventFailure)return route.fulfill({status:503,body:'Source temporarily unavailable'});
+   if(url.includes('events-index.json'))return route.fulfill({json:eventFixture});
+   if(url.includes('source-health.json'))return route.fulfill({json:{last_successful_scan_at:date,coverage_status:'PARTIAL',sources:[{status:'SUCCESS'}]}});
+  }
   if(url.includes('/state/calendars/'))return route.fulfill({json:calendar});
   if(url.includes('/state/candidates/')&&payload!==null)return route.fulfill({json:payload});
   return route.fulfill({status:404,body:'Not found'});
@@ -55,6 +64,9 @@ async function main(){
    assert.equal(await page.locator('#mobile-list .delayed').count(),3);
    assert.equal(await page.locator('.candidate-card .tail.up').count(),4);
    assert.equal(await page.locator('.candidate-card .tail.down').count(),3);
+   await page.waitForFunction(()=>document.querySelectorAll('#event-upcoming .event-row').length>0);
+   assert.match(await page.locator('#event-today-title').innerText(),/尚未完整確認/);
+   assert.ok(await page.locator('#event-upcoming a').count()>0);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
    if(mobile){
     assert.match(await page.locator('[data-code="3259"]').innerText(),/13:33:00/);
@@ -94,6 +106,18 @@ async function main(){
    assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).backgroundColor),'rgb(13, 20, 35)');
    assert.deepEqual(errors,[]);checks.push({name,result:'PASS',width:options.viewport.width,seven_candidates:true,no_buttons:true,no_horizontal_overflow:true});
    await context.close();
+   for(const [eventCase,fixedDate,failure,title] of [
+    ['events-source-failure','2026-10-08T18:30:00+08:00',true,'事件資料尚未完整確認'],
+    ['events-expected-close','2026-11-30T13:35:00+08:00',false,'今日有預估觀察日'],
+    ['events-effective-not-close','2026-12-01T13:35:00+08:00',false,'收盤集中交易未確認']
+   ]){
+    const ctx=await fixtureContext(browser,options,fixedDate,failure?data:null,failure),p=await ctx.newPage();
+    await p.goto(base);await p.locator('#event-today-title').filter({hasText:title}).waitFor();
+    if(failure){await p.waitForFunction(()=>document.querySelectorAll('.candidate-card').length===7);assert.match(await p.locator('#event-note').innerText(),/股票名單仍獨立更新/);}
+    assert.equal(await p.locator('button,input,select,form,[role="button"]').count(),0);
+    assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
+    checks.push({name:name+'/'+eventCase,result:'PASS'});await ctx.close();
+   }
    const diagnosticContext=await fixtureContext(browser,options,'2026-10-09T13:35:00+08:00',null);
    const diagnostic=await diagnosticContext.newPage(),diagnosticErrors=[];
    diagnostic.on('pageerror',error=>diagnosticErrors.push(error.message));

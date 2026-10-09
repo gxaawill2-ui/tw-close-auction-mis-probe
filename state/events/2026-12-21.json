@@ -1,0 +1,22 @@
+{
+  "date": "2026-12-21",
+  "as_of": "2026-10-09T10:33:57+08:00",
+  "references": [
+    [
+      "2d6f73cc66424ff13adb",
+      "effective_date"
+    ],
+    [
+      "aa933d96e5db1386316c",
+      "effective_date"
+    ],
+    [
+      "c5d4b2dabbae721f5941",
+      "effective_date"
+    ],
+    [
+      "c5d4b2dabbae721f5941",
+      "implementation_window"
+    ]
+  ]
+}

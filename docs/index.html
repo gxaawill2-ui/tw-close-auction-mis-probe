@@ -7,8 +7,9 @@
   <meta name="theme-color" content="#0d1423">
   <meta name="description" content="自動顯示當日台股尾盤漲跌達 ±3% 的研究股票，附收盤成交時間、最後一盤成交量及全日盤中成交量。">
   <title>台股尾盤 ±3% 自動選股看板</title>
-  <link rel="stylesheet" href="status.css?v=dashboard3-darkonly">
+  <link rel="stylesheet" href="status.css?v=events1-darkonly">
   <script defer src="status.js?v=dashboard1"></script>
+  <script defer src="events.js?v=events1"></script>
 </head>
 <body>
 <main>
@@ -24,10 +25,21 @@
   </section>
   <section class="status-line" aria-live="polite"><h2 id="headline">正在讀取今日資料</h2><p id="message">打開網頁後自動載入，無須操作。</p></section>
   <p id="network" class="network" role="status"></p>
+  <section class="event-today" aria-label="今日指數調整事件">
+    <p class="eyebrow">指數與 ETF 調整 · 補充研究資訊</p>
+    <h2 id="event-today-title">事件資料確認中</h2>
+    <ul id="event-today-list" class="event-list"></ul>
+    <p id="event-note" class="event-note">官方日期與預估觀察日分開標示。</p>
+  </section>
   <div class="list-heading"><h2>今日尾盤研究名單</h2><span>依漲跌幅絕對值排序</span></div>
   <section id="mobile-list" class="mobile-list" aria-label="股票研究卡片"></section>
   <div id="desktop-wrap" class="desktop-wrap" hidden><table id="candidate-table"><caption class="sr-only">今日尾盤 ±3% 股票，成交量單位為張</caption><thead><tr><th>股票</th><th>市場</th><th>尾盤漲跌</th><th>13:25 前價</th><th>收盤價</th><th>最後成交時間</th><th>最後一盤量<br><small>張</small></th><th>全日盤中量<br><small>張</small></th><th>收盤量占比</th><th>價格核對</th><th>研究可信程度</th></tr></thead><tbody id="desktop-list"></tbody></table></div>
   <p id="empty" class="empty">正在確認當日結果…</p>
+  <section class="event-calendar" aria-label="近期重要調整日期">
+    <div class="list-heading"><h2>近期指數調整日期</h2><span id="event-range">未來 30 天</span></div>
+    <p class="event-note">公告、生效不等於實際換股。預估日期只供觀察；ETF 實際交易可能分多日完成。</p>
+    <ul id="event-upcoming" class="event-list"></ul><p id="event-empty" class="event-note"></p>
+  </section>
   <footer>
     <p id="updated">最近資料更新：—</p><p id="generated">研究名單產生時間：—</p>
     <p>全日盤中量為一般整股市場開盤至最後收盤撮合，含延後至 13:33 的收盤；排除零股與盤後定價。</p>

@@ -1,0 +1,101 @@
+name: Index event calendar
+on:
+  schedule:
+    - cron: '20 0,9 * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'index_events.py'
+      - 'test_index_events.py'
+      - 'test_events.cjs'
+      - 'docs/events.js'
+      - 'state/events/sources.json'
+      - '.github/workflows/index-events.yml'
+permissions:
+  contents: read
+concurrency:
+  group: index-event-calendar
+  cancel-in-progress: false
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: pip install pypdf
+      - run: npm ci --ignore-scripts
+      - run: python -m unittest discover -v
+      - run: npm test
+  source-smoke:
+    needs: tests
+    # Read-only smoke on push; no dispatch of MIS and no writes to state/main.
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pypdf
+      - name: Read official sources in an isolated checkout
+        run: python index_events.py > source-smoke.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: index-events-source-smoke-${{ github.run_id }}
+          path: |
+            source-smoke.json
+            state/events/
+          retention-days: 30
+  scan:
+    needs: tests
+    if: github.ref == 'refs/heads/main' && github.event_name != 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pypdf
+      - name: Bounded public-source scan; errors preserve prior facts
+        run: python index_events.py > index-events-scan.json
+      - name: Publish only event addenda; leave MIS state and evidence untouched
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add state/events reports/index-events/*.csv
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Update official index event calendar and source health"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort
+              echo "Concurrent event-data change: publication rejected; scan artifact retained"
+              exit 1
+            fi
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 2
+          done
+          echo "Event calendar publication failed after three attempts"
+          exit 1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: index-events-scan-${{ github.run_id }}
+          path: |
+            index-events-scan.json
+            state/events/source-health.json
+          retention-days: 30
