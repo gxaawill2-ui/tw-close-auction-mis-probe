@@ -1,0 +1,51 @@
+{
+  "schedule_slot": "08:20",
+  "scheduled_for": null,
+  "scheduled_for_evidence": "NOT_EXPOSED_BY_GITHUB",
+  "actual_trigger_at": "2026-10-10T13:53:04+08:00",
+  "trigger_source": "GITHUB_SCHEDULE",
+  "workflow_run_id": "38029017422",
+  "github_event_schedule": "20 0 * * *",
+  "delay_seconds": null,
+  "origin_date_verified": false,
+  "identity": "unattributed-2026-10-10-2",
+  "execution_scope_date": null,
+  "planned_for": null,
+  "execution_scope_policy": "UNATTRIBUTED_NATIVE_RECOVERY_6H_BUCKET; NOT_ORIGINAL_SLOT",
+  "policy_delay_seconds": null,
+  "eligible": true,
+  "original_slot_not_fulfilled": true,
+  "runner_started_at": "2026-10-10T13:53:24.619692+08:00",
+  "decision": "CLAIMED",
+  "result": "CLAIMED",
+  "duplicate_trigger": false,
+  "source_health": {
+    "last_successful_scan_at": "2026-10-10T08:10:08+08:00",
+    "metrics": {
+      "source_total": 27,
+      "source_classes": {
+        "VERIFIED_AUTOMATIC": 10,
+        "DATE_ONLY": 5,
+        "MONITOR_ONLY": 3,
+        "RESTRICTED": 6,
+        "UNAVAILABLE": 3
+      },
+      "new_events": 0,
+      "corrected_events": 0,
+      "conflicting_events": 0,
+      "pending_review_documents": 13,
+      "newly_observed_etfs": 0,
+      "corrected_etfs": 0,
+      "confirmed_etf_mappings": 64,
+      "new_confirmed_etf_mappings": 0,
+      "unconfirmed_etf_mappings": 2,
+      "etf_master_total": 271,
+      "issuer_unknown_etfs": 271,
+      "listing_status_unknown_etfs": 271,
+      "etf_discovery_coverage": "TWSE_OPEN_MASTER_ONLY; TPEx full master not verified"
+    }
+  },
+  "scan_started_at": null,
+  "scan_finished_at": null,
+  "published_at": null
+}
