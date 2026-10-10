@@ -2,7 +2,7 @@ name: Event backup HTTP acceptance
 on:
   push:
     branches: ['improve/**']
-    paths: ['event_dispatch.py', 'event_scheduler.py', 'test_event_reliability.py', '.github/workflows/index-event-dispatch-test.yml', '.github/workflows/index-events.yml']
+    paths: ['browser_acceptance.cjs', 'event_dispatch.py', 'event_scheduler.py', 'test_event_reliability.py', '.github/workflows/index-event-dispatch-test.yml', '.github/workflows/index-events.yml']
 permissions:
   contents: read
   actions: write
