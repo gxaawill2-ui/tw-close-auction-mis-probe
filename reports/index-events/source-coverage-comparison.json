@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-10T13:54:56+08:00",
+  "generated_at": "2026-10-10T23:29:08+08:00",
   "coverage_status": "PARTIAL",
   "before": {
     "source_total": 19,
@@ -19,7 +19,7 @@
     "new_events": 0,
     "corrected_events": 0,
     "conflicting_events": 0,
-    "pending_review_documents": 14,
+    "pending_review_documents": 15,
     "newly_observed_etfs": 0,
     "corrected_etfs": 0,
     "confirmed_etf_mappings": 64,
@@ -37,7 +37,7 @@
       "source_url": "https://www.twse.com.tw/rwd/zh/holidaySchedule/holidaySchedule?response=json&queryYear=115",
       "classification": "VERIFIED_AUTOMATIC",
       "status": "SUCCESS",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": null,
       "error": null,
       "announcement_state": "NO_NEW_PARSED_EVENTS; NOT_FULL_ANNOUNCEMENT_COVERAGE"
@@ -48,7 +48,7 @@
       "classification": "UNAVAILABLE",
       "status": "UNKNOWN",
       "last_success_at": null,
-      "last_failure_at": "2026-10-10T13:54:56+08:00",
+      "last_failure_at": "2026-10-10T23:29:08+08:00",
       "error": "Official annual calendar not published for requested year",
       "announcement_state": "UNKNOWN; NOT_NO_ANNOUNCEMENTS"
     },
@@ -57,7 +57,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap03_L",
       "classification": "VERIFIED_AUTOMATIC",
       "status": "SUCCESS",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": null,
       "error": null,
       "announcement_state": "NO_NEW_PARSED_EVENTS; NOT_FULL_ANNOUNCEMENT_COVERAGE"
@@ -67,7 +67,7 @@
       "source_url": "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap03_O",
       "classification": "VERIFIED_AUTOMATIC",
       "status": "SUCCESS",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": "2026-10-10T00:14:21+08:00",
       "error": null,
       "announcement_state": "NO_NEW_PARSED_EVENTS; NOT_FULL_ANNOUNCEMENT_COVERAGE"
@@ -77,7 +77,7 @@
       "source_url": "https://www.msci.com/eqb/pressreleases/archive/ir_dates.pdf",
       "classification": "DATE_ONLY",
       "status": "SUCCESS",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": null,
       "error": null,
       "announcement_state": "NO_NEW_PARSED_EVENTS; NOT_FULL_ANNOUNCEMENT_COVERAGE"
@@ -98,7 +98,7 @@
       "classification": "RESTRICTED",
       "status": "RESTRICTED",
       "last_success_at": null,
-      "last_failure_at": "2026-10-10T13:54:56+08:00",
+      "last_failure_at": "2026-10-10T23:29:08+08:00",
       "error": "ROBOTS_DISALLOWED",
       "announcement_state": "UNKNOWN; NOT_NO_ANNOUNCEMENTS"
     },
@@ -108,7 +108,7 @@
       "classification": "RESTRICTED",
       "status": "RESTRICTED",
       "last_success_at": null,
-      "last_failure_at": "2026-10-10T13:54:56+08:00",
+      "last_failure_at": "2026-10-10T23:29:08+08:00",
       "error": "ROBOTS_DISALLOWED",
       "announcement_state": "UNKNOWN; NOT_NO_ANNOUNCEMENTS"
     },
@@ -127,7 +127,7 @@
       "source_url": "https://taiwanindex.com.tw/news/452",
       "classification": "VERIFIED_AUTOMATIC",
       "status": "SUCCESS",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": null,
       "error": null,
       "announcement_state": "NO_NEW_PARSED_EVENTS; NOT_FULL_ANNOUNCEMENT_COVERAGE"
@@ -137,7 +137,7 @@
       "source_url": "https://taiwanindex.com.tw/news/454",
       "classification": "VERIFIED_AUTOMATIC",
       "status": "SUCCESS",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": null,
       "error": null,
       "announcement_state": "NO_NEW_PARSED_EVENTS; NOT_FULL_ANNOUNCEMENT_COVERAGE"
@@ -148,7 +148,7 @@
       "classification": "UNAVAILABLE",
       "status": "UNKNOWN",
       "last_success_at": null,
-      "last_failure_at": "2026-10-10T13:54:56+08:00",
+      "last_failure_at": "2026-10-10T23:29:08+08:00",
       "error": "Mapping table unavailable; not an empty ETF universe",
       "announcement_state": "UNKNOWN; NOT_NO_ANNOUNCEMENTS"
     },
@@ -158,7 +158,7 @@
       "classification": "UNAVAILABLE",
       "status": "UNKNOWN",
       "last_success_at": null,
-      "last_failure_at": "2026-10-10T13:54:56+08:00",
+      "last_failure_at": "2026-10-10T23:29:08+08:00",
       "error": "HTTP Error 400: Bad Request",
       "announcement_state": "UNKNOWN; NOT_NO_ANNOUNCEMENTS"
     },
@@ -167,7 +167,7 @@
       "source_url": "https://www.capitalfund.com.tw/etf/product/detail/195",
       "classification": "MONITOR_ONLY",
       "status": "MONITOR_ONLY",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": null,
       "error": null,
       "announcement_state": "CONTENT_MONITORED; ANNOUNCEMENT_CONTENT_UNVERIFIED"
@@ -177,7 +177,7 @@
       "source_url": "https://www.fhtrust.com.tw/ETF/etf_detail/ETF21",
       "classification": "MONITOR_ONLY",
       "status": "MONITOR_ONLY",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": null,
       "error": null,
       "announcement_state": "CONTENT_MONITORED; ANNOUNCEMENT_CONTENT_UNVERIFIED"
@@ -188,7 +188,7 @@
       "classification": "RESTRICTED",
       "status": "RESTRICTED",
       "last_success_at": null,
-      "last_failure_at": "2026-10-10T13:54:56+08:00",
+      "last_failure_at": "2026-10-10T23:29:08+08:00",
       "error": "ROBOTS_DISALLOWED",
       "announcement_state": "UNKNOWN; NOT_NO_ANNOUNCEMENTS"
     },
@@ -207,7 +207,7 @@
       "source_url": "https://www.twse.com.tw/downloads/en/products/indices/IndexSen20.pdf",
       "classification": "MONITOR_ONLY",
       "status": "MONITOR_ONLY",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": null,
       "error": null,
       "announcement_state": "CONTENT_MONITORED; ANNOUNCEMENT_CONTENT_UNVERIFIED"
@@ -217,7 +217,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "classification": "VERIFIED_AUTOMATIC",
       "status": "SUCCESS",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": null,
       "error": null,
       "announcement_state": "NO_NEW_PARSED_EVENTS; NOT_FULL_ANNOUNCEMENT_COVERAGE"
@@ -227,7 +227,7 @@
       "source_url": "https://www.yuantaetfs.com/product/detail/0050/Basic_information",
       "classification": "DATE_ONLY",
       "status": "SUCCESS",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": null,
       "error": null,
       "announcement_state": "NO_NEW_PARSED_EVENTS; NOT_FULL_ANNOUNCEMENT_COVERAGE"
@@ -237,7 +237,7 @@
       "source_url": "https://www.yuantaetfs.com/product/detail/0051/Basic_information",
       "classification": "DATE_ONLY",
       "status": "SUCCESS",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": null,
       "error": null,
       "announcement_state": "NO_NEW_PARSED_EVENTS; NOT_FULL_ANNOUNCEMENT_COVERAGE"
@@ -247,7 +247,7 @@
       "source_url": "https://www.yuantaetfs.com/product/detail/0056/Basic_information",
       "classification": "DATE_ONLY",
       "status": "SUCCESS",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": null,
       "error": null,
       "announcement_state": "NO_NEW_PARSED_EVENTS; NOT_FULL_ANNOUNCEMENT_COVERAGE"
@@ -257,7 +257,7 @@
       "source_url": "https://www.yuantaetfs.com/product/detail/006203/Basic_information",
       "classification": "DATE_ONLY",
       "status": "SUCCESS",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": null,
       "error": null,
       "announcement_state": "NO_NEW_PARSED_EVENTS; NOT_FULL_ANNOUNCEMENT_COVERAGE"
@@ -267,7 +267,7 @@
       "source_url": "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes",
       "classification": "VERIFIED_AUTOMATIC",
       "status": "SUCCESS",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": null,
       "error": null,
       "announcement_state": "NO_NEW_PARSED_EVENTS; NOT_FULL_ANNOUNCEMENT_COVERAGE"
@@ -277,7 +277,7 @@
       "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0050",
       "classification": "VERIFIED_AUTOMATIC",
       "status": "SUCCESS",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": null,
       "error": null,
       "announcement_state": "NO_NEW_PARSED_EVENTS; NOT_FULL_ANNOUNCEMENT_COVERAGE"
@@ -287,7 +287,7 @@
       "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0051",
       "classification": "VERIFIED_AUTOMATIC",
       "status": "SUCCESS",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": null,
       "error": null,
       "announcement_state": "NO_NEW_PARSED_EVENTS; NOT_FULL_ANNOUNCEMENT_COVERAGE"
@@ -297,7 +297,7 @@
       "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0056",
       "classification": "VERIFIED_AUTOMATIC",
       "status": "SUCCESS",
-      "last_success_at": "2026-10-10T13:54:56+08:00",
+      "last_success_at": "2026-10-10T23:29:08+08:00",
       "last_failure_at": null,
       "error": null,
       "announcement_state": "NO_NEW_PARSED_EVENTS; NOT_FULL_ANNOUNCEMENT_COVERAGE"
