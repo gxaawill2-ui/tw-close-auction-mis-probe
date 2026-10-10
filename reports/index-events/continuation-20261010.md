@@ -61,3 +61,11 @@ GitHub查詢仍僅找到native38029017422、37957502210；17:20新的Run截至�
 使用者回報前次分頁無法使用。getState只見about:blank，重新開既有晨間job8618691轉Sign in；新GitHub fine-grained token清單只見既有MIS token，未見事件專用Token，未開MIS Token明細或讀取其值。透過清單Generate new token安全入口重開後為Confirm access／Verify via email，沒有重新Generate憑證。先前Token草稿分頁已失效；cron兩保存工作仍沿用ID8618691／8618694，不重建，當前不能登入驗證是否被使用者後續修改／啟用。正式main d174c158c9690f7248def1357354901a3f107261、Pages38063906450 SUCCESS，既有code/tests/data不變。
 
 下一步只完成新雲端GitHub本人驗證，再按已保存 scope 重填未持久化的Token草稿並安全交接產生／貼入。新增Token只允許repo Actions read/write＋必要Metadata read；保留有界30天期限（新日期隨GitHub建立時呈現）；自訂更長期限需具體授權，前次auto-review拒絕不得繞過。使用者生成後不讀Token結果頁、不讀headers Value、不讀clipboard。cron重新登入後只處理event jobs，Test run與GitHubrun/receipt確認後才Enable；外部備援依然NOT_ACTIVATED，不冒稱08:35已會自動觸發。不要重做研究、seed、MIS歷史抓取或程式部署。
+
+## 最新驗證完成／草稿全部恢復（2026-10-10T23:38:01.868Z，台北2026-10-11）
+
+使用者再次完成GitHub Verify via email並表示後續交給agent。已恢復全部非秘密草稿欄位：TW index events cron backup 20261010、唯一repo tw-close-auction-mis-probe、Actions Read and write、必要Metadata Read-only、Account0；保留原bounded30天，今日到期日2026-11-10。沒有按Generate token、沒有任何新Token值取得／讀取。cron頁仍未登入；两saved event jobs8618691／8618694不重建。
+
+實際安全阻擋來自瀏覽器Hand-Off Required規則：Changing a password or other authentication credential: Ask the user to take over before any new credential is entered, and have them complete the entry, confirmation, and submission steps themselves. 因此不可代讀／用clipboard搬移秘密值／以Playwright填入Token／以browserAuth把設定headers冒作登入。僅本人按Generate及安全填入兩event Authorization、Save，其他cron時間/body/headers/timeout/saveResponses先前均完成。agent之後負責HTTP外部服務測試、GitHub run與收據、防重複與Enable。生成後不要完整snapshot token結果頁或Advanced。憑證草稿證據event-pat-scope-ready-1791675423691.jpg不含任何秘密。
+
+外部備援仍JOBS_CREATED_DISABLED_CREDENTIAL_REQUIRED，不能聲稱08:35或17:35已啟用。既有native兩cron證明遲到抵達，不證明準時；已完成程式、MIS、來源研究、基金重要程度不重做。

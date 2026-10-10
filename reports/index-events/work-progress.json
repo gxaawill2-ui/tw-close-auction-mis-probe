@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-10T23:32:53.123Z",
-  "status": "PRODUCTION_VERIFIED_CLOUD_TABS_EXPIRED_AUTH_HANDOFF_REQUIRED",
+  "updated_at": "2026-10-10T23:38:01.868Z",
+  "status": "PRODUCTION_VERIFIED_TOKEN_SCOPE_READY_MANUAL_SECRET_HANDOFF",
   "code_commit": "b6246cff62a37801d5c2c3a10115e6d77496b397",
   "reviewed_feature_commit": "580a6c7160e6c65fd231c4102dcc8ddd524624a0",
   "tests": {
@@ -33,7 +33,7 @@
   "mis_unchanged": true,
   "latest_source_success_at": "2026-10-10T23:29:08+08:00",
   "resume_validation": "reports/index-events/resume-validation-20261010.json",
-  "next_action": "Recover GitHub Confirm access then event token draft; securely login cron and use saved jobs8618691/8618694. Do not recreate jobs or read secrets.",
+  "next_action": "User generates/securely enters independent token in saved event jobs8618691/8618694 under mandatory credential handoff; agent performs event-only external HTTP tests and enables after verification.",
   "external_job_ids": [
     8618691,
     8618694
@@ -45,18 +45,12 @@
     "status": "SUCCESS"
   },
   "auth_resume": {
-    "at": "2026-10-10T23:32:53.123Z",
-    "cloud_tabs_before_recovery": "about:blank only",
-    "github_confirm_access": true,
-    "event_token_visible_on_list": false,
-    "generated_token_result_inspected": false,
-    "cron_current_ui": "Sign in",
-    "saved_job_ids": [
-      8618691,
-      8618694
-    ],
-    "job_current_auth_configuration": "NOT_REVERIFIED; service login required",
-    "manual_handoff_needed": true
+    "at": "2026-10-10T23:38:01.868Z",
+    "github_verification": "COMPLETE",
+    "token_draft": "READY",
+    "token_generated": false,
+    "expires_on": "2026-11-10",
+    "cron_current_ui": "Sign in"
   },
   "native_evening_verification": "reports/index-events/native-evening-verification-20261010.json"
 }
