@@ -35,3 +35,9 @@ cron-job.org本次重新開console，仍Sign in。之前安全登入request中�
 開啟GitHub獨立fine-grained PAT建立頁，已登入@gxaawill2-ui，但遇到Confirm access（Verify via email），尚未建立新憑證。下一個真正必要使用者步驟是GitHub身分驗證／授權全新repo限定Actions read/write憑證，安全填入兩event工作；不重用MIS token、不要在聊天／報告／Git保存Token。之後agent完成external Test run、自測收據與啟用。詳backup-activation-20261010.json。
 
 GitHub查詢仍僅找到native38029017422、37957502210；17:20新的Run截至本次未找到。全部既有程式／測試／網站／事件與MIS資料未改。若context中斷，不要重新建立這兩個工作；先查看上述job IDs及最新main。
+
+## GitHub驗證中斷後接續（2026-10-10T15:20:01.587Z）
+
+安全OTP請求中斷，沒有身分驗證成功證據；新分頁仍GitHub Confirm access／Verify via email。尚未產生獨立Token。cron-job.org新分頁亦重新顯示Sign in（雲端session已失效），先前建立的8618691／8618694保存在服務，不要重建。先用manual handoff完成GitHub再次驗證；隨後agent填妥fine-grained PAT必要範圍，產生憑證需本人於最後動作確認／安全交接。之後安全重新登入cron，只在兩event工作填獨立憑證，測試才啟用。不得讀任何憑證值或MIS headers。
+
+最後報告提交5e2463c4279022f5a6119b2837db51c531b1c9d1 Pages38060248642 SUCCESS；程式未改，既有242／42／42 PASS仍有效。截至本次查詢native晚間新run仍未找到。備援仍NOT_ACTIVATED；不要誤稱登入完成即觸發完成。

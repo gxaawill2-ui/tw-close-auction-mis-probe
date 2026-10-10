@@ -25,3 +25,9 @@ MSCI／FTSE再用授權無新證據，保持RESTRICTED；不重做完整來源�
 cron-job.org登入已完成，兩event工作已建立但停用：8618691／8618694。不要重建；不要修改MIS工作。先讀backup-activation-20261010.json。GitHub已登入，但新獨立fine-grained PAT頁正在Confirm access／Verify via email。使用安全browserAuth或manual handoff完成本人驗證，準備repo限定Actions read/write新Token，僅由使用者安全填入兩event Authorization。其他欄位全已填妥並驗證。取得憑證後才Test run；HTTP204＋對應GitHub event-only run與收據確認後啟用。22:30起本次操作不涉及任何程式修改，無需重做已完成研究／regression／網站部署。
 
 防止洩漏：使用者填入Token後不要完整domSnapshot、read headers input values、clipboard、screenshot Advanced或Test response headers。僅讀Common非敏感欄位／遮蔽或不含header值的結果摘要。兩工作saveResponses=false；目前沒有真Token。
+
+## GitHub驗證中斷後接續（2026-10-10T15:20:01.587Z）
+
+安全OTP請求中斷，沒有身分驗證成功證據；新分頁仍GitHub Confirm access／Verify via email。尚未產生獨立Token。cron-job.org新分頁亦重新顯示Sign in（雲端session已失效），先前建立的8618691／8618694保存在服務，不要重建。先用manual handoff完成GitHub再次驗證；隨後agent填妥fine-grained PAT必要範圍，產生憑證需本人於最後動作確認／安全交接。之後安全重新登入cron，只在兩event工作填獨立憑證，測試才啟用。不得讀任何憑證值或MIS headers。
+
+最後報告提交5e2463c4279022f5a6119b2837db51c531b1c9d1 Pages38060248642 SUCCESS；程式未改，既有242／42／42 PASS仍有效。截至本次查詢native晚間新run仍未找到。備援仍NOT_ACTIVATED；不要誤稱登入完成即觸發完成。

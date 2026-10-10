@@ -57,5 +57,11 @@
   "credentials_read": false,
   "production_code_changed": false,
   "screenshot": "cron-event-backup-jobs-1791642788319.jpg",
-  "next_action": "GitHub identity verification and authorize independent credential; securely enter in both event-job Authorization fields, test, then enable"
+  "next_action": "GitHub identity verification and authorize independent credential; securely enter in both event-job Authorization fields, test, then enable",
+  "last_auth_check": {
+    "at": "2026-10-10T15:20:01.587Z",
+    "github_confirm_access": true,
+    "cron_current_ui": "Sign in",
+    "otp_request": "INTERRUPTED; successful validation not observed"
+  }
 }
