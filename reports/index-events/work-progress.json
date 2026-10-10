@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-10T13:40:20.206Z",
-  "status": "PRODUCTION_VERIFIED_NATIVE_DELAY_OBSERVED_EXTERNAL_LOGIN_PENDING",
+  "updated_at": "2026-10-10T14:35:44.753Z",
+  "status": "PRODUCTION_VERIFIED_EVENT_JOBS_CREATED_CREDENTIAL_PENDING",
   "code_commit": "b6246cff62a37801d5c2c3a10115e6d77496b397",
   "reviewed_feature_commit": "580a6c7160e6c65fd231c4102dcc8ddd524624a0",
   "tests": {
@@ -26,11 +26,16 @@
     "native_schedule": 38029017422,
     "latest_data_pages": 38029124408
   },
-  "external_backup": "NOT_ACTIVATED_AUTH_REQUIRED",
+  "external_backup": "JOBS_CREATED_DISABLED_CREDENTIAL_REQUIRED",
   "native_schedule": "NATIVE_08_20_CRON_ARRIVED13_53; ORIGINAL_DATE_UNKNOWN;17_20_RUN_NOT_FOUND_AS_OF_CHECK",
   "next_file": "reports/index-events/next-steps.md",
   "mis_unchanged": true,
   "latest_source_success_at": "2026-10-10T13:54:56+08:00",
   "resume_validation": "reports/index-events/resume-validation-20261010.json",
-  "next_action": "LOGIN_HANDOFF; do not redo research, seed, MIS or deploy existing code"
+  "next_action": "GitHub identity verification and authorize independent credential; securely enter in both event-job Authorization fields, test, then enable",
+  "external_job_ids": [
+    8618691,
+    8618694
+  ],
+  "external_activation_evidence": "reports/index-events/backup-activation-20261010.json"
 }

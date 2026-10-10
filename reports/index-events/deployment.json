@@ -1,5 +1,5 @@
 {
-  "verified_at": "2026-10-10T13:40:20.206Z",
+  "verified_at": "2026-10-10T14:35:44.753Z",
   "timezone": "Asia/Taipei",
   "baseline_main": "5fc6341ef1e2c8195b586df014aec290a41cb0a9",
   "code_commit": "b6246cff62a37801d5c2c3a10115e6d77496b397",
@@ -84,7 +84,7 @@
       "08:35",
       "17:35"
     ],
-    "external_backup_status": "NOT_ACTIVATED_AUTH_REQUIRED",
+    "external_backup_status": "JOBS_CREATED_DISABLED_CREDENTIAL_REQUIRED",
     "actual_http_dispatch_test": "PASS_WITH_CI_SHORT_LIVED_TOKEN_NOT_CRON_JOB_ORG_ACTIVATION",
     "native_schedule_observation": {
       "morning_clock_native_arrived": true,
@@ -275,7 +275,44 @@
       "published_commit": "b061e45125e3bdbc5f72a42eb8e3fd595327542a",
       "source_scan_result": "PARTIAL",
       "data_published_at": "2026-10-10T08:10:10.565471+08:00"
-    }
+    },
+    "external_backup_jobs": [
+      {
+        "job_id": 8618691,
+        "title": "TW index events backup 08:35",
+        "schedule": "35 8 * * *",
+        "schedule_slot": "08:20",
+        "ui_url": "https://console.cron-job.org/jobs/8618691",
+        "timezone": "Asia/Taipei",
+        "enabled": false,
+        "request_method": "POST",
+        "workflow": "index-events.yml",
+        "ref": "main",
+        "self_test": false,
+        "request_timeout_seconds": 20,
+        "save_responses": false,
+        "authorization": "NONSECRET_PLACEHOLDER_ONLY; independent PAT pending",
+        "first_possible_execution_if_activated": "2026-10-11T08:35:00+08:00"
+      },
+      {
+        "job_id": 8618694,
+        "title": "TW index events backup 17:35",
+        "schedule": "35 17 * * *",
+        "schedule_slot": "17:20",
+        "ui_url": "https://console.cron-job.org/jobs/8618694",
+        "timezone": "Asia/Taipei",
+        "enabled": false,
+        "request_method": "POST",
+        "workflow": "index-events.yml",
+        "ref": "main",
+        "self_test": false,
+        "request_timeout_seconds": 20,
+        "save_responses": false,
+        "authorization": "NONSECRET_PLACEHOLDER_ONLY; independent PAT pending",
+        "first_possible_execution_if_activated": "2026-10-11T17:35:00+08:00"
+      }
+    ],
+    "external_backup_credential_stage": "SIGNED_IN_AS_REPOSITORY_OWNER; GITHUB_CONFIRM_ACCESS_VERIFY_VIA_EMAIL_REQUIRED"
   },
   "preservation": {
     "all_existing_mis_workflows_unchanged": true,
@@ -347,7 +384,7 @@
     }
   ],
   "limitations": [
-    "Independent cron-job.org backup NOT_ACTIVATED: signed-out service and new repository-scoped Actions credential required. MIS credential/jobs untouched.",
+    "Independent cron-job.org backup jobs8618691/8618694 CREATED BUT DISABLED; signed-in service verified, new repository-scoped Actions credential requires GitHub Confirm access. MIS credential/jobs untouched.",
     "Original run37957502210 cron origin UNKNOWN; scheduled date not provided by GitHub; no proof it was on-time17:20.",
     "MSCI public ADD/DEL PDFs anonymously readable but reuse/redistribution restrictions; not integrated automatic stock lists; full constituents, weights and free-float separately licensed.",
     "FTSE public technical PDFs anonymously readable but linked LSEG Website Terms Section10 prohibits bots/scripts; stopped prior LSEG rule monitor and blocked requests before fetching.",
@@ -759,5 +796,6 @@
       "market_data_capture": false,
       "production_code_changed": false
     }
-  }
+  },
+  "backup_activation_checkpoint": "reports/index-events/backup-activation-20261010.json"
 }

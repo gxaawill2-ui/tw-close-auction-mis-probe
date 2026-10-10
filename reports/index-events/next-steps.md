@@ -1,4 +1,4 @@
-# 接續入口：外部備援登入待完成
+# 接續入口：兩個備援工作已建立，獨立憑證待授權
 
 更新2026-10-10T13:40:20.206Z。先讀continuation-20261010.md、work-progress.json、resume-validation-20261010.json與GitHub最新main。最終程式b6246cff保留，不重seed、不重抓10/8MIS、不動既有Token／Secrets／workflow／外部MISjobs。
 
@@ -19,3 +19,9 @@ cron-job.org最新UI仍登入頁；前次安全登入中斷，沒有成功證據
 MSCI／FTSE再用授權無新證據，保持RESTRICTED；不重做完整來源研究。TPEx118官方quote候選非完整主檔／目前掛牌數。新公會SITCA匿名ETF頁有代號，但完整index／lifecycle及自動再用尚未驗證；不要先整合再補授權。政府129347聚合與44656公司身份不代替每ETF清單。實際未来ETF下單／收盤時刻仍UNKNOWN，原預估日期維持預估。
 
 新版源只有在免費、允許自動化／再用、實際可解析且測試通過才加入；缺漏不判下市。評級first有效時間07:50:47.811603，invalidprototype history保留不得回測穿越。same-day多ETF不能算多個独立交易日樣本。詳既有methodology與remaining-source-restrictions。
+
+## 最新入口（2026-10-10T14:35:44.753Z，優先於上方登入待完成紀錄）
+
+cron-job.org登入已完成，兩event工作已建立但停用：8618691／8618694。不要重建；不要修改MIS工作。先讀backup-activation-20261010.json。GitHub已登入，但新獨立fine-grained PAT頁正在Confirm access／Verify via email。使用安全browserAuth或manual handoff完成本人驗證，準備repo限定Actions read/write新Token，僅由使用者安全填入兩event Authorization。其他欄位全已填妥並驗證。取得憑證後才Test run；HTTP204＋對應GitHub event-only run與收據確認後啟用。22:30起本次操作不涉及任何程式修改，無需重做已完成研究／regression／網站部署。
+
+防止洩漏：使用者填入Token後不要完整domSnapshot、read headers input values、clipboard、screenshot Advanced或Test response headers。僅讀Common非敏感欄位／遮蔽或不含header值的結果摘要。兩工作saveResponses=false；目前沒有真Token。

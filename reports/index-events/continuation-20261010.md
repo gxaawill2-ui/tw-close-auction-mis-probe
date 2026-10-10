@@ -25,3 +25,13 @@ cron-job.org本次重新開console，仍Sign in。之前安全登入request中�
 剩餘限制只補新的SITCA公會候選：匿名HTTP200643756bytes，有基金代號；robots404非授權；完整追蹤index／掛牌life及可持續再用仍未驗證，未加入scanner。政府129347是分類總量，44656是投信公司身份，都不是ETF完整主檔。不因此改PARTIAL／UNKNOWN；MSCI/FTSE再用与实际ETF委託仍無新確認。詳resume-validation-20261010.json。
 
 下一步：保持這次登入handoff分頁，使用者完成登入後直接讀UI；不重做研究，不seed、不部署既有程式、不重抓MIS。登入只影響外部備援，不阻塞既有正式網站。
+
+## 外部備援服務建立（2026-10-10T14:35:44.753Z）
+
+使用者完成cron-job.org雲端登入，UI Logout與工作清單確認成功。原有6個啟用MIS工作及3個停用MIS工作保留；沒有打開／修改任何MIS工作或讀取其headers。
+
+已實際建立並重新開啟驗證兩個獨立event-only工作：8618691「TW index events backup 08:35」、8618694「TW index events backup 17:35」。Asia/Taipei每日35 8／35 17；只POST index-events.yml/main，inputs schedule_slot=08:20／17:20，self_test=false；timeout20、saveResponses=false、必要JSON/API headers皆已保存。兩工作仍停用，Authorization只放非秘密佔位文字，不能宣稱已啟用或成功觸發。
+
+開啟GitHub獨立fine-grained PAT建立頁，已登入@gxaawill2-ui，但遇到Confirm access（Verify via email），尚未建立新憑證。下一個真正必要使用者步驟是GitHub身分驗證／授權全新repo限定Actions read/write憑證，安全填入兩event工作；不重用MIS token、不要在聊天／報告／Git保存Token。之後agent完成external Test run、自測收據與啟用。詳backup-activation-20261010.json。
+
+GitHub查詢仍僅找到native38029017422、37957502210；17:20新的Run截至本次未找到。全部既有程式／測試／網站／事件與MIS資料未改。若context中斷，不要重新建立這兩個工作；先查看上述job IDs及最新main。
