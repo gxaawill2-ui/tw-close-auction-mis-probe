@@ -158,7 +158,7 @@ async function main(){
    assert.equal(await fundPage.locator('button,input,select,form,[role="button"]').count(),0);
    await fundPage.emulateMedia({colorScheme:'light'});assert.equal(await fundPage.evaluate(()=>getComputedStyle(document.body).backgroundColor),'rgb(11, 16, 26)');
    assert.equal(await fundPage.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
-   await fundPage.screenshot({path:path.join(OUT,'funds-'+name+'.png'),fullPage:true});
+   await fundPage.screenshot({path:path.join(OUT,'funds-'+name+'.png'),fullPage:false});
    checks.push({name:name+'/fund-readonly-page',result:'PASS',all_priorities_visible:true});await fundContext.close();
    // Public smoke uses the real Taipei day, normal anonymous HTTP and no routes.
    // Future runs do not expect yesterday's October 8 candidates as today's list.

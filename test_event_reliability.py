@@ -2,14 +2,16 @@ import copy
 import hashlib
 import json
 import subprocess
+import tempfile
+from datetime import datetime
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 from urllib.error import HTTPError
 
-from event_scheduler import identify, claim, finish, recovery_scope, freshness_blocks_recovery, git
+from event_scheduler import identify, claim, finish, recovery_scope, freshness_blocks_recovery, git, owner_terminal
 from event_dispatch import dispatch
-from fund_importance import evaluate, build
+from fund_importance import evaluate, build, MODEL_AVAILABLE_SINCE, refresh
 from index_events import Fetcher,parse_tpex_etf_observations,parse_yuanta_aum
 
 ROOT=Path(__file__).parent
@@ -35,6 +37,16 @@ class SchedulerTests(unittest.TestCase):
         r=self.native();p,_=claim({},r,NOW,'1');p=finish(p,'1',NOW,True);self.assertEqual(claim(p,r,NOW,'2')[1],'DUPLICATE_SUCCESS')
     def test_simultaneous_lease(self):
         r=self.native();p,_=claim({},r,NOW,'1');self.assertEqual(claim(p,r,NOW,'2')[1],'LEASE_HELD')
+    def test_terminal_owner_recovers_without_waiting_for_ttl(self):
+        p,_=claim({},self.native(),NOW,'1')
+        self.assertEqual(claim(p,self.native(),NOW,'2',terminal_owner=True)[1],'CLAIMED')
+    def test_owner_api_failure_never_steals_lease(self):
+        def opener(req,timeout):raise HTTPError(req.full_url,403,'redacted',{},None)
+        self.assertFalse(owner_terminal('1','redacted-test',opener))
+    def test_owner_api_confirmed_event_run_only(self):
+        import io
+        def opener(req,timeout):return io.BytesIO(json.dumps({'id':1,'name':'Index event calendar','head_branch':'main','status':'completed'}).encode())
+        self.assertTrue(owner_terminal('1','redacted-test',opener))
     def test_cross_day_identity(self):self.assertNotEqual(self.native()['identity'],self.native('2026-10-11T17:20:00+08:00')['identity'])
     def test_lease_cas_owner(self):
         p,_=claim({},self.native(),NOW,'1')
@@ -116,6 +128,28 @@ class ImportanceTests(unittest.TestCase):
         self.metric['last_checked_at']='2026-10-11T17:20:00+08:00'
         new=build([self.event],[self.fund],[self.metric],'2026-10-11T17:20:00+08:00',old)
         self.assertEqual(new[0]['rating_history'],[]);self.assertEqual(new[0]['information_available_as_of'],NOW)
+    def test_legacy_snapshot_time_is_not_rating_availability(self):
+        old=build([self.event],[self.fund],[self.metric],NOW)
+        old[0]['first_rated_at']=old[0]['information_available_as_of']='2026-10-10T00:14:21+08:00'
+        new=build([self.event],[self.fund],[self.metric],NOW,old)[0]
+        self.assertEqual(new['information_available_as_of'],NOW)
+        self.assertEqual(new['first_rated_at'],NOW)
+        self.assertTrue(new['rating_history'][-1]['invalid_for_asof_backtest'])
+    def test_refresh_uses_real_generation_clock_not_event_snapshot(self):
+        class Clock(datetime):
+            @classmethod
+            def now(cls,tz=None):return cls.fromisoformat(NOW)
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);base=root/'state/events';base.mkdir(parents=True)
+            payloads={'events-index.json':{'generated_at':'2026-10-10T00:14:21+08:00','events':[self.event]},
+                'etf-index-map.json':{'mappings':[self.fund]},'fund-metrics.json':{'funds':[self.metric]}}
+            for name,payload in payloads.items():(base/name).write_text(json.dumps(payload))
+            with patch('fund_importance.datetime',Clock):result=refresh(root)
+        self.assertEqual(result['generated_at'],NOW)
+        self.assertEqual(result['fund_events'][0]['first_rated_at'],NOW)
+    def test_model_not_backdated_before_rollout(self):
+        rows=build([self.event],[self.fund],[],'2026-10-09T13:25:00+08:00')
+        self.assertEqual(rows[0]['information_available_as_of'],MODEL_AVAILABLE_SINCE)
     def test_correction_history(self):
         old=build([self.event],[self.fund],[self.metric],NOW);self.metric['fund_aum']=1e9
         new=build([self.event],[self.fund],[self.metric],'2026-10-11T17:20:00+08:00',old);self.assertEqual(len(new[0]['rating_history']),1);self.assertEqual(new[0]['first_rated_at'],NOW)
