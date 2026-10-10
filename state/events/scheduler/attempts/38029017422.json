@@ -15,12 +15,20 @@
   "policy_delay_seconds": null,
   "eligible": true,
   "original_slot_not_fulfilled": true,
-  "runner_started_at": "2026-10-10T13:53:24.619692+08:00",
-  "decision": "CLAIMED",
-  "result": "CLAIMED",
+  "runner_started_at": "2026-10-10T05:53:19Z",
+  "scan_started_at": "2026-10-10T13:53:26.208287+08:00",
+  "scan_finished_at": "2026-10-10T05:54:56Z",
+  "published_at": "2026-10-10T13:54:57.823644+08:00",
+  "result": "DELAYED",
+  "lease_owner": "38029017422",
+  "lease_expires_at": "2026-10-10T13:54:57.823644+08:00",
+  "scan_attempts": 1,
   "duplicate_trigger": false,
+  "missed_slot": false,
+  "slot_state_before_claim": "UNVERIFIED_ORIGIN",
+  "missed_slot_definition": "NO_SUCCESS_RECEIPT_BY_BACKUP_CHECK; NOT_PROOF_GITHUB_DROPPED_TRIGGER",
   "source_health": {
-    "last_successful_scan_at": "2026-10-10T08:10:08+08:00",
+    "last_successful_scan_at": "2026-10-10T13:54:56+08:00",
     "metrics": {
       "source_total": 27,
       "source_classes": {
@@ -33,7 +41,7 @@
       "new_events": 0,
       "corrected_events": 0,
       "conflicting_events": 0,
-      "pending_review_documents": 13,
+      "pending_review_documents": 14,
       "newly_observed_etfs": 0,
       "corrected_etfs": 0,
       "confirmed_etf_mappings": 64,
@@ -43,9 +51,121 @@
       "issuer_unknown_etfs": 271,
       "listing_status_unknown_etfs": 271,
       "etf_discovery_coverage": "TWSE_OPEN_MASTER_ONLY; TPEx full master not verified"
-    }
+    },
+    "sources": [
+      {
+        "source_id": "twse-calendar-2026",
+        "status": "SUCCESS"
+      },
+      {
+        "source_id": "twse-calendar-2027",
+        "status": "UNKNOWN"
+      },
+      {
+        "source_id": "twse-company-metadata",
+        "status": "SUCCESS"
+      },
+      {
+        "source_id": "tpex-company-metadata",
+        "status": "SUCCESS"
+      },
+      {
+        "source_id": "msci-calendar",
+        "status": "SUCCESS"
+      },
+      {
+        "source_id": "msci-constituents",
+        "status": "RESTRICTED"
+      },
+      {
+        "source_id": "tip-schedule",
+        "status": "RESTRICTED"
+      },
+      {
+        "source_id": "tip-notices",
+        "status": "RESTRICTED"
+      },
+      {
+        "source_id": "ftse-notices",
+        "status": "RESTRICTED"
+      },
+      {
+        "source_id": "tip-etf-map-452",
+        "status": "SUCCESS"
+      },
+      {
+        "source_id": "tip-etf-map-454",
+        "status": "SUCCESS"
+      },
+      {
+        "source_id": "tip-new-etf-mappings",
+        "status": "UNKNOWN"
+      },
+      {
+        "source_id": "cathay-announcements",
+        "status": "UNKNOWN"
+      },
+      {
+        "source_id": "capital-announcements",
+        "status": "MONITOR_ONLY"
+      },
+      {
+        "source_id": "fuhhwa-announcements",
+        "status": "MONITOR_ONLY"
+      },
+      {
+        "source_id": "fubon-announcements",
+        "status": "RESTRICTED"
+      },
+      {
+        "source_id": "ftse-rule-0",
+        "status": "RESTRICTED"
+      },
+      {
+        "source_id": "ftse-rule-1",
+        "status": "MONITOR_ONLY"
+      },
+      {
+        "source_id": "twse-etf-master",
+        "status": "SUCCESS"
+      },
+      {
+        "source_id": "yuanta-review-0050",
+        "status": "SUCCESS"
+      },
+      {
+        "source_id": "yuanta-review-0051",
+        "status": "SUCCESS"
+      },
+      {
+        "source_id": "yuanta-review-0056",
+        "status": "SUCCESS"
+      },
+      {
+        "source_id": "yuanta-review-006203",
+        "status": "SUCCESS"
+      },
+      {
+        "source_id": "tpex-etf-quote-observations",
+        "status": "SUCCESS"
+      },
+      {
+        "source_id": "yuanta-aum-0050",
+        "status": "SUCCESS"
+      },
+      {
+        "source_id": "yuanta-aum-0051",
+        "status": "SUCCESS"
+      },
+      {
+        "source_id": "yuanta-aum-0056",
+        "status": "SUCCESS"
+      }
+    ]
   },
-  "scan_started_at": null,
-  "scan_finished_at": null,
-  "published_at": null
+  "history": [],
+  "policy_completion_delay_seconds": null,
+  "published_commit": "d192ddb100c0647fdc77371278e7399c29738699",
+  "source_scan_result": "PARTIAL",
+  "data_published_at": "2026-10-10T13:54:57.823644+08:00"
 }
