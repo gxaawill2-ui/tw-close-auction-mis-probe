@@ -13,3 +13,13 @@
 基金規模、名單檔數與模式可使同日不同基金或同基金不同季度不同評級；固定版本observation-priority-v1。rating_generated_at、information_available_as_of、first_rated_at、rating_history保存版本及更正，絕不把10/10新評級回填為10/8盤前已知。未來統計按交易日聚類，不把20檔同日基金當20個獨立樣本。
 
 實際研究／更新時間：2026-10-10T07:28:34+08:00
+
+## 正式發布的時間校正及資料範圍
+
+初期refresh錯用了既有events-index.generated_at=00:14作为評級生成時間；實際模型稍後才建立。正式驗收查出後已修正為實際生成時鐘，模型保守可用下限2026-10-10T07:46:14+08:00，19筆lineage於07:50:47.811603重新評級。先前版本保存as_of_correction及invalid_for_asof_backtest=true，不能用於事前回測。評級first_rated_at／information_available_as_of均不早於首次有效重評時間；官方原公告／AUM源時點各自保存，不能混為本站模型可用時間。過去事件只能研究latest事實，不可用10/8 AUM冒充當季歷史AUM。
+
+每次掃描會用當時官方規模重新評級；目前12月事件的高／中是10/10資訊下的暫定觀察優先順序，若規模超過30日而未成功更新，會變為資料不足。未採歷史爆量或事後報酬修訂為盤前訊號。資料不足16筆不刪除。
+
+expected_execution_pattern以INDEX_標示；CONFIRMED_CLOSE_IMPLEMENTATION僅表示該指數有官方收盤實施证據。基金實際委託／執行時刻仍未知，網站明确分開顯示。没有因同一天MSCI事件就建立所有股票或基金關聯。
+
+正式程式b6246cff；242 Python、42 Node／32 DOM、42 Chromium桌機／手機及WebKit iPhone場景PASS。更新2026-10-10T00:23:50.384Z。

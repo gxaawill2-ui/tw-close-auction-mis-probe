@@ -73,3 +73,30 @@
 公開JSON維持既有GitHub raw免費只讀資料路徑；Pages首頁直接讀取。Pages /state 不是既有資料服務，不將其404宣稱成功。來源／完整性證據、公開HTTP與JSON雜湊見public-verification.json、source-coverage-comparison.json及deployment.json。
 
 首次GitHub MIS tests因假PDF在magic檢查前import可選套件而失敗，已僅調整事件解析器檢查順序；修正後CI全PASS，未更動MIS workflow。正式觀察日與成分仍不得猜測，沒有宣稱回測收益或隔日修正規律。
+
+## 第三階段正式驗收（2026-10-10T00:23:50.384Z）
+
+承接5fc6341ef1e2c8195b586df014aec290a41cb0a9。最終程式b6246cff62a37801d5c2c3a10115e6d77496b397，資料b061e45125e3bdbc5f72a42eb8e3fd595327542a，出版ack dfd003f4285fa8c609aff7f8f9b766a097643dd1。原始MIS工作及候選完全不變，沒有重抓10/8。
+
+|驗收項目|結果／實際證據|
+|---|---|
+|全部Python|242 PASS；main38007718767 tests；49新增測試|
+|Node／DOM|42 PASS；其中DOM／狀態32|
+|完整三瀏覽器|42場景PASS：Chromium桌機／手機、WebKit iPhone；feature38007381758|
+|正式網址三瀏覽器|main38007718767 public-acceptance SUCCESS；深色／無按鈕／原名單／事件／完整ETF頁|
+|GitHub CI|main38007718767 SUCCESS；MIS tests38007718825 SUCCESS，只測試不抓市場|
+|GitHub Pages|程式38007718622 SUCCESS；資料及收據38007864341 SUCCESS|
+|HTTP備援協定|真實driver38007381758→child38007391304 SUCCESS；CI短期token、no-source/no-main-write self_test|
+|收據與CAS出版|ADHOC_PUBLISHED，08:08:14 run建立、08:08:35 runner、08:08:44 scan、08:10:08完成、08:10:10出版ack；不冒充native準時|
+|外部cron-job.org|NOT_ACTIVATED_AUTH_REQUIRED；登入牆、新repo-scoped Actions憑證需要一次使用者授權；範本不是已部署備援|
+|原native事故|10/9 08:20時workflow未建立；17:20準時證據未取得；00:13 run原定slot UNKNOWN，具體根因未證實|
+|ETF重要程度|19筆／15ETF，高1、中2、低0、資料不足16；PROVISIONAL、模型政策非爆量預測|
+|評級as-of|已修復旧snapshot時間錯用；19筆first有效評級>=07:50:47.811603；舊版本invalid_for_asof_backtest仍保存|
+|來源限制|27來源：自動10、日期5、監測3、受限6、不可得3；15成功，PARTIAL；FTSE條款禁bots已停止該來源自動化|
+|TPEx|官方free quotes118代號候選as-of10/8；非完整ETF主檔／目前掛牌證據；JSON截斷有界重試保留舊資料|
+|真正基金換股|沒有新增可靠未来實際ETF下單時間；指數close／ETF執行明確分開，推估仍推估|
+|原10/8七檔|SHA256=794cdb1749a7318612fad5003bceb47b126b5d03a8cbda16abf14332954c111b；所有價格／量／validated=false及MIS workflow不變|
+
+正式fund-events.html完整唯讀；首頁只加每基金重要程度與資料不足／預估標籤。來源失敗不清空事件或阻塞MIS13:35。10/10休市沿用原休市邏輯，不假裝當日有10/8七檔。公開JSON沿用GitHub raw免費路徑，不將Pages /state404當成功。
+
+現在可發布的改善已完成；未授權外部備援與尚未抵達的native實測不寫PASS。詳細事故、備援、模型、来源限制及接續工作分別見本階段報告。沒有任何回測收益／隔日修正結論。

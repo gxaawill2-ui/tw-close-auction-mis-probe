@@ -1,14 +1,13 @@
 {
-  "verified_at": "2026-10-09T16:57:01+08:00",
+  "verified_at": "2026-10-10T00:23:50.384Z",
   "timezone": "Asia/Taipei",
-  "baseline_main": "45e2085fe83e793cecff0d9be5efb035e7ab78f8",
-  "code_commit": "94cb366cd32af8ce9b0dd70eef498ab01ff7b6d1",
-  "published_data_commit": "d5ba3b1c0ca40c365a9ca240d632a28f0c6f6d06",
+  "baseline_main": "5fc6341ef1e2c8195b586df014aec290a41cb0a9",
+  "code_commit": "b6246cff62a37801d5c2c3a10115e6d77496b397",
+  "reviewed_feature_commit": "580a6c7160e6c65fd231c4102dcc8ddd524624a0",
+  "published_data_commit": "b061e45125e3bdbc5f72a42eb8e3fd595327542a",
+  "published_receipt_commit": "dfd003f4285fa8c609aff7f8f9b766a097643dd1",
   "public_url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/",
-  "requested_range": [
-    "2026-10-09",
-    "2027-10-31"
-  ],
+  "fund_events_url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/fund-events.html",
   "counts": {
     "requested_range_events": 32,
     "official_schedule_events": 29,
@@ -27,13 +26,21 @@
     "etf_master_records": 271,
     "master_active_etf_records": 33,
     "date_unverified_all_database": 36,
-    "date_unverified_requested_range": 28
+    "date_unverified_requested_range": 28,
+    "fund_event_records": 19,
+    "rated_fund_codes": 15,
+    "importance_high": 1,
+    "importance_medium": 2,
+    "importance_low": 0,
+    "importance_data_insufficient": 16,
+    "tpex_quote_code_observations": 118,
+    "tpex_confirmed_current_listings": null
   },
   "tests": {
-    "python": 193,
-    "node": 39,
-    "dom_and_state": 29,
-    "browser_scenarios": 36,
+    "python": 242,
+    "node": 42,
+    "dom_and_state": 32,
+    "browser_scenarios": 42,
     "engines": [
       "Chromium desktop",
       "Chromium mobile",
@@ -42,32 +49,222 @@
     "result": "PASS"
   },
   "runs": {
-    "initial_feature_source_and_tests": 37906419136,
-    "regression_and_browsers": 37906419180,
-    "first_main_regression_and_browsers": 37906751942,
-    "final_independent_branch": 37907299827,
-    "final_main_tests_scan_public_browser": 37907579895,
-    "code_pages": 37907579165,
-    "data_pages": 37907698117
+    "feature_tests": 38007095889,
+    "feature_http_and_full_browsers": 38007381758,
+    "http_child_no_sources_no_main_writes": 38007391304,
+    "main_tests_scan_public_browsers": 38007718767,
+    "main_mis_tests_no_market_capture": 38007718825,
+    "code_pages": 38007718622,
+    "data_and_receipt_pages": 38007864341
   },
   "jobs": {
-    "final_tests": 113744668954,
-    "final_scan": 113744737035,
-    "final_public_browser": 113744737234
+    "final_tests": 114080270826,
+    "final_scan": 114080338405,
+    "final_public_browser": 114080338344,
+    "feature_full_browser": 114079195712,
+    "http_acceptance": 114079195459
+  },
+  "artifacts": {
+    "public_browsers": 11651833422,
+    "feature_full_browsers": 11650969927,
+    "http_dispatch": 11651762856
   },
   "automation": {
-    "cron_utc": "20 0,9 * * *",
+    "cron_utc": [
+      "20 0 * * *",
+      "20 9 * * *"
+    ],
     "scheduled_taipei": [
       "08:20",
       "17:20"
     ],
+    "backup_check_taipei": [
+      "08:35",
+      "17:35"
+    ],
+    "external_backup_status": "NOT_ACTIVATED_AUTH_REQUIRED",
+    "actual_http_dispatch_test": "PASS_WITH_CI_SHORT_LIVED_TOKEN_NOT_CRON_JOB_ORG_ACTIVATION",
+    "native_schedule_observation": "PENDING_ACTUAL_RECEIPT",
+    "last_attempt_at": "2026-10-10T08:08:46+08:00",
+    "last_successful_scan_at": "2026-10-10T08:10:08+08:00",
+    "observed_request_attempts": 34,
     "max_requests": 60,
     "max_attempts_per_url": 2,
     "timeout_seconds": 10,
-    "last_attempt_at": "2026-10-09T16:52:02+08:00",
-    "last_successful_scan_at": "2026-10-09T16:52:46+08:00",
-    "observed_request_attempts": 32,
-    "mis_dispatch": false
+    "max_source_body_bytes": 6291456,
+    "lease_minutes": 30,
+    "max_slot_scan_attempts": 2,
+    "max_cas_attempts": 3,
+    "mis_dispatch": false,
+    "github_native_scheduled_for": "NOT_EXPOSED_BY_GITHUB",
+    "receipt": {
+      "schedule_slot": "ADHOC",
+      "scheduled_for": null,
+      "scheduled_for_evidence": "NOT_EXPOSED_BY_GITHUB",
+      "actual_trigger_at": "2026-10-10T08:08:14+08:00",
+      "trigger_source": "ADHOC",
+      "workflow_run_id": "38007718767",
+      "github_event_schedule": null,
+      "delay_seconds": null,
+      "origin_date_verified": false,
+      "identity": "adhoc-38007718767",
+      "planned_for": null,
+      "execution_scope_date": null,
+      "eligible": true,
+      "runner_started_at": "2026-10-10T00:08:35Z",
+      "scan_started_at": "2026-10-10T08:08:44.538487+08:00",
+      "scan_finished_at": "2026-10-10T00:10:08Z",
+      "published_at": "2026-10-10T08:10:10.565471+08:00",
+      "result": "ADHOC_PUBLISHED",
+      "lease_owner": "38007718767",
+      "lease_expires_at": "2026-10-10T08:10:10.565471+08:00",
+      "scan_attempts": 1,
+      "duplicate_trigger": false,
+      "missed_slot": false,
+      "slot_state_before_claim": "PENDING",
+      "missed_slot_definition": "NO_SUCCESS_RECEIPT_BY_BACKUP_CHECK; NOT_PROOF_GITHUB_DROPPED_TRIGGER",
+      "source_health": {
+        "last_successful_scan_at": "2026-10-10T08:10:08+08:00",
+        "metrics": {
+          "source_total": 27,
+          "source_classes": {
+            "VERIFIED_AUTOMATIC": 10,
+            "DATE_ONLY": 5,
+            "MONITOR_ONLY": 3,
+            "RESTRICTED": 6,
+            "UNAVAILABLE": 3
+          },
+          "new_events": 0,
+          "corrected_events": 0,
+          "conflicting_events": 0,
+          "pending_review_documents": 13,
+          "newly_observed_etfs": 0,
+          "corrected_etfs": 0,
+          "confirmed_etf_mappings": 64,
+          "new_confirmed_etf_mappings": 0,
+          "unconfirmed_etf_mappings": 2,
+          "etf_master_total": 271,
+          "issuer_unknown_etfs": 271,
+          "listing_status_unknown_etfs": 271,
+          "etf_discovery_coverage": "TWSE_OPEN_MASTER_ONLY; TPEx full master not verified"
+        },
+        "sources": [
+          {
+            "source_id": "twse-calendar-2026",
+            "status": "SUCCESS"
+          },
+          {
+            "source_id": "twse-calendar-2027",
+            "status": "UNKNOWN"
+          },
+          {
+            "source_id": "twse-company-metadata",
+            "status": "SUCCESS"
+          },
+          {
+            "source_id": "tpex-company-metadata",
+            "status": "SUCCESS"
+          },
+          {
+            "source_id": "msci-calendar",
+            "status": "SUCCESS"
+          },
+          {
+            "source_id": "msci-constituents",
+            "status": "RESTRICTED"
+          },
+          {
+            "source_id": "tip-schedule",
+            "status": "RESTRICTED"
+          },
+          {
+            "source_id": "tip-notices",
+            "status": "RESTRICTED"
+          },
+          {
+            "source_id": "ftse-notices",
+            "status": "RESTRICTED"
+          },
+          {
+            "source_id": "tip-etf-map-452",
+            "status": "SUCCESS"
+          },
+          {
+            "source_id": "tip-etf-map-454",
+            "status": "SUCCESS"
+          },
+          {
+            "source_id": "tip-new-etf-mappings",
+            "status": "UNKNOWN"
+          },
+          {
+            "source_id": "cathay-announcements",
+            "status": "UNKNOWN"
+          },
+          {
+            "source_id": "capital-announcements",
+            "status": "MONITOR_ONLY"
+          },
+          {
+            "source_id": "fuhhwa-announcements",
+            "status": "MONITOR_ONLY"
+          },
+          {
+            "source_id": "fubon-announcements",
+            "status": "RESTRICTED"
+          },
+          {
+            "source_id": "ftse-rule-0",
+            "status": "RESTRICTED"
+          },
+          {
+            "source_id": "ftse-rule-1",
+            "status": "MONITOR_ONLY"
+          },
+          {
+            "source_id": "twse-etf-master",
+            "status": "SUCCESS"
+          },
+          {
+            "source_id": "yuanta-review-0050",
+            "status": "SUCCESS"
+          },
+          {
+            "source_id": "yuanta-review-0051",
+            "status": "SUCCESS"
+          },
+          {
+            "source_id": "yuanta-review-0056",
+            "status": "SUCCESS"
+          },
+          {
+            "source_id": "yuanta-review-006203",
+            "status": "SUCCESS"
+          },
+          {
+            "source_id": "tpex-etf-quote-observations",
+            "status": "SUCCESS"
+          },
+          {
+            "source_id": "yuanta-aum-0050",
+            "status": "SUCCESS"
+          },
+          {
+            "source_id": "yuanta-aum-0051",
+            "status": "SUCCESS"
+          },
+          {
+            "source_id": "yuanta-aum-0056",
+            "status": "SUCCESS"
+          }
+        ]
+      },
+      "history": [],
+      "policy_completion_delay_seconds": null,
+      "published_commit": "b061e45125e3bdbc5f72a42eb8e3fd595327542a",
+      "source_scan_result": "PARTIAL",
+      "data_published_at": "2026-10-10T08:10:10.565471+08:00"
+    }
   },
   "preservation": {
     "all_existing_mis_workflows_unchanged": true,
@@ -76,17 +273,45 @@
     "oct8_candidate_sha256": "794cdb1749a7318612fad5003bceb47b126b5d03a8cbda16abf14332954c111b"
   },
   "coverage": "PARTIAL",
-  "limitations": [
-    "MSCI licensed constituents/weights redistribution not authorized; public schedule DATE_ONLY",
-    "FTSE full technical releases require registration/subscription; open rules MONITOR_ONLY",
-    "TIP technical/schedule downloads robots-disallowed; known public news parsed but new-news discovery unavailable",
-    "TPEx full ETF master has no verified open license; internal website API not used",
-    "TWSE government master is monthly and includes historical funds; current listing, delisting and legal issuer UNKNOWN",
-    "Cathay HTTP400; Fubon robots-disallowed and replacement maintenance page",
-    "00936 and 00939 official index names disagree; mappings CONFLICT",
-    "Future official ETF actual order/closing times not obtained; estimated dates remain estimated",
-    "Monitor content changes are not necessarily new announcements; pending documents require reliable format/evidence"
-  ],
+  "source_metrics": {
+    "source_total": 27,
+    "source_classes": {
+      "VERIFIED_AUTOMATIC": 10,
+      "DATE_ONLY": 5,
+      "MONITOR_ONLY": 3,
+      "RESTRICTED": 6,
+      "UNAVAILABLE": 3
+    },
+    "new_events": 0,
+    "corrected_events": 0,
+    "conflicting_events": 0,
+    "pending_review_documents": 13,
+    "newly_observed_etfs": 0,
+    "corrected_etfs": 0,
+    "confirmed_etf_mappings": 64,
+    "new_confirmed_etf_mappings": 0,
+    "unconfirmed_etf_mappings": 2,
+    "etf_master_total": 271,
+    "issuer_unknown_etfs": 271,
+    "listing_status_unknown_etfs": 271,
+    "etf_discovery_coverage": "TWSE_OPEN_MASTER_ONLY; TPEx full master not verified"
+  },
+  "source_success_comparison": {
+    "baseline_latest_success_fetch_parse": 10,
+    "baseline_previous_normal_success_fetch_parse": 11,
+    "after": 15,
+    "includes_date_only": 5
+  },
+  "importance": {
+    "method_version": "observation-priority-v1",
+    "confidence": "PROVISIONAL",
+    "aum_max_age_days": 30,
+    "earliest_valid_rating_available_at": "2026-10-10T07:50:47.811603+08:00",
+    "model_available_since": "2026-10-10T07:46:14+08:00",
+    "invalid_prototype_versions_preserved_and_excluded": true,
+    "as_of_correction": "PROTOTYPE_USED_OLD_EVENT_SNAPSHOT_TIME; INVALID_FOR_PREOBSERVATION_BACKTEST",
+    "index_close_is_not_fund_order_time": true
+  },
   "next_close_watch": [
     {
       "date": "2026-11-30",
@@ -110,47 +335,27 @@
       "status": "EXPECTED_MULTIDAY_TRANSITION"
     }
   ],
+  "limitations": [
+    "Independent cron-job.org backup NOT_ACTIVATED: signed-out service and new repository-scoped Actions credential required. MIS credential/jobs untouched.",
+    "Original run37957502210 cron origin UNKNOWN; scheduled date not provided by GitHub; no proof it was on-time17:20.",
+    "MSCI public ADD/DEL PDFs anonymously readable but reuse/redistribution restrictions; not integrated automatic stock lists; full constituents, weights and free-float separately licensed.",
+    "FTSE public technical PDFs anonymously readable but linked LSEG Website Terms Section10 prohibits bots/scripts; stopped prior LSEG rule monitor and blocked requests before fetching.",
+    "TIP technical notices robots-disallowed; known allowed news facts remain; new comprehensive discovery unavailable.",
+    "TPEx quote feed yields118ETF-format candidates as of2026-10-08, not complete fund master or proof of current listing; fund type/index/issuer/listing lifecycle remain UNKNOWN.",
+    "No newly confirmed future actual ETF order/close execution times; index close and fund trading are separate.",
+    "Only0050/0051/0056 official dated AUM integrated; other fund-event ratings remain DATA_INSUFFICIENT, future ratings depend on fresh AUM at generation.",
+    "00936/00939 official index names conflict; retained CONFLICT.",
+    "TPEx original malformed response raw bytes not retained; historical error cause not proven. Safe retry/diagnostics/old data retention added.",
+    "2027 official Taiwan calendar not available; do not infer unpublished dates."
+  ],
   "statistics_claimed": false,
-  "schema_version": 2,
-  "source_metrics": {
-    "source_total": 23,
-    "source_classes": {
-      "VERIFIED_AUTOMATIC": 6,
-      "DATE_ONLY": 5,
-      "MONITOR_ONLY": 4,
-      "RESTRICTED": 5,
-      "UNAVAILABLE": 3
-    },
-    "new_events": 0,
-    "corrected_events": 0,
-    "conflicting_events": 0,
-    "pending_review_documents": 10,
-    "newly_observed_etfs": 0,
-    "corrected_etfs": 0,
-    "confirmed_etf_mappings": 64,
-    "new_confirmed_etf_mappings": 0,
-    "unconfirmed_etf_mappings": 2,
-    "etf_master_total": 271,
-    "issuer_unknown_etfs": 271,
-    "listing_status_unknown_etfs": 271,
-    "etf_discovery_coverage": "TWSE_OPEN_MASTER_ONLY; TPEx full master not verified"
-  },
-  "initial_rollout": {
-    "successful_fetch_parse_sources_before": 6,
-    "successful_fetch_parse_sources_after": 11,
-    "new_events": 13,
-    "newly_observed_master_records": 271,
-    "new_confirmed_mapping_codes": 52,
-    "previous_confirmed_became_conflict": 2,
-    "net_confirmed_mapping_increase": 50,
-    "data_commit": "cf670e508f661c196dd149dd49bdb612cd2aed5c"
-  },
-  "first_stage_deployment": {
-    "verified_at": "2026-10-09T11:04:00+08:00",
+  "schema_version": 3,
+  "previous_stage_deployment": {
+    "verified_at": "2026-10-09T16:57:01+08:00",
     "timezone": "Asia/Taipei",
-    "baseline_main": "491b7b07f6a0b355e627e0f1b7f4e949acb10eee",
-    "code_commit": "382439f5a82870197cc41eee76587e6fb544d61d",
-    "published_data_commit": "fc9a5fb9e9f3564a7a803c100cac08d7786665f2",
+    "baseline_main": "45e2085fe83e793cecff0d9be5efb035e7ab78f8",
+    "code_commit": "94cb366cd32af8ce9b0dd70eef498ab01ff7b6d1",
+    "published_data_commit": "d5ba3b1c0ca40c365a9ca240d632a28f0c6f6d06",
     "public_url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/",
     "requested_range": [
       "2026-10-09",
@@ -161,13 +366,25 @@
       "official_schedule_events": 29,
       "rule_expected_events": 3,
       "confirmed_future_close_implementations": 0,
-      "all_database_events": 36,
-      "etf_mappings": 14
+      "all_database_events": 49,
+      "historical_confirmed_index_close_events": 9,
+      "historical_close_dates": [
+        "2026-09-16",
+        "2026-10-02"
+      ],
+      "issuer_date_only_historical_events": 4,
+      "etf_mappings": 66,
+      "confirmed_etf_mappings": 64,
+      "conflicting_etf_mappings": 2,
+      "etf_master_records": 271,
+      "master_active_etf_records": 33,
+      "date_unverified_all_database": 36,
+      "date_unverified_requested_range": 28
     },
     "tests": {
-      "python": 160,
-      "node": 37,
-      "dom_and_state": 27,
+      "python": 193,
+      "node": 39,
+      "dom_and_state": 29,
       "browser_scenarios": 36,
       "engines": [
         "Chromium desktop",
@@ -177,16 +394,18 @@
       "result": "PASS"
     },
     "runs": {
-      "original_regression_and_browsers": 37876684412,
-      "final_independent_branch": 37877015574,
-      "final_main_tests_scan_public_browser": 37877204478,
-      "code_pages": 37877204392,
-      "data_pages": 37877406492
+      "initial_feature_source_and_tests": 37906419136,
+      "regression_and_browsers": 37906419180,
+      "first_main_regression_and_browsers": 37906751942,
+      "final_independent_branch": 37907299827,
+      "final_main_tests_scan_public_browser": 37907579895,
+      "code_pages": 37907579165,
+      "data_pages": 37907698117
     },
     "jobs": {
-      "final_tests": 113648423522,
-      "final_scan": 113648519787,
-      "final_public_browser": 113648519715
+      "final_tests": 113744668954,
+      "final_scan": 113744737035,
+      "final_public_browser": 113744737234
     },
     "automation": {
       "cron_utc": "20 0,9 * * *",
@@ -197,9 +416,9 @@
       "max_requests": 60,
       "max_attempts_per_url": 2,
       "timeout_seconds": 10,
-      "last_attempt_at": "2026-10-09T11:00:24+08:00",
-      "last_successful_scan_at": "2026-10-09T11:02:14+08:00",
-      "observed_request_attempts": 28,
+      "last_attempt_at": "2026-10-09T16:52:02+08:00",
+      "last_successful_scan_at": "2026-10-09T16:52:46+08:00",
+      "observed_request_attempts": 32,
       "mis_dispatch": false
     },
     "preservation": {
@@ -210,13 +429,15 @@
     },
     "coverage": "PARTIAL",
     "limitations": [
-      "TIP new schedules/notices robots-disallowed; 25 initial schedules manually verified from official PDFs",
-      "FTSE complete notices require registration/subscription; rules monitor only",
-      "MSCI licensed constituent/weight redistribution not authorized",
-      "2027 official Taiwan trading calendar not published",
-      "Cathay target HTTP400; Fubon target robots-disallowed",
-      "New ETF dynamic listing parser unavailable; 14 mappings are partial",
-      "Issuer announcements monitored for changes, not fully parsed into confirmed ETF close implementation dates"
+      "MSCI licensed constituents/weights redistribution not authorized; public schedule DATE_ONLY",
+      "FTSE full technical releases require registration/subscription; open rules MONITOR_ONLY",
+      "TIP technical/schedule downloads robots-disallowed; known public news parsed but new-news discovery unavailable",
+      "TPEx full ETF master has no verified open license; internal website API not used",
+      "TWSE government master is monthly and includes historical funds; current listing, delisting and legal issuer UNKNOWN",
+      "Cathay HTTP400; Fubon robots-disallowed and replacement maintenance page",
+      "00936 and 00939 official index names disagree; mappings CONFLICT",
+      "Future official ETF actual order/closing times not obtained; estimated dates remain estimated",
+      "Monitor content changes are not necessarily new announcements; pending documents require reliable format/evidence"
     ],
     "next_close_watch": [
       {
@@ -241,6 +462,138 @@
         "status": "EXPECTED_MULTIDAY_TRANSITION"
       }
     ],
-    "statistics_claimed": false
+    "statistics_claimed": false,
+    "schema_version": 2,
+    "source_metrics": {
+      "source_total": 23,
+      "source_classes": {
+        "VERIFIED_AUTOMATIC": 6,
+        "DATE_ONLY": 5,
+        "MONITOR_ONLY": 4,
+        "RESTRICTED": 5,
+        "UNAVAILABLE": 3
+      },
+      "new_events": 0,
+      "corrected_events": 0,
+      "conflicting_events": 0,
+      "pending_review_documents": 10,
+      "newly_observed_etfs": 0,
+      "corrected_etfs": 0,
+      "confirmed_etf_mappings": 64,
+      "new_confirmed_etf_mappings": 0,
+      "unconfirmed_etf_mappings": 2,
+      "etf_master_total": 271,
+      "issuer_unknown_etfs": 271,
+      "listing_status_unknown_etfs": 271,
+      "etf_discovery_coverage": "TWSE_OPEN_MASTER_ONLY; TPEx full master not verified"
+    },
+    "initial_rollout": {
+      "successful_fetch_parse_sources_before": 6,
+      "successful_fetch_parse_sources_after": 11,
+      "new_events": 13,
+      "newly_observed_master_records": 271,
+      "new_confirmed_mapping_codes": 52,
+      "previous_confirmed_became_conflict": 2,
+      "net_confirmed_mapping_increase": 50,
+      "data_commit": "cf670e508f661c196dd149dd49bdb612cd2aed5c"
+    },
+    "first_stage_deployment": {
+      "verified_at": "2026-10-09T11:04:00+08:00",
+      "timezone": "Asia/Taipei",
+      "baseline_main": "491b7b07f6a0b355e627e0f1b7f4e949acb10eee",
+      "code_commit": "382439f5a82870197cc41eee76587e6fb544d61d",
+      "published_data_commit": "fc9a5fb9e9f3564a7a803c100cac08d7786665f2",
+      "public_url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/",
+      "requested_range": [
+        "2026-10-09",
+        "2027-10-31"
+      ],
+      "counts": {
+        "requested_range_events": 32,
+        "official_schedule_events": 29,
+        "rule_expected_events": 3,
+        "confirmed_future_close_implementations": 0,
+        "all_database_events": 36,
+        "etf_mappings": 14
+      },
+      "tests": {
+        "python": 160,
+        "node": 37,
+        "dom_and_state": 27,
+        "browser_scenarios": 36,
+        "engines": [
+          "Chromium desktop",
+          "Chromium mobile",
+          "WebKit iPhone"
+        ],
+        "result": "PASS"
+      },
+      "runs": {
+        "original_regression_and_browsers": 37876684412,
+        "final_independent_branch": 37877015574,
+        "final_main_tests_scan_public_browser": 37877204478,
+        "code_pages": 37877204392,
+        "data_pages": 37877406492
+      },
+      "jobs": {
+        "final_tests": 113648423522,
+        "final_scan": 113648519787,
+        "final_public_browser": 113648519715
+      },
+      "automation": {
+        "cron_utc": "20 0,9 * * *",
+        "scheduled_taipei": [
+          "08:20",
+          "17:20"
+        ],
+        "max_requests": 60,
+        "max_attempts_per_url": 2,
+        "timeout_seconds": 10,
+        "last_attempt_at": "2026-10-09T11:00:24+08:00",
+        "last_successful_scan_at": "2026-10-09T11:02:14+08:00",
+        "observed_request_attempts": 28,
+        "mis_dispatch": false
+      },
+      "preservation": {
+        "all_existing_mis_workflows_unchanged": true,
+        "candidates_unchanged": true,
+        "core_price_volume_selection_unchanged": true,
+        "oct8_candidate_sha256": "794cdb1749a7318612fad5003bceb47b126b5d03a8cbda16abf14332954c111b"
+      },
+      "coverage": "PARTIAL",
+      "limitations": [
+        "TIP new schedules/notices robots-disallowed; 25 initial schedules manually verified from official PDFs",
+        "FTSE complete notices require registration/subscription; rules monitor only",
+        "MSCI licensed constituent/weight redistribution not authorized",
+        "2027 official Taiwan trading calendar not published",
+        "Cathay target HTTP400; Fubon target robots-disallowed",
+        "New ETF dynamic listing parser unavailable; 14 mappings are partial",
+        "Issuer announcements monitored for changes, not fully parsed into confirmed ETF close implementation dates"
+      ],
+      "next_close_watch": [
+        {
+          "date": "2026-11-30",
+          "organization": "MSCI",
+          "status": "EXPECTED_CLOSE_WATCH_DATE"
+        },
+        {
+          "date": "2026-12-18",
+          "organization": "FTSE Taiwan50/MidCap100",
+          "status": "EXPECTED_CLOSE_WATCH_DATE"
+        },
+        {
+          "dates": [
+            "2026-12-21",
+            "2026-12-22",
+            "2026-12-23",
+            "2026-12-24",
+            "2026-12-28"
+          ],
+          "organization": "FTSE Taiwan Dividend+ /0056",
+          "status": "EXPECTED_MULTIDAY_TRANSITION"
+        }
+      ],
+      "statistics_claimed": false
+    }
   }
 }

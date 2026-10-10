@@ -1,7 +1,13 @@
-# 接續狀態
+# Context接續／正式保存
 
-基準main5fc6341ef1e2c8195b586df014aec290a41cb0a9；分支improve/events-reliability-20261010。已實作收據/CAS、獨立backupdispatch輸入、38新測試、TPEx quotes、JSON截斷重試、AUM及每基金評級、唯讀清單。231 Python /42 Node /32 DOM PASS。下一步：GitHub分支CI真實HTTP與42瀏覽器場景；通過後main CAS上線，驗證來源scan與收據、Pages、更新deployment。外部cron-job.org登入與新repo-scopedActions憑證仍未完成，不得宣稱外部backup已啟用。
+2026-10-10T00:23:50.384Z
 
-禁止更動既有MIS檔案或10/8候選SHA794cdb1749a7318612fad5003bceb47b126b5d03a8cbda16abf14332954c111b。程式新版events2。Playwright本地下載回傳截斷zip，將用獨立GitHubCI正式browser驗收；不得把未執行記為PASS。
+已發布最終程式b6246cff62a37801d5c2c3a10115e6d77496b397；最終reviewed branch580a6c7160e6c65fd231c4102dcc8ddd524624a0；main data b061e45125e3bdbc5f72a42eb8e3fd595327542a與ack dfd003f4285fa8c609aff7f8f9b766a097643dd1。以GitHub最新main為準，程式／scanner會持續commit，因此不可拿本檔固定SHA覆蓋新資料。
 
-實際研究／更新時間：2026-10-10T07:28:34+08:00
+242 Python、42 Node／32DOM、42browser PASS；main38007718767、MIS tests38007718825、Pages38007864341。最新收據ADHOC_PUBLISHED sourcePARTIAL 15成功；真正native抵達仍待實測，不得宣稱on-time。外部cron-job.org未登入，不可聲稱已啟用備援。全套disabled template與HTTPdriver 已測；真正不能代辦只是一登入／新repoActions憑證授權。
+
+fund_events19/15ETF：1高2中0低16不足；初期asof誤用舊snapshot已校正19lineage，invalidhistory保存，首有效07:50:47.811603。主頁與fund-events.html深色無按鈕；不重設網站、不抓MIS／原10/8cand。
+
+來源27 class10/5/3/6/3，TPEx quote118候選非当前掛牌；MSCI公開ADD/DEL與FTSEpublicPDF可閱但使用限制，FTSEbots被terms禁止已停止。當前49events/66maps64confirmed2conflict與MIS價格量能均保留。閱讀acceptance、deployment、scheduler-redundancy-acceptance、importance-methodology、remaining-source-restrictions再承接。
+
+最後本機／CUA環境因environment_offline無法再連；GitHub MCP及GitHub hosted CI／公網址browser驗收仍可用。所有權威程式、資料及報告已保存GitHub，不依賴scratch；不要因本機dirty/stale覆蓋remote。只補真正auth/native驗收與合法新來源，不要重seed。

@@ -26,3 +26,13 @@
 - 多來源同期間日期衝突會清除相爭欄位的單一值、保留全部來源與歷史，CONFLICT不進當日觀察或個股關聯。更正以新的可用時點入歷史，不回填舊live_as_of。
 
 第二階段最終核對：2026-10-09T16:57:01+08:00，正式CI37907579895與Pages37907698117 SUCCESS；源掃描49事件／64確認ETF對應／2衝突，來源11成功取得解析（6自動完整語義來源＋5日期）但PARTIAL。193 Python、39 Node、36瀏覽器場景PASS。完整證據見deployment.json及source-recovery-validation.json；待審10文件不是已確認事件。
+
+## 第三階段實測更新（2026-10-10T00:23:50.384Z）
+
+增加TPEx官方OpenAPI quotes（政府11370OpenGov License1）：HTTP200，4,782,391 bytes／12,221行；118ETF格式代號，排除020ETN。僅OBSERVED_IN_OFFICIAL_QUOTES_AS_OF_DATE=10/8；指數、主被動、issuer及當前listing UNKNOWN，不代替完整主檔。來源截斷／JSON poison cache移除並有界重試，記錄bytes/hash/offset；原TPEx公司舊錯誤只有Unterminated string(char328678)，未保留raw所以根因UNKNOWN；失敗不清空公司或ETF資料。
+
+新增0050／0051／0056元大官方PCF淨資產，HTTP200、robots允許；10/8 NAV valuation不是10/12PCF nextday。AUM不代表實際下單或換股日期。27來源：VERIFIED_AUTOMATIC10、DATE_ONLY5、MONITOR_ONLY3、RESTRICTED6、UNAVAILABLE3；本次15成功（基線最近10、此前正常11），PARTIAL未改。最後成功08:10:08，34/60requests；49事件／66映射保留。
+
+MSCI公开Standard/SmallCap ADD/DEL可匿名閱讀，臺灣區只有名稱，無可靠本地股票代號／市場，不同於完整授權成分／權重／float。PDF再使用限制未解決，因此未自動取得或轉發股票清單。FTSE公开review及correction PDF也可閱讀，但實際Terms連LSEG第10節禁bots；已停止ftse-rule-0自動化并在Fetcher請求前拒絕已知FTSE/LSEG受限host。robots允許及HTTP200不等於條款允許自動化。
+
+無新增未来官方ETF實際收盤委託時点。11/30MSCI、12/18FTSE50/Mid100預估；0056五日12/21,22,23,24,28預估，不能寫確認。3個粗略評級PROVISIONAL，16資料不足，日期證據與重要程度分欄。備援程式／HTTP實測完成但cron-job.org NOT_ACTIVATED待一次登入及新單repo憑證，不能宣稱每天外部補觸發已上線。

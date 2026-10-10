@@ -1,16 +1,25 @@
-# 排程備援與驗收
+# 排程收據、備援與正式驗收
 
-原定08:20／17:20保持；拆為20 0 * * *、20 9 * * *以記錄具體cron時鐘槽位。GitHub不提供預定日期，scheduled_for/delay_seconds保留null；planned_for是本站政策，origin_date_verified=false。ON_TIME只是政策窗口內抵達，非證明GitHub原定日期。
+更新：2026-10-10T00:23:50.384Z；程式b6246cff62a37801d5c2c3a10115e6d77496b397。
 
-native窗口15分鐘；外部explicit slot HTTP窗口15–60分鐘。成功收據擋重複，30分鐘lease防重入，git fast-forward push作CAS且最多3次。每槽位最多2次來源掃描；HTTP全域60次、逾時10秒、資料6MiB。失敗不清空歷史。lease正在使用時外部僅健康檢查。
+原08:20／17:20保留，cron拆成20 0 * * *、20 9 * * *以辨識時鐘槽位。GitHub不提供某次native執行的原定日期，因此scheduled_for與delay_seconds為null、origin_date_verified=false；planned_for／policy_completion_delay_seconds只是本站政策窗口。舊run37957502210來源槽位UNKNOWN，不把00:13 SUCCESS當作17:20準時。詳scheduler-incident-20261009.md。
 
-晚到native不可冒認原定日期。若資料超過2小時未更新，使用實際抵達時間六小時bucket獨立補更新，每bucket至多一次成功；它不補認任何08:20／17:20槽位。原排程尚可繼續更新，未因外部未啟用而全面拒絕延遲更新。
+native政策窗口15分鐘；外部explicit slot備援窗口15–60分鐘。日期×slot身分、成功收據、30分鐘lease、git fast-forward CAS（最多3次、網路45秒）、每槽最多2次來源掃描防重複。超時lease或確認原同repo同workflow/main owner已終止才可接手；查owner用API至多2次／10秒，401/403/timeout為UNKNOWN，不能偷取仍活躍lease。CAS每次重新讀main與source-health，避免晚到native在備援完成後重掃。六小時late-arrival bucket只補資料，不冒認原定槽位。
 
-收據位於state/events/scheduler/slots與attempts，包含實際run建立／runner／scan起訖／成功push後確認時間、來源摘要、出版commit、policy delay與未知scheduled date。FAILED明確釋放lease；部分來源失敗為PARTIAL，不是來源完整。未完成槽位missed定義為備援檢查時無成功收據，不等於證明GitHub漏觸發。
+全部收據位於state/events/scheduler/slots及attempts：run建立時間、runner、scan起訖、成功push後published_at、source_health、出版commit、github_event_schedule、missed／duplicate、未知預定時間及結果。MISSED意為備援檢查時沒有成功收據，不能證明GitHub丟棄觸發。PARTIAL是部分來源成功，不能當完整來源涵蓋。來源全域60次、每URL至多2次、10秒逾時／6MiB body；scan job15分鐘；失败保留舊資料。
 
-外部服務狀態：NOT_ACTIVATED。已實際開啟cron-job.org，顯示Sign in。未存取、變更MIS token或排程。兩個禁用的完整job範本位於config/index-events/cron-job-backup-template.json；必須由使用者登入及建立新的單一repo Actions read/write憑證，存於cron-job.org Authorization header，才能啟用08:35／17:35。不得將範本當成已部署的獨立備援。
+## 真實執行證據
 
-38個新測試涵蓋正常、延遲、跨日、未完成、備援恢復、重複、lease owner、重試上限、401/403/400/timeout、ETF模型和截斷JSON。真實HTTP dispatch及分支完整瀏覽器驗收待CI，將補入deployment。未來native排程抵達不可提前宣稱已測。
-官方cron REST格式：https://docs.cron-job.org/rest-api.html
+- main CI38007718767 SUCCESS：242 Python、42 Node；實際scan→CAS data b061e45125e3bdbc5f72a42eb8e3fd595327542a→成功ack dfd003f4285fa8c609aff7f8f9b766a097643dd1，來源15成功、PARTIAL。
+- runner08:08:35、scan08:08:44.538487–08:10:08、published08:10:10.565471（Asia/Taipei）。這是ADHOC_PUBLISHED，明確不是native準時排程驗證。
+- HTTP實測driver38007381758 SUCCESS，child38007391304 SUCCESS；實際POST固定event workflow dispatcher，self_test=true，只測收據，不抓來源、不寫main、不dispatch MIS。使用短期CI token，測通HTTP不等於cron-job.org已啟用。
+- 49個新增Python回歸測試（193→242）覆蓋正常17:20、延遲、跨日、未完成、備援恢復、同時重複、延後native、lease/CAS競爭、owner查詢權限錯誤、重試上限、截斷JSON及評級as-of；全部PASS。併發狀態／錯誤以可重現隔離測試，不宣稱live故障已發生。
+- 程式Pages38007718622、最新資料／收據Pages38007864341 SUCCESS。真實native08:20／17:20須等GitHub實際抵達再驗收，不能事前或用ADHOC冒充。
 
-實際研究／更新時間：2026-10-10T07:28:34+08:00
+## 外部授權狀態與最少操作
+
+**NOT_ACTIVATED_AUTH_REQUIRED**。已開cron-job.org但顯示Sign in；無已授權session，沒有代建服務或讀取／修改原MIS排程與token。config/index-events/cron-job-backup-template.json是两個disabled jobs完整範本，非部署收據。
+
+使用者只需：登入cron-job.org；用新建、只授權此repo Actions read/write的fine-grained credential，將兩個event-only POST job的Authorization header設好並啟用08:35／17:35（Asia/Taipei）。不要將token貼聊天、程式、GitHub報告或重用MIS token。無須日常手動整理；在完成此一次授權之前，外部每日備援尚不存在。
+
+官方API格式：https://docs.cron-job.org/rest-api.html 。requestMethod=1為POST；saveResponses=false；固定index-events.yml/dispatches與ref=main；bounded client retry。獨立的是觸發服務；GitHub運算／API仍是共同故障點，沒有承諾GitHub全面故障時也能掃描。

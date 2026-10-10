@@ -1,0 +1,38 @@
+{
+  "investigated_at": "2026-10-10T00:23:50.384Z",
+  "native_schedule_runs_reviewed": 58,
+  "workflow_first_added": {
+    "commit": "40c318a",
+    "at": "2026-10-09T10:44:21+08:00"
+  },
+  "morning_oct9": "NOT_APPLICABLE_WORKFLOW_NOT_YET_ON_MAIN",
+  "evening_oct9": "ON_TIME_TRIGGER_EVIDENCE_NOT_FOUND_NOT_PROOF_OF_DROP",
+  "run": {
+    "id": 37957502210,
+    "event": "schedule",
+    "created_at": "2026-10-09T16:13:06Z",
+    "run_started_at": "2026-10-09T16:13:06Z",
+    "taipei_created": "2026-10-10T00:13:06+08:00",
+    "head_sha": "6d3eac214faa371eca48e7a0c384c87942c64c38",
+    "tests_runner_started": "2026-10-09T16:13:10Z",
+    "scan_job_id": 113911733638,
+    "scan_job_started": "2026-10-09T16:13:24Z",
+    "scan_started": "2026-10-09T16:13:30Z",
+    "scan_finished": "2026-10-09T16:14:21Z",
+    "published_commit": "311ef073e218ae23ff057900a04068da049b9489",
+    "finished": "2026-10-09T16:14:28Z",
+    "result": "SUCCESS",
+    "github_event_schedule": null,
+    "scheduled_for": null,
+    "origin_slot": "UNKNOWN"
+  },
+  "proven_hours_of_runner_queue": false,
+  "root_cause": "UNVERIFIED_GITHUB_DELIVERY_DELAY_POSSIBLE",
+  "tpex_error": {
+    "message": "Unterminated string starting at: line 315 column 104 (char 328678)",
+    "raw_response_preserved": false,
+    "content_length_preserved": false,
+    "cause": "UNKNOWN",
+    "previous_success_at": "2026-10-09T16:52:46+08:00"
+  }
+}

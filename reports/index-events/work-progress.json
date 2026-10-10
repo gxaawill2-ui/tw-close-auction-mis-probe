@@ -1,0 +1,31 @@
+{
+  "updated_at": "2026-10-10T00:23:50.384Z",
+  "status": "PRODUCTION_DEPLOYED_PARTIAL_EXTERNAL_AUTH_PENDING",
+  "code_commit": "b6246cff62a37801d5c2c3a10115e6d77496b397",
+  "reviewed_feature_commit": "580a6c7160e6c65fd231c4102dcc8ddd524624a0",
+  "tests": {
+    "python": 242,
+    "node": 42,
+    "dom_and_state": 32,
+    "browser_scenarios": 42,
+    "engines": [
+      "Chromium desktop",
+      "Chromium mobile",
+      "WebKit iPhone"
+    ],
+    "result": "PASS"
+  },
+  "runs": {
+    "feature_tests": 38007095889,
+    "feature_http_and_full_browsers": 38007381758,
+    "http_child_no_sources_no_main_writes": 38007391304,
+    "main_tests_scan_public_browsers": 38007718767,
+    "main_mis_tests_no_market_capture": 38007718825,
+    "code_pages": 38007718622,
+    "data_and_receipt_pages": 38007864341
+  },
+  "external_backup": "NOT_ACTIVATED_AUTH_REQUIRED",
+  "native_schedule": "PENDING_ACTUAL_RECEIPT",
+  "next_file": "reports/index-events/next-steps.md",
+  "mis_unchanged": true
+}
