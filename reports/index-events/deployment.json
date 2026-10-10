@@ -1,11 +1,11 @@
 {
-  "verified_at": "2026-10-10T00:23:50.384Z",
+  "verified_at": "2026-10-10T13:40:20.206Z",
   "timezone": "Asia/Taipei",
   "baseline_main": "5fc6341ef1e2c8195b586df014aec290a41cb0a9",
   "code_commit": "b6246cff62a37801d5c2c3a10115e6d77496b397",
   "reviewed_feature_commit": "580a6c7160e6c65fd231c4102dcc8ddd524624a0",
-  "published_data_commit": "b061e45125e3bdbc5f72a42eb8e3fd595327542a",
-  "published_receipt_commit": "dfd003f4285fa8c609aff7f8f9b766a097643dd1",
+  "published_data_commit": "d192ddb100c0647fdc77371278e7399c29738699",
+  "published_receipt_commit": "5d9d543b8c0635b6851613c9a3dd7c6d430a314e",
   "public_url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/",
   "fund_events_url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/fund-events.html",
   "counts": {
@@ -55,7 +55,9 @@
     "main_tests_scan_public_browsers": 38007718767,
     "main_mis_tests_no_market_capture": 38007718825,
     "code_pages": 38007718622,
-    "data_and_receipt_pages": 38007864341
+    "data_and_receipt_pages": 38007864341,
+    "native_schedule": 38029017422,
+    "latest_data_pages": 38029124408
   },
   "jobs": {
     "final_tests": 114080270826,
@@ -84,9 +86,18 @@
     ],
     "external_backup_status": "NOT_ACTIVATED_AUTH_REQUIRED",
     "actual_http_dispatch_test": "PASS_WITH_CI_SHORT_LIVED_TOKEN_NOT_CRON_JOB_ORG_ACTIVATION",
-    "native_schedule_observation": "PENDING_ACTUAL_RECEIPT",
-    "last_attempt_at": "2026-10-10T08:08:46+08:00",
-    "last_successful_scan_at": "2026-10-10T08:10:08+08:00",
+    "native_schedule_observation": {
+      "morning_clock_native_arrived": true,
+      "morning_on_time": "NOT_VERIFIED",
+      "morning_original_date": "UNKNOWN",
+      "evening_native_run": "NOT_FOUND_AS_OF_CHECK; NOT_PROOF_OF_DROPPED_TRIGGER",
+      "evening_scheduled_clock": "17:20",
+      "all_native_runs_checked_created_today_for_index_calendar": [
+        38029017422
+      ]
+    },
+    "last_attempt_at": "2026-10-10T13:53:28+08:00",
+    "last_successful_scan_at": "2026-10-10T13:54:56+08:00",
     "observed_request_attempts": 34,
     "max_requests": 60,
     "max_attempts_per_url": 2,
@@ -285,7 +296,7 @@
     "new_events": 0,
     "corrected_events": 0,
     "conflicting_events": 0,
-    "pending_review_documents": 13,
+    "pending_review_documents": 14,
     "newly_observed_etfs": 0,
     "corrected_etfs": 0,
     "confirmed_etf_mappings": 64,
@@ -594,6 +605,159 @@
         }
       ],
       "statistics_claimed": false
+    }
+  },
+  "resume_validation": {
+    "verified_at": "2026-10-10T13:40:20.206Z",
+    "timezone": "Asia/Taipei",
+    "baseline_main": "4354383154fe530ec6774c30ed3e2a477c5933bc",
+    "current_main_before_report": "5d9d543b8c0635b6851613c9a3dd7c6d430a314e",
+    "native_run": {
+      "id": 38029017422,
+      "event": "schedule",
+      "github_event_schedule": "20 0 * * *",
+      "clock_slot": "08:20",
+      "origin_date_verified": false,
+      "scheduled_for": null,
+      "delay_seconds": null,
+      "actual_trigger_at": "2026-10-10T13:53:04+08:00",
+      "runner_started_at": "2026-10-10T05:53:19Z",
+      "scan_started_at": "2026-10-10T13:53:26.208287+08:00",
+      "scan_finished_at": "2026-10-10T05:54:56Z",
+      "published_at": "2026-10-10T13:54:57.823644+08:00",
+      "result": "DELAYED",
+      "source_scan_result": "PARTIAL",
+      "published_commit": "d192ddb100c0647fdc77371278e7399c29738699",
+      "ack_commit": "5d9d543b8c0635b6851613c9a3dd7c6d430a314e",
+      "slot_path": "state/events/scheduler/slots/unattributed-2026-10-10-2.json",
+      "attempt_path": "state/events/scheduler/attempts/38029017422.json",
+      "scan_attempts": 1,
+      "duplicate_trigger": false,
+      "original_slot_not_fulfilled": true
+    },
+    "schedule_observations": {
+      "morning_clock_native_arrived": true,
+      "morning_on_time": "NOT_VERIFIED",
+      "morning_original_date": "UNKNOWN",
+      "evening_native_run": "NOT_FOUND_AS_OF_CHECK; NOT_PROOF_OF_DROPPED_TRIGGER",
+      "evening_scheduled_clock": "17:20",
+      "all_native_runs_checked_created_today_for_index_calendar": [
+        38029017422
+      ]
+    },
+    "backup": {
+      "status": "NOT_ACTIVATED_AUTH_REQUIRED",
+      "service_ui": "cron-job.org Sign in",
+      "observation_at": "2026-10-10T13:40:20.206Z",
+      "previous_secure_auth_request": "INTERRUPTED; NO_POSITIVE_SIGNED_IN_EVIDENCE",
+      "mis_jobs_opened_or_modified": false,
+      "credentials_read_or_reused": false,
+      "live_skip_or_recovery": "NOT_VERIFIED_WITH_EXTERNAL_SERVICE",
+      "existing_duplicate_lease_cas_tests": "PASS",
+      "next_action": "Secure sign-in/manual handoff only; inspect event-only jobs after login; independent credential authorization if needed"
+    },
+    "importance": {
+      "records": 19,
+      "fund_codes": 15,
+      "counts": {
+        "HIGH": 1,
+        "MEDIUM": 2,
+        "LOW": 0,
+        "DATA_INSUFFICIENT": 16
+      },
+      "verified_public_url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/fund-events.html",
+      "verified_labels": {
+        "0050": "高（暫定）",
+        "0051": "中（暫定）",
+        "0056": "中（暫定）",
+        "006208": "資料不足"
+      },
+      "controls": 0,
+      "color_scheme": "dark",
+      "body_background": "rgb(11, 16, 26)",
+      "no_horizontal_overflow": true,
+      "date_evidence_separate": true,
+      "all_rows_visible_in_dom": true,
+      "earliest_valid_rating_asof": "2026-10-10T07:50:47.811603+08:00"
+    },
+    "tests": {
+      "python": 242,
+      "node": 42,
+      "dom_and_state": 32,
+      "current_ci_run": 38029017422,
+      "current_ci_test_job": 114145847295,
+      "result": "PASS",
+      "full_browser_scenarios": 42,
+      "full_browser_run": 38007381758,
+      "native_public_browser_job": "SKIPPED_BY_EXISTING_WORKFLOW_POLICY; live desktop19rows checked viaCua"
+    },
+    "pages": {
+      "run": 38029124408,
+      "status": "SUCCESS",
+      "sha": "5d9d543b8c0635b6851613c9a3dd7c6d430a314e"
+    },
+    "source_metrics": {
+      "source_total": 27,
+      "source_classes": {
+        "VERIFIED_AUTOMATIC": 10,
+        "DATE_ONLY": 5,
+        "MONITOR_ONLY": 3,
+        "RESTRICTED": 6,
+        "UNAVAILABLE": 3
+      },
+      "new_events": 0,
+      "corrected_events": 0,
+      "conflicting_events": 0,
+      "pending_review_documents": 14,
+      "newly_observed_etfs": 0,
+      "corrected_etfs": 0,
+      "confirmed_etf_mappings": 64,
+      "new_confirmed_etf_mappings": 0,
+      "unconfirmed_etf_mappings": 2,
+      "etf_master_total": 271,
+      "issuer_unknown_etfs": 271,
+      "listing_status_unknown_etfs": 271,
+      "etf_discovery_coverage": "TWSE_OPEN_MASTER_ONLY; TPEx full master not verified"
+    },
+    "source_coverage": "PARTIAL",
+    "source_research_delta": {
+      "sitca_candidate": {
+        "url": "https://www.sitca.org.tw/ROC/SITCA_ETF/etf_info.aspx",
+        "http_status": 200,
+        "bytes": 643756,
+        "sha256": "27e5679ad1d096943f6ef55732271da60f866c9939bbe3dd69b017262a4c032a",
+        "robots_status": 404,
+        "robots_interpretation": "No robots file found; not evidence of reuse license",
+        "fund_codes_present": [
+          "0050",
+          "006208"
+        ],
+        "complete_tracking_and_lifecycle": "NOT_VERIFIED",
+        "automatic_reuse_permission": "UNKNOWN",
+        "integrated": false
+      },
+      "government_candidates": [
+        {
+          "url": "https://data.gov.tw/dataset/129347",
+          "scope": "Aggregate ETF fund count/assets; not perETF full master",
+          "integrated": false
+        },
+        {
+          "url": "https://data.gov.tw/dataset/44656",
+          "scope": "Investment trust company identity, not ETF lifecycle/index",
+          "integrated": false
+        }
+      ],
+      "msci_ftse_reuse": "NO_NEW_VERIFIED_FREE_AUTHORIZATION",
+      "fund_actual_future_close_time": "NO_NEW_VERIFIED_DATE"
+    },
+    "preservation": {
+      "candidate_bytes_identical": true,
+      "candidate_blob_sha": "247dbe4bf7f149950a6196ad59119a65be25599f",
+      "oct8_candidate_count": 7,
+      "validated": false,
+      "market_data_capture": false,
+      "production_code_changed": false
     }
   }
 }
