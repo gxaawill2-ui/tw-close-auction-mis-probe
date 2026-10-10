@@ -1,11 +1,11 @@
 {
-  "verified_at": "2026-10-10T14:35:44.753Z",
+  "verified_at": "2026-10-10T15:30:38.115Z",
   "timezone": "Asia/Taipei",
   "baseline_main": "5fc6341ef1e2c8195b586df014aec290a41cb0a9",
   "code_commit": "b6246cff62a37801d5c2c3a10115e6d77496b397",
   "reviewed_feature_commit": "580a6c7160e6c65fd231c4102dcc8ddd524624a0",
-  "published_data_commit": "d192ddb100c0647fdc77371278e7399c29738699",
-  "published_receipt_commit": "5d9d543b8c0635b6851613c9a3dd7c6d430a314e",
+  "published_data_commit": "819d782e776b88a510b90dc1cccc29116c1b9c0e",
+  "published_receipt_commit": "ff83c6c72051c7fe9d6e1affcab23275485341a2",
   "public_url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/",
   "fund_events_url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/fund-events.html",
   "counts": {
@@ -57,7 +57,8 @@
     "code_pages": 38007718622,
     "data_and_receipt_pages": 38007864341,
     "native_schedule": 38029017422,
-    "latest_data_pages": 38029124408
+    "latest_data_pages": 38063799814,
+    "native_evening_schedule": 38063666867
   },
   "jobs": {
     "final_tests": 114080270826,
@@ -90,14 +91,16 @@
       "morning_clock_native_arrived": true,
       "morning_on_time": "NOT_VERIFIED",
       "morning_original_date": "UNKNOWN",
-      "evening_native_run": "NOT_FOUND_AS_OF_CHECK; NOT_PROOF_OF_DROPPED_TRIGGER",
+      "evening_native_run": "ARRIVED_DELAYED; scheduled_for and original date UNKNOWN",
       "evening_scheduled_clock": "17:20",
       "all_native_runs_checked_created_today_for_index_calendar": [
-        38029017422
-      ]
+        38029017422,
+        38063666867
+      ],
+      "evening_run_id": 38063666867
     },
-    "last_attempt_at": "2026-10-10T13:53:28+08:00",
-    "last_successful_scan_at": "2026-10-10T13:54:56+08:00",
+    "last_attempt_at": "2026-10-10T23:27:47.404031+08:00",
+    "last_successful_scan_at": "2026-10-10T23:29:08+08:00",
     "observed_request_attempts": 34,
     "max_requests": 60,
     "max_attempts_per_url": 2,
@@ -109,33 +112,36 @@
     "mis_dispatch": false,
     "github_native_scheduled_for": "NOT_EXPOSED_BY_GITHUB",
     "receipt": {
-      "schedule_slot": "ADHOC",
+      "schedule_slot": "17:20",
       "scheduled_for": null,
       "scheduled_for_evidence": "NOT_EXPOSED_BY_GITHUB",
-      "actual_trigger_at": "2026-10-10T08:08:14+08:00",
-      "trigger_source": "ADHOC",
-      "workflow_run_id": "38007718767",
-      "github_event_schedule": null,
+      "actual_trigger_at": "2026-10-10T23:27:13+08:00",
+      "trigger_source": "GITHUB_SCHEDULE",
+      "workflow_run_id": "38063666867",
+      "github_event_schedule": "20 9 * * *",
       "delay_seconds": null,
       "origin_date_verified": false,
-      "identity": "adhoc-38007718767",
-      "planned_for": null,
+      "identity": "unattributed-2026-10-10-3",
       "execution_scope_date": null,
+      "planned_for": null,
+      "execution_scope_policy": "UNATTRIBUTED_NATIVE_RECOVERY_6H_BUCKET; NOT_ORIGINAL_SLOT",
+      "policy_delay_seconds": null,
       "eligible": true,
-      "runner_started_at": "2026-10-10T00:08:35Z",
-      "scan_started_at": "2026-10-10T08:08:44.538487+08:00",
-      "scan_finished_at": "2026-10-10T00:10:08Z",
-      "published_at": "2026-10-10T08:10:10.565471+08:00",
-      "result": "ADHOC_PUBLISHED",
-      "lease_owner": "38007718767",
-      "lease_expires_at": "2026-10-10T08:10:10.565471+08:00",
+      "original_slot_not_fulfilled": true,
+      "runner_started_at": "2026-10-10T15:27:40Z",
+      "scan_started_at": "2026-10-10T23:27:47.404031+08:00",
+      "scan_finished_at": "2026-10-10T15:29:08Z",
+      "published_at": "2026-10-10T23:29:10.099475+08:00",
+      "result": "DELAYED",
+      "lease_owner": "38063666867",
+      "lease_expires_at": "2026-10-10T23:29:10.099475+08:00",
       "scan_attempts": 1,
       "duplicate_trigger": false,
       "missed_slot": false,
-      "slot_state_before_claim": "PENDING",
+      "slot_state_before_claim": "UNVERIFIED_ORIGIN",
       "missed_slot_definition": "NO_SUCCESS_RECEIPT_BY_BACKUP_CHECK; NOT_PROOF_GITHUB_DROPPED_TRIGGER",
       "source_health": {
-        "last_successful_scan_at": "2026-10-10T08:10:08+08:00",
+        "last_successful_scan_at": "2026-10-10T23:29:08+08:00",
         "metrics": {
           "source_total": 27,
           "source_classes": {
@@ -148,7 +154,7 @@
           "new_events": 0,
           "corrected_events": 0,
           "conflicting_events": 0,
-          "pending_review_documents": 13,
+          "pending_review_documents": 15,
           "newly_observed_etfs": 0,
           "corrected_etfs": 0,
           "confirmed_etf_mappings": 64,
@@ -272,9 +278,9 @@
       },
       "history": [],
       "policy_completion_delay_seconds": null,
-      "published_commit": "b061e45125e3bdbc5f72a42eb8e3fd595327542a",
+      "published_commit": "819d782e776b88a510b90dc1cccc29116c1b9c0e",
       "source_scan_result": "PARTIAL",
-      "data_published_at": "2026-10-10T08:10:10.565471+08:00"
+      "data_published_at": "2026-10-10T23:29:10.099475+08:00"
     },
     "external_backup_jobs": [
       {
@@ -312,7 +318,7 @@
         "first_possible_execution_if_activated": "2026-10-11T17:35:00+08:00"
       }
     ],
-    "external_backup_credential_stage": "SIGNED_IN_AS_REPOSITORY_OWNER; GITHUB_CONFIRM_ACCESS_VERIFY_VIA_EMAIL_REQUIRED"
+    "external_backup_credential_stage": "SUDO_VERIFIED; NEW_TOKEN_FORM_PREPARED_NOT_GENERATED"
   },
   "preservation": {
     "all_existing_mis_workflows_unchanged": true,
@@ -333,7 +339,7 @@
     "new_events": 0,
     "corrected_events": 0,
     "conflicting_events": 0,
-    "pending_review_documents": 14,
+    "pending_review_documents": 15,
     "newly_observed_etfs": 0,
     "corrected_etfs": 0,
     "confirmed_etf_mappings": 64,
@@ -384,7 +390,7 @@
     }
   ],
   "limitations": [
-    "Independent cron-job.org backup jobs8618691/8618694 CREATED BUT DISABLED; signed-in service verified, new repository-scoped Actions credential requires GitHub Confirm access. MIS credential/jobs untouched.",
+    "Independent cron-job.org event jobs8618691/8618694 created but DISABLED; GitHub identity verified and scope form prepared. New 30-day repo Actions credential not generated/entered; manual security handoff required; MIS unchanged.",
     "Original run37957502210 cron origin UNKNOWN; scheduled date not provided by GitHub; no proof it was on-time17:20.",
     "MSCI public ADD/DEL PDFs anonymously readable but reuse/redistribution restrictions; not integrated automatic stock lists; full constituents, weights and free-float separately licensed.",
     "FTSE public technical PDFs anonymously readable but linked LSEG Website Terms Section10 prohibits bots/scripts; stopped prior LSEG rule monitor and blocked requests before fetching.",

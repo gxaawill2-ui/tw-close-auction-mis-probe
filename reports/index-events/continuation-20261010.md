@@ -41,3 +41,17 @@ GitHub查詢仍僅找到native38029017422、37957502210；17:20新的Run截至�
 安全OTP請求中斷，沒有身分驗證成功證據；新分頁仍GitHub Confirm access／Verify via email。尚未產生獨立Token。cron-job.org新分頁亦重新顯示Sign in（雲端session已失效），先前建立的8618691／8618694保存在服務，不要重建。先用manual handoff完成GitHub再次驗證；隨後agent填妥fine-grained PAT必要範圍，產生憑證需本人於最後動作確認／安全交接。之後安全重新登入cron，只在兩event工作填獨立憑證，測試才啟用。不得讀任何憑證值或MIS headers。
 
 最後報告提交5e2463c4279022f5a6119b2837db51c531b1c9d1 Pages38060248642 SUCCESS；程式未改，既有242／42／42 PASS仍有效。截至本次查詢native晚間新run仍未找到。備援仍NOT_ACTIVATED；不要誤稱登入完成即觸發完成。
+
+## 本人驗證完成／新憑證表單已準備（2026-10-10T15:28:12.944Z）
+
+使用者完成GitHub Confirm access，已進入New fine-grained personal access token。agent已填妥：TW index events cron backup 20261010、owner gxaawill2-ui、Only select repositories唯一tw-close-auction-mis-probe、Actions Read and write、Metadata必要Read-only、Account0。尚未Generate token，沒有新Token可讀或存放。
+
+保留原有30天expiration，GitHub顯示2026-11-09。auto-review拒絕選Custom expiration，理由是沒有具體期限授權；已改用保留30天的安全替代方案，未繞過／重試自訂期限。新憑證不能真正限制到單一workflow；只限定repo Actions，cron工作配置固定index-events.yml，不修改MIS工作。30天到期後需由本人更新Token，不能聲稱憑證永遠有效。
+
+下一步只交接安全敏感步驟：User manually generates new token from prepared GitHub form, securely pastes Bearer token into Authorization Value of saved event jobs8618691/8618694 and saves, leaving disabled; agent tests event-only HTTP and receipts before enabling. Never inspect generated token page, clipboard, header values, or credential-bearing screenshots. cron最新UI仍Sign in，需要安全重新登入。兩工作其餘欄位全部已存，不能重建、不能先啟用佔位憑證、不能完整snapshot Advanced。權限表單證據event-pat-scope-1791646016361.jpg含非秘密草稿，無Token。若使用者回覆已產生／已貼好，嚴禁讀取GitHub新Token結果頁；只從cron Common非敏感欄位／工作清單及GitHubrun收據驗證。
+
+## 晚間原生排程已實測抵達（2026-10-10T15:30:38.115Z）
+
+新的真實native schedule Run 38063666867 SUCCESS；github_event_schedule=20 9 * * *，17:20 clock已證明送達。台北10/10 23:27:13 trigger、23:27:40 runner、23:27:47.404031 scan、23:29:08完、23:29:10.099475出版。原始預定日期未提供；scheduled_for與delay_seconds null，origin_date_verified=false。result=DELAYED，identity=unattributed-2026-10-10-3，original_slot_not_fulfilled=true；不得把晚到回復更新宣稱當日17:20準時或已完成原槽位。1 scan attempt、duplicate_trigger=false、來源PARTIAL15成功／27、new_events0／corrected0。242 Python／42 Node PASS（test job114246844916）。data819d782e776b88a510b90dc1cccc29116c1b9c0e、ack ff83c6c72051c7fe9d6e1affcab23275485341a2，保留bot提交。
+
+08:20 cron38029017422在13:53抵達與17:20 cron38063666867在23:27抵達均已驗證，但準時性均未證實、原日仍UNKNOWN。外部兩job已建立但未具真憑證／停用，外部服務trigger仍未驗證；不能混稱備援已啟用。完整證據native-evening-verification-20261010.json。

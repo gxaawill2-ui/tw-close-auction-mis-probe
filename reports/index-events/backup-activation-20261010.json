@@ -39,7 +39,7 @@
       "first_possible_execution_if_activated": "2026-10-11T17:35:00+08:00"
     }
   ],
-  "github_credential_stage": "SIGNED_IN_AS_REPOSITORY_OWNER; GITHUB_CONFIRM_ACCESS_VERIFY_VIA_EMAIL_REQUIRED",
+  "github_credential_stage": "SUDO_VERIFIED; NEW_TOKEN_FORM_PREPARED_NOT_GENERATED",
   "credential_requirements": {
     "type": "NEW_FINE_GRAINED_PAT",
     "repository": "gxaawill2-ui/tw-close-auction-mis-probe",
@@ -49,19 +49,43 @@
   },
   "live_external_http_dispatch": "NOT_TESTED_WITH_EXTERNAL_SERVICE; disabled placeholder jobs not activation",
   "native_schedule_runs_found": [
+    38063666867,
     38029017422,
     37957502210
   ],
-  "native_evening_status": "NOT_FOUND_AS_OF_CHECK; NOT_PROOF_DROPPED",
+  "native_evening_status": "ARRIVED_DELAYED; ORIGIN_DATE_UNKNOWN; result=DELAYED",
   "mis_jobs_modified": false,
   "credentials_read": false,
   "production_code_changed": false,
   "screenshot": "cron-event-backup-jobs-1791642788319.jpg",
   "next_action": "GitHub identity verification and authorize independent credential; securely enter in both event-job Authorization fields, test, then enable",
   "last_auth_check": {
-    "at": "2026-10-10T15:20:01.587Z",
-    "github_confirm_access": true,
+    "at": "2026-10-10T15:30:38.115Z",
+    "github_confirm_access": false,
+    "github_verification": "COMPLETE",
     "cron_current_ui": "Sign in",
-    "otp_request": "INTERRUPTED; successful validation not observed"
+    "token_generated": false
+  },
+  "credential_draft": {
+    "verified_at": "2026-10-10T15:28:12.944Z",
+    "token_generated": false,
+    "name": "TW index events cron backup 20261010",
+    "resource_owner": "gxaawill2-ui",
+    "only_repository": "tw-close-auction-mis-probe",
+    "permissions": {
+      "actions": "read/write",
+      "metadata": "read",
+      "account": []
+    },
+    "expires_on": "2026-11-09",
+    "expiration_days": 30,
+    "workflow_scope_limit": "GitHub fine-grained Actions cannot scope credential to one workflow; stored cron job endpoints restrict intended use",
+    "approval_rejection": {
+      "action": "Select Custom expiration",
+      "reason": "Specific duration not authorized",
+      "safe_alternative": "Retained existing 30-day expiration"
+    },
+    "screenshot": "event-pat-scope-1791646016361.jpg",
+    "next_action": "User manually generates new token from prepared GitHub form, securely pastes Bearer token into Authorization Value of saved event jobs8618691/8618694 and saves, leaving disabled; agent tests event-only HTTP and receipts before enabling. Never inspect generated token page, clipboard, header values, or credential-bearing screenshots."
   }
 }

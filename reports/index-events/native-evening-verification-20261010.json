@@ -1,0 +1,201 @@
+{
+  "verified_at": "2026-10-10T15:30:38.115Z",
+  "workflow_run": {
+    "id": 38063666867,
+    "event": "schedule",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-10T15:27:13Z",
+    "updated_at": "2026-10-10T15:29:15Z",
+    "head_sha": "572b3063582f2567d261a689ed6513c559f87c23"
+  },
+  "receipt": {
+    "schedule_slot": "17:20",
+    "scheduled_for": null,
+    "scheduled_for_evidence": "NOT_EXPOSED_BY_GITHUB",
+    "actual_trigger_at": "2026-10-10T23:27:13+08:00",
+    "trigger_source": "GITHUB_SCHEDULE",
+    "workflow_run_id": "38063666867",
+    "github_event_schedule": "20 9 * * *",
+    "delay_seconds": null,
+    "origin_date_verified": false,
+    "identity": "unattributed-2026-10-10-3",
+    "execution_scope_date": null,
+    "planned_for": null,
+    "execution_scope_policy": "UNATTRIBUTED_NATIVE_RECOVERY_6H_BUCKET; NOT_ORIGINAL_SLOT",
+    "policy_delay_seconds": null,
+    "eligible": true,
+    "original_slot_not_fulfilled": true,
+    "runner_started_at": "2026-10-10T15:27:40Z",
+    "scan_started_at": "2026-10-10T23:27:47.404031+08:00",
+    "scan_finished_at": "2026-10-10T15:29:08Z",
+    "published_at": "2026-10-10T23:29:10.099475+08:00",
+    "result": "DELAYED",
+    "lease_owner": "38063666867",
+    "lease_expires_at": "2026-10-10T23:29:10.099475+08:00",
+    "scan_attempts": 1,
+    "duplicate_trigger": false,
+    "missed_slot": false,
+    "slot_state_before_claim": "UNVERIFIED_ORIGIN",
+    "missed_slot_definition": "NO_SUCCESS_RECEIPT_BY_BACKUP_CHECK; NOT_PROOF_GITHUB_DROPPED_TRIGGER",
+    "source_health": {
+      "last_successful_scan_at": "2026-10-10T23:29:08+08:00",
+      "metrics": {
+        "source_total": 27,
+        "source_classes": {
+          "VERIFIED_AUTOMATIC": 10,
+          "DATE_ONLY": 5,
+          "MONITOR_ONLY": 3,
+          "RESTRICTED": 6,
+          "UNAVAILABLE": 3
+        },
+        "new_events": 0,
+        "corrected_events": 0,
+        "conflicting_events": 0,
+        "pending_review_documents": 15,
+        "newly_observed_etfs": 0,
+        "corrected_etfs": 0,
+        "confirmed_etf_mappings": 64,
+        "new_confirmed_etf_mappings": 0,
+        "unconfirmed_etf_mappings": 2,
+        "etf_master_total": 271,
+        "issuer_unknown_etfs": 271,
+        "listing_status_unknown_etfs": 271,
+        "etf_discovery_coverage": "TWSE_OPEN_MASTER_ONLY; TPEx full master not verified"
+      },
+      "sources": [
+        {
+          "source_id": "twse-calendar-2026",
+          "status": "SUCCESS"
+        },
+        {
+          "source_id": "twse-calendar-2027",
+          "status": "UNKNOWN"
+        },
+        {
+          "source_id": "twse-company-metadata",
+          "status": "SUCCESS"
+        },
+        {
+          "source_id": "tpex-company-metadata",
+          "status": "SUCCESS"
+        },
+        {
+          "source_id": "msci-calendar",
+          "status": "SUCCESS"
+        },
+        {
+          "source_id": "msci-constituents",
+          "status": "RESTRICTED"
+        },
+        {
+          "source_id": "tip-schedule",
+          "status": "RESTRICTED"
+        },
+        {
+          "source_id": "tip-notices",
+          "status": "RESTRICTED"
+        },
+        {
+          "source_id": "ftse-notices",
+          "status": "RESTRICTED"
+        },
+        {
+          "source_id": "tip-etf-map-452",
+          "status": "SUCCESS"
+        },
+        {
+          "source_id": "tip-etf-map-454",
+          "status": "SUCCESS"
+        },
+        {
+          "source_id": "tip-new-etf-mappings",
+          "status": "UNKNOWN"
+        },
+        {
+          "source_id": "cathay-announcements",
+          "status": "UNKNOWN"
+        },
+        {
+          "source_id": "capital-announcements",
+          "status": "MONITOR_ONLY"
+        },
+        {
+          "source_id": "fuhhwa-announcements",
+          "status": "MONITOR_ONLY"
+        },
+        {
+          "source_id": "fubon-announcements",
+          "status": "RESTRICTED"
+        },
+        {
+          "source_id": "ftse-rule-0",
+          "status": "RESTRICTED"
+        },
+        {
+          "source_id": "ftse-rule-1",
+          "status": "MONITOR_ONLY"
+        },
+        {
+          "source_id": "twse-etf-master",
+          "status": "SUCCESS"
+        },
+        {
+          "source_id": "yuanta-review-0050",
+          "status": "SUCCESS"
+        },
+        {
+          "source_id": "yuanta-review-0051",
+          "status": "SUCCESS"
+        },
+        {
+          "source_id": "yuanta-review-0056",
+          "status": "SUCCESS"
+        },
+        {
+          "source_id": "yuanta-review-006203",
+          "status": "SUCCESS"
+        },
+        {
+          "source_id": "tpex-etf-quote-observations",
+          "status": "SUCCESS"
+        },
+        {
+          "source_id": "yuanta-aum-0050",
+          "status": "SUCCESS"
+        },
+        {
+          "source_id": "yuanta-aum-0051",
+          "status": "SUCCESS"
+        },
+        {
+          "source_id": "yuanta-aum-0056",
+          "status": "SUCCESS"
+        }
+      ]
+    },
+    "history": [],
+    "policy_completion_delay_seconds": null,
+    "published_commit": "819d782e776b88a510b90dc1cccc29116c1b9c0e",
+    "source_scan_result": "PARTIAL",
+    "data_published_at": "2026-10-10T23:29:10.099475+08:00"
+  },
+  "test_job_id": 114246844916,
+  "test_counts": {
+    "python": 242,
+    "node": 42,
+    "result": "PASS"
+  },
+  "test_log_evidence": [
+    "2026-10-10T15:27:34.1953516Z Ran 242 tests in 0.748s",
+    "2026-10-10T15:27:34.1953802Z OK",
+    "2026-10-10T15:27:34.8676546Z # tests 42",
+    "2026-10-10T15:27:34.8676884Z # pass 42",
+    "2026-10-10T15:27:34.8677039Z # fail 0"
+  ],
+  "public_browser_job": "SKIPPED_BY_EXISTING_NATIVE_WORKFLOW_POLICY; previous42-browser regression remains unchanged",
+  "published_receipt_commit": "ff83c6c72051c7fe9d6e1affcab23275485341a2",
+  "pages_run": 38063799814,
+  "pages_status": "IN_PROGRESS_AT_INITIAL_CHECK",
+  "external_backup_activated": false
+}
