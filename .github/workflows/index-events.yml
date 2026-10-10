@@ -114,6 +114,7 @@ jobs:
       - name: Claim date-slot lease through bounded git CAS
         id: claim
         env:
+          GH_TOKEN: ${{ github.token }}
           EVENT_CREATED_AT: ${{ steps.metadata.outputs.created_at }}
           EVENT_RUNNER_STARTED_AT: ${{ steps.metadata.outputs.runner_started_at }}
           EVENT_RECEIPT_ID: ${{ steps.claim.outputs.receipt_identity }}

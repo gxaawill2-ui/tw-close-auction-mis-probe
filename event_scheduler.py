@@ -16,6 +16,8 @@ import tempfile
 from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
+from urllib.error import HTTPError
+from urllib.request import Request, urlopen
 
 TZ = ZoneInfo('Asia/Taipei')
 SLOTS = {'20 0 * * *': '08:20', '20 9 * * *': '17:20'}
@@ -78,14 +80,33 @@ def freshness_blocks_recovery(identity, health, now):
         (instant(now)-instant(last)).total_seconds()<7200)
 
 
-def claim(previous, identity, now, run_id):
+def owner_terminal(run_id, token, opener=urlopen):
+    """Only a verified terminal event run permits early stale-lease recovery.
+
+    API errors are UNKNOWN (False), never proof that a runner has stopped.
+    """
+    if not token or not str(run_id).isdigit(): return False
+    url='https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/actions/runs/'+str(run_id)
+    request=Request(url,headers={'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json'})
+    for attempt in range(2):
+        try:
+            with opener(request,timeout=10) as response: data=json.load(response)
+            return data.get('id')==int(run_id) and data.get('name')=='Index event calendar' and data.get('head_branch')=='main' and data.get('status')=='completed'
+        except HTTPError as error:
+            if error.code in (400,401,403,404,422) or attempt==1:return False
+        except (OSError,TimeoutError,ValueError):
+            if attempt==1:return False
+    return False
+
+
+def claim(previous, identity, now, run_id, terminal_owner=False):
     """Pure CAS proposal; caller must publish against the current git parent."""
     now = instant(now)
     old = copy.deepcopy(previous or {})
     if not identity['eligible']: return old, 'UNATTRIBUTED_DELAYED_NATIVE' if identity['trigger_source']=='GITHUB_SCHEDULE' else 'OUTSIDE_BACKUP_WINDOW'
     if old.get('result') in ('ON_TIME','DELAYED','RECOVERED_BY_BACKUP','ADHOC_PUBLISHED') and old.get('published_at'):
         return old, 'DUPLICATE_SUCCESS'
-    if old.get('lease_expires_at') and instant(old['lease_expires_at']) > now:
+    if old.get('lease_expires_at') and instant(old['lease_expires_at']) > now and not terminal_owner:
         return old, 'LEASE_HELD'
     if old.get('scan_attempts',0) >= MAX_SCANS: return old, 'RETRY_LIMIT'
     out = {**old, **identity, 'runner_started_at': identity.get('runner_started_at') or now.isoformat(), 'scan_started_at': None,
@@ -179,7 +200,10 @@ def main():
         previous=read(path/relative)
         if args.operation=='claim':
             current_health=read(path/'state/events/source-health.json')
-            proposal,decision=(previous,'FRESH_DATA_UNATTRIBUTED_NATIVE') if freshness_blocks_recovery(identity,current_health,now) else claim(previous,identity,now,run_id)
+            terminal=False
+            if previous.get('lease_expires_at') and instant(previous['lease_expires_at'])>instant(now) and not previous.get('published_at'):
+                terminal=owner_terminal(previous.get('lease_owner'),env.get('GH_TOKEN',''))
+            proposal,decision=(previous,'FRESH_DATA_UNATTRIBUTED_NATIVE') if freshness_blocks_recovery(identity,current_health,now) else claim(previous,identity,now,run_id,terminal_owner=terminal)
             observation={**identity,'runner_started_at':now,'decision':decision,
                 'result':decision,'duplicate_trigger':decision in ('DUPLICATE_SUCCESS','LEASE_HELD'),
                 'source_health':{'last_successful_scan_at':current_health.get('last_successful_scan_at'),'metrics':current_health.get('metrics')},'scan_started_at':None,'scan_finished_at':None,'published_at':None}

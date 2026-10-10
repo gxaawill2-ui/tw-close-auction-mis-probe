@@ -9,7 +9,7 @@ from pathlib import Path
 from unittest.mock import patch
 from urllib.error import HTTPError
 
-from event_scheduler import identify, claim, finish, recovery_scope, freshness_blocks_recovery, git
+from event_scheduler import identify, claim, finish, recovery_scope, freshness_blocks_recovery, git, owner_terminal
 from event_dispatch import dispatch
 from fund_importance import evaluate, build, MODEL_AVAILABLE_SINCE, refresh
 from index_events import Fetcher,parse_tpex_etf_observations,parse_yuanta_aum
@@ -37,6 +37,16 @@ class SchedulerTests(unittest.TestCase):
         r=self.native();p,_=claim({},r,NOW,'1');p=finish(p,'1',NOW,True);self.assertEqual(claim(p,r,NOW,'2')[1],'DUPLICATE_SUCCESS')
     def test_simultaneous_lease(self):
         r=self.native();p,_=claim({},r,NOW,'1');self.assertEqual(claim(p,r,NOW,'2')[1],'LEASE_HELD')
+    def test_terminal_owner_recovers_without_waiting_for_ttl(self):
+        p,_=claim({},self.native(),NOW,'1')
+        self.assertEqual(claim(p,self.native(),NOW,'2',terminal_owner=True)[1],'CLAIMED')
+    def test_owner_api_failure_never_steals_lease(self):
+        def opener(req,timeout):raise HTTPError(req.full_url,403,'redacted',{},None)
+        self.assertFalse(owner_terminal('1','redacted-test',opener))
+    def test_owner_api_confirmed_event_run_only(self):
+        import io
+        def opener(req,timeout):return io.BytesIO(json.dumps({'id':1,'name':'Index event calendar','head_branch':'main','status':'completed'}).encode())
+        self.assertTrue(owner_terminal('1','redacted-test',opener))
     def test_cross_day_identity(self):self.assertNotEqual(self.native()['identity'],self.native('2026-10-11T17:20:00+08:00')['identity'])
     def test_lease_cas_owner(self):
         p,_=claim({},self.native(),NOW,'1')
