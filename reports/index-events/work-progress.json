@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-10T23:38:01.868Z",
-  "status": "PRODUCTION_VERIFIED_TOKEN_SCOPE_READY_MANUAL_SECRET_HANDOFF",
+  "updated_at": "2026-10-10T23:53:23.348Z",
+  "status": "EXTERNAL_HTTP_PASS_CREDENTIAL_ROTATION_REQUIRED",
   "code_commit": "b6246cff62a37801d5c2c3a10115e6d77496b397",
   "reviewed_feature_commit": "580a6c7160e6c65fd231c4102dcc8ddd524624a0",
   "tests": {
@@ -25,15 +25,16 @@
     "data_and_receipt_pages": 38007864341,
     "native_schedule": 38029017422,
     "latest_data_pages": 38063799814,
-    "native_evening_schedule": 38063666867
+    "native_evening_schedule": 38063666867,
+    "external_http_self_test": 38096440156
   },
-  "external_backup": "JOBS_CREATED_DISABLED_CREDENTIAL_REQUIRED",
+  "external_backup": "DISABLED_CREDENTIAL_ROTATION_REQUIRED",
   "native_schedule": "BOTH_CLOCK_CRONS_ARRIVED_DELAYED; ORIGINAL_SCHEDULE_DATES_UNKNOWN; ON_TIME_NOT_VERIFIED",
   "next_file": "reports/index-events/next-steps.md",
   "mis_unchanged": true,
   "latest_source_success_at": "2026-10-10T23:29:08+08:00",
   "resume_validation": "reports/index-events/resume-validation-20261010.json",
-  "next_action": "User generates/securely enters independent token in saved event jobs8618691/8618694 under mandatory credential handoff; agent performs event-only external HTTP tests and enables after verification.",
+  "next_action": "Mandatory manual credential regeneration, safe entry into both event jobs, then retry both HTTP tests using only targeted visible status text and verify GitHub runs before enabling.",
   "external_job_ids": [
     8618691,
     8618694
@@ -52,5 +53,6 @@
     "expires_on": "2026-11-10",
     "cron_current_ui": "Sign in"
   },
-  "native_evening_verification": "reports/index-events/native-evening-verification-20261010.json"
+  "native_evening_verification": "reports/index-events/native-evening-verification-20261010.json",
+  "security_incident": "reports/index-events/backup-activation-20261010.json"
 }

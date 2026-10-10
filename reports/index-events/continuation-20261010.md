@@ -69,3 +69,12 @@ GitHub查詢仍僅找到native38029017422、37957502210；17:20新的Run截至�
 實際安全阻擋來自瀏覽器Hand-Off Required規則：Changing a password or other authentication credential: Ask the user to take over before any new credential is entered, and have them complete the entry, confirmation, and submission steps themselves. 因此不可代讀／用clipboard搬移秘密值／以Playwright填入Token／以browserAuth把設定headers冒作登入。僅本人按Generate及安全填入兩event Authorization、Save，其他cron時間/body/headers/timeout/saveResponses先前均完成。agent之後負責HTTP外部服務測試、GitHub run與收據、防重複與Enable。生成後不要完整snapshot token結果頁或Advanced。憑證草稿證據event-pat-scope-ready-1791675423691.jpg不含任何秘密。
 
 外部備援仍JOBS_CREATED_DISABLED_CREDENTIAL_REQUIRED，不能聲稱08:35或17:35已啟用。既有native兩cron證明遲到抵達，不證明準時；已完成程式、MIS、來源研究、基金重要程度不重做。
+
+
+## 外部 HTTP 實測與必要憑證輪替（2026-10-10T23:53:23.348Z）
+
+使用者已親自貼入並儲存兩筆event-only Authorization。晨間job8618691以未儲存self_test=true本文Test run回HTTP204（2026-10-10T23:51:09Z），對應GitHub workflow_dispatch38096440156 SUCCESS。receipt-self-test114343194975及tests114343195136 SUCCESS；scan/source-smoke/public-acceptance SKIPPED，沒有MIS、來源請求或state/main寫入。測試後將本地本文恢復self_test=false，兩jobs仍停用。
+
+操作失誤：讀取整個測試dialog文字包含隱藏Raw request中的Authorization秘密，隨後綁定仍停留新Token顯示狀態的既有GitHub清單頁亦自動輸出同一秘密。已向使用者明確告知；不得聲稱credentials_read=false。沒有秘密寫入Git或報告。本報告僅保存非秘密事件描述。已關閉測試modal並離開產生結果頁。不要再使用此憑證完成上線；先由本人在事件專用Token20932040的Regenerate頁重新產生，使舊值失效，再填入兩job並Save。MIS Token、Secrets、排程均未動。
+
+接續禁止：不要getTab/getAXState/snapshot任何產生新Token結果頁；既有句柄只導航到已驗證安全detail/Common。不要whole dialog allTextContents（包含隱藏raw request）；測試結果只能指定可見status元素例如204 No Content，且不可讀Raw request/headers。不要讀Authorization Value、clipboard或截圖Advanced。輪替後兩筆HTTP實測、event-only Run與防重複收據確認才可Enable。

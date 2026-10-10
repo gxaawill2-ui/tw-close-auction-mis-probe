@@ -1,7 +1,7 @@
 {
-  "verified_at": "2026-10-10T14:35:44.753Z",
+  "verified_at": "2026-10-10T23:53:23.348Z",
   "timezone": "Asia/Taipei",
-  "status": "JOBS_CREATED_DISABLED_CREDENTIAL_REQUIRED",
+  "status": "DISABLED_CREDENTIAL_ROTATION_REQUIRED",
   "cron_service_signed_in": true,
   "configured_jobs": [
     {
@@ -18,7 +18,7 @@
       "self_test": false,
       "request_timeout_seconds": 20,
       "save_responses": false,
-      "authorization": "NONSECRET_PLACEHOLDER_ONLY; independent PAT pending",
+      "authorization": "USER_REPORTS_SAVED; ROTATION_REQUIRED",
       "first_possible_execution_if_activated": "2026-10-11T08:35:00+08:00"
     },
     {
@@ -35,7 +35,7 @@
       "self_test": false,
       "request_timeout_seconds": 20,
       "save_responses": false,
-      "authorization": "NONSECRET_PLACEHOLDER_ONLY; independent PAT pending",
+      "authorization": "USER_REPORTS_SAVED; ROTATION_REQUIRED",
       "first_possible_execution_if_activated": "2026-10-11T17:35:00+08:00"
     }
   ],
@@ -47,7 +47,16 @@
     "storage": "cron-job.org Authorization only; no chat/reports/git",
     "mis_token_reuse": false
   },
-  "live_external_http_dispatch": "NOT_TESTED_WITH_EXTERNAL_SERVICE; disabled placeholder jobs not activation",
+  "live_external_http_dispatch": {
+    "job_id": 8618691,
+    "http_status": 204,
+    "at": "2026-10-10T23:51:09Z",
+    "self_test": true,
+    "workflow_run_id": 38096440156,
+    "conclusion": "success",
+    "scan": "SKIPPED",
+    "mis_dispatched": false
+  },
   "native_schedule_runs_found": [
     38063666867,
     38029017422,
@@ -55,17 +64,14 @@
   ],
   "native_evening_status": "ARRIVED_DELAYED; ORIGIN_DATE_UNKNOWN; result=DELAYED",
   "mis_jobs_modified": false,
-  "credentials_read": false,
+  "credentials_read": true,
   "production_code_changed": false,
   "screenshot": "cron-event-backup-jobs-1791642788319.jpg",
-  "next_action": "GitHub identity verification and authorize independent credential; securely enter in both event-job Authorization fields, test, then enable",
+  "next_action": "Mandatory manual credential regeneration, safe entry into both event jobs, then retry both HTTP tests using only targeted visible status text and verify GitHub runs before enabling.",
   "last_auth_check": {
-    "at": "2026-10-10T23:38:01.868Z",
+    "at": "2026-10-10T23:53:23.348Z",
     "github_verification": "COMPLETE",
-    "token_draft": "READY",
-    "token_generated": false,
-    "expires_on": "2026-11-10",
-    "cron_current_ui": "Sign in"
+    "user_reports_both_credentials_saved": true
   },
   "credential_draft": {
     "verified_at": "2026-10-10T23:38:01.868Z",
@@ -89,5 +95,14 @@
     "screenshot": "event-pat-scope-ready-1791675423691.jpg",
     "next_action": "User manually generates new token from prepared GitHub form, securely pastes Bearer token into Authorization Value of saved event jobs8618691/8618694 and saves, leaving disabled; agent tests event-only HTTP and receipts before enabling. Never inspect generated token page, clipboard, header values, or credential-bearing screenshots."
   },
-  "credential_entry_boundary": "MANUAL_HANDOFF_REQUIRED; no token reading/clipboard transfer/direct Playwright entry"
+  "credential_entry_boundary": "MANUAL_HANDOFF_REQUIRED; no token reading/clipboard transfer/direct Playwright entry",
+  "security_incident": {
+    "at": "2026-10-10T23:53:23.348Z",
+    "type": "ACCIDENTAL_SECRET_IN_BROWSER_TOOL_OBSERVATION",
+    "cause": "Unscoped dialog text included hidden raw request Authorization; generated-token landing page also remained in an existing tab.",
+    "secret_values_recorded_in_git": false,
+    "required_action": "User regenerates event-only token20932040, then securely replaces both job Authorization values and saves; agent must never read whole test dialog, Advanced form, clipboard, or generated-token landing page.",
+    "status": "ROTATION_PENDING",
+    "mitigation": "Both jobs remain disabled. Test modal closed. Existing permissions/duration unchanged. Regeneration page ready; MIS token untouched."
+  }
 }
