@@ -60,11 +60,18 @@
   "screenshot": "cron-event-backup-jobs-1791642788319.jpg",
   "next_action": "GitHub identity verification and authorize independent credential; securely enter in both event-job Authorization fields, test, then enable",
   "last_auth_check": {
-    "at": "2026-10-10T15:30:38.115Z",
-    "github_confirm_access": false,
-    "github_verification": "COMPLETE",
+    "at": "2026-10-10T23:32:53.123Z",
+    "cloud_tabs_before_recovery": "about:blank only",
+    "github_confirm_access": true,
+    "event_token_visible_on_list": false,
+    "generated_token_result_inspected": false,
     "cron_current_ui": "Sign in",
-    "token_generated": false
+    "saved_job_ids": [
+      8618691,
+      8618694
+    ],
+    "job_current_auth_configuration": "NOT_REVERIFIED; service login required",
+    "manual_handoff_needed": true
   },
   "credential_draft": {
     "verified_at": "2026-10-10T15:28:12.944Z",

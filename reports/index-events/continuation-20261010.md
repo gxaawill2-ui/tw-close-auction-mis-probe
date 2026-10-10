@@ -55,3 +55,9 @@ GitHub查詢仍僅找到native38029017422、37957502210；17:20新的Run截至�
 新的真實native schedule Run 38063666867 SUCCESS；github_event_schedule=20 9 * * *，17:20 clock已證明送達。台北10/10 23:27:13 trigger、23:27:40 runner、23:27:47.404031 scan、23:29:08完、23:29:10.099475出版。原始預定日期未提供；scheduled_for與delay_seconds null，origin_date_verified=false。result=DELAYED，identity=unattributed-2026-10-10-3，original_slot_not_fulfilled=true；不得把晚到回復更新宣稱當日17:20準時或已完成原槽位。1 scan attempt、duplicate_trigger=false、來源PARTIAL15成功／27、new_events0／corrected0。242 Python／42 Node PASS（test job114246844916）。data819d782e776b88a510b90dc1cccc29116c1b9c0e、ack ff83c6c72051c7fe9d6e1affcab23275485341a2，保留bot提交。
 
 08:20 cron38029017422在13:53抵達與17:20 cron38063666867在23:27抵達均已驗證，但準時性均未證實、原日仍UNKNOWN。外部兩job已建立但未具真憑證／停用，外部服務trigger仍未驗證；不能混稱備援已啟用。完整證據native-evening-verification-20261010.json。
+
+## 雲端分頁失效後恢復（2026-10-10T23:32:53.123Z，台北2026-10-11）
+
+使用者回報前次分頁無法使用。getState只見about:blank，重新開既有晨間job8618691轉Sign in；新GitHub fine-grained token清單只見既有MIS token，未見事件專用Token，未開MIS Token明細或讀取其值。透過清單Generate new token安全入口重開後為Confirm access／Verify via email，沒有重新Generate憑證。先前Token草稿分頁已失效；cron兩保存工作仍沿用ID8618691／8618694，不重建，當前不能登入驗證是否被使用者後續修改／啟用。正式main d174c158c9690f7248def1357354901a3f107261、Pages38063906450 SUCCESS，既有code/tests/data不變。
+
+下一步只完成新雲端GitHub本人驗證，再按已保存 scope 重填未持久化的Token草稿並安全交接產生／貼入。新增Token只允許repo Actions read/write＋必要Metadata read；保留有界30天期限（新日期隨GitHub建立時呈現）；自訂更長期限需具體授權，前次auto-review拒絕不得繞過。使用者生成後不讀Token結果頁、不讀headers Value、不讀clipboard。cron重新登入後只處理event jobs，Test run與GitHubrun/receipt確認後才Enable；外部備援依然NOT_ACTIVATED，不冒稱08:35已會自動觸發。不要重做研究、seed、MIS歷史抓取或程式部署。
