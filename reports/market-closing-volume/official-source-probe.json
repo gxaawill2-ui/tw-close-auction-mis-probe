@@ -1,0 +1,205 @@
+{
+  "checked_at": "2026-10-11T08:57:09.365130+08:00",
+  "request_attempts": 5,
+  "results": [
+    {
+      "source_url": "https://openapi.twse.com.tw/v1/swagger.json",
+      "checked_at": "2026-10-11T08:57:02.836583+08:00",
+      "method": "ANONYMOUS_GET_WITH_ROBOTS_AND_LIMITS",
+      "http_status": 200,
+      "bytes": 309960,
+      "sha256": "06e1cea82448361e733a0ad1ae16e52f5d5d6b71905acd078472f852c32c0eb0",
+      "response_date": null,
+      "relevant_endpoints": {
+        "/opendata/t187ap46_L_8": "上市公司企業ESG資訊揭露彙總資料-氣候相關議題管理",
+        "/exchangeReport/TWT53U": "集中市場零股交易行情單",
+        "/exchangeReport/BFT41U": "集中市場盤後定價交易",
+        "/exchangeReport/TWT84U": "上市個股股價升降幅度"
+      },
+      "result": "FETCHED; SCOPE_AND_USAGE_REVIEW_STILL_REQUIRED"
+    },
+    {
+      "source_url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261008&type=ALLBUT0999&response=json",
+      "checked_at": "2026-10-11T08:57:04.786424+08:00",
+      "method": "ANONYMOUS_GET_WITH_ROBOTS_AND_LIMITS",
+      "http_status": 200,
+      "bytes": 247290,
+      "sha256": "2b20b3916c53d14acf53b365aab749c779ad2b8f0c8bfe064ace2fef407e69c8",
+      "response_date": "20261008",
+      "stat": "OK",
+      "fields": null,
+      "notes": null,
+      "tables": [
+        {
+          "title": "115年10月08日 價格指數(臺灣證券交易所)",
+          "fields": [
+            "指數",
+            "收盤指數",
+            "漲跌(+/-)",
+            "漲跌點數",
+            "漲跌百分比(%)",
+            "特殊處理註記"
+          ],
+          "notes": null,
+          "rows": 56
+        },
+        {
+          "title": "價格指數(跨市場)",
+          "fields": [
+            "指數",
+            "收盤指數",
+            "漲跌(+/-)",
+            "漲跌點數",
+            "漲跌百分比(%)",
+            "特殊處理註記"
+          ],
+          "notes": null,
+          "rows": 46
+        },
+        {
+          "title": "價格指數(臺灣指數公司)",
+          "fields": [
+            "指數",
+            "收盤指數",
+            "漲跌(+/-)",
+            "漲跌點數",
+            "漲跌百分比(%)",
+            "特殊處理註記"
+          ],
+          "notes": null,
+          "rows": 35
+        },
+        {
+          "title": "報酬指數(臺灣證券交易所)",
+          "fields": [
+            "報酬指數",
+            "收盤指數",
+            "漲跌(+/-)",
+            "漲跌點數",
+            "漲跌百分比(%)",
+            "特殊處理註記"
+          ],
+          "notes": null,
+          "rows": 47
+        },
+        {
+          "title": "報酬指數(跨市場)",
+          "fields": [
+            "報酬指數",
+            "收盤指數",
+            "漲跌(+/-)",
+            "漲跌點數",
+            "漲跌百分比(%)",
+            "特殊處理註記"
+          ],
+          "notes": null,
+          "rows": 47
+        },
+        {
+          "title": "報酬指數(臺灣指數公司)",
+          "fields": [
+            "報酬指數",
+            "收盤指數",
+            "漲跌(+/-)",
+            "漲跌點數",
+            "漲跌百分比(%)",
+            "特殊處理註記"
+          ],
+          "notes": null,
+          "rows": 34
+        },
+        {
+          "title": "115年10月08日 大盤統計資訊",
+          "fields": [
+            "成交統計",
+            "成交金額(元)",
+            "成交股數(股)",
+            "成交筆數"
+          ],
+          "notes": null,
+          "rows": 17
+        },
+        {
+          "title": "漲跌證券數合計",
+          "fields": [
+            "類型",
+            "整體市場",
+            "股票"
+          ],
+          "notes": [
+            "\"漲跌價差\"為當日收盤價與前一日收盤價比較。",
+            "\"無比價\"含前一日無收盤價、當日除權、除息、新上市、恢復交易者。",
+            "外幣成交值係以本公司當日下午3時30分公告匯率換算後加入成交金額。公告匯率請參考本公司首頁>產品與服務>交易系統>雙幣ETF專區>代號對應及每日公告匯率。"
+          ],
+          "rows": 5
+        },
+        {
+          "title": "115年10月08日 每日收盤行情(全部(不含權證、牛熊證、可展延牛熊證))",
+          "fields": [
+            "證券代號",
+            "證券名稱",
+            "成交股數",
+            "成交筆數",
+            "成交金額",
+            "開盤價",
+            "最高價",
+            "最低價",
+            "收盤價",
+            "漲跌(+/-)",
+            "漲跌價差",
+            "最後揭示買價",
+            "最後揭示買量",
+            "最後揭示賣價",
+            "最後揭示賣量",
+            "本益比"
+          ],
+          "notes": [
+            "漲跌(+/-)欄位符號說明:+/-/X表示漲/跌/不比價。",
+            "當證券代號為認購(售)權證及認股權憑證時本益比欄位置為結算價；但如為以外國證券或指數為標的之認購(售)權證及履約方式採歐式者，該欄位為空白。",
+            "除境外指數股票型基金及外國股票第二上市外，餘交易單位皆為千股。",
+            "本統計資訊含一般、零股、盤後定價、鉅額交易，不含拍賣、標購。"
+          ],
+          "rows": 1380
+        },
+        {
+          "title": null,
+          "fields": null,
+          "notes": null,
+          "rows": 0
+        }
+      ],
+      "result": "FETCHED; SCOPE_AND_USAGE_REVIEW_STILL_REQUIRED"
+    },
+    {
+      "source_url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_5MINS?date=20261008&response=json",
+      "checked_at": "2026-10-11T08:57:07.474629+08:00",
+      "method": "ANONYMOUS_GET_WITH_ROBOTS_AND_LIMITS",
+      "http_status": 200,
+      "bytes": 318924,
+      "sha256": "b7f4dfb09c2faa2be6d84df2fcc2619d4f990b027d7f567b2fae51e5af109f09",
+      "response_date": "20261008",
+      "stat": "OK",
+      "fields": [
+        "時間",
+        "累積委託買進筆數",
+        "累積委託買進數量",
+        "累積委託賣出筆數",
+        "累積委託賣出數量",
+        "累積成交筆數",
+        "累積成交數量",
+        "累積成交金額"
+      ],
+      "notes": [
+        "以上資訊不含零股、鉅額、盤後定價、拍賣及標購。",
+        "以上為「整體市場」資訊，為股票、基金、認購權證、認售權證及其他有價證券之合計。",
+        "除境外指數股票型基金及外國股票第二上市外，餘交易單位皆為千股。",
+        "民國100年1月16日以前，資料為每一分鐘方式提供。",
+        "民國103年2月23日以前，資料為每15秒方式提供。",
+        "民國103年2月24日以後，資料為每10秒方式提供。",
+        "民國103年12月29日以後，資料為每5秒方式提供。"
+      ],
+      "tables": [],
+      "result": "FETCHED; SCOPE_AND_USAGE_REVIEW_STILL_REQUIRED"
+    }
+  ]
+}

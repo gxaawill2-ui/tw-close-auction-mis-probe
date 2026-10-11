@@ -165,7 +165,7 @@ def artifact_evidence(archive, date, official_body, as_of):
                                  'official_close': str(price), 'shares_per_trading_unit': 1000,
                                  'auction_time': candidate.get('P_close_trade_time'), 'unit': 'TWD',
                                  'evidence': assessed['volume_evidence']})
-    # MI_INDEX explicitly includes regular + odd-lot + after-hours, excluding blocks.
+    # Saved and current MI_INDEX versions have different block-trade notes; both mix non-regular trades.
     # A price/volume daily table is therefore NOT a same-scope denominator.
     return {'market_scope': SCOPE, 'source_quality': 'PARTIAL_SAVED_MIS; DENOMINATOR_SCOPE_UNVERIFIED',
             'coverage_ratio': len(observations)/len(pool), 'missing_stocks': missing,

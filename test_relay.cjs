@@ -37,3 +37,14 @@ test('current GitHub API 200 dispatch response preserves fixed-scope run id',asy
  assert.equal((await m.dispatch(env,'08:20',true,now,fetcher)).workflow_run_id,123);
 });
 test('oversized relay body is bounded even without declared Content-Length',async()=>{const m=await load;assert.equal((await m.default.fetch(req({schedule_slot:'08:20',self_test:true,padding:'x'.repeat(300)}),env)).status,413);});
+
+test('two simultaneous first requests dispatch once through atomic lease',async()=>{
+ const m=await load,storage=storageMock(),gate=new m.DispatchGate({storage},env),originalFetch=global.fetch;let calls=0;
+ global.fetch=async()=>{calls++;await new Promise(r=>setTimeout(r,10));return calls===1?Response.json({token:'synthetic',expires_at:new Date(Date.now()+3600000).toISOString(),permissions:{actions:'write',metadata:'read'},repositories:[{id:1395186758,full_name:'gxaawill2-ui/tw-close-auction-mis-probe'}]},{status:201}):new Response(null,{status:204});};
+ try{const replies=await Promise.all([gate.fetch(req({schedule_slot:'08:20',self_test:true})),gate.fetch(req({schedule_slot:'08:20',self_test:true}))]);assert.deepEqual(replies.map(r=>r.status).sort(),[200,202]);assert.equal(calls,2);assert.equal((await gate.fetch(req({schedule_slot:'08:20',self_test:true}))).status,200);assert.equal(calls,2);}finally{global.fetch=originalFetch;}
+});
+test('network error uses bounded lease and two attempts without revealing credentials',async()=>{
+ const m=await load,storage=storageMock(),gate=new m.DispatchGate({storage},env),originalFetch=global.fetch,originalNow=Date.now;let clock=originalNow(),calls=0;Date.now=()=>clock;
+ global.fetch=async()=>{calls++;throw Error('synthetic transport failure');};
+ try{let r=await gate.fetch(req({schedule_slot:'17:20',self_test:true}));assert.equal(r.status,503);assert.doesNotMatch(await r.text(),/synthetic|PRIVATE|Bearer/);assert.equal((await gate.fetch(req({schedule_slot:'17:20',self_test:true}))).status,200);clock+=61000;assert.equal((await gate.fetch(req({schedule_slot:'17:20',self_test:true}))).status,503);clock+=61000;assert.equal((await gate.fetch(req({schedule_slot:'17:20',self_test:true}))).status,429);assert.equal(calls,2);}finally{global.fetch=originalFetch;Date.now=originalNow;}
+});

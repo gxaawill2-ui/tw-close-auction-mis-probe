@@ -190,7 +190,7 @@ async function main(){
     assert.equal(await publicPage.locator('#market-closing-state').count(),1);
     const marketState=await publicPage.locator('#market-closing-state').innerText();assert.ok(['有','沒有','尚未確認','休市'].includes(marketState));
     for(const path of ['state/events/events-index.json','state/events/fund-events.json','state/market-closing-volume/2026-10-08.json']){
-     const response=await publicContext.request.get(PUBLIC+path+'?acceptance='+Date.now());assert.equal(response.status(),200);assert.ok(await response.json());
+     const response=await publicContext.request.get('https://raw.githubusercontent.com/gxaawill2-ui/tw-close-auction-mis-probe/main/'+path+'?acceptance='+Date.now());assert.equal(response.status(),200);assert.ok(await response.json());
     }
    }
    assert.equal(await publicPage.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);

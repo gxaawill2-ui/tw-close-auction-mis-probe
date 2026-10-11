@@ -19,3 +19,7 @@ https://data.gov.tw/dataset/11678
 https://openapi.twse.com.tw/v1/swagger.json
 https://investoredu.twse.com.tw/pages/TWSE_InvestmentQA.aspx?ID=14
 https://www.twse.com.tw/zh/products/system/trading.html
+
+## Hosted實測結果（2026-10-11 08:57台北）
+
+隔離CI38100089509經robots-first、共5次HTTP取得3份200回應；逐URL狀態、SHA及官方範圍文字保存official-source-probe.json。Swagger確有TWT53U零股與BFT41U盤後定價，但尚未證明能完整還原同日普通股regular分母。最新10/8 MI_INDEX含1380列，其官方note包括鉅額，與原保存版本不同。MI_5MINS官方note排除零股等，卻明確將股票、基金、認購／認售權證及其他證券合計，因此也不能當普通股的同範圍分子／分母。這是已實測的範圍不合，並非API失敗。仍無有效20日全範圍序列；正式量能判斷保持未知。
