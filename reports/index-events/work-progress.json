@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-10T23:59:59.400Z",
-  "status": "EXTERNAL_BACKUP_HTTP_401_REQUIRES_CREDENTIAL_CORRECTION",
+  "updated_at": "2026-10-11T00:11:26.091Z",
+  "status": "PRODUCTION_AND_EXTERNAL_BACKUP_ACTIVATED; FIRST_TIMED_RECEIPT_PENDING",
   "code_commit": "b6246cff62a37801d5c2c3a10115e6d77496b397",
   "reviewed_feature_commit": "580a6c7160e6c65fd231c4102dcc8ddd524624a0",
   "tests": {
@@ -26,33 +26,42 @@
     "native_schedule": 38029017422,
     "latest_data_pages": 38063799814,
     "native_evening_schedule": 38063666867,
-    "external_http_self_test": 38096440156
+    "external_http_self_test": 38096440156,
+    "external_evening_http_self_test": 38097218020,
+    "external_morning_http_self_test": 38097264694
   },
-  "external_backup": "DISABLED_HTTP_401_AUTHENTICATION_REQUIRED",
+  "external_backup": "ACTIVATED_EXTERNAL_HTTP_SELF_TEST_VERIFIED_TIMED_RECEIPT_PENDING",
   "native_schedule": "BOTH_CLOCK_CRONS_ARRIVED_DELAYED; ORIGINAL_SCHEDULE_DATES_UNKNOWN; ON_TIME_NOT_VERIFIED",
   "next_file": "reports/index-events/next-steps.md",
   "mis_unchanged": true,
   "latest_source_success_at": "2026-10-10T23:29:08+08:00",
   "resume_validation": "reports/index-events/resume-validation-20261010.json",
-  "next_action": "User verifies full newly generated event token and Bearer-plus-space format in each Authorization Value, saves while disabled; agent repeats only safe status checks and GitHub runs before enabling.",
+  "next_action": "No activation handoff remains. Observe actual external timed runs and published date-slot receipts. Native original scheduled dates remain UNKNOWN. Renew event-only credential by selected 2026-11-10 expiry; never reuse MIS token.",
   "external_job_ids": [
     8618691,
     8618694
   ],
   "external_activation_evidence": "reports/index-events/backup-activation-20261010.json",
   "latest_report_pages": {
-    "run": 38063906450,
-    "sha": "d174c158c9690f7248def1357354901a3f107261",
+    "run": 38096915698,
+    "sha": "695f20c16130d57f6e4e90b9e5d698465e810a8c",
     "status": "SUCCESS"
   },
   "auth_resume": {
-    "at": "2026-10-10T23:38:01.868Z",
-    "github_verification": "COMPLETE",
-    "token_draft": "READY",
-    "token_generated": false,
-    "expires_on": "2026-11-10",
-    "cron_current_ui": "Sign in"
+    "at": "2026-10-11T00:11:26.091Z",
+    "cron_current_ui": "SIGNED_IN; BOTH_JOBS_ENABLED_AND_RELOADED",
+    "credential_scope": "User-authorized event-only repo Actions read/write plus required Metadata read; GitHub cannot scope PAT to a single workflow",
+    "new_secret_values_read": false
   },
   "native_evening_verification": "reports/index-events/native-evening-verification-20261010.json",
-  "security_incident": "reports/index-events/backup-activation-20261010.json"
+  "security_incident": "reports/index-events/backup-activation-20261010.json",
+  "final_public_check": {
+    "at": "2026-10-11T00:11:26.091Z",
+    "fund_records": 19,
+    "fixed_dark": true,
+    "buttons": 0,
+    "horizontal_overflow": false,
+    "oct08_candidate_blob": "247dbe4bf7f149950a6196ad59119a65be25599f",
+    "oct11_homepage": "HOLIDAY; no historical candidates mislabeled as today"
+  }
 }

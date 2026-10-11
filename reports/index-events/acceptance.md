@@ -100,3 +100,18 @@
 正式fund-events.html完整唯讀；首頁只加每基金重要程度與資料不足／預估標籤。來源失敗不清空事件或阻塞MIS13:35。10/10休市沿用原休市邏輯，不假裝當日有10/8七檔。公開JSON沿用GitHub raw免費路徑，不將Pages /state404當成功。
 
 現在可發布的改善已完成；未授權外部備援與尚未抵達的native實測不寫PASS。詳細事故、備援、模型、来源限制及接續工作分別見本階段報告。沒有任何回測收益／隔日修正結論。
+
+
+## 最新外部備援驗收（優先於上述歷史授權狀態）
+
+
+
+## 外部備援已真正啟用（2026-10-11T00:11:26.091Z）
+
+使用者再次Regenerate並親自貼入Save兩job後，8618694晚間Test run HTTP204→event-only38097218020 SUCCESS（00:05:10Z）；8618691晨間HTTP204→38097264694 SUCCESS（00:05:55Z）。242 Python＋42 Node PASS；49項receipt reliability子集PASS（屬242之內），scan/source-smoke/public-acceptance均SKIPPED。這是cron-job.org實際服務HTTP，不是先前CI短期Token替代驗證；只查精確status可見性及GitHub run/job/log數量，沒有讀新秘密、Raw request、headers Value、clipboard或generated-token頁。
+
+兩job均Enable＋Save並reload確認true，saveResponses=false，Asia/Taipei；正式body恢復self_test=false、固定index-events.yml/ref main，slots08:20／17:20。清單顯示今天08:35／17:35 next execution，非敏感畫面event-backup-enabled-1791677316657.jpg。既有MIS工作／Tokens／Secrets未動。本站19基金event正常、0050高暫定／0051中暫定／0056中暫定／006208不足、日期可信度分欄、無按鈕；10/11休市不顯示10/8當日名單，10/8candidate blob247dbe4bf7f149950a6196ad59119a65be25599f不變。
+
+重要範圍：首次真正timer08:35／17:35尚未到達／觀察，不能把self_test=true成功寫成production source scan、RECOVERED_BY_BACKUP或DUPLICATE_SUCCESS實測。原始native預定日期仍UNKNOWN；兩clock cron晚到送達先前已證實，準時性不冒稱。下一步僅讀actual workflow_dispatch與date-slot receipts／publish ack；jobs已自動運作，不需使用者每天操作。事件憑證保留30天選定到期2026-11-10，需要本人安全更新，不能承諾無期限免維護。GitHub API／runner是共同故障點，外部timer不等於獨立運算備援。
+
+先前秘密觀測失誤已告知使用者並要求輪替，本報告保留事件歷史；新憑證config已HTTP驗證，沒有秘密寫入Git。來源授權、TPEx完整主檔、未來基金實際委託時間無新可靠來源，保持PARTIAL／UNKNOWN，不重做研究或捏造解決。

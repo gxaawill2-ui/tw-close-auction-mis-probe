@@ -1,7 +1,7 @@
 {
-  "verified_at": "2026-10-10T23:59:59.400Z",
+  "verified_at": "2026-10-11T00:11:26.091Z",
   "timezone": "Asia/Taipei",
-  "status": "DISABLED_HTTP_401_AUTHENTICATION_REQUIRED",
+  "status": "ACTIVATED_EXTERNAL_HTTP_SELF_TEST_VERIFIED_TIMED_RECEIPT_PENDING",
   "cron_service_signed_in": true,
   "configured_jobs": [
     {
@@ -11,15 +11,15 @@
       "schedule_slot": "08:20",
       "ui_url": "https://console.cron-job.org/jobs/8618691",
       "timezone": "Asia/Taipei",
-      "enabled": false,
+      "enabled": true,
       "request_method": "POST",
       "workflow": "index-events.yml",
       "ref": "main",
       "self_test": false,
       "request_timeout_seconds": 20,
       "save_responses": false,
-      "authorization": "USER_REPORTS_SAVED; ROTATION_REQUIRED",
-      "first_possible_execution_if_activated": "2026-10-11T08:35:00+08:00"
+      "authorization": "USER_ENTERED_ROTATED_EVENT_ONLY_CREDENTIAL; HTTP204_VERIFIED; VALUE_NOT_READ",
+      "next_scheduled_execution": "2026-10-11T08:35:00+08:00"
     },
     {
       "job_id": 8618694,
@@ -28,15 +28,15 @@
       "schedule_slot": "17:20",
       "ui_url": "https://console.cron-job.org/jobs/8618694",
       "timezone": "Asia/Taipei",
-      "enabled": false,
+      "enabled": true,
       "request_method": "POST",
       "workflow": "index-events.yml",
       "ref": "main",
       "self_test": false,
       "request_timeout_seconds": 20,
       "save_responses": false,
-      "authorization": "USER_REPORTS_SAVED; ROTATION_REQUIRED",
-      "first_possible_execution_if_activated": "2026-10-11T17:35:00+08:00"
+      "authorization": "USER_ENTERED_ROTATED_EVENT_ONLY_CREDENTIAL; HTTP204_VERIFIED; VALUE_NOT_READ",
+      "next_scheduled_execution": "2026-10-11T17:35:00+08:00"
     }
   ],
   "github_credential_stage": "SUDO_VERIFIED; ALL_DRAFT_FIELDS_RESTORED; MANDATORY_SECRET_HANDOFF",
@@ -48,13 +48,32 @@
     "mis_token_reuse": false
   },
   "live_external_http_dispatch": {
-    "job_id": 8618691,
-    "http_status": 204,
-    "at": "2026-10-10T23:51:09Z",
-    "self_test": true,
-    "workflow_run_id": 38096440156,
-    "conclusion": "success",
-    "scan": "SKIPPED",
+    "at": "2026-10-11T00:11:26.091Z",
+    "method": "cron-job.org actual Test run with unsaved self_test=true body",
+    "jobs": [
+      {
+        "job_id": 8618694,
+        "http_status": 204,
+        "workflow_run_id": 38097218020,
+        "created_at": "2026-10-11T00:05:10Z",
+        "conclusion": "success"
+      },
+      {
+        "job_id": 8618691,
+        "http_status": 204,
+        "workflow_run_id": 38097264694,
+        "created_at": "2026-10-11T00:05:55Z",
+        "conclusion": "success"
+      }
+    ],
+    "tests": {
+      "python": 242,
+      "node": 42,
+      "receipt_reliability_subset": 49,
+      "result": "PASS"
+    },
+    "source_scan": "SKIPPED",
+    "main_writes": false,
     "mis_dispatched": false
   },
   "native_schedule_runs_found": [
@@ -67,11 +86,12 @@
   "credentials_read": true,
   "production_code_changed": false,
   "screenshot": "cron-event-backup-jobs-1791642788319.jpg",
-  "next_action": "User verifies full newly generated event token and Bearer-plus-space format in each Authorization Value, saves while disabled; agent repeats only safe status checks and GitHub runs before enabling.",
+  "next_action": "No activation handoff remains. Observe actual external timed runs and published date-slot receipts. Native original scheduled dates remain UNKNOWN. Renew event-only credential by selected 2026-11-10 expiry; never reuse MIS token.",
   "last_auth_check": {
-    "at": "2026-10-10T23:53:23.348Z",
-    "github_verification": "COMPLETE",
-    "user_reports_both_credentials_saved": true
+    "at": "2026-10-11T00:11:26.091Z",
+    "cron_current_ui": "SIGNED_IN; BOTH_JOBS_ENABLED_AND_RELOADED",
+    "credential_scope": "User-authorized event-only repo Actions read/write plus required Metadata read; GitHub cannot scope PAT to a single workflow",
+    "new_secret_values_read": false
   },
   "credential_draft": {
     "verified_at": "2026-10-10T23:38:01.868Z",
@@ -102,7 +122,7 @@
     "cause": "Unscoped dialog text included hidden raw request Authorization; generated-token landing page also remained in an existing tab.",
     "secret_values_recorded_in_git": false,
     "required_action": "User regenerates event-only token20932040, then securely replaces both job Authorization values and saves; agent must never read whole test dialog, Advanced form, clipboard, or generated-token landing page.",
-    "status": "USER_REPORTS_REGENERATED; REPLACEMENT_AUTHENTICATION_NOT_VERIFIED",
+    "status": "MITIGATED_BY_USER_REGENERATION; REPLACEMENT_CONFIGURATION_HTTP204_VERIFIED",
     "mitigation": "Both jobs remain disabled. Test modal closed. Existing permissions/duration unchanged. Regeneration page ready; MIS token untouched."
   },
   "external_retests": {
@@ -127,5 +147,21 @@
     "mis_dispatches": 0,
     "cause": "UNKNOWN; HTTP401 only proves submitted authorization not accepted",
     "request_bodies_restored_to_self_test_false": true
+  },
+  "persisted_configuration_verified": {
+    "both_enable_true_after_reload": true,
+    "save_responses": false,
+    "self_test": false,
+    "only_workflow": "index-events.yml",
+    "timezone": "Asia/Taipei",
+    "request_timeout_seconds": 20,
+    "screenshot": "event-backup-enabled-1791677316657.jpg"
+  },
+  "timed_trigger_acceptance": {
+    "status": "PENDING_FIRST_08:35_AND_17:35_REAL_TIMER",
+    "live_date_slot_recovery": "NOT_YET_OBSERVED",
+    "live_duplicate_success": "NOT_YET_OBSERVED",
+    "isolated_lease_cas_duplicate_timeout_tests": "PASS",
+    "independent_service_not_independent_github_infrastructure": true
   }
 }

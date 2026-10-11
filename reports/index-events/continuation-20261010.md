@@ -85,3 +85,14 @@ GitHub查詢仍僅找到native38029017422、37957502210；17:20新的Run截至�
 使用者回覆已Regenerate並分別貼入Save兩event jobs。晚間8618694及晨間8618691以未儲存self_test=true本文重測均HTTP401 Unauthorized。僅查精確status元素isVisible，未讀任何secret Value、Raw request、dialog全文或GitHub產生Token頁；新秘密沒有取得／輸出。401原因未確認，不可推斷一定Token過期或權限問題。兩jobs保持disabled，本地測試本文已恢復self_test=false；沒有新GitHub event Run成功證據，也沒有來源／MIS請求。前次HTTP204 run38096440156只屬已要求輪替的旧憑證，不代替本輪通過。
 
 已把晨間Authorization Value聚焦並選取，必須本人核對新完整Token與Bearer＋一個空格格式、Save；若新值已遺失，只能本人再Regenerate，不可讀clipboard／猜測／取回舊值。接續agent只讀targeted可見HTTPstatus，兩筆均204＋GitHubevent-only成功後才能啟用。保留MIS、正式網站、既有來源及基金重要性模型不變。
+
+
+## 外部備援已真正啟用（2026-10-11T00:11:26.091Z）
+
+使用者再次Regenerate並親自貼入Save兩job後，8618694晚間Test run HTTP204→event-only38097218020 SUCCESS（00:05:10Z）；8618691晨間HTTP204→38097264694 SUCCESS（00:05:55Z）。242 Python＋42 Node PASS；49項receipt reliability子集PASS（屬242之內），scan/source-smoke/public-acceptance均SKIPPED。這是cron-job.org實際服務HTTP，不是先前CI短期Token替代驗證；只查精確status可見性及GitHub run/job/log數量，沒有讀新秘密、Raw request、headers Value、clipboard或generated-token頁。
+
+兩job均Enable＋Save並reload確認true，saveResponses=false，Asia/Taipei；正式body恢復self_test=false、固定index-events.yml/ref main，slots08:20／17:20。清單顯示今天08:35／17:35 next execution，非敏感畫面event-backup-enabled-1791677316657.jpg。既有MIS工作／Tokens／Secrets未動。本站19基金event正常、0050高暫定／0051中暫定／0056中暫定／006208不足、日期可信度分欄、無按鈕；10/11休市不顯示10/8當日名單，10/8candidate blob247dbe4bf7f149950a6196ad59119a65be25599f不變。
+
+重要範圍：首次真正timer08:35／17:35尚未到達／觀察，不能把self_test=true成功寫成production source scan、RECOVERED_BY_BACKUP或DUPLICATE_SUCCESS實測。原始native預定日期仍UNKNOWN；兩clock cron晚到送達先前已證實，準時性不冒稱。下一步僅讀actual workflow_dispatch與date-slot receipts／publish ack；jobs已自動運作，不需使用者每天操作。事件憑證保留30天選定到期2026-11-10，需要本人安全更新，不能承諾無期限免維護。GitHub API／runner是共同故障點，外部timer不等於獨立運算備援。
+
+先前秘密觀測失誤已告知使用者並要求輪替，本報告保留事件歷史；新憑證config已HTTP驗證，沒有秘密寫入Git。來源授權、TPEx完整主檔、未來基金實際委託時間無新可靠來源，保持PARTIAL／UNKNOWN，不重做研究或捏造解決。

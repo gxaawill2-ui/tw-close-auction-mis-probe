@@ -1,5 +1,5 @@
 {
-  "verified_at": "2026-10-10T15:30:38.115Z",
+  "verified_at": "2026-10-11T00:11:26.091Z",
   "timezone": "Asia/Taipei",
   "baseline_main": "5fc6341ef1e2c8195b586df014aec290a41cb0a9",
   "code_commit": "b6246cff62a37801d5c2c3a10115e6d77496b397",
@@ -85,8 +85,8 @@
       "08:35",
       "17:35"
     ],
-    "external_backup_status": "JOBS_CREATED_DISABLED_CREDENTIAL_REQUIRED",
-    "actual_http_dispatch_test": "PASS_WITH_CI_SHORT_LIVED_TOKEN_NOT_CRON_JOB_ORG_ACTIVATION",
+    "external_backup_status": "ACTIVATED_EXTERNAL_HTTP_SELF_TEST_VERIFIED_TIMED_RECEIPT_PENDING",
+    "actual_http_dispatch_test": "BOTH_CRON_JOB_ORG_HTTP204_AND_EVENT_ONLY_RUN_SUCCESS",
     "native_schedule_observation": {
       "morning_clock_native_arrived": true,
       "morning_on_time": "NOT_VERIFIED",
@@ -290,15 +290,15 @@
         "schedule_slot": "08:20",
         "ui_url": "https://console.cron-job.org/jobs/8618691",
         "timezone": "Asia/Taipei",
-        "enabled": false,
+        "enabled": true,
         "request_method": "POST",
         "workflow": "index-events.yml",
         "ref": "main",
         "self_test": false,
         "request_timeout_seconds": 20,
         "save_responses": false,
-        "authorization": "NONSECRET_PLACEHOLDER_ONLY; independent PAT pending",
-        "first_possible_execution_if_activated": "2026-10-11T08:35:00+08:00"
+        "authorization": "USER_ENTERED_ROTATED_EVENT_ONLY_CREDENTIAL; HTTP204_VERIFIED; VALUE_NOT_READ",
+        "next_scheduled_execution": "2026-10-11T08:35:00+08:00"
       },
       {
         "job_id": 8618694,
@@ -307,18 +307,25 @@
         "schedule_slot": "17:20",
         "ui_url": "https://console.cron-job.org/jobs/8618694",
         "timezone": "Asia/Taipei",
-        "enabled": false,
+        "enabled": true,
         "request_method": "POST",
         "workflow": "index-events.yml",
         "ref": "main",
         "self_test": false,
         "request_timeout_seconds": 20,
         "save_responses": false,
-        "authorization": "NONSECRET_PLACEHOLDER_ONLY; independent PAT pending",
-        "first_possible_execution_if_activated": "2026-10-11T17:35:00+08:00"
+        "authorization": "USER_ENTERED_ROTATED_EVENT_ONLY_CREDENTIAL; HTTP204_VERIFIED; VALUE_NOT_READ",
+        "next_scheduled_execution": "2026-10-11T17:35:00+08:00"
       }
     ],
-    "external_backup_credential_stage": "SUDO_VERIFIED; NEW_TOKEN_FORM_PREPARED_NOT_GENERATED"
+    "external_backup_credential_stage": "USER_ROTATED_AND_SAVED; BOTH_CONFIGURATION_HTTP204_AUTHENTICATED",
+    "timed_trigger_acceptance": {
+      "status": "PENDING_FIRST_08:35_AND_17:35_REAL_TIMER",
+      "live_date_slot_recovery": "NOT_YET_OBSERVED",
+      "live_duplicate_success": "NOT_YET_OBSERVED",
+      "isolated_lease_cas_duplicate_timeout_tests": "PASS",
+      "independent_service_not_independent_github_infrastructure": true
+    }
   },
   "preservation": {
     "all_existing_mis_workflows_unchanged": true,
@@ -803,5 +810,18 @@
       "production_code_changed": false
     }
   },
-  "backup_activation_checkpoint": "reports/index-events/backup-activation-20261010.json"
+  "backup_activation_checkpoint": {
+    "verified_at": "2026-10-11T00:11:26.091Z",
+    "status": "ACTIVATED_EXTERNAL_HTTP_SELF_TEST_VERIFIED_TIMED_RECEIPT_PENDING",
+    "report": "reports/index-events/backup-activation-20261010.json",
+    "runs": [
+      38097218020,
+      38097264694
+    ],
+    "next_times": [
+      "2026-10-11T08:35:00+08:00",
+      "2026-10-11T17:35:00+08:00"
+    ],
+    "credentials_stored_in_repository": false
+  }
 }

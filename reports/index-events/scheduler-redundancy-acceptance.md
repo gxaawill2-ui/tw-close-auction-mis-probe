@@ -14,12 +14,18 @@ native政策窗口15分鐘；外部explicit slot備援窗口15–60分鐘。日�
 - runner08:08:35、scan08:08:44.538487–08:10:08、published08:10:10.565471（Asia/Taipei）。這是ADHOC_PUBLISHED，明確不是native準時排程驗證。
 - HTTP實測driver38007381758 SUCCESS，child38007391304 SUCCESS；實際POST固定event workflow dispatcher，self_test=true，只測收據，不抓來源、不寫main、不dispatch MIS。使用短期CI token，測通HTTP不等於cron-job.org已啟用。
 - 49個新增Python回歸測試（193→242）覆蓋正常17:20、延遲、跨日、未完成、備援恢復、同時重複、延後native、lease/CAS競爭、owner查詢權限錯誤、重試上限、截斷JSON及評級as-of；全部PASS。併發狀態／錯誤以可重現隔離測試，不宣稱live故障已發生。
-- 程式Pages38007718622、最新資料／收據Pages38007864341 SUCCESS。真實native08:20／17:20須等GitHub實際抵達再驗收，不能事前或用ADHOC冒充。
+- 程式Pages38007718622、最新資料／收據Pages38007864341 SUCCESS。真實native晨間38029017422、晚間38063666867已晚到抵達，原定日期UNKNOWN，準時性不宣稱PASS。
 
-## 外部授權狀態與最少操作
+## 外部服務最新驗收
 
-**NOT_ACTIVATED_AUTH_REQUIRED**。已開cron-job.org但顯示Sign in；無已授權session，沒有代建服務或讀取／修改原MIS排程與token。config/index-events/cron-job-backup-template.json是两個disabled jobs完整範本，非部署收據。
 
-使用者只需：登入cron-job.org；用新建、只授權此repo Actions read/write的fine-grained credential，將兩個event-only POST job的Authorization header設好並啟用08:35／17:35（Asia/Taipei）。不要將token貼聊天、程式、GitHub報告或重用MIS token。無須日常手動整理；在完成此一次授權之前，外部每日備援尚不存在。
 
-官方API格式：https://docs.cron-job.org/rest-api.html 。requestMethod=1為POST；saveResponses=false；固定index-events.yml/dispatches與ref=main；bounded client retry。獨立的是觸發服務；GitHub運算／API仍是共同故障點，沒有承諾GitHub全面故障時也能掃描。
+## 外部備援已真正啟用（2026-10-11T00:11:26.091Z）
+
+使用者再次Regenerate並親自貼入Save兩job後，8618694晚間Test run HTTP204→event-only38097218020 SUCCESS（00:05:10Z）；8618691晨間HTTP204→38097264694 SUCCESS（00:05:55Z）。242 Python＋42 Node PASS；49項receipt reliability子集PASS（屬242之內），scan/source-smoke/public-acceptance均SKIPPED。這是cron-job.org實際服務HTTP，不是先前CI短期Token替代驗證；只查精確status可見性及GitHub run/job/log數量，沒有讀新秘密、Raw request、headers Value、clipboard或generated-token頁。
+
+兩job均Enable＋Save並reload確認true，saveResponses=false，Asia/Taipei；正式body恢復self_test=false、固定index-events.yml/ref main，slots08:20／17:20。清單顯示今天08:35／17:35 next execution，非敏感畫面event-backup-enabled-1791677316657.jpg。既有MIS工作／Tokens／Secrets未動。本站19基金event正常、0050高暫定／0051中暫定／0056中暫定／006208不足、日期可信度分欄、無按鈕；10/11休市不顯示10/8當日名單，10/8candidate blob247dbe4bf7f149950a6196ad59119a65be25599f不變。
+
+重要範圍：首次真正timer08:35／17:35尚未到達／觀察，不能把self_test=true成功寫成production source scan、RECOVERED_BY_BACKUP或DUPLICATE_SUCCESS實測。原始native預定日期仍UNKNOWN；兩clock cron晚到送達先前已證實，準時性不冒稱。下一步僅讀actual workflow_dispatch與date-slot receipts／publish ack；jobs已自動運作，不需使用者每天操作。事件憑證保留30天選定到期2026-11-10，需要本人安全更新，不能承諾無期限免維護。GitHub API／runner是共同故障點，外部timer不等於獨立運算備援。
+
+先前秘密觀測失誤已告知使用者並要求輪替，本報告保留事件歷史；新憑證config已HTTP驗證，沒有秘密寫入Git。來源授權、TPEx完整主檔、未來基金實際委託時間無新可靠來源，保持PARTIAL／UNKNOWN，不重做研究或捏造解決。
