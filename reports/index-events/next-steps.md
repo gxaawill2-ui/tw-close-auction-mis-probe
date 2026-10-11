@@ -10,3 +10,8 @@
 6. MSCI/FTSE合法再利用、TPEx完整master/lifecycle及未來基金實際下單時間仍無新的可靠授權／免費來源，維持PARTIAL/UNKNOWN。首頁future合格0，4筆歷史official issuer有異動摘要卻缺close date；calendar-only參考留DB與全research頁，不重新seed。
 
 原MIS所有tokens／secrets／排程／量價／7檔candidate blob247dbe4bf7f149950a6196ad59119a65be25599f完全保留。
+
+
+### 本人授權接續狀態（2026-10-11）
+
+所有独立功能仍已正式驗收，報告commit647474df及Pages38101262261 SUCCESS。Cloudflare安全browserAuth由本人選Google，回傳submitted後頁面仍為登入頁且顯示「Unable to sign in. Try again or use your email and password.」。不是登入成功；原因UNKNOWN，不認定bot／密碼錯誤，不自動切換方式或重試。完整非秘密證據stage4-auth-handoff.json及空登入表畫面保存。必要下一步僅本人接管原Cloudflare分頁登入；GitHub App草稿仍未提交/安裝，最小新權限與私鑰秘密輸入需本人最後授權。現有兩個PAT備援始終保留，不宣稱App切換或PAT撤銷。

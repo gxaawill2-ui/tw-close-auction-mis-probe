@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-11T01:13:54.028562+00:00",
+  "updated_at": "2026-10-11T01:27:06.584550+00:00",
   "status": "STAGE4_INDEPENDENT_PRODUCTION_VERIFIED_APP_AUTH_PENDING",
   "code_commit": "b6246cff62a37801d5c2c3a10115e6d77496b397",
   "reviewed_feature_commit": "580a6c7160e6c65fd231c4102dcc8ddd524624a0",
@@ -36,7 +36,7 @@
   "mis_unchanged": true,
   "latest_source_success_at": "2026-10-10T23:29:08+08:00",
   "resume_validation": "reports/index-events/resume-validation-20261010.json",
-  "next_action": "Do not rebuild. Independent Stage4 features are deployed and verified. Complete prepared private GitHub App creation/installation and Cloudflare secure login/secret handoff; keep existing jobs/PAT until relay and published receipts succeed.",
+  "next_action": "User manual control of existing Cloudflare login tab if offered; do not automatically switch methods, retry, read credentials, or create an account. Keep prepared GitHub App draft; permission grant and private-key secret entry still require final user authorization.",
   "external_job_ids": [
     8618691,
     8618694
@@ -89,7 +89,8 @@
       "code_pages": 38100842781,
       "latest_data_pages": 38100952566,
       "independent_market_holiday_manual": 38100939460,
-      "true_external_0835_timer": 38098926958
+      "true_external_0835_timer": 38098926958,
+      "final_report_pages": 38101262261
     },
     "public_artifact": {
       "id": 11688430009,
@@ -134,7 +135,7 @@
     "auth": {
       "github_app": "DRAFT_PREPARED_NOT_CREATED_OR_INSTALLED",
       "relay": "IMPLEMENTED_UNIT_TESTED_NOT_DEPLOYED",
-      "cloudflare": "SIGN_IN_REQUIRED",
+      "cloudflare": "GOOGLE_SIGN_IN_RETURNED_GENERIC_WEBSITE_ERROR; NO_SUCCESS_EVIDENCE",
       "current_pat_backups": "BOTH_PRESERVED_ENABLED; FIRST_08:35_REAL_TIMER_RECOVERED",
       "pat_expiry": "2026-11-10",
       "pat_revoked": false,
@@ -142,7 +143,8 @@
         8618691,
         8618694
       ],
-      "new_secret_values_read": false
+      "new_secret_values_read": false,
+      "handoff_evidence": "reports/index-events/stage4-auth-handoff.json"
     },
     "preservation": {
       "mis_workflows_unchanged": true,

@@ -18,3 +18,8 @@ PR2在隔離分支56bc1c9f完整260Python／67Node（其中DOM/state44）／51Ch
 市場量能獨立workflow38100939460在正式main手動完成holiday→公開JSON／source-health／history，未觸發MIS。每日15:05與18:05台北自動累積；普通交易日實際排程尚未到，不宣稱已驗證完整日。10/8部分池1035/1082驗證、缺47，subtotal64,393,939,140元不作全市場值；regular分母與有效20/60日仍缺，formal boolean／占比皆null，門檻PROVISIONAL。今日10/11休市；缺資料交易日顯示尚未確認。
 
 App／relay僅完成程式及synthetic測試，GitHub App草稿已填僅Actions R/W＋Metadata R/O、private、webhook停用，尚未提交或安裝；Cloudflare登入頁未登入。必須本人最後確認新增安全權限與私鑰／caller-secret安全保存後才能繼續服務驗收。现有兩job/PAT維持，08:35真timer38098926958已RECOVERED_BY_BACKUP並出版，17:35本日仍未到；PAT未撤銷且2026-11-10到期仍是必要憑證。native原始預定日期UNKNOWN。
+
+
+### 本人授權接續狀態（2026-10-11）
+
+所有独立功能仍已正式驗收，報告commit647474df及Pages38101262261 SUCCESS。Cloudflare安全browserAuth由本人選Google，回傳submitted後頁面仍為登入頁且顯示「Unable to sign in. Try again or use your email and password.」。不是登入成功；原因UNKNOWN，不認定bot／密碼錯誤，不自動切換方式或重試。完整非秘密證據stage4-auth-handoff.json及空登入表畫面保存。必要下一步僅本人接管原Cloudflare分頁登入；GitHub App草稿仍未提交/安裝，最小新權限與私鑰秘密輸入需本人最後授權。現有兩個PAT備援始終保留，不宣稱App切換或PAT撤銷。

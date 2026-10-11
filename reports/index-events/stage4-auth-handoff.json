@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-11T01:27:06.584550+00:00",
+  "service": "Cloudflare",
+  "origin": "https://dash.cloudflare.com",
+  "selected_option": "Google",
+  "browser_auth_result": "submitted",
+  "visible_result": "Unable to sign in. Try again or use your email and password.",
+  "signed_in_verified": false,
+  "cause": "UNKNOWN; generic website sign-in error is not proof of bot detection or bad credentials",
+  "automatic_retry": "STOPPED_AFTER_FIRST_GENERIC_ERROR",
+  "github_app": "DRAFT_PREPARED_NOT_CREATED_OR_INSTALLED",
+  "relay": "NOT_DEPLOYED",
+  "existing_cron_pat_preserved": true,
+  "existing_jobs": [
+    8618691,
+    8618694
+  ],
+  "secret_values_read": false,
+  "safe_empty_form_screenshot": "stage4-public-evidence/cloudflare-signin-error-1791681985032.jpg",
+  "next_action": "User manual control of existing Cloudflare login tab if offered; do not automatically switch methods, retry, read credentials, or create an account. Keep prepared GitHub App draft; permission grant and private-key secret entry still require final user authorization."
+}
