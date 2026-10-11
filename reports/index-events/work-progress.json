@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-11T00:11:26.091Z",
-  "status": "PRODUCTION_AND_EXTERNAL_BACKUP_ACTIVATED; FIRST_TIMED_RECEIPT_PENDING",
+  "updated_at": "2026-10-11T01:13:54.028562+00:00",
+  "status": "STAGE4_INDEPENDENT_PRODUCTION_VERIFIED_APP_AUTH_PENDING",
   "code_commit": "b6246cff62a37801d5c2c3a10115e6d77496b397",
   "reviewed_feature_commit": "580a6c7160e6c65fd231c4102dcc8ddd524624a0",
   "tests": {
@@ -30,13 +30,13 @@
     "external_evening_http_self_test": 38097218020,
     "external_morning_http_self_test": 38097264694
   },
-  "external_backup": "ACTIVATED_EXTERNAL_HTTP_SELF_TEST_VERIFIED_TIMED_RECEIPT_PENDING",
+  "external_backup": "ACTIVATED_FIRST_REAL_0835_TIMER_VERIFIED",
   "native_schedule": "BOTH_CLOCK_CRONS_ARRIVED_DELAYED; ORIGINAL_SCHEDULE_DATES_UNKNOWN; ON_TIME_NOT_VERIFIED",
   "next_file": "reports/index-events/next-steps.md",
   "mis_unchanged": true,
   "latest_source_success_at": "2026-10-10T23:29:08+08:00",
   "resume_validation": "reports/index-events/resume-validation-20261010.json",
-  "next_action": "No activation handoff remains. Observe actual external timed runs and published date-slot receipts. Native original scheduled dates remain UNKNOWN. Renew event-only credential by selected 2026-11-10 expiry; never reuse MIS token.",
+  "next_action": "Do not rebuild. Independent Stage4 features are deployed and verified. Complete prepared private GitHub App creation/installation and Cloudflare secure login/secret handoff; keep existing jobs/PAT until relay and published receipts succeed.",
   "external_job_ids": [
     8618691,
     8618694
@@ -65,21 +65,100 @@
     "oct11_homepage": "HOLIDAY; no historical candidates mislabeled as today"
   },
   "stage4": {
-    "updated_at": "2026-10-11T00:53:51.901526+00:00",
-    "branch": "work/stage4-20261011",
-    "status": "FEATURE_FIRST_CI_PASS_FINAL_RELAY_REGRESSIONS_PENDING",
-    "baseline_main": "e0aaf9b77c899f6cb02f9a5d23b7c1292f5caead",
-    "latest_main_at_receipt": "39036180e0a9bb04d404ec573e3bc3e73389784b",
-    "external_timed_run": 38098926958,
-    "external_timed_result": "RECOVERED_BY_BACKUP",
-    "app": "NOT_ACTIVATED_AUTH_REQUIRED",
-    "existing_pat_backups_preserved": true,
-    "new_python_tests_total": 260,
-    "new_node_tests_total": 64,
-    "market_valid_historical_samples": 0,
-    "mis_unchanged": true,
-    "first_hosted_ci": 38100089509,
-    "first_hosted_browser_scenarios": 51,
-    "official_source_probe": "reports/market-closing-volume/official-source-probe.json"
+    "verified_at": "2026-10-11T01:13:54.028562+00:00",
+    "timezone": "Asia/Taipei",
+    "status": "INDEPENDENT_FEATURES_DEPLOYED_APP_AUTH_PENDING",
+    "reviewed_feature_commit": "56bc1c9fbef35d570d063148fce0a27cef47f044",
+    "code_merge_commit": "777c84b7302f588cd0af23d579dee92f28dc1c93",
+    "data_main_observed": "3d996883e80be48e1ee16face31e7e3684c05dee",
+    "pull_request": 2,
+    "tests": {
+      "python": 260,
+      "node": 67,
+      "dom_and_state": 44,
+      "browser_scenarios": 51,
+      "result": "PASS"
+    },
+    "runs": {
+      "feature_full_ci": 38100709443,
+      "feature_mis_tests_only": 38100709364,
+      "feature_sources": 38100709408,
+      "main_full_ci_and_public": 38100842844,
+      "main_mis_tests_only": 38100842853,
+      "main_events_scan": 38100842944,
+      "code_pages": 38100842781,
+      "latest_data_pages": 38100952566,
+      "independent_market_holiday_manual": 38100939460,
+      "true_external_0835_timer": 38098926958
+    },
+    "public_artifact": {
+      "id": 11688430009,
+      "sha256": "cac3f8e23d7c08213b0df480c061adc2cc4d6de952d966566f4758ded53a752d",
+      "local_evidence_directory": "reports/index-events/stage4-public-evidence"
+    },
+    "public": {
+      "url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/",
+      "events_version": "events4",
+      "market_version": "market1",
+      "dark": true,
+      "controls": 0,
+      "overflow": false,
+      "market_today": "HOLIDAY",
+      "material_events_in_database": 4,
+      "qualified_future_close_watch_count": 0,
+      "fund_records": 19,
+      "fund_codes": 15,
+      "importance": {
+        "HIGH": 1,
+        "MEDIUM": 2,
+        "LOW": 0,
+        "DATA_INSUFFICIENT": 16
+      },
+      "public_json": "RAW_GITHUB_FREE_READ_ONLY; Pages docs-only does not serve repository root state/"
+    },
+    "market": {
+      "scope": "TWSE_ORDINARY_EQUITY_REGULAR_BOARD_LOT_1330_1333_V1",
+      "historical_valid_normal_days": 0,
+      "historical_valid_index_event_days": 0,
+      "threshold_status": "PROVISIONAL",
+      "candidate_rule": "share >=20% AND relative20median >=1.5; not calibrated",
+      "full_market_official_reconciled": false,
+      "oct8_pool": 1082,
+      "oct8_verified_subtotal_stocks": 1035,
+      "oct8_missing": 47,
+      "oct8_verified_subtotal_twd": "64393939140.00",
+      "oct8_formal_total_share_boolean": null,
+      "first_derived_information_date": "2026-10-11",
+      "future_accumulator": "15:05/18:05 Taipei independent GitHub workflow; first real holiday run successful; ordinary-day complete-data run not yet observed"
+    },
+    "auth": {
+      "github_app": "DRAFT_PREPARED_NOT_CREATED_OR_INSTALLED",
+      "relay": "IMPLEMENTED_UNIT_TESTED_NOT_DEPLOYED",
+      "cloudflare": "SIGN_IN_REQUIRED",
+      "current_pat_backups": "BOTH_PRESERVED_ENABLED; FIRST_08:35_REAL_TIMER_RECOVERED",
+      "pat_expiry": "2026-11-10",
+      "pat_revoked": false,
+      "jobs": [
+        8618691,
+        8618694
+      ],
+      "new_secret_values_read": false
+    },
+    "preservation": {
+      "mis_workflows_unchanged": true,
+      "mis_capture_performed": false,
+      "candidate_blob": "247dbe4bf7f149950a6196ad59119a65be25599f",
+      "candidate_sha256": "794cdb1749a7318612fad5003bceb47b126b5d03a8cbda16abf14332954c111b",
+      "candidates": 7,
+      "validated": false
+    },
+    "limitations": [
+      "MSCI/FTSE reuse rights remain restricted; no new verified authorization.",
+      "TPEx quotes are observations, not complete master/current listing proof.",
+      "Future fund actual order dates remain unverified.",
+      "Same-scope full ordinary-equity turnover denominator and 20/60 history are unavailable.",
+      "No App installation token, production relay, external switch or PAT revocation yet.",
+      "Native original schedule date is not exposed by GitHub; keep UNKNOWN."
+    ]
   }
 }

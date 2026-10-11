@@ -1,11 +1,12 @@
-# Stage 4接續
+# Stage 4接續：独立功能已部署，僅授權／資料限制未完成
 
-work/stage4-20261011：實作已保存，260Python/62Node本機PASS，hosted完整browser及CI仍待。以最新main為準，不能覆蓋39036180之後的事件bot資料；本次只提交新市場namespace／程式與增量report，19基金、49事件資料原樣。
+讀stage4-final-verification.json。已驗收feature56bc1c9f→main合併777c84b7，main CI38100842844／MIS tests38100842853／event38100842944及Pages38100952566 SUCCESS；260Python／67Node／51瀏覽器場景。main會有後續bot／報告提交，以GitHub實際最新為準，禁止覆蓋。不要重新研究或重建已部署功能。
 
-1. 完整hosted Stage4 regression＋browser＋bounded官方source probe，修任何實際失敗；不要重新跑MIS或改其workflow。
-2. PASS後合併main，驗證Pages真實events4＋market1 HTML／公開JSON／手機深色零按鈕；更新acceptance/deployment。
-3. GitHub App＋Cloudflare Workers Free登入／create install secret安全交接（private key/caller secret本人），完成全部非秘密設定後才暫停必要步驟。App未建立／安裝，CF未部署，不能宣稱免PAT已上線。
-4. App服務self_test＋date-slot→published receipt→同既有兩cron改relay→實際trigger→驗證舊PAT不再依赖，最後本人撤銷20932040。現有兩PATbackup保持啟用到切換驗證。
-5. 市場只累積完整/partial saved evidence；免費regular denominator與全普通股身份仍待官方交叉核对，history0正式閾值PROVISIONAL，不能為數字完成度編造YES/NO。
+1. GitHub分頁3已準備private App tw-close-auction-event-backup（Actions Read/write、Metadata Read-only、其他無、webhook off），未按Create。新增安全存取需要本人於最後授權；提交／只裝本repo後記非秘密AppClientID/installationID。Cloudflare分頁4為Sign in，先browserAuth安全登入；若新帳號Terms需本人。
+2. 按relay/wrangler.jsonc免費SQLite DO部署，APP_PRIVATE_KEY與独立CALLER_SECRET只由本人安全存Worker Secrets，不進chat／截圖／git／log；agent處理所有非秘密設定。CLI語法與正常CPU/免费帳戶限額需要真實部署驗證，未部署不能宣稱成功。
+3. App新短期token每次重取→self_test dispatch→workflow success→date-slot／原生duplicate→published receipt，全部驗證再修改既有8618691／8618694 URL及caller認證。不重建／停用現有job、不碰MIS。最後證明PAT無依賴後本人撤銷20932040。PAT2026-11-10到期仍必要，尚未撤銷。
+4. 現有08:35真timer38098926958成功RECOVERED_BY_BACKUP、1scan／無重複、sourcePARTIAL；本日17:35未到。Native原始scheduled date沒有Github證據，UNKNOWN不猜；未見run不是已drop證明。
+5. 市場新獨立workflow每天15:05／18:05台北，仅讀existing saved artifact與官方表，真實holiday manual38100939460成功；不要抓MIS。正式普通股regular分母、完整上市身份及有效20/60历史仍待可靠免費來源；0完整樣本、不校準／不宣稱有或沒有。
+6. MSCI/FTSE合法再利用、TPEx完整master/lifecycle及未來基金實際下單時間仍無新的可靠授權／免費來源，維持PARTIAL/UNKNOWN。首頁future合格0，4筆歷史official issuer有異動摘要卻缺close date；calendar-only參考留DB與全research頁，不重新seed。
 
-現有08:35真timer38098926958已RECOVERED_BY_BACKUP；17:35本日尚未抵達；native原始scheduled dateUNKNOWN不猜。MIS所有tokens／排程／價格量能／候選完全保留。
+原MIS所有tokens／secrets／排程／量價／7檔candidate blob247dbe4bf7f149950a6196ad59119a65be25599f完全保留。

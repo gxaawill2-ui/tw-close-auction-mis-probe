@@ -1,0 +1,97 @@
+{
+  "verified_at": "2026-10-11T01:13:54.028562+00:00",
+  "timezone": "Asia/Taipei",
+  "status": "INDEPENDENT_FEATURES_DEPLOYED_APP_AUTH_PENDING",
+  "reviewed_feature_commit": "56bc1c9fbef35d570d063148fce0a27cef47f044",
+  "code_merge_commit": "777c84b7302f588cd0af23d579dee92f28dc1c93",
+  "data_main_observed": "3d996883e80be48e1ee16face31e7e3684c05dee",
+  "pull_request": 2,
+  "tests": {
+    "python": 260,
+    "node": 67,
+    "dom_and_state": 44,
+    "browser_scenarios": 51,
+    "result": "PASS"
+  },
+  "runs": {
+    "feature_full_ci": 38100709443,
+    "feature_mis_tests_only": 38100709364,
+    "feature_sources": 38100709408,
+    "main_full_ci_and_public": 38100842844,
+    "main_mis_tests_only": 38100842853,
+    "main_events_scan": 38100842944,
+    "code_pages": 38100842781,
+    "latest_data_pages": 38100952566,
+    "independent_market_holiday_manual": 38100939460,
+    "true_external_0835_timer": 38098926958
+  },
+  "public_artifact": {
+    "id": 11688430009,
+    "sha256": "cac3f8e23d7c08213b0df480c061adc2cc4d6de952d966566f4758ded53a752d",
+    "local_evidence_directory": "reports/index-events/stage4-public-evidence"
+  },
+  "public": {
+    "url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/",
+    "events_version": "events4",
+    "market_version": "market1",
+    "dark": true,
+    "controls": 0,
+    "overflow": false,
+    "market_today": "HOLIDAY",
+    "material_events_in_database": 4,
+    "qualified_future_close_watch_count": 0,
+    "fund_records": 19,
+    "fund_codes": 15,
+    "importance": {
+      "HIGH": 1,
+      "MEDIUM": 2,
+      "LOW": 0,
+      "DATA_INSUFFICIENT": 16
+    },
+    "public_json": "RAW_GITHUB_FREE_READ_ONLY; Pages docs-only does not serve repository root state/"
+  },
+  "market": {
+    "scope": "TWSE_ORDINARY_EQUITY_REGULAR_BOARD_LOT_1330_1333_V1",
+    "historical_valid_normal_days": 0,
+    "historical_valid_index_event_days": 0,
+    "threshold_status": "PROVISIONAL",
+    "candidate_rule": "share >=20% AND relative20median >=1.5; not calibrated",
+    "full_market_official_reconciled": false,
+    "oct8_pool": 1082,
+    "oct8_verified_subtotal_stocks": 1035,
+    "oct8_missing": 47,
+    "oct8_verified_subtotal_twd": "64393939140.00",
+    "oct8_formal_total_share_boolean": null,
+    "first_derived_information_date": "2026-10-11",
+    "future_accumulator": "15:05/18:05 Taipei independent GitHub workflow; first real holiday run successful; ordinary-day complete-data run not yet observed"
+  },
+  "auth": {
+    "github_app": "DRAFT_PREPARED_NOT_CREATED_OR_INSTALLED",
+    "relay": "IMPLEMENTED_UNIT_TESTED_NOT_DEPLOYED",
+    "cloudflare": "SIGN_IN_REQUIRED",
+    "current_pat_backups": "BOTH_PRESERVED_ENABLED; FIRST_08:35_REAL_TIMER_RECOVERED",
+    "pat_expiry": "2026-11-10",
+    "pat_revoked": false,
+    "jobs": [
+      8618691,
+      8618694
+    ],
+    "new_secret_values_read": false
+  },
+  "preservation": {
+    "mis_workflows_unchanged": true,
+    "mis_capture_performed": false,
+    "candidate_blob": "247dbe4bf7f149950a6196ad59119a65be25599f",
+    "candidate_sha256": "794cdb1749a7318612fad5003bceb47b126b5d03a8cbda16abf14332954c111b",
+    "candidates": 7,
+    "validated": false
+  },
+  "limitations": [
+    "MSCI/FTSE reuse rights remain restricted; no new verified authorization.",
+    "TPEx quotes are observations, not complete master/current listing proof.",
+    "Future fund actual order dates remain unverified.",
+    "Same-scope full ordinary-equity turnover denominator and 20/60 history are unavailable.",
+    "No App installation token, production relay, external switch or PAT revocation yet.",
+    "Native original schedule date is not exposed by GitHub; keep UNKNOWN."
+  ]
+}

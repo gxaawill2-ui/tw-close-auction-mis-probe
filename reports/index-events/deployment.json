@@ -1,9 +1,9 @@
 {
-  "verified_at": "2026-10-11T00:11:26.091Z",
+  "verified_at": "2026-10-11T01:13:54.028562+00:00",
   "timezone": "Asia/Taipei",
   "baseline_main": "5fc6341ef1e2c8195b586df014aec290a41cb0a9",
-  "code_commit": "b6246cff62a37801d5c2c3a10115e6d77496b397",
-  "reviewed_feature_commit": "580a6c7160e6c65fd231c4102dcc8ddd524624a0",
+  "code_commit": "777c84b7302f588cd0af23d579dee92f28dc1c93",
+  "reviewed_feature_commit": "56bc1c9fbef35d570d063148fce0a27cef47f044",
   "published_data_commit": "819d782e776b88a510b90dc1cccc29116c1b9c0e",
   "published_receipt_commit": "ff83c6c72051c7fe9d6e1affcab23275485341a2",
   "public_url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/",
@@ -37,15 +37,10 @@
     "tpex_confirmed_current_listings": null
   },
   "tests": {
-    "python": 242,
-    "node": 42,
-    "dom_and_state": 32,
-    "browser_scenarios": 42,
-    "engines": [
-      "Chromium desktop",
-      "Chromium mobile",
-      "WebKit iPhone"
-    ],
+    "python": 260,
+    "node": 67,
+    "dom_and_state": 44,
+    "browser_scenarios": 51,
     "result": "PASS"
   },
   "runs": {
@@ -54,11 +49,19 @@
     "http_child_no_sources_no_main_writes": 38007391304,
     "main_tests_scan_public_browsers": 38007718767,
     "main_mis_tests_no_market_capture": 38007718825,
-    "code_pages": 38007718622,
+    "code_pages": 38100842781,
     "data_and_receipt_pages": 38007864341,
     "native_schedule": 38029017422,
-    "latest_data_pages": 38063799814,
-    "native_evening_schedule": 38063666867
+    "latest_data_pages": 38100952566,
+    "native_evening_schedule": 38063666867,
+    "feature_full_ci": 38100709443,
+    "feature_mis_tests_only": 38100709364,
+    "feature_sources": 38100709408,
+    "main_full_ci_and_public": 38100842844,
+    "main_mis_tests_only": 38100842853,
+    "main_events_scan": 38100842944,
+    "independent_market_holiday_manual": 38100939460,
+    "true_external_0835_timer": 38098926958
   },
   "jobs": {
     "final_tests": 114080270826,
@@ -85,7 +88,7 @@
       "08:35",
       "17:35"
     ],
-    "external_backup_status": "ACTIVATED_EXTERNAL_HTTP_SELF_TEST_VERIFIED_TIMED_RECEIPT_PENDING",
+    "external_backup_status": "ACTIVATED_FIRST_REAL_0835_TIMER_VERIFIED; APP_RELAY_NOT_ACTIVATED",
     "actual_http_dispatch_test": "BOTH_CRON_JOB_ORG_HTTP204_AND_EVENT_ONLY_RUN_SUCCESS",
     "native_schedule_observation": {
       "morning_clock_native_arrived": true,
@@ -320,11 +323,12 @@
     ],
     "external_backup_credential_stage": "USER_ROTATED_AND_SAVED; BOTH_CONFIGURATION_HTTP204_AUTHENTICATED",
     "timed_trigger_acceptance": {
-      "status": "PENDING_FIRST_08:35_AND_17:35_REAL_TIMER",
-      "live_date_slot_recovery": "NOT_YET_OBSERVED",
-      "live_duplicate_success": "NOT_YET_OBSERVED",
-      "isolated_lease_cas_duplicate_timeout_tests": "PASS",
-      "independent_service_not_independent_github_infrastructure": true
+      "morning_run": 38098926958,
+      "status": "RECOVERED_BY_BACKUP; SOURCE_PARTIAL; PUBLISHED",
+      "evening_20261011": "FUTURE_AS_OF_VERIFICATION",
+      "duplicates": false,
+      "scan_attempts": 1,
+      "origin_date_verified": false
     }
   },
   "preservation": {
@@ -373,31 +377,9 @@
     "as_of_correction": "PROTOTYPE_USED_OLD_EVENT_SNAPSHOT_TIME; INVALID_FOR_PREOBSERVATION_BACKTEST",
     "index_close_is_not_fund_order_time": true
   },
-  "next_close_watch": [
-    {
-      "date": "2026-11-30",
-      "organization": "MSCI",
-      "status": "EXPECTED_CLOSE_WATCH_DATE"
-    },
-    {
-      "date": "2026-12-18",
-      "organization": "FTSE Taiwan50/MidCap100",
-      "status": "EXPECTED_CLOSE_WATCH_DATE"
-    },
-    {
-      "dates": [
-        "2026-12-21",
-        "2026-12-22",
-        "2026-12-23",
-        "2026-12-24",
-        "2026-12-28"
-      ],
-      "organization": "FTSE Taiwan Dividend+ /0056",
-      "status": "EXPECTED_MULTIDAY_TRANSITION"
-    }
-  ],
+  "next_close_watch": [],
   "limitations": [
-    "Independent cron-job.org event jobs8618691/8618694 created but DISABLED; GitHub identity verified and scope form prepared. New 30-day repo Actions credential not generated/entered; manual security handoff required; MIS unchanged.",
+    "Existing event-only cron8618691/8618694 enabled and verified by self-test plus actual08:35 timer; PAT still required until2026-11-10. App draft and relay code prepared, creation/installation/Cloudflare authentication/secrets/production switch remain pending.",
     "Original run37957502210 cron origin UNKNOWN; scheduled date not provided by GitHub; no proof it was on-time17:20.",
     "MSCI public ADD/DEL PDFs anonymously readable but reuse/redistribution restrictions; not integrated automatic stock lists; full constituents, weights and free-float separately licensed.",
     "FTSE public technical PDFs anonymously readable but linked LSEG Website Terms Section10 prohibits bots/scripts; stopped prior LSEG rule monitor and blocked requests before fetching.",
@@ -823,5 +805,126 @@
       "2026-10-11T17:35:00+08:00"
     ],
     "credentials_stored_in_repository": false
-  }
+  },
+  "prior_stage3_code_commit": "b6246cff62a37801d5c2c3a10115e6d77496b397",
+  "stage4": {
+    "verified_at": "2026-10-11T01:13:54.028562+00:00",
+    "timezone": "Asia/Taipei",
+    "status": "INDEPENDENT_FEATURES_DEPLOYED_APP_AUTH_PENDING",
+    "reviewed_feature_commit": "56bc1c9fbef35d570d063148fce0a27cef47f044",
+    "code_merge_commit": "777c84b7302f588cd0af23d579dee92f28dc1c93",
+    "data_main_observed": "3d996883e80be48e1ee16face31e7e3684c05dee",
+    "pull_request": 2,
+    "tests": {
+      "python": 260,
+      "node": 67,
+      "dom_and_state": 44,
+      "browser_scenarios": 51,
+      "result": "PASS"
+    },
+    "runs": {
+      "feature_full_ci": 38100709443,
+      "feature_mis_tests_only": 38100709364,
+      "feature_sources": 38100709408,
+      "main_full_ci_and_public": 38100842844,
+      "main_mis_tests_only": 38100842853,
+      "main_events_scan": 38100842944,
+      "code_pages": 38100842781,
+      "latest_data_pages": 38100952566,
+      "independent_market_holiday_manual": 38100939460,
+      "true_external_0835_timer": 38098926958
+    },
+    "public_artifact": {
+      "id": 11688430009,
+      "sha256": "cac3f8e23d7c08213b0df480c061adc2cc4d6de952d966566f4758ded53a752d",
+      "local_evidence_directory": "reports/index-events/stage4-public-evidence"
+    },
+    "public": {
+      "url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/",
+      "events_version": "events4",
+      "market_version": "market1",
+      "dark": true,
+      "controls": 0,
+      "overflow": false,
+      "market_today": "HOLIDAY",
+      "material_events_in_database": 4,
+      "qualified_future_close_watch_count": 0,
+      "fund_records": 19,
+      "fund_codes": 15,
+      "importance": {
+        "HIGH": 1,
+        "MEDIUM": 2,
+        "LOW": 0,
+        "DATA_INSUFFICIENT": 16
+      },
+      "public_json": "RAW_GITHUB_FREE_READ_ONLY; Pages docs-only does not serve repository root state/"
+    },
+    "market": {
+      "scope": "TWSE_ORDINARY_EQUITY_REGULAR_BOARD_LOT_1330_1333_V1",
+      "historical_valid_normal_days": 0,
+      "historical_valid_index_event_days": 0,
+      "threshold_status": "PROVISIONAL",
+      "candidate_rule": "share >=20% AND relative20median >=1.5; not calibrated",
+      "full_market_official_reconciled": false,
+      "oct8_pool": 1082,
+      "oct8_verified_subtotal_stocks": 1035,
+      "oct8_missing": 47,
+      "oct8_verified_subtotal_twd": "64393939140.00",
+      "oct8_formal_total_share_boolean": null,
+      "first_derived_information_date": "2026-10-11",
+      "future_accumulator": "15:05/18:05 Taipei independent GitHub workflow; first real holiday run successful; ordinary-day complete-data run not yet observed"
+    },
+    "auth": {
+      "github_app": "DRAFT_PREPARED_NOT_CREATED_OR_INSTALLED",
+      "relay": "IMPLEMENTED_UNIT_TESTED_NOT_DEPLOYED",
+      "cloudflare": "SIGN_IN_REQUIRED",
+      "current_pat_backups": "BOTH_PRESERVED_ENABLED; FIRST_08:35_REAL_TIMER_RECOVERED",
+      "pat_expiry": "2026-11-10",
+      "pat_revoked": false,
+      "jobs": [
+        8618691,
+        8618694
+      ],
+      "new_secret_values_read": false
+    },
+    "preservation": {
+      "mis_workflows_unchanged": true,
+      "mis_capture_performed": false,
+      "candidate_blob": "247dbe4bf7f149950a6196ad59119a65be25599f",
+      "candidate_sha256": "794cdb1749a7318612fad5003bceb47b126b5d03a8cbda16abf14332954c111b",
+      "candidates": 7,
+      "validated": false
+    },
+    "limitations": [
+      "MSCI/FTSE reuse rights remain restricted; no new verified authorization.",
+      "TPEx quotes are observations, not complete master/current listing proof.",
+      "Future fund actual order dates remain unverified.",
+      "Same-scope full ordinary-equity turnover denominator and 20/60 history are unavailable.",
+      "No App installation token, production relay, external switch or PAT revocation yet.",
+      "Native original schedule date is not exposed by GitHub; keep UNKNOWN."
+    ]
+  },
+  "calendar_only_reference_not_homepage": [
+    {
+      "date": "2026-11-30",
+      "organization": "MSCI",
+      "status": "EXPECTED_CLOSE_WATCH_DATE"
+    },
+    {
+      "date": "2026-12-18",
+      "organization": "FTSE Taiwan50/MidCap100",
+      "status": "EXPECTED_CLOSE_WATCH_DATE"
+    },
+    {
+      "dates": [
+        "2026-12-21",
+        "2026-12-22",
+        "2026-12-23",
+        "2026-12-24",
+        "2026-12-28"
+      ],
+      "organization": "FTSE Taiwan Dividend+ /0056",
+      "status": "EXPECTED_MULTIDAY_TRANSITION"
+    }
+  ]
 }

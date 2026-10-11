@@ -1,0 +1,252 @@
+{
+  "verified_at": "2026-10-11T01:11:34.852Z",
+  "commit_sha": "777c84b7302f588cd0af23d579dee92f28dc1c93",
+  "checks": [
+    {
+      "name": "chromium-desktop/dark-only",
+      "result": "PASS",
+      "independent_of_system_theme": true,
+      "no_buttons": true
+    },
+    {
+      "name": "chromium-desktop",
+      "result": "PASS",
+      "width": 1440,
+      "seven_candidates": true,
+      "no_buttons": true,
+      "no_horizontal_overflow": true
+    },
+    {
+      "name": "chromium-desktop/events-source-failure",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-desktop/events-expected-close",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-desktop/events-effective-not-close",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-desktop/market-holiday",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-desktop/market-missing",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-desktop/market-preclose",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-desktop/diagnostic",
+      "result": "PASS",
+      "automatic_initial_load": true,
+      "no_buttons": true
+    },
+    {
+      "name": "chromium-desktop/no-data",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-desktop/holiday",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-desktop/zero",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-desktop/wrong-date",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-desktop/unverified-volume",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-desktop/per-fund-priority",
+      "result": "PASS",
+      "date_confidence_independent": true
+    },
+    {
+      "name": "chromium-desktop/fund-readonly-page",
+      "result": "PASS",
+      "all_priorities_visible": true
+    },
+    {
+      "name": "public/chromium-desktop",
+      "result": "PASS",
+      "date": "2026-10-11 · 台北",
+      "no_buttons": true,
+      "no_horizontal_overflow": true,
+      "url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/"
+    },
+    {
+      "name": "chromium-mobile/dark-only",
+      "result": "PASS",
+      "independent_of_system_theme": true,
+      "no_buttons": true
+    },
+    {
+      "name": "chromium-mobile",
+      "result": "PASS",
+      "width": 390,
+      "seven_candidates": true,
+      "no_buttons": true,
+      "no_horizontal_overflow": true
+    },
+    {
+      "name": "chromium-mobile/events-source-failure",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-mobile/events-expected-close",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-mobile/events-effective-not-close",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-mobile/market-holiday",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-mobile/market-missing",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-mobile/market-preclose",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-mobile/diagnostic",
+      "result": "PASS",
+      "automatic_initial_load": true,
+      "no_buttons": true
+    },
+    {
+      "name": "chromium-mobile/no-data",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-mobile/holiday",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-mobile/zero",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-mobile/wrong-date",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-mobile/unverified-volume",
+      "result": "PASS"
+    },
+    {
+      "name": "chromium-mobile/per-fund-priority",
+      "result": "PASS",
+      "date_confidence_independent": true
+    },
+    {
+      "name": "chromium-mobile/fund-readonly-page",
+      "result": "PASS",
+      "all_priorities_visible": true
+    },
+    {
+      "name": "public/chromium-mobile",
+      "result": "PASS",
+      "date": "2026-10-11 · 台北",
+      "no_buttons": true,
+      "no_horizontal_overflow": true,
+      "url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/"
+    },
+    {
+      "name": "webkit-iphone/dark-only",
+      "result": "PASS",
+      "independent_of_system_theme": true,
+      "no_buttons": true
+    },
+    {
+      "name": "webkit-iphone",
+      "result": "PASS",
+      "width": 390,
+      "seven_candidates": true,
+      "no_buttons": true,
+      "no_horizontal_overflow": true
+    },
+    {
+      "name": "webkit-iphone/events-source-failure",
+      "result": "PASS"
+    },
+    {
+      "name": "webkit-iphone/events-expected-close",
+      "result": "PASS"
+    },
+    {
+      "name": "webkit-iphone/events-effective-not-close",
+      "result": "PASS"
+    },
+    {
+      "name": "webkit-iphone/market-holiday",
+      "result": "PASS"
+    },
+    {
+      "name": "webkit-iphone/market-missing",
+      "result": "PASS"
+    },
+    {
+      "name": "webkit-iphone/market-preclose",
+      "result": "PASS"
+    },
+    {
+      "name": "webkit-iphone/diagnostic",
+      "result": "PASS",
+      "automatic_initial_load": true,
+      "no_buttons": true
+    },
+    {
+      "name": "webkit-iphone/no-data",
+      "result": "PASS"
+    },
+    {
+      "name": "webkit-iphone/holiday",
+      "result": "PASS"
+    },
+    {
+      "name": "webkit-iphone/zero",
+      "result": "PASS"
+    },
+    {
+      "name": "webkit-iphone/wrong-date",
+      "result": "PASS"
+    },
+    {
+      "name": "webkit-iphone/unverified-volume",
+      "result": "PASS"
+    },
+    {
+      "name": "webkit-iphone/per-fund-priority",
+      "result": "PASS",
+      "date_confidence_independent": true
+    },
+    {
+      "name": "webkit-iphone/fund-readonly-page",
+      "result": "PASS",
+      "all_priorities_visible": true
+    },
+    {
+      "name": "public/webkit-iphone",
+      "result": "PASS",
+      "date": "2026-10-11 · 台北",
+      "no_buttons": true,
+      "no_horizontal_overflow": true,
+      "url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/"
+    }
+  ]
+}
