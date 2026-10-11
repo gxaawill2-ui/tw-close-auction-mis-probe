@@ -18,30 +18,37 @@
   }
   return data;
  }
+ function materialInfo(e,now){
+  if(!Number.isFinite(Date.parse(e.information_available_as_of))||Date.parse(e.information_available_as_of)>now.getTime())return null;
+  const stocks=(e.affected_stocks||[]).filter(s=>['ADDITION','DELETION','WEIGHT_CHANGE'].includes(s.change_type));
+  if(e.constituent_details_status==='OFFICIAL_LIST'&&stocks.length)return '官方成分異動 '+stocks.length+' 檔';
+  const c=e.constituent_counts;
+  if(e.evidence_level==='OFFICIAL_ISSUER_DATE_ONLY'&&c&&Number.isInteger(c.additions)&&Number.isInteger(c.deletions)&&c.additions>=0&&c.deletions>=0&&c.additions+c.deletions>0)return '官方新增 '+c.additions+' 檔／刪除 '+c.deletions+' 檔（未公布逐檔名單）';
+  const m=e.material_change_evidence;
+  if(m?.status==='OFFICIAL_CONFIRMED'&&['ADDITION','DELETION','WEIGHT_CHANGE','NONROUTINE_CHANGE'].includes(m.change_type)&&m.summary&&m.source_url===e.source_url&&Date.parse(m.observed_at)<=now.getTime())return m.summary;
+  return null;
+ }
  function model(now,data,health,error='',fundData=null){
   let events=[];try{if(data)events=valid(data,now).events;}catch(e){error=e.message;}
-  events=events.map(e=>({...e,fund_events:(fundData?.fund_events||[]).filter(r=>r.event_id===e.event_id&&Date.parse(r.information_available_as_of)<=now.getTime())}));
+  events=events.map(e=>({...e,material_summary:materialInfo(e,now),fund_events:(fundData?.fund_events||[]).filter(r=>r.event_id===e.event_id&&Date.parse(r.information_available_as_of)<=now.getTime())}));
   const day=taipei(now),limit=new Date(day+'T12:00:00Z');limit.setUTCDate(limit.getUTCDate()+30);
   const end=limit.toISOString().slice(0,10),entries=[];
   for(const event of events){
-   if(Date.parse(event.first_seen_at)>now.getTime())continue;
-   if(event.event_status==='CONFLICT')continue;
-   for(const key of ['announcement_date','closing_impact_date','effective_date'])if(event[key])entries.push({date:event[key],type:key,event});
-   for(const d of (event.implementation_window||{}).dates||[])entries.push({date:d,type:'implementation_window',event});
+   if(!event.material_summary||Date.parse(event.first_seen_at)>now.getTime()||event.event_status==='CONFLICT'||event.close_date_status==='DATE_UNVERIFIED')continue;
+   const dates=(event.implementation_window||{}).dates||[];
+   if(event.closing_impact_date&&!dates.includes(event.closing_impact_date))entries.push({date:event.closing_impact_date,type:'closing_impact_date',event});
+   for(const d of [...new Set(dates)])entries.push({date:d,type:'implementation_window',event});
   }
-  entries.sort((a,b)=>a.date.localeCompare(b.date)||a.event.event_name.localeCompare(b.event.event_name)||a.type.localeCompare(b.type));
-  const today=entries.filter(x=>x.date===day),close=today.filter(x=>['closing_impact_date','implementation_window'].includes(x.type));
-  const sourceStale=!health||!health.last_successful_scan_at||now.getTime()-Date.parse(health.last_successful_scan_at)>36*3600*1000;
+  entries.sort((a,b)=>a.date.localeCompare(b.date)||a.event.event_name.localeCompare(b.event.event_name));
+  const today=entries.filter(x=>x.date===day);
+  const sourceStale=!health||!Number.isFinite(Date.parse(health.last_successful_scan_at))||now.getTime()-Date.parse(health.last_successful_scan_at)>36*3600*1000;
   const incomplete=Boolean(error||sourceStale||data?.coverage_status!=='COMPLETE'||health?.sources?.some(s=>s.status!=='SUCCESS'));
-  let headline;
-  if(close.length)headline=close.some(x=>x.event.close_date_status==='CONFIRMED_CLOSE_IMPLEMENTATION')?'今日有官方確認的指數收盤實施':'今日有預估觀察日／換股過渡期間';
-  else if(today.length)headline='今日有指數'+[...new Set(today.map(x=>label[x.type]))].join('／')+'；收盤集中交易未確認';
-  else headline=incomplete?'事件資料尚未完整確認':'今日無已確認的重大指數調整事件';
-  let upcoming=entries.filter(x=>x.date>day&&x.date<=end),range='未來 30 天';
-  if(!upcoming.length){const next=entries.find(x=>x.date>day);if(next){upcoming=entries.filter(x=>x.date===next.date);range='30 天以外 · 下一個已知日期';}}
+  const headline=today.length?(today.some(x=>x.event.close_date_status==='CONFIRMED_CLOSE_IMPLEMENTATION')?'今日有官方確認的指數實質調整（基金交易時間未確認）':'今日有實質調整的預估收盤觀察日／過渡期間'):'今日未發現已確認實質調整的收盤觀察日';
+  let upcoming=entries.filter(x=>x.date>day&&x.date<=end),range='未來 30 天 · 實質調整';
+  if(!upcoming.length){const next=entries.find(x=>x.date>day);if(next){upcoming=entries.filter(x=>x.date===next.date);range='30 天以外 · 下一個實質調整日';}}
   const conflicts=events.filter(e=>e.event_status==='CONFLICT'&&Date.parse(e.information_available_as_of)<=now.getTime()).length;
   return {day,today,headline,upcoming,range,error,incomplete,sourceStale,
-   note:(incomplete?'部分來源受限、未更新或僅追蹤日程；未列出不代表沒有事件。':'已完成已設定官方來源掃描。')+(conflicts?' '+conflicts+' 筆來源日期衝突，暫不列入觀察日。':'')};
+   note:(incomplete?'部分官方來源未能完整取得，調整事件可能有缺漏。':'已完成已設定官方來源掃描。')+(conflicts?' '+conflicts+' 筆來源日期衝突，暫不列入。':'')+' 最後資料確認：'+(data?.generated_at||'尚未取得')};
  }
  function fundLabels(rows){
   return rows.slice().sort((a,b)=>({HIGH:0,MEDIUM:1,LOW:2,DATA_INSUFFICIENT:3}[a.importance_level]??3)-({HIGH:0,MEDIUM:1,LOW:2,DATA_INSUFFICIENT:3}[b.importance_level]??3)||a.fund_code.localeCompare(b.fund_code)).map(r=>'<div class="fund-priority">'+esc(r.fund_code+' '+(r.fund_name||''))+' · 重要程度：'+esc(priorities[r.importance_level]||'資料不足')+(r.importance_confidence==='PROVISIONAL'?'（暫定）':'')+'</div>').join('');
@@ -49,7 +56,7 @@
  function htmlEntry(x){
   const e=x.event,expected=e.event_status==='EXPECTED'||['closing_impact_date','implementation_window'].includes(x.type)&&e.close_date_status!=='CONFIRMED_CLOSE_IMPLEMENTATION';
   const type=x.type==='announcement_date'&&e.announcement_timezone==='SOURCE_DATE_TIME_UNPUBLISHED'?'公告 · 來源日期（台北時間待確認）':label[x.type];
-  return '<li class="event-row"><div class="event-date">'+esc(x.date)+'<small>'+esc(type)+'</small></div><div class="event-description"><strong>'+esc(e.event_name)+'</strong><div>'+esc(e.related_etf_codes.length?'ETF '+e.related_etf_codes.join('、'):e.index_name)+'</div>'+fundLabels(e.fund_events||[])+'<span class="event-tag'+(expected?' expected':'')+'">'+esc(expected?(x.type==='implementation_window'?'預估多日換股期間 · 依官方規則／交易日推算':'預估 · 依官方規則／交易日推算'):x.type==='closing_impact_date'?statuses[e.close_date_status]:'官方日期 · 收盤實施另確認')+'</span><a href="'+esc(e.source_url)+'" target="_blank" rel="noopener noreferrer">官方來源</a></div></li>';
+  return '<li class="event-row"><div class="event-date">'+esc(x.date)+'<small>'+esc(type)+'</small></div><div class="event-description"><strong>'+esc(e.event_name)+'</strong><div>'+esc(e.related_etf_codes.length?'ETF '+e.related_etf_codes.join('、'):e.index_name)+'</div>'+fundLabels(e.fund_events||[])+'<p class="event-note">'+esc(e.material_summary||'')+'；指數實施不等於基金實際下單。</p><span class="event-tag'+(expected?' expected':'')+'">'+esc(expected?(x.type==='implementation_window'?'預估多日換股期間 · 依官方規則／交易日推算':'預估 · 依官方規則／交易日推算'):x.type==='closing_impact_date'?statuses[e.close_date_status]:'官方日期 · 收盤實施另確認')+'</span><a href="'+esc(e.source_url)+'" target="_blank" rel="noopener noreferrer">官方來源</a></div></li>';
  }
  function grouped(rows){
   const groups=new Map();
@@ -66,7 +73,7 @@
  function render(doc,view){
   const set=(id,text)=>{doc.getElementById(id).textContent=text;};
   set('event-today-title',view.headline);set('event-note',view.error?'事件資料更新失敗；股票名單仍獨立更新。 '+view.note:view.note);
-  set('event-range',view.range);set('event-empty',view.upcoming.length?'':'已取得範圍內尚無近期日期；其餘期程未公布／未確認。');
+  set('event-range',view.range);set('event-empty',view.upcoming.length?'':'目前尚無已確認實質調整的收盤觀察日');
   for(const [id,rows] of [['event-today-list',view.today],['event-upcoming',view.upcoming]]){
    const element=doc.getElementById(id),html=grouped(rows);if(element.dataset.rendered!==html){element.innerHTML=html;element.dataset.rendered=html;}
   }
@@ -79,7 +86,7 @@
   return {matches,label:matches.length?matches.map(x=>x.event.event_name+' · '+({ADDITION:'納入',DELETION:'刪除',WEIGHT_CHANGE:'權重調整'}[x.stock.change_type]||'官方異動')).join('；'):
     dayEvents.length?'當日有指數調整事件，個股關聯未確認':'個股事件關聯未確認'};
  }
- const api={valid,model,render,relation,taipei,fundLabels};
+ const api={valid,materialInfo,model,render,relation,taipei,fundLabels};
  if(typeof module!=='undefined'&&module.exports){module.exports=api;return;}
  root.IndexEvents=api;
  let lastGood=null,lastHealth=null,lastFunds=null,running=false;

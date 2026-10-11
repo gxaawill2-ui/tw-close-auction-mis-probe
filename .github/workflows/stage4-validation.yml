@@ -1,0 +1,90 @@
+name: Stage 4 isolated validation
+on:
+  push:
+    paths:
+      - 'relay/**'
+      - 'config/index-events/github-app-manifest.json'
+      - 'market_closing*.py'
+      - 'test_market_closing_volume.py'
+      - 'test_relay.cjs'
+      - 'test_stage4.cjs'
+      - 'test_events.cjs'
+      - 'docs/events.js'
+      - 'docs/index.html'
+      - 'docs/market-closing.js'
+      - 'docs/status.css'
+      - 'browser_acceptance.cjs'
+      - '.github/workflows/stage4-validation.yml'
+      - 'stage4_source_probe.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: stage4-validation-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: pip install pypdf
+      - run: npm ci --ignore-scripts
+      - run: python -m unittest discover -v
+      - run: npm test
+      - run: npx playwright install --with-deps chromium webkit
+      - name: All desktop, mobile and WebKit regression fixtures
+        run: node browser_acceptance.cjs
+      - name: Bounded anonymous official source proof in isolated branch
+        if: github.ref != 'refs/heads/main'
+        run: python stage4_source_probe.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage4-regressions-${{ github.run_id }}
+          path: |
+            browser-results/
+            reports/market-closing-volume/official-source-probe.json
+          retention-days: 30
+  public:
+    needs: regressions
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium webkit
+      - name: Wait for exact new public HTML release
+        run: |
+          python - <<'PY'
+          import time,urllib.request
+          for attempt in range(24):
+              try:
+                  text=urllib.request.urlopen('https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/?stage4='+str(time.time()),timeout=10).read().decode()
+                  if 'market-closing.js?v=market1' in text and 'events.js?v=events4' in text:break
+              except Exception:pass
+              time.sleep(15)
+          else:raise SystemExit('Public release not observed')
+          PY
+      - name: Public Pages desktop/mobile and read-only JSON
+        env:
+          REQUIRE_PUBLIC_EVENTS: 'true'
+        run: node browser_acceptance.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage4-public-${{ github.run_id }}
+          path: browser-results/
+          retention-days: 30

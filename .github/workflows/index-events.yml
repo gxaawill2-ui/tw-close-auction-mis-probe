@@ -202,7 +202,7 @@ jobs:
           for attempt in range(30):
               try:
                   text=urllib.request.urlopen(url+'?acceptance='+str(time.time()),timeout=10).read().decode()
-                  if 'events.js?v=events2' in text:
+                  if 'events.js?v=events4' in text:
                       print('Public Pages event calendar deployed');break
               except Exception as error: print(type(error).__name__)
               time.sleep(15)

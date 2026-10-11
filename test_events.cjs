@@ -4,15 +4,15 @@ const now=new Date('2026-10-09T12:00:00+08:00'),seen='2026-10-09T10:00:00+08:00'
 const copy=x=>JSON.parse(JSON.stringify(x));
 const event={event_id:'e1',index_name:'MSCI Taiwan',event_name:'MSCI 定審',source_url:'https://www.msci.com/official.pdf',
  close_date_status:'EXPECTED_CLOSE_WATCH_DATE',event_status:'SCHEDULE_ONLY',announcement_date:'2026-11-11',effective_date:'2026-12-01',closing_impact_date:'2026-11-30',
- first_seen_at:seen,information_available_as_of:seen,affected_stocks:[],related_etf_codes:[]};
+ first_seen_at:seen,information_available_as_of:seen,affected_stocks:[],related_etf_codes:[],constituent_counts:{additions:2,deletions:1},evidence_level:'OFFICIAL_ISSUER_DATE_ONLY'};
 const data={schema_version:1,timezone:'Asia/Taipei',generated_at:seen,coverage_status:'PARTIAL',events:[event]};
 const health={last_successful_scan_at:seen,sources:[{status:'SUCCESS'}]};
 const dom=()=>parseHTML(fs.readFileSync('docs/index.html','utf8')).document;
 test('unknown or partial source coverage never means no events',()=>{
- assert.equal(ui.model(now,null,null).headline,'事件資料尚未完整確認');
- assert.equal(ui.model(now,data,health).headline,'事件資料尚未完整確認');
+ assert.match(ui.model(now,null,null).note,/部分官方來源/);
+ assert.match(ui.model(now,data,health).headline,/未發現已確認實質調整/);
  const complete={...data,coverage_status:'COMPLETE'};
- assert.equal(ui.model(now,complete,health).headline,'今日無已確認的重大指數調整事件');
+ assert.equal(ui.model(now,complete,health).headline,'今日未發現已確認實質調整的收盤觀察日');
 });
 test('stale, timeout, malformed and future snapshots fail closed',()=>{
  const stale={...health,last_successful_scan_at:'2026-10-01T08:20:00+08:00'};
@@ -22,13 +22,10 @@ test('stale, timeout, malformed and future snapshots fail closed',()=>{
  assert.match(ui.model(now,future,health).error,/時間/);
  assert.match(ui.model(now,{...data,events:[event,event]},health).error,/證據/);
 });
-test('announcement, implementation and effective dates distinct',()=>{
- for(const [day,type] of [['2026-11-11','announcement_date'],['2026-11-30','closing_impact_date'],['2026-12-01','effective_date']]){
-  const v=ui.model(new Date(day+'T12:00:00+08:00'),data,health);
-  assert.equal(v.today[0].type,type);
-  if(type==='closing_impact_date')assert.match(v.headline,/預估/);
-  else assert.match(v.headline,/收盤集中交易未確認/);
- }
+test('announcement and effective dates preserved in data but absent from homepage',()=>{
+ assert.equal(event.announcement_date,'2026-11-11');assert.equal(event.effective_date,'2026-12-01');
+ for(const date of ['2026-11-11','2026-12-01'])assert.equal(ui.model(new Date(date+'T12:00:00+08:00'),data,health).today.length,0);
+ assert.equal(ui.model(new Date('2026-11-30T12:00:00+08:00'),data,health).today[0].type,'closing_impact_date');
 });
 test('known explicit close is distinguishable from expected observation',()=>{
  const d=copy(data);d.events[0].closing_impact_date='2026-10-09';d.events[0].close_date_status='CONFIRMED_CLOSE_IMPLEMENTATION';
@@ -37,9 +34,9 @@ test('known explicit close is distinguishable from expected observation',()=>{
  assert.match(doc.getElementById('event-today-list').textContent,/官方確認收盤實施/);
 });
 test('thirty-day calendar sorted, with explicit out-of-range fallback',()=>{
- const v=ui.model(now,data,health);assert.match(v.range,/30 天以外/);assert.equal(v.upcoming[0].date,'2026-11-11');
- const d=copy(data);d.events.push({...event,event_id:'e2',announcement_date:'2026-10-20',closing_impact_date:null,effective_date:'2026-10-21'});
- const w=ui.model(now,d,health);assert.equal(w.range,'未來 30 天');assert.equal(w.upcoming[0].date,'2026-10-20');
+ const v=ui.model(now,data,health);assert.match(v.range,/30 天以外/);assert.equal(v.upcoming[0].date,'2026-11-30');
+ const d=copy(data);d.events.push({...event,event_id:'e2',announcement_date:'2026-10-19',closing_impact_date:'2026-10-20',effective_date:'2026-10-21'});
+ const w=ui.model(now,d,health);assert.equal(w.range,'未來 30 天 · 實質調整');assert.equal(w.upcoming[0].date,'2026-10-20');
 });
 test('multi-day ETF window retained rather than all at one close',()=>{
  const d=copy(data);d.events[0].implementation_window={dates:['2026-10-09','2026-10-12','2026-10-13']};

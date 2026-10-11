@@ -1,0 +1,9 @@
+{
+  "name": "TW index events backup",
+  "url": "https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/",
+  "description": "Dispatch only the fixed index-events.yml event backup through a private authenticated relay.",
+  "public": false,
+  "hook_attributes": {"active": false},
+  "default_permissions": {"actions": "write", "metadata": "read"},
+  "default_events": []
+}

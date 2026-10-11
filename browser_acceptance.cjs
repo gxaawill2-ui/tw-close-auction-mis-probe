@@ -19,7 +19,7 @@ async function fixtureContext(browser,options,date='2026-10-08T18:30:00+08:00',p
  const context=await browser.newContext({...options,timezoneId:'Asia/Taipei'});
  const eventFixture=copy(eventsData);eventFixture.generated_at=date;
  // Synthetic UI clock only. Production first-seen timestamps are untouched.
- for(const e of eventFixture.events){e.first_seen_at=e.information_available_as_of='2026-10-07T00:00:00+08:00';}
+ for(const e of eventFixture.events){e.first_seen_at=e.information_available_as_of='2026-10-07T00:00:00+08:00'; if(e.closing_impact_date){e.constituent_counts={additions:1,deletions:1};e.evidence_level='OFFICIAL_ISSUER_DATE_ONLY';}}
  await context.addInitScript(fixed=>{
   const RealDate=Date;class Clock extends RealDate{constructor(...args){super(...(args.length?args:[fixed]));}static now(){return new RealDate(fixed).getTime();}}
   window.Date=Clock;
@@ -67,7 +67,7 @@ async function main(){
    assert.equal(await page.locator('.candidate-card .tail.up').count(),4);
    assert.equal(await page.locator('.candidate-card .tail.down').count(),3);
    await page.waitForFunction(()=>document.querySelectorAll('#event-upcoming .event-row').length>0);
-   assert.match(await page.locator('#event-today-title').innerText(),/尚未完整確認/);
+   assert.match(await page.locator('#event-today-title').innerText(),/未發現已確認實質調整/);
    assert.ok(await page.locator('#event-upcoming a').count()>0);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
    if(mobile){
@@ -109,9 +109,9 @@ async function main(){
    assert.deepEqual(errors,[]);checks.push({name,result:'PASS',width:options.viewport.width,seven_candidates:true,no_buttons:true,no_horizontal_overflow:true});
    await context.close();
    for(const [eventCase,fixedDate,failure,title] of [
-    ['events-source-failure','2026-10-08T18:30:00+08:00',true,'事件資料尚未完整確認'],
-    ['events-expected-close','2026-11-30T13:35:00+08:00',false,'今日有預估觀察日'],
-    ['events-effective-not-close','2026-12-01T13:35:00+08:00',false,'收盤集中交易未確認']
+    ['events-source-failure','2026-10-08T18:30:00+08:00',true,'今日未發現已確認實質調整'],
+    ['events-expected-close','2026-11-30T13:35:00+08:00',false,'今日有實質調整的預估收盤觀察日'],
+    ['events-effective-not-close','2026-12-01T13:35:00+08:00',false,'今日未發現已確認實質調整']
    ]){
     const ctx=await fixtureContext(browser,options,fixedDate,failure?data:null,failure),p=await ctx.newPage();
     await p.goto(base);await p.locator('#event-today-title').filter({hasText:title}).waitFor();
@@ -119,6 +119,18 @@ async function main(){
     assert.equal(await p.locator('button,input,select,form,[role="button"]').count(),0);
     assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
     checks.push({name:name+'/'+eventCase,result:'PASS'});await ctx.close();
+   }
+   for(const [caseName,caseDate,expected] of [
+    ['market-holiday','2026-10-11T18:00:00+08:00','休市'],
+    ['market-missing','2026-10-08T18:00:00+08:00','尚未確認'],
+    ['market-preclose','2026-10-08T13:25:00+08:00','尚未確認']
+   ]){
+    const ctx=await fixtureContext(browser,options,caseDate,null),p=await ctx.newPage();await p.goto(base);
+    await p.locator('#market-closing-state').filter({hasText:expected}).waitFor();
+    assert.equal(await p.locator('button,input,select,form,[role="button"]').count(),0);
+    assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
+    await p.emulateMedia({colorScheme:'light'});assert.equal(await p.evaluate(()=>getComputedStyle(document.documentElement).colorScheme),'dark');
+    checks.push({name:name+'/'+caseName,result:'PASS'});await ctx.close();
    }
    const diagnosticContext=await fixtureContext(browser,options,'2026-10-09T13:35:00+08:00',null);
    const diagnostic=await diagnosticContext.newPage(),diagnosticErrors=[];
@@ -171,10 +183,15 @@ async function main(){
    assert.equal(await publicPage.title(),'台股尾盤 ±3% 自動選股看板');
    assert.equal(await publicPage.locator('button,input,select,form,[role="button"]').count(),0);
    if(process.env.REQUIRE_PUBLIC_EVENTS==='true'){
-    await publicPage.waitForFunction(()=>document.querySelectorAll('#event-upcoming .event-row').length>0);
+    await publicPage.waitForFunction(()=>document.querySelector('#event-empty').textContent.includes('尚無已確認')||document.querySelectorAll('#event-upcoming .event-row').length>0);
     assert.ok(await publicPage.locator('#event-today-title').count());
-    assert.ok(await publicPage.locator('#event-upcoming a').count()>0);
+    assert.ok(await publicPage.locator('#event-upcoming').count()>0);
     assert.notEqual(await publicPage.locator('#event-today-title').innerText(),'事件資料確認中');
+    assert.equal(await publicPage.locator('#market-closing-state').count(),1);
+    const marketState=await publicPage.locator('#market-closing-state').innerText();assert.ok(['有','沒有','尚未確認','休市'].includes(marketState));
+    for(const path of ['state/events/events-index.json','state/events/fund-events.json','state/market-closing-volume/2026-10-08.json']){
+     const response=await publicContext.request.get(PUBLIC+path+'?acceptance='+Date.now());assert.equal(response.status(),200);assert.ok(await response.json());
+    }
    }
    assert.equal(await publicPage.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
    const date=await publicPage.locator('#today').textContent();

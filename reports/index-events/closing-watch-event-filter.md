@@ -1,0 +1,7 @@
+# 實質調整收盤日篩選 v1
+
+首頁僅closing_impact_date／implementation_window.dates，排除announcement/effective獨立行、CONFLICT、DATE_UNVERIFIED及資訊晚於as-of。資格：OFFICIAL_LIST至少一筆ADDITION／DELETION／WEIGHT_CHANGE；或官方issuer同一期正整數新增／刪除檔數>0；或官方核實有摘要、同source URL、observed_at可用的明確material_change_evidence。只知道OFFICIAL_IMPLEMENTATION或例行定審日期不算實質異動。
+
+資料庫49事件、原日期／as-of／history不改、不seed；19筆基金模型保留。初始資料4筆issuer有實質非零異動檔數，均為歷史事件且缺收盤日期，因此目前符合首頁未來收盤觀察資格0筆。11/30MSCI、12/18FTSE、12月0056期程不再冒充已公布本次實質換股。完整基金唯讀研究清單仍保留。
+
+資格只表示指數實質內容，不證明基金委託。重要性與日期可信度分开；高、中、低、不足按原模型顯示。PARTIAL僅另顯示來源缺漏，不移除既存有效事件。未來新公告由原scanner保存官方檔數或逐檔清單後，若有有效closing日期可自動顯示；未知日期不擅自推算ETF委託。
