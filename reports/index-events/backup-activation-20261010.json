@@ -1,7 +1,7 @@
 {
-  "verified_at": "2026-10-10T23:53:23.348Z",
+  "verified_at": "2026-10-10T23:59:59.400Z",
   "timezone": "Asia/Taipei",
-  "status": "DISABLED_CREDENTIAL_ROTATION_REQUIRED",
+  "status": "DISABLED_HTTP_401_AUTHENTICATION_REQUIRED",
   "cron_service_signed_in": true,
   "configured_jobs": [
     {
@@ -67,7 +67,7 @@
   "credentials_read": true,
   "production_code_changed": false,
   "screenshot": "cron-event-backup-jobs-1791642788319.jpg",
-  "next_action": "Mandatory manual credential regeneration, safe entry into both event jobs, then retry both HTTP tests using only targeted visible status text and verify GitHub runs before enabling.",
+  "next_action": "User verifies full newly generated event token and Bearer-plus-space format in each Authorization Value, saves while disabled; agent repeats only safe status checks and GitHub runs before enabling.",
   "last_auth_check": {
     "at": "2026-10-10T23:53:23.348Z",
     "github_verification": "COMPLETE",
@@ -102,7 +102,30 @@
     "cause": "Unscoped dialog text included hidden raw request Authorization; generated-token landing page also remained in an existing tab.",
     "secret_values_recorded_in_git": false,
     "required_action": "User regenerates event-only token20932040, then securely replaces both job Authorization values and saves; agent must never read whole test dialog, Advanced form, clipboard, or generated-token landing page.",
-    "status": "ROTATION_PENDING",
+    "status": "USER_REPORTS_REGENERATED; REPLACEMENT_AUTHENTICATION_NOT_VERIFIED",
     "mitigation": "Both jobs remain disabled. Test modal closed. Existing permissions/duration unchanged. Regeneration page ready; MIS token untouched."
+  },
+  "external_retests": {
+    "at": "2026-10-10T23:59:59.400Z",
+    "observation_policy": "ONLY EXACT HTTP STATUS VISIBILITY; no whole dialog/input values/clipboard/generated-token page",
+    "jobs": [
+      {
+        "job_id": 8618694,
+        "schedule_slot": "17:20",
+        "self_test": true,
+        "http_status": 401
+      },
+      {
+        "job_id": 8618691,
+        "schedule_slot": "08:20",
+        "self_test": true,
+        "http_status": 401
+      }
+    ],
+    "enabled": false,
+    "source_requests": 0,
+    "mis_dispatches": 0,
+    "cause": "UNKNOWN; HTTP401 only proves submitted authorization not accepted",
+    "request_bodies_restored_to_self_test_false": true
   }
 }

@@ -78,3 +78,10 @@ GitHub查詢仍僅找到native38029017422、37957502210；17:20新的Run截至�
 操作失誤：讀取整個測試dialog文字包含隱藏Raw request中的Authorization秘密，隨後綁定仍停留新Token顯示狀態的既有GitHub清單頁亦自動輸出同一秘密。已向使用者明確告知；不得聲稱credentials_read=false。沒有秘密寫入Git或報告。本報告僅保存非秘密事件描述。已關閉測試modal並離開產生結果頁。不要再使用此憑證完成上線；先由本人在事件專用Token20932040的Regenerate頁重新產生，使舊值失效，再填入兩job並Save。MIS Token、Secrets、排程均未動。
 
 接續禁止：不要getTab/getAXState/snapshot任何產生新Token結果頁；既有句柄只導航到已驗證安全detail/Common。不要whole dialog allTextContents（包含隱藏raw request）；測試結果只能指定可見status元素例如204 No Content，且不可讀Raw request/headers。不要讀Authorization Value、clipboard或截圖Advanced。輪替後兩筆HTTP實測、event-only Run與防重複收據確認才可Enable。
+
+
+## 輪替後安全重測未通過（2026-10-10T23:59:59.400Z）
+
+使用者回覆已Regenerate並分別貼入Save兩event jobs。晚間8618694及晨間8618691以未儲存self_test=true本文重測均HTTP401 Unauthorized。僅查精確status元素isVisible，未讀任何secret Value、Raw request、dialog全文或GitHub產生Token頁；新秘密沒有取得／輸出。401原因未確認，不可推斷一定Token過期或權限問題。兩jobs保持disabled，本地測試本文已恢復self_test=false；沒有新GitHub event Run成功證據，也沒有來源／MIS請求。前次HTTP204 run38096440156只屬已要求輪替的旧憑證，不代替本輪通過。
+
+已把晨間Authorization Value聚焦並選取，必須本人核對新完整Token與Bearer＋一個空格格式、Save；若新值已遺失，只能本人再Regenerate，不可讀clipboard／猜測／取回舊值。接續agent只讀targeted可見HTTPstatus，兩筆均204＋GitHubevent-only成功後才能啟用。保留MIS、正式網站、既有來源及基金重要性模型不變。
