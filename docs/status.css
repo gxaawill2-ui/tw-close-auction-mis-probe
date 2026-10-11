@@ -56,3 +56,5 @@
 .event-description a{font-size:10px;color:#b7caff;margin-left:10px}.event-calendar{margin-top:24px;border-top:1px solid var(--line)}
 .stock-event-note{font-size:10px;color:#bac9df;white-space:normal;max-width:180px;margin-top:7px;line-height:1.5;overflow-wrap:anywhere}
 @media(max-width:900px){.event-today{padding:13px 14px}.event-row{grid-template-columns:83px minmax(0,1fr);gap:10px}.event-calendar .list-heading{gap:12px}.stock-event-note{max-width:none}.event-description strong{font-size:11px}}
+
+.market-metrics{display:flex;flex-wrap:wrap;gap:14px 28px;margin:12px 0}.market-metrics div{min-width:125px}.market-metrics dt{color:var(--muted,#9baac3);font-size:.8rem}.market-metrics dd{margin:4px 0;font-weight:600}.market-closing h2{font-size:1rem;overflow-wrap:anywhere}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "timezone": "Asia/Taipei",
+  "trade_date": "2026-10-11",
+  "market_scope": "TWSE_ORDINARY_EQUITY_REGULAR_BOARD_LOT_1330_1333_V1",
+  "market_state": "HOLIDAY",
+  "closing_auction_turnover_twd": null,
+  "daily_turnover_twd": null,
+  "closing_turnover_share_pct": null,
+  "historical_median_share_pct": null,
+  "historical_median_60_share_pct": null,
+  "historical_p90_60_share_pct": null,
+  "relative_multiple": null,
+  "historical_sample_count": 0,
+  "historical_sample_count_60": 0,
+  "threshold_version": "closing-share-candidate-v1",
+  "threshold_status": "PROVISIONAL",
+  "is_closing_volume_spike": null,
+  "provisional_rule_result": null,
+  "status": "HOLIDAY",
+  "source_quality": "UNVERIFIED",
+  "missing_stocks": [],
+  "coverage_ratio": null,
+  "official_reconciliation": {
+    "status": "UNKNOWN"
+  },
+  "source_evidence": [],
+  "research_observations": {},
+  "generated_at": "2026-10-11T08:46:03.965132+08:00",
+  "information_available_as_of": "2026-10-11T08:46:03.965132+08:00",
+  "reason": "OFFICIAL_CALENDAR_CLOSED"
+}

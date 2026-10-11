@@ -9,7 +9,8 @@
   <title>台股尾盤 ±3% 自動選股看板</title>
   <link rel="stylesheet" href="status.css?v=events1-darkonly">
   <script defer src="status.js?v=dashboard1"></script>
-  <script defer src="events.js?v=events2"></script>
+  <script defer src="events.js?v=events4"></script>
+  <script defer src="market-closing.js?v=market1"></script>
 </head>
 <body>
 <main>
@@ -25,6 +26,12 @@
   </section>
   <section class="status-line" aria-live="polite"><h2 id="headline">正在讀取今日資料</h2><p id="message">打開網頁後自動載入，無須操作。</p></section>
   <p id="network" class="network" role="status"></p>
+  <section class="event-today market-closing" aria-label="上市普通股收盤成交金額研究">
+    <h2>今日加權指數尾盤是否爆大量：<span id="market-closing-state">尚未確認</span></h2>
+    <p class="event-note">指標範圍：TWSE 上市普通股一般整股交易；加權指數本身沒有成交量。</p>
+    <dl class="market-metrics"><div><dt>最後一盤成交值</dt><dd id="market-closing-turnover">—</dd></div><div><dt>全日成交值</dt><dd id="market-daily-turnover">—</dd></div><div><dt>收盤占比</dt><dd id="market-closing-share">—</dd></div><div><dt>前 20 有效日中位數</dt><dd id="market-closing-median">—</dd></div><div><dt>相對歷史倍數</dt><dd id="market-closing-multiple">—</dd></div></dl>
+    <p id="market-closing-note" class="event-note">尚未取得完整同範圍證據；資料缺漏不等於沒有爆量。</p>
+  </section>
   <section class="event-today" aria-label="今日指數調整事件">
     <p class="eyebrow">指數與 ETF 調整 · 補充研究資訊</p>
     <h2 id="event-today-title">事件資料確認中</h2>
@@ -36,7 +43,7 @@
   <div id="desktop-wrap" class="desktop-wrap" hidden><table id="candidate-table"><caption class="sr-only">今日尾盤 ±3% 股票，成交量單位為張</caption><thead><tr><th>股票</th><th>市場</th><th>尾盤漲跌</th><th>13:25 前價</th><th>收盤價</th><th>最後成交時間</th><th>最後一盤量<br><small>張</small></th><th>全日盤中量<br><small>張</small></th><th>收盤量占比</th><th>價格核對</th><th>研究可信程度</th></tr></thead><tbody id="desktop-list"></tbody></table></div>
   <p id="empty" class="empty">正在確認當日結果…</p>
   <section class="event-calendar" aria-label="近期重要調整日期">
-    <div class="list-heading"><h2>近期指數調整日期</h2><span id="event-range">未來 30 天</span></div>
+    <div class="list-heading"><h2>下一個值得觀察的指數／ETF 實質調整日</h2><span id="event-range">未來 30 天</span></div>
     <p class="event-note">公告、生效不等於實際換股。預估日期只供觀察；ETF 實際交易可能分多日完成。</p>
     <ul id="event-upcoming" class="event-list"></ul><p id="event-empty" class="event-note"></p>
   <p class="event-note"><a href="fund-events.html">ETF 調整重要程度、理由與完整唯讀清單</a></p></section>

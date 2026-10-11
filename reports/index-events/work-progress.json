@@ -63,5 +63,23 @@
     "horizontal_overflow": false,
     "oct08_candidate_blob": "247dbe4bf7f149950a6196ad59119a65be25599f",
     "oct11_homepage": "HOLIDAY; no historical candidates mislabeled as today"
+  },
+  "stage4": {
+    "updated_at": "2026-10-11T00:53:51.901526+00:00",
+    "branch": "work/stage4-20261011",
+    "status": "FEATURE_FIRST_CI_PASS_FINAL_RELAY_REGRESSIONS_PENDING",
+    "baseline_main": "e0aaf9b77c899f6cb02f9a5d23b7c1292f5caead",
+    "latest_main_at_receipt": "39036180e0a9bb04d404ec573e3bc3e73389784b",
+    "external_timed_run": 38098926958,
+    "external_timed_result": "RECOVERED_BY_BACKUP",
+    "app": "NOT_ACTIVATED_AUTH_REQUIRED",
+    "existing_pat_backups_preserved": true,
+    "new_python_tests_total": 260,
+    "new_node_tests_total": 64,
+    "market_valid_historical_samples": 0,
+    "mis_unchanged": true,
+    "first_hosted_ci": 38100089509,
+    "first_hosted_browser_scenarios": 51,
+    "official_source_probe": "reports/market-closing-volume/official-source-probe.json"
   }
 }

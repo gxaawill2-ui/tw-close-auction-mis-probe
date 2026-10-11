@@ -96,3 +96,8 @@ GitHub查詢仍僅找到native38029017422、37957502210；17:20新的Run截至�
 重要範圍：首次真正timer08:35／17:35尚未到達／觀察，不能把self_test=true成功寫成production source scan、RECOVERED_BY_BACKUP或DUPLICATE_SUCCESS實測。原始native預定日期仍UNKNOWN；兩clock cron晚到送達先前已證實，準時性不冒稱。下一步僅讀actual workflow_dispatch與date-slot receipts／publish ack；jobs已自動運作，不需使用者每天操作。事件憑證保留30天選定到期2026-11-10，需要本人安全更新，不能承諾無期限免維護。GitHub API／runner是共同故障點，外部timer不等於獨立運算備援。
 
 先前秘密觀測失誤已告知使用者並要求輪替，本報告保留事件歷史；新憑證config已HTTP驗證，沒有秘密寫入Git。來源授權、TPEx完整主檔、未來基金實際委託時間無新可靠來源，保持PARTIAL／UNKNOWN，不重做研究或捏造解決。
+
+
+## Stage 4隔離開發保存 2026-10-11T00:53:51.901526+00:00
+
+work/stage4-20261011從e0基線建立；最新main39036180保留08:35timerbot提交。真實38098926958已RECOVERED_BY_BACKUP、1scan／無重複，sourcePARTIAL。新GitHub App中繼已實作但未註冊／安裝／部署／切換，現有8618691／8618694不碰。實質closewatch UI＋独立量能unknown/provisional累積完成，260Python62Node PASS、瀏覽器需hostedCI。10/8原zip僅本機重讀，池內1035/1082證據，47缺漏與混合official分母使正式値null；首次派生時間10/11，禁止偽回填。繼續從branch測試與報告，不用dirty舊mis-dashboard。先完成独立部署／網站验收，再最少必要App與Cloudflare本人安全授權，PAT新模式確認成功後才撤銷。
