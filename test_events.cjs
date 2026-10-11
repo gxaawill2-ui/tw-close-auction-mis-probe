@@ -83,7 +83,7 @@ test('expected multiday status supported without upgrading to official close',()
 });
 
 test('per-fund priorities and date evidence are separate DOM labels',()=>{
- const d=copy(data);d.events[0].closing_impact_date='2026-10-20';
+ const d=copy(data);d.events[0].closing_impact_date='2026-10-20';d.events[0].related_etf_codes=['0050','0051'];
  const funds={fund_events:[{event_id:'e1',fund_code:'0050',fund_name:'test large',importance_level:'HIGH',importance_confidence:'PROVISIONAL',information_available_as_of:seen},{event_id:'e1',fund_code:'0051',fund_name:'test small',importance_level:'MEDIUM',importance_confidence:'PROVISIONAL',information_available_as_of:seen}]};
  const doc=dom();ui.render(doc,ui.model(now,d,health,'',funds));
  assert.match(doc.getElementById('event-upcoming').textContent,/0050 test large · 重要程度：高（暫定）/);

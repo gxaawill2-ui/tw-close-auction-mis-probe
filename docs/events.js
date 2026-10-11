@@ -30,7 +30,7 @@
  }
  function model(now,data,health,error='',fundData=null){
   let events=[];try{if(data)events=valid(data,now).events;}catch(e){error=e.message;}
-  events=events.map(e=>({...e,material_summary:materialInfo(e,now),fund_events:(fundData?.fund_events||[]).filter(r=>r.event_id===e.event_id&&Date.parse(r.information_available_as_of)<=now.getTime())}));
+  events=events.map(e=>({...e,material_summary:materialInfo(e,now),fund_events:e.related_etf_codes.map(code=>(fundData?.fund_events||[]).find(r=>r.event_id===e.event_id&&r.fund_code===code&&Date.parse(r.information_available_as_of)<=now.getTime())||{fund_code:code,importance_level:'DATA_INSUFFICIENT'})}));
   const day=taipei(now),limit=new Date(day+'T12:00:00Z');limit.setUTCDate(limit.getUTCDate()+30);
   const end=limit.toISOString().slice(0,10),entries=[];
   for(const event of events){
@@ -51,7 +51,7 @@
    note:(incomplete?'部分官方來源未能完整取得，調整事件可能有缺漏。':'已完成已設定官方來源掃描。')+(conflicts?' '+conflicts+' 筆來源日期衝突，暫不列入。':'')+' 最後資料確認：'+(data?.generated_at||'尚未取得')};
  }
  function fundLabels(rows){
-  return rows.slice().sort((a,b)=>({HIGH:0,MEDIUM:1,LOW:2,DATA_INSUFFICIENT:3}[a.importance_level]??3)-({HIGH:0,MEDIUM:1,LOW:2,DATA_INSUFFICIENT:3}[b.importance_level]??3)||a.fund_code.localeCompare(b.fund_code)).map(r=>'<div class="fund-priority">'+esc(r.fund_code+' '+(r.fund_name||''))+' · 重要程度：'+esc(priorities[r.importance_level]||'資料不足')+(r.importance_confidence==='PROVISIONAL'?'（暫定）':'')+'</div>').join('');
+  return rows.slice().sort((a,b)=>({HIGH:0,MEDIUM:1,LOW:2,DATA_INSUFFICIENT:3}[a.importance_level]??3)-({HIGH:0,MEDIUM:1,LOW:2,DATA_INSUFFICIENT:3}[b.importance_level]??3)||a.fund_code.localeCompare(b.fund_code)).map(r=>'<div class="fund-priority">'+esc(r.fund_code+(r.fund_name?' '+r.fund_name:''))+' · 重要程度：'+esc(priorities[r.importance_level]||'資料不足')+(r.importance_confidence==='PROVISIONAL'?'（暫定）':'')+'</div>').join('');
  }
  function htmlEntry(x){
   const e=x.event,expected=e.event_status==='EXPECTED'||['closing_impact_date','implementation_window'].includes(x.type)&&e.close_date_status!=='CONFIRMED_CLOSE_IMPLEMENTATION';
@@ -66,7 +66,7 @@
    if(items.length===1)return htmlEntry(items[0]);
    const x=items[0],e=x.event,etfs=[...new Set(items.flatMap(v=>v.event.related_etf_codes))];
    const entry={...x,event:{...e,event_name:e.source_organization+' 指數定審 · '+items.length+' 項',related_etf_codes:etfs,
-     fund_events:items.flatMap(v=>v.event.fund_events||[]),index_name:items.map(v=>v.event.index_name.replace(/^臺灣指數公司/,'')).join('；')}};
+     fund_events:items.flatMap(v=>v.event.fund_events||[]),material_summary:[...new Set(items.map(v=>v.event.index_name+'：'+v.event.material_summary))].join('；'),index_name:items.map(v=>v.event.index_name.replace(/^臺灣指數公司/,'')).join('；')}};
    return htmlEntry(entry);
   }).join('');
  }

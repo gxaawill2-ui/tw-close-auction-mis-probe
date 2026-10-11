@@ -48,3 +48,5 @@ test('network error uses bounded lease and two attempts without revealing creden
  global.fetch=async()=>{calls++;throw Error('synthetic transport failure');};
  try{let r=await gate.fetch(req({schedule_slot:'17:20',self_test:true}));assert.equal(r.status,503);assert.doesNotMatch(await r.text(),/synthetic|PRIVATE|Bearer/);assert.equal((await gate.fetch(req({schedule_slot:'17:20',self_test:true}))).status,200);clock+=61000;assert.equal((await gate.fetch(req({schedule_slot:'17:20',self_test:true}))).status,503);clock+=61000;assert.equal((await gate.fetch(req({schedule_slot:'17:20',self_test:true}))).status,429);assert.equal(calls,2);}finally{global.fetch=originalFetch;Date.now=originalNow;}
 });
+
+test('stalled response body is cancelled within bounded timeout',async()=>{const m=await load;let cancelled=false;const r=new Response(new ReadableStream({cancel(){cancelled=true;}}));await assert.rejects(m.boundedText(r,256,15),/BODY_TIMEOUT/);assert.equal(cancelled,true);});

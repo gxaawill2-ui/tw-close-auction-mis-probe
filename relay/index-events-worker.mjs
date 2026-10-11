@@ -6,11 +6,11 @@ const encoder=new TextEncoder();
 const reply=(status,result)=>new Response(JSON.stringify({result}),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store'}});
 const b64=x=>btoa(String.fromCharCode(...new Uint8Array(x))).replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_');
 const encode=x=>b64(encoder.encode(JSON.stringify(x)));
-async function boundedText(request,limit){
+export async function boundedText(request,limit,timeoutMs=6500){
  const reader=request.body?.getReader();if(!reader)return '';
- const chunks=[];let length=0;
- try{for(;;){const {done,value}=await reader.read();if(done)break;length+=value.byteLength;if(length>limit){await reader.cancel();throw new Error('TOO_LARGE');}chunks.push(value);}}
- finally{reader.releaseLock();}
+ const chunks=[];let length=0,timedOut=false;const timer=setTimeout(()=>{timedOut=true;reader.cancel().catch(()=>{});},timeoutMs);
+ try{for(;;){const {done,value}=await reader.read();if(timedOut)throw new Error('BODY_TIMEOUT');if(done)break;length+=value.byteLength;if(length>limit){await reader.cancel();throw new Error('TOO_LARGE');}chunks.push(value);}}
+ finally{clearTimeout(timer);reader.releaseLock();}
  const joined=new Uint8Array(length);let offset=0;for(const chunk of chunks){joined.set(chunk,offset);offset+=chunk.length;}
  return new TextDecoder().decode(joined);
 }
@@ -41,7 +41,7 @@ export async function appJWT(env,now){
 }
 async function github(url,token,body,fetcher=fetch){
  const control=new AbortController(),timer=setTimeout(()=>control.abort(),6500);
- try{return await fetcher(url,{method:'POST',redirect:'error',signal:control.signal,headers:{'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2026-03-10','Content-Type':'application/json','User-Agent':'tw-index-events-app-relay'},body:JSON.stringify(body)});}finally{clearTimeout(timer);}
+ const started=Date.now();try{const response=await fetcher(url,{method:'POST',redirect:'error',signal:control.signal,headers:{'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2026-03-10','Content-Type':'application/json','User-Agent':'tw-index-events-app-relay'},body:JSON.stringify(body)});if(response.status===204)return response;const text=await boundedText(response,32768,Math.max(1,6500-(Date.now()-started)));return new Response(text,{status:response.status,headers:response.headers});}finally{clearTimeout(timer);}
 }
 export async function dispatch(env,slot,selfTest,now,fetcher=fetch){
  if(!/^[1-9]\d{0,15}$/.test(env.APP_INSTALLATION_ID||''))throw new Error('CONFIG');
@@ -50,7 +50,7 @@ export async function dispatch(env,slot,selfTest,now,fetcher=fetch){
  const r=await github('https://api.github.com/app/installations/'+env.APP_INSTALLATION_ID+'/access_tokens',jwt,{repository_ids:[REPO_ID],permissions:{actions:'write',metadata:'read'}},fetcher);
  if(r.status!==201)throw new Error('TOKEN_HTTP_'+r.status);
  const data=JSON.parse(await boundedText(r,32768)),expires=Date.parse(data.expires_at);
- if(typeof data.token!=='string'||!Number.isFinite(expires)||expires<now+60000||expires>now+3660000||data.permissions?.actions!=='write'||Object.keys(data.permissions||{}).some(k=>!['actions','metadata'].includes(k))||!Array.isArray(data.repositories)||data.repositories.length!==1||data.repositories[0].id!==REPO_ID||data.repositories[0].full_name!==REPO)throw new Error('TOKEN_SCOPE');
+ if(typeof data.token!=='string'||!Number.isFinite(expires)||expires<now+60000||expires>now+3660000||data.permissions?.actions!=='write'||data.permissions?.metadata!=='read'||Object.keys(data.permissions||{}).some(k=>!['actions','metadata'].includes(k))||!Array.isArray(data.repositories)||data.repositories.length!==1||data.repositories[0].id!==REPO_ID||data.repositories[0].full_name!==REPO)throw new Error('TOKEN_SCOPE');
  const sent=await github(DISPATCH,data.token,{ref:'main',inputs:{schedule_slot:slot,self_test:selfTest}},fetcher);
  if(sent.status===204)return {result:'DISPATCH_ACCEPTED',workflow_run_id:null};
  if(sent.status!==200)throw new Error('DISPATCH_HTTP_'+sent.status);
