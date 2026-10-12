@@ -1,11 +1,11 @@
 {
   "event": "schedule",
-  "cron": "40,50 5 * * 1-5",
+  "cron": "",
   "declared_source": "manual",
   "source_verified": false,
   "mode": null,
-  "run_id": "38256016661",
-  "runner_started_at": "2026-10-12T21:29:20.287+08:00",
-  "received_at": "2026-10-12T21:29:22.216+08:00",
-  "updated_at": "2026-10-12T21:29:25.257+08:00"
+  "run_id": "38275598208",
+  "runner_started_at": "2026-10-13T00:11:10.764+08:00",
+  "received_at": "2026-10-13T00:11:10.764+08:00",
+  "updated_at": "2026-10-13T00:11:18.306+08:00"
 }
