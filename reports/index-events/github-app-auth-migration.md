@@ -1,3 +1,19 @@
+## 2026-10-12 15:10 台北：晚間 caller 與 production Durable Object 防重複實測通過
+
+最新狀態覆蓋下方12:55 checkpoint的尚待防重複／晨間儲存描述，歷史保留。
+
+- 本人於13:57回報已按 SAVE 保存晨間8618691；依此前指示正式body為 `{"schedule_slot":"08:20","self_test":false}`、08:35 Asia/Taipei。此為本人保存回報；agent雲端登入已失效，尚未獨立重讀已保存設定或觀察明日08:35首次App正式run。
+- 晚間8618694的原有設定畫面實際確認每日17:35、Asia/Taipei、Enable job開啟、Save responses關閉；截至修改前URL仍為GitHub index-events.yml dispatch。未更改排程時間／時區／啟用狀態。
+- 本人在晚間既有工作安全欄位更換caller header並使用Worker /dispatch、自測17:20,true。2026-10-12 15:10提供的安全Response截圖證明HTTP200、128ms、X-Relay-Build=20261012-manual-redirect-fix、`{"result":"DUPLICATE_ACCEPTED"}`。
+- 這是**真實production Worker與現有Durable Object的第二次同日self-test防重複證據**：caller auth通過且先前accepted ledger仍在部署後生效；不重新dispatch，不增加slot attempts／daily budget。未取得私鑰、CALLER_SECRET或Installation Token，也未讀取Raw Request。
+- agent重新讀GitHub workflow_dispatch全部51個run（single page per_page100），App actor只有原本run38205706376（04:54:52Z、completed/success），沒有本次15:10新增App run；因此HTTP防重複結果與GitHub實際執行數一致。
+- **晚間正式保存仍待本人執行**：CLOSE→將Request body改成 `{"schedule_slot":"17:20","self_test":false}`→SAVE；保持已驗證的Worker URL／caller header、17:35 Asia/Taipei。不得把true保存為每日正式掃描設定。
+- 今日17:35以及明日08:35首次App正式定時觸發仍待驗收：核對cron history的Worker回應、App actor真實Run ID／結論、slot receipt、來源掃描／資料提交或原生已完成時的去重收據。自測及duplicate成功不代表正式來源已掃描。
+- 原生08:20／17:20、MIS全部排程／tokens／logic／历史raw保持未修改；本次僅更新三份事件報告。舊PAT仍保留，尚未確認其所有其他服務依賴；不得撤銷，尤其不得影響既有MIS cron。
+- 此次以最新main `2fafea30d5a41b772400ecd24a9756a13349f22c`為parent並以expected_sha lease更新，保留12:55後的資料／MIS自動提交，不用先前固定SHA覆蓋。
+
+---
+
 ## 最新驗收狀態：真實 GitHub App 自測成功（2026-10-12）
 
 本節更新取代下方歷史段落中的「真實 App 尚未驗證」狀態；歷史錯誤與修復證據保留。
