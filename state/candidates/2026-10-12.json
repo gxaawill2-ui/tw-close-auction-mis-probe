@@ -3,7 +3,7 @@
   "trade_date": "2026-10-12",
   "generated_at": "2026-10-12T13:34:15.377+08:00",
   "published_at": "2026-10-12T13:34:24.319+08:00",
-  "updated_at": "2026-10-12T15:20:28.318+08:00",
+  "updated_at": "2026-10-12T17:51:23.250+08:00",
   "publication_mode": "LIVE",
   "capture_run_id": "38206109096",
   "source_artifact": "mis-probe-38206109096",
@@ -208,7 +208,7 @@
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "MATCH",
-      "postmarket_verified_at": "2026-10-12T15:20:22.625+08:00",
+      "postmarket_verified_at": "2026-10-12T17:50:20.701+08:00",
       "official_close": "40.90"
     },
     {
@@ -400,7 +400,7 @@
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "MATCH",
-      "postmarket_verified_at": "2026-10-12T15:20:22.625+08:00",
+      "postmarket_verified_at": "2026-10-12T17:50:20.701+08:00",
       "official_close": "374.50"
     },
     {
@@ -592,7 +592,7 @@
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "MATCH",
-      "postmarket_verified_at": "2026-10-12T15:20:22.625+08:00",
+      "postmarket_verified_at": "2026-10-12T17:50:20.701+08:00",
       "official_close": "22.45"
     },
     {
@@ -784,7 +784,7 @@
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "MATCH",
-      "postmarket_verified_at": "2026-10-12T15:20:22.625+08:00",
+      "postmarket_verified_at": "2026-10-12T17:50:20.701+08:00",
       "official_close": "18.90"
     },
     {
@@ -976,13 +976,13 @@
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "MATCH",
-      "postmarket_verified_at": "2026-10-12T15:20:22.625+08:00",
+      "postmarket_verified_at": "2026-10-12T17:50:20.701+08:00",
       "official_close": "19.00"
     }
   ],
   "publication_code_sha": "70024931829067e07525babdba1c3aafa4d97090",
   "price_limitation": "P_before is converged MIS research evidence, without independent official pre-13:25 validation.",
   "price_fingerprint": "3a33485222c2fc9cee792812504417c747a4b1fa0be15a6c9451251c7329e78b",
-  "postmarket_verified_at": "2026-10-12T15:20:22.625+08:00",
-  "official_validation_run_id": "38217158595"
+  "postmarket_verified_at": "2026-10-12T17:50:20.701+08:00",
+  "official_validation_run_id": "38232438872"
 }
