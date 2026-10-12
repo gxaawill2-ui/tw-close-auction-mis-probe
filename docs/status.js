@@ -111,7 +111,7 @@
     doc.getElementById('mobile-sort').hidden=!view.rows.length;
     set('sort-summary',sort?SORT_FIELDS[sort.key]+' '+(sort.direction==='asc'?'↑ 由小到大':'↓ 由大到小'):'依漲跌幅絕對值排序');
     for(const button of doc.querySelectorAll('[data-sort-key]')){
-      const active=sort?.key===button.dataset.sortKey,arrow=active?(sort.direction==='asc'?'↑':'↓'):'';
+      const active=sort?.key===button.dataset.sortKey,arrow=active?(sort.direction==='asc'?'↑':'↓'):'⇅';
       button.querySelector('.sort-arrow').textContent=arrow;
       button.closest('th').setAttribute('aria-sort',active?(sort.direction==='asc'?'ascending':'descending'):'none');
     }

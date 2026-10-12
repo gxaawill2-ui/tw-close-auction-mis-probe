@@ -46,6 +46,23 @@ test('native desktop buttons bind, render immediately and keep the active sort a
  d.querySelector('[data-sort-key="closing_auction_volume"]').click();assert.equal(sort.direction,'asc');
  ui.render(d,v,sort);assert.equal(d.querySelector('th[aria-sort="ascending"] button').dataset.sortKey,keys[0]);
 });
+test('idle arrows are visible in static HTML and rendering; active arrows follow aria-sort',()=>{
+ const d=doc(),v=view();
+ assert.deepEqual([...d.querySelectorAll('.sort-arrow')].map(x=>x.textContent),['⇅','⇅','⇅']);
+ ui.render(d,v);assert.deepEqual([...d.querySelectorAll('.sort-arrow')].map(x=>x.textContent),['⇅','⇅','⇅']);
+ for(const key of keys)for(const direction of ['desc','asc']){
+  ui.render(d,v,{key,direction});
+  for(const button of d.querySelectorAll('[data-sort-key]'))assert.equal(button.querySelector('.sort-arrow').textContent,button.dataset.sortKey===key?(direction==='desc'?'↓':'↑'):'⇅');
+ }
+});
+test('sort styles reserve the same icon slot and extend native button hit area without changing header spacing',()=>{
+ const css=fs.readFileSync('docs/status.css','utf8');
+ assert.match(css,/\.sort-arrow\{[^}]*width:1em;min-width:1em;color:#8798ad/);
+ assert.match(css,/th\[aria-sort="ascending"\] \.sort-arrow,th\[aria-sort="descending"\] \.sort-arrow\{color:#8aa8ff\}/);
+ assert.match(css,/th button::before\{content:"";position:absolute;inset:0\}/);
+ assert.match(css,/th\[aria-sort\]:hover,th\[aria-sort\]:focus-within\{background:#2b3a53\}/);
+ assert.match(css,/th button\{font:inherit;[^}]*padding:8px 0/);
+});
 test('unconfirmed relation uses exact text; official match label and evidence remain intact',()=>{
  const label='ETF／指數換股關聯：資料不足，尚無法確認';
  assert.equal(events.relation({code:'2330',market:'TWSE'},[],'2026-10-08','2026-10-08T18:30:00+08:00').label,label);
