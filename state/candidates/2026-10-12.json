@@ -3,7 +3,7 @@
   "trade_date": "2026-10-12",
   "generated_at": "2026-10-12T13:34:15.377+08:00",
   "published_at": "2026-10-12T13:34:24.319+08:00",
-  "updated_at": "2026-10-12T14:50:29.526+08:00",
+  "updated_at": "2026-10-12T15:20:28.318+08:00",
   "publication_mode": "LIVE",
   "capture_run_id": "38206109096",
   "source_artifact": "mis-probe-38206109096",
@@ -204,12 +204,12 @@
         "cumulative_delta_raw": "5",
         "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
         "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00",
-        "official_daily_shares": null,
+        "official_daily_shares": "62,391",
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
-      "official_price_result": "PENDING",
-      "postmarket_verified_at": "2026-10-12T14:50:22.526+08:00",
-      "official_close": null
+      "official_price_result": "MATCH",
+      "postmarket_verified_at": "2026-10-12T15:20:22.625+08:00",
+      "official_close": "40.90"
     },
     {
       "code": "6983",
@@ -396,12 +396,12 @@
         "cumulative_delta_raw": "12",
         "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
         "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00",
-        "official_daily_shares": null,
+        "official_daily_shares": "119,525",
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
-      "official_price_result": "PENDING",
-      "postmarket_verified_at": "2026-10-12T14:50:22.526+08:00",
-      "official_close": null
+      "official_price_result": "MATCH",
+      "postmarket_verified_at": "2026-10-12T15:20:22.625+08:00",
+      "official_close": "374.50"
     },
     {
       "code": "8489",
@@ -588,12 +588,12 @@
         "cumulative_delta_raw": "11",
         "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
         "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00",
-        "official_daily_shares": null,
+        "official_daily_shares": "64,558",
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
-      "official_price_result": "PENDING",
-      "postmarket_verified_at": "2026-10-12T14:50:22.526+08:00",
-      "official_close": null
+      "official_price_result": "MATCH",
+      "postmarket_verified_at": "2026-10-12T15:20:22.625+08:00",
+      "official_close": "22.45"
     },
     {
       "code": "3349",
@@ -780,12 +780,12 @@
         "cumulative_delta_raw": "5",
         "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
         "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00",
-        "official_daily_shares": null,
+        "official_daily_shares": "48,200",
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
-      "official_price_result": "PENDING",
-      "postmarket_verified_at": "2026-10-12T14:50:22.526+08:00",
-      "official_close": null
+      "official_price_result": "MATCH",
+      "postmarket_verified_at": "2026-10-12T15:20:22.625+08:00",
+      "official_close": "18.90"
     },
     {
       "code": "4171",
@@ -972,17 +972,17 @@
         "cumulative_delta_raw": "66",
         "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
         "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00",
-        "official_daily_shares": null,
+        "official_daily_shares": "1,524,484",
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
-      "official_price_result": "PENDING",
-      "postmarket_verified_at": "2026-10-12T14:50:22.526+08:00",
-      "official_close": null
+      "official_price_result": "MATCH",
+      "postmarket_verified_at": "2026-10-12T15:20:22.625+08:00",
+      "official_close": "19.00"
     }
   ],
   "publication_code_sha": "70024931829067e07525babdba1c3aafa4d97090",
   "price_limitation": "P_before is converged MIS research evidence, without independent official pre-13:25 validation.",
   "price_fingerprint": "3a33485222c2fc9cee792812504417c747a4b1fa0be15a6c9451251c7329e78b",
-  "postmarket_verified_at": "2026-10-12T14:50:22.526+08:00",
-  "official_validation_run_id": "38214496485"
+  "postmarket_verified_at": "2026-10-12T15:20:22.625+08:00",
+  "official_validation_run_id": "38217158595"
 }
