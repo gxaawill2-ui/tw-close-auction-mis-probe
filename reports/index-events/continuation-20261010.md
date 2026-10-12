@@ -166,3 +166,18 @@ cron-job.org官方前端frontend/src/components/jobs/JobTestRun.jsx確認只有J
 接續僅在新版health build確認後重測一次；本人只需關閉舊modal→TEST RUN，不Save，不Raw request。若显示Response内容，只提供result文字（不提供Authorization）；如果ATTEMPT_LIMIT/429則停止晨間重試，使用既有允許的晚間self_test槽位，不清除DO計數。正式App receipt仍待成功、舊PAT兩job仍保持運作、MIS仍未改。
 
 官方介面實作：https://github.com/pschlan/cron-job.org/blob/master/frontend/src/components/jobs/JobTestRun.jsx
+
+
+## 2026-10-12 診斷正式部署驗證（2026-10-12T04:23:19.524Z）
+
+最新狀態：AUTH_SELF_TEST_503_UNRESOLVED; SAFE_DIAGNOSTIC_RETRY_READY。本人自測503未通過；不是正式遷移成功。本人正在自己的瀏覽器操作，原雲端未儲存草稿不會同步至本人瀏覽器。
+
+- 診斷程式commit9954149dd4399d2352cff98daa5abb7243cc9131，Cloudflare check114661464629（Workers Builds: tw-index-events-relay）completed/success；production build fcaead20-5ff4-4dd1-9f62-d28383c9d1e3。
+- 實際HTTP 2026-10-12T04:20:50Z /health=200，X-Relay-Build=20261012-diagnostics2；最新未授權/dispatch=401/UNAUTHORIZED。已驗證實際部署，不僅是GitHub程式完成。
+- Hosted回歸Run38203361545，regressions job114661381507 completed/success，260 Python tests、70 Node tests/pass70/fail0、desktop/mobile/WebKit fixtures result=PASS；16 relay tests包含在Node測試內。額外public Pages驗收job仍在執行時，不把整個run提前宣稱全部完成。上述無MIS請求，只測試fixture及事件來源read-only隔離證據。
+- 自測失敗僅在self_test=true回HTTP200與明確SELF_TEST_FAILED result，因cron官方UI只對成功HTTP展示response；這個200不是App授權成功。production false仍503，未授權仍401。安全錯誤代碼不含原exception／upstream body／auth資料。無新端點與無權限擴大。
+- 已告知本人CLOSE→TEST RUN僅重測一次、只查看Response.result，不Save、不Raw request、不提供Secret。若HTTP202／DISPATCH_ACCEPTED仍需新的真正GitHub App actor/run/jobs/receipt；若SELF_TEST_FAILED須依精確safe_code修復；若429／attempt-limit不得持續重試或清ledger。
+- 兩個既有PAT備援及原生排程保持；本人未回報已Save正式切換，本輪也沒有保存／停用任何cron工作。MIS程式、Token、Secrets、盤中盤後jobs與價格策略均未修改。舊PAT仍需要，未撤銷。
+
+以下歷史狀態保留；以本節及後續新證據為準。
+
