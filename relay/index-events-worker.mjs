@@ -3,12 +3,12 @@ const REPO='gxaawill2-ui/tw-close-auction-mis-probe';
 const REPO_ID=1395186758;
 const DISPATCH='https://api.github.com/repos/'+REPO+'/actions/workflows/index-events.yml/dispatches';
 const encoder=new TextEncoder();
-const BUILD='20261012-diagnostics3';
+const BUILD='20261012-manual-redirect-fix';
 const reply=(status,result)=>new Response(JSON.stringify({result}),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store','X-Relay-Build':BUILD}});
 // Return only a closed set of diagnostic codes, never exception text or upstream bodies.
 export function failureCode(error){
  const message=error?.message;
- if(typeof message==='string'&&message.length<64&&/^(CONFIG|KEY_FORMAT|TOKEN_SCOPE|DISPATCH_RECEIPT_SCOPE|TOKEN_HTTP_[1-5]\d{2}|DISPATCH_HTTP_[1-5]\d{2}|BODY_TIMEOUT|TOO_LARGE)$/.test(message))return message;
+ if(typeof message==='string'&&message.length<64&&/^(CONFIG|KEY_FORMAT|TOKEN_SCOPE|DISPATCH_RECEIPT_SCOPE|GITHUB_REDIRECT_REJECTED|TOKEN_HTTP_[1-5]\d{2}|DISPATCH_HTTP_[1-5]\d{2}|BODY_TIMEOUT|TOO_LARGE)$/.test(message))return message;
  if(error?.name==='AbortError')return 'UPSTREAM_TIMEOUT';
  if(error?.name==='InvalidCharacterError')return 'KEY_BASE64_INVALID';
  if(error?.name==='NotSupportedError')return 'CRYPTO_UNSUPPORTED';
@@ -58,7 +58,7 @@ export async function appJWT(env,now,onStage=()=>{}){
 }
 async function github(url,token,body,fetcher=fetch){
  const control=new AbortController(),timer=setTimeout(()=>control.abort(),6500);
- const started=Date.now();try{const response=await fetcher(url,{method:'POST',redirect:'error',signal:control.signal,headers:{'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2026-03-10','Content-Type':'application/json','User-Agent':'tw-index-events-app-relay'},body:JSON.stringify(body)});if(response.status===204)return response;const text=await boundedText(response,32768,Math.max(1,6500-(Date.now()-started)));return new Response(text,{status:response.status,headers:response.headers});}finally{clearTimeout(timer);}
+ const started=Date.now();try{const response=await fetcher(url,{method:'POST',redirect:'manual',signal:control.signal,headers:{'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2026-03-10','Content-Type':'application/json','User-Agent':'tw-index-events-app-relay'},body:JSON.stringify(body)});if(response.status>=300&&response.status<400)throw new Error('GITHUB_REDIRECT_REJECTED');if(response.status===204)return response;const text=await boundedText(response,32768,Math.max(1,6500-(Date.now()-started)));return new Response(text,{status:response.status,headers:response.headers});}finally{clearTimeout(timer);}
 }
 export async function dispatch(env,slot,selfTest,now,fetcher=fetch,onStage=()=>{}){
  onStage('INSTALLATION_CONFIG');

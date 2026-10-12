@@ -1,3 +1,19 @@
+## 2026-10-12 真實錯誤已重現並修復（2026-10-12T04:50:45.450Z）
+
+本人安全Response證據：04:38:59Z、build diagnostics3、self-test evening slot，HTTP200、`SELF_TEST_FAILED; TOKEN_REQUEST; RUNTIME_TYPE_ERROR`；caller auth通過且JWT已完成sign，但Installation Token請求未完成。兩morning self-test嘗試已耗盡，evening self-test目前已一失敗；保持所有計數/lease/預算，不重設。
+
+根因：Cloudflare Workers原生Request只接受follow/manual redirect模式；本relay使用Node Fetch可接受、Workers不支持的redirect:error，形成TOKEN_REQUEST TypeError。用官方Miniflare/workerd（5.20261006.1-alpha、requested compatibility_date 2026-10-10）在本機原生runtime，完全自生synthetic key/本機mock upstream重現：修復前TOKEN_REQUEST RUNTIME_TYPE_ERROR，固定本機上游呼叫0，錯誤只分類到redirect；修復後DISPATCH_ACCEPTED、固定本機上游2次（token＋workflow）。這是原生runtime程式修復證據，仍不代表真實App授權已通過。
+
+最終僅更改redirect:error→manual並明確拒絕所有300–399，不跟隨Location，不傳憑證到其他origin，不增加新端點或放寬scope。保留既有source、workflow/main/repo限定、RSA處理、JWT lifetime、tokenscope核對、body/clock窗口、原DO class/key/migration/ledger、兩次slot及六次每日限制。診斷維持封閉enum，新增GITHUB_REDIRECT_REJECTED；build=20261012-manual-redirect-fix。18 Node relay tests PASS，新增301/302/303/307/308拒絕且每案例只1次upstream，無憑證輸出。臨時原生測試套件只在scratch安裝，不改repo package.json/lockfile，不上傳node_modules。機器證據：reports/index-events/github-app-runtime-fix-20261012.json。
+
+需待正式新build header驗證後，只使用同一未儲存晨間job草稿body `{"schedule_slot":"17:20","self_test":true}` **再測一次**；Authorization保留本人輸入的caller值，不讀、不要求重填。只能看到DISPATCH_ACCEPTED後再核對真正App actor/GitHub Run ID/receipt。最後一次evening self-test若仍失敗，不可持續重試/清除ledger/重建DO/放寬限額；先處理精確新錯誤與安全設置，保留正式PAT備援。
+
+尚未Save任何正式cron切換，舊PAT未撤銷且仍需要。MIS所有程式/Token/Secrets/jobs/排程與歷史資料未改。GitHub latest parent/expected_sha保留，不覆蓋botmain。
+
+原生實作依據：https://github.com/cloudflare/workerd/blob/main/src/workerd/api/http.c++ （Request::tryParseRedirect僅follow/manual）
+官方Fetch：https://developers.cloudflare.com/workers/runtime-apis/fetch/
+
+
 ## 2026-10-12 12:29 本人正式自測錯誤已取得
 
 本人提供安全Response畫面：Date=2026-10-12T04:29:41Z、X-Relay-Build=20261012-diagnostics2、HTTP200、result=`SELF_TEST_FAILED; APP_AUTH_AND_DISPATCH; UNCLASSIFIED_ERROR`。這是真實帶CALLER_SECRET的呼叫，本輪沒有讀取秘密值；證明caller authentication及既有DISPATCH_GATE路徑已通過，但JWT／Installation Token／App workflow收據仍未通過。不能把HTTP200當授權成功。原HTTP503與此次共用morning自測day-slot，已做兩次，禁止再次測morning／清除ledger。

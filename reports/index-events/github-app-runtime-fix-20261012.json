@@ -1,0 +1,49 @@
+{
+  "recorded_at": "2026-10-12T04:50:45.450Z",
+  "production_failure": {
+    "response_date": "2026-10-12T04:38:59Z",
+    "build": "20261012-diagnostics3",
+    "http": 200,
+    "result": "SELF_TEST_FAILED; TOKEN_REQUEST; RUNTIME_TYPE_ERROR",
+    "slot": "17:20",
+    "self_test": true
+  },
+  "reproduction": {
+    "runtime": "Cloudflare Miniflare/workerd",
+    "miniflare_version": "5.20261006.1-alpha",
+    "compatibility_date_requested": "2026-10-10",
+    "credentials": "synthetic, generated in memory; no user secrets",
+    "upstream": "local mocked fixed GitHub token/dispatch responses",
+    "before": {
+      "ok": false,
+      "phase": "TOKEN_REQUEST",
+      "code": "RUNTIME_TYPE_ERROR",
+      "diagnostic_terms": [
+        "redirect"
+      ],
+      "upstream_calls": 0
+    },
+    "after": {
+      "ok": true,
+      "phase": "WORKFLOW_DISPATCH",
+      "result": "DISPATCH_ACCEPTED",
+      "upstream_calls": 2
+    }
+  },
+  "fix": {
+    "redirect": "manual",
+    "reject_all_3xx": true,
+    "follow_redirects": false,
+    "new_endpoint": false,
+    "auth_scope_changed": false,
+    "ledger_or_budget_reset": false,
+    "build": "20261012-manual-redirect-fix"
+  },
+  "tests": {
+    "node_relay": 18,
+    "passed": 18,
+    "failed": 0
+  },
+  "real_app_authorization": "STILL_PENDING_REAL_SELF_TEST_RETRY",
+  "mis_modified": false
+}
