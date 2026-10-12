@@ -1,3 +1,30 @@
+## 最新驗收狀態：真實 GitHub App 自測成功（2026-10-12）
+
+本節更新取代下方歷史段落中的「真實 App 尚未驗證」狀態；歷史錯誤與修復證據保留。
+
+| 項目 | 實際證據／狀態 |
+| --- | --- |
+| Production Worker | build `20261012-manual-redirect-fix`；健康檢查 200；來源 commit `2ea1d1551bda414d36aebff180f62a7397fd5086` |
+| 真實 caller 授權 | 本人在 cron-job.org 安全欄位输入既有 CALLER_SECRET；2026-10-12T04:54:52Z（台北12:54:52）自測 POST 回應202，`DISPATCH_ACCEPTED; WORKFLOW_RECEIPT_PENDING` |
+| JWT／Installation Token | 已由實際 Worker → GitHub App workflow run 證實：程式必須完成 JWT 簽名、取得201 token回應並通過期限、actions:write／metadata:read及唯一 repo ID 1395186758 / full_name 檢查，才會 dispatch；未讀取或輸出 JWT/token/私鑰 |
+| 真實 GitHub Run | [38205706376](https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/actions/runs/38205706376)，actor `tw-close-auction-event-backup[bot]`，main `2ea1d1551bda414d36aebff180f62a7397fd5086`，completed/success，結束2026-10-12T04:55:11Z |
+| 自測收據 | job114668615410 `receipt-self-test` success；`python -m unittest test_event_reliability -v`，49 tests OK |
+| Workflow完整狀態 | tests job114668615247 success；scan / public-acceptance / source-smoke 全部 skipped，符合 self_test=true，不做正式來源掃描 |
+| 修復回歸 | sourcefix run38205459124 的 regressions 與 public 均 success；本機18個relay測試PASS；原生 workerd修復重現見runtime-fix報告 |
+| Durable Object | 真實請求已通過現有 DISPATCH_GATE 並記錄 accepted；同日相同self-test再次呼叫的 DUPLICATE_ACCEPTED 實測尚待完成；49項hosted收據測試含重複／lease／晚到原生排程防重複，不能當作第二次production HTTP證據 |
+| 晨間 Job8618691 | 自測使用晨間工作的未儲存草稿與17:20,true；尚未證實保存正式08:20,false。保留08:35 Asia/Taipei |
+| 晚間 Job8618694 | 尚未切換；保留17:35 Asia/Taipei及既有可用PAT路徑 |
+| 正式來源掃描 | 新App路徑尚未正式執行；僅允許既有08:35–09:20／17:35–18:20台北時間窗，午間不可用false測試。晨間舊PAT run38188568709已成功，原有來源狀態PARTIAL |
+| MIS | 本次提交僅relay、relay測試及事件遷移報告；MIS tokens/secrets/workflows/排程/P_before/P_close/±3%/历史資料未修改；hosted test_no_mis_change通過 |
+| 舊PAT | 仍需保留，尚未完成兩工作保存／首次正式執行及其他服務依賴檢查；未撤銷 |
+| 仍須本人處理 | 本人的瀏覽器儲存晨間正式body，再於既有晚間job的安全Authorization欄输入同一CALLER_SECRET、測試／保存；不用再次輸入Google密碼或GitHub App私鑰，不把秘密貼入對話 |
+
+後續順序：先保存8618691的Worker URL、現有已驗證caller header與 `{"schedule_slot":"08:20","self_test":false}`，不改08:35/timezone/啟用狀態。再改8618694的URL/安全caller header，先以 `17:20,true` 驗證同日DO返回DUPLICATE_ACCEPTED並核對沒有新增App run，最後保存 `{"schedule_slot":"17:20","self_test":false}`，不改17:35/timezone。今日17:35及次日08:35首次定時觸發後核對cron history、真實GitHub run與slot receipt；不能因自測成功提前宣稱完整production驗收。
+
+Installation Token每次dispatch取得、只存在該次函式記憶體，不寫入Durable Object/Git/Log；期限檢查限制在短期範圍。跨token到期後重新取得的真實定時執行仍待後續證據。keep_vars:true與非機密APP_INSTALLATION_ID同步已保存，且此次自動部署後真實App授權及caller授權仍成功，證明部署保留所需Production設定。未新增未授權入口、未重設DO ledger／嘗試計數，也未修改時間窗。
+
+---
+
 ## 2026-10-12 真實錯誤已重現並修復（2026-10-12T04:50:45.450Z）
 
 本人安全Response證據：04:38:59Z、build diagnostics3、self-test evening slot，HTTP200、`SELF_TEST_FAILED; TOKEN_REQUEST; RUNTIME_TYPE_ERROR`；caller auth通過且JWT已完成sign，但Installation Token請求未完成。兩morning self-test嘗試已耗盡，evening self-test目前已一失敗；保持所有計數/lease/預算，不重設。
