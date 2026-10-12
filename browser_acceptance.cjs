@@ -33,6 +33,9 @@ async function verifySort(page,mobile,rows){
    for(const selector of ['#desktop-list tr','.candidate-card'])assert.deepEqual(await page.locator(selector).evaluateAll(nodes=>nodes.map(x=>x.dataset.code)),expected);
    assert.equal(await page.locator('th[aria-sort="'+(direction==='desc'?'descending':'ascending')+'"]').count(),1);
    assert.equal(await page.locator('th[aria-sort="none"]').count(),2);
+   assert.deepEqual(await page.locator('th[aria-sort="none"] .sort-arrow').allTextContents(),['⇅','⇅']);
+   assert.equal(await page.locator('th[aria-sort="'+(direction==='desc'?'descending':'ascending')+'"] .sort-arrow').evaluate(el=>getComputedStyle(el).color),'rgb(138, 168, 255)');
+   for(const color of await page.locator('th[aria-sort="none"] .sort-arrow').evaluateAll(nodes=>nodes.map(el=>getComputedStyle(el).color)))assert.equal(color,'rgb(135, 152, 173)');
    assert.equal(await page.locator('[data-sort-key="'+key+'"] .sort-arrow').innerText(),direction==='desc'?'↓':'↑');
    assert.match(await page.locator('#sort-summary').textContent(),direction==='desc'?/↓/:/↑/);
    assert.equal(await page.locator('#mobile-sort-field').inputValue(),key);
@@ -41,6 +44,25 @@ async function verifySort(page,mobile,rows){
   }
  }
  if(mobile){const button=page.locator('#mobile-sort-direction');await button.focus();await button.press('Enter');await button.press('Enter');assert.match(await button.innerText(),/↑/);}
+}
+async function verifyHeaderHitArea(page){
+ const geometry=await page.locator('th[aria-sort]').evaluateAll(nodes=>nodes.map(el=>({width:el.getBoundingClientRect().width,height:el.getBoundingClientRect().height,font:getComputedStyle(el).fontSize})));
+ for(const key of sortKeys){
+  const header=page.locator('th').filter({has:page.locator('[data-sort-key="'+key+'"]')});
+  const normal=await header.evaluate(el=>getComputedStyle(el).backgroundColor);
+  await page.mouse.move(0,0);await header.hover();
+  await page.waitForFunction(key=>getComputedStyle(document.querySelector('[data-sort-key="'+key+'"]').closest('th')).backgroundColor==='rgb(43, 58, 83)',key);
+  const rect=await header.evaluate(el=>{const r=el.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height};});
+  // Click cell padding, outside the original text/button rectangle.
+  await page.mouse.click(rect.x+2,rect.y+2);
+  assert.equal(await header.getAttribute('aria-sort'),'descending');
+  await page.mouse.click(rect.x+rect.width-2,rect.y+rect.height-2);
+  assert.equal(await header.getAttribute('aria-sort'),'ascending');
+  await page.locator('[data-sort-key="'+key+'"]').focus();await page.keyboard.press('Space');
+  assert.equal(await header.getAttribute('aria-sort'),'descending');
+  assert.deepEqual(await page.locator('th[aria-sort]').evaluateAll(nodes=>nodes.map(el=>({width:el.getBoundingClientRect().width,height:el.getBoundingClientRect().height,font:getComputedStyle(el).fontSize}))),geometry);
+  assert.equal(geometry.every(x=>x.font==='11px'),true);
+ }
 }
 async function fixtureContext(browser,options,date='2026-10-08T18:30:00+08:00',payload=data,eventFailure=false){
  const context=await browser.newContext({...options,timezoneId:'Asia/Taipei'});
@@ -140,7 +162,9 @@ async function main(){
    await page.waitForFunction(()=>document.querySelectorAll('.stock-event-note').length===14);
    assert.match(await page.locator('.stock-event-note').first().textContent(),/ETF／指數換股關聯：資料不足，尚無法確認/);
    const rows=await page.evaluate(()=>window.TailDashboardView.rows);
+   assert.deepEqual(await page.locator('.sort-arrow').allTextContents(),['⇅','⇅','⇅']);
    await verifySort(page,mobile,rows);
+   if(!mobile)await verifyHeaderHitArea(page);
    assert.equal(await page.locator('.candidate-card').count(),7);assert.equal(await page.locator('.stock-event-note').count(),14);
    checks.push({name:name+'/four-ui-updates',result:'PASS',six_sort_orders:true,keyboard:true,raw_payload_unchanged:true,hidden_section_zero_height:true});
    await context.close();
@@ -236,14 +260,14 @@ async function main(){
    await publicPage.goto(PUBLIC);await publicPage.waitForFunction(()=>!document.querySelector('#today').textContent.includes('讀取'));
    if(process.env.REQUIRE_PUBLIC_UI==='true'||process.env.REQUIRE_PUBLIC_EVENTS==='true'){
     for(let attempt=0;attempt<24;attempt++){
-     if(await publicPage.locator('script[src="status.js?v=dashboard2"]').count())break;
+     if(await publicPage.locator('script[src="status.js?v=dashboard2&sort=1"]').count())break;
      await publicPage.waitForTimeout(5000);await publicPage.reload();
     }
-    assert.equal(await publicPage.locator('script[src="status.js?v=dashboard2"]').count(),1);
+    assert.equal(await publicPage.locator('script[src="status.js?v=dashboard2&sort=1"]').count(),1);
     assert.equal(await publicPage.locator('.market-closing').isVisible(),false);
     await publicPage.waitForFunction(()=>window.TailDashboardView&&window.TailDashboardView.state);
     const liveRows=await publicPage.evaluate(()=>window.TailDashboardView.rows);
-    if(liveRows.length){await verifySort(publicPage,mobile,liveRows);assert.ok((await publicPage.locator('.candidate-card .tail').allTextContents()).every(x=>/^[+-]\d+\.\d{2}%$/.test(x)));}
+    if(liveRows.length){await verifySort(publicPage,mobile,liveRows);if(!mobile)await verifyHeaderHitArea(publicPage);assert.ok((await publicPage.locator('.candidate-card .tail').allTextContents()).every(x=>/^[+-]\d+\.\d{2}%$/.test(x)));}
     checks.push({name:'public/'+name+'/four-ui-updates',result:'PASS',live_candidate_count:liveRows.length,hidden_section:true,six_sort_orders:liveRows.length>0});
    }
    await publicPage.emulateMedia({colorScheme:'light'});
