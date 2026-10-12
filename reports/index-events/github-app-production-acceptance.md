@@ -1,3 +1,35 @@
+## 2026-10-12 接續查證（2026-10-12T03:58:37.512Z）
+
+目前狀態：RELAY_ALIVE_AUTH_SELF_TEST_PENDING_CALLER_SECRET。未宣稱正式遷移完成。
+
+- 本人回報 GitHub App `tw-close-auction-event-backup` 已建立，App ID 5280614、Installation ID 170450126；唯一 repo、Actions write / Metadata read，Private Key 已由本人放入 Cloudflare Secret。這些設定尚未由本輪 authenticated API 獨立核對。
+- 本人回報 Production 已設定 APP_CLIENT_ID、APP_INSTALLATION_ID、APP_PRIVATE_KEY、CALLER_SECRET；本輪沒有讀取任何私鑰、Secret、Authorization 值或 clipboard。Cloudflare 管理頁／正式版本及四 bindings 尚未登入獨立驗證。
+- 本輪實測 `GET https://tw-index-events-relay.gxaawill2.workers.dev/health`：HTTP 200，`RELAY_ALIVE; AUTH_AND_INSTALLATION_NOT_PROVEN`。無 Authorization 的 POST /dispatch（08:20/self_test=true）：HTTP 401，UNAUTHORIZED；未授權不進入 DO / GitHub 的程式路徑已核對。
+- 最新 main 查證基線 3d32b126685ec68979e3fd371e3b510bcdbd110d。GitHub App JWT、實際 Installation Token、scope、App workflow dispatch、DO 正式去重尚未實測；13 項既有 Node relay 測試本輪全部 PASS，使用自生測試 fixture，不是真實 App 憑證。
+- cron-job.org 安全登入成功，Logout 與 jobs UI 確認。既有 8618691 / 8618694 仍使用原 GitHub dispatch URL，保持啟用、Asia/Taipei、08:35 / 17:35；晨間 Common 顯示 saveResponses=false。未 Save、未停用、未重建任何 job。
+- 真實舊 PAT 晨間 timer：cron UI 今天 08:35:09 成功；GitHub Run [38188568709](https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/actions/runs/38188568709) event=workflow_dispatch、actor=gxaawill2-ui、created_at=2026-10-12T00:35:11Z、completed/success；tests 与 scan 均 success，receipt-self-test skipped。main date-slot receipt RECOVERED_BY_BACKUP、scan_attempts=1、duplicate_trigger=false，08:38:16.141818+08:00 出版、data commit 8252e0f899976b97f41e087cf4bc6f1957d420c2、source PARTIAL。這是舊 PAT 路徑的證據，不能當作 App 路徑驗收。
+- Wrangler 非機密修正：keep_vars=true 保留 Dashboard APP_CLIENT_ID；同步本人提供的 APP_INSTALLATION_ID=170450126。未寫入任何 Secret。保留 SQLite DO、原 class/migration/name/endpoint。Cloudflare 官方配置文件說明 Dashboard vars 默認會被下次 Wrangler deploy 覆蓋，而 keep_vars 可保留；Wrangler 不會刪除 encrypted secrets，除非執行 secret delete。尚未驗證連動部署版本及 build command 使用本 config。
+- 原生事件排程 `20 0 * * *` / `20 9 * * *` 保留；event workflow self_test=true 只執行 tests / receipt-self-test，scan 不執行。檢查了 relay 固定 repo/workflow/main、每次新一小時 Token、權限及 repository 核對、DO 台北 day-slot lease/replay、workflow git CAS 第二層去重；正式雙層去重仍待帶 CALLER_SECRET 實測。
+- 免费額度結論仍為預估：每日兩次正常呼叫／最多六次授權嘗試、七日小型 ledger，符合既有官方免費量級的設計；實際帳戶方案與 RS256 CPU usage 尚未測，不保證已完成成本驗收。Worker 上游失敗現有輸出 DISPATCH_UNVERIFIED，不足以單靠 response 分辨具體錯誤；若自測失敗，後續只做不含秘密的分類診斷。
+- 自動審核拒絕讀取 cron 現有欄位值（包括 request body / header values 的風險）；該讀取未執行，沒有秘密輸出。改用已知明文測試設定，不讀現有值。
+
+### 精確下一步
+
+晨間既有 job 8618691 的雲端表單已準備 **未儲存** 的自測草稿：URL /dispatch，POST body `{"schedule_slot":"08:20","self_test":true}`；時區與時間未改，伺服器仍保留舊 PAT 正式設定。缺少 CALLER_SECRET，不能代讀 Cloudflare Secret，也不能冒用 browserAuth 作非登入秘密輸入。本人安全接管後，只需將該草稿 Authorization Value 改成 Bearer 加一空格及已保存 CALLER_SECRET，點 Test run；**不得點 Save**。如此可先實測 App 而不切換／停用原有備援。
+
+接續 agent 不可完整讀 Advanced、Test dialog、Raw request 或截圖憑證；只精確檢查可見 HTTP status／安全 response，再以 GitHub MCP 核對實際 App actor/run ID/jobs/self-test receipt 成功。成功後才逐一保存正式 URL／slot／self_test=false 設定，秘密輸入與提交由本人完成。若已走 user 手動 Test run，待 user 確認結束才能觀測，禁止看中途秘密。晚間 job 保留，僅晨間驗證後才切第二筆。正式 17:35→17:20 只能在既有 window 17:35–18:20 測，不能降低時間／身份防護或偽造時間。
+
+舊 PAT 仍需要，未撤銷；只有兩新路徑正式驗證且依賴核對後才由本人撤銷事件專用 PAT。MIS token、Secrets、jobs、排程、P_before/P_close/±3%、歷史盤中資料、本轮全部未改／未抓。GitHub report/config commit 使用最新 parent 與 expected_sha lease，不覆蓋 bot 較新 main。
+
+官方依據：
+- https://developers.cloudflare.com/workers/wrangler/configuration/#source-of-truth
+- https://developers.cloudflare.com/workers/configuration/secrets/
+
+
+---
+
+以下保留歷史驗收紀錄，當前狀態以本頁頂端為準。
+
 # App正式驗收
 
 NOT_ACTIVATED_AUTH_REQUIRED。App註冊、安裝、Cloudflare free-account部署／加密secret、installation token實際API、App實際dispatch、cron URL切換及PAT撤銷均尚未驗證，不宣稱完成。
