@@ -84,7 +84,7 @@
   const matches=[];
   for(const e of dayEvents)for(const s of e.affected_stocks)if(s.code===row.code&&s.market===row.market&&s.market_status==='OFFICIAL_CONFIRMED')matches.push({event:e,stock:s});
   return {matches,label:matches.length?matches.map(x=>x.event.event_name+' · '+({ADDITION:'納入',DELETION:'刪除',WEIGHT_CHANGE:'權重調整'}[x.stock.change_type]||'官方異動')).join('；'):
-    dayEvents.length?'當日有指數調整事件，個股關聯未確認':'個股事件關聯未確認'};
+    'ETF／指數換股關聯：資料不足，尚無法確認'};
  }
  const api={valid,materialInfo,model,render,relation,taipei,fundLabels};
  if(typeof module!=='undefined'&&module.exports){module.exports=api;return;}

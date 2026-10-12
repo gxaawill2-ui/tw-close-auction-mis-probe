@@ -58,3 +58,8 @@
 @media(max-width:900px){.event-today{padding:13px 14px}.event-row{grid-template-columns:83px minmax(0,1fr);gap:10px}.event-calendar .list-heading{gap:12px}.stock-event-note{max-width:none}.event-description strong{font-size:11px}}
 
 .market-metrics{display:flex;flex-wrap:wrap;gap:14px 28px;margin:12px 0}.market-metrics div{min-width:125px}.market-metrics dt{color:var(--muted,#9baac3);font-size:.8rem}.market-metrics dd{margin:4px 0;font-weight:600}.market-closing h2{font-size:1rem;overflow-wrap:anywhere}
+
+th button{font:inherit;color:inherit;background:transparent;border:0;padding:8px 0;cursor:pointer;text-align:inherit;min-height:44px}
+button:focus-visible,select:focus-visible{outline:2px solid #aec0ff;outline-offset:3px}
+.sort-arrow{display:inline-block;min-width:1em}.mobile-sort{display:none}.list-heading{gap:12px}.list-heading span{text-align:right}
+@media(max-width:900px){.mobile-sort{display:flex;align-items:center;gap:8px;margin:0 0 12px;font-size:11px;min-width:0}.mobile-sort select,.mobile-sort button{font:inherit;color:#e8f0fc;background:#202d40;border:1px solid var(--line);border-radius:6px;min-height:44px;padding:8px}.mobile-sort select{flex:1;min-width:0;width:0}.mobile-sort button{flex-shrink:0}.list-heading span{max-width:48%;overflow-wrap:anywhere}}

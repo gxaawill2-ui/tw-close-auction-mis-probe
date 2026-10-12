@@ -15,6 +15,33 @@ const server=http.createServer((request,response)=>{
  catch{response.writeHead(404).end();}
 });
 const copy=x=>JSON.parse(JSON.stringify(x));
+const sortKeys=['closing_auction_volume','intraday_total_volume','closing_volume_ratio_pct'];
+async function verifySort(page,mobile,rows){
+ const before=await page.evaluate(()=>JSON.stringify(window.TailDashboardView.data));
+ const fields=mobile?page.locator('#mobile-sort-field'):null;
+ for(const key of sortKeys){
+  if(mobile)await fields.selectOption(key);else await page.locator('[data-sort-key="'+key+'"]').click();
+  for(const direction of ['desc','asc']){
+   if(direction==='asc'){
+    const button=mobile?page.locator('#mobile-sort-direction'):page.locator('[data-sort-key="'+key+'"]');
+    if(mobile)await button.tap();else{await button.focus();await button.press('Enter');}
+   }
+   const expected=rows.map((r,index)=>({r,index,v:r.volume_status==='MIS_EVIDENCE_CONFIRMED'&&r[key]!=null?Number(r[key]):null})).sort((a,b)=>{
+    if(a.v===null||b.v===null)return a.v===b.v?a.index-b.index:a.v===null?1:-1;
+    return (direction==='desc'?b.v-a.v:a.v-b.v)||a.index-b.index;
+   }).map(x=>x.r.code);
+   for(const selector of ['#desktop-list tr','.candidate-card'])assert.deepEqual(await page.locator(selector).evaluateAll(nodes=>nodes.map(x=>x.dataset.code)),expected);
+   assert.equal(await page.locator('th[aria-sort="'+(direction==='desc'?'descending':'ascending')+'"]').count(),1);
+   assert.equal(await page.locator('th[aria-sort="none"]').count(),2);
+   assert.equal(await page.locator('[data-sort-key="'+key+'"] .sort-arrow').innerText(),direction==='desc'?'↓':'↑');
+   assert.match(await page.locator('#sort-summary').textContent(),direction==='desc'?/↓/:/↑/);
+   assert.equal(await page.locator('#mobile-sort-field').inputValue(),key);
+   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
+   assert.equal(await page.evaluate(()=>JSON.stringify(window.TailDashboardView.data)),before);
+  }
+ }
+ if(mobile){const button=page.locator('#mobile-sort-direction');await button.focus();await button.press('Enter');await button.press('Enter');assert.match(await button.innerText(),/↑/);}
+}
 async function fixtureContext(browser,options,date='2026-10-08T18:30:00+08:00',payload=data,eventFailure=false){
  const context=await browser.newContext({...options,timezoneId:'Asia/Taipei'});
  const eventFixture=copy(eventsData);eventFixture.generated_at=date;
@@ -58,7 +85,7 @@ async function main(){
    const context=await fixtureContext(browser,options),page=await context.newPage(),errors=[];
    page.on('pageerror',error=>errors.push(error.message));await page.goto(base);
    await page.waitForFunction(()=>document.querySelector('#candidate-count').textContent==='7');
-   assert.equal(await page.locator('button,input,select,form,[role="button"]').count(),0);
+   assert.equal(await page.locator('button').count(),4);assert.equal(await page.locator('select').count(),1);assert.equal(await page.locator('input,form,[role="button"]').count(),0);
    assert.equal(await page.locator('.candidate-card').count(),7);
    assert.equal(await page.locator('#desktop-list tr').count(),7);
    assert.equal(await page.locator('#desktop-wrap').isVisible(),!mobile);
@@ -99,15 +126,45 @@ async function main(){
      fall:getComputedStyle(document.querySelector('.tail.down')).color
    }));
    assert.deepEqual(darkPreference,fixedDark);
-   assert.equal(await page.locator('button,input,select,form,[role="button"]').count(),0);
+   assert.equal(await page.locator('button').count(),4);assert.equal(await page.locator('select').count(),1);assert.equal(await page.locator('input,form,[role="button"]').count(),0);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
    if(mobile)assert.equal(await page.locator('.candidate-card').first().evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(22, 33, 50)');
    await page.screenshot({path:path.join(OUT,'dashboard-'+name+'-dark-only.png'),fullPage:true});
-   checks.push({name:name+'/dark-only',result:'PASS',independent_of_system_theme:true,no_buttons:true});
+   checks.push({name:name+'/dark-only',result:'PASS',independent_of_system_theme:true,authorized_sort_controls:true});
    await page.emulateMedia({colorScheme:'light'});
    assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).backgroundColor),'rgb(13, 20, 35)');
-   assert.deepEqual(errors,[]);checks.push({name,result:'PASS',width:options.viewport.width,seven_candidates:true,no_buttons:true,no_horizontal_overflow:true});
+   assert.deepEqual(errors,[]);checks.push({name,result:'PASS',width:options.viewport.width,seven_candidates:true,authorized_sort_controls:true,no_horizontal_overflow:true});
+   assert.equal(await page.locator('.market-closing').isVisible(),false);
+   assert.equal(await page.locator('.market-closing').evaluate(el=>el.getBoundingClientRect().height),0);
+   const tails=await page.locator('.candidate-card .tail').allTextContents();assert.ok(tails.every(x=>/^[+-]\d+\.\d{2}%$/.test(x)));
+   await page.waitForFunction(()=>document.querySelectorAll('.stock-event-note').length===14);
+   assert.match(await page.locator('.stock-event-note').first().textContent(),/ETF／指數換股關聯：資料不足，尚無法確認/);
+   const rows=await page.evaluate(()=>window.TailDashboardView.rows);
+   await verifySort(page,mobile,rows);
+   assert.equal(await page.locator('.candidate-card').count(),7);assert.equal(await page.locator('.stock-event-note').count(),14);
+   checks.push({name:name+'/four-ui-updates',result:'PASS',six_sort_orders:true,keyboard:true,raw_payload_unchanged:true,hidden_section_zero_height:true});
    await context.close();
+   // Valid ratios differ below display precision; ties and unverified values
+   // exercise the same user controls, without changing any saved candidate JSON.
+   const mixed=copy(data);
+   mixed.candidate_list.forEach((r,i)=>{
+    if(i===6){r.volume_status='UNVERIFIED';r.closing_auction_volume=r.intraday_total_volume=r.closing_volume_ratio_pct=null;}
+    else{r.volume_status='MIS_EVIDENCE_CONFIRMED';r.closing_auction_volume=[2,10,2,2.0001,9,1][i];r.intraday_total_volume=[100,1000,100,100,90,100][i];r.closing_volume_ratio_pct=r.closing_auction_volume/r.intraday_total_volume*100;}
+   });
+   const sortContext=await fixtureContext(browser,options,'2026-10-08T18:30:00+08:00',mixed),sortPage=await sortContext.newPage();
+   await sortPage.goto(base);await sortPage.waitForFunction(()=>document.querySelectorAll('.candidate-card').length===7);
+   await verifySort(sortPage,mobile,await sortPage.evaluate(()=>window.TailDashboardView.rows));
+   checks.push({name:name+'/stable-raw-missing-sort',result:'PASS',six_sort_orders:true,stable_ties:true,unverified_last:true,unrounded_ratio:true});await sortContext.close();
+   const confirmedContext=await fixtureContext(browser,options);
+   await confirmedContext.route('**/state/events/events-index.json?*',route=>{
+    const confirmed=copy(eventsData);confirmed.generated_at='2026-10-08T18:30:00+08:00';
+    const event=copy(confirmed.events[0]);event.event_id='confirmed-ui-test';event.event_name='官方測試調整';event.first_seen_at=event.information_available_as_of='2026-10-07T00:00:00+08:00';event.closing_impact_date='2026-10-08';event.event_status='CONFIRMED';event.close_date_status='CONFIRMED_CLOSE_IMPLEMENTATION';event.affected_stocks=[{code:data.candidate_list[0].code,market:data.candidate_list[0].market,market_status:'OFFICIAL_CONFIRMED',change_type:'ADDITION'}];confirmed.events=[event];
+    return route.fulfill({json:confirmed});
+   });
+   const confirmedPage=await confirmedContext.newPage();await confirmedPage.goto(base);
+   await confirmedPage.waitForFunction(()=>[...document.querySelectorAll('.stock-event-note')].some(x=>x.textContent.includes('官方測試調整 · 納入')));
+   assert.equal(await confirmedPage.locator('.stock-event-note').filter({hasText:'官方測試調整 · 納入'}).count(),2);
+   checks.push({name:name+'/confirmed-stock-event',result:'PASS',confirmed_label_preserved:true});await confirmedContext.close();
    for(const [eventCase,fixedDate,failure,title] of [
     ['events-source-failure','2026-10-08T18:30:00+08:00',true,'今日未發現已確認實質調整'],
     ['events-expected-close','2026-11-30T13:35:00+08:00',false,'今日有實質調整的預估收盤觀察日'],
@@ -116,7 +173,7 @@ async function main(){
     const ctx=await fixtureContext(browser,options,fixedDate,failure?data:null,failure),p=await ctx.newPage();
     await p.goto(base);await p.locator('#event-today-title').filter({hasText:title}).waitFor();
     if(failure){await p.waitForFunction(()=>document.querySelectorAll('.candidate-card').length===7);assert.match(await p.locator('#event-note').innerText(),/股票名單仍獨立更新/);}
-    assert.equal(await p.locator('button,input,select,form,[role="button"]').count(),0);
+    assert.equal(await p.locator('button').count(),4);assert.equal(await p.locator('select').count(),1);
     assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
     checks.push({name:name+'/'+eventCase,result:'PASS'});await ctx.close();
    }
@@ -126,8 +183,8 @@ async function main(){
     ['market-preclose','2026-10-08T13:25:00+08:00','尚未確認']
    ]){
     const ctx=await fixtureContext(browser,options,caseDate,null),p=await ctx.newPage();await p.goto(base);
-    await p.locator('#market-closing-state').filter({hasText:expected}).waitFor();
-    assert.equal(await p.locator('button,input,select,form,[role="button"]').count(),0);
+    await p.waitForFunction(expected=>document.querySelector('#market-closing-state').textContent.includes(expected),expected);assert.equal(await p.locator('.market-closing').isVisible(),false);
+    assert.equal(await p.locator('button').count(),4);assert.equal(await p.locator('select').count(),1);
     assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
     await p.emulateMedia({colorScheme:'light'});assert.equal(await p.evaluate(()=>getComputedStyle(document.documentElement).colorScheme),'dark');
     checks.push({name:name+'/'+caseName,result:'PASS'});await ctx.close();
@@ -143,7 +200,7 @@ async function main(){
    assert.equal(await diagnostic.evaluate(()=>getComputedStyle(document.body).backgroundColor),'rgb(13, 20, 35)');
    assert.equal(await diagnostic.locator('button,input,select,form,[role="button"]').count(),0);
    assert.deepEqual(diagnosticErrors,[]);
-   checks.push({name:name+'/diagnostic',result:'PASS',automatic_initial_load:true,no_buttons:true});
+   checks.push({name:name+'/diagnostic',result:'PASS',automatic_initial_load:true,authorized_sort_controls:true});
    await diagnosticContext.close();
    for(const [scenario,date,payload,expected] of [
     ['no-data','2026-10-08T08:00:00+08:00',null,'今日尚未產生尾盤研究資料'],
@@ -172,16 +229,29 @@ async function main(){
    assert.equal(await fundPage.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),true);
    await fundPage.screenshot({path:path.join(OUT,'funds-'+name+'.png'),fullPage:false});
    checks.push({name:name+'/fund-readonly-page',result:'PASS',all_priorities_visible:true});await fundContext.close();
+   if(process.env.SKIP_PUBLIC==='true')continue;
    // Public smoke uses the real Taipei day, normal anonymous HTTP and no routes.
    // Future runs do not expect yesterday's October 8 candidates as today's list.
    const publicContext=await browser.newContext({...options,timezoneId:'Asia/Taipei'}),publicPage=await publicContext.newPage();
    await publicPage.goto(PUBLIC);await publicPage.waitForFunction(()=>!document.querySelector('#today').textContent.includes('讀取'));
+   if(process.env.REQUIRE_PUBLIC_UI==='true'||process.env.REQUIRE_PUBLIC_EVENTS==='true'){
+    for(let attempt=0;attempt<24;attempt++){
+     if(await publicPage.locator('script[src="status.js?v=dashboard2"]').count())break;
+     await publicPage.waitForTimeout(5000);await publicPage.reload();
+    }
+    assert.equal(await publicPage.locator('script[src="status.js?v=dashboard2"]').count(),1);
+    assert.equal(await publicPage.locator('.market-closing').isVisible(),false);
+    await publicPage.waitForFunction(()=>window.TailDashboardView&&window.TailDashboardView.state);
+    const liveRows=await publicPage.evaluate(()=>window.TailDashboardView.rows);
+    if(liveRows.length){await verifySort(publicPage,mobile,liveRows);assert.ok((await publicPage.locator('.candidate-card .tail').allTextContents()).every(x=>/^[+-]\d+\.\d{2}%$/.test(x)));}
+    checks.push({name:'public/'+name+'/four-ui-updates',result:'PASS',live_candidate_count:liveRows.length,hidden_section:true,six_sort_orders:liveRows.length>0});
+   }
    await publicPage.emulateMedia({colorScheme:'light'});
    assert.equal(await publicPage.evaluate(()=>getComputedStyle(document.documentElement).backgroundColor),'rgb(13, 20, 35)');
    await publicPage.emulateMedia({colorScheme:'dark'});
    assert.equal(await publicPage.evaluate(()=>getComputedStyle(document.documentElement).backgroundColor),'rgb(13, 20, 35)');
    assert.equal(await publicPage.title(),'台股尾盤 ±3% 自動選股看板');
-   assert.equal(await publicPage.locator('button,input,select,form,[role="button"]').count(),0);
+   assert.equal(await publicPage.locator('input,form,[role="button"]').count(),0);
    if(process.env.REQUIRE_PUBLIC_EVENTS==='true'){
     await publicPage.waitForFunction(()=>document.querySelector('#event-empty').textContent.includes('尚無已確認')||document.querySelectorAll('#event-upcoming .event-row').length>0);
     assert.ok(await publicPage.locator('#event-today-title').count());
@@ -201,7 +271,7 @@ async function main(){
     assert.equal(await publicPage.locator('.candidate-card').count(),0);
    }
    await publicPage.screenshot({path:path.join(OUT,'public-'+name+'.png'),fullPage:true});
-   checks.push({name:'public/'+name,result:'PASS',date,no_buttons:true,no_horizontal_overflow:true,url:publicPage.url()});
+   checks.push({name:'public/'+name,result:'PASS',date,authorized_sort_controls:true,no_horizontal_overflow:true,url:publicPage.url()});
    await publicContext.close();
   }finally{await browser.close();}
  }

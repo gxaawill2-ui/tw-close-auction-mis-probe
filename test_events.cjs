@@ -47,7 +47,7 @@ test('only official exact code AND market matches permit a stock label',()=>{
  const e={...event,closing_impact_date:'2026-11-30',affected_stocks:[{code:'2330',market:'TWSE',market_status:'OFFICIAL_CONFIRMED',change_type:'ADDITION'}]};
  assert.equal(ui.relation({code:'2330',market:'TWSE'},[e],'2026-11-30','2026-11-30T13:35:00+08:00').matches.length,1);
  assert.equal(ui.relation({code:'2330',market:'TPEx'},[e],'2026-11-30','2026-11-30T13:35:00+08:00').matches.length,0);
- assert.match(ui.relation({code:'3073',market:'TPEx'},[e],'2026-11-30','2026-11-30T13:35:00+08:00').label,/個股關聯未確認/);
+ assert.match(ui.relation({code:'3073',market:'TPEx'},[e],'2026-11-30','2026-11-30T13:35:00+08:00').label,/ETF／指數換股關聯：資料不足，尚無法確認/);
 });
 test('later first-seen information never claims a pre-close relationship',()=>{
  const e={...event,information_available_as_of:'2026-11-30T17:00:00+08:00'};
@@ -56,7 +56,7 @@ test('later first-seen information never claims a pre-close relationship',()=>{
 test('DOM keeps dark-only, no controls, escaped links and updates without flicker',()=>{
  const doc=dom(),v=ui.model(now,data,health);ui.render(doc,v);const first=doc.querySelector('.event-row');ui.render(doc,v);
  assert.equal(doc.querySelector('.event-row'),first);
- assert.equal(doc.querySelectorAll('button,input,select,form,[role="button"]').length,0);
+ assert.equal(doc.querySelectorAll('.event-today button,.event-today select,.event-calendar button,.event-calendar select').length,0);
  assert.equal(doc.querySelector('meta[name="color-scheme"]').getAttribute('content'),'dark');
  assert.equal(doc.querySelector('.event-description a').getAttribute('rel'),'noopener noreferrer');
  assert.ok(doc.querySelector('#event-today-title'));assert.ok(doc.querySelector('#event-upcoming'));
@@ -96,7 +96,7 @@ test('future rating availability cannot leak into prior calendar',()=>{
 });
 test('complete readonly fund page stays dark and has no controls',()=>{
  const doc=parseHTML(fs.readFileSync('docs/fund-events.html','utf8')).document;
- assert.equal(doc.querySelectorAll('button,input,select,form,[role="button"]').length,0);
+ assert.equal(doc.querySelectorAll('.event-today button,.event-today select,.event-calendar button,.event-calendar select').length,0);
  assert.match(doc.querySelector('style').textContent,/color-scheme:dark/);
  assert.match(doc.body.textContent,/與日期可信程度分開/);
 });
