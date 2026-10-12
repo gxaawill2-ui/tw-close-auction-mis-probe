@@ -61,7 +61,27 @@
   function priceLabel(row){return {MATCH:'收盤價一致',MISMATCH:'收盤價不符',UNAVAILABLE:'官方缺資料',PENDING:'待盤後核對'}[row.official_price_result]||'待盤後核對';}
   function confidence(row){return row.confidence_level==='HIGH_RESEARCH'?'高 · 研究':'中 · 研究';}
   function volume(row,key,unit){return row[key]===null?'— <small>未驗證</small>':number(row[key],3)+(unit?' <small>'+unit+'</small>':'');}
-  function render(doc,view){
+  const SORT_FIELDS={closing_auction_volume:'最後一盤量（張）',intraday_total_volume:'全日盤中量（張）',closing_volume_ratio_pct:'收盤量占比'};
+  function sortValue(row,key){
+    const value=row[key];
+    return row.volume_status==='MIS_EVIDENCE_CONFIRMED'&&value!==null&&value!==undefined&&String(value).trim()!==''&&Number.isFinite(Number(value))?Number(value):null;
+  }
+  function sortRows(rows,sort){
+    if(!sort||!Object.hasOwn(SORT_FIELDS,sort.key))return [...rows];
+    return rows.map((row,index)=>({row,index,value:sortValue(row,sort.key)})).sort((a,b)=>{
+      if(a.value===null||b.value===null)return a.value===b.value?a.index-b.index:a.value===null?1:-1;
+      return (sort.direction==='asc'?a.value-b.value:b.value-a.value)||a.index-b.index;
+    }).map(x=>x.row);
+  }
+  function nextSort(sort,key){return {key,direction:sort?.key===key&&sort.direction==='desc'?'asc':'desc'};}
+  function bindSort(doc,getSort,onChange){
+    for(const button of doc.querySelectorAll('[data-sort-key]'))button.addEventListener('click',()=>onChange(nextSort(getSort(),button.dataset.sortKey)));
+    doc.getElementById('mobile-sort-field').addEventListener('change',event=>onChange({key:event.target.value,direction:'desc'}));
+    doc.getElementById('mobile-sort-direction').addEventListener('click',()=>{
+      const sort=getSort();onChange(nextSort(sort,sort?.key||'closing_auction_volume'));
+    });
+  }
+  function render(doc,view,sort=null){
     const set=(id,text)=>{doc.getElementById(id).textContent=text;};
     set('today',view.today+' · 台北');set('market-state',view.isTradingDay===false?'休市':view.isTradingDay===true?'交易日':'交易日待確認');
     set('headline',view.headline);set('message',view.message);
@@ -73,8 +93,8 @@
     set('updated','最近資料更新：'+stamp(data&&(data.updated_at||data.published_at))+'（台北）');
     set('generated','研究名單產生時間：'+stamp(data&&data.generated_at)+'（台北）');
     const desktop=[],mobile=[];
-    for(const row of view.rows){
-      const positive=Number(row.tail_return_pct)>0,tail=(positive?'+':'')+number(row.tail_return_pct,3)+'%',color=positive?'up':'down';
+    for(const row of sortRows(view.rows,sort)){
+      const positive=Number(row.tail_return_pct)>0,tail=(positive?'+':'')+Number(row.tail_return_pct).toFixed(2)+'%',color=positive?'up':'down';
       const name=escape(row.name),code=escape(row.code),market=row.ex==='tse'?'上市':'上櫃';
       const time=escape(row.P_close_trade_time),delayed=time>'13:30:00'?'<span class="delayed">延後收盤</span>':'';
       const type=escape(row.P_close_convergence_type.replace('_converged','').replace('A_1330_fresh_candidate','A 13:30'));
@@ -88,12 +108,27 @@
       const element=doc.getElementById(id);if(element.dataset.rendered!==html){element.innerHTML=html;element.dataset.rendered=html;}
     }
     doc.getElementById('desktop-wrap').hidden=!view.rows.length;doc.getElementById('empty').hidden=Boolean(view.rows.length);
+    doc.getElementById('mobile-sort').hidden=!view.rows.length;
+    set('sort-summary',sort?SORT_FIELDS[sort.key]+' '+(sort.direction==='asc'?'↑ 由小到大':'↓ 由大到小'):'依漲跌幅絕對值排序');
+    for(const button of doc.querySelectorAll('[data-sort-key]')){
+      const active=sort?.key===button.dataset.sortKey,arrow=active?(sort.direction==='asc'?'↑':'↓'):'';
+      button.querySelector('.sort-arrow').textContent=arrow;
+      button.closest('th').setAttribute('aria-sort',active?(sort.direction==='asc'?'ascending':'descending'):'none');
+    }
+    // The placeholder keeps the initial absolute-return order explicit on mobile.
+    for(const option of doc.getElementById('mobile-sort-field').querySelectorAll('option')){
+      if(option.value===(sort?.key||''))option.setAttribute('selected','');else option.removeAttribute('selected');
+    }
+    const field=doc.getElementById('mobile-sort-field');if(field.value!==(sort?.key||''))field.value=sort?.key||'';
+    set('mobile-sort-direction',sort?.direction==='asc'?'↑ 由小到大':'↓ 由大到小');
     set('empty',view.headline);
   }
-  const api={taipei,tradingDay,validate,model,polling,number,render,RAW};
+  const api={taipei,tradingDay,validate,model,polling,number,render,sortRows,nextSort,bindSort,RAW};
   if(typeof module!=='undefined'&&module.exports){module.exports=api;return;}
   root.TailDashboard=api;
-  let calendar=null,calendarYear=null,lastGood=null,running=false;
+  let calendar=null,calendarYear=null,lastGood=null,running=false,currentSort=null;
+  function display(view){render(document,view,currentSort);root.TailDashboardView=view;document.dispatchEvent(new Event('tail-dashboard-updated'));}
+  bindSort(document,()=>currentSort,sort=>{currentSort=sort;if(root.TailDashboardView)display(root.TailDashboardView);});
   async function read(path,now,optional=false){
     const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);
     try{const response=await fetch(RAW+path+'?v='+Math.floor(now.getTime()/polling(now)),{cache:'no-store',signal:controller.signal});
@@ -110,7 +145,7 @@
         if(data){validate(data,t.date,now);lastGood=data;}else live=await read('state/live/'+t.date+'.json',now,true);
       }
     }catch(e){error=e.message;data=lastGood;}
-    finally{const view=model(now,{calendar,data,live,error});render(document,view);root.TailDashboardView=view;document.dispatchEvent(new Event('tail-dashboard-updated'));running=false;setTimeout(refresh,polling(new Date()));}
+    finally{const view=model(now,{calendar,data,live,error});display(view);running=false;setTimeout(refresh,polling(new Date()));}
   }
   refresh();
 })(typeof globalThis!=='undefined'?globalThis:this);

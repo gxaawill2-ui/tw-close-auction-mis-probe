@@ -71,8 +71,8 @@ test('real homepage DOM displays all seven, three delayed and four normal closes
  assert.equal(doc.querySelectorAll('.candidate-card .tail.up').length,4);assert.equal(doc.querySelectorAll('.candidate-card .tail.down').length,3);
  assert.match(doc.getElementById('unknown').textContent,/25/);assert.match(doc.querySelector('[data-code="3259"]').textContent,/BC/);
 });
-test('homepage has no buttons, forms, date selectors, login or manual control',()=>{
- const doc=dom();ui.render(doc,model());assert.equal(doc.querySelectorAll('button,input,select,form,[role="button"]').length,0);
+test('homepage offers only the authorized accessible volume sort controls',()=>{
+ const doc=dom();ui.render(doc,model());assert.equal(doc.querySelectorAll('button').length,4);assert.equal(doc.querySelectorAll('select').length,1);assert.equal(doc.querySelectorAll('input,form,[role="button"]').length,0);
  assert.deepEqual([...doc.querySelectorAll('a')].map(a=>a.getAttribute('href')).sort(),['diagnostic.html','fund-events.html']);
 });
 test('render unchanged list keeps DOM nodes and avoids refresh flicker',()=>{
@@ -104,7 +104,7 @@ test('permanent dark appearance on every device, regardless of preference',()=>{
  assert.equal(doc.querySelector('meta[name="color-scheme"]').getAttribute('content'),'dark');
  assert.equal(doc.querySelectorAll('meta[name="theme-color"]').length,1);
  assert.equal(doc.querySelector('meta[name="theme-color"]').getAttribute('content'),'#0d1423');
- assert.equal(doc.querySelectorAll('button,input,select,form,[role="button"]').length,0);
+ assert.equal(doc.querySelectorAll('button').length,4);assert.equal(doc.querySelectorAll('select').length,1);assert.equal(doc.querySelectorAll('input,form,[role="button"]').length,0);
  assert.match(diagnostic,/:root\{[^}]*color-scheme:dark/);
  assert.match(diagnostic,/background:#0d1423;color:#e8f0fc/);
  assert.doesNotMatch(diagnostic,/light-dark\(|prefers-color-scheme/);
