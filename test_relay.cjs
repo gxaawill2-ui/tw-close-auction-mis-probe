@@ -50,3 +50,18 @@ test('network error uses bounded lease and two attempts without revealing creden
 });
 
 test('stalled response body is cancelled within bounded timeout',async()=>{const m=await load;let cancelled=false;const r=new Response(new ReadableStream({cancel(){cancelled=true;}}));await assert.rejects(m.boundedText(r,256,15),/BODY_TIMEOUT/);assert.equal(cancelled,true);});
+
+test('diagnostic codes never expose exception text, token bodies or secret values',async()=>{
+ const m=await load;
+ for(const code of ['CONFIG','KEY_FORMAT','TOKEN_SCOPE','DISPATCH_RECEIPT_SCOPE','TOKEN_HTTP_401','TOKEN_HTTP_403','DISPATCH_HTTP_422','BODY_TIMEOUT'])assert.equal(m.failureCode(new Error(code)),code);
+ for(const text of ['Bearer synthetic-secret','TOKEN_HTTP_401 '+env.CALLER_SECRET,'-----BEGIN RSA PRIVATE KEY-----','CONFIG\n',JSON.stringify({token:'synthetic-secret'})])assert.equal(m.failureCode(new Error(text)),'UNCLASSIFIED_ERROR');
+ assert.equal(m.failureCode({name:'AbortError',message:'synthetic-secret'}),'UPSTREAM_TIMEOUT');
+ assert.equal(m.failureCode({name:'DataError',message:'synthetic-secret'}),'KEY_CRYPTO_FAILED');
+ assert.equal(m.failureCode({name:'SyntaxError',message:'synthetic-secret'}),'UPSTREAM_INVALID_JSON');
+});
+
+test('upstream failure returns only safe phase and diagnostic code, retaining replay protection',async()=>{
+ const m=await load,storage=storageMock(),gate=new m.DispatchGate({storage},env),originalFetch=global.fetch;
+ global.fetch=async()=>new Response(null,{status:401});
+ try{const response=await gate.fetch(req({schedule_slot:'08:20',self_test:true}));assert.equal(response.status,503);assert.equal(response.headers.get('X-Relay-Build'),'20261012-diagnostics1');assert.equal((await response.json()).result,'DISPATCH_UNVERIFIED; APP_AUTH_AND_DISPATCH; TOKEN_HTTP_401');const record=storage.map.get(m.slotIdentity('08:20',Date.now(),true));assert.equal(record.failure_code,'TOKEN_HTTP_401');assert.equal(record.failure_phase,'APP_AUTH_AND_DISPATCH');assert.equal(record.attempts,1);assert.ok(record.lease_until>Date.now());}finally{global.fetch=originalFetch;}
+});

@@ -146,3 +146,12 @@ App／relay僅完成程式及synthetic測試，GitHub App草稿已填僅Actions 
 - https://developers.cloudflare.com/workers/wrangler/configuration/#source-of-truth
 - https://developers.cloudflare.com/workers/configuration/secrets/
 
+
+
+## 2026-10-12 自測 503 排錯接續（2026-10-12T04:16:06.420Z）
+
+本人提供晨間 job8618691 Test run 畫面：503 Service Unavailable。原始 response body 未取得，不能單靠此畫面證明 caller auth 已通過或斷言 GitHub 過載。截至本輪 GitHub repository workflow_dispatch runs 查詢（前15筆），最新事件仍為38188568709/2026-10-12T00:35:11Z；未找到本次 App self-test run。Worker /health 仍HTTP200。
+
+已對固定 relay 加入封閉 allowlist 的非秘密診斷：僅回傳 CONFIG、KEY_FORMAT、TOKEN_HTTP_status、TOKEN_SCOPE、DISPATCH_HTTP_status、DISPATCH_RECEIPT_SCOPE、BODY_TIMEOUT、TOO_LARGE、UPSTREAM_TIMEOUT、KEY_CRYPTO_FAILED、UPSTREAM_INVALID_JSON 或 UNCLASSIFIED_ERROR；另外區分 APP_AUTH_AND_DISPATCH / RECEIPT_STORE / LEDGER_CLEANUP。沒有回傳原 exception message、GitHub response body、JWT、Token、private key、caller header。診斷只在已存在的受保護 /dispatch 錯誤回應；無新入口、無放寬驗證/權限/視窗/重試限額。DO 僅保存允許的 failure_code/failure_phase，不保存憑證。所有 response 的 X-Relay-Build=20261012-diagnostics1，供匿名 health 驗證實际部署。
+
+15項 relay Node 測試 PASS，其中新增檢查診斷不洩漏任意例外訊息與失敗 lease/attempt 保留。合成 fixture 不能代替正式授權。main 當前 parent63e9ab2a5412279e78f2868317d6c8af102eae00，以GitHubexpected_sha lease更新，不覆蓋data bot。現有兩PAT備援維持，未保存正式切換、未動MIS。重測前必須確認新build header真實部署；重試仍受每date-slot最多兩次限制，不清除ledger/重建DO；若morning self-test耗盡，可用原允許的17:20 self_test=true隔離自測槽，禁止正式時間外掃描。

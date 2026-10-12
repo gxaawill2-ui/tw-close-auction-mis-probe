@@ -3,7 +3,17 @@ const REPO='gxaawill2-ui/tw-close-auction-mis-probe';
 const REPO_ID=1395186758;
 const DISPATCH='https://api.github.com/repos/'+REPO+'/actions/workflows/index-events.yml/dispatches';
 const encoder=new TextEncoder();
-const reply=(status,result)=>new Response(JSON.stringify({result}),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store'}});
+const BUILD='20261012-diagnostics1';
+const reply=(status,result)=>new Response(JSON.stringify({result}),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store','X-Relay-Build':BUILD}});
+// Return only a closed set of diagnostic codes, never exception text or upstream bodies.
+export function failureCode(error){
+ const message=error?.message;
+ if(typeof message==='string'&&message.length<64&&/^(CONFIG|KEY_FORMAT|TOKEN_SCOPE|DISPATCH_RECEIPT_SCOPE|TOKEN_HTTP_[1-5]\d{2}|DISPATCH_HTTP_[1-5]\d{2}|BODY_TIMEOUT|TOO_LARGE)$/.test(message))return message;
+ if(error?.name==='AbortError')return 'UPSTREAM_TIMEOUT';
+ if(['DataError','OperationError'].includes(error?.name))return 'KEY_CRYPTO_FAILED';
+ if(error?.name==='SyntaxError')return 'UPSTREAM_INVALID_JSON';
+ return 'UNCLASSIFIED_ERROR';
+}
 const b64=x=>btoa(String.fromCharCode(...new Uint8Array(x))).replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_');
 const encode=x=>b64(encoder.encode(JSON.stringify(x)));
 export async function boundedText(request,limit,timeoutMs=6500){
@@ -94,17 +104,21 @@ export class DispatchGate {
    return 'CLAIMED';
   });
   if(decision!=='CLAIMED')return reply(['DUPLICATE_ACCEPTED','IN_PROGRESS'].includes(decision)?200:429,decision);
+  let phase='APP_AUTH_AND_DISPATCH';
   try{
    const accepted=await dispatch(this.env,body.schedule_slot,body.self_test,now);
+   phase='RECEIPT_STORE';
    await storage.transaction(async txn=>{const v=await txn.get(id);await txn.put(id,{...v,success:true,lease_until:0,accepted_at:Date.now(),workflow_run_id:accepted.workflow_run_id});});
    // Keep only a bounded seven-day replay ledger. Never store auth data.
+   phase='LEDGER_CLEANUP';
    const ledger=await storage.list({limit:40});for(const key of ledger.keys())if(/^20\d\d-\d\d-\d\d-/.test(key)&&key.slice(0,10)<new Date(now-7*86400000).toISOString().slice(0,10))await storage.delete(key);
    return reply(202,'DISPATCH_ACCEPTED; WORKFLOW_RECEIPT_PENDING');
-  }catch{
+  }catch(error){
    // Ambiguous network failures may already have dispatched: one bounded retry,
    // then the workflow's separate CAS receipt prevents another source scan.
-   await storage.transaction(async txn=>{const v=await txn.get(id);await txn.put(id,{...v,lease_until:Date.now()+60000,failed_at:Date.now()});});
-   return reply(503,'DISPATCH_UNVERIFIED');
+   const failure_code=failureCode(error);
+   await storage.transaction(async txn=>{const v=await txn.get(id);await txn.put(id,{...v,lease_until:Date.now()+60000,failed_at:Date.now(),failure_code,failure_phase:phase});});
+   return reply(503,'DISPATCH_UNVERIFIED; '+phase+'; '+failure_code);
   }
  }
 }
