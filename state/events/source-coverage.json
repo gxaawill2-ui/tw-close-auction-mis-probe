@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-10-12T08:38:14+08:00",
+  "generated_at": "2026-10-12T14:03:54+08:00",
   "coverage_status": "PARTIAL",
   "source_total": 27,
   "source_classes": {
-    "VERIFIED_AUTOMATIC": 9,
+    "VERIFIED_AUTOMATIC": 10,
     "DATE_ONLY": 5,
     "MONITOR_ONLY": 3,
     "RESTRICTED": 6,
-    "UNAVAILABLE": 4
+    "UNAVAILABLE": 3
   },
   "new_events": 0,
   "corrected_events": 0,
   "conflicting_events": 0,
-  "pending_review_documents": 22,
+  "pending_review_documents": 23,
   "newly_observed_etfs": 0,
-  "corrected_etfs": 271,
+  "corrected_etfs": 0,
   "confirmed_etf_mappings": 64,
   "new_confirmed_etf_mappings": 0,
   "unconfirmed_etf_mappings": 2,
