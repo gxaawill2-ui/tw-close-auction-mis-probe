@@ -1,3 +1,14 @@
+## 2026-10-12 12:29 本人正式自測錯誤已取得
+
+本人提供安全Response畫面：Date=2026-10-12T04:29:41Z、X-Relay-Build=20261012-diagnostics2、HTTP200、result=`SELF_TEST_FAILED; APP_AUTH_AND_DISPATCH; UNCLASSIFIED_ERROR`。這是真實帶CALLER_SECRET的呼叫，本輪沒有讀取秘密值；證明caller authentication及既有DISPATCH_GATE路徑已通過，但JWT／Installation Token／App workflow收據仍未通過。不能把HTTP200當授權成功。原HTTP503與此次共用morning自測day-slot，已做兩次，禁止再次測morning／清除ledger。
+
+已細分安全診斷stage為INSTALLATION_CONFIG、JWT_CONFIG、KEY_DECODE、KEY_IMPORT、JWT_ENCODE、JWT_SIGN、TOKEN_REQUEST、TOKEN_RESPONSE、TOKEN_SCOPE_CHECK、WORKFLOW_DISPATCH、WORKFLOW_RECEIPT及原receipt/storage階段；所有stage為程式固定enum，沒有raw exception text。新增安全code KEY_BASE64_INVALID、CRYPTO_UNSUPPORTED、RUNTIME_TYPE_ERROR。17項relay Node tests PASS（合成fixtures）。body/self_test/repo/scope/期限/權限/DO窗口及預算全部保持，未修改任何MIS。
+
+下一次只能在新版X-Relay-Build=20261012-diagnostics3已實際部署後，將**晨間同一job的未儲存測試body**換成`{"schedule_slot":"17:20","self_test":true}`，使用原本已允許的獨立evening-self-test key。這不是切換正式17:35job，也不改08:35/17:35排程或正式window；production false key仍獨立。維持Authorization已由本人輸入的caller值，agent不讀取、不要求再次輸入/重新產生秘密。Test run只一次→Response.result，不Save、不Raw request。剩餘evening自測最多兩次與全日六次預算保留，不能放寬或重建DO繞過。
+
+原PAT兩備援仍必要，App正式遷移未完成。此次僅診斷安全程式與reports/test變更；上游或Secret設定原因尚未確認，不推斷需要重新產生App私鑰。
+
+
 ## 2026-10-12 診斷正式部署驗證（2026-10-12T04:23:19.524Z）
 
 最新狀態：AUTH_SELF_TEST_503_UNRESOLVED; SAFE_DIAGNOSTIC_RETRY_READY。本人自測503未通過；不是正式遷移成功。本人正在自己的瀏覽器操作，原雲端未儲存草稿不會同步至本人瀏覽器。

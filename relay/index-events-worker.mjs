@@ -3,13 +3,16 @@ const REPO='gxaawill2-ui/tw-close-auction-mis-probe';
 const REPO_ID=1395186758;
 const DISPATCH='https://api.github.com/repos/'+REPO+'/actions/workflows/index-events.yml/dispatches';
 const encoder=new TextEncoder();
-const BUILD='20261012-diagnostics2';
+const BUILD='20261012-diagnostics3';
 const reply=(status,result)=>new Response(JSON.stringify({result}),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store','X-Relay-Build':BUILD}});
 // Return only a closed set of diagnostic codes, never exception text or upstream bodies.
 export function failureCode(error){
  const message=error?.message;
  if(typeof message==='string'&&message.length<64&&/^(CONFIG|KEY_FORMAT|TOKEN_SCOPE|DISPATCH_RECEIPT_SCOPE|TOKEN_HTTP_[1-5]\d{2}|DISPATCH_HTTP_[1-5]\d{2}|BODY_TIMEOUT|TOO_LARGE)$/.test(message))return message;
  if(error?.name==='AbortError')return 'UPSTREAM_TIMEOUT';
+ if(error?.name==='InvalidCharacterError')return 'KEY_BASE64_INVALID';
+ if(error?.name==='NotSupportedError')return 'CRYPTO_UNSUPPORTED';
+ if(error?.name==='TypeError')return 'RUNTIME_TYPE_ERROR';
  if(['DataError','OperationError'].includes(error?.name))return 'KEY_CRYPTO_FAILED';
  if(error?.name==='SyntaxError')return 'UPSTREAM_INVALID_JSON';
  return 'UNCLASSIFIED_ERROR';
@@ -43,28 +46,35 @@ export function privateDer(pem){
  if(raw.length<1000||raw.length>4096||raw[0]!==48)throw new Error('KEY_FORMAT');
  return pkcs1?der(48,[2,1,0,48,13,6,9,42,134,72,134,247,13,1,1,1,5,0,...der(4,raw)]):raw;
 }
-export async function appJWT(env,now){
+export async function appJWT(env,now,onStage=()=>{}){
+ onStage('JWT_CONFIG');
  if(!/^[A-Za-z0-9_.-]{1,80}$/.test(env.APP_CLIENT_ID||''))throw new Error('CONFIG');
- const key=await crypto.subtle.importKey('pkcs8',privateDer(env.APP_PRIVATE_KEY),{name:'RSASSA-PKCS1-v1_5',hash:'SHA-256'},false,['sign']);
+ onStage('KEY_DECODE');const bytes=privateDer(env.APP_PRIVATE_KEY);
+ onStage('KEY_IMPORT');const key=await crypto.subtle.importKey('pkcs8',bytes,{name:'RSASSA-PKCS1-v1_5',hash:'SHA-256'},false,['sign']);
+ onStage('JWT_ENCODE');
  const seconds=Math.floor(now/1000),input=encode({alg:'RS256',typ:'JWT'})+'.'+encode({iat:seconds-60,exp:seconds+540,iss:env.APP_CLIENT_ID});
+ onStage('JWT_SIGN');
  return input+'.'+b64(await crypto.subtle.sign('RSASSA-PKCS1-v1_5',key,encoder.encode(input)));
 }
 async function github(url,token,body,fetcher=fetch){
  const control=new AbortController(),timer=setTimeout(()=>control.abort(),6500);
  const started=Date.now();try{const response=await fetcher(url,{method:'POST',redirect:'error',signal:control.signal,headers:{'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2026-03-10','Content-Type':'application/json','User-Agent':'tw-index-events-app-relay'},body:JSON.stringify(body)});if(response.status===204)return response;const text=await boundedText(response,32768,Math.max(1,6500-(Date.now()-started)));return new Response(text,{status:response.status,headers:response.headers});}finally{clearTimeout(timer);}
 }
-export async function dispatch(env,slot,selfTest,now,fetcher=fetch){
+export async function dispatch(env,slot,selfTest,now,fetcher=fetch,onStage=()=>{}){
+ onStage('INSTALLATION_CONFIG');
  if(!/^[1-9]\d{0,15}$/.test(env.APP_INSTALLATION_ID||''))throw new Error('CONFIG');
  // No token persisted: each of two daily calls gets a fresh one-hour token.
- const jwt=await appJWT(env,now);
+ const jwt=await appJWT(env,now,onStage);
+ onStage('TOKEN_REQUEST');
  const r=await github('https://api.github.com/app/installations/'+env.APP_INSTALLATION_ID+'/access_tokens',jwt,{repository_ids:[REPO_ID],permissions:{actions:'write',metadata:'read'}},fetcher);
  if(r.status!==201)throw new Error('TOKEN_HTTP_'+r.status);
- const data=JSON.parse(await boundedText(r,32768)),expires=Date.parse(data.expires_at);
+ onStage('TOKEN_RESPONSE');const data=JSON.parse(await boundedText(r,32768)),expires=Date.parse(data.expires_at);
+ onStage('TOKEN_SCOPE_CHECK');
  if(typeof data.token!=='string'||!Number.isFinite(expires)||expires<now+60000||expires>now+3660000||data.permissions?.actions!=='write'||data.permissions?.metadata!=='read'||Object.keys(data.permissions||{}).some(k=>!['actions','metadata'].includes(k))||!Array.isArray(data.repositories)||data.repositories.length!==1||data.repositories[0].id!==REPO_ID||data.repositories[0].full_name!==REPO)throw new Error('TOKEN_SCOPE');
- const sent=await github(DISPATCH,data.token,{ref:'main',inputs:{schedule_slot:slot,self_test:selfTest}},fetcher);
+ onStage('WORKFLOW_DISPATCH');const sent=await github(DISPATCH,data.token,{ref:'main',inputs:{schedule_slot:slot,self_test:selfTest}},fetcher);
  if(sent.status===204)return {result:'DISPATCH_ACCEPTED',workflow_run_id:null};
  if(sent.status!==200)throw new Error('DISPATCH_HTTP_'+sent.status);
- const run=JSON.parse(await boundedText(sent,4096));
+ onStage('WORKFLOW_RECEIPT');const run=JSON.parse(await boundedText(sent,4096));
  if(!Number.isSafeInteger(run.workflow_run_id)||run.workflow_run_id<=0||run.run_url!=='https://api.github.com/repos/'+REPO+'/actions/runs/'+run.workflow_run_id||run.html_url!=='https://github.com/'+REPO+'/actions/runs/'+run.workflow_run_id)throw new Error('DISPATCH_RECEIPT_SCOPE');
  return {result:'DISPATCH_ACCEPTED',workflow_run_id:run.workflow_run_id};
 }
@@ -106,7 +116,7 @@ export class DispatchGate {
   if(decision!=='CLAIMED')return reply(['DUPLICATE_ACCEPTED','IN_PROGRESS'].includes(decision)?200:429,decision);
   let phase='APP_AUTH_AND_DISPATCH';
   try{
-   const accepted=await dispatch(this.env,body.schedule_slot,body.self_test,now);
+   const accepted=await dispatch(this.env,body.schedule_slot,body.self_test,now,fetch,value=>{phase=value;});
    phase='RECEIPT_STORE';
    await storage.transaction(async txn=>{const v=await txn.get(id);await txn.put(id,{...v,success:true,lease_until:0,accepted_at:Date.now(),workflow_run_id:accepted.workflow_run_id});});
    // Keep only a bounded seven-day replay ledger. Never store auth data.
