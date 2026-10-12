@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-12T16:13:52+08:00",
+  "updated_at": "2026-10-12T17:38:33+08:00",
   "funds": [
     {
       "fund_code": "0050",
@@ -9,31 +9,31 @@
       "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
       "source_uploaded_at": "2026-10-12T16:06:52+08:00",
       "information_available_as_of": "2026-10-12T16:13:44+08:00",
-      "last_checked_at": "2026-10-12T16:13:44+08:00",
+      "last_checked_at": "2026-10-12T17:38:26+08:00",
       "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0050",
       "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
     },
     {
       "fund_code": "0051",
-      "fund_aum": 3823531781.0,
+      "fund_aum": 3833984742.0,
       "currency": "TWD",
-      "aum_as_of": "2026-10-08",
+      "aum_as_of": "2026-10-12",
       "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
-      "source_uploaded_at": "2026-10-08T15:56:00+08:00",
-      "information_available_as_of": "2026-10-10T07:20:57+08:00",
-      "last_checked_at": "2026-10-12T16:13:48+08:00",
+      "source_uploaded_at": "2026-10-12T16:21:41+08:00",
+      "information_available_as_of": "2026-10-12T17:38:30+08:00",
+      "last_checked_at": "2026-10-12T17:38:30+08:00",
       "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0051",
       "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
     },
     {
       "fund_code": "0056",
-      "fund_aum": 829080886073.0,
+      "fund_aum": 835015785026.0,
       "currency": "TWD",
-      "aum_as_of": "2026-10-08",
+      "aum_as_of": "2026-10-12",
       "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
-      "source_uploaded_at": "2026-10-08T16:43:10+08:00",
-      "information_available_as_of": "2026-10-10T07:20:57+08:00",
-      "last_checked_at": "2026-10-12T16:13:52+08:00",
+      "source_uploaded_at": "2026-10-12T16:44:25+08:00",
+      "information_available_as_of": "2026-10-12T17:38:33+08:00",
+      "last_checked_at": "2026-10-12T17:38:33+08:00",
       "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0056",
       "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
     }
