@@ -155,3 +155,14 @@ App／relay僅完成程式及synthetic測試，GitHub App草稿已填僅Actions 
 已對固定 relay 加入封閉 allowlist 的非秘密診斷：僅回傳 CONFIG、KEY_FORMAT、TOKEN_HTTP_status、TOKEN_SCOPE、DISPATCH_HTTP_status、DISPATCH_RECEIPT_SCOPE、BODY_TIMEOUT、TOO_LARGE、UPSTREAM_TIMEOUT、KEY_CRYPTO_FAILED、UPSTREAM_INVALID_JSON 或 UNCLASSIFIED_ERROR；另外區分 APP_AUTH_AND_DISPATCH / RECEIPT_STORE / LEDGER_CLEANUP。沒有回傳原 exception message、GitHub response body、JWT、Token、private key、caller header。診斷只在已存在的受保護 /dispatch 錯誤回應；無新入口、無放寬驗證/權限/視窗/重試限額。DO 僅保存允許的 failure_code/failure_phase，不保存憑證。所有 response 的 X-Relay-Build=20261012-diagnostics1，供匿名 health 驗證實际部署。
 
 15項 relay Node 測試 PASS，其中新增檢查診斷不洩漏任意例外訊息與失敗 lease/attempt 保留。合成 fixture 不能代替正式授權。main 當前 parent63e9ab2a5412279e78f2868317d6c8af102eae00，以GitHubexpected_sha lease更新，不覆蓋data bot。現有兩PAT備援維持，未保存正式切換、未動MIS。重測前必須確認新build header真實部署；重試仍受每date-slot最多兩次限制，不清除ledger/重建DO；若morning self-test耗盡，可用原允許的17:20 self_test=true隔離自測槽，禁止正式時間外掃描。
+
+
+### 診斷回應顯示修正（2026-10-12T04:20:00.098Z）
+
+Cloudflare Workers Builds check114660659191對commit393977c5b37f3b24f53969b52ae4d841c7463475為SUCCESS；04:17:06Z實際/health HTTP200並帶X-Relay-Build=20261012-diagnostics1，Git連動部署已從GitHubcheck及HTTP獨立驗證。此commit的hosted regressions check114660595332亦SUCCESS，未觸發MIS抓取。
+
+cron-job.org官方前端frontend/src/components/jobs/JobTestRun.jsx確認只有JobStatus.OK才展示response/raw response，503畫面不顯示body。因此在現有已受保護dispatch內，**仅self_test=true**的處理失敗改回HTTP200、明確result=SELF_TEST_FAILED; phase; safe_code，使本人能於Response分頁取得非秘密診斷；不能把HTTP200或cron綠色狀態当作App授權／派發成功。self_test=false任何上游錯誤仍503 DISPATCH_UNVERIFIED，未授權仍401，其餘body/slot/replay限制不變。沒有無保護測試入口。build標記20261012-diagnostics2。16項Node relay測試PASS，包括production維持503的必要回歸。
+
+接續僅在新版health build確認後重測一次；本人只需關閉舊modal→TEST RUN，不Save，不Raw request。若显示Response内容，只提供result文字（不提供Authorization）；如果ATTEMPT_LIMIT/429則停止晨間重試，使用既有允許的晚間self_test槽位，不清除DO計數。正式App receipt仍待成功、舊PAT兩job仍保持運作、MIS仍未改。
+
+官方介面實作：https://github.com/pschlan/cron-job.org/blob/master/frontend/src/components/jobs/JobTestRun.jsx

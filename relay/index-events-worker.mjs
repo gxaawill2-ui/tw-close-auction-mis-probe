@@ -3,7 +3,7 @@ const REPO='gxaawill2-ui/tw-close-auction-mis-probe';
 const REPO_ID=1395186758;
 const DISPATCH='https://api.github.com/repos/'+REPO+'/actions/workflows/index-events.yml/dispatches';
 const encoder=new TextEncoder();
-const BUILD='20261012-diagnostics1';
+const BUILD='20261012-diagnostics2';
 const reply=(status,result)=>new Response(JSON.stringify({result}),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store','X-Relay-Build':BUILD}});
 // Return only a closed set of diagnostic codes, never exception text or upstream bodies.
 export function failureCode(error){
@@ -118,7 +118,9 @@ export class DispatchGate {
    // then the workflow's separate CAS receipt prevents another source scan.
    const failure_code=failureCode(error);
    await storage.transaction(async txn=>{const v=await txn.get(id);await txn.put(id,{...v,lease_until:Date.now()+60000,failed_at:Date.now(),failure_code,failure_phase:phase});});
-   return reply(503,'DISPATCH_UNVERIFIED; '+phase+'; '+failure_code);
+   // cron-job.org hides bodies on failed HTTP responses. A processed self-test
+   // returns its explicit failed verdict for inspection; production remains 503.
+   return reply(body.self_test?200:503,(body.self_test?'SELF_TEST_FAILED':'DISPATCH_UNVERIFIED')+'; '+phase+'; '+failure_code);
   }
  }
 }

@@ -46,7 +46,7 @@ test('two simultaneous first requests dispatch once through atomic lease',async(
 test('network error uses bounded lease and two attempts without revealing credentials',async()=>{
  const m=await load,storage=storageMock(),gate=new m.DispatchGate({storage},env),originalFetch=global.fetch,originalNow=Date.now;let clock=originalNow(),calls=0;Date.now=()=>clock;
  global.fetch=async()=>{calls++;throw Error('synthetic transport failure');};
- try{let r=await gate.fetch(req({schedule_slot:'17:20',self_test:true}));assert.equal(r.status,503);assert.doesNotMatch(await r.text(),/synthetic|PRIVATE|Bearer/);assert.equal((await gate.fetch(req({schedule_slot:'17:20',self_test:true}))).status,200);clock+=61000;assert.equal((await gate.fetch(req({schedule_slot:'17:20',self_test:true}))).status,503);clock+=61000;assert.equal((await gate.fetch(req({schedule_slot:'17:20',self_test:true}))).status,429);assert.equal(calls,2);}finally{global.fetch=originalFetch;Date.now=originalNow;}
+ try{let r=await gate.fetch(req({schedule_slot:'17:20',self_test:true}));assert.equal(r.status,200);assert.doesNotMatch(await r.text(),/synthetic|PRIVATE|Bearer/);assert.equal((await gate.fetch(req({schedule_slot:'17:20',self_test:true}))).status,200);clock+=61000;assert.equal((await gate.fetch(req({schedule_slot:'17:20',self_test:true}))).status,200);clock+=61000;assert.equal((await gate.fetch(req({schedule_slot:'17:20',self_test:true}))).status,429);assert.equal(calls,2);}finally{global.fetch=originalFetch;Date.now=originalNow;}
 });
 
 test('stalled response body is cancelled within bounded timeout',async()=>{const m=await load;let cancelled=false;const r=new Response(new ReadableStream({cancel(){cancelled=true;}}));await assert.rejects(m.boundedText(r,256,15),/BODY_TIMEOUT/);assert.equal(cancelled,true);});
@@ -63,5 +63,11 @@ test('diagnostic codes never expose exception text, token bodies or secret value
 test('upstream failure returns only safe phase and diagnostic code, retaining replay protection',async()=>{
  const m=await load,storage=storageMock(),gate=new m.DispatchGate({storage},env),originalFetch=global.fetch;
  global.fetch=async()=>new Response(null,{status:401});
- try{const response=await gate.fetch(req({schedule_slot:'08:20',self_test:true}));assert.equal(response.status,503);assert.equal(response.headers.get('X-Relay-Build'),'20261012-diagnostics1');assert.equal((await response.json()).result,'DISPATCH_UNVERIFIED; APP_AUTH_AND_DISPATCH; TOKEN_HTTP_401');const record=storage.map.get(m.slotIdentity('08:20',Date.now(),true));assert.equal(record.failure_code,'TOKEN_HTTP_401');assert.equal(record.failure_phase,'APP_AUTH_AND_DISPATCH');assert.equal(record.attempts,1);assert.ok(record.lease_until>Date.now());}finally{global.fetch=originalFetch;}
+ try{const response=await gate.fetch(req({schedule_slot:'08:20',self_test:true}));assert.equal(response.status,200);assert.equal(response.headers.get('X-Relay-Build'),'20261012-diagnostics2');assert.equal((await response.json()).result,'SELF_TEST_FAILED; APP_AUTH_AND_DISPATCH; TOKEN_HTTP_401');const record=storage.map.get(m.slotIdentity('08:20',Date.now(),true));assert.equal(record.failure_code,'TOKEN_HTTP_401');assert.equal(record.failure_phase,'APP_AUTH_AND_DISPATCH');assert.equal(record.attempts,1);assert.ok(record.lease_until>Date.now());}finally{global.fetch=originalFetch;}
+});
+
+test('production upstream failure retains HTTP503 and never becomes a successful self-test',async()=>{
+ const m=await load,storage=storageMock(),gate=new m.DispatchGate({storage},env),originalFetch=global.fetch,originalNow=Date.now;Date.now=()=>now;
+ global.fetch=async()=>new Response(null,{status:403});
+ try{const response=await gate.fetch(req({schedule_slot:'08:20',self_test:false}));assert.equal(response.status,503);assert.equal((await response.json()).result,'DISPATCH_UNVERIFIED; APP_AUTH_AND_DISPATCH; TOKEN_HTTP_403');}finally{global.fetch=originalFetch;Date.now=originalNow;}
 });
