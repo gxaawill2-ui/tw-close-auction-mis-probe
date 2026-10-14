@@ -50,6 +50,8 @@ def watch(journal,universe,date,output,*,collect=False,endpoint=None):
                 key,task=future;manifest=task.result()
                 if manifest.get('status')=='COLLECTED_NOT_VALIDATED':
                     pipeline.proofs[key]=load_bundle(collector.directory/manifest['manifest_path'])
+                elif manifest.get('status')=='SOURCE_INCOMPLETE':
+                    pipeline.proofs[key]={'source':'FUGLE','status':'SOURCE_INCOMPLETE','error':manifest.get('error')}
                 next_try[key]=datetime.now(f.TZ).timestamp()+min(5*attempts[key],15)
                 future=None;changed=True
             if collector and collector.key and not collector.stopped and not future and (deadline-datetime.now(f.TZ)).total_seconds()>20:

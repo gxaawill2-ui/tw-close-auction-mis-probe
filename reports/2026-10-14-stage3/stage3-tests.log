@@ -27,6 +27,7 @@ test_same_count_but_changed_volume_blocks (test_stage3_ticks.IndependentTicksTes
 test_same_microsecond_uses_serial_tiebreaker (test_stage3_ticks.IndependentTicksTests.test_same_microsecond_uses_serial_tiebreaker) ... ok
 test_same_second_microseconds_and_serial_are_preserved (test_stage3_ticks.IndependentTicksTests.test_same_second_microseconds_and_serial_are_preserved) ... ok
 test_slow_network_response_is_not_given_early_time (test_stage3_ticks.IndependentTicksTests.test_slow_network_response_is_not_given_early_time) ... ok
+test_source_missing_pages_becomes_data_insufficient_not_verified (test_stage3_ticks.IndependentTicksTests.test_source_missing_pages_becomes_data_insufficient_not_verified) ... ok
 test_source_update_is_not_a_trade_time_substitute (test_stage3_ticks.IndependentTicksTests.test_source_update_is_not_a_trade_time_substitute) ... ok
 test_synthetic_cannot_enter_live_mode (test_stage3_ticks.IndependentTicksTests.test_synthetic_cannot_enter_live_mode) ... ok
 test_trial_request_scope_is_invalid (test_stage3_ticks.IndependentTicksTests.test_trial_request_scope_is_invalid) ... ok
@@ -47,6 +48,6 @@ test_unsigned_flags_cannot_keep_same_signature (test_stage3_transport.TransportT
 test_wrong_publication_receipt_is_not_success (test_stage3_transport.TransportTests.test_wrong_publication_receipt_is_not_success) ... ok
 
 ----------------------------------------------------------------------
-Ran 47 tests in 0.018s
+Ran 48 tests in 0.015s
 
 OK

@@ -74,14 +74,14 @@
 | 13:30→首真正公開已驗證訊號 | 未取得，null；後來公開的研究測試檔不能倒算13:35 |
 | 原6候選最後證據更新 | 254.306秒，13:34:14.306 |
 | 程式產生 | 本次實際執行時間，與歷史as_of分欄；見stage3-results/latency |
-| 本機Worker寫入→實際瀏覽器讀取 | 約1.34～1.43秒，三profile實測；loopback，非Cloudflare全球網路 |
+| 本機Worker寫入→實際瀏覽器讀取 | 約1.38～1.44秒，三profile實測；loopback，非Cloudflare全球網路 |
 | 新分支公開檔寫入ack／外部瀏覽器 | 另見public-read-acceptance及GitHub同步receipt，測試在下午較晚執行，不是實盤 |
 
 沒有可證明的「最早正式時間」；目前不能承諾13:40前會有VERIFIED。低量候選的資料與讀取路徑有機會滿足，但仍待真實API、下一交易日及隔離雲端實測。14:50／15:20／17:50最終官方稽核保留，而且官方收盤一致不能倒證pre或遮住MIS擷取失敗。
 
 ## 測試／交付狀態
 
-- 基線301 Python／96前端沒有減少。新增47 Python、6前端：**348 Python／102前端PASS**；Worker真實引擎14項PASS另列。
+- 基線301 Python／96前端沒有減少。新增48 Python、6前端：**349 Python／102前端PASS**；Worker真實引擎14項PASS另列。
 - 逐筆：13:24:30→13:24:59新成交、same-second及same-microsecond、13:25邊界、長時間無成交、缺頁／末頁／inner tick、count與volume、seq gap契約、trial、cache、delay、date/symbol範圍、source/MIS衝突、正常／延後／無新close、外部旗標、原hash與截止。
 - 發布：auth/signature、版本race／冪等／回歸、部分候選、no-store/CORS、body budget、receipt mismatch、503重試與401停止、背景coalesce不阻擋capture。
 - Chromium桌機Windows UA、Chromium iPhone13模擬、WebKit iPhone13模擬：1→6刷新、三狀態、六排序、缺值置底測試、false verified、failed read提示與保留state、深色、無overflow。Linux引擎，未有Windows／iPhone真機。
@@ -104,3 +104,12 @@
 - https://developers.cloudflare.com/kv/concepts/how-kv-works/
 - https://developers.cloudflare.com/workers/platform/limits/
 - https://developers.cloudflare.com/durable-objects/platform/pricing/
+
+
+## 公開讀取實測結果（下午較晚執行）
+
+GitHub程式Commit：2d33d1f02d013a5dc390c8fc6385373b12e351e0，39個新隔離檔案tree與本機驗收版完全一致。新分支已寫入OFFLINE_REPLAY測試JSON，GitHub connector可讀取、blob SHA為8fc0bde9f452fbd402c4c1e77b743cd357eaab12。
+
+匿名Chromium從本機頁面讀GitHub API的兩次嘗試未收到HTTP response，第二次記錄net::ERR_EMPTY_RESPONSE；外部Cloud Browser直接開該測試JSON URL也被客戶端阻擋：net::ERR_BLOCKED_BY_CLIENT。這是目前可觀察的瀏覽器／網路阻擋，**不能推定GitHub服務故障或已完成匿名公開讀取**，也不能報告公開讀取延遲PASS。
+
+公開writer ack在public-write-receipt.json；精確GitHub server寫入時間未知。公開browser實際成功讀取、首公開VERIFIED及13:30到該時刻仍為null。沒有繞過網路保護、改browser TLS、使用其他Secret、把authenticated connector讀取當匿名browser讀取，亦未部署Cloudflare。

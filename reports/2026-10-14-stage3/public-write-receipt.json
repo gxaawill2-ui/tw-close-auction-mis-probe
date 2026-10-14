@@ -1,0 +1,9 @@
+{
+  "scope": "ISOLATED_GITHUB_BRANCH",
+  "branch": "stage3/20261014-independent-ticks-publication",
+  "code_commit": "2d33d1f02d013a5dc390c8fc6385373b12e351e0",
+  "write_ack_observed_at": "2026-10-14T18:50:14.806057+09:00",
+  "server_exact_write_time_known": false,
+  "formal_signals": 0,
+  "production_deployed": false
+}

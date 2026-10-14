@@ -164,6 +164,11 @@ class IndependentTicksTests(unittest.TestCase):
         r=s.decide(row,bundle,DAY,AS_OF,mode='SYNTHETIC',contract=t.TEST_CONTRACT)
         self.assertEqual(r['verification_status'],'UNKNOWN')
 
+    def test_source_missing_pages_becomes_data_insufficient_not_verified(self):
+        row,bundle=example();bundle['pages'].pop(0)
+        r=s.decide(row,bundle,DAY,AS_OF,mode='SYNTHETIC',contract=t.TEST_CONTRACT)
+        self.assertEqual(r['verification_status'],'UNKNOWN');self.assertFalse(r['validated'])
+
     def test_volume_and_threshold_are_required_per_security(self):
         for values in ({'volume_status':'UNVERIFIED'},{'closing_auction_volume':None},{'P_close':'102'}):
             row,bundle=example();row.update(values)

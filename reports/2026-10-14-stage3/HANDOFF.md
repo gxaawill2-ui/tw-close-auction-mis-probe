@@ -8,7 +8,7 @@
 
 stage3_ticks/provider/selection/run/publication＋獨立Worker/SQLite DO＋GUI。README有完整來源、時間與免費比較。raw pages／quote前後、count/size語意閘門、微秒/serial、missing/trial/cache/conflict、normal/delayed/no-close均有反例。候選網路最多50總請求、1.1秒節流、12頁/股、3回/股、deadline，新的watch只讀已存在journal，不抓MIS。
 
-348 Python＋102 Node/前端PASS；Worker14項PASS；ChromiumWindows UA／iPhone及WebKit iPhone13模擬PASS，本機Worker寫入→瀏覽器約1.34～1.43s。真機與Cloudflare全球實測未做。新分支公開JSON匿名瀏覽器試驗結果請讀public-read-acceptance.json；不能把它叫Pages或Worker雲端發布。
+349 Python＋102 Node/前端PASS；Worker14項PASS；ChromiumWindows UA／iPhone及WebKit iPhone13模擬PASS，本機Worker寫入→瀏覽器約1.38～1.44s。真機與Cloudflare全球實測未做。新分支公開JSON匿名瀏覽器試驗結果請讀public-read-acceptance.json；不能把它叫Pages或Worker雲端發布。
 
 10/14真實研究仍6檔、正式0；初篩1946／1970、24unknown可能漏選。歷史first研究13:32:35.533／last13:34:14.306，真實pre/close獨立驗證及VERIFIED公開時間為null。日期、原始byte和原Artifact SHA保留。
 
@@ -44,3 +44,10 @@ node browser_stage3_public_read.cjs
 5. 記錄research→pre independently proved→close proved→full VERIFIED→public write→external read→last update分段；未知要null。目標13:35～13:40，沒做到就報實際瓶頸。
 
 目前不具正式部署條件；完成上述也須另取得合併／正式部署授權。
+
+
+## 最新同步及具體阻擋
+
+GitHub程式commit 2d33d1f02d013a5dc390c8fc6385373b12e351e0已確認；本機原5019a3c只是metadata不同，tree相同df9ab310e6aaee1a685e7cff8fb7fe75eb46a323。公開測試JSON存在，不是正式Pages部署。
+
+公開匿名讀取尚未通過：本機Chromium兩次net::ERR_EMPTY_RESPONSE、Cloud Browser一次net::ERR_BLOCKED_BY_CLIENT，沒有HTTP response。不要繼續重試同一網路阻擋或把connector成功冒充匿名browser成功；取得允許的外部網路／使用者瀏覽器／新隔離Cloudflare帳號後再驗收。正式訊號仍0。

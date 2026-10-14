@@ -12,10 +12,13 @@ async function main(){
   started_at:new Date().toISOString(),read_without_credentials:true,production_site_mutated:false};
  try{
   const page=await browser.newPage({viewport:{width:1440,height:1080},timezoneId:'Asia/Taipei'});
+  const network=[];page.on('requestfailed',request=>{if(request.url().startsWith('https://api.github.com/'))network.push({url:request.url(),failure:request.failure()});});
+  page.on('response',response=>{if(response.url().startsWith('https://api.github.com/'))network.push({url:response.url(),http_status:response.status(),content_type:response.headers()['content-type']});});
   await page.goto('http://127.0.0.1:'+server.address().port+'/');
   const began=performance.now();
   await page.evaluate(async endpoint=>Stage3Controller.poll(endpoint),endpoint);
   const reads=await page.evaluate(()=>Stage3Controller.reads);
+  result.network=network;
   assert.equal(reads.length,1,'Anonymous public read must yield a version receipt');
   const nonce=await page.evaluate(()=>Stage3Controller.getState().body.nonce);
   assert.equal(nonce,'stage3-public-read-20261014-01');

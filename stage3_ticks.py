@@ -87,6 +87,8 @@ def inspect(bundle, candidate, date, as_of, *, mode='LIVE', contract=LIVE_CONTRA
         reasons.append('INVALID_MODE'); return result
     if not bundle:
         reasons.append('NO_INDEPENDENT_TICK_EVIDENCE'); return result
+    if bundle.get('status') == 'SOURCE_INCOMPLETE':
+        reasons.append(bundle.get('error') or 'SOURCE_CAPTURE_INCOMPLETE'); return result
     if bundle.get('source') != contract.source:
         reasons.append('WRONG_SOURCE'); return result
     if mode == 'LIVE' and bundle.get('origin_kind') == 'SYNTHETIC':

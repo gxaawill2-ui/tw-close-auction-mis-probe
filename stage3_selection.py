@@ -25,8 +25,9 @@ def decide(row,bundle,date,as_of,*,mode='LIVE',contract=ticks.LIVE_CONTRACT):
     now=f.parsed_time(as_of)
     within_window=bool(now and f.parsed_time(date+'T13:30:00+08:00') <= now < f.parsed_time(date+'T14:30:00+08:00'))
     valid=mode=='LIVE' and within_window and all(checks.values()) and not evidence['reasons']
-    conflict=any('CONFLICT' in r or 'HASH_MISMATCH' in r for r in evidence['reasons'])
-    status='VERIFIED' if valid else 'UNKNOWN' if conflict or not threshold else 'RESEARCH_ONLY'
+    insufficient=bool(bundle and any(r not in ('SOURCE_COUNT_AND_VOLUME_SEMANTICS_NOT_CONFIRMED',
+        'LIVE_SOURCE_CONTRACT_NOT_RELEASED') for r in evidence['reasons']))
+    status='VERIFIED' if valid else 'UNKNOWN' if insufficient or not threshold else 'RESEARCH_ONLY'
     simulation_pass=bool(mode=='SYNTHETIC' and evidence['synthetic_pre_passed'] and
         evidence['synthetic_close_passed'] and threshold and volume and not evidence['reasons'])
     keys=('code','name','ex','market','P_before','P_close','P_before_trade_time','P_close_trade_time',

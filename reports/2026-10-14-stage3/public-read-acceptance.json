@@ -1,0 +1,26 @@
+{
+  "kind": "GITHUB_ANONYMOUS_ISOLATED_FILE_NOT_PAGES_OR_WORKER",
+  "branch": "stage3/20261014-independent-ticks-publication",
+  "endpoint": "https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/contents/reports/2026-10-14-stage3/public-sandbox.json?ref=stage3%2F20261014-independent-ticks-publication",
+  "started_at": "2026-10-14T09:51:40.095Z",
+  "read_without_credentials": true,
+  "production_site_mutated": false,
+  "network": [
+    {
+      "url": "https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/contents/reports/2026-10-14-stage3/public-sandbox.json?ref=stage3%2F20261014-independent-ticks-publication",
+      "failure": {
+        "errorText": "net::ERR_EMPTY_RESPONSE"
+      }
+    }
+  ],
+  "status": "BLOCKED_OR_FAILED",
+  "error": "Anonymous public read must yield a version receipt\n\n0 !== 1\n",
+  "formal_signals": 0,
+  "completed_at": "2026-10-14T09:51:40.225Z",
+  "cloud_browser_check": {
+    "status": "BLOCKED",
+    "error": "net::ERR_BLOCKED_BY_CLIENT",
+    "http_response_received": false
+  },
+  "limitation": "Public file is confirmed on GitHub through connector; anonymous external browser fetch failed in both local Chromium and Cloud Browser. No public-read latency success is claimed."
+}
