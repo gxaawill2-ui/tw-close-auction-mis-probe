@@ -7,6 +7,7 @@
 - Repo：`gxaawill2-ui/tw-close-auction-mis-probe`
 - 開發基線與工作結束前唯讀核對的 main：`4f0eb6c7ae238f876d25223d178c88fdee9bf12a`
 - 修復分支：`fix/20261014-capture-reliability`
+- 程式修復 Commit：`e25f671a5f49f51b5646a61764acec4238952f3f`
 - 原主執行：`38514354547`，執行程式版本：`ad54d960d889785f73f91bb5bb68251a36e5307a`
 - 原 Artifact：`mis-probe-38514354547`，ID `11872406874`
 - 原 ZIP SHA256：`4ea6e228ce86d965584203dfbf5f04d7707a238d74d24cafe133e3994a98cf6f`，下載後與 GitHub digest 一致。原始輸入不變。
