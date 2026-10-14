@@ -1,0 +1,106 @@
+// Entirely separate from the existing relay/Pages. No cron and no GitHub calls.
+const encoder=new TextEncoder();
+export function canonical(value){
+ if(Array.isArray(value))return '['+value.map(canonical).join(',')+']';
+ if(value&&typeof value==='object')return '{'+Object.keys(value).sort().map(k=>JSON.stringify(k)+':'+canonical(value[k])).join(',')+'}';
+ return JSON.stringify(value);
+}
+const hex=bytes=>Array.from(new Uint8Array(bytes),x=>x.toString(16).padStart(2,'0')).join('');
+export async function sign(body,key){
+ const secret=await crypto.subtle.importKey('raw',encoder.encode(key),{name:'HMAC',hash:'SHA-256'},false,['sign']);
+ return hex(await crypto.subtle.sign('HMAC',secret,encoder.encode(canonical(body))));
+}
+function equal(a,b){if(typeof a!=='string'||typeof b!=='string'||a.length!==b.length)return false;let diff=0;for(let i=0;i<a.length;i++)diff|=a.charCodeAt(i)^b.charCodeAt(i);return diff===0;}
+export function validate(body,env,now=Date.now()){
+ if(body?.schema_version!=='STAGE3_SELECTION_V1'||!/^\d{4}-\d{2}-\d{2}$/.test(body.trade_date||'')||
+  !Number.isSafeInteger(body.version)||body.version<1||!['LIVE','SYNTHETIC','OFFLINE_REPLAY'].includes(body.mode)||
+  !Array.isArray(body.rows)||body.rows.length>200||body.is_synthetic!==(body.mode==='SYNTHETIC'))return 'INVALID_SCHEMA';
+ const generated=Date.parse(body.generated_at);
+ if(!Number.isFinite(generated))return 'INVALID_GENERATION_TIME';
+ if(body.mode==='LIVE'){
+  const today=new Date(now+8*3600000).toISOString().slice(0,10);
+  const opening=Date.parse(body.trade_date+'T13:30:00+08:00'),deadline=Date.parse(body.trade_date+'T14:30:00+08:00');
+  if(body.trade_date!==today||Math.abs(now-generated)>30000||now<opening||now>=deadline)return 'LIVE_OUTSIDE_CURRENT_PUBLICATION_WINDOW';
+ }
+ let count=0;const seen=new Set();
+ for(const row of body.rows){
+  if(!/^\d{4}$/.test(row.code||'')||!['tse','otc'].includes(row.ex)||!['RESEARCH_ONLY','VERIFIED','UNKNOWN'].includes(row.verification_status))return 'INVALID_ROW';
+  const identity=row.ex+':'+row.code;if(seen.has(identity))return 'DUPLICATE_SECURITY';seen.add(identity);
+  if(row.validated){
+   if(body.mode!=='LIVE'||env.ALLOW_LIVE_VERIFIED!=='true')return 'LIVE_VALIDATION_NOT_RELEASED';
+   if(row.verification_status!=='VERIFIED'||row.simulated_only||row.simulation_passed||
+    !['pre_actual_trade_before_1325','pre_last_trade_independently_proven','close_independent_finality','tail_threshold','required_volume_evidence'].every(k=>row.checks?.[k]===true)||
+    row.independent_evidence?.source_contract_live_released!==true||row.independent_evidence?.validated!==true)return 'UNPROVEN_VERIFIED_FLAG';
+   const before=Number(row.P_before),close=Number(row.P_close),volume=Number(row.closing_auction_volume),total=Number(row.intraday_total_volume);
+   if(!Number.isFinite(before)||!Number.isFinite(close)||before<=0||close<=0||Math.abs(close/before-1)<.03||!(volume>0&&total>=volume))return 'INVALID_VERIFIED_VALUES';
+   count++;
+  }else if(row.verification_status==='VERIFIED')return 'UNPROVEN_VERIFIED_FLAG';
+ }
+ if(count!==body.verified_count)return 'VERIFIED_COUNT_MISMATCH';
+ if(body.research_count!==body.rows.filter(r=>r.verification_status==='RESEARCH_ONLY').length||body.unknown_candidate_count!==body.rows.filter(r=>r.verification_status==='UNKNOWN').length)return 'CANDIDATE_COUNT_MISMATCH';
+ if(!Number.isSafeInteger(body.universe_count)||!Number.isSafeInteger(body.screening_calculable_count)||body.screening_calculable_count<0||body.screening_calculable_count>body.universe_count||body.screening_unresolved_count!==body.universe_count-body.screening_calculable_count)return 'SCREENING_COUNT_MISMATCH';
+ return null;
+}
+function response(status,data,extra={}){
+ return new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8',
+  'Cache-Control':'no-store, max-age=0','Pragma':'no-cache','X-Content-Type-Options':'nosniff',
+  'Access-Control-Allow-Origin':'*','Access-Control-Expose-Headers':'ETag, X-Published-At',...extra}});
+}
+export default {async fetch(request,env){
+ const url=new URL(request.url);
+ if(url.pathname==='/health')return response(200,{scope:'ISOLATED_STAGE3',live_validation_released:env.ALLOW_LIVE_VERIFIED==='true'});
+ if(url.pathname==='/data'&&request.method==='OPTIONS')return new Response(null,{status:204,headers:{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'GET','Access-Control-Allow-Headers':'If-None-Match'}});
+ if(url.pathname==='/data'&&request.method==='GET'){
+  const date=url.searchParams.get('date');if(!/^\d{4}-\d{2}-\d{2}$/.test(date||''))return response(400,{error:'INVALID_DATE'});
+  return env.SELECTION.get(env.SELECTION.idFromName('isolated-market-selection')).fetch(new Request('https://actor/data?date='+date,{headers:{'If-None-Match':request.headers.get('If-None-Match')||''}}));
+ }
+ if(url.pathname!=='/publish'||url.search||request.method!=='POST')return response(404,{error:'NOT_FOUND'});
+ if(!env.PUBLISH_TOKEN||!env.DECISION_KEY)return response(503,{error:'ISOLATED_WRITE_NOT_CONFIGURED'});
+ if(!equal(request.headers.get('Authorization')||'','Bearer '+env.PUBLISH_TOKEN))return response(401,{error:'UNAUTHORIZED'});
+ if(Number(request.headers.get('Content-Length')||0)>131072)return response(413,{error:'BODY_TOO_LARGE'});
+ let envelope;try{
+  const reader=request.body.getReader();let length=0,chunks=[];
+  while(true){const {value,done}=await reader.read();if(done)break;length+=value.byteLength;if(length>131072){await reader.cancel();return response(413,{error:'BODY_TOO_LARGE'});}chunks.push(value);}
+  const bytes=new Uint8Array(length);let offset=0;for(const chunk of chunks){bytes.set(chunk,offset);offset+=chunk.length;}
+  envelope=JSON.parse(new TextDecoder().decode(bytes));
+ }catch{return response(400,{error:'INVALID_JSON'});}
+ if(!equal(envelope.signature,await sign(envelope.body,env.DECISION_KEY)))return response(403,{error:'DECISION_SIGNATURE_MISMATCH'});
+ const error=validate(envelope.body,env);if(error)return response(422,{error});
+ return env.SELECTION.get(env.SELECTION.idFromName('isolated-market-selection')).fetch(new Request('https://actor/publish',{method:'POST',body:JSON.stringify(envelope.body)}));
+}};
+export class SelectionStore{
+ constructor(state,env){this.state=state;this.env=env;}
+ async fetch(request){
+  const url=new URL(request.url),storage=this.state.storage;
+  if(request.method==='GET'){
+   const saved=await storage.get('date:'+url.searchParams.get('date'));
+   if(!saved)return response(404,{error:'NO_PUBLISHED_DATA'});
+   const headers={ETag:'"'+saved.sha256+'"','X-Published-At':saved.public_written_at};
+   if(request.headers.get('If-None-Match')===headers.ETag)return new Response(null,{status:304,headers:{...headers,'Cache-Control':'no-store','Access-Control-Allow-Origin':'*'}});
+   return response(200,saved,headers);
+  }
+  const body=await request.json();
+  const sha256=hex(await crypto.subtle.digest('SHA-256',encoder.encode(canonical(body))));
+  const saved={...body,sha256,public_written_at:null,server_write_started_at:new Date().toISOString(),publication_scope:'ISOLATED_WORKER'};
+  const outcome=await this.state.blockConcurrencyWhile(async()=>{
+   const result=await storage.transaction(async txn=>{
+   const key='date:'+body.trade_date,prior=await txn.get(key);
+   if(prior&&prior.version===body.version&&prior.sha256===sha256)return {duplicate:true,saved:prior};
+   if(prior&&prior.version>=body.version)return {conflict:true};
+   await txn.put(key,saved);
+   const dates=await txn.get('dates')||[];if(!dates.includes(body.trade_date))dates.push(body.trade_date);
+   dates.sort();while(dates.length>10)await txn.delete('date:'+dates.shift());await txn.put('dates',dates);
+   return {saved};
+   });
+   if(result.saved&&!result.duplicate){
+    // Record after the payload transaction committed, never before writing.
+    result.saved.public_written_at=new Date().toISOString();
+    await storage.put('date:'+body.trade_date,result.saved);
+   }
+   return result;
+  });
+  if(outcome.conflict)return response(409,{error:'STALE_VERSION_OR_CONFLICT'});
+  return response(200,{version:outcome.saved.version,sha256:outcome.saved.sha256,
+   public_written_at:outcome.saved.public_written_at,duplicate:outcome.duplicate||false});
+ }
+}

@@ -1,0 +1,13 @@
+{
+  "kind": "HISTORICAL_EVIDENCE_REPLAY_NOT_LIVE_PUBLICATION",
+  "research_candidate_evidence_available_at": "2026-10-14T13:32:35.533+08:00",
+  "first_independent_pre_at": null,
+  "first_independent_close_at": null,
+  "first_verified_at": null,
+  "first_public_written_at": null,
+  "first_external_browser_observed_at": null,
+  "all_historical_candidates_evidence_at": "2026-10-14T13:34:14.306+08:00",
+  "actual_program_generated_at": "2026-10-14T17:26:40.237+08:00",
+  "synthetic_test_passes": 2,
+  "formal_signals": 0
+}

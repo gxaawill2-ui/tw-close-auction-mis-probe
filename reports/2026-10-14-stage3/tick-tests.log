@@ -1,0 +1,35 @@
+test_132459_trade_replaces_earlier_132430_observation (test_stage3_ticks.IndependentTicksTests.test_132459_trade_replaces_earlier_132430_observation) ... ok
+test_changing_quote_during_pagination_blocks (test_stage3_ticks.IndependentTicksTests.test_changing_quote_during_pagination_blocks) ... ok
+test_close_price_conflict_keeps_pre_result_separate (test_stage3_ticks.IndependentTicksTests.test_close_price_conflict_keeps_pre_result_separate) ... ok
+test_close_trial_or_no_close_flag_blocks (test_stage3_ticks.IndependentTicksTests.test_close_trial_or_no_close_flag_blocks) ... ok
+test_complete_tick_history_is_synthetic_success_never_live_verified (test_stage3_ticks.IndependentTicksTests.test_complete_tick_history_is_synthetic_success_never_live_verified) ... ok
+test_confirmed_per_security_sequence_gap_blocks (test_stage3_ticks.IndependentTicksTests.test_confirmed_per_security_sequence_gap_blocks) ... ok
+test_decision_recomputes_instead_of_trusting_external_flag (test_stage3_ticks.IndependentTicksTests.test_decision_recomputes_instead_of_trusting_external_flag) ... ok
+test_default_real_contract_is_not_released_by_fixture_flags (test_stage3_ticks.IndependentTicksTests.test_default_real_contract_is_not_released_by_fixture_flags) ... ok
+test_duplicate_serial_is_invalid (test_stage3_ticks.IndependentTicksTests.test_duplicate_serial_is_invalid) ... ok
+test_exact_132500_is_excluded (test_stage3_ticks.IndependentTicksTests.test_exact_132500_is_excluded) ... ok
+test_microseconds_not_milliseconds (test_stage3_ticks.IndependentTicksTests.test_microseconds_not_milliseconds) ... ok
+test_mis_conflict_becomes_unknown (test_stage3_ticks.IndependentTicksTests.test_mis_conflict_becomes_unknown) ... ok
+test_missing_inner_tick_detected_by_independent_count (test_stage3_ticks.IndependentTicksTests.test_missing_inner_tick_detected_by_independent_count) ... ok
+test_missing_page_is_detected (test_stage3_ticks.IndependentTicksTests.test_missing_page_is_detected) ... ok
+test_missing_terminal_page_blocks (test_stage3_ticks.IndependentTicksTests.test_missing_terminal_page_blocks) ... ok
+test_new_post_cutoff_trade_is_not_pre_price (test_stage3_ticks.IndependentTicksTests.test_new_post_cutoff_trade_is_not_pre_price) ... ok
+test_normal_close_and_delayed_close (test_stage3_ticks.IndependentTicksTests.test_normal_close_and_delayed_close) ... ok
+test_oddlot_scope_rejected (test_stage3_ticks.IndependentTicksTests.test_oddlot_scope_rejected) ... ok
+test_old_date_rejected (test_stage3_ticks.IndependentTicksTests.test_old_date_rejected) ... ok
+test_old_http_cache_rejected (test_stage3_ticks.IndependentTicksTests.test_old_http_cache_rejected) ... ok
+test_raw_evidence_hash_tamper_rejected (test_stage3_ticks.IndependentTicksTests.test_raw_evidence_hash_tamper_rejected) ... ok
+test_same_count_but_changed_volume_blocks (test_stage3_ticks.IndependentTicksTests.test_same_count_but_changed_volume_blocks) ... ok
+test_same_second_microseconds_and_serial_are_preserved (test_stage3_ticks.IndependentTicksTests.test_same_second_microseconds_and_serial_are_preserved) ... ok
+test_slow_network_response_is_not_given_early_time (test_stage3_ticks.IndependentTicksTests.test_slow_network_response_is_not_given_early_time) ... ok
+test_source_update_is_not_a_trade_time_substitute (test_stage3_ticks.IndependentTicksTests.test_source_update_is_not_a_trade_time_substitute) ... ok
+test_synthetic_cannot_enter_live_mode (test_stage3_ticks.IndependentTicksTests.test_synthetic_cannot_enter_live_mode) ... ok
+test_trial_request_scope_is_invalid (test_stage3_ticks.IndependentTicksTests.test_trial_request_scope_is_invalid) ... ok
+test_trial_tick_is_not_an_actual_tick (test_stage3_ticks.IndependentTicksTests.test_trial_tick_is_not_an_actual_tick) ... ok
+test_unspecified_serial_gaps_are_not_asserted_packet_loss (test_stage3_ticks.IndependentTicksTests.test_unspecified_serial_gaps_are_not_asserted_packet_loss) ... ok
+test_volume_and_threshold_are_required_per_security (test_stage3_ticks.IndependentTicksTests.test_volume_and_threshold_are_required_per_security) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.006s
+
+OK

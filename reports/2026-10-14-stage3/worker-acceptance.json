@@ -1,0 +1,106 @@
+{
+  "runtime": "Miniflare / workerd SQLite Durable Object",
+  "scope": "LOOPBACK_ONLY_NOT_PUBLIC_DEPLOYMENT",
+  "checks": [
+    {
+      "name": "empty-is-404-not-completed",
+      "status": "PASS"
+    },
+    {
+      "name": "signed-write-has-real-receipt",
+      "status": "PASS"
+    },
+    {
+      "name": "read-after-write-matches-content",
+      "status": "PASS"
+    },
+    {
+      "name": "no-store-and-public-read-cors",
+      "status": "PASS"
+    },
+    {
+      "name": "same-version-idempotent",
+      "status": "PASS"
+    },
+    {
+      "name": "same-version-conflict-rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "partial-batch-published-without-market-barrier",
+      "status": "PASS"
+    },
+    {
+      "name": "old-etag-cannot-hide-update",
+      "status": "PASS"
+    },
+    {
+      "name": "version-regression-rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "fabricated-verified-rejected-even-signed",
+      "status": "PASS"
+    },
+    {
+      "name": "signature-tamper-rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "anonymous-write-denied",
+      "status": "PASS"
+    },
+    {
+      "name": "large-payload-rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "invalid-date-denied",
+      "status": "PASS"
+    }
+  ],
+  "timings": [
+    {
+      "kind": "LOCAL_WORKER_HTTP_NOT_PUBLIC_INTERNET",
+      "http_status": 200,
+      "roundtrip_ms": 9.482864999999947
+    },
+    {
+      "kind": "LOCAL_WORKER_HTTP_NOT_PUBLIC_INTERNET",
+      "read_ms": 2.8896669999999176,
+      "public_written_at": "2026-10-14T09:36:00.041Z",
+      "external_browser_observed_at": null
+    },
+    {
+      "kind": "LOCAL_WORKER_HTTP_NOT_PUBLIC_INTERNET",
+      "http_status": 200,
+      "roundtrip_ms": 5.368519000000106
+    },
+    {
+      "kind": "LOCAL_WORKER_HTTP_NOT_PUBLIC_INTERNET",
+      "http_status": 409,
+      "roundtrip_ms": 3.7637800000002244
+    },
+    {
+      "kind": "LOCAL_WORKER_HTTP_NOT_PUBLIC_INTERNET",
+      "http_status": 200,
+      "roundtrip_ms": 4.23627899999974
+    },
+    {
+      "kind": "LOCAL_WORKER_HTTP_NOT_PUBLIC_INTERNET",
+      "http_status": 409,
+      "roundtrip_ms": 4.838243000000148
+    },
+    {
+      "kind": "LOCAL_WORKER_HTTP_NOT_PUBLIC_INTERNET",
+      "http_status": 422,
+      "roundtrip_ms": 2.1442689999998947
+    },
+    {
+      "kind": "LOCAL_WORKER_HTTP_NOT_PUBLIC_INTERNET",
+      "http_status": 403,
+      "roundtrip_ms": 3.660493999999744
+    }
+  ],
+  "formal_signals": 0
+}
