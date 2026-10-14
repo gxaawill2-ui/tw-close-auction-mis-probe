@@ -55,7 +55,7 @@ def classify(output, summary):
             if row.get('error') or row.get('http_status') != 200:
                 phase_errors.append({'batch':row.get('batch_no'),'error':row.get('error'),'http_status':row.get('http_status')})
             if row.get('error') in ('CAPTURE_DEADLINE_NO_REQUEST','LATE_REFERENCE_START_NO_BACKFILL'):
-                errors.append({'phase':phase,'reason':'MANDATORY_CAPTURE_NOT_EXECUTED'})
+                phase_errors.append({'batch':row.get('batch_no'),'error':row.get('error'),'reason':'BATCH_NOT_EXECUTED'})
             response=row.get('response') or {}
             for item in response.get('msgArray', []):
                 key=(item.get('ex'),item.get('c'))
@@ -102,7 +102,7 @@ def classify(output, summary):
     if summary.get('universe_audit_status') != 'OFFICIAL_SOURCES_DATE_CHECKED':
         errors.append({'reason':'UNIVERSE_DATE_NOT_VERIFIED'})
     outcome='CAPTURE_FAILED' if errors else 'CAPTURE_PARTIAL' if warnings else 'CAPTURE_SUCCESS'
-    return {'version':'CAPTURE_COMPLETION_V1','capture_outcome':outcome,
+    return {'version':'CAPTURE_COMPLETION_V2','capture_outcome':outcome,
             'status':'failed' if errors else 'partial' if warnings else 'success_raw_capture',
             'exit_code':1 if errors else 0,'core_capture_complete':not errors,
             'official_validation':summary.get('official_validation','PENDING'),

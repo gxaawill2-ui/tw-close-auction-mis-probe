@@ -1,0 +1,71 @@
+[
+  {
+    "scenario": "normal",
+    "synthetic": true,
+    "universe": 1970,
+    "before_B_converged": 1970,
+    "after_retries_converged": 1970,
+    "before_pct": 100.0,
+    "after_pct": 100.0,
+    "retry_rounds": 0,
+    "requested_symbols_per_round": [],
+    "virtual_additional_elapsed_seconds": 0.0,
+    "deadline_respected": true,
+    "formal_signals": 0,
+    "latency_assumption": "Each targeted round 3s; backoff 5/10s; deterministic fabricated responses only, never historical evidence."
+  },
+  {
+    "scenario": "concentrated_50",
+    "synthetic": true,
+    "universe": 1970,
+    "before_B_converged": 1920,
+    "after_retries_converged": 1970,
+    "before_pct": 97.4619,
+    "after_pct": 100.0,
+    "retry_rounds": 1,
+    "requested_symbols_per_round": [
+      50
+    ],
+    "virtual_additional_elapsed_seconds": 3.0,
+    "deadline_respected": true,
+    "formal_signals": 0,
+    "latency_assumption": "Each targeted round 3s; backoff 5/10s; deterministic fabricated responses only, never historical evidence."
+  },
+  {
+    "scenario": "scattered_50",
+    "synthetic": true,
+    "universe": 1970,
+    "before_B_converged": 1920,
+    "after_retries_converged": 1970,
+    "before_pct": 97.4619,
+    "after_pct": 100.0,
+    "retry_rounds": 1,
+    "requested_symbols_per_round": [
+      50
+    ],
+    "virtual_additional_elapsed_seconds": 3.0,
+    "deadline_respected": true,
+    "formal_signals": 0,
+    "latency_assumption": "Each targeted round 3s; backoff 5/10s; deterministic fabricated responses only, never historical evidence."
+  },
+  {
+    "scenario": "deadline_exhausted",
+    "synthetic": true,
+    "universe": 1970,
+    "before_B_converged": 1920,
+    "after_retries_converged": 1920,
+    "before_pct": 97.4619,
+    "after_pct": 97.4619,
+    "retry_rounds": 4,
+    "requested_symbols_per_round": [
+      50,
+      50,
+      50,
+      50
+    ],
+    "virtual_additional_elapsed_seconds": 46.0,
+    "deadline_respected": true,
+    "formal_signals": 0,
+    "latency_assumption": "Each targeted round 3s; backoff 5/10s; deterministic fabricated responses only, never historical evidence."
+  }
+]

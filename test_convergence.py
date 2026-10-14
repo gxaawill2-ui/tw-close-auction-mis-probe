@@ -352,7 +352,7 @@ class ThirdReferenceTests(unittest.TestCase):
             snap=probe.reference_capture('pre_reference_C',self.day,[SYMBOL],Path(d),'13:29:30')
             request.assert_not_called();self.assertFalse(snap['metrics']['symbol_set_equal'])
             self.assertEqual(snap['records'][0]['error'],'REFERENCE_NOT_SAMPLED')
-        current=[probe.target(self.day,'13:28:57')];deadlines=[]
+        current=[probe.target(self.day,'13:28:56')];deadlines=[]
         def snapshot(phase,planned,symbols,output,deadline):
             deadlines.append(deadline);current[0]=deadline
             return {'records':[],'metrics':{'phase':phase}}

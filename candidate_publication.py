@@ -59,7 +59,7 @@ def validate(payload, date):
     keys = set()
     for row in rows:
         key = (row.get('market'),row.get('code'))
-        if key in keys or row.get('validated') is not False or row.get('P_close_convergence_type') not in ('AB_converged','AC_converged','BC_converged','A_1330_fresh_candidate'):
+        if key in keys or row.get('validated') is not False or row.get('P_close_convergence_type') not in ('AB_converged','AC_converged','BC_converged','A_1330_fresh_candidate','TARGETED_converged'):
             raise ValueError('PUBLICATION_INVALID_OR_DUPLICATE_CANDIDATE')
         keys.add(key)
         pre, close = (freshness.decimal_value(row.get(k)) for k in ('P_before','P_close'))
@@ -129,6 +129,9 @@ def build(output, date, run_id, source_mode='LIVE', archive_sha=None):
          'source_artifact_sha256': archive_sha, 'status': 'RESEARCH_ONLY','validated': False,
          'completion_status': 'PARTIAL' if completion['capture_outcome']=='CAPTURE_PARTIAL' else 'COMPLETE',
          'capture_outcome': completion['capture_outcome'],
+         'source_capture_outcome': summary.get('capture_outcome',summary.get('status')),
+         'completion_policy_version': completion['version'],
+         'reclassified_from_saved_evidence': summary.get('capture_outcome') != completion['capture_outcome'],
          'coverage': {'tradable_universe': len(universe),'research_calculable': selected['research_calculable_count'],
                       'unknown':len(universe)-selected['research_calculable_count']},
          'candidate_count':len(rows),'candidate_list':rows,

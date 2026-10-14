@@ -1,0 +1,31 @@
+{
+  "trade_date": "2026-10-14",
+  "artifact_sha256": "4ea6e228ce86d965584203dfbf5f04d7707a238d74d24cafe133e3994a98cf6f",
+  "input_unchanged": true,
+  "original_capture_outcome": "CAPTURE_FAILED",
+  "isolated_reclassification": "CAPTURE_PARTIAL",
+  "raw_B_returned_before_and_after": 1920,
+  "universe": 1970,
+  "B_missing": 50,
+  "C_includes_all_B_missing": true,
+  "B_missing_research_classifications": {
+    "AC_converged": 48,
+    "unresolved": 2
+  },
+  "research_calculable_before_and_after": 1946,
+  "research_candidate_count_before_and_after": 6,
+  "pre_converged": 1946,
+  "strict_AB_close_converged": 1894,
+  "research_close_classifications": {
+    "AB_converged": 1894,
+    "unresolved": 22,
+    "BC_converged": 6,
+    "AC_converged": 48
+  },
+  "unknown_count": 24,
+  "formal_verified_count": 0,
+  "formal_signal_count": 0,
+  "stale_batches": 9,
+  "server_regressions": 0,
+  "note": "Reclassification is not recovery of historical B. No new observation or official value was fabricated."
+}

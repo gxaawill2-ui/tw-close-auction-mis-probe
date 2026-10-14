@@ -155,6 +155,7 @@ class FetchResult:
     raw_body: str | None
     response: dict | None
     attempts: list[dict] = field(default_factory=list)
+    retry_stop_reason: str | None = None
 
 
 def fetch_mis(symbols: list[dict], retry: int = 1, timeout: int = 20, deadline: datetime | None = None) -> FetchResult:
@@ -163,6 +164,9 @@ def fetch_mis(symbols: list[dict], retry: int = 1, timeout: int = 20, deadline: 
     for attempt in range(retry + 1):
         started = now_tpe()
         if deadline and started >= deadline:
+            if last is not None:
+                last.retry_stop_reason = 'CAPTURE_DEADLINE_NO_RETRY'
+                return last
             return FetchResult(iso(started),iso(started),0,None,attempt,
                                'CAPTURE_DEADLINE_NO_REQUEST',None,None,list(attempts))
         tick = time.monotonic()
@@ -201,11 +205,15 @@ def fetch_mis(symbols: list[dict], retry: int = 1, timeout: int = 20, deadline: 
             last.error='RESPONSE_AFTER_CAPTURE_DEADLINE'+(':'+error if error else '')
         attempts.append(asdict(last))
         last.attempts = list(attempts)
-        if not error:
+        if not last.error:
             return last
         if status in (403,429): return last
         if attempt < retry:
-            time.sleep(0.5 * (attempt + 1))
+            backoff = 0.5 * (2 ** attempt)
+            if deadline and (deadline-now_tpe()).total_seconds() <= backoff + .25:
+                last.retry_stop_reason = 'INSUFFICIENT_RETRY_BUDGET'
+                return last
+            time.sleep(backoff)
     assert last is not None
     return last
 
@@ -246,7 +254,8 @@ def snapshot(phase: str, planned: datetime, universe: list[dict], output: Path, 
     with raw_path.open('a' if phase.endswith('_targeted_retry') else 'w', encoding='utf-8') as file:
         file.write("".join(json.dumps(x, ensure_ascii=False) + "\n" for x in records))
     finished = now_tpe()
-    latencies = sorted(x["latency_ms"] for x in records)
+    latencies = sorted(sum(a["latency_ms"] for a in x["attempts"]) if x["attempts"] else x["latency_ms"] for x in records)
+    attempts = [a for r in records for a in (r["attempts"] or [r]) if a.get("error") != "CAPTURE_DEADLINE_NO_REQUEST"]
     successful = set()
     for record in records:
         expected = {f'{x["ex"]}:{x["code"]}' for x in record["symbols"]}
@@ -264,9 +273,12 @@ def snapshot(phase: str, planned: datetime, universe: list[dict], output: Path, 
         "slowest_batch_ms": latencies[-1] if latencies else None,
         "success_count": len(successful), "missing_count": len(universe) - len(successful),
         "missing_codes": sorted({f'{x["ex"]}:{x["code"]}' for x in universe} - successful),
-        "http_errors": sum(x["http_status"] != 200 for x in records),
-        "timeouts": sum("timeout" in (x["error"] or "").lower() for x in records),
-        "retries": sum(x["retry"] for x in records),
+        "http_errors": sum(x["http_status"] is not None and x["http_status"] != 200 for x in attempts),
+        "timeouts": sum(any(t in (x["error"] or "").lower() for t in ('timeout','timed out')) for x in attempts),
+        "request_errors": sum(bool(x.get('error')) for x in attempts),
+        "no_request_batches": sum(not x['attempts'] and x.get('error') == 'CAPTURE_DEADLINE_NO_REQUEST' for x in records),
+        "http_attempt_count": len(attempts),
+        "retries": sum(max(0,len(x["attempts"])-1) for x in records),
         "empty_count": sum(len(x["empty"]) for x in records),
         "duplicate_count": sum(len(x["duplicate"]) for x in records),
         "insufficient_batches": [x["batch_no"] for x in records if x["returned_count"] < x["expected_count"]],
@@ -299,8 +311,12 @@ def targeted_retries(kind, date, snapshots, universe, output, probe_rows=(), sto
     if stop_at:
         deadline = min(deadline,target(date,stop_at))
     rounds = []
-    while now_tpe() < deadline:
-        affected = convergence.unresolved(date, snapshots+rounds, universe, kind, probe_rows)
+    # Both round and clock bounds are needed: a mocked/fast response must never
+    # turn into an unbounded loop. Reserve time to enter a request, not just sleep.
+    while len(rounds) < 6 and (deadline-now_tpe()).total_seconds() >= 2:
+        affected = (close_research.affected(date, snapshots+rounds, universe, probe_rows)
+                    if kind == 'close' and date >= close_research.START_DATE else
+                    convergence.unresolved(date, snapshots+rounds, universe, kind, probe_rows))
         if not affected:
             break
         # A 403/429 stops retrying; do not turn a freshness study into a rate-limit loop.
@@ -311,7 +327,12 @@ def targeted_retries(kind, date, snapshots, universe, output, probe_rows=(), sto
         replacement['metrics']['retry_round'] = round_offset+len(rounds)+1
         replacement['metrics']['affected_symbols'] = [s['ex']+':'+s['code'] for s in affected]
         rounds.append(replacement)
-        wait_until(min(now_tpe()+timedelta(seconds=5), deadline))
+        remaining = (close_research.affected(date,snapshots+rounds,universe,probe_rows)
+                     if kind=='close' and date>=close_research.START_DATE else
+                     convergence.unresolved(date,snapshots+rounds,universe,kind,probe_rows))
+        if not remaining:
+            break
+        wait_until(min(now_tpe()+timedelta(seconds=min(5 * 2**(len(rounds)-1), 10)), deadline))
     return rounds
 
 
@@ -547,7 +568,8 @@ def live(output: Path) -> int:
                 'status':'BLOCKED_HTTP_403_429' if throttled else 'NOT_REQUIRED',
                 'success_count':0,'stock_universe_count':0,'symbol_set_equal':not throttled}}
         close_c['metrics']['affected_symbols']=[s['ex']+':'+s['code'] for s in affected]
-        close_retries = []  # One bounded targeted C replaces repeated same-key close retries.
+        close_retries = targeted_retries('close',date,[close_a,close_b,close_c],
+                                          universe,output,probe_rows)
     else:
         close_retries = targeted_retries('close', date, [close_a, close_b], universe, output, probe_rows)
     snapshots = [pre, pre_a, pre_b, *([pre_c] if pre_c else []), *pre_retries,

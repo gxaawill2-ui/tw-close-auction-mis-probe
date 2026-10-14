@@ -1,7 +1,7 @@
 (function(root){
   'use strict';
   const RAW='https://raw.githubusercontent.com/gxaawill2-ui/tw-close-auction-mis-probe/main/';
-  const TYPES=['AB_converged','AC_converged','BC_converged','A_1330_fresh_candidate'];
+  const TYPES=['AB_converged','AC_converged','BC_converged','A_1330_fresh_candidate','TARGETED_converged'];
   function taipei(now){
     const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(now);
     const p=Object.fromEntries(parts.map(x=>[x.type,x.value]));
@@ -52,7 +52,24 @@
     else if(live&&['CAPTURE_SUCCESS','CAPTURE_PARTIAL'].includes(live.capture_outcome)){state='PUBLISHING_DELAY';headline='研究結果發布中／尚無當日結果';message='擷取已完成，正在等待公開名單；這不代表今日沒有候選。';}
     else if(trade===null){state='UNKNOWN_CALENDAR';headline='尚無當日結果';message='交易日狀態暫未確認；取得資料後自動更新。';}
     else {state=t.clock<'09:00:00'?'BEFORE_OPEN':'WAITING';headline='今日尚未產生尾盤研究資料';message=t.clock<'09:00:00'?'尚未開盤；尾盤研究名單預計約 13:35 更新。':'尾盤研究名單預計約 13:35 更新。';}
-    return {today:t.date,clock:t.clock,isTradingDay:trade,state,headline,message,data,error,
+    const official=input.official&&input.official.trade_date===t.date&&
+      (!live||!input.official.source_capture_run_id||String(input.official.source_capture_run_id)===String(live.run_id))?input.official:null;
+    const coverage=data?.coverage||{tradable_universe:live?.universe_count,
+      research_calculable:live?.research_calculable_count??live?.convergence?.research_calculable_count,
+      unknown:live?.capture_completion?.research_unresolved_count};
+    const captureOutcome=live?.capture_outcome||data?.capture_outcome||'NOT_STARTED';
+    if(live?.capture_outcome==='CAPTURE_FAILED'){
+      state='CAPTURE_FAILED';headline='今日擷取未完成';
+      message=data?'已保留當日研究名單；原始擷取失敗仍待處理，全部非交易訊號。':'必要資料不足，尚無可發布的當日結果。';
+    }
+    const close=live?.snapshots?.close_reference_B||{},progress=live?.reference_progress?.close_reference_B;
+    const rawReturned=close.success_count??progress?.returned_count;
+    const rawMissing=close.missing_count??progress?.missing_count;
+    const nextCheck=['14:50:00','15:20:00','17:50:00'].find(x=>x>t.clock)||null;
+    const officialStatus=official?.status||live?.official_validation||'PENDING';
+    const verified=live?.convergence?.both_validated_count??0;
+    return {today:t.date,clock:t.clock,isTradingDay:trade,state,headline,message,data,error,live,official,coverage,
+      captureOutcome,rawReturned,rawMissing,nextCheck,officialStatus,verified,
       rows:data?[...data.candidate_list].sort((a,b)=>Math.abs(Number(b.tail_return_pct))-Math.abs(Number(a.tail_return_pct))||a.code.localeCompare(b.code)):[]};
   }
   function polling(now){const t=taipei(now);return t.clock>='13:30:00'&&t.clock<'13:40:00'?20000:60000;}
@@ -86,11 +103,19 @@
     set('today',view.today+' · 台北');set('market-state',view.isTradingDay===false?'休市':view.isTradingDay===true?'交易日':'交易日待確認');
     set('headline',view.headline);set('message',view.message);
     set('network',view.error?'資料更新失敗：'+view.error+'。將自動重試；已載入的當日資料保留原更新時間。':'');
-    const data=view.data,c=data&&data.coverage;
+    const data=view.data,c=view.coverage||data?.coverage;
     set('candidate-count',data?number(data.candidate_count,0):'—');
-    for(const [id,key] of [['universe','tradable_universe'],['calculable','research_calculable'],['unknown','unknown']])set(id,c?number(c[key],0):'—');
+    for(const [id,key] of [['universe','tradable_universe'],['calculable','research_calculable'],['unknown','unknown']])set(id,c&&c[key]!=null?number(c[key],0):'—');
     const stamp=x=>x?new Intl.DateTimeFormat('zh-TW',{timeZone:'Asia/Taipei',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).format(new Date(x)):'—';
-    set('updated','最近資料更新：'+stamp(data&&(data.updated_at||data.published_at))+'（台北）');
+    set('updated','最近資料更新：'+stamp(data?.updated_at||data?.published_at||view.live?.updated_at||view.live?.finished_at)+'（台北）');
+    const optional=(id,value)=>{const node=doc.getElementById(id);if(node)node.textContent=value;};
+    const captureNames={CAPTURE_FAILED:'擷取失敗',CAPTURE_PARTIAL:'部分擷取完成',CAPTURE_SUCCESS:'盤中擷取完成',NOT_STARTED:'尚未開始'};
+    optional('capture-detail','盤中：'+(view.live?.status==='running'?'正在擷取 · '+(view.live.phase||''):captureNames[view.captureOutcome]||view.captureOutcome)+
+      '；close B 回傳 '+number(view.rawReturned,0)+' / '+number(c?.tradable_universe,0)+'，缺 '+number(view.rawMissing,0)+' 檔。');
+    const officialNames={RECHECKING:'官方正在重新核對',PENDING_RECHECK_ERROR:'官方核對暫時失敗，等待重試',PENDING:'等待官方收盤價',PENDING_SCHEDULED_POSTMARKET:'等待官方收盤價',PENDING_NO_CAPTURE:'等待已保存擷取資料',PENDING_SOURCE_ERROR:'官方資料來源暫時異常，等待重試',PENDING_EMPTY_TABLE:'官方資料尚未發布',PENDING_WRONG_OR_MISSING_DATE:'官方資料日期尚未符合',SAME_DATE_COMPARISON_ONLY:'官方價格比對已完成（策略仍未驗證）'};
+    optional('official-detail','官方：'+(officialNames[view.officialStatus]||view.officialStatus)+
+      '；最近核對 '+stamp(view.official?.checked_at)+'；完整策略已驗證 '+number(view.verified,0)+' 檔。');
+    optional('next-check','下次預定官方核對：'+(view.nextCheck?view.nextCheck.slice(0,5)+'（台北；排程可能延遲）':'今日預定核對時段已結束')+'。研究可計算不代表正式驗證。');
     set('generated','研究名單產生時間：'+stamp(data&&data.generated_at)+'（台北）');
     const desktop=[],mobile=[];
     for(const row of sortRows(view.rows,sort)){
@@ -137,15 +162,20 @@
   }
   async function refresh(){
     if(running)return;running=true;const now=new Date(),t=taipei(now);if(lastGood&&lastGood.trade_date!==t.date)lastGood=null;
-    let data=null,live=null,error='';
+    let data=null,live=null,official=null,error='';
     try{
       if(calendarYear!==t.year||!calendar){calendar=await read('state/calendars/'+t.year+'.json',now);calendarYear=t.year;}
       if(tradingDay(t.date,calendar)!==false){
-        data=await read('state/candidates/'+t.date+'.json',now,true);
-        if(data){validate(data,t.date,now);lastGood=data;}else live=await read('state/live/'+t.date+'.json',now,true);
+        const statuses=await Promise.allSettled([read('state/candidates/'+t.date+'.json',now,true),read('state/live/'+t.date+'.json',now,true),read('state/validation/'+t.date+'.json',now,true)]);
+        if(statuses[1].status==='fulfilled')live=statuses[1].value;
+        if(statuses[2].status==='fulfilled')official=statuses[2].value;
+        for(const result of statuses)if(result.status==='rejected')error+=(error?'；':'')+result.reason.message;
+        if(statuses[0].status==='fulfilled'){
+          data=statuses[0].value;if(data){validate(data,t.date,now);lastGood=data;}
+        }else data=lastGood;
       }
     }catch(e){error=e.message;data=lastGood;}
-    finally{const view=model(now,{calendar,data,live,error});display(view);running=false;setTimeout(refresh,polling(new Date()));}
+    finally{const view=model(now,{calendar,data,live,official,error});display(view);running=false;setTimeout(refresh,polling(new Date()));}
   }
   refresh();
 })(typeof globalThis!=='undefined'?globalThis:this);

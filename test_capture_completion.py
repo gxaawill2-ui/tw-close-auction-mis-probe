@@ -85,6 +85,11 @@ class CompletionTests(unittest.TestCase):
         self.write('pre_reference_A_raw.jsonl',row,True)
         self.assertEqual(self.classify()['exit_code'],1)
 
+    def test_one_deadline_batch_does_not_erase_other_valid_batches(self):
+        row=ref('close_reference_B');bad=ref('close_reference_B');bad.update(error='CAPTURE_DEADLINE_NO_REQUEST',http_status=None,response={})
+        (self.out/'close_reference_B_raw.jsonl').write_text(json.dumps(row)+'\n'+json.dumps(bad)+'\n')
+        result=self.classify();self.assertEqual(result['capture_outcome'],'CAPTURE_PARTIAL');self.assertFalse(result['errors'])
+
     def test_corrupt_raw_evidence_is_failure(self):
         (self.out/'pre_reference_B_raw.jsonl').write_text('{broken')
         self.assertEqual(self.classify()['exit_code'],1)

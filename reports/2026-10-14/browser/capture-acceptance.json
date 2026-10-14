@@ -1,0 +1,41 @@
+{
+  "checks": [
+    {
+      "profile": "desktop-windows-profile",
+      "status": "PASS",
+      "browser_version": "153.0.8010.0",
+      "host_os": "linux",
+      "device_emulation": false,
+      "full_sort_orders": 6,
+      "no_external_network": true,
+      "no_page_errors": true,
+      "historical_failed_state_preserved": true,
+      "formal_signals": 0
+    },
+    {
+      "profile": "iphone-chromium",
+      "status": "PASS",
+      "browser_version": "153.0.8010.0",
+      "host_os": "linux",
+      "device_emulation": true,
+      "full_sort_orders": 6,
+      "no_external_network": true,
+      "no_page_errors": true,
+      "historical_failed_state_preserved": true,
+      "formal_signals": 0
+    },
+    {
+      "profile": "iphone-webkit",
+      "status": "PASS",
+      "browser_version": "26.5",
+      "host_os": "linux",
+      "device_emulation": true,
+      "full_sort_orders": 6,
+      "no_external_network": true,
+      "no_page_errors": true,
+      "historical_failed_state_preserved": true,
+      "formal_signals": 0
+    }
+  ],
+  "limitations": "Linux engines with Windows UA and iPhone emulation; not physical Windows or iPhone hardware."
+}

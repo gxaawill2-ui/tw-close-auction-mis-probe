@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#0d1423">
   <meta name="description" content="自動顯示當日台股尾盤漲跌達 ±3% 的研究股票，附收盤成交時間、最後一盤成交量及全日盤中成交量。">
   <title>台股尾盤 ±3% 自動選股看板</title>
-  <link rel="stylesheet" href="status.css?v=dashboard2&amp;sort=1">
-  <script defer src="status.js?v=dashboard2&amp;sort=1"></script>
+  <link rel="stylesheet" href="status.css?v=capture20261014">
+  <script defer src="status.js?v=capture20261014"></script>
   <script defer src="events.js?v=events4&amp;ui=dashboard2"></script>
   <script defer src="market-closing.js?v=market1"></script>
 </head>
@@ -25,6 +25,9 @@
     <div class="coverage"><div><span>可交易</span><strong id="universe">—</strong></div><div><span>可計算</span><strong id="calculable">—</strong></div><div><span>資料不足</span><strong id="unknown">—</strong></div></div>
   </section>
   <section class="status-line" aria-live="polite"><h2 id="headline">正在讀取今日資料</h2><p id="message">打開網頁後自動載入，無須操作。</p></section>
+  <section class="capture-progress" aria-label="擷取與官方核對狀態" aria-live="polite">
+    <p id="capture-detail">盤中：等待狀態資料。</p><p id="official-detail">官方：等待核對狀態。</p><p id="next-check">核對時段：14:50、15:20、17:50（台北）。</p>
+  </section>
   <p id="network" class="network" role="status"></p>
   <section class="event-today market-closing" aria-label="上市普通股收盤成交金額研究" hidden>
     <h2>今日加權指數尾盤是否爆大量：<span id="market-closing-state">尚未確認</span></h2>

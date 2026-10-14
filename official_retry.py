@@ -56,10 +56,10 @@ def load_capture(archive):
     return summary,universe,snapshots,probes
 
 
-def run(date,output,control,probe):
+def _run(date,output,control,probe):
     output.mkdir(parents=True,exist_ok=True)
     capture,_=control.read_state(control.live_path(date))
-    result={'trade_date':date,'checked_at':probe.iso(),'run_id':os.getenv('GITHUB_RUN_ID'),'status':'PENDING_NO_CAPTURE'}
+    result={'trade_date':date,'checked_at':probe.iso(),'run_id':os.getenv('GITHUB_RUN_ID'),'status':'PENDING_NO_CAPTURE','in_progress':False}
     capture_id=capture.get('run_id')
     if capture_id and capture.get('preclose_captured'):
         artifacts=control.api(f'actions/runs/{capture_id}/artifacts?per_page=100')
@@ -111,3 +111,25 @@ def run(date,output,control,probe):
     control.publish()
     probe.package(output,date)
     return 4 if result.get('candidate_publication',{}).get('status')=='FAILED' else 0
+
+
+def run(date,output,control,probe):
+    """Expose actual rechecks separately; transport/annotation errors are not MIS failures."""
+    output.mkdir(parents=True,exist_ok=True)
+    path='state/validation/'+date+'.json'
+    previous,_=control.read_state(path)
+    control.merge_state(path,{'trade_date':date,'status':'RECHECKING','in_progress':True,
+        'recheck_started_at':probe.iso(),'run_id':os.getenv('GITHUB_RUN_ID'),
+        'previous_status':previous.get('status')})
+    try:
+        return _run(date,output,control,probe)
+    except Exception as exc:
+        failure={'trade_date':date,'status':'PENDING_RECHECK_ERROR','in_progress':False,
+            'checked_at':probe.iso(),'run_id':os.getenv('GITHUB_RUN_ID'),
+            'error':type(exc).__name__+':'+str(exc),'previous_status':previous.get('status'),
+            'note':'Official recheck failed; original MIS capture state/evidence remain unchanged.'}
+        (output/'validation_summary.json').write_text(json.dumps(failure,ensure_ascii=False,indent=2))
+        control.merge_state(path,failure)
+        control.publish()
+        probe.package(output,date)
+        return 5

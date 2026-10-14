@@ -1,6 +1,6 @@
 // Browser rendering tests only. No MIS requests, no credentials, no live dispatch.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),http=require('node:http');
-const {chromium,webkit,devices}=require('playwright');
+const {chromium,webkit,devices}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const ROOT=__dirname,calendar=JSON.parse(fs.readFileSync('state/calendars/2026.json','utf8'));
 const data=JSON.parse(fs.readFileSync('state/candidates/2026-10-08.json','utf8'));
 const eventsData=JSON.parse(fs.readFileSync('state/events/events-index.json','utf8'));
@@ -102,7 +102,8 @@ async function main(){
   ['chromium-mobile',chromium,{...devices['iPhone 13'],viewport:{width:390,height:844}},true],
   ['webkit-iphone',webkit,{...devices['iPhone 13'],viewport:{width:390,height:844}},true]
  ]){
-  const browser=await type.launch();
+  if(type===webkit&&process.env.SKIP_WEBKIT==='1'){checks.push({name,status:'NOT_RUN',reason:'WebKit binary unavailable in this environment'});continue;}
+  const browser=await type.launch(type===chromium&&process.env.CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.CHROMIUM_EXECUTABLE_PATH,args:['--no-sandbox','--disable-dev-shm-usage','--no-zygote']}:{});
   try{
    const context=await fixtureContext(browser,options),page=await context.newPage(),errors=[];
    page.on('pageerror',error=>errors.push(error.message));await page.goto(base);

@@ -3,7 +3,7 @@ import freshness as f
 
 START_DATE = '2026-10-08'
 C_TIME = '13:34:10'
-TYPES = ('AB_converged', 'AC_converged', 'BC_converged', 'A_1330_fresh_candidate')
+TYPES = ('AB_converged', 'AC_converged', 'BC_converged', 'A_1330_fresh_candidate', 'TARGETED_converged')
 
 
 def assess(series, date):
@@ -21,7 +21,7 @@ def assess(series, date):
         if not row:
             return 'NOT_SAMPLED'
         planned = f.parsed_time(row.get('planned_at'))
-        if not planned or planned.date().isoformat() != date or planned.strftime('%H:%M:%S') != times[row['phase']]:
+        if not planned or planned.date().isoformat() != date or (row['phase'] in times and planned.strftime('%H:%M:%S') != times[row['phase']]):
             return 'INVALID_REFERENCE_SCHEDULE'
         why = c.rejection(row, date, 'close')
         # An actual post-13:30 trade stays delayed. It needs a distinct agreeing
@@ -30,11 +30,18 @@ def assess(series, date):
             return None
         return why
 
+    retries = [r for r in series if r.get('phase') == 'close_targeted_retry']
     usable = {p: r for p, r in refs.items() if r and not reason(r)}
-    for p, row in refs.items():
+    usable.update({f'retry_{i}':r for i,r in enumerate(retries) if not reason(r)})
+    for p, row in [*refs.items(), *((f'retry_{i}',r) for i,r in enumerate(retries))]:
         why = reason(row)
         if why:
             result['rejections'].append({'phase': p, 'reason': why})
+
+    ordered = sorted(usable.values(),key=lambda r:r['received_at'])
+    if any(b['server_time'] < a['server_time'] for a,b in zip(ordered,ordered[1:])):
+        return {**result,'reason':'server_time_regression',
+                'rejections':[*result['rejections'],{'reason':'server_time_regression'}]}
 
     def agrees(prior, last):
         if not prior or not last or prior['received_at'] >= last['received_at']:
@@ -60,9 +67,18 @@ def assess(series, date):
                     'p_close': b['trade_z'], 'trade_time': b['trade_t'],
                     'converged': True, 'selected': b, 'pair': [a, b], 'reason': None}
 
+    # Replacement observations keep their own phase/time. No C or retry payload
+    # is relabelled as B. Conflicts/regressions after a proposed pair veto it.
+    for last in sorted((r for r in retries if not reason(r)),key=lambda r:r['received_at'],reverse=True):
+        for prior in sorted(usable.values(),key=lambda r:r['received_at'],reverse=True):
+            if agrees(prior,last):
+                return {**result,'classification':'TARGETED_converged','confidence_level':'HIGH_RESEARCH',
+                        'p_close':last['trade_z'],'trade_time':last['trade_t'],'converged':True,
+                        'selected':last,'pair':[prior,last],'reason':None}
+
     a = usable.get('close_reference_A')
     if a and a['trade_t'] == '13:30:00':
-        later = [r for p, r in refs.items() if r and r['received_at'] > a['received_at']
+        later = [r for r in [*refs.values(),*retries] if r and r['received_at'] > a['received_at']
                  and f.fresh_candidate(r, date, c.MAX_AGE_MS)]
         if not any(reason(r) or r['server_time'] < a['server_time'] or f.identity(r) != f.identity(a) for r in later):
             return {**result, 'classification': 'A_1330_fresh_candidate',

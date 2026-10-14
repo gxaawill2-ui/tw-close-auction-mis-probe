@@ -256,6 +256,7 @@ class PublicationTests(unittest.TestCase):
             self.assertEqual(code,4);clock.package.assert_called_once()
             stored=json.loads((Path(temp)/'validation_summary.json').read_text())
             self.assertEqual(stored['matches'],7);self.assertEqual(stored['candidate_publication']['status'],'FAILED')
-            control.merge_state.assert_called_once()
+            self.assertEqual(control.merge_state.call_count,2)
+            self.assertEqual(control.merge_state.call_args_list[0].args[1]['status'],'RECHECKING')
 
 if __name__=='__main__':unittest.main()
