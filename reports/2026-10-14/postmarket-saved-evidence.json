@@ -1,0 +1,69 @@
+{
+  "checked_at": "2026-10-14T15:20:24.584+08:00",
+  "source_run": "38527647670",
+  "artifact_id": 11875984445,
+  "artifact_sha256": "3330f7a39be079246b6679db294a3be74b7f422d91fb211019b7a758d0bb98b5",
+  "official_status": "SAME_DATE_COMPARISON_ONLY",
+  "strict_AB_matches": 1894,
+  "strict_AB_mismatches": 0,
+  "strict_AB_unavailable": 76,
+  "research_candidates": [
+    {
+      "code": "3664",
+      "name": "安瑞-KY",
+      "P_before": "8.1700",
+      "P_close": "8.8000",
+      "official_close": "8.80",
+      "official_price_result": "MATCH",
+      "validated": false
+    },
+    {
+      "code": "6556",
+      "name": "勝品",
+      "P_before": "63.0000",
+      "P_close": "67.1000",
+      "official_close": "67.10",
+      "official_price_result": "MATCH",
+      "validated": false
+    },
+    {
+      "code": "6881",
+      "name": "潤德",
+      "P_before": "212.0000",
+      "P_close": "225.0000",
+      "official_close": "225.00",
+      "official_price_result": "MATCH",
+      "validated": false
+    },
+    {
+      "code": "6597",
+      "name": "立誠",
+      "P_before": "68.1000",
+      "P_close": "71.8000",
+      "official_close": "71.80",
+      "official_price_result": "MATCH",
+      "validated": false
+    },
+    {
+      "code": "3349",
+      "name": "寶德",
+      "P_before": "19.6000",
+      "P_close": "18.8500",
+      "official_close": "18.85",
+      "official_price_result": "MATCH",
+      "validated": false
+    },
+    {
+      "code": "4556",
+      "name": "旭然",
+      "P_before": "138.0000",
+      "P_close": "133.0000",
+      "official_close": "133.00",
+      "official_price_result": "MATCH",
+      "validated": false
+    }
+  ],
+  "formal_signals": 0,
+  "live_capture_outcome_remains": "CAPTURE_FAILED",
+  "production_state_mutated": false
+}

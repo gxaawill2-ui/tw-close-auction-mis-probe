@@ -5,7 +5,7 @@
 ## 來源與完整性
 
 - Repo：`gxaawill2-ui/tw-close-auction-mis-probe`
-- 開發基線與工作結束前唯讀核對的 main：`4f0eb6c7ae238f876d25223d178c88fdee9bf12a`
+- 開發基線 main：`4f0eb6c7ae238f876d25223d178c88fdee9bf12a`
 - 修復分支：`fix/20261014-capture-reliability`
 - 程式修復 Commit：`e25f671a5f49f51b5646a61764acec4238952f3f`
 - 原主執行：`38514354547`，執行程式版本：`ad54d960d889785f73f91bb5bb68251a36e5307a`
@@ -98,3 +98,14 @@ B整階段48.98秒；A37.941秒。B20另有25.461秒慢回應，B12為11.347秒�
 建議先審查分支及隔離結果，再由使用者決定部署。尚不宜宣稱整個策略正式可交易：P_before獨立真值、全部必要策略條件及真實下一交易日穩定性仍未證明。PARTIAL_VERIFIED正式發布設計見同目錄文件；本次正式訊號維持關閉。
 
 下一個交易日應在使用者核准後安排不影響正式capture的受控驗證，觀察實際延遲、targeted請求數、403/429、deadline及官方一致性。不得為測試而同時重跑整個正式全市場擷取。main若由其他Work繼續更新，先重新比較最新main再整合，不覆蓋最新資料。
+
+
+## 中斷續作後補核對（2026/10/14 15:40後，唯讀）
+
+- main已由原有排程正常更新至`c37e21e168e120195662441e26b5aeec6ca51f4d`；相對本次開發基線僅有state紀錄變更，沒有核心程式差異。本次沒有改main。
+- 程式修復commit `e25f671a5f49f51b5646a61764acec4238952f3f`的GitHub Actions `38522807657`與Stage4 `38522807690`均SUCCESS；受控MIS步驟在push中正確SKIPPED，未重抓盤中資料。
+- 14:50核對時TWSE已發布、TPEx同日表仍空，正確保留PENDING。
+- 15:20 run `38527647670`已成功讀取原capture `38514354547`的Artifact；兩官方來源皆為同日。嚴格AB口徑價格一致1894、不一致0、無法比對76。76包括缺少有效嚴格AB價格的股票，不能全歸因官方缺資料。
+- 15:20正式分支研究名單發布仍被`MANDATORY_CAPTURE_NOT_EXECUTED`擋住；原live仍CAPTURE_FAILED，沒有被官方成功遮蔽。
+- 另下載15:20已保存Artifact `11875984445`（SHA256 `3330f7a39be079246b6679db294a3be74b7f422d91fb211019b7a758d0bb98b5`）進行純離線註記：6檔研究候選收盤價均與官方一致，全部仍validated=false、正式訊號0。價格一致尚不能驗證P_before。詳見`postmarket-saved-evidence.json`。
+- 離線HTML固定14:10為介面情境測試，故示範PENDING；不要把此固定時鐘頁當成15:20即時狀態。

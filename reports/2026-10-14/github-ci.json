@@ -1,0 +1,18 @@
+{
+  "code_commit": "e25f671a5f49f51b5646a61764acec4238952f3f",
+  "runs": [
+    {
+      "id": 38522807657,
+      "name": "MIS tests / push / 96",
+      "conclusion": "success",
+      "controlled_probe": "skipped"
+    },
+    {
+      "id": 38522807690,
+      "name": "Stage 4 isolated validation",
+      "conclusion": "success"
+    }
+  ],
+  "main_observed": "c37e21e168e120195662441e26b5aeec6ca51f4d",
+  "main_mutated_by_this_work": false
+}
