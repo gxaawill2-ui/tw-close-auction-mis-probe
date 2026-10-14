@@ -1,0 +1,23 @@
+{
+  "branch": "fix/20261014-capture-reliability",
+  "github_push": "CONFIRMED",
+  "github_code_commit": "c05c0029bb95a4c57be8b04b979c3a59bbb9d8a9",
+  "github_code_commit_url": "https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/commit/c05c0029bb95a4c57be8b04b979c3a59bbb9d8a9",
+  "local_original_commit": "1bf2cd1d6a4c04359c942a33107ba248d834dc29",
+  "tested_tree_sha": "f9230fc95b01d597ef069551b09e30f939880e3e",
+  "previous_remote_branch_head": "3d35dced944979c112f5cc976d3057e98fa7309b",
+  "remote_update_force": false,
+  "expected_head_check": true,
+  "main_observed": "c37e21e168e120195662441e26b5aeec6ca51f4d",
+  "main_changed_by_this_work": false,
+  "formal_signals": 0,
+  "production_deployed": false,
+  "formal_1335_1340_target_met": false,
+  "python_tests": 301,
+  "node_tests": 96,
+  "browser_engine_profiles_passed": 3,
+  "local_http_incremental_poll": "PASS",
+  "github_new_ci": "NOT_RUN_SKIP_CI",
+  "real_trading_day_test": false,
+  "next_phase_priority": "INDEPENDENT_LAST_ACTUAL_TRADE_BEFORE_1325"
+}
