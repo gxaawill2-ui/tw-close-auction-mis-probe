@@ -1,0 +1,56 @@
+{
+  "checks": [
+    {
+      "profile": "desktop-windows-profile",
+      "status": "PASS",
+      "engine_version": "153.0.8010.0",
+      "six_sort_orders": true,
+      "per_stock_times": true,
+      "late_audit_separate": true,
+      "fabricated_flag_rejected": true,
+      "empty_state": true,
+      "dark_in_light_and_dark": true,
+      "no_overflow": true,
+      "no_external_requests": true,
+      "page_errors": []
+    },
+    {
+      "profile": "iphone-chromium",
+      "status": "PASS",
+      "engine_version": "153.0.8010.0",
+      "six_sort_orders": true,
+      "per_stock_times": true,
+      "late_audit_separate": true,
+      "fabricated_flag_rejected": true,
+      "empty_state": true,
+      "dark_in_light_and_dark": true,
+      "no_overflow": true,
+      "no_external_requests": true,
+      "page_errors": []
+    },
+    {
+      "profile": "iphone-webkit",
+      "status": "PASS",
+      "engine_version": "26.5",
+      "six_sort_orders": true,
+      "per_stock_times": true,
+      "late_audit_separate": true,
+      "fabricated_flag_rejected": true,
+      "empty_state": true,
+      "dark_in_light_and_dark": true,
+      "no_overflow": true,
+      "no_external_requests": true,
+      "page_errors": []
+    },
+    {
+      "profile": "local-http-incremental-poll",
+      "status": "PASS",
+      "first_batch_count": 1,
+      "updated_count": 6,
+      "formal_signals": 0,
+      "production_requests": 0
+    }
+  ],
+  "physical_windows_or_iphone": false,
+  "formal_signals": 0
+}

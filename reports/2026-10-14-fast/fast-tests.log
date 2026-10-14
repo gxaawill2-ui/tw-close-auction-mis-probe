@@ -1,0 +1,31 @@
+test_boundary_saver_refuses_late_start (test_fast_selection.DurableJournalTests.test_boundary_saver_refuses_late_start) ... ok
+test_fast_batch_is_saved_before_slow_earlier_batch_finishes (test_fast_selection.DurableJournalTests.test_fast_batch_is_saved_before_slow_earlier_batch_finishes) ... ok
+test_future_receive_time_cannot_be_marked_as_saved (test_fast_selection.DurableJournalTests.test_future_receive_time_cannot_be_marked_as_saved) ... ok
+test_pre_save_does_not_prove_last_tick_completeness (test_fast_selection.DurableJournalTests.test_pre_save_does_not_prove_last_tick_completeness) ... ok
+test_saved_timestamp_taken_after_raw_fsync_and_hash_verified (test_fast_selection.DurableJournalTests.test_saved_timestamp_taken_after_raw_fsync_and_hash_verified) ... ok
+test_below_three_percent_is_excluded (test_fast_selection.FastSelectionTests.test_below_three_percent_is_excluded) ... ok
+test_delayed_1333_close_remains_research (test_fast_selection.FastSelectionTests.test_delayed_1333_close_remains_research) ... ok
+test_exact_positive_and_negative_three_percent (test_fast_selection.FastSelectionTests.test_exact_positive_and_negative_three_percent) ... ok
+test_fresh_conflict_retracts_old_candidate (test_fast_selection.FastSelectionTests.test_fresh_conflict_retracts_old_candidate) ... ok
+test_identical_record_is_not_reprocessed (test_fast_selection.FastSelectionTests.test_identical_record_is_not_reprocessed) ... ok
+test_incremental_candidate_is_visible_before_other_batches (test_fast_selection.FastSelectionTests.test_incremental_candidate_is_visible_before_other_batches) ... ok
+test_late_reference_prices_never_replace_pre_cutoff (test_fast_selection.FastSelectionTests.test_late_reference_prices_never_replace_pre_cutoff) ... ok
+test_local_publication_is_not_historical_publication (test_fast_selection.FastSelectionTests.test_local_publication_is_not_historical_publication) ... ok
+test_no_new_pre_trade_is_research_eligible_with_consistency (test_fast_selection.FastSelectionTests.test_no_new_pre_trade_is_research_eligible_with_consistency) ... ok
+test_official_matching_and_supplied_validated_flag_cannot_promote (test_fast_selection.FastSelectionTests.test_official_matching_and_supplied_validated_flag_cannot_promote) ... ok
+test_production_output_forbidden (test_fast_selection.FastSelectionTests.test_production_output_forbidden) ... ok
+test_single_stock_failure_does_not_block_another_candidate (test_fast_selection.FastSelectionTests.test_single_stock_failure_does_not_block_another_candidate) ... ok
+test_stale_single_close_is_not_candidate (test_fast_selection.FastSelectionTests.test_stale_single_close_is_not_candidate) ... ok
+test_watch_cannot_backfill_a_past_date (test_fast_selection.FastSelectionTests.test_watch_cannot_backfill_a_past_date) ... ok
+test_wrong_observation_date_rejected (test_fast_selection.FastSelectionTests.test_wrong_observation_date_rejected) ... ok
+test_checks_are_candidate_only_and_bounded (test_fast_selection.SourceTests.test_checks_are_candidate_only_and_bounded) ... ok
+test_fugle_raw_preserved_but_api_success_not_validation (test_fast_selection.SourceTests.test_fugle_raw_preserved_but_api_success_not_validation) ... ok
+test_optional_fugle_key_absence_performs_no_request (test_fast_selection.SourceTests.test_optional_fugle_key_absence_performs_no_request) ... ok
+test_public_ordinary_auto_form_followed_once (test_fast_selection.SourceTests.test_public_ordinary_auto_form_followed_once) ... ok
+test_rate_limit_stops_candidate_queue (test_fast_selection.SourceTests.test_rate_limit_stops_candidate_queue) ... ok
+test_slow_secondary_source_never_blocks_feed (test_fast_selection.SourceTests.test_slow_secondary_source_never_blocks_feed) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 0.030s
+
+OK

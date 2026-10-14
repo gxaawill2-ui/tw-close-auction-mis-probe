@@ -1,0 +1,62 @@
+[
+  {
+    "symbol": "otc:3664",
+    "available_at": "2026-10-14T13:32:35.533+08:00",
+    "status": "RESEARCH_ONLY",
+    "capture_to_ready_seconds": 155.533
+  },
+  {
+    "symbol": "otc:4556",
+    "available_at": "2026-10-14T13:32:40.787+08:00",
+    "status": "RESEARCH_ONLY",
+    "capture_to_ready_seconds": 160.787
+  },
+  {
+    "symbol": "otc:6597",
+    "available_at": "2026-10-14T13:32:43.847+08:00",
+    "status": "RESEARCH_ONLY",
+    "capture_to_ready_seconds": 163.847
+  },
+  {
+    "symbol": "otc:6881",
+    "available_at": "2026-10-14T13:32:45.093+08:00",
+    "status": "RESEARCH_ONLY",
+    "capture_to_ready_seconds": 165.093
+  },
+  {
+    "symbol": "otc:6881",
+    "available_at": "2026-10-14T13:33:51.351+08:00",
+    "status": "RESEARCH_ONLY",
+    "capture_to_ready_seconds": 231.351
+  },
+  {
+    "symbol": "otc:6597",
+    "available_at": "2026-10-14T13:33:52.527+08:00",
+    "status": "RESEARCH_ONLY",
+    "capture_to_ready_seconds": 232.527
+  },
+  {
+    "symbol": "otc:4556",
+    "available_at": "2026-10-14T13:34:01.574+08:00",
+    "status": "RESEARCH_ONLY",
+    "capture_to_ready_seconds": 241.574
+  },
+  {
+    "symbol": "otc:3664",
+    "available_at": "2026-10-14T13:34:02.146+08:00",
+    "status": "RESEARCH_ONLY",
+    "capture_to_ready_seconds": 242.146
+  },
+  {
+    "symbol": "otc:3349",
+    "available_at": "2026-10-14T13:34:14.306+08:00",
+    "status": "RESEARCH_ONLY",
+    "capture_to_ready_seconds": 254.306
+  },
+  {
+    "symbol": "otc:6556",
+    "available_at": "2026-10-14T13:34:14.306+08:00",
+    "status": "RESEARCH_ONLY",
+    "capture_to_ready_seconds": 254.306
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "kind": "LOCAL_FIXTURE_IO_NOT_MARKET_LATENCY",
+  "journal_feed_publish_ms": [
+    1.811,
+    0.677,
+    0.889,
+    0.822
+  ],
+  "max_ms": 1.811,
+  "formal_signals": 0
+}

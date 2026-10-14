@@ -241,14 +241,24 @@ def snapshot(phase: str, planned: datetime, universe: list[dict], output: Path, 
     groups = [universe[i:i + BATCH_SIZE] for i in range(0, len(universe), BATCH_SIZE)]
     started = now_tpe()
     records: list[dict] = []
+    # The experimental path is opt-in and writes only to an isolated local
+    # journal. Completion-order callbacks avoid a slow batch holding up ready data.
+    fast_directory = os.getenv('MIS_FAST_JOURNAL_DIR')
+    journal = None
+    if fast_directory:
+        from fast_capture_journal import Journal
+        journal = Journal(fast_directory)
     with concurrent.futures.ThreadPoolExecutor(max_workers=CONCURRENCY) as pool:
-        futures = [(i + 1, group, pool.submit(fetch_mis, group,1,20,deadline)) for i, group in enumerate(groups)]
-        for batch_no, group, future in futures:
+        submitted = {pool.submit(fetch_mis,group,1,20,deadline):(i+1,group) for i,group in enumerate(groups)}
+        for future in concurrent.futures.as_completed(submitted):
+            batch_no,group=submitted[future]
             result = future.result()
             row = {"phase": phase, "planned_at": iso(planned), "batch_no": batch_no,
                    "expected_count": len(group), "symbols": group, **asdict(result)}
             row.update(analyze(group, result))
+            if journal:journal.append(row)
             records.append(row)
+    records.sort(key=lambda row:row['batch_no'])  # Keep the legacy file/return order.
     raw_path = output / ({"preclose": "preclose_raw.jsonl", "close": "close_raw.jsonl",
                          "delayed_close": "delayed_close_raw.jsonl"}.get(phase, f"{phase}_raw.jsonl"))
     with raw_path.open('a' if phase.endswith('_targeted_retry') else 'w', encoding='utf-8') as file:

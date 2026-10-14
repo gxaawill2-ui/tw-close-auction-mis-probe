@@ -1,0 +1,444 @@
+{
+  "scope": "POSTCLOSE_SOURCE_RESEARCH_NOT_1335_TEST",
+  "checks": [
+    {
+      "source": "PCHOME",
+      "ex": "otc",
+      "code": "3664",
+      "url": "https://stock.pchome.com.tw/stock/sto0/ock3/sid3664.html",
+      "requested_at": "2026-10-14T16:19:26.181973+08:00",
+      "received_at": "2026-10-14T16:19:31.664337+08:00",
+      "http_status": 200,
+      "error": null,
+      "attempts": [
+        {
+          "requested_at": "2026-10-14T16:19:26.181995+08:00",
+          "received_at": "2026-10-14T16:19:31.664270+08:00",
+          "method": "GET",
+          "http_status": 200,
+          "raw_sha256": "945a1fbd9a7e3a234201e9c432ba39e5b14cfa5cfcfb9b6ada9f95acc947ec72"
+        }
+      ],
+      "latency_ms": 5485.224,
+      "raw_sha256": "945a1fbd9a7e3a234201e9c432ba39e5b14cfa5cfcfb9b6ada9f95acc947ec72",
+      "raw_path": "otc-3664.html.gz",
+      "observations": {
+        "code_match": true,
+        "trade_row_count": 6,
+        "before_cutoff_observation": {
+          "time": "12:32:03",
+          "price": 8.17,
+          "size": 3.0,
+          "cumulative_volume": 15.0,
+          "source_row_index": 1,
+          "raw_cells": [
+            "12:32:03",
+            "8.17",
+            "8.80",
+            "8.17",
+            "-0.73",
+            "3",
+            "15"
+          ]
+        },
+        "close_time_observation": {
+          "time": "13:30:00",
+          "price": 8.8,
+          "size": 1.0,
+          "cumulative_volume": 16.0,
+          "source_row_index": 0,
+          "raw_cells": [
+            "13:30:00",
+            "8.20",
+            "8.80",
+            "8.80",
+            "-0.10",
+            "1",
+            "16"
+          ]
+        },
+        "trade_table_date_literals": []
+      },
+      "status": "OBSERVATION_ONLY",
+      "trade_date_verified": false,
+      "trial_exclusion_verified": false,
+      "full_tick_completeness_verified": false,
+      "independent_lineage_verified": false,
+      "validated": false,
+      "limitation": "Public table does not prove same-date actual-tick completeness or independent upstream lineage. Never a formal gate.",
+      "comparison_to_saved_mis": {
+        "pre_price_matches": true,
+        "pre_trade_time_matches": true,
+        "close_price_matches": true,
+        "close_trade_time_matches": true,
+        "formal_verification": false
+      }
+    },
+    {
+      "source": "PCHOME",
+      "ex": "otc",
+      "code": "6556",
+      "url": "https://stock.pchome.com.tw/stock/sto0/ock3/sid6556.html",
+      "requested_at": "2026-10-14T16:19:32.667632+08:00",
+      "received_at": "2026-10-14T16:19:38.051440+08:00",
+      "http_status": 200,
+      "error": null,
+      "attempts": [
+        {
+          "requested_at": "2026-10-14T16:19:32.667654+08:00",
+          "received_at": "2026-10-14T16:19:38.051375+08:00",
+          "method": "GET",
+          "http_status": 200,
+          "raw_sha256": "f5a72522ac3c710a986f8b514b97e54c841380c29ea9721ba5a2594c0cffd573"
+        }
+      ],
+      "latency_ms": 5386.041,
+      "raw_sha256": "f5a72522ac3c710a986f8b514b97e54c841380c29ea9721ba5a2594c0cffd573",
+      "raw_path": "otc-6556.html.gz",
+      "observations": {
+        "code_match": true,
+        "trade_row_count": 9,
+        "before_cutoff_observation": {
+          "time": "13:19:53",
+          "price": 63.0,
+          "size": 1.0,
+          "cumulative_volume": 7.0,
+          "source_row_index": 2,
+          "raw_cells": [
+            "13:19:53",
+            "62.40",
+            "63.00",
+            "63.00",
+            "+1.00",
+            "1",
+            "7"
+          ]
+        },
+        "close_time_observation": {
+          "time": "13:33:00",
+          "price": 67.1,
+          "size": 3.0,
+          "cumulative_volume": 10.0,
+          "source_row_index": 1,
+          "raw_cells": [
+            "13:33:00",
+            "62.60",
+            "67.10",
+            "67.10",
+            "+5.10",
+            "3",
+            "10"
+          ]
+        },
+        "trade_table_date_literals": []
+      },
+      "status": "OBSERVATION_ONLY",
+      "trade_date_verified": false,
+      "trial_exclusion_verified": false,
+      "full_tick_completeness_verified": false,
+      "independent_lineage_verified": false,
+      "validated": false,
+      "limitation": "Public table does not prove same-date actual-tick completeness or independent upstream lineage. Never a formal gate.",
+      "comparison_to_saved_mis": {
+        "pre_price_matches": true,
+        "pre_trade_time_matches": true,
+        "close_price_matches": true,
+        "close_trade_time_matches": true,
+        "formal_verification": false
+      }
+    },
+    {
+      "source": "PCHOME",
+      "ex": "otc",
+      "code": "6881",
+      "url": "https://stock.pchome.com.tw/stock/sto0/ock3/sid6881.html",
+      "requested_at": "2026-10-14T16:19:39.053974+08:00",
+      "received_at": "2026-10-14T16:19:43.532468+08:00",
+      "http_status": 200,
+      "error": null,
+      "attempts": [
+        {
+          "requested_at": "2026-10-14T16:19:39.053995+08:00",
+          "received_at": "2026-10-14T16:19:43.532387+08:00",
+          "method": "GET",
+          "http_status": 200,
+          "raw_sha256": "7fd6f9c02afd66f326316e1df488739f3232780638421cf27df536652d10b398"
+        }
+      ],
+      "latency_ms": 4480.663,
+      "raw_sha256": "7fd6f9c02afd66f326316e1df488739f3232780638421cf27df536652d10b398",
+      "raw_path": "otc-6881.html.gz",
+      "observations": {
+        "code_match": true,
+        "trade_row_count": 4,
+        "before_cutoff_observation": {
+          "time": "12:48:31",
+          "price": 212.0,
+          "size": 2.0,
+          "cumulative_volume": 5.0,
+          "source_row_index": 1,
+          "raw_cells": [
+            "12:48:31",
+            "207.50",
+            "212.00",
+            "212.00",
+            "-3.00",
+            "2",
+            "5"
+          ]
+        },
+        "close_time_observation": {
+          "time": "13:30:00",
+          "price": 225.0,
+          "size": 1.0,
+          "cumulative_volume": 6.0,
+          "source_row_index": 0,
+          "raw_cells": [
+            "13:30:00",
+            "213.50",
+            "230.00",
+            "225.00",
+            "+10.00",
+            "1",
+            "6"
+          ]
+        },
+        "trade_table_date_literals": []
+      },
+      "status": "OBSERVATION_ONLY",
+      "trade_date_verified": false,
+      "trial_exclusion_verified": false,
+      "full_tick_completeness_verified": false,
+      "independent_lineage_verified": false,
+      "validated": false,
+      "limitation": "Public table does not prove same-date actual-tick completeness or independent upstream lineage. Never a formal gate.",
+      "comparison_to_saved_mis": {
+        "pre_price_matches": true,
+        "pre_trade_time_matches": true,
+        "close_price_matches": true,
+        "close_trade_time_matches": true,
+        "formal_verification": false
+      }
+    },
+    {
+      "source": "PCHOME",
+      "ex": "otc",
+      "code": "6597",
+      "url": "https://stock.pchome.com.tw/stock/sto0/ock3/sid6597.html",
+      "requested_at": "2026-10-14T16:19:44.534951+08:00",
+      "received_at": "2026-10-14T16:19:48.937004+08:00",
+      "http_status": 200,
+      "error": null,
+      "attempts": [
+        {
+          "requested_at": "2026-10-14T16:19:44.534973+08:00",
+          "received_at": "2026-10-14T16:19:48.936939+08:00",
+          "method": "GET",
+          "http_status": 200,
+          "raw_sha256": "fb9991942d514810b5eab6126f452b4762e1e7cec44f213cf59d6792380b7814"
+        }
+      ],
+      "latency_ms": 4404.434,
+      "raw_sha256": "fb9991942d514810b5eab6126f452b4762e1e7cec44f213cf59d6792380b7814",
+      "raw_path": "otc-6597.html.gz",
+      "observations": {
+        "code_match": true,
+        "trade_row_count": 9,
+        "before_cutoff_observation": {
+          "time": "12:39:27",
+          "price": 68.1,
+          "size": 1.0,
+          "cumulative_volume": 8.0,
+          "source_row_index": 1,
+          "raw_cells": [
+            "12:39:27",
+            "68.00",
+            "71.80",
+            "68.10",
+            "-4.90",
+            "1",
+            "8"
+          ]
+        },
+        "close_time_observation": {
+          "time": "13:30:00",
+          "price": 71.8,
+          "size": 1.0,
+          "cumulative_volume": 9.0,
+          "source_row_index": 0,
+          "raw_cells": [
+            "13:30:00",
+            "68.10",
+            "71.80",
+            "71.80",
+            "-1.20",
+            "1",
+            "9"
+          ]
+        },
+        "trade_table_date_literals": []
+      },
+      "status": "OBSERVATION_ONLY",
+      "trade_date_verified": false,
+      "trial_exclusion_verified": false,
+      "full_tick_completeness_verified": false,
+      "independent_lineage_verified": false,
+      "validated": false,
+      "limitation": "Public table does not prove same-date actual-tick completeness or independent upstream lineage. Never a formal gate.",
+      "comparison_to_saved_mis": {
+        "pre_price_matches": true,
+        "pre_trade_time_matches": true,
+        "close_price_matches": true,
+        "close_trade_time_matches": true,
+        "formal_verification": false
+      }
+    },
+    {
+      "source": "PCHOME",
+      "ex": "otc",
+      "code": "3349",
+      "url": "https://stock.pchome.com.tw/stock/sto0/ock3/sid3349.html",
+      "requested_at": "2026-10-14T16:19:49.939677+08:00",
+      "received_at": "2026-10-14T16:19:54.902669+08:00",
+      "http_status": 200,
+      "error": null,
+      "attempts": [
+        {
+          "requested_at": "2026-10-14T16:19:49.939699+08:00",
+          "received_at": "2026-10-14T16:19:54.902587+08:00",
+          "method": "GET",
+          "http_status": 200,
+          "raw_sha256": "fec42f93571003d06acb73c70cf61763caca181f19701aa128f36746700d17be"
+        }
+      ],
+      "latency_ms": 4967.544,
+      "raw_sha256": "fec42f93571003d06acb73c70cf61763caca181f19701aa128f36746700d17be",
+      "raw_path": "otc-3349.html.gz",
+      "observations": {
+        "code_match": true,
+        "trade_row_count": 100,
+        "before_cutoff_observation": {
+          "time": "13:11:42",
+          "price": 19.6,
+          "size": 1.0,
+          "cumulative_volume": 337.0,
+          "source_row_index": 1,
+          "raw_cells": [
+            "13:11:42",
+            "19.60",
+            "19.75",
+            "19.60",
+            "+0.45",
+            "1",
+            "337"
+          ]
+        },
+        "close_time_observation": {
+          "time": "13:33:00",
+          "price": 18.85,
+          "size": 53.0,
+          "cumulative_volume": 390.0,
+          "source_row_index": 0,
+          "raw_cells": [
+            "13:33:00",
+            "18.80",
+            "19.70",
+            "18.85",
+            "-0.30",
+            "53",
+            "390"
+          ]
+        },
+        "trade_table_date_literals": []
+      },
+      "status": "OBSERVATION_ONLY",
+      "trade_date_verified": false,
+      "trial_exclusion_verified": false,
+      "full_tick_completeness_verified": false,
+      "independent_lineage_verified": false,
+      "validated": false,
+      "limitation": "Public table does not prove same-date actual-tick completeness or independent upstream lineage. Never a formal gate.",
+      "comparison_to_saved_mis": {
+        "pre_price_matches": true,
+        "pre_trade_time_matches": true,
+        "close_price_matches": true,
+        "close_trade_time_matches": true,
+        "formal_verification": false
+      }
+    },
+    {
+      "source": "PCHOME",
+      "ex": "otc",
+      "code": "4556",
+      "url": "https://stock.pchome.com.tw/stock/sto0/ock3/sid4556.html",
+      "requested_at": "2026-10-14T16:19:55.907532+08:00",
+      "received_at": "2026-10-14T16:20:00.732457+08:00",
+      "http_status": 200,
+      "error": null,
+      "attempts": [
+        {
+          "requested_at": "2026-10-14T16:19:55.907554+08:00",
+          "received_at": "2026-10-14T16:20:00.732383+08:00",
+          "method": "GET",
+          "http_status": 200,
+          "raw_sha256": "eadab56206267363c0258a5a3a80856bad3b79941d66fb7bcdd8c258ce027343"
+        }
+      ],
+      "latency_ms": 4828.459,
+      "raw_sha256": "eadab56206267363c0258a5a3a80856bad3b79941d66fb7bcdd8c258ce027343",
+      "raw_path": "otc-4556.html.gz",
+      "observations": {
+        "code_match": true,
+        "trade_row_count": 94,
+        "before_cutoff_observation": {
+          "time": "13:24:37",
+          "price": 138.0,
+          "size": 8.0,
+          "cumulative_volume": 368.0,
+          "source_row_index": 2,
+          "raw_cells": [
+            "13:24:37",
+            "138.00",
+            "140.00",
+            "138.00",
+            "-3.00",
+            "8",
+            "368"
+          ]
+        },
+        "close_time_observation": {
+          "time": "13:30:00",
+          "price": 133.0,
+          "size": 57.0,
+          "cumulative_volume": 425.0,
+          "source_row_index": 1,
+          "raw_cells": [
+            "13:30:00",
+            "133.00",
+            "134.00",
+            "133.00",
+            "-8.00",
+            "57",
+            "425"
+          ]
+        },
+        "trade_table_date_literals": []
+      },
+      "status": "OBSERVATION_ONLY",
+      "trade_date_verified": false,
+      "trial_exclusion_verified": false,
+      "full_tick_completeness_verified": false,
+      "independent_lineage_verified": false,
+      "validated": false,
+      "limitation": "Public table does not prove same-date actual-tick completeness or independent upstream lineage. Never a formal gate.",
+      "comparison_to_saved_mis": {
+        "pre_price_matches": true,
+        "pre_trade_time_matches": true,
+        "close_price_matches": true,
+        "close_trade_time_matches": true,
+        "formal_verification": false
+      }
+    }
+  ],
+  "formal_signals": 0
+}

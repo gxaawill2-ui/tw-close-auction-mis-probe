@@ -1,0 +1,15 @@
+{
+  "first_candidate_evidence_available_at": "2026-10-14T13:32:35.533+08:00",
+  "first_local_publication_at": "2026-10-14T16:19:14.542+08:00",
+  "first_public_observed_at": null,
+  "first_verified_at": null,
+  "last_evidence_update_at": "2026-10-14T13:34:14.306+08:00",
+  "first_complete_research_evidence_at": "2026-10-14T13:33:51.351+08:00",
+  "close_to_first_candidate_seconds": 155.533,
+  "close_to_first_complete_research_seconds": 231.351,
+  "close_to_first_verified_seconds": null,
+  "close_to_last_evidence_seconds": 254.306,
+  "processing_wall_seconds": 1.4347,
+  "batches_processed": 319,
+  "historical_publication_proven": false
+}
