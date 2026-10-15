@@ -1,0 +1,6 @@
+{
+  "market": "TWSE",
+  "url": "https://openapi.twse.com.tw/v1/opendata/t187ap03_L",
+  "requested_at": "2026-10-15T10:01:18.623599+08:00",
+  "status": "REQUEST_STARTED_NOT_RECEIVED"
+}

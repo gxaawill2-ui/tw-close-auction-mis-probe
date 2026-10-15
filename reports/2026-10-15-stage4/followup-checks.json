@@ -1,0 +1,18 @@
+{
+  "created": true,
+  "timezone": "Asia/Taipei",
+  "date": "2026-10-15",
+  "one_time_checks": [
+    {
+      "title": "核對今日尾盤影子驗收",
+      "time": "13:40",
+      "enabled": true
+    },
+    {
+      "title": "完成今日尾盤盤後驗收",
+      "time": "17:55",
+      "enabled": true
+    }
+  ],
+  "note": "Scheduled checks are not proof of future execution or deadline success."
+}

@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-10-15T02:06:07.733Z",
+  "results": [
+    {
+      "profile": "desktop",
+      "status": "PASS",
+      "scope": "PRE_CAPTURE_STATUS_PAGE_ONLY_NOT_REAL_QUOTE_OR_PUBLIC_ENDPOINT",
+      "physical_device": false
+    },
+    {
+      "profile": "iphone-chromium",
+      "status": "PASS",
+      "scope": "PRE_CAPTURE_STATUS_PAGE_ONLY_NOT_REAL_QUOTE_OR_PUBLIC_ENDPOINT",
+      "physical_device": false
+    },
+    {
+      "profile": "iphone-webkit",
+      "status": "PASS",
+      "scope": "PRE_CAPTURE_STATUS_PAGE_ONLY_NOT_REAL_QUOTE_OR_PUBLIC_ENDPOINT",
+      "physical_device": false
+    }
+  ]
+}

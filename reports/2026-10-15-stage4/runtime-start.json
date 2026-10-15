@@ -1,0 +1,17 @@
+{
+  "run_id": 38668761699,
+  "job_id": 116206642151,
+  "url": "https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/actions/runs/38668761699",
+  "branch": "stage4/20261015-live-shadow",
+  "code_commit": "131e59b21a233c1dc9b7de4c7346a5411512a0ba",
+  "created_at": "2026-10-15T02:01:10Z",
+  "observed_at": "2026-10-15T10:05:36.775349+08:00",
+  "status": "in_progress",
+  "step_wait_for_formal_capture": "in_progress",
+  "isolated_python_step": "success",
+  "metadata_step": "failure",
+  "preflight_artifact_id": 11943218183,
+  "main_modified": false,
+  "mis_requests_by_shadow": 0,
+  "workflow_formal_concurrency_used": false
+}
