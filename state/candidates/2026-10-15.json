@@ -3,7 +3,7 @@
   "trade_date": "2026-10-15",
   "generated_at": "2026-10-15T13:34:13.373+08:00",
   "published_at": "2026-10-15T13:34:22.781+08:00",
-  "updated_at": "2026-10-15T13:34:22.781+08:00",
+  "updated_at": "2026-10-15T14:50:29.663+08:00",
   "publication_mode": "LIVE",
   "capture_run_id": "38684465791",
   "source_artifact": "mis-probe-38684465791",
@@ -203,10 +203,13 @@
         ],
         "cumulative_delta_raw": "1",
         "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
-        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00"
+        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00",
+        "official_daily_shares": null,
+        "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "PENDING",
-      "postmarket_verified_at": null
+      "postmarket_verified_at": "2026-10-15T14:50:23.214+08:00",
+      "official_close": null
     },
     {
       "code": "4706",
@@ -392,10 +395,13 @@
         ],
         "cumulative_delta_raw": "10",
         "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
-        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00"
+        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00",
+        "official_daily_shares": null,
+        "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "PENDING",
-      "postmarket_verified_at": null
+      "postmarket_verified_at": "2026-10-15T14:50:23.214+08:00",
+      "official_close": null
     },
     {
       "code": "3593",
@@ -581,10 +587,13 @@
         ],
         "cumulative_delta_raw": "2",
         "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
-        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00"
+        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00",
+        "official_daily_shares": "9,149",
+        "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
-      "official_price_result": "PENDING",
-      "postmarket_verified_at": null
+      "official_price_result": "MATCH",
+      "postmarket_verified_at": "2026-10-15T14:50:23.214+08:00",
+      "official_close": "10.45"
     },
     {
       "code": "8101",
@@ -770,10 +779,13 @@
         ],
         "cumulative_delta_raw": "1",
         "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
-        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00"
+        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00",
+        "official_daily_shares": "28,426",
+        "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
-      "official_price_result": "PENDING",
-      "postmarket_verified_at": null
+      "official_price_result": "MATCH",
+      "postmarket_verified_at": "2026-10-15T14:50:23.214+08:00",
+      "official_close": "9.62"
     },
     {
       "code": "3288",
@@ -959,10 +971,13 @@
         ],
         "cumulative_delta_raw": "3",
         "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
-        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00"
+        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00",
+        "official_daily_shares": null,
+        "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "PENDING",
-      "postmarket_verified_at": null
+      "postmarket_verified_at": "2026-10-15T14:50:23.214+08:00",
+      "official_close": null
     },
     {
       "code": "3266",
@@ -1148,10 +1163,13 @@
         ],
         "cumulative_delta_raw": "35",
         "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
-        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00"
+        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00",
+        "official_daily_shares": "79,327",
+        "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
-      "official_price_result": "PENDING",
-      "postmarket_verified_at": null
+      "official_price_result": "MATCH",
+      "postmarket_verified_at": "2026-10-15T14:50:23.214+08:00",
+      "official_close": "13.70"
     },
     {
       "code": "4192",
@@ -1337,10 +1355,13 @@
         ],
         "cumulative_delta_raw": "3",
         "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
-        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00"
+        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00",
+        "official_daily_shares": null,
+        "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "PENDING",
-      "postmarket_verified_at": null
+      "postmarket_verified_at": "2026-10-15T14:50:23.214+08:00",
+      "official_close": null
     },
     {
       "code": "6590",
@@ -1526,10 +1547,13 @@
         ],
         "cumulative_delta_raw": "22",
         "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
-        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00"
+        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00",
+        "official_daily_shares": null,
+        "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "PENDING",
-      "postmarket_verified_at": null
+      "postmarket_verified_at": "2026-10-15T14:50:23.214+08:00",
+      "official_close": null
     },
     {
       "code": "6661",
@@ -1715,10 +1739,13 @@
         ],
         "cumulative_delta_raw": "1",
         "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
-        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00"
+        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00",
+        "official_daily_shares": null,
+        "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "PENDING",
-      "postmarket_verified_at": null
+      "postmarket_verified_at": "2026-10-15T14:50:23.214+08:00",
+      "official_close": null
     },
     {
       "code": "6929",
@@ -1904,13 +1931,18 @@
         ],
         "cumulative_delta_raw": "1",
         "agreement": "trade.v = tv = s = V_close - V_pre_auction in two fresh adopted close observations",
-        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00"
+        "unit_contract_verified_at": "2026-10-08T18:07:03.716800+08:00",
+        "official_daily_shares": null,
+        "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "PENDING",
-      "postmarket_verified_at": null
+      "postmarket_verified_at": "2026-10-15T14:50:23.214+08:00",
+      "official_close": null
     }
   ],
   "publication_code_sha": "12bc8e7d3156cf8f8140eafc39e3835ceb6e7ab6",
   "price_limitation": "P_before is converged MIS research evidence, without independent official pre-13:25 validation.",
-  "price_fingerprint": "5747bfa8a75ea8cc08af2c86c79f26230e0b6369cac046f203374f7bb4c5ad51"
+  "price_fingerprint": "5747bfa8a75ea8cc08af2c86c79f26230e0b6369cac046f203374f7bb4c5ad51",
+  "postmarket_verified_at": "2026-10-15T14:50:23.214+08:00",
+  "official_validation_run_id": "38694819429"
 }
