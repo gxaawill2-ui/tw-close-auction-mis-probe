@@ -1,7 +1,7 @@
 {
   "phase": "MORNING_PREPARATION_IN_PROGRESS",
   "trade_date": "2026-10-15",
-  "recorded_at": "2026-10-15T10:48:29.969824+08:00",
+  "recorded_at": "2026-10-15T11:45:20.998228+08:00",
   "research_candidates_today": null,
   "formal_verified_today": null,
   "formal_mis_run_today": null,
@@ -10,8 +10,8 @@
   "first_verified_at": null,
   "cloud_written_at": null,
   "external_mobile_read_ms": null,
-  "fugle_http_test": "AUTHORIZED_LOGIN_UNVERIFIED_NO_KEY",
-  "cloudflare_cloud_test": "AUTHORIZED_BROWSER_UNAVAILABLE_NOT_DEPLOYED",
+  "fugle_http_test": "LOGIN_CONFIRMED_BASIC_NO_KEY",
+  "cloudflare_cloud_test": "MANUAL_TEST_WORKER_CODE_DEPLOYED_STORAGE_NOT_INITIALIZED",
   "tpex_company_metadata_http": 200,
   "tpex_company_rows": 893,
   "tradable_universe_verified": false,
@@ -69,5 +69,6 @@
   "new_all_market_capture": false,
   "pre_capture_status_browser_profiles": 3,
   "pre_capture_status_browser_scope": "STATIC_PRE_CLOSE_STATUS_ONLY_NOT_TODAY_QUOTES_OR_EXTERNAL_PUBLICATION",
-  "authorization_progress": "authorization-progress.json"
+  "authorization_progress": "authorization-progress.json",
+  "manual_cloudflare_progress": "manual-cloudflare-progress.json"
 }

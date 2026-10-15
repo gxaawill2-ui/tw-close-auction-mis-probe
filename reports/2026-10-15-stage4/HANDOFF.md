@@ -28,3 +28,12 @@ main目前沒有journal，Artifact只在正式capture結束後可下載。`stage
 富果已經由使用者安全選擇 Google 與帳戶，送出一般登入後 callback／首頁空白，尚無正面登入成功證據。沒有取得 Key、沒有建立 Secret。Cloudflare 最後可見是登入頁，未登入、未建立服務。控制連線及一次 reset 恢復均 300 秒逾時，因此停止重試；這不是證明服務封鎖、密碼錯誤或授權不足。不要請使用者在聊天貼任何憑證。
 
 GitHub connector 確認原影子 runner 仍在等待正式 capture，未重啟或新增 MIS。13:40／17:55 既有接續任務維持；下一 Work 先讀本段與 JSON，恢復瀏覽器後使用新鮮狀態檢查登入，再做安全 Key 保存與合成 nonce 雲端驗收，所有真實公開寫入／外部讀取時間仍未知。
+
+
+## 11:43 手動 Cloudflare 進度（優先於前段舊狀態）
+
+富果11:11 UI已正面確認基本用戶生效，API Key清單空，尚無Key。使用者在自己瀏覽器完成 Cloudflare Google登入，建立獨立 `tw-tail-stage4-20261015-test`；Hello World公開頁面由使用者截圖確認。代理瀏覽器讀取同網址為ERR_BLOCKED_BY_CLIENT，非來源bot封鎖證據。不可稱完成外部手機延遲驗收。
+
+使用者已從本repo的 `isolated_publication/worker.mjs` 複製完整121行到Dashboard，畫面顯示04e6e68c Active／Ready。沒有secret值進聊天。Bindings下拉只有正式 `tw-index-events-relay_DispatchGate`，已明確禁止選取，尚未綁定任何物件。只貼程式並不建立SQLite namespace；此處先前UI指引漏了migration初始化，必須補上，不能重用正式namespace。
+
+已備妥stage4.wrangler.jsonc（名稱精確匹配新test Worker、SelectionStore SQLite migration、SELECTION binding、ALLOW_LIVE_VERIFIED=false）。下一步使用test Worker自身Settings > Builds連接既有repo，分支僅stage4/20261015-live-shadow、根目錄isolated_publication、deploy command `npx wrangler deploy --config stage4.wrangler.jsonc`。最後連接／啟用前核對分支及目標；不要使用預設main或預設stage3 wrangler.jsonc，不啟用其他分支預覽。不可改正式GitHub Actions或既有Worker。若GitHub授權要求擴大到所有repositories，改只選本repo，由使用者確認授權。寫入secret及真正發布仍未完成。
