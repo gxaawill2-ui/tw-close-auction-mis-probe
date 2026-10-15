@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-15T11:45:20.998228+08:00",
+  "recorded_at": "2026-10-15T11:56:19.575536+08:00",
   "source": "USER_SCREENSHOTS_AND_BROWSER_UI; NOT_CLOUDFLARE_API_RECEIPTS",
   "worker_name": "tw-tail-stage4-20261015-test",
   "worker_url": "https://tw-tail-stage4-20261015-test.gxaawill2.workers.dev",
@@ -18,10 +18,18 @@
   "binding_action": "DO_NOT_SELECT_EXISTING_FORMAL_NAMESPACE",
   "missing": "SelectionStore namespace initialization via SQLite migration and binding",
   "prepared_configuration": "isolated_publication/stage4.wrangler.jsonc",
-  "next": "Existing TEST Worker Settings > Builds > connect only repository gxaawill2-ui/tw-close-auction-mis-probe; select branch stage4/20261015-live-shadow and root isolated_publication, explicit deploy config stage4.wrangler.jsonc. Review all settings BEFORE enabling builds. No main or other branches, existing formal Worker or DNS changes. No secret values in chat.",
+  "next": "Push isolated bootstrap commit [skip actions], inspect actual Cloudflare build, then test health/storage. Do not bind formal DispatchGate.",
   "source_contract_live_released": false,
   "fugle_signed_in_verified": true,
   "fugle_plan": "BASIC_ACTIVE",
   "fugle_api_key_created": false,
-  "production_modified": false
+  "production_modified": false,
+  "git_connection_observed": true,
+  "git_connection_evidence": "USER_SCREENSHOT_RECEIVED_2026-10-15T11:54:50+08:00",
+  "production_branch": "stage4/20261015-live-shadow",
+  "root_directory": "/",
+  "build_command": null,
+  "deploy_command": "npx wrangler deploy --config isolated_publication/stage4.wrangler.jsonc",
+  "preview_builds_disabled": "INSTRUCTED_NOT_YET_OBSERVED_SAVED",
+  "cloud_build_status": "WAITING_FOR_FIRST_BOOTSTRAP_PUSH"
 }

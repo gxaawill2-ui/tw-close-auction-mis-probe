@@ -37,3 +37,10 @@ GitHub connector 確認原影子 runner 仍在等待正式 capture，未重啟�
 使用者已從本repo的 `isolated_publication/worker.mjs` 複製完整121行到Dashboard，畫面顯示04e6e68c Active／Ready。沒有secret值進聊天。Bindings下拉只有正式 `tw-index-events-relay_DispatchGate`，已明確禁止選取，尚未綁定任何物件。只貼程式並不建立SQLite namespace；此處先前UI指引漏了migration初始化，必須補上，不能重用正式namespace。
 
 已備妥stage4.wrangler.jsonc（名稱精確匹配新test Worker、SelectionStore SQLite migration、SELECTION binding、ALLOW_LIVE_VERIFIED=false）。下一步使用test Worker自身Settings > Builds連接既有repo，分支僅stage4/20261015-live-shadow、根目錄isolated_publication、deploy command `npx wrangler deploy --config stage4.wrangler.jsonc`。最後連接／啟用前核對分支及目標；不要使用預設main或預設stage3 wrangler.jsonc，不啟用其他分支預覽。不可改正式GitHub Actions或既有Worker。若GitHub授權要求擴大到所有repositories，改只選本repo，由使用者確認授權。寫入secret及真正發布仍未完成。
+
+
+## 11:55 Git 連接已完成（覆蓋前段 root／command 指引）
+
+使用者截圖確認新test Worker已連本repo，Production branch=stage4/20261015-live-shadow，root=/，build空，Deploy command=`npx wrangler deploy --config isolated_publication/stage4.wrangler.jsonc`。Preview command=no-op；已指示取消Enable Preview builds，但尚無保存後關閉狀態證據。不要再用前段root=isolated_publication搭配新full-path命令，否則路徑重複。畫面顯示需要push第一筆commit啟動build。本次bootstrap使用GitHub官方[skip actions] marker，避免啟動正式Actions共用concurrency；不是變更正式workflow。CF是否建置以實際check為準。
+
+詳細部署設定與唯讀驗收規則見isolated_publication/STAGE4_DEPLOYMENT.md。根路徑/在新程式是404 NOT_FOUND，測試用/health及/data?date=2026-10-15；健康成功不代表私有write/read或逐檔驗證成功。observer38668761699在11:55再次connector確認等待正式capture，未重跑MIS。
