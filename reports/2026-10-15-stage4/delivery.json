@@ -1,7 +1,7 @@
 {
   "phase": "MORNING_PREPARATION_IN_PROGRESS",
   "trade_date": "2026-10-15",
-  "recorded_at": "2026-10-15T10:05:36.775349+08:00",
+  "recorded_at": "2026-10-15T10:48:29.969824+08:00",
   "research_candidates_today": null,
   "formal_verified_today": null,
   "formal_mis_run_today": null,
@@ -10,8 +10,8 @@
   "first_verified_at": null,
   "cloud_written_at": null,
   "external_mobile_read_ms": null,
-  "fugle_http_test": "NOT_CONFIGURED",
-  "cloudflare_cloud_test": "NOT_AUTHORIZED_NOT_DEPLOYED",
+  "fugle_http_test": "AUTHORIZED_LOGIN_UNVERIFIED_NO_KEY",
+  "cloudflare_cloud_test": "AUTHORIZED_BROWSER_UNAVAILABLE_NOT_DEPLOYED",
   "tpex_company_metadata_http": 200,
   "tpex_company_rows": 893,
   "tradable_universe_verified": false,
@@ -27,7 +27,7 @@
     "branch": "stage4/20261015-live-shadow",
     "code_commit": "131e59b21a233c1dc9b7de4c7346a5411512a0ba",
     "created_at": "2026-10-15T02:01:10Z",
-    "observed_at": "2026-10-15T10:05:36.775349+08:00",
+    "observed_at": "2026-10-15T10:48:29.969824+08:00",
     "status": "in_progress",
     "step_wait_for_formal_capture": "in_progress",
     "isolated_python_step": "success",
@@ -68,5 +68,6 @@
   "production_deployed": false,
   "new_all_market_capture": false,
   "pre_capture_status_browser_profiles": 3,
-  "pre_capture_status_browser_scope": "STATIC_PRE_CLOSE_STATUS_ONLY_NOT_TODAY_QUOTES_OR_EXTERNAL_PUBLICATION"
+  "pre_capture_status_browser_scope": "STATIC_PRE_CLOSE_STATUS_ONLY_NOT_TODAY_QUOTES_OR_EXTERNAL_PUBLICATION",
+  "authorization_progress": "authorization-progress.json"
 }

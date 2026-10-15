@@ -19,3 +19,12 @@ main目前沒有journal，Artifact只在正式capture結束後可下載。`stage
 本機官方metadata未取得完整結果，不將其叫交易所故障；已準備GitHub runner限時35秒的另一環境測試。測試請用新輸出目錄，保留raw與所有失敗紀錄。原始歷史檔與正式docs／state等不改。
 
 應在今天13:40取得first-capture結果時，回報run是否實際啟動、today研究數／unknown／正式數、事件/收到/保存/分析各時間，公開write/read未知保持null。17:55再唯讀看既有14:50/15:20/17:50核對結果，不觸發新officialworkflow。若下游授權仍缺，繼續保存證據，不承諾達標。
+
+
+## 10:18 授權後續作與瀏覽器中斷
+
+使用者已同意專用免費富果行情 Key、新隔離環境 Secret，以及新 Cloudflare 測試 Worker `tw-tail-stage4-20261015-test`／SQLite DO／測試寫入憑證與必要登入。不要重問相同授權；正式變更仍未授權。詳見 `authorization-progress.json`。
+
+富果已經由使用者安全選擇 Google 與帳戶，送出一般登入後 callback／首頁空白，尚無正面登入成功證據。沒有取得 Key、沒有建立 Secret。Cloudflare 最後可見是登入頁，未登入、未建立服務。控制連線及一次 reset 恢復均 300 秒逾時，因此停止重試；這不是證明服務封鎖、密碼錯誤或授權不足。不要請使用者在聊天貼任何憑證。
+
+GitHub connector 確認原影子 runner 仍在等待正式 capture，未重啟或新增 MIS。13:40／17:55 既有接續任務維持；下一 Work 先讀本段與 JSON，恢復瀏覽器後使用新鮮狀態檢查登入，再做安全 Key 保存與合成 nonce 雲端驗收，所有真實公開寫入／外部讀取時間仍未知。

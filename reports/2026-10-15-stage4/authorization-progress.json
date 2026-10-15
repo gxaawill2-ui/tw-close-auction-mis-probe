@@ -1,0 +1,53 @@
+{
+  "recorded_at": "2026-10-15T10:48:29.969824+08:00",
+  "user_authorization_received_at": "2026-10-15T10:18:21+08:00",
+  "authorized": [
+    "Dedicated free Fugle market-data API key in a NEW stage4 environment secret",
+    "NEW Cloudflare Worker tw-tail-stage4-20261015-test with isolated SQLite Durable Object and new test writer credentials",
+    "Necessary secure sign-in; cron dashboard read-only"
+  ],
+  "not_authorized": [
+    "main merge",
+    "production deployment",
+    "production collector/workflow/schedule changes",
+    "production secrets or existing Worker/DNS changes",
+    "second all-market MIS capture"
+  ],
+  "fugle": {
+    "google_method_selected": true,
+    "account_selected_by_user": true,
+    "callback_observed": true,
+    "target_page_after_callback": "BLANK",
+    "signed_in_verified": false,
+    "api_key_obtained": false,
+    "secret_created": false
+  },
+  "cloudflare": {
+    "last_visible_page": "LOGIN",
+    "sign_in_completed": false,
+    "worker_created": false,
+    "public_write_at": null,
+    "anonymous_browser_read_at": null
+  },
+  "browser_control": {
+    "state": "UNAVAILABLE_TIMEOUT",
+    "observed_errors": [
+      "Fugle target verification timed out after 300 seconds",
+      "Cloudflare page inspection interrupted while pending",
+      "Documentation refresh timed out after 300 seconds",
+      "One reset recovery attempt timed out after 300 seconds"
+    ],
+    "classification": "BROWSER_CONTROL_FAILURE; NOT_PROOF_OF_SITE_BOT_DETECTION_OR_BAD_CREDENTIALS",
+    "automatic_retries": "STOPPED"
+  },
+  "resume": "Authorization remains valid. Restore browser control once available; inspect fresh target-domain state without exposing keys. Do not request authorization again for the same scope. Use secure browserAuth for remaining sign-in. Do not assume prior callbacks succeeded.",
+  "observer": {
+    "run_id": 38668761699,
+    "job_id": 116206642151,
+    "observed_at": "2026-10-15T10:48:29.969824+08:00",
+    "status": "in_progress",
+    "active_step": "Wait for existing formal capture, analyze immediately when saved",
+    "additional_MIS_capture_started": false
+  },
+  "validation": "NO_NEW_TRADING_RESULT; morning before cutoff. Existing synthetic/offline tests are not live API success."
+}
