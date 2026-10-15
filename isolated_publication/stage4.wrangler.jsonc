@@ -2,7 +2,29 @@
   "name": "tw-tail-stage4-20261015-test",
   "main": "worker.mjs",
   "compatibility_date": "2026-10-14",
-  "vars": {"ALLOW_LIVE_VERIFIED": "false"},
-  "durable_objects": {"bindings": [{"name": "SELECTION", "class_name": "SelectionStore"}]},
-  "migrations": [{"tag": "stage4-isolated-v1", "new_sqlite_classes": ["SelectionStore"]}]
+  "vars": {
+    "ALLOW_LIVE_VERIFIED": "false"
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "SELECTION",
+        "class_name": "SelectionStore"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "stage4-isolated-v1",
+      "new_sqlite_classes": [
+        "SelectionStore"
+      ]
+    }
+  ],
+  "assets": {
+    "directory": "./stage4-site"
+  },
+  "observability": {
+    "enabled": false
+  }
 }

@@ -1,0 +1,66 @@
+{
+  "scope": "REAL_BROWSER_ENGINES_LOCAL_SYNTHETIC_ONLY",
+  "checks": [
+    {
+      "profile": "desktop",
+      "status": "PASS",
+      "refresh": "EMPTY_TO_UNKNOWN_TO_EMPTY",
+      "reload": true,
+      "synthetic_banner": true,
+      "formal_verified": 0,
+      "no_overflow": true,
+      "physical_device": false,
+      "public_internet": false,
+      "read_receipts": [
+        {
+          "version": 17920487333481,
+          "sha256": "9fff499c6708ea7b7093f4089ca33de09e41e70250989f1cd800c95d507eaa9e",
+          "public_written_at": "2026-10-15T07:18:53.442Z",
+          "browser_requested_at": "2026-10-15T07:18:53.475Z",
+          "browser_observed_at": "2026-10-15T07:18:53.520Z"
+        },
+        {
+          "version": 17920487333482,
+          "sha256": "673142cf86ce95fe637334f8cb9e3cec0617f3f2a719ee2d2718ee8d10667216",
+          "public_written_at": "2026-10-15T07:18:53.570Z",
+          "browser_requested_at": "2026-10-15T07:18:54.976Z",
+          "browser_observed_at": "2026-10-15T07:18:54.984Z"
+        }
+      ]
+    },
+    {
+      "profile": "iphone-chromium",
+      "status": "PASS",
+      "refresh": "EMPTY_TO_UNKNOWN_TO_EMPTY",
+      "reload": true,
+      "synthetic_banner": true,
+      "formal_verified": 0,
+      "no_overflow": true,
+      "physical_device": false,
+      "public_internet": false,
+      "read_receipts": [
+        {
+          "version": 17920487333484,
+          "sha256": "ea20be2106a2b65fe2f020c2fadfb42e75694dffe811618107ed30ee52ea33ef",
+          "public_written_at": "2026-10-15T07:18:56.642Z",
+          "browser_requested_at": "2026-10-15T07:18:56.669Z",
+          "browser_observed_at": "2026-10-15T07:18:56.702Z"
+        },
+        {
+          "version": 17920487333485,
+          "sha256": "14cdd8c48fc202eae468ce8d87d13a0cb41a539327f2b8252b23ce06fd029fea",
+          "public_written_at": "2026-10-15T07:18:56.741Z",
+          "browser_requested_at": "2026-10-15T07:18:58.170Z",
+          "browser_observed_at": "2026-10-15T07:18:58.177Z"
+        }
+      ]
+    },
+    {
+      "profile": "iphone-webkit",
+      "status": "BLOCKED",
+      "reason": "browserType.launch: \n╔══════════════════════════════════════════════════════╗\n║ Host system is missing dependencies to run browsers. ║\n║ Missing libraries:                                   ║\n║     libgstreamer-1.0.so.0                            ║\n║     libgtk-4.so.1                                    ║\n║     libgraphene-1.0.so.0                             ║\n║     libevent-2.1.so.7                                ║\n║     libgstallocators-1.0.so.0                        ║\n║     libgstapp-1.0.so.0                               ║\n║     libgstbase-1.0.so.0                              ║\n║     libgstpbutils-1.0.so.0                           ║\n║     libgstaudio-1.0.so.0                             ║\n║     libgsttag-1.0.so.0                               ║\n║     libgstvideo-1.0.so.0                             ║\n║     libgstgl-1.0.so.0                                ║\n║     libgstcodecparsers-1.0.so.0                      ║\n║     libgstfft-1.0.so.0                               ║\n║     libavif.so.16                                    ║\n║     libharfbuzz-icu.so.0                             ║\n║     libwayland-server.so.0                           ║\n║     libmanette-0.2.so.0                              ║\n║     libhyphen.so.0                                   ║\n║     libsecret-1.so.0                                 ║\n║     libGLESv2.so.2                                   ║\n╚══════════════════════════════════════════════════════╝",
+      "physical_device": false,
+      "public_internet": false
+    }
+  ]
+}

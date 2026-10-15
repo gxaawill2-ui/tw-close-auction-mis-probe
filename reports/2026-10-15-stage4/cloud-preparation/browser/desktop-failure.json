@@ -1,0 +1,89 @@
+{
+  "errors": [],
+  "transport": [
+    {
+      "url": "http://127.0.0.1:45911/data?date=2099-01-01",
+      "failure": {
+        "errorText": "net::ERR_CONTENT_DECODING_FAILED"
+      }
+    },
+    {
+      "console": "Failed to load resource: net::ERR_CONTENT_DECODING_FAILED"
+    },
+    {
+      "url": "http://127.0.0.1:45911/data?date=2099-01-01",
+      "failure": {
+        "errorText": "net::ERR_CONTENT_DECODING_FAILED"
+      }
+    },
+    {
+      "console": "Failed to load resource: net::ERR_CONTENT_DECODING_FAILED"
+    },
+    {
+      "url": "http://127.0.0.1:45911/data?date=2099-01-01",
+      "failure": {
+        "errorText": "net::ERR_CONTENT_DECODING_FAILED"
+      }
+    },
+    {
+      "console": "Failed to load resource: net::ERR_CONTENT_DECODING_FAILED"
+    },
+    {
+      "url": "http://127.0.0.1:45911/data?date=2099-01-01",
+      "failure": {
+        "errorText": "net::ERR_CONTENT_DECODING_FAILED"
+      }
+    },
+    {
+      "console": "Failed to load resource: net::ERR_CONTENT_DECODING_FAILED"
+    },
+    {
+      "url": "http://127.0.0.1:45911/data?date=2099-01-01",
+      "failure": {
+        "errorText": "net::ERR_CONTENT_DECODING_FAILED"
+      }
+    },
+    {
+      "console": "Failed to load resource: net::ERR_CONTENT_DECODING_FAILED"
+    },
+    {
+      "url": "http://127.0.0.1:45911/data?date=2099-01-01",
+      "failure": {
+        "errorText": "net::ERR_CONTENT_DECODING_FAILED"
+      }
+    },
+    {
+      "console": "Failed to load resource: net::ERR_CONTENT_DECODING_FAILED"
+    },
+    {
+      "url": "http://127.0.0.1:45911/data?date=2099-01-01",
+      "failure": {
+        "errorText": "net::ERR_CONTENT_DECODING_FAILED"
+      }
+    },
+    {
+      "console": "Failed to load resource: net::ERR_CONTENT_DECODING_FAILED"
+    }
+  ],
+  "network": "資料讀取失敗，等待重試；保留上一版並顯示原更新時間。",
+  "body": "合成測試｜不是真實行情\n公開傳輸測試｜非真實行情\n\n本頁只驗證合成資料的雲端寫入、版本及瀏覽器刷新；不能作為下單訊號。\n\n交易日 2099-01-01\n\n研究候選\n0\n正式驗證\n0\n候選資料不足\n0\n\n初篩涵蓋：0／0；0 檔無法完整初篩，可能漏選\n\n程式產生：未取得\n端點寫入：未取得\n本瀏覽器讀取：未取得\n\n資料讀取失敗，等待重試；保留上一版並顯示原更新時間。\n\n14:50／15:20／17:50 最終官方稽核\n\n價格尚未獨立驗證時均為參考值；本頁不會下單。\n\n成交量排序\n原始順序\n最後一盤量\n全日盤中量\n收盤量占比\n由大到小 ↓\n\n等待候選證據；尚無可顯示的股票。\n\n股票與時間\t13:25 前價\t收盤價\t尾盤漲跌\t最後一盤量⇅\t全日盤中量⇅\t收盤量占比⇅\t驗證狀態\n完全隔離測試；正式網站及每日排程未更動。",
+  "read": {
+    "schema_version": "STAGE3_SELECTION_V1",
+    "trade_date": "2099-01-01",
+    "version": 17920485225571,
+    "mode": "SYNTHETIC",
+    "is_synthetic": true,
+    "rows": [],
+    "verified_count": 0,
+    "research_count": 0,
+    "unknown_candidate_count": 0,
+    "universe_count": 0,
+    "screening_calculable_count": 0,
+    "screening_unresolved_count": 0,
+    "generated_at": "2026-10-15T07:15:22.631Z",
+    "sha256": "6c92f4a0f8e44b26f026bade6fb9fdea00aef8026107ec8078d60ee0f3ed6ef0",
+    "public_written_at": "2026-10-15T07:15:22.641Z",
+    "server_write_started_at": "2026-10-15T07:15:22.640Z",
+    "publication_scope": "ISOLATED_WORKER"
+  }
+}

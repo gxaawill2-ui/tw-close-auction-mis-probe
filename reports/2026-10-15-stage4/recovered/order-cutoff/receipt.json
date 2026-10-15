@@ -1,0 +1,10 @@
+{
+  "received_at": "2026-10-15T07:13:58.025057+00:00",
+  "persisted_at": "2026-10-15T07:13:58.025270+00:00",
+  "sha256": "5254908cf520437a5a7964acbee7c14bf06a85caf9769cfb4ed60bb38ac89a42",
+  "files": [
+    "follow-latest.json",
+    "formal-state-8bda810cc60c4c1ea7d1195869b902a6.json",
+    "watch-ended.json"
+  ]
+}

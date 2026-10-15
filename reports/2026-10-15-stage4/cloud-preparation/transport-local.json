@@ -1,0 +1,236 @@
+{
+  "scope": "SYNTHETIC_LOCAL_WORKERD_NOT_CLOUDFLARE_OR_EXTERNAL_BROWSER",
+  "started_at": "2026-10-15T07:22:04.203Z",
+  "trade_date": "2099-01-01",
+  "checks": [
+    {
+      "name": "health-keeps-live-release-closed",
+      "status": "PASS"
+    },
+    {
+      "name": "signed-write-server-receipt",
+      "status": "PASS"
+    },
+    {
+      "name": "anonymous-read",
+      "status": "PASS"
+    },
+    {
+      "name": "read-matches-nonce-version-and-sha",
+      "status": "PASS"
+    },
+    {
+      "name": "no-store-and-anonymous-cors",
+      "status": "PASS"
+    },
+    {
+      "name": "etag-current-304",
+      "status": "PASS"
+    },
+    {
+      "name": "idempotent-write",
+      "status": "PASS"
+    },
+    {
+      "name": "stale-version-rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "same-version-conflict-rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "anonymous-post-denied",
+      "status": "PASS"
+    },
+    {
+      "name": "wrong-token-denied",
+      "status": "PASS"
+    },
+    {
+      "name": "bad-signature-denied",
+      "status": "PASS"
+    },
+    {
+      "name": "large-body-denied",
+      "status": "PASS"
+    },
+    {
+      "name": "invalid-date-denied",
+      "status": "PASS"
+    },
+    {
+      "name": "per-row-update",
+      "status": "PASS"
+    },
+    {
+      "name": "old-etag-does-not-hide-update",
+      "status": "PASS"
+    },
+    {
+      "name": "forged-verified-denied",
+      "status": "PASS"
+    },
+    {
+      "name": "candidate-withdrawal",
+      "status": "PASS"
+    },
+    {
+      "name": "withdrawal-public-read",
+      "status": "PASS"
+    },
+    {
+      "name": "final-synthetic-unknown-write",
+      "status": "PASS"
+    },
+    {
+      "name": "final-anonymous-read",
+      "status": "PASS"
+    }
+  ],
+  "requests": [
+    {
+      "name": "health",
+      "requested_at": "2026-10-15T07:22:04.203Z",
+      "response_received_at": "2026-10-15T07:22:04.216Z",
+      "http_status": 200,
+      "roundtrip_ms": 12.47056799999973
+    },
+    {
+      "name": "first-signed-write",
+      "requested_at": "2026-10-15T07:22:04.216Z",
+      "response_received_at": "2026-10-15T07:22:04.223Z",
+      "http_status": 200,
+      "roundtrip_ms": 7.322013999999854
+    },
+    {
+      "name": "anonymous-read",
+      "requested_at": "2026-10-15T07:22:04.223Z",
+      "response_received_at": "2026-10-15T07:22:04.227Z",
+      "http_status": 200,
+      "roundtrip_ms": 3.420564999999897
+    },
+    {
+      "name": "etag-current-304",
+      "requested_at": "2026-10-15T07:22:04.227Z",
+      "response_received_at": "2026-10-15T07:22:04.228Z",
+      "http_status": 304,
+      "roundtrip_ms": 1.3442610000001878
+    },
+    {
+      "name": "idempotent-write",
+      "requested_at": "2026-10-15T07:22:04.229Z",
+      "response_received_at": "2026-10-15T07:22:04.232Z",
+      "http_status": 200,
+      "roundtrip_ms": 3.475938000000042
+    },
+    {
+      "name": "stale-version-rejected",
+      "requested_at": "2026-10-15T07:22:04.232Z",
+      "response_received_at": "2026-10-15T07:22:04.236Z",
+      "http_status": 409,
+      "roundtrip_ms": 4.093973000000005
+    },
+    {
+      "name": "same-version-conflict-rejected",
+      "requested_at": "2026-10-15T07:22:04.236Z",
+      "response_received_at": "2026-10-15T07:22:04.241Z",
+      "http_status": 409,
+      "roundtrip_ms": 4.391643999999815
+    },
+    {
+      "name": "anonymous-post-denied",
+      "requested_at": "2026-10-15T07:22:04.241Z",
+      "response_received_at": "2026-10-15T07:22:04.244Z",
+      "http_status": 401,
+      "roundtrip_ms": 3.3541070000001127
+    },
+    {
+      "name": "wrong-token-denied",
+      "requested_at": "2026-10-15T07:22:04.244Z",
+      "response_received_at": "2026-10-15T07:22:04.248Z",
+      "http_status": 401,
+      "roundtrip_ms": 3.4343769999995857
+    },
+    {
+      "name": "bad-signature-denied",
+      "requested_at": "2026-10-15T07:22:04.248Z",
+      "response_received_at": "2026-10-15T07:22:04.250Z",
+      "http_status": 403,
+      "roundtrip_ms": 2.1899929999999586
+    },
+    {
+      "name": "large-body-denied",
+      "requested_at": "2026-10-15T07:22:04.250Z",
+      "response_received_at": "2026-10-15T07:22:04.254Z",
+      "http_status": 413,
+      "roundtrip_ms": 3.837242999999944
+    },
+    {
+      "name": "invalid-date-denied",
+      "requested_at": "2026-10-15T07:22:04.254Z",
+      "response_received_at": "2026-10-15T07:22:04.256Z",
+      "http_status": 400,
+      "roundtrip_ms": 1.6854659999999058
+    },
+    {
+      "name": "per-row-update",
+      "requested_at": "2026-10-15T07:22:04.256Z",
+      "response_received_at": "2026-10-15T07:22:04.260Z",
+      "http_status": 200,
+      "roundtrip_ms": 4.342626000000109
+    },
+    {
+      "name": "old-etag-does-not-hide-update",
+      "requested_at": "2026-10-15T07:22:04.260Z",
+      "response_received_at": "2026-10-15T07:22:04.263Z",
+      "http_status": 200,
+      "roundtrip_ms": 3.224514999999883
+    },
+    {
+      "name": "forged-verified-denied",
+      "requested_at": "2026-10-15T07:22:04.264Z",
+      "response_received_at": "2026-10-15T07:22:04.267Z",
+      "http_status": 422,
+      "roundtrip_ms": 2.920635000000402
+    },
+    {
+      "name": "candidate-withdrawal",
+      "requested_at": "2026-10-15T07:22:04.267Z",
+      "response_received_at": "2026-10-15T07:22:04.270Z",
+      "http_status": 200,
+      "roundtrip_ms": 3.3979519999998047
+    },
+    {
+      "name": "withdrawal-public-read",
+      "requested_at": "2026-10-15T07:22:04.270Z",
+      "response_received_at": "2026-10-15T07:22:04.273Z",
+      "http_status": 200,
+      "roundtrip_ms": 2.4425619999997252
+    },
+    {
+      "name": "final-synthetic-unknown-write",
+      "requested_at": "2026-10-15T07:22:04.273Z",
+      "response_received_at": "2026-10-15T07:22:04.276Z",
+      "http_status": 200,
+      "roundtrip_ms": 3.409468999999717
+    },
+    {
+      "name": "final-anonymous-read",
+      "requested_at": "2026-10-15T07:22:04.276Z",
+      "response_received_at": "2026-10-15T07:22:04.279Z",
+      "http_status": 200,
+      "roundtrip_ms": 2.6039660000001277
+    }
+  ],
+  "first_server_write_at": "2026-10-15T07:22:04.222Z",
+  "external_browser_read_at": null,
+  "physical_mobile_latency_ms": null,
+  "finished_at": "2026-10-15T07:22:04.279Z",
+  "version": 17920489242033,
+  "transport_nonce": "7c5c79f3242f9a09ffc602fa",
+  "sha256": "09b6f3045bcc495a4272616577d80baf151fb2d84919d11c97db5a6286fedda6",
+  "last_server_write_at": "2026-10-15T07:22:04.275Z",
+  "public_data_url": "http://127.0.0.1:41397/data?date=2099-01-01",
+  "public_page_url": "http://127.0.0.1:41397/"
+}

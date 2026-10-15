@@ -29,3 +29,11 @@ A successful build is only deployment evidence. Save the actual build status, na
 This bootstrap commit uses [skip actions], the GitHub-documented push/PR workflow skip marker, to avoid starting the shared formal Actions concurrency group. This is not a modification to the formal workflow. Check Cloudflare's actual build result; do not assume its commit filtering behavior.
 
 References: https://developers.cloudflare.com/workers/ci-cd/builds/ ; https://developers.cloudflare.com/workers/ci-cd/builds/configuration/ ; https://docs.github.com/en/actions/how-tos/manage-workflow-runs/skip-workflow-runs
+
+## Resumed acceptance deployment
+
+The optional assets setting serves stage4-site/index.html at /. It displays only SYNTHETIC data for 2099-01-01. To install ephemeral acceptance-only keys and execute real cloud tests, change this TEST Worker's deploy command to `node isolated_publication/stage4-cloud-deploy.cjs`, keeping root /, exact stage4 branch and preview builds disabled. Pushing this script does not change the dashboard command. Official configuration docs confirm custom deploy commands and WORKERS_CI=1, WORKERS_CI_BRANCH, WORKERS_CI_COMMIT_SHA.
+
+The script guards the target before mutation, deploys only this Worker, generates test keys inside the build, installs via stdin without logging values, and exercises signed writes, anonymous reads, conflicts, ETag, rejection of tampered writes and fake verification, row updates and withdrawal. The final synthetic payload includes a non-secret transport_acceptance summary; build logs additionally confirm final readback. Keys are acceptance-only, not a real publisher handoff.
+
+Current local browser scope: desktop and iPhone Chromium PASS; WebKit BLOCKED by missing OS libraries. Real-device latency is unknown. See ../reports/2026-10-15-stage4/RESUMED_REPORT.md.

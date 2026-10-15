@@ -1,0 +1,128 @@
+{
+  "scope": "SUPPLEMENTARY_COMPARISON_OF_SAVED_FINAL_RESEARCH_CLOSE_AFTER_1450_NOT_PRE_1340_PROOF",
+  "official_checked_at": "2026-10-15T14:50:23.214+08:00",
+  "sources": [
+    {
+      "ex": "tse",
+      "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261015&type=ALLBUT0999&response=json",
+      "checked_at": "2026-10-15T14:50:27.121+08:00",
+      "http_status": 200,
+      "status": "AVAILABLE_SAME_DATE",
+      "row_count": 1379,
+      "response_date": "20261015"
+    },
+    {
+      "ex": "otc",
+      "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F10%2F15&response=json",
+      "checked_at": "2026-10-15T14:50:28.439+08:00",
+      "http_status": 200,
+      "status": "PENDING_EMPTY_TABLE",
+      "row_count": 0,
+      "response_date": "20261015"
+    }
+  ],
+  "rows": [
+    {
+      "code": "2740",
+      "name": "華軒",
+      "adopted_research_close": "28.3000",
+      "official_close": null,
+      "adopted_close_comparison": "UNAVAILABLE",
+      "formal_1450_check": "UNAVAILABLE",
+      "independent_preclose_proven": false,
+      "verified": false
+    },
+    {
+      "code": "4706",
+      "name": "大恭",
+      "adopted_research_close": "39.2500",
+      "official_close": null,
+      "adopted_close_comparison": "UNAVAILABLE",
+      "formal_1450_check": "UNAVAILABLE",
+      "independent_preclose_proven": false,
+      "verified": false
+    },
+    {
+      "code": "3593",
+      "name": "力銘",
+      "adopted_research_close": "10.4500",
+      "official_close": "10.45",
+      "adopted_close_comparison": "MATCH",
+      "formal_1450_check": "UNAVAILABLE",
+      "independent_preclose_proven": false,
+      "verified": false
+    },
+    {
+      "code": "8101",
+      "name": "華冠",
+      "adopted_research_close": "9.6200",
+      "official_close": "9.62",
+      "adopted_close_comparison": "MATCH",
+      "formal_1450_check": "MATCH",
+      "independent_preclose_proven": false,
+      "verified": false
+    },
+    {
+      "code": "3288",
+      "name": "點晶",
+      "adopted_research_close": "21.7000",
+      "official_close": null,
+      "adopted_close_comparison": "UNAVAILABLE",
+      "formal_1450_check": "UNAVAILABLE",
+      "independent_preclose_proven": false,
+      "verified": false
+    },
+    {
+      "code": "3266",
+      "name": "昇陽",
+      "adopted_research_close": "13.7000",
+      "official_close": "13.70",
+      "adopted_close_comparison": "MATCH",
+      "formal_1450_check": "MATCH",
+      "independent_preclose_proven": false,
+      "verified": false
+    },
+    {
+      "code": "4192",
+      "name": "杏國",
+      "adopted_research_close": "18.2000",
+      "official_close": null,
+      "adopted_close_comparison": "UNAVAILABLE",
+      "formal_1450_check": "UNAVAILABLE",
+      "independent_preclose_proven": false,
+      "verified": false
+    },
+    {
+      "code": "6590",
+      "name": "普鴻",
+      "adopted_research_close": "72.0000",
+      "official_close": null,
+      "adopted_close_comparison": "UNAVAILABLE",
+      "formal_1450_check": "UNAVAILABLE",
+      "independent_preclose_proven": false,
+      "verified": false
+    },
+    {
+      "code": "6661",
+      "name": "威健生技",
+      "adopted_research_close": "17.2500",
+      "official_close": null,
+      "adopted_close_comparison": "UNAVAILABLE",
+      "formal_1450_check": "UNAVAILABLE",
+      "independent_preclose_proven": false,
+      "verified": false
+    },
+    {
+      "code": "6929",
+      "name": "佑全",
+      "adopted_research_close": "21.8500",
+      "official_close": null,
+      "adopted_close_comparison": "UNAVAILABLE",
+      "formal_1450_check": "UNAVAILABLE",
+      "independent_preclose_proven": false,
+      "verified": false
+    }
+  ],
+  "verified_count": 0,
+  "note": "3593 final adopted 13:33 close matches official; formal earlier AB-only validation had UNAVAILABLE. No production changes."
+}

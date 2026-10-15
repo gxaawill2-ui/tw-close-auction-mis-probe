@@ -1,0 +1,11 @@
+✔ deployment refuses local invocation, main, wrong Worker, namespace, routes and live release before mutation (1.603725ms)
+✔ acceptance refuses another destination before sending keys (0.62101ms)
+✔ synthetic cloud acceptance against REAL LOCAL workerd SQLite: signed writes, conflicts, tamper, withdrawal and no forged verification (3358.280488ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4844.282323

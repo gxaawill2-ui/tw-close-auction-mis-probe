@@ -1,0 +1,27 @@
+{
+  "received_at": "2026-10-15T07:16:02.754373+00:00",
+  "sha256": "56d20dd8e989ebbfb5a674c6f3df22392badd4dcbc7c65d2d5acb2211971f0df",
+  "files": [
+    "validation-results/candidates.json",
+    "validation-results/convergence.csv",
+    "mis-probe-2026-10-15.zip",
+    "validation-results/convergence_report.json",
+    "validation-results/convergence_report.md",
+    "validation-results/freshness_report.json",
+    "validation-results/freshness_report.md",
+    "validation-results/freshness_timeline.csv",
+    "validation-results/live_research_summary.json",
+    "validation-results/official_close_otc.json",
+    "validation-results/official_close_tse.json",
+    "validation-results/official_validation.json",
+    "validation-results/pending_close.json",
+    "validation-results/pre_reference_C_summary.json",
+    "validation-results/research_candidates.csv",
+    "validation-results/research_candidates.json",
+    "validation-results/research_candidates_2026-10-15.csv",
+    "validation-results/research_candidates_2026-10-15.json",
+    "validation-results/unknown_convergence.json",
+    "validation-results/unknown_symbols.json",
+    "validation-results/validation_summary.json"
+  ]
+}

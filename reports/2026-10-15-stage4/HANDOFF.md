@@ -1,3 +1,27 @@
+# 第四階段最新接手紀錄（10/15下午）
+
+先讀 RESUMED_REPORT.md、recovery-status.json 與分支最新head。以下狀態優先於所有上午紀錄。
+
+正式run38684465791於13:00:44啟動，核心完成、CAPTURE_PARTIAL。1967檔、1947可初篩、20未完整；10研究、VERIFIED=0。
+
+影子run38668761699已在14:30結束，整體failure來自上午metadata step；Artifact分析、後續觀察成功。13:34:49.019是真正研究運算完成時間，沒有獨立逐筆或手機公開讀取。不要重啟同日MIS。
+
+三份原始Artifact已下載並驗SHA256；recovered/artifact-index.json記錄ID／hash／到期。原ZIP及raw在本機recovered與GitHub Artifacts，部分大檔不納Git。14:50官方1075MATCH／1MISMATCH／891UNAVAILABLE；TPEx空表，非候選7818價差。補充比對最後採用研究收盤：3266／3593／8101與TWSE一致，不升級VERIFIED。不額外dispatch核對，僅唯讀看既有15:20／17:50。
+
+Cloudflare舊版aa0470b build成功，version738acbcd-d686-4273-bace-1394f91327a4；本次/health HTTP200。root=/、隔離分支不變。新config含合成測試頁，推送僅部署新test Worker。整套雲端驗收需在Settings→Builds把Deploy command改為node isolated_publication/stage4-cloud-deploy.cjs；當前命令仍是舊npx wrangler deploy。不能假稱推送script就已執行自動驗收。代理Cloudflare瀏覽器是登入頁，使用者自己的瀏覽器先前已登入。
+
+腳本在Build內產生驗收專用keys，只送stdin、不入repo／聊天，精確target guard，2099-01-01合成資料。真實雲端最後/data會有去密鑰transport_acceptance；核對nonce/version/sha/commit與build log。不能拿本機transport-local.json當雲端。驗收keys不是正式publisher的長期交接。
+
+本機測試轉接壓縮標頭已修；桌機及iPhone尺寸Chromium PASS，WebKit缺OS libraries且安裝受系統權限限制。實體手機延遲null。
+
+富果docs/key已重新確認基本用戶生效、Key清單空；新Key對話框填好tw-tail-stage4-isolated-20261015、到期2026-11-14，未按確定。頁面明示取得金鑰等同同意行情使用規範，需處理最後條款確認。先安排安全隔離Secret目的地，不能將Key貼聊天／repo或讀正式Secret。取得時間在14:30後的證據不得冒充13:40前。
+
+授權仍有效：隔離研究開發安全推送、新test Worker／儲存／測試keys及專用免費富果Key。未授權main合併、正式部署、正式collector／排程／既有Worker／Secret變動或第二套MIS。推送精確隔離分支，expected_sha、force=false、commit帶[skip actions]。保留其他未提交檔案。
+
+376Python、105既有+3新增前端部署檢查通過；最新部署3項log在cloud-preparation/deploy-test-results.log。所有測試類別分開標示。
+
+## 上午舊紀錄（保留作歷程，不可作最新狀態）
+
 # 第四階段 10/15 當日續作
 
 先讀 README。基線732025e，新分支 `stage4/20261015-live-shadow`。禁止main merge／正式部署／正式排程、collector、Token、Secret、既有Worker、DNS、歷史raw變更；不可再啟動全市場MIS。

@@ -1,0 +1,27 @@
+[
+  {
+    "artifact_id": 11949983500,
+    "run_id": 38668761699,
+    "name": "stage4-first-capture-38668761699",
+    "sha256": "37fe93ccb9793d5fd0ea496a94dc9af0ce9aec04ae97383b2bb97f1b9405d04f",
+    "expires_at": "2026-11-14T05:34:49Z",
+    "scope": "isolated branch original runtime Artifact; includes formal capture archive and raw evidence",
+    "run_url": "https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/actions/runs/38668761699"
+  },
+  {
+    "artifact_id": 11952388070,
+    "run_id": 38668761699,
+    "name": "stage4-order-cutoff-38668761699",
+    "sha256": "5254908cf520437a5a7964acbee7c14bf06a85caf9769cfb4ed60bb38ac89a42",
+    "expires_at": "2026-11-14T06:30:00Z",
+    "run_url": "https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/actions/runs/38668761699"
+  },
+  {
+    "artifact_id": 11953672018,
+    "run_id": 38694819429,
+    "name": "mis-validation-38694819429",
+    "sha256": "56d20dd8e989ebbfb5a674c6f3df22392badd4dcbc7c65d2d5acb2211971f0df",
+    "expires_at": "2026-11-14T06:50:39Z",
+    "run_url": "https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/actions/runs/38694819429"
+  }
+]
