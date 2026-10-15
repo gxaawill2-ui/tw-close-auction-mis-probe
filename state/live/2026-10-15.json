@@ -1,7 +1,7 @@
 {
   "trade_date": "2026-10-15",
   "status": "running",
-  "phase": "validation",
+  "phase": "completed",
   "run_id": "38684465791",
   "runner_started_at": "2026-10-15T13:00:44.059+08:00",
   "python_started_at": "2026-10-15T13:01:02.814+08:00",
@@ -13,7 +13,7 @@
   "capture_claimed": true,
   "capture_owner_run_id": "38684465791",
   "claimed_at": "2026-10-15T13:01:03.067+08:00",
-  "updated_at": "2026-10-15T13:34:13.986+08:00",
+  "updated_at": "2026-10-15T13:34:20.575+08:00",
   "preclose_captured": true,
   "universe_count": 1967,
   "reference_progress": {
