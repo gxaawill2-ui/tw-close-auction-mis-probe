@@ -3,7 +3,7 @@
   "trade_date": "2026-10-15",
   "generated_at": "2026-10-15T13:34:13.373+08:00",
   "published_at": "2026-10-15T13:34:22.781+08:00",
-  "updated_at": "2026-10-15T15:20:49.497+08:00",
+  "updated_at": "2026-10-15T17:50:34.043+08:00",
   "publication_mode": "LIVE",
   "capture_run_id": "38684465791",
   "source_artifact": "mis-probe-38684465791",
@@ -208,7 +208,7 @@
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "MATCH",
-      "postmarket_verified_at": "2026-10-15T15:20:23.709+08:00",
+      "postmarket_verified_at": "2026-10-15T17:50:23.654+08:00",
       "official_close": "28.30"
     },
     {
@@ -400,7 +400,7 @@
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "MATCH",
-      "postmarket_verified_at": "2026-10-15T15:20:23.709+08:00",
+      "postmarket_verified_at": "2026-10-15T17:50:23.654+08:00",
       "official_close": "39.25"
     },
     {
@@ -592,7 +592,7 @@
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "MATCH",
-      "postmarket_verified_at": "2026-10-15T15:20:23.709+08:00",
+      "postmarket_verified_at": "2026-10-15T17:50:23.654+08:00",
       "official_close": "10.45"
     },
     {
@@ -784,7 +784,7 @@
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "MATCH",
-      "postmarket_verified_at": "2026-10-15T15:20:23.709+08:00",
+      "postmarket_verified_at": "2026-10-15T17:50:23.654+08:00",
       "official_close": "9.62"
     },
     {
@@ -976,7 +976,7 @@
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "MATCH",
-      "postmarket_verified_at": "2026-10-15T15:20:23.709+08:00",
+      "postmarket_verified_at": "2026-10-15T17:50:23.654+08:00",
       "official_close": "21.70"
     },
     {
@@ -1168,7 +1168,7 @@
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "MATCH",
-      "postmarket_verified_at": "2026-10-15T15:20:23.709+08:00",
+      "postmarket_verified_at": "2026-10-15T17:50:23.654+08:00",
       "official_close": "13.70"
     },
     {
@@ -1360,7 +1360,7 @@
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "MATCH",
-      "postmarket_verified_at": "2026-10-15T15:20:23.709+08:00",
+      "postmarket_verified_at": "2026-10-15T17:50:23.654+08:00",
       "official_close": "18.20"
     },
     {
@@ -1552,7 +1552,7 @@
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "MATCH",
-      "postmarket_verified_at": "2026-10-15T15:20:23.709+08:00",
+      "postmarket_verified_at": "2026-10-15T17:50:23.654+08:00",
       "official_close": "72.00"
     },
     {
@@ -1744,7 +1744,7 @@
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "MATCH",
-      "postmarket_verified_at": "2026-10-15T15:20:23.709+08:00",
+      "postmarket_verified_at": "2026-10-15T17:50:23.654+08:00",
       "official_close": "17.25"
     },
     {
@@ -1936,13 +1936,13 @@
         "official_daily_volume_scope": "DIFFERENT_SCOPE; never substituted for MIS intraday volume"
       },
       "official_price_result": "MATCH",
-      "postmarket_verified_at": "2026-10-15T15:20:23.709+08:00",
+      "postmarket_verified_at": "2026-10-15T17:50:23.654+08:00",
       "official_close": "21.85"
     }
   ],
   "publication_code_sha": "12bc8e7d3156cf8f8140eafc39e3835ceb6e7ab6",
   "price_limitation": "P_before is converged MIS research evidence, without independent official pre-13:25 validation.",
   "price_fingerprint": "5747bfa8a75ea8cc08af2c86c79f26230e0b6369cac046f203374f7bb4c5ad51",
-  "postmarket_verified_at": "2026-10-15T15:20:23.709+08:00",
-  "official_validation_run_id": "38698049598"
+  "postmarket_verified_at": "2026-10-15T17:50:23.654+08:00",
+  "official_validation_run_id": "38715862829"
 }
