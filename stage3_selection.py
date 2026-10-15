@@ -11,7 +11,8 @@ import stage3_ticks as ticks
 def decide(row,bundle,date,as_of,*,mode='LIVE',contract=ticks.LIVE_CONTRACT):
     evidence=ticks.inspect(bundle,row,date,as_of,mode=mode,contract=contract)
     pre=f.decimal_value(row.get('P_before'));close=f.decimal_value(row.get('P_close'))
-    threshold=bool(pre and close and pre>0 and close>0 and abs(close/pre-1)>=Decimal('.03'))
+    threshold=bool(pre and close and pre>0 and close>0 and abs(close-pre)*100>=pre*3)
+    tail_return=str((close/pre-1)*100) if pre and close and pre>0 and close>0 else None
     closing=f.decimal_value(row.get('closing_auction_volume'));total=f.decimal_value(row.get('intraday_total_volume'))
     ratio=f.decimal_value(row.get('closing_volume_ratio_pct'))
     volume=bool(row.get('volume_status')=='MIS_EVIDENCE_CONFIRMED' and closing and total and
@@ -33,7 +34,7 @@ def decide(row,bundle,date,as_of,*,mode='LIVE',contract=ticks.LIVE_CONTRACT):
     keys=('code','name','ex','market','P_before','P_close','P_before_trade_time','P_close_trade_time',
         'tail_return_pct','closing_auction_volume','intraday_total_volume','closing_volume_ratio_pct',
         'volume_status','volume_unit','first_seen_at','pre_received_at','pre_saved_at','close_received_at')
-    return {**{k:row.get(k) for k in keys},'verification_status':status,'validated':valid,
+    return {**{k:row.get(k) for k in keys},'tail_return_pct':tail_return,'verification_status':status,'validated':valid,
         'checks':checks,'missing_requirements':[k for k,v in checks.items() if not v],
         'independent_evidence':evidence,'simulation_passed':simulation_pass,'updated_at':as_of,
         'evaluated_at':datetime.now(f.TZ).isoformat(),'evidence_as_of':as_of,'source_acquired_at':evidence['acquired_at'],

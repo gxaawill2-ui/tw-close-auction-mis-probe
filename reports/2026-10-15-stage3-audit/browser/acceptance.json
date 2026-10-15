@@ -1,0 +1,150 @@
+{
+  "checks": [
+    {
+      "profile": "desktop-windows-profile",
+      "status": "PASS",
+      "engine_version": "153.0.8010.0",
+      "six_sort_orders": true,
+      "actual_local_worker_sqlite_refresh": "1_TO_6",
+      "public_internet": false,
+      "anonymous_read_receipts": [
+        {
+          "version": 2,
+          "sha256": "398fe107acea995f1eb9e91ba64625de317fc5f4563d83fde2d3bf48d23432b7",
+          "public_written_at": "2026-10-15T01:21:37.102Z",
+          "browser_requested_at": "2026-10-15T01:21:37.142Z",
+          "browser_observed_at": "2026-10-15T01:21:37.192Z"
+        },
+        {
+          "version": 3,
+          "sha256": "c4c738f6fa7ae52cfff2436e8ed8290b9c930b34d1ac0386fd8f263b2c206fa7",
+          "public_written_at": "2026-10-15T01:21:37.227Z",
+          "browser_requested_at": "2026-10-15T01:21:38.643Z",
+          "browser_observed_at": "2026-10-15T01:21:38.646Z"
+        }
+      ],
+      "worker_write_to_browser_ms": 1419,
+      "independent_states": true,
+      "invalid_verified_rejected": true,
+      "version_regression_rejected": true,
+      "malformed_update_keeps_state": true,
+      "dark_mode": true,
+      "no_overflow": true
+    },
+    {
+      "profile": "iphone-chromium",
+      "status": "PASS",
+      "engine_version": "153.0.8010.0",
+      "six_sort_orders": true,
+      "actual_local_worker_sqlite_refresh": "1_TO_6",
+      "public_internet": false,
+      "anonymous_read_receipts": [
+        {
+          "version": 4,
+          "sha256": "43360fd853645a184e8cfae0464e728faa61a5ac37b3182256c35323b28fb947",
+          "public_written_at": "2026-10-15T01:21:39.136Z",
+          "browser_requested_at": "2026-10-15T01:21:39.164Z",
+          "browser_observed_at": "2026-10-15T01:21:39.210Z"
+        },
+        {
+          "version": 5,
+          "sha256": "f48711e3638c2977fbc8d4b9a2a57a33910e32bf723c5a7e9319453f8115c8e6",
+          "public_written_at": "2026-10-15T01:21:39.232Z",
+          "browser_requested_at": "2026-10-15T01:21:40.664Z",
+          "browser_observed_at": "2026-10-15T01:21:40.668Z"
+        }
+      ],
+      "worker_write_to_browser_ms": 1436,
+      "independent_states": true,
+      "invalid_verified_rejected": true,
+      "version_regression_rejected": true,
+      "malformed_update_keeps_state": true,
+      "dark_mode": true,
+      "no_overflow": true
+    },
+    {
+      "profile": "iphone-webkit",
+      "status": "PASS",
+      "engine_version": "26.5",
+      "six_sort_orders": true,
+      "actual_local_worker_sqlite_refresh": "1_TO_6",
+      "public_internet": false,
+      "anonymous_read_receipts": [
+        {
+          "version": 6,
+          "sha256": "6d1d7089779c30ef3c5502db4ba1ec09cba32f5730f35f806c735762a64a6e91",
+          "public_written_at": "2026-10-15T01:21:42.311Z",
+          "browser_requested_at": "2026-10-15T01:21:42.333Z",
+          "browser_observed_at": "2026-10-15T01:21:42.455Z"
+        },
+        {
+          "version": 7,
+          "sha256": "18348c6db35e176a84d0b95fe93e5f077b4fcf49aa2e333477274ef09c431df4",
+          "public_written_at": "2026-10-15T01:21:42.466Z",
+          "browser_requested_at": "2026-10-15T01:21:43.834Z",
+          "browser_observed_at": "2026-10-15T01:21:43.837Z"
+        }
+      ],
+      "worker_write_to_browser_ms": 1371,
+      "independent_states": true,
+      "invalid_verified_rejected": true,
+      "version_regression_rejected": true,
+      "malformed_update_keeps_state": true,
+      "dark_mode": true,
+      "no_overflow": true
+    }
+  ],
+  "updates": [
+    {
+      "version": 2,
+      "sha256": "398fe107acea995f1eb9e91ba64625de317fc5f4563d83fde2d3bf48d23432b7",
+      "public_written_at": "2026-10-15T01:21:37.102Z",
+      "duplicate": false,
+      "client_request_started_at": "2026-10-15T01:21:37.090Z",
+      "client_ack_at": "2026-10-15T01:21:37.111Z"
+    },
+    {
+      "version": 3,
+      "sha256": "c4c738f6fa7ae52cfff2436e8ed8290b9c930b34d1ac0386fd8f263b2c206fa7",
+      "public_written_at": "2026-10-15T01:21:37.227Z",
+      "duplicate": false,
+      "client_request_started_at": "2026-10-15T01:21:37.222Z",
+      "client_ack_at": "2026-10-15T01:21:37.229Z"
+    },
+    {
+      "version": 4,
+      "sha256": "43360fd853645a184e8cfae0464e728faa61a5ac37b3182256c35323b28fb947",
+      "public_written_at": "2026-10-15T01:21:39.136Z",
+      "duplicate": false,
+      "client_request_started_at": "2026-10-15T01:21:39.131Z",
+      "client_ack_at": "2026-10-15T01:21:39.138Z"
+    },
+    {
+      "version": 5,
+      "sha256": "f48711e3638c2977fbc8d4b9a2a57a33910e32bf723c5a7e9319453f8115c8e6",
+      "public_written_at": "2026-10-15T01:21:39.232Z",
+      "duplicate": false,
+      "client_request_started_at": "2026-10-15T01:21:39.228Z",
+      "client_ack_at": "2026-10-15T01:21:39.233Z"
+    },
+    {
+      "version": 6,
+      "sha256": "6d1d7089779c30ef3c5502db4ba1ec09cba32f5730f35f806c735762a64a6e91",
+      "public_written_at": "2026-10-15T01:21:42.311Z",
+      "duplicate": false,
+      "client_request_started_at": "2026-10-15T01:21:42.308Z",
+      "client_ack_at": "2026-10-15T01:21:42.313Z"
+    },
+    {
+      "version": 7,
+      "sha256": "18348c6db35e176a84d0b95fe93e5f077b4fcf49aa2e333477274ef09c431df4",
+      "public_written_at": "2026-10-15T01:21:42.466Z",
+      "duplicate": false,
+      "client_request_started_at": "2026-10-15T01:21:42.462Z",
+      "client_ack_at": "2026-10-15T01:21:42.468Z"
+    }
+  ],
+  "scope": "LOOPBACK_WORKER_ENGINE_NOT_CLOUDFLARE_DEPLOYMENT",
+  "physical_device": false,
+  "formal_signals": 0
+}

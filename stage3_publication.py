@@ -29,7 +29,10 @@ class Publisher:
             raise ValueError('INVALID_PUBLICATION_URL')
         self.base=base_url.rstrip('/');self.directory=safe_output(directory)
         self.token=publish_token;self.key=decision_key;self.opener=opener;self.wait=wait
-        self.clock=clock or (lambda:datetime.now(f.TZ));self.receipts=[]
+        self.clock=clock or (lambda:datetime.now(f.TZ))
+        log=self.directory/'publication-receipts.json'
+        self.receipts=json.loads(log.read_text()) if log.exists() else []
+        if not isinstance(self.receipts,list):raise ValueError('INVALID_SAVED_PUBLICATION_RECEIPTS')
 
     def publish(self,view,deadline,max_attempts=3):
         encoded=canonical(envelope(view,self.key)).encode()

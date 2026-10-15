@@ -50,13 +50,14 @@ class Collector:
             if exc.code in (401,403,429):self.stopped=True
             raise ValueError('SOURCE_HTTP_'+str(exc.code)) from None
         if len(raw)>2_000_000:raise ValueError('SOURCE_BODY_TOO_LARGE')
+        received=self.clock()
         path=self.directory/f'{candidate["ex"]}-{code}-{self.count:03d}-{kind}-{uuid.uuid4().hex[:12]}.json'
         with path.open('xb') as file:
             file.write(raw);file.flush();os.fsync(file.fileno())
-        received=self.clock()
-        if received > deadline:raise ValueError('SOURCE_RECEIVED_AFTER_DEADLINE')
+        persisted=self.clock()
+        if persisted > deadline:raise ValueError('SOURCE_RECEIVED_AFTER_DEADLINE')
         event={'raw_path':path.name,'sha256':hashlib.sha256(raw).hexdigest(),'requested_at':requested,
-               'received_at':received.isoformat(),'http_status':status,'query':query,'headers':headers}
+               'received_at':received.isoformat(),'persisted_at':persisted.isoformat(),'http_status':status,'query':query,'headers':headers}
         return event,json.loads(raw)
 
     def collect(self,candidate,date,deadline):
@@ -83,5 +84,6 @@ class Collector:
             bundle['error']=str(exc) if isinstance(exc,ValueError) and str(exc).startswith('SOURCE_') else type(exc).__name__
         path=self.directory/f'{candidate["ex"]}-{candidate["code"]}-manifest-{uuid.uuid4().hex[:12]}.json'
         bundle['manifest_path']=path.name
-        path.write_text(json.dumps(bundle,ensure_ascii=False,indent=2))
+        with path.open('x') as file:
+            json.dump(bundle,file,ensure_ascii=False,indent=2);file.flush();os.fsync(file.fileno())
         return bundle

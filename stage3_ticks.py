@@ -110,14 +110,30 @@ def inspect(bundle, candidate, date, as_of, *, mode='LIVE', contract=LIVE_CONTRA
             raise ValueError('INVALID_OBSERVATION_TIME_OR_HTTP')
         if (receive-request).total_seconds() > 10:
             raise ValueError('NETWORK_RESPONSE_EXCEEDS_BUDGET')
+        if 'persisted_at' in event:
+            persisted = f.parsed_time(event['persisted_at'])
+            if not persisted or not receive <= persisted <= now:
+                raise ValueError('INVALID_EVIDENCE_PERSISTENCE_TIME')
         age = event.get('headers', {}).get('age')
         if age is not None and (not str(age).isdigit() or int(age) > 5):
             raise ValueError('STALE_HTTP_CACHE')
-        acquired.append(receive)
+        acquired.append(f.parsed_time(event.get('persisted_at')) or receive)
         data = json.loads(raw)
         if (data.get('date') != date or data.get('symbol') != candidate['code'] or
             data.get('type') != 'EQUITY' or data.get('exchange') != {'tse':'TWSE','otc':'TPEx'}[candidate['ex']]):
             raise ValueError('DATE_SYMBOL_OR_MARKET_MISMATCH')
+        if data.get('type') == 'EQUITY' and 'lastTrade' in data:
+            source_update = trade_time(data['lastUpdated'])
+            last_time = trade_time(data['lastTrade']['time'])
+            total_time = trade_time(data['total']['time'])
+            if (source_update.date().isoformat() != date or source_update > receive or
+                    total_time > source_update or last_time > total_time):
+                raise ValueError('SOURCE_CLOCK_OR_TOTAL_TIME_CONFLICT')
+            if request < f.parsed_time(date+'T13:25:00+08:00'):
+                raise ValueError('SNAPSHOT_PREDATES_PRE_CUTOFF')
+        for tick in data.get('data', []):
+            if trade_time(tick['time']) > receive:
+                raise ValueError('TRADE_TIME_AFTER_RECEIPT')
         return data
 
     try:
@@ -190,6 +206,9 @@ def inspect(bundle, candidate, date, as_of, *, mode='LIVE', contract=LIVE_CONTRA
             reasons.append('SOURCE_COUNT_AND_VOLUME_SEMANTICS_NOT_CONFIRMED')
         if after.get('isTrial') is True or after.get('isClose') is not True:
             raise ValueError('TRIAL_OR_CLOSE_NOT_FINISHED')
+        opening = f.parsed_time(date+'T13:30:00+08:00')
+        if any(f.parsed_time(bundle[k]['requested_at']) < opening for k in ('quote_before','quote_after')):
+            raise ValueError('CLOSE_SNAPSHOT_REQUESTED_BEFORE_CLOSE')
         close_time = trade_time(after['closeTime'])
         if f.decimal_value(after['closePrice']) != f.decimal_value(last['price']) or after['closeTime'] != last['time']:
             raise ValueError('CLOSE_FIELDS_CONFLICT')
@@ -206,7 +225,9 @@ def inspect(bundle, candidate, date, as_of, *, mode='LIVE', contract=LIVE_CONTRA
         if semantic_ok and f.decimal_value(candidate.get('intraday_total_volume')) is not None:
             if f.decimal_value(candidate['intraday_total_volume']) != Decimal(total['tradeVolume']):
                 raise ValueError('MIS_INDEPENDENT_VOLUME_CONFLICT')
-            expected_closing = Decimal(0) if result['close_classification']=='NO_NEW_CLOSE_TRADE' else Decimal(last.get('size',ticks[0]['size']))
+            if last.get('size') is not None and f.decimal_value(last['size']) != Decimal(ticks[0]['size']):
+                raise ValueError('LATEST_TICK_SIZE_DOES_NOT_MATCH_QUOTE')
+            expected_closing = Decimal(0) if result['close_classification']=='NO_NEW_CLOSE_TRADE' else Decimal(ticks[0]['size'])
             if f.decimal_value(candidate.get('closing_auction_volume')) != expected_closing:
                 raise ValueError('MIS_INDEPENDENT_CLOSING_VOLUME_CONFLICT')
         result['close_evidence_complete'] = bool(semantic_ok)

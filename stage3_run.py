@@ -20,12 +20,28 @@ from stage3_ticks import inspect
 from stage3_publication import Publisher,BackgroundPublisher
 
 
+def saved_version(directory,date):
+    """Resume only sequence numbers; never restore supplied verification flags."""
+    version=0
+    for path in (Path(directory)/'stage3-results.json',Path(directory)/'publication/publication-outbox.json'):
+        if not path.exists():continue
+        data=json.loads(path.read_text())
+        body=data.get('body',{}) if path.name=='publication-outbox.json' else data
+        if body.get('trade_date')!=date or body.get('mode')!='LIVE':continue
+        value=body.get('version')
+        if not isinstance(value,int) or isinstance(value,bool) or value<1:
+            raise ValueError('INVALID_SAVED_PUBLICATION_VERSION')
+        version=max(version,value)
+    return version
+
+
 def watch(journal,universe,date,output,*,collect=False,endpoint=None):
     deadline=f.parsed_time(date+'T14:30:00+08:00')
     if datetime.now(f.TZ)>=deadline or datetime.now(f.TZ).date().isoformat()!=date:
         raise ValueError('NO_HISTORICAL_LIVE_WATCH_OR_BACKFILL')
     directory=safe_output(output);engine=Engine(date,universe,directory/'mis-view','ISOLATED_WATCH')
     pipeline=Pipeline(engine,mode='LIVE');reader_offset=0;attempts={};next_try={};identities={};future=None
+    pipeline.version=saved_version(directory,date)
     collector=Collector(directory/'independent-source') if collect else None
     pool=concurrent.futures.ThreadPoolExecutor(max_workers=1)
     publisher=None

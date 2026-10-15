@@ -3,6 +3,7 @@ import json
 import tempfile
 import unittest
 import urllib.error
+from pathlib import Path
 from datetime import timedelta
 from unittest.mock import patch
 import freshness as f
@@ -15,6 +16,27 @@ class Response(io.BytesIO):
     status=200;headers={}
 
 class TransportTests(unittest.TestCase):
+    def test_restart_resumes_max_saved_version_without_restoring_verified_flags(self):
+        from stage3_run import saved_version
+        with tempfile.TemporaryDirectory() as d:
+            directory=Path(d);(directory/'publication').mkdir()
+            saved={'trade_date':DAY,'mode':'LIVE','version':20,'validated':True}
+            (directory/'stage3-results.json').write_text(json.dumps(saved))
+            (directory/'publication/publication-outbox.json').write_text(json.dumps({'body':{**saved,'version':21}}))
+            self.assertEqual(saved_version(directory,DAY),21)
+            self.assertEqual(saved_version(directory,'2026-10-15'),0)
+            saved['version']=True;(directory/'stage3-results.json').write_text(json.dumps(saved))
+            with self.assertRaisesRegex(ValueError,'SAVED_PUBLICATION_VERSION'):saved_version(directory,DAY)
+
+    def test_restart_preserves_existing_publication_receipts(self):
+        with tempfile.TemporaryDirectory() as d:
+            prior=[{'version':1,'status':'WRITTEN'}]
+            Path(d,'publication-receipts.json').write_text(json.dumps(prior))
+            publisher=self.make_publisher(d,lambda *_,**__:Response(b'{}'))
+            publisher.publish({'version':2},f.parsed_time(DAY+'T13:40:00+08:00'))
+            saved=json.loads(Path(d,'publication-receipts.json').read_text())
+            self.assertEqual(saved[0],prior[0]);self.assertEqual(saved[1]['version'],2)
+
     def test_background_publication_does_not_block_and_coalesces_waiting_views(self):
         from stage3_publication import BackgroundPublisher
         import threading
@@ -52,6 +74,8 @@ class TransportTests(unittest.TestCase):
             result=collector.collect(row,DAY,now+timedelta(minutes=5))
             proof=stage3_ticks.load_bundle(collector.directory/result['manifest_path'])
             self.assertIn('raw',proof['pages'][0]);self.assertNotIn('fake-private-test-key',json.dumps(result))
+            for event in [proof['quote_before'],*proof['pages'],proof['quote_after']]:
+                self.assertLessEqual(event['received_at'],event['persisted_at'])
             self.assertIn('isTrial=false',requests[1].full_url)
             self.assertEqual(result['status'],'COLLECTED_NOT_VALIDATED')
 

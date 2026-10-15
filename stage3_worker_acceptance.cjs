@@ -29,7 +29,7 @@ async function main(){
   r=await fetch(url+'/publish',{method:'POST',body:'{}'});assert.equal(r.status,401);pass('anonymous-write-denied');
   r=await fetch(url+'/publish',{method:'POST',headers:{Authorization:'Bearer '+token},body:'x'.repeat(131073)});assert.equal(r.status,413);pass('large-payload-rejected');
   assert.equal((await fetch(url+'/data?date=garbage')).status,400);pass('invalid-date-denied');
-  const output=path.join(__dirname,'reports/2026-10-14-stage3');
+  const output=process.env.STAGE3_REPORT_DIR||path.join(__dirname,'reports/2026-10-14-stage3');fs.mkdirSync(output,{recursive:true});
   fs.writeFileSync(path.join(output,'worker-acceptance.json'),JSON.stringify({runtime:'Miniflare / workerd SQLite Durable Object',scope:'LOOPBACK_ONLY_NOT_PUBLIC_DEPLOYMENT',checks,timings,formal_signals:0},null,2));
   console.log(JSON.stringify(checks));
  }finally{await worker.dispose();}

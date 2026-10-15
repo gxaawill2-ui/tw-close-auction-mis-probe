@@ -11,6 +11,21 @@ export async function sign(body,key){
  return hex(await crypto.subtle.sign('HMAC',secret,encoder.encode(canonical(body))));
 }
 function equal(a,b){if(typeof a!=='string'||typeof b!=='string'||a.length!==b.length)return false;let diff=0;for(let i=0;i<a.length;i++)diff|=a.charCodeAt(i)^b.charCodeAt(i);return diff===0;}
+export function meetsTailThreshold(before,close){
+ // Match Python Decimal at the inclusive +/-3% boundary, without binary rounding.
+ const fraction=value=>{
+  if(!['string','number'].includes(typeof value))return null;
+  const raw=String(value);if(raw.length>100)return null;
+  const m=/^([+]?)(\d+)(?:\.(\d*))?(?:[eE]([+-]?\d+))?$/.exec(raw);
+  if(!m||Math.abs(Number(m[4]||0))>100)return null;
+  let n=BigInt(m[2]+(m[3]||'')),scale=(m[3]||'').length-Number(m[4]||0);
+  if(n<=0n)return null;
+  return scale>=0?{n,d:10n**BigInt(scale)}:{n:n*10n**BigInt(-scale),d:1n};
+ };
+ const p=fraction(before),c=fraction(close);if(!p||!c)return false;
+ const base=p.n*c.d,difference=c.n*p.d-base;
+ return (difference<0n?-difference:difference)*100n>=base*3n;
+}
 export function validate(body,env,now=Date.now()){
  if(body?.schema_version!=='STAGE3_SELECTION_V1'||!/^\d{4}-\d{2}-\d{2}$/.test(body.trade_date||'')||
   !Number.isSafeInteger(body.version)||body.version<1||!['LIVE','SYNTHETIC','OFFLINE_REPLAY'].includes(body.mode)||
@@ -32,7 +47,7 @@ export function validate(body,env,now=Date.now()){
     !['pre_actual_trade_before_1325','pre_last_trade_independently_proven','close_independent_finality','tail_threshold','required_volume_evidence'].every(k=>row.checks?.[k]===true)||
     row.independent_evidence?.source_contract_live_released!==true||row.independent_evidence?.validated!==true)return 'UNPROVEN_VERIFIED_FLAG';
    const before=Number(row.P_before),close=Number(row.P_close),volume=Number(row.closing_auction_volume),total=Number(row.intraday_total_volume);
-   if(!Number.isFinite(before)||!Number.isFinite(close)||before<=0||close<=0||Math.abs(close/before-1)<.03||!(volume>0&&total>=volume))return 'INVALID_VERIFIED_VALUES';
+   if(!Number.isFinite(before)||!Number.isFinite(close)||before<=0||close<=0||!meetsTailThreshold(row.P_before,row.P_close)||!(volume>0&&total>=volume))return 'INVALID_VERIFIED_VALUES';
    count++;
   }else if(row.verification_status==='VERIFIED')return 'UNPROVEN_VERIFIED_FLAG';
  }

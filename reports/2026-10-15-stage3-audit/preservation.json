@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-10-15T09:21:35.031027+08:00",
+  "compared_to": "aa3998d26e534e73b6042df92c778382d943b836",
+  "protected_paths": [
+    "docs",
+    "state",
+    ".github",
+    "relay",
+    "probe.py",
+    "reports/2026-10-14",
+    "reports/2026-10-14-fast",
+    "reports/2026-10-14-stage3"
+  ],
+  "changed_protected_paths": [],
+  "original_inner_capture_zip": {
+    "sha256_before": "c57da5c49487fd7b9fcfde0680db494c5ff99eec13869a9d77e6932fb4cfd03f",
+    "sha256_after": "c57da5c49487fd7b9fcfde0680db494c5ff99eec13869a9d77e6932fb4cfd03f",
+    "input_unchanged": true
+  },
+  "production_deployed": false,
+  "formal_schedule_modified": false,
+  "new_full_market_capture": false
+}

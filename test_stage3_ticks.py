@@ -11,6 +11,65 @@ import stage3_selection as s
 AS_OF=DAY+'T13:35:05+08:00'
 
 class IndependentTicksTests(unittest.TestCase):
+    def test_persistence_time_cannot_precede_network_receive(self):
+        row,bundle=example();bundle['pages'][0]['persisted_at']=DAY+'T13:35:00+08:00'
+        self.assertIn('INVALID_EVIDENCE_PERSISTENCE_TIME',self.inspect(row,bundle)['reasons'])
+
+    def test_future_tick_cannot_be_received_early(self):
+        row,bundle=example()
+        mutate(bundle['pages'][0],lambda d:d['data'][0].update(time=micros('13:35:02')))
+        self.assertIn('TRADE_TIME_AFTER_RECEIPT',self.inspect(row,bundle)['reasons'])
+
+    def test_future_quote_update_cannot_authorize_finality(self):
+        row,bundle=example()
+        for event in (bundle['quote_before'],bundle['quote_after']):
+            mutate(event,lambda d:d.update(lastUpdated=micros('13:36:00')))
+        self.assertIn('SOURCE_CLOCK_OR_TOTAL_TIME_CONFLICT',self.inspect(row,bundle)['reasons'])
+
+    def test_quote_snapshot_before_cutoff_does_not_prove_last_pre_trade(self):
+        row,bundle=example()
+        bundle['quote_before'].update(requested_at=DAY+'T13:24:59+08:00',received_at=DAY+'T13:24:59+08:00')
+        for event in (bundle['quote_before'],bundle['quote_after']):
+            mutate(event,lambda d:d.update(lastTrade={'time':micros('13:24:30')},total={'time':micros('13:24:30')},lastUpdated=micros('13:24:30')))
+        self.assertIn('SNAPSHOT_PREDATES_PRE_CUTOFF',self.inspect(row,bundle)['reasons'])
+
+    def test_close_snapshot_requested_before_close_keeps_pre_component_only(self):
+        row,bundle=example(page_size=500)
+        mutate(bundle['pages'][0],lambda d:d['data'].pop(0))
+        last=json.loads(bundle['pages'][0]['raw'])['data'][0]
+        for event in (bundle['quote_before'],bundle['quote_after']):
+            mutate(event,lambda d:d.update(lastTrade=last,closeTime=last['time'],closePrice=100,total={'transaction':3,'tradeVolume':15,'time':last['time']},lastUpdated=micros('13:29:00')))
+        bundle['quote_before'].update(requested_at=DAY+'T13:29:00+08:00',received_at=DAY+'T13:29:00+08:00')
+        r=self.inspect(row,bundle)
+        self.assertTrue(r['synthetic_pre_passed']);self.assertFalse(r['synthetic_close_passed'])
+        self.assertIn('CLOSE_SNAPSHOT_REQUESTED_BEFORE_CLOSE',r['reasons'])
+
+    def test_quote_total_time_cannot_precede_actual_trade(self):
+        row,bundle=example()
+        mutate(bundle['quote_before'],lambda d:d['total'].update(time=micros('13:24:59')))
+        self.assertIn('SOURCE_CLOCK_OR_TOTAL_TIME_CONFLICT',self.inspect(row,bundle)['reasons'])
+
+    def test_last_trade_size_conflict_does_not_pass_closing_volume(self):
+        for invalid in (6,'NaN','bad'):
+            row,bundle=example()
+            for event in (bundle['quote_before'],bundle['quote_after']):
+                mutate(event,lambda d:d['lastTrade'].update(size=invalid))
+            r=self.inspect(row,bundle)
+            self.assertFalse(r['synthetic_close_passed'])
+            self.assertIn('LATEST_TICK_SIZE_DOES_NOT_MATCH_QUOTE',r['reasons'])
+
+    def test_displayed_return_is_recomputed_from_prices(self):
+        row,bundle=example();row['tail_return_pct']='999'
+        r=s.decide(row,bundle,DAY,AS_OF,mode='SYNTHETIC',contract=t.TEST_CONTRACT)
+        self.assertEqual(float(r['tail_return_pct']),4)
+        row['P_before']=None
+        self.assertIsNone(s.decide(row,bundle,DAY,AS_OF)['tail_return_pct'])
+
+    def test_decimal_exact_three_percent_boundary(self):
+        for close,expected in (('0.412',True),('0.388',True),('0.411999999999999999',False),('0.388000000000000001',False)):
+            row,bundle=example();row.update(P_before='0.4',P_close=close)
+            self.assertEqual(s.decide(row,bundle,DAY,AS_OF)['checks']['tail_threshold'],expected)
+
     def test_long_no_new_pre_trade_can_still_have_last_trade_proof(self):
         row,bundle=example();row['P_before_trade_time']='12:30:00'
         mutate(bundle['pages'][0],lambda d:d['data'][1].update(time=micros('12:30:00')))

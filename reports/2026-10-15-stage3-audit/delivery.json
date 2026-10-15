@@ -1,0 +1,33 @@
+{
+  "branch": "stage3/20261015-evidence-time-audit",
+  "base_commit": "aa3998d26e534e73b6042df92c778382d943b836",
+  "repair_head_checked": "07079029fea4bef8f0bc9b60fb2c006a32d712a9",
+  "python_tests": 360,
+  "node_tests": 104,
+  "worker_checks": 14,
+  "browser_profiles": 3,
+  "browser_profile_names": [
+    "desktop-windows-profile",
+    "iphone-chromium",
+    "iphone-webkit"
+  ],
+  "physical_device": false,
+  "local_worker_write_to_browser_ms": [
+    1419,
+    1436,
+    1371
+  ],
+  "public_browser_read": "NOT_VERIFIED_PREVIOUS_NETWORK_BLOCK_UNRESOLVED",
+  "public_browser_latency_ms": null,
+  "fugle_key_configured": false,
+  "live_source_contract_released": false,
+  "cloudflare_cloud_deployed": false,
+  "formal_signals": 0,
+  "research_candidates_historical": 6,
+  "target_1335_1340_met": false,
+  "production_deployed": false,
+  "formal_schedule_modified": false,
+  "source_raw_modified": false,
+  "github_ci": "NOT_RUN_SKIP_CI",
+  "recorded_at": "2026-10-15T09:22:01.886051+08:00"
+}

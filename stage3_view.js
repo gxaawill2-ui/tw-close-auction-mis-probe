@@ -15,7 +15,7 @@
  function create(doc,initial,configuration={}){
   // Private bootstrap configuration; never read a release flag from API data.
   const liveReleased=configuration.liveReleased===true;
-  let body=initial,key=null,direction='desc',lastReadVersion=0;const reads=[];
+  let body=initial,key=null,direction='desc',lastReadVersion=Number(initial.version)||0;const reads=[];
   function render(next){if(next)body=next;
    const rows=key?order(body.rows,key,direction):body.rows;const set=(id,v)=>doc.getElementById(id).textContent=v;
    const statuses=rows.map(r=>verified(r,body,liveReleased)?'正式驗證':r.verification_status==='UNKNOWN'?'資料不足':'研究候選');
@@ -42,8 +42,8 @@
    if(url.protocol!=='https:'&&!['127.0.0.1','localhost'].includes(url.hostname))throw Error('UNSAFE_ENDPOINT');
    const requestedAt=new Date().toISOString();
    try{const response=await fetch(url,{cache:'no-store',headers:{Accept:url.hostname==='api.github.com'?'application/vnd.github.raw+json':'application/json'}});if(!response.ok)throw Error('HTTP_'+response.status);
-    const next=await response.json();if(next.trade_date!==body.trade_date||next.version<=lastReadVersion)return;
-    if(next.schema_version!=='STAGE3_SELECTION_V1')throw Error('INVALID_SCHEMA');
+    const next=await response.json();if(next.trade_date!==body.trade_date||next.version<=Math.max(lastReadVersion,Number(body.version)||0))return;
+    if(next.schema_version!=='STAGE3_SELECTION_V1'||!Number.isSafeInteger(next.version)||!Array.isArray(next.rows))throw Error('INVALID_SCHEMA');
     lastReadVersion=next.version;const observedAt=new Date().toISOString();
     reads.push({version:next.version,sha256:next.sha256,public_written_at:next.public_written_at,browser_requested_at:requestedAt,browser_observed_at:observedAt});
     doc.getElementById('stage3-read').textContent=clock(observedAt);doc.getElementById('stage3-network').textContent='隔離端點已讀取；版本 '+next.version;
