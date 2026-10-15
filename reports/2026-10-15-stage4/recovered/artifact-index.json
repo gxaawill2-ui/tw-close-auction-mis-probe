@@ -23,5 +23,13 @@
     "sha256": "56d20dd8e989ebbfb5a674c6f3df22392badd4dcbc7c65d2d5acb2211971f0df",
     "expires_at": "2026-11-14T06:50:39Z",
     "run_url": "https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/actions/runs/38694819429"
+  },
+  {
+    "artifact_id": 11954218029,
+    "run_id": 38698049598,
+    "name": "mis-validation-38698049598",
+    "sha256": "002f4080bed154ee78f8b74834b9ae2ea85f0909c24bbfbd5a8f03b14c88906d",
+    "expires_at": "2026-11-14T07:20:59Z",
+    "run_url": "https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/actions/runs/38698049598"
   }
 ]

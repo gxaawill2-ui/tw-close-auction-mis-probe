@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-10-15T07:22:49.609705+00:00",
+  "observed_at": "2026-10-15T07:30:25.015232+00:00",
   "branch": "stage4/20261015-live-shadow",
   "formal_run": 38684465791,
   "formal_runner_start": "2026-10-15T13:00:44.059+08:00",
@@ -28,7 +28,7 @@
   },
   "cloud_prior_build": "success",
   "cloud_prior_version": "738acbcd-d686-4273-bace-1394f91327a4",
-  "cloud_signed_write_acceptance": "NOT_EXECUTED",
+  "cloud_signed_write_acceptance": "NOT_EXECUTED_DASHBOARD_COMMAND_STILL_OLD",
   "cloud_api_test_key_created": false,
   "fugle_account": "BASIC_ACTIVE_VERIFIED_IN_BROWSER",
   "fugle_key": "DIALOG_PREPARED_NOT_CREATED",
@@ -37,5 +37,19 @@
   "next_cloud_deploy_command": "node isolated_publication/stage4-cloud-deploy.cjs",
   "main_merged": false,
   "formal_deployed_by_this_resume": false,
-  "formal_collectors_dispatched": 0
+  "formal_collectors_dispatched": 0,
+  "cloud_current_version": "b92d7c45-30a8-43d7-a294-aefd30003b66",
+  "cloud_current_commit": "61a749dbef1787dfc5bb95224aece9b2022d4ea0",
+  "cloud_synthetic_page_http_status": 200,
+  "anonymous_browser": "ERR_BLOCKED_BY_CLIENT",
+  "official_1520": {
+    "run_id": "38698049598",
+    "checked_at": "2026-10-15T15:20:23.709+08:00",
+    "status": "SAME_DATE_COMPARISON_ONLY",
+    "matches": 1937,
+    "mismatches": 4,
+    "unavailable": 26
+  },
+  "final_adopted_candidate_close_matches_1520": 10,
+  "independent_preclose_verified": 0
 }

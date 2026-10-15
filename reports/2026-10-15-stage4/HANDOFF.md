@@ -1,3 +1,9 @@
+# 本輪最終更新（優先於以下舊紀錄）
+
+61a749d測試頁build成功，version b92d7c45-30a8-43d7-a294-aefd30003b66，公開根路徑HTTP200，只有合成頁，未安裝writer keys或執行雲端整套驗收。Builds部署命令仍需改，詳RESUMED_REPORT。代理匿名瀏覽器ERR_BLOCKED_BY_CLIENT，不算外部手機通過。
+
+15:20既有核對run38698049598成功，兩市場表可用：1937MATCH／4MISMATCH／26UNAVAILABLE。10候選最後採用研究收盤全部與官方一致；2740／3593正式AB-only核對仍UNAVAILABLE，隔離補充比對未改正式。P_before未獨立證明，VERIFIED=0，不算13:40前達標。四份Artifact已驗hash，見index。
+
 # 第四階段最新接手紀錄（10/15下午）
 
 先讀 RESUMED_REPORT.md、recovery-status.json 與分支最新head。以下狀態優先於所有上午紀錄。

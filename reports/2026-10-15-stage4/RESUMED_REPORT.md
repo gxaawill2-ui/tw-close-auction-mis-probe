@@ -82,3 +82,14 @@ root保持`/`、分支保持`stage4/20261015-live-shadow`、Preview關閉。此�
 富果Key對話框已填`tw-tail-stage4-isolated-20261015`、到期2026-11-14，尚未建立。頁面明示「取得金鑰即表示您同意遵守上述規範」，需處理最終條款確認。Key不得貼聊天或放repo；先安排安全的隔離Secret目的地。確認來源語意及轉傳權限前，不公開富果真實行情。
 
 官方Cloudflare設定參考：https://developers.cloudflare.com/workers/ci-cd/builds/configuration/
+
+
+## 本輪末段更新：新頁面與15:20結果
+
+Commit 61a749d的新測試頁已由Cloudflare成功建置，version b92d7c45-30a8-43d7-a294-aefd30003b66。公開根路徑實際HTTP200且HTML明示合成測試；尚未更改Builds部署命令，簽章寫入整套仍未執行。代理匿名瀏覽器同網址為ERR_BLOCKED_BY_CLIENT；HTTP成功不可充當瀏覽器或實體手機成功。
+
+既有15:20核對run38698049598成功，MATCH1937／MISMATCH4／UNAVAILABLE26，TWSE與TPEx皆有當日表。全市場價差為3609、4402、9962、7818，均非本次10檔候選。
+
+以保存的最後採用研究收盤價補充比對：10候選全部與15:20官方收盤一致。正式核對仍將延後收盤2740、3593標成UNAVAILABLE；補充比對保留差異且未修改正式程式。見recovered/official-1520-candidate-comparison.json。
+
+這是15:20以後取得的收盤核對，不驗證13:25前最後成交、成交量或13:40前可用性；VERIFIED仍0。前段14:50的TPEx空表是當時事實，已由本段15:20資料更新。
