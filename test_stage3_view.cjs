@@ -1,4 +1,12 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),view=require('./stage3_view.js');
+test('same-day saved capture is labeled separately from historical replay',()=>{
+ const {parseHTML}=require('linkedom'),fs=require('node:fs');
+ const {document}=parseHTML(fs.readFileSync('reports/2026-10-14-stage3/replay/stage3-preview.html','utf8'));
+ const body=JSON.parse(fs.readFileSync('reports/2026-10-14-stage3/replay/stage3-results.json'));
+ view.create(document,{...body,provenance:{kind:'SAME_DAY_SAVED_CAPTURE_ANALYSIS'}});
+ assert.match(document.getElementById('stage3-mode').textContent,/今日已保存.*非逐批/);
+ assert.equal(document.getElementById('stage3-verified').textContent,'0');
+});
 test('worker +/-3 percent inclusive threshold uses exact decimals',async()=>{
  const {meetsTailThreshold}=await import('./isolated_publication/worker.mjs');
  for(const [price,expected] of [['0.412',true],['0.388',true],['0.411999999999999999',false],['0.388000000000000001',false]])assert.equal(meetsTailThreshold('0.4',price),expected);

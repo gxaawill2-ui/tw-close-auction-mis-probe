@@ -1,0 +1,21 @@
+{
+  "observed_at": "2026-10-15T01:44:32.821Z",
+  "data": [
+    {
+      "branch": "main",
+      "sha": "e8083da77af7c3a575babf39be18addd917906ed"
+    },
+    {
+      "branch": "stage3/20261015-evidence-time-audit",
+      "sha": "732025ea67a1e26d1c0741b1c92ce949f5186ea7"
+    },
+    {
+      "branch": "stage3/20261014-independent-ticks-publication",
+      "sha": "aa3998d26e534e73b6042df92c778382d943b836"
+    },
+    {
+      "branch": "fix/20261014-capture-reliability",
+      "sha": "07079029fea4bef8f0bc9b60fb2c006a32d712a9"
+    }
+  ]
+}

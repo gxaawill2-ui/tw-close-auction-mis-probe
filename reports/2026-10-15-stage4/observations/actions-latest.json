@@ -1,0 +1,11 @@
+{
+  "trade_date": "2026-10-15",
+  "observed_at": "2026-10-15T01:52:47.780Z",
+  "source": "GITHUB_CONNECTOR_READ_ONLY",
+  "status": "NOT_DUE",
+  "matching_runs": [],
+  "actual_capture_confirmed": false,
+  "formal_signals": null,
+  "research_candidates": null,
+  "note": "Run status/conclusion cannot establish capture success. Inspect saved same-day raw and summary; skip/dedup/late-start SUCCESS is not capture."
+}

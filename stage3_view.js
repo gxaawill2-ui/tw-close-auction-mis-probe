@@ -19,7 +19,7 @@
   function render(next){if(next)body=next;
    const rows=key?order(body.rows,key,direction):body.rows;const set=(id,v)=>doc.getElementById(id).textContent=v;
    const statuses=rows.map(r=>verified(r,body,liveReleased)?'正式驗證':r.verification_status==='UNKNOWN'?'資料不足':'研究候選');
-   set('stage3-mode',body.mode==='SYNTHETIC'?'合成測試｜不是真實行情':body.mode==='OFFLINE_REPLAY'?'歷史證據重播｜非當時發布':'隔離即時試驗');
+   set('stage3-mode',body.provenance?.kind==='SAME_DAY_SAVED_CAPTURE_ANALYSIS'?'今日已保存資料驗收｜非逐批即時串流':body.mode==='SYNTHETIC'?'合成測試｜不是真實行情':body.mode==='OFFLINE_REPLAY'?'歷史證據重播｜非當時發布':'隔離即時試驗');
    set('stage3-date',body.trade_date);set('stage3-verified',statuses.filter(s=>s==='正式驗證').length);
    set('stage3-research',statuses.filter(s=>s==='研究候選').length);set('stage3-unknown',statuses.filter(s=>s==='資料不足').length);
    set('stage3-screening',`${number(body.screening_calculable_count)}／${number(body.universe_count)}；${number(body.screening_unresolved_count)} 檔無法完整初篩，可能漏選`);

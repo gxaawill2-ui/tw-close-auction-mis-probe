@@ -1,90 +1,71 @@
-name: Stage 4 isolated validation
+name: Stage 4 tail read-only observation
+# Branch-only version of an already registered manual workflow. No schedule,
+# write permissions, MIS capture, deployment, repository secret or production job.
 on:
-  push:
-    paths:
-      - 'relay/**'
-      - 'config/index-events/github-app-manifest.json'
-      - 'market_closing*.py'
-      - 'test_market_closing_volume.py'
-      - 'test_relay.cjs'
-      - 'test_stage4.cjs'
-      - 'test_events.cjs'
-      - 'docs/events.js'
-      - 'docs/index.html'
-      - 'docs/market-closing.js'
-      - 'docs/status.css'
-      - 'browser_acceptance.cjs'
-      - '.github/workflows/stage4-validation.yml'
-      - 'stage4_source_probe.py'
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 concurrency:
-  group: stage4-validation-${{ github.ref }}
+  group: stage4-tail-shadow-${{ github.ref }}
   cancel-in-progress: false
 jobs:
-  regressions:
+  read_only_shadow:
+    if: github.ref == 'refs/heads/stage4/20261015-live-shadow'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 300
+    env:
+      TZ: Asia/Taipei
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-      - run: pip install pypdf
-      - run: npm ci --ignore-scripts
-      - run: python -m unittest discover -v
-      - run: npm test
-      - run: npx playwright install --with-deps chromium webkit
-      - name: All desktop, mobile and WebKit regression fixtures
-        run: node browser_acceptance.cjs
-      - name: Bounded anonymous official source proof in isolated branch
-        if: github.ref != 'refs/heads/main'
-        run: python stage4_source_probe.py
-      - uses: actions/upload-artifact@v4
+      - name: Verify isolated observer without live MIS calls
+        run: python -m unittest test_stage4_shadow test_stage3_ticks test_stage3_transport
+      - name: Official company metadata only, no all-market MIS
+        run: timeout 35s python stage4_shadow.py preflight 2026-10-15 stage4-runtime/preflight
+      - name: Read existing workflow runs without dispatching another collector
         if: always()
-        with:
-          name: stage4-regressions-${{ github.run_id }}
-          path: |
-            browser-results/
-            reports/market-closing-volume/official-source-probe.json
-          retention-days: 30
-  public:
-    needs: regressions
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-      - run: npm ci --ignore-scripts
-      - run: npx playwright install --with-deps chromium webkit
-      - name: Wait for exact new public HTML release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           python - <<'PY'
-          import time,urllib.request
-          for attempt in range(24):
-              try:
-                  text=urllib.request.urlopen('https://gxaawill2-ui.github.io/tw-close-auction-mis-probe/?stage4='+str(time.time()),timeout=10).read().decode()
-                  if 'market-closing.js?v=market1' in text and 'events.js?v=events4' in text:break
-              except Exception:pass
-              time.sleep(15)
-          else:raise SystemExit('Public release not observed')
+          import json,os,urllib.request
+          from pathlib import Path
+          from stage4_observation import save
+          request=urllib.request.Request('https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/actions/runs?per_page=100&created=%3E%3D2026-10-15T00%3A00%3A00Z',headers={'Authorization':'Bearer '+os.environ['GITHUB_TOKEN'],'Accept':'application/vnd.github+json'})
+          with urllib.request.urlopen(request,timeout=10) as response:data=json.load(response)
+          print(json.dumps(save(data,'2026-10-15',Path('stage4-runtime/actions')),ensure_ascii=False))
           PY
-      - name: Public Pages desktop/mobile and read-only JSON
-        env:
-          REQUIRE_PUBLIC_EVENTS: 'true'
-        run: node browser_acceptance.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: stage4-public-${{ github.run_id }}
-          path: browser-results/
+          name: stage4-tail-shadow-${{ github.run_id }}
+          path: stage4-runtime/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Wait for existing formal capture, analyze immediately when saved
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python stage4_remote_watch.py 2026-10-15 stage4-runtime/first-capture
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage4-first-capture-${{ github.run_id }}
+          path: stage4-runtime/first-capture/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Continue read-only observations until the order cutoff
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python stage4_remote_watch.py 2026-10-15 stage4-runtime/follow --follow
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage4-order-cutoff-${{ github.run_id }}
+          path: stage4-runtime/follow/
+          if-no-files-found: warn
           retention-days: 30

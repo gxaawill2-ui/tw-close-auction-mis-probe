@@ -1,0 +1,27 @@
+{
+  "provider": "cron-job.org",
+  "status": "VERIFIED",
+  "verified_date": "2026-10-07",
+  "timezone": "Asia/Taipei",
+  "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+  "method": "POST",
+  "url": "https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/actions/workflows/mis-official-validation.yml/dispatches",
+  "body": {"ref": "main"},
+  "headers": {
+    "Accept": "application/vnd.github+json",
+    "Authorization": "EXISTING_TOKEN_PRESERVED_NOT_EXTRACTED",
+    "X-GitHub-Api-Version": "2022-11-28",
+    "Content-Type": "application/json"
+  },
+  "jobs": [
+    {"id": 8596586, "name": "MIS Official Validation 1450", "cron": "50 14 * * 1-5", "enabled": true, "timezone": "Asia/Taipei", "action": "existing_verified"},
+    {"id": 8596641, "name": "MIS Official Validation 1520", "cron": "20 15 * * 1-5", "enabled": true, "timezone": "Asia/Taipei", "action": "missing_job_cloned_from_1450"},
+    {"id": 8596664, "name": "MIS Official Validation 1750", "cron": "50 17 * * 1-5", "enabled": true, "timezone": "Asia/Taipei", "action": "missing_job_cloned_from_1520"}
+  ],
+  "github_backup_crons_preserved": ["50 6 * * 1-5", "20 7 * * 1-5", "50 9 * * 1-5"],
+  "successful_prior_external_test_run_id": "37596175011",
+  "retry_validation_run_id": "37597653369",
+  "retry_validation_event": "workflow_dispatch",
+  "retry_validation_dispatch_source": "GitHub UI Run workflow",
+  "note": "Only missing official jobs were cloned through the authenticated UI, preserving the existing request settings and token without re-entry or extraction. Saved common views confirmed enabled, weekday-only expressions and Asia/Taipei next executions. Inherited advanced request settings confirmed POST, body and four headers. Existing live capture jobs and the successful external Test job were unchanged; no Test was repeated. New recurring jobs have not yet reached their first scheduled execution."
+}

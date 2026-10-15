@@ -1,0 +1,117 @@
+{
+  "observed_at": "2026-10-15T01:44:37.334Z",
+  "data": [
+    {
+      "name": "feature/index-events-20261009",
+      "commit": {
+        "sha": "7c785f520e33fd5f66e47ddc84226926c7208947",
+        "url": "https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/commits/7c785f520e33fd5f66e47ddc84226926c7208947"
+      },
+      "protected": false
+    },
+    {
+      "name": "feature/index-events-asof-20261009",
+      "commit": {
+        "sha": "382439f5a82870197cc41eee76587e6fb544d61d",
+        "url": "https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/commits/382439f5a82870197cc41eee76587e6fb544d61d"
+      },
+      "protected": false
+    },
+    {
+      "name": "feature/index-events-recovery-20261009",
+      "commit": {
+        "sha": "94cb366cd32af8ce9b0dd70eef498ab01ff7b6d1",
+        "url": "https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/commits/94cb366cd32af8ce9b0dd70eef498ab01ff7b6d1"
+      },
+      "protected": false
+    },
+    {
+      "name": "fix/20261014-capture-reliability",
+      "commit": {
+        "sha": "07079029fea4bef8f0bc9b60fb2c006a32d712a9",
+        "url": "https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/commits/07079029fea4bef8f0bc9b60fb2c006a32d712a9"
+      },
+      "protected": false
+    },
+    {
+      "name": "improve/events-reliability-20261010",
+      "commit": {
+        "sha": "580a6c7160e6c65fd231c4102dcc8ddd524624a0",
+        "url": "https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/commits/580a6c7160e6c65fd231c4102dcc8ddd524624a0"
+      },
+      "protected": false
+    },
+    {
+      "name": "main",
+      "commit": {
+        "sha": "e8083da77af7c3a575babf39be18addd917906ed",
+        "url": "https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/commits/e8083da77af7c3a575babf39be18addd917906ed"
+      },
+      "protected": false
+    },
+    {
+      "name": "stage3/20261014-independent-ticks-publication",
+      "commit": {
+        "sha": "aa3998d26e534e73b6042df92c778382d943b836",
+        "url": "https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/commits/aa3998d26e534e73b6042df92c778382d943b836"
+      },
+      "protected": false
+    },
+    {
+      "name": "stage3/20261015-evidence-time-audit",
+      "commit": {
+        "sha": "732025ea67a1e26d1c0741b1c92ce949f5186ea7",
+        "url": "https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/commits/732025ea67a1e26d1c0741b1c92ce949f5186ea7"
+      },
+      "protected": false
+    },
+    {
+      "name": "ui/20261012-four-dashboard-updates",
+      "commit": {
+        "sha": "5cd8280f334a2dcca1f77238855990f67fb6f95d",
+        "url": "https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/commits/5cd8280f334a2dcca1f77238855990f67fb6f95d"
+      },
+      "protected": false
+    },
+    {
+      "name": "ui/20261012-sort-affordance",
+      "commit": {
+        "sha": "41e2a5f1fd31a1bd6f2890948f1f9bc6c47db039",
+        "url": "https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/commits/41e2a5f1fd31a1bd6f2890948f1f9bc6c47db039"
+      },
+      "protected": false
+    },
+    {
+      "name": "work/candidate-dashboard",
+      "commit": {
+        "sha": "8f2dc82419b7b2021581bd503a8d57b3e47d8d7b",
+        "url": "https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/commits/8f2dc82419b7b2021581bd503a8d57b3e47d8d7b"
+      },
+      "protected": false
+    },
+    {
+      "name": "work/dashboard-browser-acceptance",
+      "commit": {
+        "sha": "8b95c09d39ed4698f1356bc0ef943dfe5cf7bfe1",
+        "url": "https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/commits/8b95c09d39ed4698f1356bc0ef943dfe5cf7bfe1"
+      },
+      "protected": false
+    },
+    {
+      "name": "work/final-dashboard-acceptance-20261009",
+      "commit": {
+        "sha": "efc845c50e5a9f966cdc4443d25cad3dc004fa3f",
+        "url": "https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/commits/efc845c50e5a9f966cdc4443d25cad3dc004fa3f"
+      },
+      "protected": false
+    },
+    {
+      "name": "work/stage4-20261011",
+      "commit": {
+        "sha": "56bc1c9fbef35d570d063148fce0a27cef47f044",
+        "url": "https://api.github.com/repos/gxaawill2-ui/tw-close-auction-mis-probe/commits/56bc1c9fbef35d570d063148fce0a27cef47f044"
+      },
+      "protected": false
+    }
+  ]
+}
