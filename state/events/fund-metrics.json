@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-14T22:37:06+08:00",
+  "updated_at": "2026-10-15T08:37:17+08:00",
   "funds": [
     {
       "fund_code": "0050",
@@ -9,7 +9,7 @@
       "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
       "source_uploaded_at": "2026-10-14T16:05:21+08:00",
       "information_available_as_of": "2026-10-14T17:38:51+08:00",
-      "last_checked_at": "2026-10-14T17:38:51+08:00",
+      "last_checked_at": "2026-10-15T08:37:10+08:00",
       "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0050",
       "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
     },
@@ -21,7 +21,7 @@
       "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
       "source_uploaded_at": "2026-10-14T16:32:11+08:00",
       "information_available_as_of": "2026-10-14T17:38:55+08:00",
-      "last_checked_at": "2026-10-14T22:37:02+08:00",
+      "last_checked_at": "2026-10-15T08:37:14+08:00",
       "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0051",
       "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
     },
@@ -33,7 +33,7 @@
       "aum_date_basis": "NAV_VALUATION_DATE_IN_SAME_OFFICIAL_PCF",
       "source_uploaded_at": "2026-10-14T16:30:25+08:00",
       "information_available_as_of": "2026-10-14T17:38:59+08:00",
-      "last_checked_at": "2026-10-14T22:37:06+08:00",
+      "last_checked_at": "2026-10-15T08:37:17+08:00",
       "source_url": "https://www.yuantaetfs.com/tradeInfo/pcf/0056",
       "evidence_kind": "OFFICIAL_ISSUER_PCF_NET_ASSETS; NOT_ORDER_AMOUNT"
     }
