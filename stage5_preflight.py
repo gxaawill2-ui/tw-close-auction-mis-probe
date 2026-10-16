@@ -3,6 +3,7 @@ import json
 import urllib.request
 import urllib.error
 import re
+import hashlib
 from datetime import datetime, timezone
 BASE='https://tw-tail-stage4-20261015-test.gxaawill2.workers.dev'
 
@@ -32,6 +33,13 @@ def main():
                     title=re.search(r'<title[^>]*>([^<]{0,200})</title>',text,re.I)
                     report['cloud_error_page_title']=title.group(1) if title else None
                     report['cloud_challenge_detected']=any(marker in text.lower() for marker in ('cf-chl-','checking your browser','verify you are human','just a moment'))
+                    # Anonymous health only: extract numeric edge error codes, not arbitrary bodies.
+                    codes=re.findall(r'(?:error\s*(?:code)?\s*[:=]?\s*|data-translate="error"[^>]*>\s*)(1\d{3})\b',text,re.I)
+                    report['cloud_edge_error_codes']=sorted(set(codes))[:8]
+                    report['cloud_error_body_sha256']=hashlib.sha256(text.encode()).hexdigest()
+                    report['cloud_error_body_bytes_observed']=len(text.encode())
+                    report['cloud_error_content_type']=exc.headers.get('Content-Type')
+                    report['cloud_error_classification']='WORKER_FREE_DAILY_LIMIT' if '1027' in codes else 'UNCLASSIFIED_EDGE_DENIAL'
             if isinstance(exc,urllib.error.URLError):report[name+'_network_error_type']=type(exc.reason).__name__
     print(json.dumps(report,indent=2))
 
