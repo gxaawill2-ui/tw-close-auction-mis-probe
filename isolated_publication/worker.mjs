@@ -137,11 +137,12 @@ export class SelectionStore{
    const body=await request.json(),bytes=encoder.encode(canonical(body)).length;
    return this.state.blockConcurrencyWhile(async()=>{
     const prior=await storage.get('evidence:'+id);
-    if(prior)return privateResponse(200,{id,sha256:prior.event.sha256,private_written_at:prior.private_written_at,duplicate:true});
+    if(prior){if(!prior.private_written_at){prior.private_written_at=new Date().toISOString();await storage.put('evidence:'+id,prior);}return privateResponse(200,{id,sha256:prior.event.sha256,private_written_at:prior.private_written_at,duplicate:true});}
     const index=await storage.get('index')||{entries:[],bytes:0};
     if(index.entries.length>=1000||index.bytes+bytes>10000000)return privateResponse(507,{error:'PRIVATE_EVIDENCE_BUDGET'});
-    const saved={...body,private_written_at:new Date().toISOString()};
-    await storage.transaction(async txn=>{await txn.put('evidence:'+id,saved);index.entries.push({id,sha256:body.event.sha256,private_written_at:saved.private_written_at});index.bytes+=bytes;await txn.put('index',index);});
+    const saved={...body,private_written_at:null};
+    await storage.transaction(async txn=>{await txn.put('evidence:'+id,saved);index.entries.push({id,sha256:body.event.sha256});index.bytes+=bytes;await txn.put('index',index);});
+    saved.private_written_at=new Date().toISOString();await storage.put('evidence:'+id,saved);
     if(!await storage.getAlarm())await storage.setAlarm(Date.now()+7*86400000);
     return privateResponse(200,{id,sha256:body.event.sha256,private_written_at:saved.private_written_at,duplicate:false});
    });
