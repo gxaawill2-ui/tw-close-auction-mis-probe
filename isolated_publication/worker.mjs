@@ -44,12 +44,16 @@ export function meetsTailThreshold(before,close){
  return (difference<0n?-difference:difference)*100n>=base*3n;
 }
 export function validate(body,env,now=Date.now()){
+ const restricted=new Set(['raw','raw_path','pages','quote_before','quote_after','pre_tick','close_tick','lastTrade','lastTrial','FUGLE_API_KEY']);
+ function hasRaw(value){return value&&typeof value==='object'&&Object.entries(value).some(([k,v])=>(restricted.has(k)&&v!=null)||hasRaw(v));}
+ if(hasRaw(body))return 'RESTRICTED_SOURCE_EVIDENCE_NOT_PUBLIC';
  if(body?.schema_version!=='STAGE3_SELECTION_V1'||!/^\d{4}-\d{2}-\d{2}$/.test(body.trade_date||'')||
   !Number.isSafeInteger(body.version)||body.version<1||!['LIVE','SYNTHETIC','OFFLINE_REPLAY'].includes(body.mode)||
   !Array.isArray(body.rows)||body.rows.length>200||body.is_synthetic!==(body.mode==='SYNTHETIC'))return 'INVALID_SCHEMA';
  const generated=Date.parse(body.generated_at);
  if(!Number.isFinite(generated))return 'INVALID_GENERATION_TIME';
  if(body.mode==='LIVE'){
+  if(env.PUBLIC_POLICY_REQUIRED==='true'&&body.public_data_policy!=='MIS_DERIVED_RESEARCH_NO_FUGLE_RAW')return 'PUBLIC_DATA_POLICY_REQUIRED';
   const today=new Date(now+8*3600000).toISOString().slice(0,10);
   const opening=Date.parse(body.trade_date+'T13:30:00+08:00'),deadline=Date.parse(body.trade_date+'T14:30:00+08:00');
   if(body.trade_date!==today||Math.abs(now-generated)>30000||now<opening||now>=deadline)return 'LIVE_OUTSIDE_CURRENT_PUBLICATION_WINDOW';
@@ -80,7 +84,25 @@ function response(status,data,extra={}){
 }
 export default {async fetch(request,env){
  const url=new URL(request.url);
- if(url.pathname==='/health')return response(200,{scope:'ISOLATED_STAGE3',read_validator_revision:'weak-etag-v2',live_validation_released:env.ALLOW_LIVE_VERIFIED==='true'});
+ if(url.pathname==='/health')return response(200,{scope:'ISOLATED_STAGE3',read_validator_revision:'weak-etag-v2',handoff_revision:env.HANDOFF_REVISION||null,private_evidence_available:true,live_validation_released:env.ALLOW_LIVE_VERIFIED==='true'});
+ const privatePath=/^\/private-evidence\/(\d{4}-\d{2}-\d{2})\/(index|[a-f0-9]{64})$/.exec(url.pathname);
+ if(privatePath){
+  if(url.search||!['GET','POST'].includes(request.method))return privateResponse(404,{error:'NOT_FOUND'});
+  if(!env.PUBLISH_TOKEN||!env.DECISION_KEY)return privateResponse(503,{error:'NOT_CONFIGURED'});
+  if(!equal(request.headers.get('Authorization')||'','Bearer '+env.PUBLISH_TOKEN))return privateResponse(401,{error:'UNAUTHORIZED'});
+  if(request.method==='POST'){
+   let packet;try{packet=JSON.parse(await limitedText(request,98304));}catch{return privateResponse(413,{error:'INVALID_OR_LARGE_BODY'});}
+   if(!equal(packet.signature,await sign(packet.body,env.DECISION_KEY)))return privateResponse(403,{error:'INVALID_SIGNATURE'});
+   const body=packet.body,today=new Date(Date.now()+8*3600000).toISOString().slice(0,10);
+   if(privatePath[1]!==today||privatePath[2]==='index'||body?.trade_date!==today||body?.id!==privatePath[2]||body?.scope!=='PRIVATE_FUGLE_EVIDENCE')return privateResponse(422,{error:'PRIVATE_SCHEMA_OR_DATE'});
+   const digest=hex(await crypto.subtle.digest('SHA-256',encoder.encode(canonical(body.event))));
+   if(digest!==body.id||typeof body.event?.raw!=='string'||body.event.source!=='FUGLE')return privateResponse(422,{error:'EVIDENCE_DIGEST_MISMATCH'});
+   const rawHash=hex(await crypto.subtle.digest('SHA-256',encoder.encode(body.event.raw)));
+   if(rawHash!==body.event.sha256)return privateResponse(422,{error:'RAW_DIGEST_MISMATCH'});
+   return env.SELECTION.get(env.SELECTION.idFromName('isolated-private-evidence-'+today)).fetch(new Request('https://actor/private/'+today+'/'+body.id,{method:'POST',body:JSON.stringify(body)}));
+  }
+  return env.SELECTION.get(env.SELECTION.idFromName('isolated-private-evidence-'+privatePath[1])).fetch(new Request('https://actor/private/'+privatePath[1]+'/'+privatePath[2]));
+ }
  if(url.pathname==='/data'&&request.method==='OPTIONS')return new Response(null,{status:204,headers:{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'GET','Access-Control-Allow-Headers':'If-None-Match'}});
  if(url.pathname==='/data'&&request.method==='GET'){
   const date=url.searchParams.get('date');if(!/^\d{4}-\d{2}-\d{2}$/.test(date||''))return response(400,{error:'INVALID_DATE'});
@@ -100,10 +122,30 @@ export default {async fetch(request,env){
  const error=validate(envelope.body,env);if(error)return response(422,{error});
  return env.SELECTION.get(env.SELECTION.idFromName('isolated-market-selection')).fetch(new Request('https://actor/publish',{method:'POST',body:JSON.stringify(envelope.body)}));
 }};
+function privateResponse(status,data){const r=response(status,data);r.headers.delete('Access-Control-Allow-Origin');r.headers.delete('Access-Control-Expose-Headers');r.headers.set('X-Robots-Tag','noindex, nofollow');return r;}
+async function limitedText(request,limit){const reader=request.body.getReader(),parts=[];let length=0;while(true){const {value,done}=await reader.read();if(done)break;length+=value.byteLength;if(length>limit){await reader.cancel();throw Error('LIMIT');}parts.push(value);}const bytes=new Uint8Array(length);let offset=0;for(const p of parts){bytes.set(p,offset);offset+=p.length;}return new TextDecoder().decode(bytes);}
 export class SelectionStore{
  constructor(state,env){this.state=state;this.env=env;}
  async fetch(request){
   const url=new URL(request.url),storage=this.state.storage;
+  if(url.pathname.startsWith('/private/')){
+   const id=url.pathname.split('/').at(-1);
+   if(request.method==='GET'){
+    const saved=await storage.get(id==='index'?'index':'evidence:'+id);
+    return privateResponse(saved?200:404,saved||{error:'NOT_FOUND'});
+   }
+   const body=await request.json(),bytes=encoder.encode(canonical(body)).length;
+   return this.state.blockConcurrencyWhile(async()=>{
+    const prior=await storage.get('evidence:'+id);
+    if(prior)return privateResponse(200,{id,sha256:prior.event.sha256,private_written_at:prior.private_written_at,duplicate:true});
+    const index=await storage.get('index')||{entries:[],bytes:0};
+    if(index.entries.length>=1000||index.bytes+bytes>10000000)return privateResponse(507,{error:'PRIVATE_EVIDENCE_BUDGET'});
+    const saved={...body,private_written_at:new Date().toISOString()};
+    await storage.transaction(async txn=>{await txn.put('evidence:'+id,saved);index.entries.push({id,sha256:body.event.sha256,private_written_at:saved.private_written_at});index.bytes+=bytes;await txn.put('index',index);});
+    if(!await storage.getAlarm())await storage.setAlarm(Date.now()+7*86400000);
+    return privateResponse(200,{id,sha256:body.event.sha256,private_written_at:saved.private_written_at,duplicate:false});
+   });
+  }
   if(request.method==='GET'){
    const saved=await storage.get('date:'+url.searchParams.get('date'));
    if(!saved)return response(404,{error:'NO_PUBLISHED_DATA'});
@@ -124,7 +166,7 @@ export class SelectionStore{
    dates.sort();while(dates.length>10)await txn.delete('date:'+dates.shift());await txn.put('dates',dates);
    return {saved};
    });
-   if(result.saved&&!result.duplicate){
+   if(result.saved&&(!result.duplicate||!result.saved.public_written_at)){
     // Record after the payload transaction committed, never before writing.
     result.saved.public_written_at=new Date().toISOString();
     await storage.put('date:'+body.trade_date,result.saved);
@@ -135,4 +177,5 @@ export class SelectionStore{
   return response(200,{version:outcome.saved.version,sha256:outcome.saved.sha256,
    public_written_at:outcome.saved.public_written_at,duplicate:outcome.duplicate||false});
  }
+ async alarm(){await this.state.storage.deleteAll();}
 }
