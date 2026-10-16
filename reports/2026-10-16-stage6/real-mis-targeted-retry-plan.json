@@ -1,0 +1,36 @@
+{
+  "scope": "OFFLINE_REAL_SAVED_MIS_REPLAY_NOT_REALTIME",
+  "records": 320,
+  "universe_count": 1967,
+  "public_candidates": [
+    "4609",
+    "6228",
+    "1235"
+  ],
+  "private_retry_plan": {
+    "status": "PROPOSED_ONLY_REQUIRES_FORMAL_APPROVAL",
+    "symbols": [
+      {
+        "ex": "tse",
+        "code": "5546",
+        "fingerprint": "1a6cc5eb926361e07cec60eccd96d6d06f67111e9019932d336b768c13814ba4",
+        "attempt_key": "tse:5546:1a6cc5eb926361e07cec60eccd96d6d06f67111e9019932d336b768c13814ba4",
+        "reason": "SINGLE_DELAYED_CLOSE_NEEDS_SECOND_OBSERVATION"
+      }
+    ],
+    "eligible_count": 1,
+    "deferred_by_symbol_budget": 0,
+    "attempts_exhausted": 0,
+    "latest_receive_at": "2026-10-16T13:34:50+08:00",
+    "timeout_seconds": 5,
+    "max_http_rounds": 2,
+    "cooldown_seconds": 3,
+    "mis_requests": 0,
+    "same_date_saved_p_before_required": true,
+    "public_candidate_admission_unchanged": true
+  },
+  "elapsed_seconds": 1.8573418910000328,
+  "fugle_requests": 0,
+  "mis_requests": 0,
+  "verified_count": 0
+}

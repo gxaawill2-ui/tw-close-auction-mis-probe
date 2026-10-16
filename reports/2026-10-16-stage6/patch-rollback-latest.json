@@ -1,0 +1,16 @@
+{
+  "scope": "TEMPORARY_COPY_APPLY_REVERSE_ONLY",
+  "main_commit": "a8f25945f94ce45300d5e97c9d6a7f622586663e",
+  "production_modified": false,
+  "files": {
+    "probe.py": {
+      "git_blob": "64f4e90dde9e17cc3ff5ebf3779ac040e69b8bd4",
+      "sha256": "e5285d15dcb38b3fa003e2574b0fa3c7b35f5150dfa71cef91e83a5bad8bc936"
+    },
+    ".github/workflows/twse-mis-probe.yml": {
+      "git_blob": "f4e74ee3b3080a9e6ae0aef2f3e1c759384c9ecb",
+      "sha256": "7ca847cab185626af7c0ae8a11563e8041581719f98d97de0a305f9842f0441c"
+    }
+  },
+  "apply_reverse_original_bytes_restored": true
+}

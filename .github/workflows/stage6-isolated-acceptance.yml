@@ -18,7 +18,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Test isolated boundary, queue and journal changes
-        run: python3 -m unittest -v test_stage6_evidence test_stage3_ticks test_stage5_runtime test_stage5_pending_review
+        run: python3 -m unittest discover -v
       - name: Restore existing private evidence and test synthetic publication only
         env:
           STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}

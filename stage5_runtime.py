@@ -80,7 +80,7 @@ class Vault:
 
 
 class Source:
-    def __init__(self, key, directory, vault, *, max_requests=160, opener=None, clock=None, wait=time.sleep, require_durable=False,min_interval=1.3):
+    def __init__(self, key, directory, vault, *, max_requests=160, opener=None, clock=None, wait=time.sleep, require_durable=False,min_interval=1.3,reservation=None):
         if not isinstance(key, str) or len(key) < 20 or not re.fullmatch(r'[A-Za-z0-9+/_=-]+', key):
             raise ValueError('FUGLE_KEY_NOT_CONFIGURED')
         self.key, self.vault = key, vault
@@ -95,13 +95,15 @@ class Source:
         self.wait, self.max_requests = wait, max_requests
         self.lock = threading.Lock()
         self.count, self.last, self.stopped = 0, None, False
+        self.reservation=reservation
+        if reservation is not None:self.count=reservation.count
         ledger=self.directory/'request-budget.json'
         if ledger.exists():
             prior=json.loads(ledger.read_text())
             if prior.get('trade_date')==self.clock().date().isoformat():
                 count=prior.get('request_count')
                 if not isinstance(count,int) or isinstance(count,bool) or count<0:raise ValueError('INVALID_SOURCE_BUDGET_LEDGER')
-                self.count=count
+                self.count=max(self.count,count)
 
     def request(self, candidate, kind, query, deadline):
         if candidate.get('ex') not in ('tse', 'otc') or not re.fullmatch(r'[1-9]\d{3}', candidate.get('code', '')) or kind not in ('quote', 'trades'):
@@ -129,6 +131,11 @@ class Source:
                 self.count += 1
                 atomic(self.directory/'request-budget.json',{'trade_date':date,'request_count':self.count})
                 os.chmod(self.directory/'request-budget.json',0o600)
+                if self.reservation is not None:
+                    try:self.reservation.reserve(self.count,date)
+                    except Exception:
+                        self.stopped=True
+                        raise ValueError('SOURCE_DURABLE_BUDGET_UNAVAILABLE') from None
                 self.last = self.clock()
                 began = self.last.isoformat()
             req = urllib.request.Request(url, headers={'X-API-KEY': self.key, 'Accept': 'application/json', 'Cache-Control': 'no-cache'})

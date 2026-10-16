@@ -27,6 +27,13 @@ def run():
     if os.getenv('GITHUB_REPOSITORY')!='gxaawill2-ui/tw-close-auction-mis-probe' or os.getenv('GITHUB_REF')!='refs/heads/stage4/20261016-fugle-probe':
         raise ValueError('REFUSE_OTHER_ENVIRONMENT')
     REPORT.mkdir(exist_ok=True)
+    req=urllib.request.Request(BASE+'/health',headers={'User-Agent':CLOUD_CLIENT,'Accept':'application/json'})
+    with urllib.request.build_opener(NoRedirect()).open(req,timeout=6) as response:
+        health=json.loads(response.read(4097))
+        if response.status!=200 or health.get('journal_codec_revision')!='bounded-zlib-v1' or health.get('live_validation_released') is not False:
+            raise ValueError('ISOLATED_WORKER_CODEC_OR_GATE_NOT_READY')
+    atomic(REPORT/'deployed-worker-health.json',{'observed_at':datetime.now(f.TZ).isoformat(),'health':health})
+    print(json.dumps({'deployed_worker_health':health,'observed_at':datetime.now(f.TZ).isoformat()}),flush=True)
     vault=Vault(os.getenv('STAGE5_PUBLISH_TOKEN'),os.getenv('STAGE5_DECISION_KEY'))
     root=Path('reports/2026-10-16-stage5');date='2026-10-16'
     refs=json.loads((root/'mis-comparison-references.json').read_text())['rows']

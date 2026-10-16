@@ -1,0 +1,10 @@
+{
+  "synthetic_state": {
+    "state": "RETRACTED",
+    "version": 1792145719746002,
+    "calculated_at": "2026-10-16T18:16:40.633042+08:00",
+    "cloud_written_at": "2026-10-16T10:16:40.742Z",
+    "api_read_at": "2026-10-16T18:16:41.013107+08:00",
+    "sha256": "a1bd9aa5053d19e0071ec312a855d94cdaf8799bfff23d78ac2f3d0eff8c2b5d"
+  }
+}

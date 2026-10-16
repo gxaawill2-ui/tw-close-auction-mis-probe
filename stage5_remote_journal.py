@@ -9,6 +9,7 @@ from stage5_runtime import BASE, NoRedirect
 from stage3_publication import CLOUD_CLIENT
 import re
 import freshness as f
+from stage6_journal_codec import decode
 
 
 def consume(session,index,read,seen):
@@ -29,7 +30,7 @@ def consume(session,index,read,seen):
             or hashlib.sha256(event['raw'].encode()).hexdigest()!=event['sha256']
             or item.get('sha256')!=event['sha256']):
             raise ValueError('PRIVATE_MIS_EVIDENCE_HASH_MISMATCH')
-        journal=json.loads(event['raw']);record=journal.get('record',{})
+        journal=decode(event['raw']);record=journal.get('record',{})
         received=f.parsed_time(record.get('received_at'));saved_at=f.parsed_time(journal.get('persisted_at'))
         record_raw=canonical(record).encode()
         if (journal.get('origin')!='MIS_LOCAL_DURABLE_JOURNAL'
@@ -38,12 +39,14 @@ def consume(session,index,read,seen):
             or not received or not saved_at or not received<=saved_at<=session.clock()
             or received.astimezone(f.TZ).date().isoformat()!=session.date):
             raise ValueError('PRIVATE_MIS_JOURNAL_PROVENANCE_INVALID')
-        session.feed(record,journal['persisted_at']);seen.add(ident)
+        # A private universe manifest is metadata, never a market observation.
+        if record.get('phase')!='stage6_universe':session.feed(record,journal['persisted_at'])
+        seen.add(ident)
 
 
 def follow(session,token,*,opener=None,wait=time.sleep):
     opener=opener or urllib.request.build_opener(NoRedirect()).open
-    seen=set();errors=0
+    seen=set();errors=0;catching_up=True
     def read(ident):
         request=urllib.request.Request(BASE+'/private-mis-journal/'+session.date+'/'+ident,headers={'Authorization':'Bearer '+token,'User-Agent':CLOUD_CLIENT,'Accept':'application/json'})
         with opener(request,timeout=6) as response:
@@ -53,7 +56,17 @@ def follow(session,token,*,opener=None,wait=time.sleep):
     while session.clock()<session.deadline:
         try:
             index=read('index')
-            consume(session,index,read,seen)
+            if catching_up:
+                # A new wall-clock version must not publish an old partial replay
+                # over the cloud's newer complete view during process recovery.
+                publisher=getattr(session,'publisher',None)
+                session.publisher=None
+                try:consume(session,index,read,seen)
+                finally:session.publisher=publisher
+                if seen:
+                    session.compile()
+                    catching_up=False
+            else:consume(session,index,read,seen)
             errors=0
         except Exception:
             errors+=1

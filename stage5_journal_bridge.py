@@ -14,6 +14,7 @@ import urllib.request
 import freshness as f
 from fast_capture_journal import verify
 from stage3_ticks import canonical
+from stage6_journal_codec import encode
 from stage3_publication import envelope, CLOUD_CLIENT
 from stage5_runtime import BASE, NoRedirect
 
@@ -32,7 +33,7 @@ def bridge(journal,date,*,token=None,opener=None,clock=None,wait=time.sleep):
                     start=stream.tell();line=stream.readline()
                     if not line or not line.endswith('\n'):break
                     journal_event=verify(json.loads(line),Path(journal).parent)
-                    raw=canonical(journal_event)
+                    raw=encode(journal_event)
                     event={'source':'MIS','raw':raw,'sha256':hashlib.sha256(raw.encode()).hexdigest()}
                     ident=hashlib.sha256(canonical(event).encode()).hexdigest()
                     body={'trade_date':date,'id':ident,'scope':'PRIVATE_MIS_JOURNAL','event':event}

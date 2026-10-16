@@ -1,0 +1,10 @@
+{
+  "synthetic_state": {
+    "state": "UNKNOWN",
+    "version": 1792145719746001,
+    "calculated_at": "2026-10-16T18:16:00.196405+08:00",
+    "cloud_written_at": "2026-10-16T10:16:00.324Z",
+    "api_read_at": "2026-10-16T18:16:00.631750+08:00",
+    "sha256": "6d76ea6058907716b8e53109910da710c99dde7828c778b084eea7cf6402093a"
+  }
+}
