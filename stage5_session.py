@@ -4,12 +4,50 @@ import json
 import time
 from pathlib import Path
 import freshness as f
+import close_research
+import convergence
 from fast_selection import Engine, atomic, stamp, safe_output
 from stage3_selection import Pipeline
 from stage3_run import saved_version
 from stage3_publication import BackgroundPublisher
 from stage5_runtime import FairQueue, public_view
 from stage5_audit import audit
+
+
+def pending_delayed_reviews(engine):
+    """Private queue only: a single delayed print never becomes a public row."""
+    cache=getattr(engine,'_stage5_pending_cache',{})
+    position=getattr(engine,'_stage5_pending_position',0)
+    changed=set()
+    for record in engine.records[position:]:
+        changed.update((s.get('ex'),s.get('code')) for s in record.get('symbols',[]))
+        changed.update((s.get('ex'),s.get('c')) for s in (record.get('response') or {}).get('msgArray',[]))
+    admitted={(r['ex'],r['code']) for r in engine.priority()}
+    for key in changed:
+        cache.pop(key,None)
+        if key not in engine.universe:continue
+        series=engine.series[key]
+        if key in admitted:continue
+        pre=convergence.pre_with_c(series,engine.date)
+        close=close_research.assess(series,engine.date)
+        selected=close.get('selected')
+        if not pre['converged'] or close['classification']!='delayed_close_candidate' or not selected:continue
+        if any(r.get('phase','').startswith('close_') and r['received_at']>selected['received_at']
+               and f.fresh_candidate(r,engine.date,convergence.MAX_AGE_MS)
+               and (f.identity(r)!=f.identity(selected) or r['server_time']<selected['server_time'])
+               for r in series):continue
+        if any(convergence.probe_comparison(engine.probes[key],ev,engine.date,kind)['status']=='PROBE_CONFLICT'
+               for ev,kind in ((pre,'pre'),({'converged':True,'B':selected},'close'))):continue
+        before=f.decimal_value(pre['B'].get('trade_z'));last=f.decimal_value(selected.get('trade_z'))
+        if not before or before<=0 or not last or last<=0 or abs(last/before-1)<f.Decimal('.03'):continue
+        cache[key]={**engine.universe[key],'P_before':str(before),'P_close':str(last),
+            'P_before_trade_time':pre['B']['trade_t'],'P_close_trade_time':selected['trade_t'],
+            'P_close_convergence_type':'delayed_close_candidate','verification_status':'UNKNOWN',
+            'validated':False,'private_review_only':True,
+            'review_reason':'SINGLE_DELAYED_CLOSE_NEEDS_INDEPENDENT_EVIDENCE'}
+    engine._stage5_pending_cache=cache
+    engine._stage5_pending_position=len(engine.records)
+    return sorted(cache.values(),key=lambda r:r['code'])
 
 
 class Session:
@@ -38,7 +76,7 @@ class Session:
         self.update()
 
     def update(self):
-        rows=self.engine.priority()
+        rows=self.engine.priority()+pending_delayed_reviews(self.engine)
         current={(r['ex'],r['code']):self.queue.fingerprint(r) for r in rows}
         for key in list(self.pipeline.proofs):
             if current.get(key)!=self.fingerprints.get(key):self.pipeline.proofs.pop(key)
@@ -71,13 +109,15 @@ class Session:
 
     def tick(self):
         completed=self.queue.tick()
-        by_key={(r['ex'],r['code']):r for r in self.engine.priority()}
+        by_key={(r['ex'],r['code']):r for r in self.engine.priority()+pending_delayed_reviews(self.engine)}
         for key,bundle in completed:
             if key not in by_key:continue
             self.pipeline.proofs[key]=bundle
             # Full provider evidence lives only in the private source directory.
             atomic(self.source.directory/('proof-'+key[0]+'-'+key[1]+'.json'),bundle)
             self.audits[key]=audit(bundle,by_key[key],self.date,self.clock().isoformat())
+            if by_key[key].get('private_review_only'):
+                self.audits[key]['private_review_only']=True
             self.compile()
         if completed:self.queue.offer(list(by_key.values()))
         if self.publisher:self.publisher.tick()

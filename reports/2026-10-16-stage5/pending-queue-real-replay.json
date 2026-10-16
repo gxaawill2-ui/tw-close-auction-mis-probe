@@ -1,0 +1,27 @@
+{
+  "scope": "INCREMENTAL_OFFLINE_REPLAY_NOT_HISTORICAL_PUBLICATION",
+  "trade_date": "2026-10-16",
+  "assessed_at": "2026-10-16T14:05:03.575203+08:00",
+  "artifact_sha256": "6e0234f6f5f9778b976c14e26cd64e6d795d6dd209357e0052cf34da87ca6413",
+  "formal_run": "38853538676",
+  "unchanged_admitted_research_codes": [
+    "4609",
+    "6228",
+    "1235"
+  ],
+  "private_pending_review_codes": [
+    "5546"
+  ],
+  "research_candidate_count": 3,
+  "private_pending_review_count": 1,
+  "verified_count": 0,
+  "source_requests": 0,
+  "public_writes": 0,
+  "production_modified": false,
+  "original_capture_modified": false,
+  "not_live_target_time_pass": true,
+  "batch_records_replayed": 320,
+  "local_replay_seconds": 3.2487,
+  "private_pending_update_p95_ms": 10.7091,
+  "private_pending_update_max_ms": 58.7227
+}
