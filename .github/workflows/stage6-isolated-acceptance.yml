@@ -1,0 +1,32 @@
+name: Stage6 isolated saved-evidence and synthetic cloud acceptance
+on:
+  push:
+    branches: [stage4/20261016-fugle-probe]
+    paths: [stage6_acceptance.request.json]
+permissions:
+  contents: read
+concurrency:
+  group: stage6-isolated-acceptance-only
+  cancel-in-progress: false
+jobs:
+  isolated:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Test isolated boundary, queue and journal changes
+        run: python3 -m unittest -v test_stage6_evidence test_stage3_ticks test_stage5_runtime test_stage5_pending_review
+      - name: Restore existing private evidence and test synthetic publication only
+        env:
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: python3 stage6_acceptance.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage6-safe-acceptance-${{ github.run_id }}
+          path: stage6-safe-report/
+          retention-days: 30

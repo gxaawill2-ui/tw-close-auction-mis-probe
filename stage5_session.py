@@ -108,8 +108,12 @@ class Session:
         return view
 
     def tick(self):
+        # Re-offer current fingerprints even when a stale in-flight result is
+        # discarded. Otherwise that security waits forever for another MIS batch.
+        rows = self.engine.priority()+pending_delayed_reviews(self.engine)
+        self.queue.offer(rows)
         completed=self.queue.tick()
-        by_key={(r['ex'],r['code']):r for r in self.engine.priority()+pending_delayed_reviews(self.engine)}
+        by_key={(r['ex'],r['code']):r for r in rows}
         for key,bundle in completed:
             if key not in by_key:continue
             self.pipeline.proofs[key]=bundle
@@ -119,7 +123,7 @@ class Session:
             if by_key[key].get('private_review_only'):
                 self.audits[key]['private_review_only']=True
             self.compile()
-        if completed:self.queue.offer(list(by_key.values()))
+        self.queue.offer(list(by_key.values()))
         if self.publisher:self.publisher.tick()
         atomic(self.directory/'queue-state.json',{'trade_date':self.date,
             'attempts':[{'ex':key[0],'code':key[1],'fingerprint':fp,'count':n} for (key,fp),n in self.queue.attempts.items()]})

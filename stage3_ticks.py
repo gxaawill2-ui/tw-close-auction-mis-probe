@@ -28,11 +28,13 @@ class SourceContract:
     time_unit: str = 'MICROSECONDS'
     independently_delivered: bool = False
     live_release: bool = False
+    same_timestamp_order: str = 'UNSPECIFIED'
 
 
 LIVE_CONTRACT = SourceContract()
 TEST_CONTRACT = SourceContract('SYNTHETIC_FUGLE_V1', rows_equal_transaction_count=True,
-    size_sum_equal_regular_volume=True, independently_delivered=True)
+    size_sum_equal_regular_volume=True, independently_delivered=True,
+    same_timestamp_order='SERIAL_ASCENDING')
 
 
 def trade_time(value):
@@ -49,6 +51,19 @@ def integer(value):
 
 def identity(tick):
     return tick['time'], tick['serial'], f.decimal_value(tick['price'])
+
+
+def last_pre_group(ticks, cutoff):
+    """Price certainty without inventing an ordering within equal timestamps.
+
+    This says nothing about missing rows or source completeness. Callers must
+    separately validate the entire response and the source contract.
+    """
+    before = [t for t in ticks if trade_time(t['time']) < cutoff]
+    if not before:
+        return []
+    latest = max(t['time'] for t in before)
+    return [t for t in before if t['time'] == latest]
 
 
 def packet(body, received_at, requested_at=None, query=None, headers=None):
@@ -171,7 +186,9 @@ def inspect(bundle, candidate, date, as_of, *, mode='LIVE', contract=LIVE_CONTRA
                     not price or price <= 0 or tick.get('isTrial') is True):
                 raise ValueError('INVALID_DUPLICATE_OR_TRIAL_TICK')
             serials.add(tick['serial']); times.append((tick['time'],tick['serial'])); sizes.append(tick['size'])
-        if times != sorted(times, reverse=True):
+        if [t[0] for t in times] != sorted((t[0] for t in times), reverse=True):
+            raise ValueError('TICK_ORDER_OR_SAME_SECOND_CONFLICT')
+        if contract.same_timestamp_order == 'SERIAL_ASCENDING' and times != sorted(times, reverse=True):
             raise ValueError('TICK_ORDER_OR_SAME_SECOND_CONFLICT')
         ordered_serials = sorted(serials)
         result['serial_gap_count'] = sum(b-a > 1 for a,b in zip(ordered_serials, ordered_serials[1:]))
@@ -189,9 +206,13 @@ def inspect(bundle, candidate, date, as_of, *, mode='LIVE', contract=LIVE_CONTRA
         if trade_time(after['lastUpdated']) < trade_time(last['time']):
             raise ValueError('SOURCE_UPDATE_PRECEDES_ACTUAL_TRADE')
         cutoff = f.parsed_time(date+'T13:25:00+08:00')
-        pre = next((t for t in ticks if trade_time(t['time']) < cutoff), None)
-        if not pre:
+        pre_group = last_pre_group(ticks, cutoff)
+        if not pre_group:
             raise ValueError('NO_TRADE_BEFORE_CUTOFF')
+        result['pre_group_price_unique'] = len({f.decimal_value(t['price']) for t in pre_group}) == 1
+        if not result['pre_group_price_unique'] and contract.same_timestamp_order != 'SERIAL_ASCENDING':
+            raise ValueError('PRE_CUTOFF_SAME_MICROSECOND_PRICE_AMBIGUOUS')
+        pre = max(pre_group, key=lambda t:t['serial']) if contract.same_timestamp_order == 'SERIAL_ASCENDING' else pre_group[0]
         result['pre_tick'] = pre
         if (f.decimal_value(pre['price']) != f.decimal_value(candidate.get('P_before')) or
             trade_time(pre['time']).strftime('%H:%M:%S') != candidate.get('P_before_trade_time')):
