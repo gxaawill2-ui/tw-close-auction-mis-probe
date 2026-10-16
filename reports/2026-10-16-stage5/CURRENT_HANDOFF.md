@@ -1,3 +1,10 @@
+# 13:25 後的真實保存補充（2026-10-16T13:30:23+08:00）
+
+- 新私有Run38854461494：AFTER_CUTOFF的2330於13:25:18.157152、6488於13:25:22.031749已保存，皆private_evidence_recoverable_after_job=true；截止前後共4份bundle，2檔控制股票，VERIFIED仍0。詳real-private-cutoff-observations.json。
+- 正式state於13:27:15.539更新：Run38853538676 running / pre_reference_B / preclose_captured=true / universe1967。這是正式保存狀態，不代表P_before已獨立證明。
+- 原Fugle Run38845027079仍in_progress，但截至13:27重整GitHub日誌，只觀測到11:20初始化診斷，未見其13:24/13:25新紀錄。可能是控制程序或日誌可觀測性問題，尚未確定；不能只依run狀態宣稱成功，也不可中斷/重啟。盤後讀sanitized day-report的control_capture_error_type等欄位再查原因。
+- 新私有保存任務、既有Artifact研究publisher都仍持續。尚未驗收正常收盤、延後收盤與真實raw跨Runner恢復。
+
 # 13:24 真實證據保存確認（2026-10-16T13:25:32+08:00）
 
 Run38854461494已於13:24:03.194922保存2330、13:24:07.214021保存6488；兩筆safe log都確認private_evidence_recoverable_after_job=true及獨立manifest id。

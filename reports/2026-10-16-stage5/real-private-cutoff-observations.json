@@ -1,0 +1,71 @@
+{
+  "scope": "REAL_PRIVATE_CONTROL_CAPTURE_SAFE_LOG_METADATA_ONLY",
+  "run_id": 38854461494,
+  "job_id": 116822705363,
+  "browser_observed_at": "2026-10-16T05:28:19.174Z",
+  "events": [
+    {
+      "event": "PRIVATE_CONTROL_SAVED",
+      "phase": "PRE_CUTOFF",
+      "symbol": "2330",
+      "observed_at": "2026-10-16T13:24:03.194922+08:00",
+      "status": "UNKNOWN",
+      "private_manifest_id": "4cd55990a58164e5cb50d2a99263c12c0a22dd8a11be63b872e92db80a318ec0",
+      "private_evidence_recoverable_after_job": true,
+      "reasons": [
+        "QUOTE_CHANGED_DURING_PAGINATION",
+        "FULL_DAY_COUNT_AND_VOLUME_NOT_PROVEN",
+        "QUOTE_HEAD_CONFLICT",
+        "CLOSE_FINALITY_NOT_PROVEN",
+        "PROVIDER_COMPLETENESS_AND_ORDER_CONTRACT_NOT_RELEASED"
+      ]
+    },
+    {
+      "event": "PRIVATE_CONTROL_SAVED",
+      "phase": "PRE_CUTOFF",
+      "symbol": "6488",
+      "observed_at": "2026-10-16T13:24:07.214021+08:00",
+      "status": "UNKNOWN",
+      "private_manifest_id": "3636d7581a5a97dfa5e8cad0727566357d99b7bf8cc88db9c3e7fd83150ce625",
+      "private_evidence_recoverable_after_job": true,
+      "reasons": [
+        "QUOTE_CHANGED_DURING_PAGINATION",
+        "SAME_MICROSECOND_ORDER_NOT_DOCUMENTED",
+        "FULL_DAY_COUNT_AND_VOLUME_NOT_PROVEN",
+        "CLOSE_FINALITY_NOT_PROVEN",
+        "PROVIDER_COMPLETENESS_AND_ORDER_CONTRACT_NOT_RELEASED"
+      ]
+    },
+    {
+      "event": "PRIVATE_CONTROL_SAVED",
+      "phase": "AFTER_CUTOFF",
+      "symbol": "2330",
+      "observed_at": "2026-10-16T13:25:18.157152+08:00",
+      "status": "UNKNOWN",
+      "private_manifest_id": "b78c01a9991aa1078c8586a2f5c1156915f0b93cc6327f5a58db3f2c5e285cd1",
+      "private_evidence_recoverable_after_job": true,
+      "reasons": [
+        "FULL_DAY_COUNT_AND_VOLUME_NOT_PROVEN",
+        "CLOSE_FINALITY_NOT_PROVEN",
+        "PROVIDER_COMPLETENESS_AND_ORDER_CONTRACT_NOT_RELEASED"
+      ]
+    },
+    {
+      "event": "PRIVATE_CONTROL_SAVED",
+      "phase": "AFTER_CUTOFF",
+      "symbol": "6488",
+      "observed_at": "2026-10-16T13:25:22.031749+08:00",
+      "status": "UNKNOWN",
+      "private_manifest_id": "ce9cdc42eae083b5668e50b61f86e4efc15da9972f524facef3a30baaae283d1",
+      "private_evidence_recoverable_after_job": true,
+      "reasons": [
+        "FULL_DAY_COUNT_AND_VOLUME_NOT_PROVEN",
+        "CLOSE_FINALITY_NOT_PROVEN",
+        "PROVIDER_COMPLETENESS_AND_ORDER_CONTRACT_NOT_RELEASED"
+      ]
+    }
+  ],
+  "verified_count": 0,
+  "raw_market_data_in_report": false,
+  "original_run_cutoff_logs_observed": false
+}
