@@ -3,6 +3,7 @@ from datetime import datetime, timezone, timedelta
 import json
 import os
 from pathlib import Path
+import re
 import urllib.error
 import urllib.request
 
@@ -45,7 +46,7 @@ def summarize(payload, code, kind, today):
 
 
 def probe(key, opener=None, today=None):
-    if not isinstance(key, str) or len(key.strip()) < 20:
+    if not isinstance(key, str) or len(key) < 20 or not re.fullmatch(r'[A-Za-z0-9+/_=-]+', key):
         raise ValueError('ISOLATED_KEY_NOT_CONFIGURED')
     opener = opener or urllib.request.build_opener(NoRedirect()).open
     today = today or datetime.now(timezone(timedelta(hours=8))).date().isoformat()

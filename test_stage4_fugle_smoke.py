@@ -49,8 +49,9 @@ class SmokeTests(unittest.TestCase):
         self.assertFalse(summarize({'date': '2026-10-16', 'symbol': '2330', 'data': []}, '2330', 'trades', '2026-10-16')['schema_pass'])
 
     def test_missing_key_never_requests_and_redirects_never_forward_it(self):
-        with self.assertRaises(ValueError):
-            probe(None, lambda *args: self.fail('request made'))
+        for bad_key in (None, self.key + '\n', self.key + ' 提醒您', ' ' + self.key):
+            with self.assertRaises(ValueError):
+                probe(bad_key, lambda *args: self.fail('request made'))
         self.assertIsNone(NoRedirect().redirect_request(None, None, 302, '', {}, 'https://example.com'))
 
 
