@@ -28,6 +28,7 @@ jobs:
           p=Path('stage5-benchmark-report/journal-benchmark.json')
           d=json.loads(p.read_text());d['scope']='SYNTHETIC_SEPARATE_GITHUB_RUNNER_NOT_FORMAL_CAPTURE_OR_REAL_MARKET'
           d['run_id']=os.getenv('GITHUB_RUN_ID');d['source_commit']=os.getenv('GITHUB_SHA')
+          d['limitations'][0]='Separate GitHub runner filesystem; formal collector disk latency is still unmeasured.'
           p.write_text(json.dumps(d,indent=2));print(p.read_text())
           PY
       - uses: actions/upload-artifact@v4

@@ -1,0 +1,16 @@
+{
+  "observed_at": "2026-10-16T12:46:18.518423+08:00",
+  "comparison_base_main": "3f0bfbabec45bc97d3fd105c4bc5b19340f81943",
+  "observed_main": "cee24d76a8bf1c37add54ee0272a0ae857b4bbd5",
+  "main_advanced_by_existing_index_bot": true,
+  "formal_collector_blob_before_and_after": "64f4e90dde9e17cc3ff5ebf3779ac040e69b8bd4",
+  "formal_workflow_blob_before_and_after": "f4e74ee3b3080a9e6ae0aef2f3e1c759384c9ecb",
+  "formal_files_unchanged": true,
+  "active_fugle_run_id": 38845027079,
+  "active_job_id": 116793492688,
+  "last_observed_status": "in_progress",
+  "capture_stopped_or_restarted": false,
+  "extra_all_market_capture_started": false,
+  "formal_dispatch_sent": false,
+  "production_deployed": false
+}

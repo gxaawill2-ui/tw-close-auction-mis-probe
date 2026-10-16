@@ -27,10 +27,10 @@
 
 ## 風險與限制
 
-- 每批增加兩次本機 fsync；磁碟停頓仍可能拖慢 callback，尚未在正式 runner 量測。寫入失敗的測試已確認不會中止正式擷取。
+- 每批增加兩次本機 fsync；磁碟停頓仍可能拖慢 callback。獨立 GitHub Runner 的合成測試已量測 P95 2.104ms、首批最大 5.11ms，正式正在執行的 runner 尚未量測。寫入失敗的測試已確認不會中止正式擷取。
 - 共用 runner 的背景程式可能在正式 job 結束時被清理；這份最小補丁不能承諾獨立運作到 14:30。要達成完整續跑，須另行審閱私有 journal bridge 與獨立 consumer；其隔離程式已備妥但未啟用、未新增 bridge Secret。
 - Source raw 只能寫私有暫存及授權私有端點，不能落入正式 `results/` 上傳範圍。
-- 今天測試 Worker 的外部 API 是 403，瀏覽器也遭政策阻擋；此問題及私有長期保存未通過前，不應啟用正式串接。
+- 測試 Worker 的外部 Runner API 已恢復 HTTP 200，瀏覽器實際更新尚未驗收；publisher 憑證交接及私有雲端寫入／讀回通過前，不應啟用正式串接。
 - 完整性、同微秒排序及收盤最終性尚未實盤證明；`ALLOW_LIVE_VERIFIED=false` 與 source contract release 維持關閉。這份提案不會放行 VERIFIED。
 
 ## 已執行的提案測試
@@ -48,3 +48,5 @@
 需要完全回復時，只撤回此補丁涉及的三個檔案變更；不撤回當日正式資料、歷史資料或其他人的提交。
 
 本提案須使用者另行批准後，才可改正式檔案與權限；本輪均未實施。
+
+新增量測：`journal-benchmark-github-runner.json` 保存 Run 38851927830 的 2,000 檔合成測試、10 輪 on/off/on 結果。40 批最終舊 raw 逐位元一致，停用不再寫 journal；沒有 MIS/Fugle 請求。此驗證沒有套用正式補丁。

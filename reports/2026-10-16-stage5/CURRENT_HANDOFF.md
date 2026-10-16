@@ -1,3 +1,20 @@
+# 本輪續接更新（2026-10-16T12:44:59+08:00）
+
+優先以本節為準；下方是先前檢查的歷史狀態。
+
+- 今日真實 Fugle Run `38845027079`／Job `116793492688` 再確認 in_progress，未停止或重啟。
+- Cloudflare 外部 403 已確定 code 1010；誠實專案 User-Agent 後，Run `38851428931` 在 12:35:48 台北時間 health 與 encrypted handoff 皆 200。詳 `cloud-external-recovery.json`。
+- 此修正已套入隔離 Python publisher/vault/bridge。沒有修改 Cloudflare 安全設定，也沒有重建 Worker。
+- 既有 writer pair 已安全本機解封，未印明文，尚未存入 GitHub；瀏覽器安全規則要求新增持續憑證存取前當下確認，詳 `PRIVATE_STORAGE_AND_HANDOFF.md`。不可把交接當作已完成。
+- 新增私有 canary、完整 hash export/續傳、archive failure 停止來源；launcher 必須先通過私有雲端 canary。新程式不影響固定 source 的今日 Run。
+- 今日 Run 仍是 LocalVault；更新 Secret 無法讓它動態補接，約14:29:30結束會清除 raw。未找到不改動執行中工作且不公開 raw 的安全取回路徑。此限制不能省略。
+- 本機完整 Python 395 項通過。新增 archive/recovery/hash/持續保存失敗測試，無 MIS/Fugle 真實請求。
+- GitHub 獨立合成 benchmark Run `38851927830`／Job `116814836213` 成功，2,000 檔、40 批、10 輪、400 筆 journal hash 全驗證；fsync P95 2.104ms、首批最大 5.11ms、on/off 舊輸出逐位元相同，停用不再寫 journal。這不是正式 collector 的實盤延遲。
+- 正式 main 因既有 index bot 自行產生新 commit，不能說 main SHA 完全沒變。唯讀比對 3f0b... 與 cee24d...：probe blob 都是64f4e90dde9e17cc3ff5ebf3779ac040e69b8bd4，正式workflow blob都是f4e74ee3b3080a9e6ae0aef2f3e1c759384c9ecb；本輪沒有修改。
+- 最新已推送實作 Commit `e14e3eaf260dc09bcbd0799e489972231fe5130b`；最新 reports commit 請看分支 HEAD。
+- 專用 cloud publisher 檢查 workflow 已備妥但 marker 不存在，尚未執行；不帶富果 Key、只測合成公開結果和私有合成 canary，不應重開今日 capture marker。
+- 13:05、15:35 與11/11提醒沿用原任務，不新增重複排程。外部桌機與實體手機仍未 PASS；VERIFIED=0，正式上線未通過。
+
 # Stage5 接手紀錄 — 2026/10/16 12:13 台北時間
 
 ## 最重要：不要停掉或重跑今天的任務
