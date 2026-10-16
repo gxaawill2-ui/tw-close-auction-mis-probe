@@ -52,3 +52,5 @@
 新增量測：`journal-benchmark-github-runner.json` 保存 Run 38851927830 的 2,000 檔合成測試、10 輪 on/off/on 結果。40 批最終舊 raw 逐位元一致，停用不再寫 journal；沒有 MIS/Fugle 請求。此驗證沒有套用正式補丁。
 
 13:13補丁驗證：在已核對正式blob的暫存副本執行git apply、反向apply，原始bytes完全還原，新模組亦移除。詳patch-rollback-check.json。沒有修改正式檔案。
+
+目前已實測：3檔研究結果13:34:40寫入隔離Worker，3檔候選都查核並更新，真實raw均已跨Runner恢復。VERIFIED=0、29檔不可計算、桌機/實體手機未驗收；仍不應解除正式保護或自動套用本提案。

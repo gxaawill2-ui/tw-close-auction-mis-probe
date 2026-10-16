@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-10-16T13:30:23+08:00",
+  "observed_at": "2026-10-16T13:52:52+08:00",
   "formal_run_id": 38853538676,
   "formal_job_id": 116819837674,
   "formal_universe_count": 1967,
@@ -11,8 +11,8 @@
   "new_mis_artifact_publisher_run_id": 38854918750,
   "new_mis_artifact_publisher_job_id": 116824118632,
   "new_jobs_scope": "ISOLATED_NO_FORMAL_WRITE_OR_MIS_RECAPTURE",
-  "new_true_private_capture_completed": false,
-  "new_true_candidate_publication_completed": false,
+  "new_true_private_capture_completed": true,
+  "new_true_candidate_publication_completed": true,
   "verified_count": 0,
   "pre_cutoff_true_private_saved_count": 2,
   "pre_cutoff_saved_observed_times": [
@@ -26,5 +26,26 @@
   ],
   "original_cutoff_phase_logs_observed": false,
   "formal_preclose_captured": true,
-  "formal_state_updated_at": "2026-10-16T13:27:15.539+08:00"
+  "formal_state_updated_at": "2026-10-16T13:27:15.539+08:00",
+  "formal_status": "partial",
+  "formal_phase": "completed",
+  "screening_calculable_count": 1938,
+  "screening_unresolved_count": 29,
+  "research_candidate_count": 3,
+  "control_private_bundles_restored": 10,
+  "control_raw_restored_at": "2026-10-16T13:35:39.319585+08:00",
+  "first_research_at": "2026-10-16T13:34:38.998282+08:00",
+  "first_research_cloud_written_at": "2026-10-16T05:34:40.743Z",
+  "first_research_anonymous_read_at": "2026-10-16T13:34:41.050889+08:00",
+  "candidate_audit_runs": [
+    38856613147,
+    38857068920
+  ],
+  "candidates_privately_audited": 3,
+  "candidate_raw_recovery_run": 38857337896,
+  "candidate_raw_restored_at": "2026-10-16T13:44:31.217910+08:00",
+  "original_fugle_task_restarted": false,
+  "actual_external_desktop_pass": false,
+  "physical_phone_pass": false,
+  "formal_deployment_pass": false
 }

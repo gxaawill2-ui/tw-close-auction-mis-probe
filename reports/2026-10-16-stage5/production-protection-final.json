@@ -1,0 +1,19 @@
+{
+  "observed_main_commit": "393446aa5324d3b60e9ca04563cb6006a351305e",
+  "formal_files": [
+    {
+      "path": ".github/workflows/twse-mis-probe.yml",
+      "sha": "f4e74ee3b3080a9e6ae0aef2f3e1c759384c9ecb"
+    },
+    {
+      "path": "probe.py",
+      "sha": "64f4e90dde9e17cc3ff5ebf3779ac040e69b8bd4"
+    }
+  ],
+  "expected_probe_blob": "64f4e90dde9e17cc3ff5ebf3779ac040e69b8bd4",
+  "expected_workflow_blob": "f4e74ee3b3080a9e6ae0aef2f3e1c759384c9ecb",
+  "unchanged": true,
+  "production_deployed_by_this_work": false,
+  "formal_dispatch_sent": false,
+  "existing_capture_restarted": false
+}

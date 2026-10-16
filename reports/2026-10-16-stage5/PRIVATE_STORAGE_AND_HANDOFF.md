@@ -1,3 +1,9 @@
+# 真實行情保存補充（2026-10-16T13:49:13+08:00）
+
+真實控制10份bundle已於13:35:39由另一Runner恢復；三檔真實候選亦於13:44:31在新Runner恢復成功。均驗證原manifest/event/raw hash，原始行情沒有公開。公開研究欄位仍只採MIS。
+私有保存只限約7天，自當日namespace首筆寫入起計，不是永久。Source contract和live VERIFIED門檻仍關閉。
+以下交接前方案僅為歷史脈絡，最新狀態以CURRENT_HANDOFF及DAILY_ACCEPTANCE為準。
+
 # 已完成交接與真實雲端驗收（2026-10-16T13:21:36+08:00）
 
 使用者13:04:36明確同意後，已將既有writer pair安全存入指定Environment的兩個Secret。1 branch / 0 tags限制不變；FUGLE_API_KEY未更動，沒有新增main admission。瀏覽器名稱列表已核對，截圖publisher-secrets-saved.jpg不含明文。本機writer明文暫存已清除。
