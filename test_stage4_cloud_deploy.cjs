@@ -3,6 +3,11 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const {validateTarget,acceptance,BRANCH}=require('./isolated_publication/stage4-cloud-deploy.cjs');
 const configuration=()=>JSON.parse(fs.readFileSync('./isolated_publication/stage4.wrangler.jsonc','utf8'));
 const environment=()=>({WORKERS_CI:'1',WORKERS_CI_BRANCH:BRANCH,WORKERS_CI_COMMIT_SHA:'a'.repeat(40)});
+test('read ETags compare strong, weak, lists and wildcard without matching other versions or malformed values',async()=>{
+ const {matchesReadETag}=await import('./isolated_publication/worker.mjs');
+ for(const value of ['"current"','W/"current"',' "old", W/"current" ','*','"old,tag", "current"'])assert.equal(matchesReadETag(value,'"current"'),true,value);
+ for(const value of [null,'','"old"','W/"old"','"current-suffix"','current','"current"junk','"current",','*, "current"'])assert.equal(matchesReadETag(value,'"current"'),false,value);
+});
 test('deployment refuses local invocation, main, wrong Worker, namespace, routes and live release before mutation',()=>{
  assert.doesNotThrow(()=>validateTarget(configuration(),environment()));
  for(const env of [{}, {...environment(),WORKERS_CI_BRANCH:'main'},{...environment(),WORKERS_CI_COMMIT_SHA:'bad'}])assert.throws(()=>validateTarget(configuration(),env));
@@ -21,5 +26,20 @@ test('synthetic cloud acceptance against REAL LOCAL workerd SQLite: signed write
   report.scope='SYNTHETIC_LOCAL_WORKERD_NOT_CLOUDFLARE_OR_EXTERNAL_BROWSER';
   const encoded=JSON.stringify(report);assert.ok(!encoded.includes(token)&&!encoded.includes(key));
   fs.mkdirSync('reports/2026-10-15-stage4/cloud-preparation',{recursive:true});fs.writeFileSync('reports/2026-10-15-stage4/cloud-preparation/transport-local.json',JSON.stringify(report,null,2)+'\n');
+ }finally{await worker.dispose();}
+});
+test('cloud compression weak ETag still revalidates unchanged data and cannot hide updates',async()=>{
+ const {worker,token,key,url}=await require('./stage3_worker_runtime.cjs').startWorker();
+ try{
+  const fetcher=async(target,options)=>{
+   const reply=await fetch(target,options);
+   const tag=reply.headers.get('etag');
+   if(reply.status!==200||!tag)return reply;
+   const headers=new Headers(reply.headers);headers.set('etag','W/'+tag);
+   return new Response(await reply.arrayBuffer(),{status:reply.status,headers});
+  };
+  const report=await acceptance({base:url,token,key,allowLoopback:true,fetcher});
+  assert.ok(report.checks.some(c=>c.name==='etag-current-304'&&c.status==='PASS'));
+  assert.ok(report.checks.some(c=>c.name==='old-etag-does-not-hide-update'&&c.status==='PASS'));
  }finally{await worker.dispose();}
 });

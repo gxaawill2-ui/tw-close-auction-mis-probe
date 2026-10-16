@@ -11,6 +11,23 @@ export async function sign(body,key){
  return hex(await crypto.subtle.sign('HMAC',secret,encoder.encode(canonical(body))));
 }
 function equal(a,b){if(typeof a!=='string'||typeof b!=='string'||a.length!==b.length)return false;let diff=0;for(let i=0;i<a.length;i++)diff|=a.charCodeAt(i)^b.charCodeAt(i);return diff===0;}
+export function matchesReadETag(value,etag){
+ // If-None-Match uses weak comparison (RFC 9110 13.1.2). Cloudflare
+ // compression can change a strong response tag into W/"...".
+ if(typeof value!=='string')return false;
+ let rest=value.trim(),matched=false;
+ if(rest==='*')return true;
+ while(rest){
+  const token=/^(?:W\/)?"[\x21\x23-\x7e\x80-\xff]*"/.exec(rest);
+  if(!token)return false;
+  if(token[0].replace(/^W\//,'')===etag.replace(/^W\//,''))matched=true;
+  rest=rest.slice(token[0].length).trim();
+  if(!rest)return matched;
+  if(rest[0]!==',')return false;
+  rest=rest.slice(1).trim();
+ }
+ return false;
+}
 export function meetsTailThreshold(before,close){
  // Match Python Decimal at the inclusive +/-3% boundary, without binary rounding.
  const fraction=value=>{
@@ -91,7 +108,7 @@ export class SelectionStore{
    const saved=await storage.get('date:'+url.searchParams.get('date'));
    if(!saved)return response(404,{error:'NO_PUBLISHED_DATA'});
    const headers={ETag:'"'+saved.sha256+'"','X-Published-At':saved.public_written_at};
-   if(request.headers.get('If-None-Match')===headers.ETag)return new Response(null,{status:304,headers:{...headers,'Cache-Control':'no-store','Access-Control-Allow-Origin':'*'}});
+   if(matchesReadETag(request.headers.get('If-None-Match'),headers.ETag))return new Response(null,{status:304,headers:{...headers,'Cache-Control':'no-store','Access-Control-Allow-Origin':'*'}});
    return response(200,saved,headers);
   }
   const body=await request.json();

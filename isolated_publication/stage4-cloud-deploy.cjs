@@ -49,6 +49,10 @@ async function acceptance({base=BASE,token,key,fetcher=fetch,wait=ms=>new Promis
  assert(/no-store/.test(read.response.headers.get('cache-control')||'')&&read.response.headers.get('access-control-allow-origin')==='*','CACHE_OR_CORS_FAILED');pass('no-store-and-anonymous-cors');
  const etag=read.response.headers.get('etag');assert(etag,'MISSING_ETAG');
  await expect('etag-current-304',data,304,{headers:{'If-None-Match':etag}});
+ const weakEtag=etag.startsWith('W/')?etag:'W/'+etag;
+ await expect('etag-weak-current-304',data,304,{headers:{'If-None-Match':weakEtag}});
+ await expect('etag-list-current-304',data,304,{headers:{'If-None-Match':'"another-version", '+weakEtag}});
+ await expect('etag-wildcard-current-304',data,304,{headers:{'If-None-Match':'*'}});
  let duplicate=await expect('idempotent-write','/publish',200,post(body));assert(duplicate.body?.duplicate===true,'IDEMPOTENCY_FAILED');
  await expect('stale-version-rejected','/publish',409,post({...body,version:version-1}));
  await expect('same-version-conflict-rejected','/publish',409,post({...body,transport_nonce:'conflicting'}));
