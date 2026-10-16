@@ -1,0 +1,53 @@
+name: Stage7 full isolated validation and archived field review
+on:
+  push:
+    branches: [stage4/20261016-fugle-probe]
+    paths: [stage7_validation.request.json]
+permissions:
+  contents: read
+concurrency:
+  group: stage7-isolated-validation-only
+  cancel-in-progress: false
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Python safety and recovery suite
+        run: python3 -m unittest discover -v
+      - name: Install pinned isolated Node and local workerd test dependencies
+        run: |
+          npm ci --ignore-scripts
+          npm install --prefix "$RUNNER_TEMP/stage7-workerd" --ignore-scripts miniflare@4.20260730.0
+      - name: Node, actual local workerd, private archive and bridge tests
+        env:
+          MINIFLARE_MODULE: ${{ runner.temp }}/stage7-workerd/node_modules/miniflare
+        run: |
+          npm test
+          node stage7_local_e2e.cjs
+          git fetch --no-tags origin main:refs/remotes/origin/main
+          python3 stage7_prepare_review.py
+  private-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Review original fields from private long-term archive only
+        env:
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: python3 -u stage7_archive.py review
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage7-safe-field-review-${{ github.run_id }}
+          path: stage7-review-report/
+          retention-days: 30

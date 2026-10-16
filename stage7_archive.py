@@ -18,7 +18,7 @@ from stage3_ticks import canonical
 from stage3_publication import envelope, CLOUD_CLIENT
 from stage5_archive import checked
 from stage5_runtime import Vault, restore_bundle
-from stage6_evidence import diagnose
+from stage7_evidence import review
 
 
 class ArchiveVault(Vault):
@@ -97,15 +97,22 @@ def diagnostics(archive,date):
     ids['5546']=json.loads((root/'real-delayed-private-audit.json').read_text())['diagnostic']['private_manifest_id']
     refs=json.loads((root/'mis-comparison-references.json').read_text())['rows']
     return {'scope':'ARCHIVED_REAL_EVIDENCE_REANALYSIS_NOT_LIVE','provider_requests':0,
-        'verified_count':0,'results':[diagnose(restore_bundle(archive,date,ids[r['code']]),r,date,datetime.now(f.TZ).isoformat()) for r in refs]}
+        'verified_count':0,'results':[review(restore_bundle(archive,date,ids[r['code']]),r,date,datetime.now(f.TZ).isoformat()) for r in refs]}
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('mode',choices=['copy','recover']);p.add_argument('--date',default='2026-10-16');p.add_argument('--manifest',default='stage7-copy-report/copy.json');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('mode',choices=['copy','recover','review']);p.add_argument('--date',default='2026-10-16');p.add_argument('--manifest',default='stage7-copy-report/copy.json');a=p.parse_args()
     if os.getenv('GITHUB_REPOSITORY')!='gxaawill2-ui/tw-close-auction-mis-probe' or os.getenv('GITHUB_REF')!='refs/heads/stage4/20261016-fugle-probe':raise ValueError('REFUSE_OTHER_ENVIRONMENT')
     vault=Vault(os.getenv('STAGE5_PUBLISH_TOKEN'),os.getenv('STAGE5_DECISION_KEY'));archive=ArchiveVault(vault.token,vault.key)
     out=Path('stage7-'+a.mode+'-report');out.mkdir(exist_ok=True)
     if a.mode=='copy':report=copy_snapshot(vault,archive,a.date)
+    elif a.mode=='review':
+        proof=json.loads(Path('reports/2026-10-16-stage7/real-private-archive-proof.json').read_text())['proofs'][0]
+        entries=validate_index(archive.read(a.date,'index'))
+        if len(entries)!=proof['object_count'] or snapshot_digest(entries)!=proof['manifest_sha256']:raise ValueError('ARCHIVE_SNAPSHOT_CHANGED')
+        report=diagnostics(archive,a.date)
+        report.update(archive_manifest_sha256=proof['manifest_sha256'],run_id=os.getenv('GITHUB_RUN_ID'),source_commit=os.getenv('GITHUB_SHA'),archive_expires_at=proof['archive_expires_at'])
+        for row in report['results']:print(json.dumps({'safe_field_review':row}),flush=True)
     else:
         report=recover_snapshot(archive,a.date,json.loads(Path(a.manifest).read_text()))
         atomic(out/'diagnostics.json',diagnostics(archive,a.date))

@@ -1,0 +1,57 @@
+{
+  "scope": "OFFLINE_REAL_SAVED_MIS_C2_PLAN_NOT_A_NEW_CAPTURE",
+  "analyzed_at": "2026-10-16T19:21:54.047785+08:00",
+  "records_replayed": 320,
+  "batch_count": 320,
+  "elapsed_seconds": 2.024937710999893,
+  "universe_count": 1967,
+  "screening_calculable_count": 1938,
+  "screening_unresolved_count": 29,
+  "research_codes_before": [
+    "4609",
+    "6228",
+    "1235"
+  ],
+  "research_codes_after": [
+    "4609",
+    "6228",
+    "1235"
+  ],
+  "full_market_no_false_negative_claim": false,
+  "verified_count": 0,
+  "mis_requests": 0,
+  "fugle_requests": 0,
+  "proposal": {
+    "scope": "ISOLATED_OFFLINE_C2_PLAN_ONLY",
+    "status": "REQUIRES_SEPARATE_FORMAL_APPROVAL",
+    "symbols": [
+      {
+        "code": "5546",
+        "name": "永固-KY",
+        "market": "TWSE",
+        "ex": "tse",
+        "listing_date": "20200520",
+        "company_name": "永固集團股份有限公司",
+        "trade_flags": {},
+        "attempt_key": "tse:5546",
+        "next_symbol_attempt": 1,
+        "reason": "DELAYED_CLOSE_NEEDS_DISTINCT_EVIDENCE",
+        "private_review_only": true,
+        "validated": false,
+        "delayed_priority": true
+      }
+    ],
+    "eligible_count": 1,
+    "deferred_count": 0,
+    "exhausted": [],
+    "cooldown": [],
+    "max_symbols": 12,
+    "max_attempts_per_symbol_per_day": 2,
+    "timeout_seconds": 5,
+    "cooldown_seconds": 3,
+    "latest_receive_at": "2026-10-16T13:34:50+08:00",
+    "no_request_after": "2026-10-16T13:34:42+08:00",
+    "mis_requests": 0,
+    "public_admission_unchanged": true
+  }
+}

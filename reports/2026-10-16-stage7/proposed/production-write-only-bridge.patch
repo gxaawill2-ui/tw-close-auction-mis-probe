@@ -1,0 +1,42 @@
+--- a/.github/workflows/twse-mis-probe.yml
++++ b/.github/workflows/twse-mis-probe.yml
+@@ -91,10 +91,12 @@
+           if-no-files-found: warn
+           retention-days: 14
+   probe:
++    environment: stage7-mis-bridge
+     runs-on: ubuntu-latest
+     timeout-minutes: 125
+     env:
+       TZ: Asia/Taipei
++      MIS_FAST_JOURNAL_DIR: ${{ vars.STAGE7_JOURNAL_ENABLED == 'true' && format('{0}/stage7-journal', runner.temp) || '' }}
+       STATUS_ISSUE_NUMBER: "1"
+       GITHUB_TOKEN: ${{ github.token }}
+       PROBE_MODE: ${{ github.event_name == 'schedule' && 'live' || inputs.mode || 'dry-run' }}
+@@ -120,6 +122,26 @@
+         run: npm ci --ignore-scripts
+       - name: Verify dashboard DOM, dates, volumes and diagnostic page
+         run: npm test
++      - name: Checkout reviewed isolated write-only bridge
++        if: github.event_name != 'push' && env.PROBE_MODE == 'live' && vars.STAGE7_JOURNAL_ENABLED == 'true'
++        continue-on-error: true
++        uses: actions/checkout@v4
++        with:
++          ref: 056dd9757bbce4febd04409858ffa15d239260c9
++          path: .stage7-bridge-code
++          persist-credentials: false
++      - name: Start isolated write-only bridge; capture remains independent
++        if: github.event_name != 'push' && env.PROBE_MODE == 'live' && vars.STAGE7_JOURNAL_ENABLED == 'true'
++        continue-on-error: true
++        timeout-minutes: 1
++        env:
++          STAGE5_MIS_BRIDGE_TOKEN: ${{ secrets.STAGE5_MIS_BRIDGE_TOKEN }}
++        run: |
++          test -f .stage7-bridge-code/stage6_bridge.py || exit 0
++          mkdir -p "$RUNNER_TEMP/stage7-private-bridge"
++          chmod 700 "$RUNNER_TEMP/stage7-private-bridge"
++          python3 -u .stage7-bridge-code/stage6_bridge.py "$MIS_FAST_JOURNAL_DIR/fast-capture-journal.jsonl" "$GITHUB_WORKSPACE/results/universe.json" "$(TZ=Asia/Taipei date +%F)" "$GITHUB_RUN_ID" "$RUNNER_TEMP/stage7-private-bridge" > "$RUNNER_TEMP/stage7-private-bridge/bridge.log" 2>&1 &
++          echo "$!" > "$RUNNER_TEMP/stage7-private-bridge/bridge.pid"
+       - name: Run controlled probe
+         id: probe
+         if: github.event_name != 'push'

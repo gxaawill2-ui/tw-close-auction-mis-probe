@@ -1,0 +1,35 @@
+# REVIEW ONLY. Do not copy to .github/workflows without separate approval.
+name: Stage7 independent private journal consumer
+on:
+  workflow_run:
+    workflows: [TWSE MIS Closing Auction Probe]
+    types: [in_progress]
+permissions:
+  contents: read
+concurrency:
+  group: stage6-daily-private-consumer
+  cancel-in-progress: false
+jobs:
+  consumer:
+    if: github.event.workflow_run.head_branch == 'main' && startsWith(github.event.workflow_run.display_title, 'MIS live /')
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    # Requires separately approved environment admission and same-run isolated code pin.
+    environment: stage7-tail-consumer
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Replace only with the reviewed Stage6 implementation commit, never main.
+          ref: 056dd9757bbce4febd04409858ffa15d239260c9
+          persist-credentials: false
+      - name: Follow the formal collector's existing private journal only
+        env:
+          FUGLE_API_KEY: ${{ secrets.FUGLE_API_KEY }}
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+          FORMAL_RUN_ID: ${{ github.event.workflow_run.id }}
+          FORMAL_CREATED_AT: ${{ github.event.workflow_run.created_at }}
+        run: |
+          TRADE_DATE=$(python3 -c 'import os;from datetime import datetime;from zoneinfo import ZoneInfo;print(datetime.fromisoformat(os.environ["FORMAL_CREATED_AT"].replace("Z","+00:00")).astimezone(ZoneInfo("Asia/Taipei")).date())')
+          python3 stage6_daily.py "$TRADE_DATE" "$FORMAL_RUN_ID" "$RUNNER_TEMP/stage6-private"
+      # No raw artifact upload. Evidence is already in the authenticated vault.

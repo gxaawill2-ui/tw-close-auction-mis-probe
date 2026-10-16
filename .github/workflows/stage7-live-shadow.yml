@@ -1,0 +1,35 @@
+name: Stage7 one-off existing MIS artifact shadow acceptance
+on:
+  push:
+    branches: [stage4/20261016-fugle-probe]
+    paths: [stage7_live.request.json]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: stage7-one-off-artifact-shadow-only
+  cancel-in-progress: false
+jobs:
+  isolated:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Validate isolated date and replay gates
+        run: python3 -m unittest test_stage7_live
+      - name: Observe existing formal artifact only, verify bounded candidates and publish isolated results
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          FUGLE_API_KEY: ${{ secrets.FUGLE_API_KEY }}
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: python3 -u stage7_live.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage7-live-safe-${{ github.run_id }}
+          path: stage7-live-safe-report/
+          retention-days: 30

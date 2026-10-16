@@ -1,0 +1,40 @@
+{
+  "worker_deploy_commit": "648eea19892cf915b8c3f175fa773ee873faf524",
+  "worker_version": "eac2c1a2-8a0d-44c3-adf7-a6391c293de5",
+  "run_url": "https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/actions/runs/38892154976",
+  "copy_job_id": 116943984721,
+  "recovery_job_id": 116944161032,
+  "proofs": [
+    {
+      "scope": "REAL_PRIVATE_ARCHIVE_COPY_NOT_MARKET_VERIFICATION",
+      "trade_date": "2026-10-16",
+      "run_id": "38892154976",
+      "source_commit": "056dd9757bbce4febd04409858ffa15d239260c9",
+      "object_count": 60,
+      "manifest_sha256": "abde1faab4e298f1c2f2864f9f0b7ae530e882040402faf298025c9fb0f48c68",
+      "archive_expires_at": "2026-11-15T05:06:22.209Z",
+      "copied_at": "2026-10-16T19:12:06.029305+08:00",
+      "new_service": false,
+      "provider_requests": 0,
+      "raw_exported_publicly": false,
+      "status": "COPY_COMPLETE"
+    },
+    {
+      "scope": "REAL_INDEPENDENT_ARCHIVE_RECOVERY_NOT_MARKET_VERIFICATION",
+      "trade_date": "2026-10-16",
+      "run_id": "38892154976",
+      "source_commit": "056dd9757bbce4febd04409858ffa15d239260c9",
+      "object_count": 60,
+      "raw_bytes_verified": 250517,
+      "bundles_restored": 14,
+      "manifest_sha256": "abde1faab4e298f1c2f2864f9f0b7ae530e882040402faf298025c9fb0f48c68",
+      "archive_expires_at": "2026-11-15T05:06:22.209Z",
+      "recovered_at": "2026-10-16T19:12:32.519983+08:00",
+      "source_namespace_reads": 0,
+      "provider_requests": 0,
+      "raw_exported_publicly": false,
+      "physical_phone_tested": false,
+      "status": "PASS"
+    }
+  ]
+}
