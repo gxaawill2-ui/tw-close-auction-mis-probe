@@ -1,0 +1,7 @@
+{
+  "scope": "BOUNDED_TWO_CONTROL_REAL_PRIVATE_ARCHIVE_NO_MIS_RECAPTURE",
+  "trade_date": "2026-10-16",
+  "maximum_fugle_requests": 30,
+  "maximum_per_rolling_minute": 6,
+  "existing_capture_unchanged": true
+}

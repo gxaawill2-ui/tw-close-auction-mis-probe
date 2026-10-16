@@ -1,0 +1,57 @@
+name: Stage5 bounded private real control observations
+on:
+  push:
+    branches: [stage4/20261016-fugle-probe]
+    paths: [stage5_durable_controls.request.json]
+permissions:
+  contents: read
+concurrency:
+  group: stage5-20261016-bounded-private-controls-only
+  cancel-in-progress: false
+jobs:
+  private_controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify additional rolling request cap without provider calls
+        run: python3 -m unittest test_stage5_durable_controls
+      - name: Save only two control securities directly to existing private vault
+        env:
+          FUGLE_API_KEY: ${{ secrets.FUGLE_API_KEY }}
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: python3 -u stage5_durable_controls.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage5-private-controls-sanitized-${{ github.run_id }}
+          path: stage5-durable-control-report/
+          retention-days: 30
+  private_recovery:
+    needs: private_controls
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: stage5-private-controls-sanitized-${{ github.run_id }}
+          path: stage5-safe-recovery-input
+      - name: Restore true raw privately from the completed runner's manifest ids
+        env:
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: python3 stage5_durable_controls.py recover stage5-safe-recovery-input/controls.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage5-private-controls-recovered-sanitized-${{ github.run_id }}
+          path: stage5-durable-recovery-report/
+          retention-days: 30
