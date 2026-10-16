@@ -1,0 +1,23 @@
+{
+  "formal_main_unchanged": "79b071962fff0ea2e3a715822cfa1fa2e9cdf1f0",
+  "isolation_head": "806ca60a596534003e315bad66c24739ed36f4f0",
+  "private_head": "5fa280b46bcdf572c4acfa4e1a7f67b19226d76c",
+  "changed_public_files": [
+    ".github/workflows/stage7-live-shadow.yml",
+    "reports/2026-10-16-stage7/CURRENT_HANDOFF.md",
+    "reports/2026-10-17-stage8/CURRENT_HANDOFF.md",
+    "reports/2026-10-17-stage8/DEPLOYMENT_REVIEW.md",
+    "reports/2026-10-17-stage8/LIVE_ACCEPTANCE_20261019.md",
+    "reports/2026-10-17-stage8/REPORT.md",
+    "reports/2026-10-17-stage8/SOURCE.json",
+    "reports/2026-10-17-stage8/browser-results.json",
+    "reports/2026-10-17-stage8/rollback.json",
+    "stage8_mis_shadow.py",
+    "test_stage5_delayed_sample.py",
+    "test_stage8_mis_shadow.py"
+  ],
+  "formal_writes": 0,
+  "mis_requests": 0,
+  "future_live_request_not_touched": true,
+  "private_latest_commit": "08a24180a5e7dc3ca9c1879ad4075237efae872f"
+}

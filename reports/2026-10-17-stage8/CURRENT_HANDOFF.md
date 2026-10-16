@@ -2,7 +2,7 @@
 
 目前任務改為MIS多次確認，不再要求富果完整VERIFIED。先讀本目錄REPORT.md、DEPLOYMENT_REVIEW.md、LIVE_ACCEPTANCE_20261019.md與SOURCE.json，再核對遠端最新HEAD。正式main觀測為79b071962fff0ea2e3a715822cfa1fa2e9cdf1f0，本輪未改正式程式/collector/workflow/排程/Secret/網址。
 
-Private保存commit：`5fa280b46bcdf572c4acfa4e1a7f67b19226d76c`。
+Private保存commit：`08a24180a5e7dc3ca9c1879ad4075237efae872f`。
 
 Private新核心及證據：gxaawill2-ui/tw-close-auction-protection-lab，分支stage8/20261017-mis-first。讀該分支最新HANDOFF.md與evidence/stage8。不要把私有新增原始碼/原始受限行情複製到本Public repo。
 
@@ -14,6 +14,6 @@ C2有12檔/2批/每檔2次/3秒冷卻/13:34:42起請截止及13:34:50接收截�
 
 10/19 13:00與14:55原兩個ChatGPT任務已更新MIS-first要求且啟用，時間不變。13:00先確認正式probe在跑且無排隊，再同日去重，CAS expected_sha force=false更新既有stage7_live.request.json。若正式仍排隊觀察至13:05仍不可用就不啟動隔離。Public observer僅使用原公開引擎診斷，14:55再由Work以同一Artifact私有回放V2。原正式未核准接新C2時，只能影子；不另開全市場、不保證新規則已正式運作。
 
-原Python435中一個歷史測試依當天真實日期失敗，僅凍結測試clock後，加2個新shadow測試，完整437通過；Node124通過。Private新增20Python、3DOM通過，1440/360/390/430pxChromium141排序、更新/UNKNOWN/撤回/拒舊版通過。test_stage5_delayed_sample.py只有測試改，實際guard未變。
+原Python435中一個歷史測試依當天真實日期失敗，僅凍結測試clock後，加2個新shadow測試，完整437通過；Node124通過。Private新增21Python、3DOM通過，1440/360/390/430pxChromium141排序、更新/UNKNOWN/撤回/拒舊版通過。test_stage5_delayed_sample.py只有測試改，實際guard未變。
 
 正式部署必須另獲批准；不整分支合併、不force push、不改main或正式排程。Private切換更晚獨立評估，不能保證零固定費用或零風險。
