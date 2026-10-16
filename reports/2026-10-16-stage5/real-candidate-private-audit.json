@@ -1,0 +1,133 @@
+{
+  "scope": "REAL_TWO_CANDIDATE_PRIVATE_FUGLE_AUDIT_NOT_RELEASED_VERIFIED",
+  "trade_date": "2026-10-16",
+  "run_id": "38856613147",
+  "source_commit": "0ebfc35133f8c7e9a940dc5fc865f4189da3f2b1",
+  "armed_at": "2026-10-16T13:36:08.008894+08:00",
+  "maximum_candidates": 2,
+  "maximum_added_requests_per_minute": 6,
+  "maximum_added_requests": 60,
+  "mis_requests": 0,
+  "production_modified": false,
+  "verified_count": 0,
+  "audits": [
+    {
+      "symbol": "4609",
+      "exchange": "otc",
+      "trade_date": "2026-10-16",
+      "observed_at": "2026-10-16T13:37:51.793810+08:00",
+      "scope": "PRIVATE_REAL_TICK_COMPLETENESS_DIAGNOSTICS_ONLY",
+      "status": "RESEARCH_ONLY",
+      "verified_count": 0,
+      "p_before_independently_proven": false,
+      "p_close_independently_proven": false,
+      "source_contract_released": false,
+      "raw_market_data_public": false,
+      "private_evidence_ids": [
+        "039ff66829eedded705f8f2278bdd828946de83ca10db577791f1ec3f08b0879",
+        "e1d2007ae278134d03f3b45917d4ab445ed0e17b2773db9811dadaf5f1531eb8",
+        "7076fc79028c303d7fade73abf0dbf88c42903feeec42ef6e1b396ee8a621405"
+      ],
+      "reasons": [
+        "PROVIDER_COMPLETENESS_AND_ORDER_CONTRACT_NOT_RELEASED"
+      ],
+      "private_manifest_id": "a35ab5cf4dca6cda80279ea363e33607cca4054c81c2d256fa7ed8e4d680d765",
+      "private_evidence_recoverable_after_job": true,
+      "quote_bracket_stable": true,
+      "page_count": 1,
+      "row_count": 5,
+      "terminal_page_seen": true,
+      "descending_time_order": true,
+      "same_microsecond_price_conflicts": 0,
+      "serial_noncontiguous_pairs": 4,
+      "serial_scope": "UNSPECIFIED_DO_NOT_ASSUME_PER_SECURITY_CONTIGUOUS",
+      "quote_last_trade_matches_page_head": true,
+      "rows_equal_quote_transaction": true,
+      "size_sum_equal_quote_volume": true,
+      "cumulative_volume_pairs": 4,
+      "cumulative_volume_chain_matches": true,
+      "pre_cutoff_tick_present": true,
+      "pre_quote_requested_after_cutoff": true,
+      "source_update_after_cutoff": true,
+      "source_update_not_after_receipt": true,
+      "close_signal_present": true,
+      "trial_signal_present": false,
+      "delayed_signal_present": false,
+      "close_fields_match_actual": true,
+      "close_classification": "NORMAL_CLOSE"
+    },
+    {
+      "symbol": "6228",
+      "exchange": "otc",
+      "trade_date": "2026-10-16",
+      "observed_at": "2026-10-16T13:38:02.039916+08:00",
+      "scope": "PRIVATE_REAL_TICK_COMPLETENESS_DIAGNOSTICS_ONLY",
+      "status": "UNKNOWN",
+      "verified_count": 0,
+      "p_before_independently_proven": false,
+      "p_close_independently_proven": false,
+      "source_contract_released": false,
+      "raw_market_data_public": false,
+      "private_evidence_ids": [
+        "b41c5e75ae2657acf334e7a96683de97eeaf6c9c369845f9d7e337ff602d95fb",
+        "cacc17b8aebadd43f95c69ace7c9b00d20704fef8b52acfaafb525a8133b1353",
+        "f0bcf39e379ba3c05fe6a376f78432fa1ad7630209c1803120c1b54c11a3e48d"
+      ],
+      "reasons": [
+        "SAME_MICROSECOND_ORDER_NOT_DOCUMENTED",
+        "QUOTE_HEAD_CONFLICT",
+        "PROVIDER_COMPLETENESS_AND_ORDER_CONTRACT_NOT_RELEASED"
+      ],
+      "private_manifest_id": "faaa73e2e99fe40c546f69249e06916b4ae4eab03b55c6bbcd179165168d514f",
+      "private_evidence_recoverable_after_job": true,
+      "quote_bracket_stable": true,
+      "page_count": 1,
+      "row_count": 5,
+      "terminal_page_seen": true,
+      "descending_time_order": true,
+      "same_microsecond_price_conflicts": 1,
+      "serial_noncontiguous_pairs": 3,
+      "serial_scope": "UNSPECIFIED_DO_NOT_ASSUME_PER_SECURITY_CONTIGUOUS",
+      "quote_last_trade_matches_page_head": false,
+      "rows_equal_quote_transaction": true,
+      "size_sum_equal_quote_volume": true,
+      "cumulative_volume_pairs": 4,
+      "cumulative_volume_chain_matches": true,
+      "pre_cutoff_tick_present": true,
+      "pre_quote_requested_after_cutoff": true,
+      "source_update_after_cutoff": true,
+      "source_update_not_after_receipt": true,
+      "close_signal_present": true,
+      "trial_signal_present": false,
+      "delayed_signal_present": false,
+      "close_fields_match_actual": true,
+      "close_classification": "NORMAL_CLOSE"
+    }
+  ],
+  "publication_receipts": [
+    {
+      "symbol": "4609",
+      "public_written_at": "2026-10-16T05:37:52.190Z",
+      "anonymous_read_at": "2026-10-16T13:37:53.036178+08:00",
+      "version": 1792129071793000,
+      "sha256": "e2d9a89d7d3d1711c1b468c23b2fd0a7c7ae491f2257b41ea0094121aeac76f5"
+    },
+    {
+      "symbol": "6228",
+      "public_written_at": "2026-10-16T05:38:02.409Z",
+      "anonymous_read_at": "2026-10-16T13:38:02.731843+08:00",
+      "version": 1792129082039000,
+      "sha256": "efd0024093e0c3bb709705a3c2e45bfe8b20243f92b2bbf7c9e17559bee715b1"
+    }
+  ],
+  "private_canary": {
+    "scope": "SYNTHETIC_PRIVATE_STORAGE_NOT_MARKET_ACCEPTANCE",
+    "id": "e987fd5be27330db08fe4b851d75ea1507bc03d1ee5056a04d19fe496a7ba918",
+    "private_written_at": "2026-10-16T05:37:10.569Z",
+    "read_back_at": "2026-10-16T13:37:10.766285+08:00"
+  },
+  "status": "BOUNDED_CHECKS_FINISHED_NOT_VERIFIED",
+  "fugle_requests": 6,
+  "finished_at": "2026-10-16T13:38:03.233253+08:00",
+  "checked_candidates": 2
+}

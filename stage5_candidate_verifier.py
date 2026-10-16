@@ -48,14 +48,21 @@ def main():
     if os.getenv('GITHUB_REPOSITORY')!='gxaawill2-ui/tw-close-auction-mis-probe' or os.getenv('GITHUB_REF')!='refs/heads/stage4/20261016-fugle-probe':raise ValueError('REFUSE_OTHER_ENVIRONMENT')
     now=lambda:datetime.now(f.TZ)
     if now().date().isoformat()!=DATE:raise ValueError('NO_HISTORICAL_CANDIDATE_VERIFICATION')
+    request=json.loads(Path('stage5_candidate_verifier.request.json').read_text())
+    maximum=request.get('maximum_candidates',2);request_cap=request.get('maximum_added_requests',60)
+    if not isinstance(maximum,int) or not 1<=maximum<=2 or not isinstance(request_cap,int) or not 1<=request_cap<=60:raise ValueError('INVALID_BOUNDED_CANDIDATE_REQUEST')
+    not_before=request.get('not_before',DATE+'T13:37:10+08:00')
+    if not f.parsed_time(not_before) or not DATE+'T13:37:10'<=not_before<=DATE+'T13:45:00+08:00':raise ValueError('UNSAFE_CANDIDATE_START_WINDOW')
+    excluded=request.get('exclude_symbols',[])
+    if not isinstance(excluded,list) or any(not isinstance(s,str) or len(s)!=4 or not s.isdigit() for s in excluded):raise ValueError('INVALID_CANDIDATE_EXCLUSION')
     output=Path('stage5-candidate-verifier-report');output.mkdir(exist_ok=True)
     report={'scope':'REAL_TWO_CANDIDATE_PRIVATE_FUGLE_AUDIT_NOT_RELEASED_VERIFIED','trade_date':DATE,
         'run_id':os.getenv('GITHUB_RUN_ID'),'source_commit':os.getenv('GITHUB_SHA'),'armed_at':now().isoformat(),
-        'maximum_candidates':2,'maximum_added_requests_per_minute':6,'maximum_added_requests':60,
+        'maximum_candidates':maximum,'maximum_added_requests_per_minute':6,'maximum_added_requests':request_cap,
         'mis_requests':0,'production_modified':False,'verified_count':0,'audits':[],'publication_receipts':[]}
     atomic(output/'candidate-checks.json',report)
     print(json.dumps({'event':'BOUNDED_CANDIDATE_VERIFIER_ARMED','armed_at':report['armed_at'],'provider_requests_before_133710':0}),flush=True)
-    start=f.parsed_time(DATE+'T13:37:10+08:00');end=f.parsed_time(DATE+'T13:50:00+08:00')
+    start=f.parsed_time(not_before);end=f.parsed_time(DATE+'T13:50:00+08:00')
     while now()<start:time.sleep(min(10,max(0,(start-now()).total_seconds())))
     opener=urllib.request.build_opener(NoRedirect()).open
     def read():
@@ -65,21 +72,20 @@ def main():
         except urllib.error.HTTPError as exc:
             if exc.code==404:return None
             raise ValueError('CURRENT_PUBLIC_RESEARCH_UNAVAILABLE') from None
-    current=None
-    while now()<f.parsed_time(DATE+'T13:40:00+08:00'):
-        current=read()
-        if current:break
+    current=read()
+    while not current and now()<f.parsed_time(DATE+'T13:40:00+08:00'):
         time.sleep(10)
+        current=read()
     if not current or current.get('mode')!='LIVE' or current.get('trade_date')!=DATE or current.get('provenance',{}).get('source_run_id')!='38853538676':
         report.update(status='NO_CURRENT_FORMAL_RESEARCH_AVAILABLE',finished_at=now().isoformat());atomic(output/'candidate-checks.json',report);return report
-    selected=current.get('rows',[])[:2]
+    selected=[r for r in current.get('rows',[]) if r['code'] not in excluded][:maximum]
     if not selected:
         report.update(status='NO_RESEARCH_CANDIDATES',finished_at=now().isoformat());atomic(output/'candidate-checks.json',report);return report
     token,key=os.getenv('STAGE5_PUBLISH_TOKEN'),os.getenv('STAGE5_DECISION_KEY')
     vault=Vault(token,key);report['private_canary']=probe(vault,DATE)
     with tempfile.TemporaryDirectory(prefix='stage5-real-candidates-private-') as temporary:
         root=Path(temporary)
-        source=Source(os.getenv('FUGLE_API_KEY'),root/'raw',vault,max_requests=60,require_durable=True,min_interval=10.1)
+        source=Source(os.getenv('FUGLE_API_KEY'),root/'raw',vault,max_requests=request_cap,require_durable=True,min_interval=10.1)
         publisher=Publisher(BASE,root/'publisher',publish_token=token,decision_key=key,opener=opener)
         queue=FairQueue(lambda row:source.collect(row,DATE,min(end,now()+timedelta(minutes=8)),max_pages=16),workers=2,max_candidates=2,max_attempts=1)
         original={(r['ex'],r['code']):r for r in selected};queue.offer(selected);queue.tick()
