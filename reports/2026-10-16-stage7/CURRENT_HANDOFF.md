@@ -1,3 +1,5 @@
+> **2026-10-17更新：任務與驗收標準已改為MIS-first。最新入口為 `reports/2026-10-17-stage8/CURRENT_HANDOFF.md`，以下第七階段為歷史紀錄，不再以富果VERIFIED作本次門檻。**
+
 # 第七階段目前接手位置
 
 先git ls-remote核對遠端，使用stage4/20261016-fugle-probe最新HEAD。本文件所在的遠端commit才是有效報告版本；實作/驗收commit與run詳STATUS.md。不要把舊stage6或舊本機worktree覆蓋回來；不要force push。main、正式網站、collector/workflow/schedule/cron-job.org/正式Secret均未變更。

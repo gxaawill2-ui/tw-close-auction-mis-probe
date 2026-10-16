@@ -1,0 +1,54 @@
+{
+  "browser": "141.0.7390.37",
+  "results": [
+    {
+      "width": 1440,
+      "status": "PASS",
+      "sort_orders": 6,
+      "keyboard": true,
+      "revision_refresh": true,
+      "withdrawal": true,
+      "unknown": true,
+      "stale_rejected": true,
+      "page_errors": 0,
+      "scope": "LOCAL_ROUTED_TRUE_HISTORICAL_PAYLOAD_PLUS_SYNTHETIC_REVISIONS"
+    },
+    {
+      "width": 360,
+      "status": "PASS",
+      "sort_orders": 6,
+      "keyboard": false,
+      "revision_refresh": true,
+      "withdrawal": true,
+      "unknown": true,
+      "stale_rejected": true,
+      "page_errors": 0,
+      "scope": "LOCAL_ROUTED_TRUE_HISTORICAL_PAYLOAD_PLUS_SYNTHETIC_REVISIONS"
+    },
+    {
+      "width": 390,
+      "status": "PASS",
+      "sort_orders": 6,
+      "keyboard": false,
+      "revision_refresh": true,
+      "withdrawal": true,
+      "unknown": true,
+      "stale_rejected": true,
+      "page_errors": 0,
+      "scope": "LOCAL_ROUTED_TRUE_HISTORICAL_PAYLOAD_PLUS_SYNTHETIC_REVISIONS"
+    },
+    {
+      "width": 430,
+      "status": "PASS",
+      "sort_orders": 6,
+      "keyboard": false,
+      "revision_refresh": true,
+      "withdrawal": true,
+      "unknown": true,
+      "stale_rejected": true,
+      "page_errors": 0,
+      "scope": "LOCAL_ROUTED_TRUE_HISTORICAL_PAYLOAD_PLUS_SYNTHETIC_REVISIONS"
+    }
+  ],
+  "physical_device_tested": false
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "path": "docs/status.js",
+    "apply_reverse_restores_exact_bytes": true,
+    "sha256": "8dfdf5fd74b4e12a1d101ce60965aa249d81d78b6917e3b6a5304034f05dee58"
+  },
+  {
+    "path": "candidate_publication.py",
+    "apply_reverse_restores_exact_bytes": true,
+    "sha256": "d8f918eba74882bfcb57e683312081643bcba1625a29b0630ca0d3459d8a9eeb"
+  }
+]

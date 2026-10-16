@@ -1,0 +1,30 @@
+{
+  "formal_main": "79b071962fff0ea2e3a715822cfa1fa2e9cdf1f0",
+  "stage_base": "8aa132d616ad354efa9020cd28ae498b3ac6d20a",
+  "private_main_base": "39e0c45c726a1d37dfa9bca284824c7d9a0bf42b",
+  "new_private_branch": "stage8/20261017-mis-first",
+  "new_market_requests": 0,
+  "artifacts": [
+    {
+      "date": "2026-10-08",
+      "sha256": "1b4caf9efcbb0575771726b356751f177bba37439179cb14bfc9b8a9bc9a88e0"
+    },
+    {
+      "date": "2026-10-13",
+      "sha256": "31c830821dec219bcf4cae76558c2689597ed5b1aa345d31d032cc8627bd5d88"
+    },
+    {
+      "date": "2026-10-14",
+      "sha256": "4ea6e228ce86d965584203dfbf5f04d7707a238d74d24cafe133e3994a98cf6f"
+    },
+    {
+      "date": "2026-10-15",
+      "sha256": "01755e816c162498ee2e10c22422132596d3c7b738a787f4c6e52dd01c9226c8"
+    },
+    {
+      "date": "2026-10-16",
+      "sha256": "6e0234f6f5f9778b976c14e26cd64e6d795d6dd209357e0052cf34da87ca6413"
+    }
+  ],
+  "raw_artifact_retention_changed": false
+}
