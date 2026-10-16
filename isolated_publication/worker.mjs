@@ -80,7 +80,7 @@ function response(status,data,extra={}){
 }
 export default {async fetch(request,env){
  const url=new URL(request.url);
- if(url.pathname==='/health')return response(200,{scope:'ISOLATED_STAGE3',live_validation_released:env.ALLOW_LIVE_VERIFIED==='true'});
+ if(url.pathname==='/health')return response(200,{scope:'ISOLATED_STAGE3',read_validator_revision:'weak-etag-v2',live_validation_released:env.ALLOW_LIVE_VERIFIED==='true'});
  if(url.pathname==='/data'&&request.method==='OPTIONS')return new Response(null,{status:204,headers:{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'GET','Access-Control-Allow-Headers':'If-None-Match'}});
  if(url.pathname==='/data'&&request.method==='GET'){
   const date=url.searchParams.get('date');if(!/^\d{4}-\d{2}-\d{2}$/.test(date||''))return response(400,{error:'INVALID_DATE'});
@@ -107,7 +107,7 @@ export class SelectionStore{
   if(request.method==='GET'){
    const saved=await storage.get('date:'+url.searchParams.get('date'));
    if(!saved)return response(404,{error:'NO_PUBLISHED_DATA'});
-   const headers={ETag:'"'+saved.sha256+'"','X-Published-At':saved.public_written_at};
+   const headers={ETag:'"'+saved.sha256+'"','X-Published-At':saved.public_written_at,'X-Read-Validator-Revision':'weak-etag-v2'};
    if(matchesReadETag(request.headers.get('If-None-Match'),headers.ETag))return new Response(null,{status:304,headers:{...headers,'Cache-Control':'no-store','Access-Control-Allow-Origin':'*'}});
    return response(200,saved,headers);
   }

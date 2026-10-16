@@ -43,3 +43,24 @@ test('cloud compression weak ETag still revalidates unchanged data and cannot hi
   assert.ok(report.checks.some(c=>c.name==='old-etag-does-not-hide-update'&&c.status==='PASS'));
  }finally{await worker.dispose();}
 });
+test('temporary old deployment may retry unchanged 200, but still requires a real 304',async()=>{
+ const {worker,token,key,url}=await require('./stage3_worker_runtime.cjs').startWorker();let lag=0;
+ try{
+  const fetcher=async(target,options)=>{
+   if(options.headers?.['If-None-Match']&&lag++<2)return fetch(target,{...options,headers:{}});
+   return fetch(target,options);
+  };
+  const report=await acceptance({base:url,token,key,allowLoopback:true,fetcher,wait:async()=>{}});
+  assert.deepEqual(report.requests.filter(r=>r.name==='etag-current-304').map(r=>r.http_status),[200,200,304]);
+ }finally{await worker.dispose();}
+});
+test('persistent 200 fails with bounded nonsecret diagnostics rather than being accepted',async()=>{
+ const {worker,token,key,url}=await require('./stage3_worker_runtime.cjs').startWorker();
+ try{
+  const fetcher=(target,options)=>fetch(target,options.headers?.['If-None-Match']?{...options,headers:{}}:options);
+  await assert.rejects(()=>acceptance({base:url,token,key,allowLoopback:true,fetcher,wait:async()=>{}}),error=>{
+   assert.equal(error.message,'etag-current-304_HTTP_200');assert.equal(error.transport_diagnostics.attempts.length,4);
+   const raw=JSON.stringify(error.transport_diagnostics);assert.ok(!raw.includes(token)&&!raw.includes(key));return true;
+  });
+ }finally{await worker.dispose();}
+});

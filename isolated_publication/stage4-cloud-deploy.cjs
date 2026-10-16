@@ -38,8 +38,8 @@ async function acceptance({base=BASE,token,key,fetcher=fetch,wait=ms=>new Promis
  const post=body=>({method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(sign(body))});
  const nonce=crypto.randomBytes(12).toString('hex'),version=Date.now()*10;
  const body={schema_version:'STAGE3_SELECTION_V1',trade_date:DATE,mode:'SYNTHETIC',is_synthetic:true,version,generated_at:new Date().toISOString(),rows:[],verified_count:0,research_count:0,unknown_candidate_count:0,universe_count:0,screening_calculable_count:0,screening_unresolved_count:0,transport_nonce:nonce};
- let health;for(let i=0;i<4;i++){health=await request('health', '/health');if(health.response.status===200)break;if(i<3)await wait(1000*(i+1));}
- assert(health.response.status===200&&health.body?.live_validation_released===false,'HEALTH_RELEASE_GATE_FAILED');pass('health-keeps-live-release-closed');
+ let health;for(let i=0;i<4;i++){health=await request('health', '/health');if(health.response.status===200&&health.body?.read_validator_revision==='weak-etag-v2')break;if(i<3)await wait(1000*(i+1));}
+ assert(health.response.status===200&&health.body?.read_validator_revision==='weak-etag-v2'&&health.body?.live_validation_released===false,'HEALTH_RELEASE_GATE_FAILED');pass('health-keeps-live-release-closed');
  let written;for(let i=0;i<4;i++){written=await request('first-signed-write','/publish',post(body));if(written.response.status===200)break;assert([401,503].includes(written.response.status),'SIGNED_WRITE_FAILED_'+written.response.status);if(i<3)await wait(1000*(i+1));}
  assert(written.response.status===200&&written.body?.version===version&&Number.isFinite(Date.parse(written.body.public_written_at)),'MISSING_SERVER_WRITE_RECEIPT');
  report.first_server_write_at=written.body.public_written_at;pass('signed-write-server-receipt');
@@ -48,11 +48,24 @@ async function acceptance({base=BASE,token,key,fetcher=fetch,wait=ms=>new Promis
  assert(read.body?.transport_nonce===nonce&&read.body.sha256===written.body.sha256&&read.body.version===version&&read.body.verified_count===0,'READ_AFTER_WRITE_MISMATCH');pass('read-matches-nonce-version-and-sha');
  assert(/no-store/.test(read.response.headers.get('cache-control')||'')&&read.response.headers.get('access-control-allow-origin')==='*','CACHE_OR_CORS_FAILED');pass('no-store-and-anonymous-cors');
  const etag=read.response.headers.get('etag');assert(etag,'MISSING_ETAG');
- await expect('etag-current-304',data,304,{headers:{'If-None-Match':etag}});
+ async function revalidate(name,tag){
+  const attempts=[];
+  for(let i=0;i<4;i++){
+   const r=await request(name,data,{headers:{'If-None-Match':tag}});
+   attempts.push({status:r.response.status,etag:r.response.headers.get('etag'),revision:r.response.headers.get('x-read-validator-revision'),cache_status:r.response.headers.get('cf-cache-status'),sent_etag:tag});
+   if(r.response.status===304){pass(name);return;}
+   // Deployment propagation may temporarily serve the prior implementation.
+   // Never count 200 as a pass or retry a different version/hash as unchanged.
+   if(r.response.status!==200||r.body?.version!==version||r.body?.sha256!==written.body.sha256)break;
+   if(i<3)await wait(1000*(i+1));
+  }
+  const error=Error(name+'_HTTP_'+attempts.at(-1).status);error.transport_diagnostics={name,attempts};throw error;
+ }
+ await revalidate('etag-current-304',etag);
  const weakEtag=etag.startsWith('W/')?etag:'W/'+etag;
- await expect('etag-weak-current-304',data,304,{headers:{'If-None-Match':weakEtag}});
- await expect('etag-list-current-304',data,304,{headers:{'If-None-Match':'"another-version", '+weakEtag}});
- await expect('etag-wildcard-current-304',data,304,{headers:{'If-None-Match':'*'}});
+ await revalidate('etag-weak-current-304',weakEtag);
+ await revalidate('etag-list-current-304','"another-version", '+weakEtag);
+ await revalidate('etag-wildcard-current-304','*');
  let duplicate=await expect('idempotent-write','/publish',200,post(body));assert(duplicate.body?.duplicate===true,'IDEMPOTENCY_FAILED');
  await expect('stale-version-rejected','/publish',409,post({...body,version:version-1}));
  await expect('same-version-conflict-rejected','/publish',409,post({...body,transport_nonce:'conflicting'}));
@@ -85,7 +98,20 @@ async function main(){
  }
  wrangler(['deploy']);console.log('STAGE4_TEST_WORKER_DEPLOYED');
  wrangler(['secret','bulk'],secrets);console.log('STAGE4_EPHEMERAL_TEST_WRITER_KEYS_INSTALLED_NO_VALUES_LOGGED');
- const report=await acceptance({token,key,commit:process.env.WORKERS_CI_COMMIT_SHA});report.build_uuid=process.env.WORKERS_CI_BUILD_UUID||null;report.commit=process.env.WORKERS_CI_COMMIT_SHA;
+ let report;
+ try{report=await acceptance({token,key,commit:process.env.WORKERS_CI_COMMIT_SHA});}
+ catch(error){
+  // Publish only the bounded synthetic ETag diagnostic; never keys or request headers.
+  if(error.transport_diagnostics){
+   const body={schema_version:'STAGE3_SELECTION_V1',trade_date:DATE,mode:'SYNTHETIC',is_synthetic:true,version:Date.now()*10+9,generated_at:new Date().toISOString(),rows:[],verified_count:0,research_count:0,unknown_candidate_count:0,universe_count:0,screening_calculable_count:0,screening_unresolved_count:0,
+    transport_acceptance:{status:'FAILED',scope:'SYNTHETIC_ETAG_DIAGNOSTIC_NOT_SUCCESS',commit:process.env.WORKERS_CI_COMMIT_SHA,diagnostics:error.transport_diagnostics,external_browser_read_at:null,physical_mobile_latency_ms:null}};
+   const {canonical}=await import('./worker.mjs');
+   const signature=crypto.createHmac('sha256',key).update(canonical(body)).digest('hex');
+   try{await fetch(BASE+'/publish',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({body,signature}),redirect:'error',signal:AbortSignal.timeout(8000)});}catch{}
+  }
+  throw error;
+ }
+ report.build_uuid=process.env.WORKERS_CI_BUILD_UUID||null;report.commit=process.env.WORKERS_CI_COMMIT_SHA;
  console.log('STAGE4_SYNTHETIC_TRANSPORT_REPORT '+JSON.stringify(report));
  // These keys are acceptance-only, reissued on the next synthetic test build.
  // They are NOT a persistent credential handoff to the real selection publisher.
