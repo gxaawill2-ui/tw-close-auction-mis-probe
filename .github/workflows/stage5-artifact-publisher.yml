@@ -1,0 +1,34 @@
+name: Stage5 existing MIS artifact isolated research publisher
+on:
+  push:
+    branches: [stage4/20261016-fugle-probe]
+    paths: [stage5_artifact_publisher.request.json]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: stage5-20261016-artifact-research-publisher-only
+  cancel-in-progress: false
+jobs:
+  isolated:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify saved MIS research cannot claim independent VERIFIED
+        run: python3 -m unittest test_stage5_artifact_publisher
+      - name: Read only the existing formal artifact and publish isolated research
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: python3 -u stage5_artifact_publisher.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage5-mis-research-publisher-${{ github.run_id }}
+          path: stage5-artifact-publisher-report/
+          retention-days: 30
