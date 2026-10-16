@@ -14,7 +14,7 @@ import urllib.request
 import freshness as f
 from fast_capture_journal import verify
 from stage3_ticks import canonical
-from stage3_publication import envelope
+from stage3_publication import envelope, CLOUD_CLIENT
 from stage5_runtime import BASE, NoRedirect
 
 
@@ -39,7 +39,7 @@ def bridge(journal,date,*,token=None,opener=None,clock=None,wait=time.sleep):
                     data=canonical(envelope(body,token)).encode()
                     if len(data)>98304:raise ValueError('MIS_EVENT_TOO_LARGE')
                     request=urllib.request.Request(BASE+'/private-mis-journal/'+date+'/'+ident,method='POST',data=data,
-                        headers={'Authorization':'Bearer '+token,'Content-Type':'application/json'})
+                        headers={'Authorization':'Bearer '+token,'Content-Type':'application/json','User-Agent':CLOUD_CLIENT,'Accept':'application/json'})
                     try:
                         with opener(request,timeout=3) as response:receipt=json.loads(response.read(4097))
                         if response.status!=200 or receipt.get('id')!=ident or receipt.get('sha256')!=event['sha256'] or not f.parsed_time(receipt.get('private_written_at')):raise ValueError('MIS_BRIDGE_RECEIPT_MISMATCH')

@@ -13,6 +13,7 @@ import freshness as f
 from stage5_runtime import Source, Vault, BASE, NoRedirect
 from stage5_session import watch
 from stage3_publication import Publisher
+from stage5_archive import probe
 
 
 def launch(journal,universe_file,date,directory,*,wait=time.sleep,clock=None):
@@ -21,10 +22,11 @@ def launch(journal,universe_file,date,directory,*,wait=time.sleep,clock=None):
         raise ValueError('NO_HISTORICAL_OR_LATE_SHADOW_START')
     token,key=os.getenv('STAGE5_PUBLISH_TOKEN'),os.getenv('STAGE5_DECISION_KEY')
     vault=Vault(token,key)
+    probe(vault,date,clock=clock)
     root=Path(directory).resolve()
     workspace=Path(os.getenv('GITHUB_WORKSPACE',Path(__file__).parent)).resolve()
     if root==workspace or workspace in root.parents:raise ValueError('PRIVATE_SOURCE_MUST_BE_OUTSIDE_PUBLIC_CHECKOUT_ARTIFACTS')
-    source=Source(os.getenv('FUGLE_API_KEY'),root/'private-fugle',vault,max_requests=160)
+    source=Source(os.getenv('FUGLE_API_KEY'),root/'private-fugle',vault,max_requests=160,require_durable=True)
     # This dedicated directory survives a process restart on the same runner.
     # A new runner must recompute evidence and use the remote monotonic version.
     publisher=Publisher(BASE,root/'session'/'publication',publish_token=token,decision_key=key,

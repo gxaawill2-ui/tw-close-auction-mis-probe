@@ -119,7 +119,7 @@ class Stage5Tests(unittest.TestCase):
             def __init__(self):self.objects={}
             def save(self,event,date):
                 ident=hashlib.sha256(canonical(event).encode()).hexdigest()
-                self.objects[ident]={'id':ident,'event':copy.deepcopy(event),'private_written_at':at[0].isoformat()}
+                self.objects[ident]={'id':ident,'trade_date':date,'event':copy.deepcopy(event),'private_written_at':at[0].isoformat()}
                 return {'id':ident,'sha256':event['sha256'],'private_written_at':at[0].isoformat(),'recoverable_after_job':True}
             def read(self,date,ident):return copy.deepcopy(self.objects[ident])
         vault=MemoryVault()

@@ -1,0 +1,30 @@
+name: Stage5 isolated persistent publisher and private storage check
+on:
+  push:
+    branches: [stage4/20261016-fugle-probe]
+    paths: [stage5_cloud_check.request.json]
+permissions:
+  contents: read
+concurrency:
+  group: stage5-synthetic-cloud-publisher-check-only
+  cancel-in-progress: false
+jobs:
+  isolated:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Check only persistent isolated writer and synthetic private storage
+        env:
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: python3 stage5_cloud_check.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage5-synthetic-cloud-check-${{ github.run_id }}
+          path: stage5-cloud-check-report/
+          retention-days: 30

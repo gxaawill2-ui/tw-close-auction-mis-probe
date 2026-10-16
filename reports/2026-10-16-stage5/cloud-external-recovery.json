@@ -1,0 +1,21 @@
+{
+  "scope": "ISOLATED_CLOUD_PUBLIC_PREFLIGHT",
+  "observed_at": "2026-10-16T04:35:48.370097+00:00",
+  "health_http_status": 200,
+  "health": {
+    "handoff_revision": "stage5-20261016-v1",
+    "private_evidence_available": true,
+    "live_validation_released": false,
+    "read_validator_revision": "weak-etag-v2"
+  },
+  "sealed_handoff_http_status": 200,
+  "sealed_handoff": {
+    "revision": "stage5-20261016-v1",
+    "algorithm": "RSA-OAEP-SHA256",
+    "scope": "ISOLATED_WORKER_WRITER_ONLY",
+    "sealed_payload_recovered": true
+  },
+  "cloud_written_at": "2026-10-16T03:08:31.744Z",
+  "source_commit": "30d19316eb7d2c5155f94f549a57d53172a7b4a7",
+  "run_id": 38851428931
+}

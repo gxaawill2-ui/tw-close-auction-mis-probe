@@ -1,0 +1,37 @@
+name: Stage5 isolated journal performance and rollback
+on:
+  push:
+    branches: [stage4/20261016-fugle-probe]
+    paths: [stage5_journal_benchmark.py, .github/workflows/stage5-journal-benchmark.yml]
+permissions:
+  contents: read
+concurrency:
+  group: stage5-synthetic-journal-performance-only
+  cancel-in-progress: false
+jobs:
+  synthetic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify private recovery and proposed journal without provider calls
+        run: python3 -m unittest test_stage5_archive test_stage5_runtime test_stage5_proposal
+      - name: Measure synthetic batches on this separate runner
+        run: |
+          mkdir -p stage5-benchmark-report
+          python3 stage5_journal_benchmark.py > stage5-benchmark-report/journal-benchmark.json
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path('stage5-benchmark-report/journal-benchmark.json')
+          d=json.loads(p.read_text());d['scope']='SYNTHETIC_SEPARATE_GITHUB_RUNNER_NOT_FORMAL_CAPTURE_OR_REAL_MARKET'
+          d['run_id']=os.getenv('GITHUB_RUN_ID');d['source_commit']=os.getenv('GITHUB_SHA')
+          p.write_text(json.dumps(d,indent=2));print(p.read_text())
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage5-synthetic-journal-${{ github.run_id }}
+          path: stage5-benchmark-report/
+          retention-days: 30

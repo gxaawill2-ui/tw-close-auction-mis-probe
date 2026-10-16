@@ -19,7 +19,7 @@ import urllib.request
 
 import freshness as f
 from fast_selection import atomic, safe_output
-from stage3_publication import Publisher, BackgroundPublisher, envelope
+from stage3_publication import Publisher, BackgroundPublisher, envelope, CLOUD_CLIENT
 from stage3_ticks import canonical, trade_time, identity
 
 BASE = 'https://tw-tail-stage4-20261015-test.gxaawill2.workers.dev'
@@ -54,7 +54,7 @@ class Vault:
         if len(raw) > 98304:
             raise ValueError('PRIVATE_EVENT_TOO_LARGE')
         req = urllib.request.Request(self.base + '/private-evidence/' + date + '/' + ident,
-            method='POST', data=raw, headers={'Authorization': 'Bearer ' + self.token, 'Content-Type': 'application/json'})
+            method='POST', data=raw, headers={'Authorization': 'Bearer ' + self.token, 'Content-Type': 'application/json','User-Agent':CLOUD_CLIENT,'Accept':'application/json'})
         for attempt in range(3):
             try:
                 with self.opener(req, timeout=6) as response:
@@ -74,16 +74,18 @@ class Vault:
         if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', date) or not re.fullmatch(r'index|[a-f0-9]{64}', ident):
             raise ValueError('INVALID_PRIVATE_READ')
         req = urllib.request.Request(self.base + '/private-evidence/' + date + '/' + ident,
-            headers={'Authorization': 'Bearer ' + self.token})
+            headers={'Authorization': 'Bearer ' + self.token,'User-Agent':CLOUD_CLIENT,'Accept':'application/json'})
         with self.opener(req, timeout=6) as response:
             return json.loads(response.read(200000))
 
 
 class Source:
-    def __init__(self, key, directory, vault, *, max_requests=160, opener=None, clock=None, wait=time.sleep):
+    def __init__(self, key, directory, vault, *, max_requests=160, opener=None, clock=None, wait=time.sleep, require_durable=False):
         if not isinstance(key, str) or len(key) < 20 or not re.fullmatch(r'[A-Za-z0-9+/_=-]+', key):
             raise ValueError('FUGLE_KEY_NOT_CONFIGURED')
         self.key, self.vault = key, vault
+        self.require_durable=require_durable
+        if require_durable and isinstance(vault,LocalVault):raise ValueError('PRIVATE_DURABLE_ARCHIVE_REQUIRED')
         self.directory = safe_output(directory)
         os.chmod(self.directory, 0o700)
         self.opener = opener or urllib.request.build_opener(NoRedirect()).open
@@ -155,7 +157,14 @@ class Source:
         event = {'source': 'FUGLE', 'raw': raw.decode('utf8'), 'sha256': digest,
             'requested_at': began, 'received_at': received, 'persisted_at': self.clock().isoformat(),
             'http_status': status, 'query': query, 'headers': headers, 'symbol': candidate['code'], 'kind': kind}
-        receipt = self.vault.save(event, date)
+        try:
+            receipt = self.vault.save(event, date)
+            if self.require_durable and receipt.get('recoverable_after_job') is not True:
+                raise ValueError('PRIVATE_DURABLE_RECEIPT_REQUIRED')
+        except Exception:
+            if self.require_durable:
+                with self.lock:self.stopped=True
+            raise ValueError('PRIVATE_ARCHIVE_FAILED_SOURCE_STOPPED' if self.require_durable else 'PRIVATE_ARCHIVE_FAILED') from None
         if self.clock()>deadline:raise ValueError('SOURCE_RECEIVED_AFTER_DEADLINE')
         payload = json.loads(raw)
         if not isinstance(payload, dict) or payload.get('date') != date or payload.get('symbol') != candidate['code'] or payload.get('exchange') != {'tse':'TWSE','otc':'TPEx'}[candidate['ex']] or payload.get('type') != 'EQUITY':
@@ -205,6 +214,8 @@ class Source:
 def restore_bundle(vault, date, manifest_id):
     """Recover from private immutable objects; supplied verdicts are never restored."""
     saved=vault.read(date,manifest_id);event=saved['event']
+    if saved.get('id')!=manifest_id or saved.get('trade_date')!=date or hashlib.sha256(canonical(event).encode()).hexdigest()!=manifest_id:
+        raise ValueError('PRIVATE_MANIFEST_HASH_MISMATCH')
     if event.get('kind')!='bundle_manifest' or hashlib.sha256(event['raw'].encode()).hexdigest()!=event['sha256']:
         raise ValueError('INVALID_PRIVATE_MANIFEST')
     bundle=json.loads(event['raw']);bundle['pages']=[]

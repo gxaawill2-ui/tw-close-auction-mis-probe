@@ -6,13 +6,14 @@ import time
 import urllib.request
 from stage3_ticks import canonical
 from stage5_runtime import BASE, NoRedirect
+from stage3_publication import CLOUD_CLIENT
 
 
 def follow(session,token,*,opener=None,wait=time.sleep):
     opener=opener or urllib.request.build_opener(NoRedirect()).open
     seen=set();errors=0
     def read(ident):
-        request=urllib.request.Request(BASE+'/private-mis-journal/'+session.date+'/'+ident,headers={'Authorization':'Bearer '+token})
+        request=urllib.request.Request(BASE+'/private-mis-journal/'+session.date+'/'+ident,headers={'Authorization':'Bearer '+token,'User-Agent':CLOUD_CLIENT,'Accept':'application/json'})
         with opener(request,timeout=6) as response:return json.loads(response.read(150000))
     while session.clock()<session.deadline:
         try:

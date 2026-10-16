@@ -14,6 +14,8 @@ import freshness as f
 from fast_selection import safe_output,atomic
 from stage3_ticks import canonical
 
+CLOUD_CLIENT='tw-close-auction-isolated/5.0 (+https://github.com/gxaawill2-ui/tw-close-auction-mis-probe)'
+
 
 def envelope(body,decision_key):
     return {'body':body,'signature':hmac.new(decision_key.encode(),canonical(body).encode(),hashlib.sha256).hexdigest()}
@@ -44,7 +46,7 @@ class Publisher:
             began=self.clock().isoformat()
             try:
                 req=urllib.request.Request(self.base+'/publish',data=encoded,method='POST',
-                    headers={'Authorization':'Bearer '+self.token,'Content-Type':'application/json'})
+                    headers={'Authorization':'Bearer '+self.token,'Content-Type':'application/json','User-Agent':CLOUD_CLIENT,'Accept':'application/json'})
                 with self.opener(req,timeout=6) as response:
                     status=response.status;result=json.loads(response.read(4097))
                 if status!=200 or result.get('sha256')!=sha or result.get('version')!=view['version']:
