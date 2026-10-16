@@ -1,0 +1,9 @@
+{
+  "scope": "ISOLATED_WORKFLOW_STATIC_FAILURE_RECOVERY_REVIEW_NOT_A_REAL_CANCELLATION",
+  "yaml_parsed": true,
+  "separate_archive_recovery_jobs": true,
+  "failed_origin_does_not_implicitly_skip_successful_archive_recovery": true,
+  "manual_cancellation_stops_new_jobs": true,
+  "production_workflow_modified": false,
+  "real_failure_path_executed": false
+}

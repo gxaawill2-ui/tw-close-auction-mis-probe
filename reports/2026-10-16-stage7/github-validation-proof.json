@@ -1,9 +1,9 @@
 {
   "scope": "GITHUB_RUNNER_ISOLATED_VALIDATION",
-  "run_url": "https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/actions/runs/38893345139",
-  "commit": "ffa1e8fcc810a4991ed89f95341c79976cfb7ef1",
+  "run_url": "https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/actions/runs/38894865929",
+  "commit": "272daee5ae8af2b0dac5369ef4ae7271ae2d712e",
   "python_tests": 435,
-  "node_tests": 121,
+  "node_tests": 124,
   "node_failures": 0,
   "local_workerd_e2e": {
     "scope": "LOCAL_SYNTHETIC_ACTUAL_WORKERD_E2E_NOT_REAL_MARKET",
@@ -20,6 +20,34 @@
     "fugle_requests": 0,
     "physical_phone_tested": false,
     "verified_count": 0,
-    "completed_at": "2026-10-16T19:22:48.091938+08:00"
+    "completed_at": "2026-10-16T19:36:30.723269+08:00"
+  },
+  "patch_rollback": {
+    "scope": "TEMPORARY_COPY_NEW_MINIMAL_PATCHES_APPLY_REVERSE_ONLY",
+    "main_commit": "a8f25945f94ce45300d5e97c9d6a7f622586663e",
+    "production_modified": false,
+    "files": {
+      "probe.py": {
+        "git_blob": "64f4e90dde9e17cc3ff5ebf3779ac040e69b8bd4",
+        "sha256": "e5285d15dcb38b3fa003e2574b0fa3c7b35f5150dfa71cef91e83a5bad8bc936"
+      },
+      ".github/workflows/twse-mis-probe.yml": {
+        "git_blob": "f4e74ee3b3080a9e6ae0aef2f3e1c759384c9ecb",
+        "sha256": "7ca847cab185626af7c0ae8a11563e8041581719f98d97de0a305f9842f0441c"
+      },
+      "docs/index.html": {
+        "git_blob": "18cd77f7ce88a29377600b79da162dd59c26e502",
+        "sha256": "9c172a1dac1ff4a3baaa73fab0aa6d615a5c697e42e93ca9d75bdfd935ca1a44"
+      }
+    },
+    "apply_reverse_original_bytes_restored": true,
+    "new_journal_removed_after_reverse": true,
+    "formal_bridge_has_fugle_key": false,
+    "formal_bridge_has_publisher_credentials": false,
+    "formal_site_panel_default_enabled": false,
+    "formal_site_verified_release_default": false,
+    "schedules_changed": false,
+    "existing_capture_command_changed": false,
+    "environment_admission_and_bridge_cloud_write_verified": false
   }
 }

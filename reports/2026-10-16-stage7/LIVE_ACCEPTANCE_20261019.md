@@ -44,3 +44,5 @@
 ## 尚不能承諾
 
 正式journal尚未批准，本次影子工作仍要等Artifact，13:35～13:40不是保證時間。來源契約未釐清時LIVE_CONTRACT與Worker release仍false，預期VERIFIED可能仍0；不是啟動影子工作就解決了逐筆完整性。實體手機、真實交易日逐批延遲及持續驗證都尚未發生。
+
+後續私有archive/recover job採!cancelled()及直接依賴結果判斷，不以整串success()跳過已成功封存的恢復；本人手動取消會停止後續。參考：https://docs.github.com/en/actions/reference/workflows-and-actions/expressions 。目前僅審查控制語意，10/19主job真實失敗/取消尚未發生。

@@ -50,7 +50,7 @@ P_close的官方日收盤價比對可支持三檔價格一致；它不能證明P
 | TWSE/TPEx官方盤後日資料 | 收盤價、當日統計；沿用已有1830一致/0不一致/137無可比資料 | 不提供13:25前完整逐筆 |
 | 既有官方MIS | 已保存的成交/比較/收盤觀察；定向C2可補第二次觀察 | 同一來源不能自行充當富果的獨立完整逐筆契約 |
 | 富果WebSocket Trades | 下一交易日少數股票即時成交/試撮/收盤訊號的研究選項 | 同一供應商，不能修復10/16過去串流；仍須確認排序、斷線補齊及免費限制 |
-| FinMind官方TaiwanStockPriceTick文件 | 歷史逐筆資料 | 文件列Backer，不能當作已可免費使用的替代 |
+| FinMind官方TaiwanStockPriceTick文件 | 歷史逐筆資料 | 官方文件列backer/sponsor，不能當作已可免費使用的替代 |
 | 官方資訊商店 | 可申購正式成交資料 | 不符合免費及13:35即時目標；沒有購買 |
 | 分鐘K、一般網站報價 | 合理性比對 | 無法證明截止前最後實際成交 |
 
@@ -62,3 +62,5 @@ P_close的官方日收盤價比對可支持三檔價格一致；它不能證明P
 - https://developer.fugle.tw/docs/data/intro/
 - https://developer.fugle.tw/docs/data/websocket-api/market-data-channels/trades/
 - https://github.com/FinMind/FinMind-MCP/blob/master/knowledge/datasets.md
+
+第七階段再次核對FinMind官方技術文件：https://finmind.github.io/tutor/TaiwanMarket/Technical/ 。逐筆仍列backer/sponsor限制，未註冊或付費。
