@@ -1,3 +1,9 @@
+# 13:24 真實證據保存確認（2026-10-16T13:25:32+08:00）
+
+Run38854461494已於13:24:03.194922保存2330、13:24:07.214021保存6488；兩筆safe log都確認private_evidence_recoverable_after_job=true及獨立manifest id。
+詳real-private-pre-cutoff-observations.json。這是新增真實回應的私有保存，不是合成資料，也不是原Run暫存的回收。
+兩檔仍UNKNOWN、VERIFIED=0；13:25之後最後成交／收盤／不同Runner真實raw恢復仍待後續時點。
+
 # Stage5 最新接手紀錄 — 2026-10-16T13:20:25+08:00
 
 本檔取代先前 12:44 版本。先確認台北時間與下列 Run，再做唯讀檢查；不要重啟任務或重新開發。

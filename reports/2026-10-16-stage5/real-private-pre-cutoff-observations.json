@@ -1,0 +1,42 @@
+{
+  "scope": "REAL_PRE_CUTOFF_PRIVATE_STORAGE_SAFE_LOG_METADATA_ONLY",
+  "run_id": 38854461494,
+  "job_id": 116822705363,
+  "browser_observed_at": "2026-10-16T05:24:49.821Z",
+  "events": [
+    {
+      "event": "PRIVATE_CONTROL_SAVED",
+      "phase": "PRE_CUTOFF",
+      "symbol": "2330",
+      "observed_at": "2026-10-16T13:24:03.194922+08:00",
+      "status": "UNKNOWN",
+      "private_manifest_id": "4cd55990a58164e5cb50d2a99263c12c0a22dd8a11be63b872e92db80a318ec0",
+      "private_evidence_recoverable_after_job": true,
+      "reasons": [
+        "QUOTE_CHANGED_DURING_PAGINATION",
+        "FULL_DAY_COUNT_AND_VOLUME_NOT_PROVEN",
+        "QUOTE_HEAD_CONFLICT",
+        "CLOSE_FINALITY_NOT_PROVEN",
+        "PROVIDER_COMPLETENESS_AND_ORDER_CONTRACT_NOT_RELEASED"
+      ]
+    },
+    {
+      "event": "PRIVATE_CONTROL_SAVED",
+      "phase": "PRE_CUTOFF",
+      "symbol": "6488",
+      "observed_at": "2026-10-16T13:24:07.214021+08:00",
+      "status": "UNKNOWN",
+      "private_manifest_id": "3636d7581a5a97dfa5e8cad0727566357d99b7bf8cc88db9c3e7fd83150ce625",
+      "private_evidence_recoverable_after_job": true,
+      "reasons": [
+        "QUOTE_CHANGED_DURING_PAGINATION",
+        "SAME_MICROSECOND_ORDER_NOT_DOCUMENTED",
+        "FULL_DAY_COUNT_AND_VOLUME_NOT_PROVEN",
+        "CLOSE_FINALITY_NOT_PROVEN",
+        "PROVIDER_COMPLETENESS_AND_ORDER_CONTRACT_NOT_RELEASED"
+      ]
+    }
+  ],
+  "verified_count": 0,
+  "raw_market_data_in_report": false
+}
