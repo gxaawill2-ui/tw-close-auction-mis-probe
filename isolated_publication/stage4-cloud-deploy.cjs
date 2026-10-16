@@ -89,13 +89,16 @@ async function acceptance({base=BASE,token,key,fetcher=fetch,wait=ms=>new Promis
 }
 async function main(){
  const config=JSON.parse(fs.readFileSync(CONFIG,'utf8'));validateTarget(config,process.env);
- const {PUBLISH_TOKEN:token,DECISION_KEY:key}={PUBLISH_TOKEN:crypto.randomBytes(32).toString('hex'),DECISION_KEY:crypto.randomBytes(32).toString('hex')};
- const secrets=JSON.stringify({PUBLISH_TOKEN:token,DECISION_KEY:key});
  function wrangler(args,input){
   // Input goes directly to Wrangler stdin; never echo command output or key values.
   const result=spawnSync('npx',['--yes','wrangler',...args,'--config',CONFIG,'--name',NAME],{input,encoding:'utf8',env:{...process.env,CI:'true',WRANGLER_SEND_METRICS:'false'},timeout:180000,maxBuffer:4*1024*1024});
   assert(result.status===0,'ISOLATED_WRANGLER_STEP_FAILED_'+args[0]+'_'+(result.status??'TIMEOUT'));
  }
+ if(config.vars.HANDOFF_REVISION){
+  await require('./stage5-cloud-bootstrap.cjs').bootstrap({config,wrangler,acceptance,base:BASE,commit:process.env.WORKERS_CI_COMMIT_SHA});return;
+ }
+ const {PUBLISH_TOKEN:token,DECISION_KEY:key}={PUBLISH_TOKEN:crypto.randomBytes(32).toString('hex'),DECISION_KEY:crypto.randomBytes(32).toString('hex')};
+ const secrets=JSON.stringify({PUBLISH_TOKEN:token,DECISION_KEY:key});
  wrangler(['deploy']);console.log('STAGE4_TEST_WORKER_DEPLOYED');
  wrangler(['secret','bulk'],secrets);console.log('STAGE4_EPHEMERAL_TEST_WRITER_KEYS_INSTALLED_NO_VALUES_LOGGED');
  let report;

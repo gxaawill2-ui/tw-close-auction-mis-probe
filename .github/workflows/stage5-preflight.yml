@@ -1,0 +1,20 @@
+name: Stage5 isolated cloud read preflight
+on:
+  push:
+    branches: [stage4/20261016-fugle-probe]
+    paths: [stage5_preflight.py, .github/workflows/stage5-preflight.yml]
+permissions:
+  contents: read
+concurrency:
+  group: stage5-cloud-preflight-only
+  cancel-in-progress: false
+jobs:
+  read:
+    if: github.ref == 'refs/heads/stage4/20261016-fugle-probe'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: python3 stage5_preflight.py

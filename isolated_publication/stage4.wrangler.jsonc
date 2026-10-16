@@ -3,7 +3,9 @@
   "main": "worker.mjs",
   "compatibility_date": "2026-10-14",
   "vars": {
-    "ALLOW_LIVE_VERIFIED": "false"
+    "ALLOW_LIVE_VERIFIED": "false",
+    "PUBLIC_POLICY_REQUIRED": "true",
+    "HANDOFF_REVISION": "stage5-20261016-v1"
   },
   "durable_objects": {
     "bindings": [
