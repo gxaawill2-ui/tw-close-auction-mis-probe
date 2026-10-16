@@ -1,0 +1,24 @@
+name: Stage4 isolated Fugle connection test
+on:
+  push:
+    branches: [stage4/20261016-fugle-probe]
+    paths: [stage4_fugle_smoke.py, .github/workflows/stage4-fugle-smoke.yml]
+permissions:
+  contents: read
+concurrency:
+  group: stage4-fugle-smoke-only
+  cancel-in-progress: false
+jobs:
+  probe:
+    if: github.ref == 'refs/heads/stage4/20261016-fugle-probe'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Five fixed authenticated requests; no raw market data output
+        env:
+          FUGLE_API_KEY: ${{ secrets.FUGLE_API_KEY }}
+        run: python3 stage4_fugle_smoke.py
