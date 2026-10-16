@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           # Replace only with the reviewed Stage6 implementation commit, never main.
-          ref: STAGE6_REVIEWED_COMMIT_REQUIRED
+          ref: fd08193e4bf99cb5f0642daa9d2a5789487d615b
           persist-credentials: false
       - name: Follow the formal collector's existing private journal only
         env:

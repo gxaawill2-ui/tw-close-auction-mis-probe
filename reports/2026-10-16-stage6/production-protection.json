@@ -1,0 +1,12 @@
+{
+  "scope": "READ_ONLY_PRODUCTION_PROTECTION_CHECK",
+  "main_head": "a8f25945f94ce45300d5e97c9d6a7f622586663e",
+  "stage6_implementation": "fd08193e4bf99cb5f0642daa9d2a5789487d615b",
+  "modified_protected_paths": [],
+  "mis_extra_requests": 0,
+  "fugle_extra_requests": 0,
+  "formal_secret_changes": false,
+  "formal_schedule_changes": false,
+  "formal_deployment": false,
+  "isolated_worker_commit": "a0f6cc587d52acfa1245cc57b8f82ff19368c383"
+}

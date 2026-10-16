@@ -1,0 +1,48 @@
+{
+  "scope": "REAL_EXTERNAL_DESKTOP_UI_NOT_PHYSICAL_PHONE",
+  "real_trade_date": "2026-10-16",
+  "real_browser_first_read_at": "2026-10-16T18:09:31+08:00",
+  "after_worker_deploy_read_at": "2026-10-16T18:30:22+08:00",
+  "real_version": 1792129307272000,
+  "real_rows": 3,
+  "verified_count": 0,
+  "screening_calculable_count": 1938,
+  "universe_count": 1967,
+  "physical_phone_observed_at": null,
+  "synthetic_ui_observations": [
+    {
+      "state": "RESEARCH_ONLY",
+      "version": 1792146827078000,
+      "browser_displayed_read_at": "2026-10-16T18:33:49+08:00"
+    },
+    {
+      "state": "UNKNOWN",
+      "version": 1792146827078001,
+      "browser_displayed_read_at": "2026-10-16T18:34:29+08:00"
+    },
+    {
+      "state": "RETRACTED",
+      "version": 1792146827078002,
+      "browser_displayed_read_at": "2026-10-16T18:35:09+08:00"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "external-desktop.jpg",
+      "sha256": "43e1986dd52a31d0447abd06a3ca94104a5b7287d3dd1516378db56a09fd8fd3"
+    },
+    {
+      "file": "external-synthetic-research.jpg",
+      "sha256": "12320e747925b014e287b01e285f6458f5247054fd5af6b63adcb6bac4f99700"
+    },
+    {
+      "file": "external-synthetic-unknown.jpg",
+      "sha256": "e3a826aa6a59b09e2c960a97fba8fcce5e0142144b6df85ec707273dafa0b30c"
+    },
+    {
+      "file": "external-synthetic-retracted.jpg",
+      "sha256": "cea732343f001052fadb355c058a3585a5c4834a12e61609980fc66ab12bb52b"
+    }
+  ],
+  "all_three_states_observed_without_reload": true
+}

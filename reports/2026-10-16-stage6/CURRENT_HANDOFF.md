@@ -1,6 +1,6 @@
 # 第六階段接手紀錄
 
-最新權威分支仍為 `stage4/20261016-fugle-probe`，以遠端 HEAD 為準。起點 adcd926；第一個第六階段 Commit 0df864cb920e02b08f1bb43b92c577618fa1f8be。本文件與後續實作將持續提交同一分支，不要從本機舊 live-shadow 工作目錄覆蓋。
+最新權威分支仍為 `stage4/20261016-fugle-probe`，以遠端 HEAD 為準。起點 adcd926；第一個第六階段 Commit 0df864cb920e02b08f1bb43b92c577618fa1f8be。完整第六階段實作Commit `fd08193e4bf99cb5f0642daa9d2a5789487d615b`；本文件與後續驗收將持續提交同一分支，不要從本機舊 live-shadow 工作目錄覆蓋。
 
 ## 結論
 
@@ -43,3 +43,12 @@ MIS_BRIDGE_TOKEN仍未設定，不能冒充橋接已啟用。正式Environment m
 2. 讀 `SOURCE_REVIEW_AND_PROVIDER_QUESTIONS.md`、`FORMAL_INTEGRATION_REVIEW.md`、`STORAGE_AND_BROWSER_ACCEPTANCE.md`。
 3. 假如需要主線變更，只按白名單、獲批准後重新核對main再套patch。下一交易日是10/19（須依原正式交易日calendar gate確認）；不得回填今天13:25證據或重新擷取全市場。
 4. 實體手機只能用真正外部網路驗收；不得用桌機/手機模擬補PASS。保留正式網址。
+
+
+## 最終續作補充
+
+完整實作 fd08193 已保存；本次後續只有驗收文件與畫面。第二次獨立Runner Run38888007658/Job116930386091 success，GitHub Runner完整422項Python通過；雲端新版health與false release gate確認、既有writer私有恢復60物件與合成發布成功。桌機已無重整逐一觀察研究→UNKNOWN→撤回，讀取時間18:33:49/18:34:29/18:35:09，畫面與metadata保存。舊版本拒絕通過。這些仍是2099日期合成測試，不改10/16真實驗收表。
+
+新的獨立consumer提案已固定checkout至fd08193e4bf99cb5f0642daa9d2a5789487d615b（不是main）。正式補丁仍未套用，MIS bridge Token及main admission仍未建立；沒有冒稱已每日自動啟動。真實320筆重播1.857秒確認公開3檔不變，定向補查只列5546。
+
+最後遠端main仍a8f25945f94ce45300d5e97c9d6a7f622586663e；相對起點adcd926，本輪主隔離提交未更動probe.py、正式workflow、docs/或state/。雲端部署只更新既有隔離Worker。所有最新可恢復程式已在Git保存。

@@ -1,1 +1,27 @@
-{"python_full_suite":{"passed":422,"failed":0,"scope":"LOCAL_SYNTHETIC_AND_SAVED_EVIDENCE"},"node_full_suite":{"passed":119,"failed":0,"scope":"LOCAL_WORKERD_DOM_AND_SYNTHETIC"},"real_cloud_initial_run":38885972149,"physical_phone_tested":false,"formal_deployment_ready":false}
+{
+  "python_full_suite": {
+    "passed": 422,
+    "failed": 0,
+    "scope": "LOCAL_SYNTHETIC_AND_SAVED_EVIDENCE"
+  },
+  "node_full_suite": {
+    "passed": 119,
+    "failed": 0,
+    "scope": "LOCAL_WORKERD_DOM_AND_SYNTHETIC"
+  },
+  "real_cloud_initial_run": 38885972149,
+  "physical_phone_tested": false,
+  "formal_deployment_ready": false,
+  "github_runner_full_suite": {
+    "run_id": 38888007658,
+    "passed": 422,
+    "failed": 0
+  },
+  "post_deployment_cloud": {
+    "passed": true,
+    "worker_commit": "a0f6cc587d52acfa1245cc57b8f82ff19368c383",
+    "live_release": false,
+    "writer_rotated": false
+  },
+  "all_three_synthetic_states_observed_in_external_desktop": true
+}

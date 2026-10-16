@@ -42,3 +42,18 @@ https://tw-tail-stage4-20261015-test.gxaawill2.workers.dev/?date=2026-10-16
 - https://developers.cloudflare.com/durable-objects/platform/pricing/
 - https://developers.cloudflare.com/workers/platform/limits/
 - https://developer.fugle.tw/docs/data/intro/
+
+
+## 隔離Worker更新後的第二次外部驗收
+
+部署 a0f6cc5 已於18:29:12成功；新版health於18:33:35在獨立Runner確認 `journal_codec_revision=bounded-zlib-v1`、HANDOFF_REVISION不變、LIVE release=false。使用既有Environment憑證私有恢復及公開合成發布成功，沒有輪替或重新交接憑證。422項Python測試同時在新GitHub Runner通過。
+
+Run38888007658的第二次合成驗收，預先開啟的外部桌機頁未重整，已逐一觀察並保存三張畫面：
+
+| 狀態 | 實際Cloudflare寫入（台北） | 外部API | 桌機畫面顯示讀取 | 寫入至桌機 |
+| --- | --- | --- | --- | --- |
+| RESEARCH_ONLY | 18:33:47.196 | 18:33:47.470 | 18:33:49 | 約1.80秒 |
+| UNKNOWN | 18:34:27.588 | 18:34:27.855 | 18:34:29 | 約1.41秒 |
+| RETRACTED | 18:35:07.976 | 18:35:08.248 | 18:35:09 | 約1.02秒 |
+
+桌機時間由頁面顯示到秒，因此延遲為約值；不能宣稱毫秒級精度，也不能算實體手機或真實股票的端到端速度。此次修補了上一段未逐一保存中間畫面的桌機驗收缺口，手機仍未測。
