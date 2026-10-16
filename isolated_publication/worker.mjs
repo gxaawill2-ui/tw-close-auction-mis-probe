@@ -1,5 +1,6 @@
 // Entirely separate from the existing relay/Pages. No cron and no GitHub calls.
 import {maybeMISBridge} from './stage5-mis-bridge.mjs';
+import {maybeArchive,archiveStore} from './stage7-private-archive.mjs';
 const encoder=new TextEncoder();
 export function canonical(value){
  if(Array.isArray(value))return '['+value.map(canonical).join(',')+']';
@@ -85,8 +86,9 @@ function response(status,data,extra={}){
 }
 export default {async fetch(request,env){
  const url=new URL(request.url);
+ const archive=await maybeArchive(request,env,{sign,canonical,privateResponse,limitedText});if(archive)return archive;
  const mis=await maybeMISBridge(request,env,{sign,canonical,privateResponse,limitedText});if(mis)return mis;
- if(url.pathname==='/health')return response(200,{scope:'ISOLATED_STAGE3',read_validator_revision:'weak-etag-v2',journal_codec_revision:'bounded-zlib-v1',handoff_revision:env.HANDOFF_REVISION||null,private_evidence_available:true,live_validation_released:env.ALLOW_LIVE_VERIFIED==='true'});
+ if(url.pathname==='/health')return response(200,{scope:'ISOLATED_STAGE3',private_archive_revision:'immutable-copy-30d-v1',read_validator_revision:'weak-etag-v2',journal_codec_revision:'bounded-zlib-v1',handoff_revision:env.HANDOFF_REVISION||null,private_evidence_available:true,live_validation_released:env.ALLOW_LIVE_VERIFIED==='true'});
  const privatePath=/^\/private-evidence\/(\d{4}-\d{2}-\d{2})\/(index|[a-f0-9]{64})$/.exec(url.pathname);
  if(privatePath){
   if(url.search||!['GET','POST'].includes(request.method))return privateResponse(404,{error:'NOT_FOUND'});
@@ -130,6 +132,7 @@ export class SelectionStore{
  constructor(state,env){this.state=state;this.env=env;}
  async fetch(request){
   const url=new URL(request.url),storage=this.state.storage;
+  if(url.pathname.startsWith('/archive/'))return archiveStore(request,this.state,{canonical,privateResponse});
   if(url.pathname.startsWith('/private/')){
    const id=url.pathname.split('/').at(-1);
    if(request.method==='GET'){

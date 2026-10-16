@@ -1,0 +1,52 @@
+name: Stage7 private 30-day archive and independent Runner recovery
+on:
+  push:
+    branches: [stage4/20261016-fugle-probe]
+    paths: [stage7_archive.request.json]
+permissions:
+  contents: read
+concurrency:
+  group: stage7-private-archive-only
+  cancel-in-progress: false
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Copy existing evidence inside same private isolated Worker
+        env:
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: python3 stage7_archive.py copy
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage7-safe-copy-${{ github.run_id }}
+          path: stage7-copy-report/
+          retention-days: 30
+  recover:
+    needs: copy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: stage7-safe-copy-${{ github.run_id }}
+          path: stage7-copy-report
+      - name: Read only independent archive; rehash every raw object and restore bundles
+        env:
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: python3 stage7_archive.py recover
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage7-safe-recover-${{ github.run_id }}
+          path: stage7-recover-report/
+          retention-days: 30

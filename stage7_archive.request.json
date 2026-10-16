@@ -1,0 +1,7 @@
+{
+  "scope": "ISOLATED_EXISTING_PRIVATE_ARCHIVE_COPY_AND_SECOND_RUNNER_RECOVERY",
+  "requested_at": "2026-10-16T11:11:17.918899+00:00",
+  "trade_date": "2026-10-16",
+  "provider_requests": 0,
+  "destination": "EXISTING_SAME_PRIVATE_WORKER_30_DAY_NAMESPACE"
+}
