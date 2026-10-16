@@ -47,5 +47,15 @@
   "original_fugle_task_restarted": false,
   "actual_external_desktop_pass": false,
   "physical_phone_pass": false,
-  "formal_deployment_pass": false
+  "formal_deployment_pass": false,
+  "original_task_last_read_only_checked_at": "2026-10-16T14:03:36+08:00",
+  "original_fugle_status_at_check": "in_progress",
+  "single_delayed_diagnostic_run": 38858502361,
+  "single_delayed_private_saved_at": "2026-10-16T13:57:51.451136+08:00",
+  "single_delayed_private_restored_at": "2026-10-16T13:58:02.293577+08:00",
+  "single_delayed_provider_requests": 3,
+  "private_equality_compare_run": 38858830365,
+  "private_equality_compare_provider_requests": 0,
+  "private_total_bundle_count_restored": 14,
+  "private_pending_review_count": 1
 }

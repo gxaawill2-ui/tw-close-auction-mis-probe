@@ -33,3 +33,9 @@
 原11:20任務仍未中斷，其原LocalVault不能追溯補接；盤後檢查控制時點日誌缺口。
 
 證據：real-mis-cloud-publication.json、real-private-raw-recovery.json、real-candidate-private-audit.json、real-remaining-candidate-audit.json、real-candidate-raw-recovery.json。
+
+## 2026-10-16T14:08:20.242779+08:00續作驗收補充
+
+研究仍3檔、VERIFIED仍0。5546的13:57:51真實私有觀察及13:58:02跨Runner恢復成功，但quote與Trades/MIS時間不一致，維持UNKNOWN，不計入13:35～13:40成功或第4檔研究候選。14:01四檔私有等值比對沒有新增行情請求。
+
+29檔已分為26無保存一般交易、2收盤才有成交但無比較基準、1延後收盤缺確認。隔離待查核佇列已補漏；今日320筆離線重播確認5546入私有佇列、原3檔公開名單不變。409項測試與更新後提案回滾驗證通過，仍未滿足正式部署。

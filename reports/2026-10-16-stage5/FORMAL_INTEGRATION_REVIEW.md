@@ -15,7 +15,7 @@
 2. 新增獨立標準函式庫模組 `stage5_capture_journal.py`：僅寫入專用 RUNNER_TEMP 子目錄，raw 與 journal 分別 fsync；時間在 raw 實際保存後記錄。不能寫 docs 或 state。
 3. 正式 workflow：選用的 journal 路徑、固定 Commit 的隔離程式 checkout、背景 shadow。正式 collector 的執行命令與既有 cron 不變。
 
-隔離 shadow 固定程式 Commit：`c68a913905c6acdf302d7af8377d73f43df4308a`。
+隔離 shadow 固定程式 Commit：`52480ddb7e85ebdac8eab6d395381cb97b48746b`。
 補丁只是提案；實際套用前仍須重新核對最新 main，不可用這份檔案整份覆蓋新版本。
 
 ## 必須另行取得同意的設定
@@ -54,3 +54,5 @@
 13:13補丁驗證：在已核對正式blob的暫存副本執行git apply、反向apply，原始bytes完全還原，新模組亦移除。詳patch-rollback-check.json。沒有修改正式檔案。
 
 目前已實測：3檔研究結果13:34:40寫入隔離Worker，3檔候選都查核並更新，真實raw均已跨Runner恢復。VERIFIED=0、29檔不可計算、桌機/實體手機未驗收；仍不應解除正式保護或自動套用本提案。
+
+2026-10-16T14:08:20.242779+08:00更新：提案固定shadow至52480ddb7e85ebdac8eab6d395381cb97b48746b，包含延後收盤私有待查核補漏；409項測試、今日320筆離線重播及重新取回正式blob的apply/reverse驗證通過。正式collector/workflow/main admission/每日串接仍未套用。

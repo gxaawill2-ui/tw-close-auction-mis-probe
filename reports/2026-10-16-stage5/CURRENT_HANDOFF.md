@@ -1,3 +1,22 @@
+# 最新續作結果 — 2026-10-16T14:08:20.242779+08:00
+
+實作有效Commit `52480ddb7e85ebdac8eab6d395381cb97b48746b`；隔離分支 `stage4/20261016-fugle-probe`。本段優先於下方較早紀錄。正式網站、collector、workflow、排程、Token未更動。
+
+1. 今天仍是3檔研究、VERIFIED0；首次真實研究發布13:34:40。13:35～13:40可信VERIFIED目標未達，未具正式部署條件。
+2. 29不可計算已逐檔追溯：26檔保存比較與收盤觀察皆無trade且量0；4120/5514比較無trade且量0、收盤才成交；5546只有一筆有效延後收盤。28檔各有11次比較觀察無trade且量0，不等於已獨立證明當天無交易。
+3. 5546的MIS單筆13:33成交相對比較價約+4.94297%，是潛在漏選，不能算第4檔已收斂候選。新增單檔私有Run38858502361於13:57:51保存、13:58:02另一Runner恢復；3次新增富果、0 MIS、0公開寫入。87筆終止頁，筆數/量合計吻合，但quote與Trades/MIS的時間衝突，UNKNOWN；未通過延後收盤獨立驗收。
+4. 14:01:11純恢復比對Run38858830365，0行情請求。4609/1235最後截止時間組價格唯一且吻合MIS；1235先前的同微秒衝突不在該最後組。6228最後組本身多價格，6228/5546的quote時間不符Trades/MIS。只輸出等值bool，不公開富果原始值；source contract與Worker VERIFIED雙重保護未解除。
+5. 私有恢復合計14份bundle：控制10、原研究候選3、5546新增1。7日namespace保留政策不變，原11:20暫存不包含在內。
+6. 隔離Session已補漏：變動超過3%的單次延後收盤先進私有待查核，不更動公開研究/量條件/VERIFIED門檻；只增量重算受影響股票。今日320筆離線重播：公開仍4609/6228/1235，私有待查核5546；本機3.2487秒、待查核更新P95 10.7091ms。這不是13:35真實發布，也不是GitHub Runner實盤量測。
+7. 完整Python409項PASS。正式提案pin已更新至上述Commit，並以重新取回、核對blob的最新正式檔，在暫存副本apply/reverse恢復原始bytes；尚未套用。
+8. 原富果Run38845027079於14:03:36唯讀仍in_progress；未取消、重啟或換程式。其控制時點是否成功，仍待原任務結束的sanitized report，不能憑執行狀態宣稱成功。
+
+下一步：讀既有盤後官方核對和原任務報告；補足來源完整性與時間語意；實際桌機/實體手機驗收；正式journal及每日串接須另行核准。PROVIDER_SEMANTICS_QUESTIONS.md只是未傳送清單，沒有聯絡第三方。未解除任何正式保護。
+
+證據：real-mis-unresolved-diagnosis.json、real-delayed-private-audit.json、real-delayed-private-recovery.json、real-private-vs-mis.json、pending-queue-real-replay.json、patch-rollback-check.json。
+
+---
+
 # 第五階段最新接手紀錄 — 2026-10-16T13:49:13+08:00
 
 ## 目前結論

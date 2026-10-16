@@ -128,7 +128,7 @@ jobs:
         continue-on-error: true
         uses: actions/checkout@v4
         with:
-          ref: c68a913905c6acdf302d7af8377d73f43df4308a
+          ref: 52480ddb7e85ebdac8eab6d395381cb97b48746b
           path: .stage5-shadow-code
           persist-credentials: false
       - name: Start isolated shadow without blocking the formal collector
@@ -164,4 +164,3 @@ jobs:
         env:
           ARTIFACT_UPLOAD_OUTCOME: ${{ steps.artifact.outcome }}
         run: python run_control.py --mode workflow-failure --output results
-
