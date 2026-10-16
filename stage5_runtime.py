@@ -25,6 +25,14 @@ from stage3_ticks import canonical, trade_time, identity
 BASE = 'https://tw-tail-stage4-20261015-test.gxaawill2.workers.dev'
 
 
+class LocalVault:
+    """Private runner-only fallback. Never claim this survives runner destruction."""
+    def save(self, event, date):
+        return {'id':hashlib.sha256(canonical(event).encode()).hexdigest(),'sha256':event['sha256'],
+            'private_written_at':event['persisted_at'],'storage_kind':'RUNNER_PRIVATE_TEMPORARY',
+            'recoverable_after_job':False}
+
+
 class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, *args, **kwargs):
         return None
@@ -53,7 +61,7 @@ class Vault:
                     receipt = json.loads(response.read(4097))
                     if response.status != 200 or receipt.get('id') != ident or receipt.get('sha256') != event['sha256'] or not f.parsed_time(receipt.get('private_written_at')):
                         raise ValueError('PRIVATE_WRITE_RECEIPT_MISMATCH')
-                return receipt
+                return {**receipt,'storage_kind':'ISOLATED_PRIVATE_CLOUDFLARE','recoverable_after_job':True}
             except urllib.error.HTTPError as exc:
                 if exc.code not in (408, 425, 429, 500, 502, 503, 504) or attempt == 2:
                     raise ValueError('PRIVATE_WRITE_HTTP_' + str(exc.code)) from None
@@ -169,7 +177,39 @@ class Source:
             bundle['status'] = 'COLLECTED_NOT_VALIDATED'
         except Exception as exc:
             bundle.update(status='SOURCE_INCOMPLETE', error=str(exc) if isinstance(exc, ValueError) and str(exc).startswith(('SOURCE_', 'PRIVATE_')) else type(exc).__name__)
+        if all(k in bundle for k in ('quote_before','quote_after')) and bundle['pages']:
+            manifest={k:bundle[k] for k in ('source','origin_kind','trade_date','status')}
+            manifest['quote_before_id']=bundle['quote_before']['private_receipt']['id']
+            manifest['quote_after_id']=bundle['quote_after']['private_receipt']['id']
+            manifest['page_ids']=[p['private_receipt']['id'] for p in bundle['pages']]
+            manifest['terminal_page']=bundle.get('terminal_page',False)
+            raw=canonical(manifest);at=self.clock().isoformat()
+            event={'source':'FUGLE','kind':'bundle_manifest','origin_kind':'PRIVATE_MANIFEST_NOT_PROVIDER_RESPONSE',
+                'raw':raw,'sha256':hashlib.sha256(raw.encode()).hexdigest(),'requested_at':at,'received_at':at,
+                'persisted_at':at,'http_status':200,'symbol':candidate['code']}
+            try:bundle['private_manifest_receipt']=self.vault.save(event,date)
+            except Exception:bundle['manifest_persistence_error']='PRIVATE_MANIFEST_NOT_SAVED'
         return bundle
+
+
+def restore_bundle(vault, date, manifest_id):
+    """Recover from private immutable objects; supplied verdicts are never restored."""
+    saved=vault.read(date,manifest_id);event=saved['event']
+    if event.get('kind')!='bundle_manifest' or hashlib.sha256(event['raw'].encode()).hexdigest()!=event['sha256']:
+        raise ValueError('INVALID_PRIVATE_MANIFEST')
+    bundle=json.loads(event['raw']);bundle['pages']=[]
+    if bundle.get('trade_date')!=date:raise ValueError('PRIVATE_MANIFEST_DATE_MISMATCH')
+    def read(ident):
+        saved=vault.read(date,ident);e=saved['event']
+        if saved.get('id')!=ident or hashlib.sha256(canonical(e).encode()).hexdigest()!=ident or hashlib.sha256(e['raw'].encode()).hexdigest()!=e['sha256']:
+            raise ValueError('PRIVATE_RECOVERY_HASH_MISMATCH')
+        e['private_receipt']={'id':ident,'sha256':e['sha256'],'private_written_at':saved['private_written_at'],
+            'storage_kind':'ISOLATED_PRIVATE_CLOUDFLARE','recoverable_after_job':True}
+        return e
+    bundle['quote_before']=read(bundle.pop('quote_before_id'))
+    bundle['quote_after']=read(bundle.pop('quote_after_id'))
+    bundle['pages']=[read(ident) for ident in bundle.pop('page_ids')]
+    return bundle
 
 
 PUBLIC_FIELDS = ('code','name','ex','market','P_before','P_close','P_before_trade_time','P_close_trade_time',
@@ -188,6 +228,7 @@ def public_view(view):
         'screening_unresolved_count','full_market_no_false_negative_claim','metrics')
     result = {k: copy.deepcopy(view[k]) for k in keys if k in view}
     result['public_data_policy'] = 'MIS_DERIVED_RESEARCH_NO_FUGLE_RAW'
+    result['research_candidate_count'] = len(view['rows'])
     result['rows'] = []
     for row in view['rows']:
         safe = {k: copy.deepcopy(row[k]) for k in PUBLIC_FIELDS if k in row}

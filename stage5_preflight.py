@@ -23,6 +23,8 @@ def main():
             report[name+'_error']='CLOUD_READ_UNAVAILABLE'
             report[name+'_error_type']=type(exc).__name__
             if isinstance(exc,urllib.error.HTTPError):report[name+'_http_status']=exc.code
+            if isinstance(exc,urllib.error.HTTPError):
+                report[name+'_response_headers']={k:v for k,v in exc.headers.items() if k.lower() in ('server','cf-ray','x-deny-reason','x-mitmproxy-blocked-reason')}
             if isinstance(exc,urllib.error.URLError):report[name+'_network_error_type']=type(exc.reason).__name__
     print(json.dumps(report,indent=2))
 

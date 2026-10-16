@@ -1,0 +1,42 @@
+name: Stage5 20261016 isolated real evidence
+on:
+  push:
+    branches: [stage4/20261016-fugle-probe]
+    paths: [stage5_20261016.arm.json]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: stage5-20261016-real-evidence-only
+  cancel-in-progress: false
+jobs:
+  isolated:
+    if: github.ref == 'refs/heads/stage4/20261016-fugle-probe'
+    runs-on: ubuntu-latest
+    timeout-minutes: 230
+    environment: stage4-fugle-isolated
+    env:
+      TZ: Asia/Taipei
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify isolated real-data gates
+        run: python3 -m unittest test_stage5_runtime test_stage3_ticks test_stage3_transport
+      - name: Read public transport status without exposing market data
+        run: python3 stage5_preflight.py
+      - name: Preserve actual cutoff and close observations; no MIS recapture
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          FUGLE_API_KEY: ${{ secrets.FUGLE_API_KEY }}
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: python3 -u stage5_day.py
+      - name: Save only sanitized verification metadata and MIS research view
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage5-sanitized-report-${{ github.run_id }}
+          path: stage5-public-report/
+          if-no-files-found: warn
+          retention-days: 30

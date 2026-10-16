@@ -15,6 +15,7 @@ def audit(bundle, candidate, date, as_of):
         'status':'UNKNOWN','verified_count':0,'p_before_independently_proven':False,
         'p_close_independently_proven':False,'source_contract_released':False,
         'raw_market_data_public':False,'private_evidence_ids':[], 'reasons':[]}
+    result['private_manifest_id']=bundle.get('private_manifest_receipt',{}).get('id')
     try:
         if bundle.get('status') != 'COLLECTED_NOT_VALIDATED':
             raise ValueError(bundle.get('error') or 'SOURCE_INCOMPLETE')
@@ -22,6 +23,8 @@ def audit(bundle, candidate, date, as_of):
         if not now or now.date().isoformat() != date:
             raise ValueError('AUDIT_DATE_INVALID')
         events = [bundle['quote_before'],*bundle['pages'],bundle['quote_after']]
+        result['private_evidence_recoverable_after_job']=all(e.get('private_receipt',{}).get('recoverable_after_job') is True for e in events)
+        if not result['private_evidence_recoverable_after_job']:result['reasons'].append('PRIVATE_ARCHIVE_UNAVAILABLE_RUNNER_COPY_ONLY')
         bodies=[]; received=[]
         for event in events:
             if hashlib.sha256(event['raw'].encode()).hexdigest() != event['sha256']:
