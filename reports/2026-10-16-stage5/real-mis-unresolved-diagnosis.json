@@ -1,0 +1,2851 @@
+{
+  "scope": "OFFLINE_DIAGNOSIS_OF_ORIGINAL_SAVED_MIS_NOT_NEW_CAPTURE_OR_HISTORICAL_PUBLICATION",
+  "generated_at": "2026-10-16T13:56:54.141857+08:00",
+  "trade_date": "2026-10-16",
+  "formal_run": "38853538676",
+  "artifact_id": 12026934850,
+  "artifact_sha256": "6e0234f6f5f9778b976c14e26cd64e6d795d6dd209357e0052cf34da87ca6413",
+  "universe_count": 1967,
+  "research_calculable_count": 1938,
+  "unresolved_count": 29,
+  "categories": {
+    "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE": 26,
+    "NO_SAVED_PRE_TRADE_CLOSE_TRADE_PRESENT": 2,
+    "DELAYED_CLOSE_ONLY_ONE_USABLE_CONFIRMATION": 1
+  },
+  "mis_requests": 0,
+  "fugle_requests": 0,
+  "production_modified": false,
+  "no_false_negative_claim": false,
+  "official_daily_data_used": false,
+  "input_file_sha256": {
+    "pre_reference_A_raw.jsonl": "d787af9ac843468ae285f9f9b2cb5986ec79435849435444831d9d57378f5adc",
+    "pre_reference_B_raw.jsonl": "1033f89e6f786681219f6563e43d06feb8098b365a3a817f47846165501f32db",
+    "pre_reference_C_raw.jsonl": "00c1df986c08c2e3d2b20db8510fd6c8daf0de5c2e536f51710f0832feccd190",
+    "pre_targeted_retry_raw.jsonl": "8208bc6888dd38de77552df3b8010b4a27e6f66c20408fa72ca055810836a79b",
+    "close_reference_A_raw.jsonl": "c31fcb3facb6e52c543fba0a28715f8702acf7dce4c08bd56c0191cd51718b1e",
+    "close_reference_B_raw.jsonl": "2eb5674d056cbd0a44b295ffc6c3d4a1551e263fbc83acfdd9d03162b507c912",
+    "close_reference_C_raw.jsonl": "51a68a557c5a4b779cb0a1beb12d39723d339e95eb59675ecb5e195e4d90af58"
+  },
+  "rows": [
+    {
+      "ex": "otc",
+      "code": "2073",
+      "name": "雄順",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:27:01.686+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:17.077+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:29:01.719+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:32:34.803+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 39,
+          "received_at": "2026-10-16T13:33:40.848+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:34:12.102+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "3064",
+      "name": "泰偉",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 2,
+          "received_at": "2026-10-16T13:27:01.596+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 2,
+          "received_at": "2026-10-16T13:28:16.754+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 2,
+          "received_at": "2026-10-16T13:29:01.618+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 2,
+          "received_at": "2026-10-16T13:32:31.749+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 38,
+          "received_at": "2026-10-16T13:33:43.111+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:34:12.102+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "3332",
+      "name": "幸康",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:27:01.648+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:17.371+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:29:01.705+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:32:33.854+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 37,
+          "received_at": "2026-10-16T13:33:40.899+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:34:12.102+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "4120",
+      "name": "友華",
+      "category": "NO_SAVED_PRE_TRADE_CLOSE_TRADE_PRESENT",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "AB_converged",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:27:01.562+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:17.651+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:29:01.745+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:32:31.066+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 35,
+          "received_at": "2026-10-16T13:33:39.163+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "4192",
+      "name": "杏國",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:27:03.073+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:18.633+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:29:03.237+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:32:32.334+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 34,
+          "received_at": "2026-10-16T13:33:39.217+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:34:12.102+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "4305",
+      "name": "世坤",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:27:03.073+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:18.633+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:29:03.237+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:32:32.334+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 34,
+          "received_at": "2026-10-16T13:33:39.217+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:34:12.102+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "4413",
+      "name": "飛寶企業",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:27:03.073+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:18.633+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:29:03.237+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:32:32.334+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 34,
+          "received_at": "2026-10-16T13:33:39.217+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:34:12.102+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "4502",
+      "name": "健信",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:27:03.073+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:18.633+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:29:03.237+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:32:32.334+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 34,
+          "received_at": "2026-10-16T13:33:39.217+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:34:12.102+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "4530",
+      "name": "天意能創",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:27:03.073+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:18.633+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:29:03.237+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:32:32.334+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 34,
+          "received_at": "2026-10-16T13:33:39.217+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:34:12.102+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "4535",
+      "name": "至興",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:27:02.688+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:28:18.970+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:03.186+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:32:32.928+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 34,
+          "received_at": "2026-10-16T13:33:39.217+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:34:12.102+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "5455",
+      "name": "昇益",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:27:03.973+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:28:19.334+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:03.873+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:32:34.586+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 31,
+          "received_at": "2026-10-16T13:33:37.829+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:34:12.102+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "5514",
+      "name": "三豐",
+      "category": "NO_SAVED_PRE_TRADE_CLOSE_TRADE_PRESENT",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "AB_converged",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:27:03.973+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:28:19.334+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:03.873+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:32:34.586+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 31,
+          "received_at": "2026-10-16T13:33:37.829+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "5520",
+      "name": "力泰",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 10,
+          "received_at": "2026-10-16T13:27:04.284+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 10,
+          "received_at": "2026-10-16T13:28:19.074+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 10,
+          "received_at": "2026-10-16T13:29:03.984+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 10,
+          "received_at": "2026-10-16T13:32:34.774+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 31,
+          "received_at": "2026-10-16T13:33:37.829+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:34:12.102+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "5703",
+      "name": "亞都麗緻",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 10,
+          "received_at": "2026-10-16T13:27:04.284+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 10,
+          "received_at": "2026-10-16T13:28:19.074+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 10,
+          "received_at": "2026-10-16T13:29:03.984+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 10,
+          "received_at": "2026-10-16T13:32:34.774+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 31,
+          "received_at": "2026-10-16T13:33:37.829+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:34:12.102+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "6236",
+      "name": "中湛",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 11,
+          "received_at": "2026-10-16T13:27:04.560+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 11,
+          "received_at": "2026-10-16T13:28:20.019+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 11,
+          "received_at": "2026-10-16T13:29:04.808+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 11,
+          "received_at": "2026-10-16T13:32:35.611+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 29,
+          "received_at": "2026-10-16T13:33:36.903+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:34:12.102+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "6624",
+      "name": "萬年清",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 13,
+          "received_at": "2026-10-16T13:27:05.587+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 13,
+          "received_at": "2026-10-16T13:28:21.253+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 13,
+          "received_at": "2026-10-16T13:29:06.610+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 13,
+          "received_at": "2026-10-16T13:32:35.797+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 27,
+          "received_at": "2026-10-16T13:33:34.059+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:34:12.516+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "6881",
+      "name": "潤德",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 15,
+          "received_at": "2026-10-16T13:27:06.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 15,
+          "received_at": "2026-10-16T13:28:21.072+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 15,
+          "received_at": "2026-10-16T13:29:05.608+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 15,
+          "received_at": "2026-10-16T13:32:37.496+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 26,
+          "received_at": "2026-10-16T13:33:37.308+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:34:12.516+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "6884",
+      "name": "海柏特",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 15,
+          "received_at": "2026-10-16T13:27:06.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 15,
+          "received_at": "2026-10-16T13:28:21.072+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 15,
+          "received_at": "2026-10-16T13:29:05.608+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 15,
+          "received_at": "2026-10-16T13:32:37.496+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 26,
+          "received_at": "2026-10-16T13:33:37.308+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:34:12.516+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "7713",
+      "name": "威力德生醫",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 15,
+          "received_at": "2026-10-16T13:27:06.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 15,
+          "received_at": "2026-10-16T13:28:21.072+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 15,
+          "received_at": "2026-10-16T13:29:05.608+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 15,
+          "received_at": "2026-10-16T13:32:37.496+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 25,
+          "received_at": "2026-10-16T13:33:33.666+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:34:12.516+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "7782",
+      "name": "光速火箭",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 16,
+          "received_at": "2026-10-16T13:27:06.163+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 16,
+          "received_at": "2026-10-16T13:28:22.838+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 16,
+          "received_at": "2026-10-16T13:29:07.063+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:28:31.870+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 16,
+          "received_at": "2026-10-16T13:32:36.882+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 25,
+          "received_at": "2026-10-16T13:33:33.666+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:34:12.516+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "8279",
+      "name": "生展",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 17,
+          "received_at": "2026-10-16T13:27:06.496+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 17,
+          "received_at": "2026-10-16T13:28:21.899+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 17,
+          "received_at": "2026-10-16T13:29:06.999+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 2,
+          "received_at": "2026-10-16T13:28:30.638+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 17,
+          "received_at": "2026-10-16T13:32:37.640+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 23,
+          "received_at": "2026-10-16T13:33:32.916+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:34:12.516+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "8917",
+      "name": "欣泰",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 18,
+          "received_at": "2026-10-16T13:27:09.553+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 18,
+          "received_at": "2026-10-16T13:28:22.581+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 18,
+          "received_at": "2026-10-16T13:29:06.831+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 2,
+          "received_at": "2026-10-16T13:28:30.638+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 18,
+          "received_at": "2026-10-16T13:32:38.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 23,
+          "received_at": "2026-10-16T13:33:32.916+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:34:12.516+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "otc",
+      "code": "8923",
+      "name": "時報",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 18,
+          "received_at": "2026-10-16T13:27:09.553+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 18,
+          "received_at": "2026-10-16T13:28:22.581+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 18,
+          "received_at": "2026-10-16T13:29:06.831+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 2,
+          "received_at": "2026-10-16T13:28:30.638+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 18,
+          "received_at": "2026-10-16T13:32:38.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 23,
+          "received_at": "2026-10-16T13:33:32.916+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:34:12.516+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "tse",
+      "code": "1470",
+      "name": "大統新創",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 20,
+          "received_at": "2026-10-16T13:27:07.892+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 20,
+          "received_at": "2026-10-16T13:28:23.076+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 20,
+          "received_at": "2026-10-16T13:29:08.396+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 2,
+          "received_at": "2026-10-16T13:28:30.638+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 20,
+          "received_at": "2026-10-16T13:32:39.704+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 20,
+          "received_at": "2026-10-16T13:33:31.235+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:34:12.516+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "tse",
+      "code": "1538",
+      "name": "正峰",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 21,
+          "received_at": "2026-10-16T13:27:08.039+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 21,
+          "received_at": "2026-10-16T13:28:23.578+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 21,
+          "received_at": "2026-10-16T13:29:07.791+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 2,
+          "received_at": "2026-10-16T13:28:30.638+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 21,
+          "received_at": "2026-10-16T13:32:38.866+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 20,
+          "received_at": "2026-10-16T13:33:31.235+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:34:12.516+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "tse",
+      "code": "2321",
+      "name": "東訊",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 24,
+          "received_at": "2026-10-16T13:27:09.863+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 24,
+          "received_at": "2026-10-16T13:28:24.826+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 24,
+          "received_at": "2026-10-16T13:29:08.188+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 2,
+          "received_at": "2026-10-16T13:28:30.638+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 24,
+          "received_at": "2026-10-16T13:32:41.780+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 17,
+          "received_at": "2026-10-16T13:33:32.122+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:34:12.516+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "tse",
+      "code": "2910",
+      "name": "統領",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 28,
+          "received_at": "2026-10-16T13:27:11.070+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 28,
+          "received_at": "2026-10-16T13:28:25.984+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 28,
+          "received_at": "2026-10-16T13:29:09.311+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 2,
+          "received_at": "2026-10-16T13:28:30.638+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 28,
+          "received_at": "2026-10-16T13:32:41.408+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 12,
+          "received_at": "2026-10-16T13:33:28.414+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:34:12.516+08:00",
+          "http_status": 200
+        }
+      ]
+    },
+    {
+      "ex": "tse",
+      "code": "5546",
+      "name": "永固-KY",
+      "category": "DELAYED_CLOSE_ONLY_ONE_USABLE_CONFIRMATION",
+      "saved_pre_observations": 3,
+      "all_saved_pre_missing_trade_and_zero_volume": false,
+      "pre_converged": true,
+      "close_classification": "delayed_close_candidate",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 33,
+          "received_at": "2026-10-16T13:27:12.766+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 33,
+          "received_at": "2026-10-16T13:28:27.994+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 33,
+          "received_at": "2026-10-16T13:29:10.232+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 33,
+          "received_at": "2026-10-16T13:32:44.625+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:33:25.605+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:34:12.102+08:00",
+          "http_status": 200
+        }
+      ],
+      "mis_pre": "13.1500",
+      "mis_pre_trade_time": "13:24:57",
+      "single_mis_delayed_close": "13.8000",
+      "single_close_trade_time": "13:33:00",
+      "single_close_received_at": "2026-10-16T13:34:12.102+08:00",
+      "suspected_tail_return_pct": "4.942965779467680608365019000",
+      "is_admitted_research_candidate": false,
+      "reason": "NEEDS_DISTINCT_AGREEMENT_OR_INDEPENDENT_VALIDATION"
+    },
+    {
+      "ex": "tse",
+      "code": "5906",
+      "name": "台南-KY",
+      "category": "NO_SAVED_REGULAR_TRADE_THROUGH_CLOSE",
+      "saved_pre_observations": 11,
+      "all_saved_pre_missing_trade_and_zero_volume": true,
+      "pre_converged": false,
+      "close_classification": "unresolved",
+      "research_calculable": false,
+      "verified": false,
+      "official_status": "NOT_YET_OBSERVED",
+      "raw_provenance": [
+        {
+          "file": "pre_reference_A_raw.jsonl",
+          "line": 34,
+          "received_at": "2026-10-16T13:27:12.771+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_B_raw.jsonl",
+          "line": 34,
+          "received_at": "2026-10-16T13:28:28.693+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_reference_C_raw.jsonl",
+          "line": 34,
+          "received_at": "2026-10-16T13:29:11.088+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 2,
+          "received_at": "2026-10-16T13:28:30.638+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 3,
+          "received_at": "2026-10-16T13:28:37.823+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 4,
+          "received_at": "2026-10-16T13:28:44.169+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 5,
+          "received_at": "2026-10-16T13:28:50.995+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 6,
+          "received_at": "2026-10-16T13:28:57.646+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:29:14.382+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 8,
+          "received_at": "2026-10-16T13:29:21.181+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "pre_targeted_retry_raw.jsonl",
+          "line": 9,
+          "received_at": "2026-10-16T13:29:27.947+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_A_raw.jsonl",
+          "line": 34,
+          "received_at": "2026-10-16T13:32:44.079+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_B_raw.jsonl",
+          "line": 7,
+          "received_at": "2026-10-16T13:33:25.605+08:00",
+          "http_status": 200
+        },
+        {
+          "file": "close_reference_C_raw.jsonl",
+          "line": 1,
+          "received_at": "2026-10-16T13:34:12.102+08:00",
+          "http_status": 200
+        }
+      ]
+    }
+  ]
+}

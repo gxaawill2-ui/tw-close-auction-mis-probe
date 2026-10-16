@@ -1,0 +1,55 @@
+name: Stage5 single delayed-close private diagnostic
+on:
+  push:
+    branches: [stage4/20261016-fugle-probe]
+    paths: [stage5_delayed_sample.request.json]
+permissions:
+  contents: read
+concurrency:
+  group: stage5-20261016-single-delayed-sample
+  cancel-in-progress: false
+jobs:
+  capture_delayed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Private current-time diagnostic of one saved delayed-close case
+        env:
+          FUGLE_API_KEY: ${{ secrets.FUGLE_API_KEY }}
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: python3 -u stage5_delayed_sample.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage5-delayed-safe-${{ github.run_id }}
+          path: stage5-delayed-report/
+          retention-days: 30
+  recover_delayed:
+    needs: capture_delayed
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: stage5-delayed-safe-${{ github.run_id }}
+          path: stage5-delayed-safe-input
+      - name: Restore privately on a different runner with no provider key
+        env:
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: python3 stage5_delayed_sample.py stage5-delayed-safe-input/safe.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage5-delayed-recovery-safe-${{ github.run_id }}
+          path: stage5-delayed-recovery-report/
+          retention-days: 30
