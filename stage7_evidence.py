@@ -31,4 +31,5 @@ def review(bundle,reference,date,as_of):
     for t in ticks:groups[t['time']].append(t)
     result['multiple_price_timestamp_groups']=sum(len({f.decimal_value(t['price']) for t in group})>1 for group in groups.values())
     result['latest_pre_price_count']=len({f.decimal_value(t['price']) for t in last_pre_group(ticks,f.parsed_time(date+'T13:25:00+08:00'))})
+    if result['same_serial_quote_trade_time_conflict']:result['close_classification']='UNCONFIRMED_CONFLICTING_CLOSE_TIME'
     return result

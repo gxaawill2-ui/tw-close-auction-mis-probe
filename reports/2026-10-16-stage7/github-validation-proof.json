@@ -1,0 +1,25 @@
+{
+  "scope": "GITHUB_RUNNER_ISOLATED_VALIDATION",
+  "run_url": "https://github.com/gxaawill2-ui/tw-close-auction-mis-probe/actions/runs/38893345139",
+  "commit": "ffa1e8fcc810a4991ed89f95341c79976cfb7ef1",
+  "python_tests": 435,
+  "node_tests": 121,
+  "node_failures": 0,
+  "local_workerd_e2e": {
+    "scope": "LOCAL_SYNTHETIC_ACTUAL_WORKERD_E2E_NOT_REAL_MARKET",
+    "status": "PASS",
+    "journal_fsync_bridge_codec_consumer_selection": true,
+    "candidate_to_unknown_to_withdrawn": true,
+    "source_failure_does_not_stop_capture": true,
+    "bridge_failure_does_not_stop_capture": true,
+    "new_process_replay_deduplicated": true,
+    "stale_public_write_rejected": true,
+    "production_modified": false,
+    "cloud_requests": 0,
+    "mis_requests": 0,
+    "fugle_requests": 0,
+    "physical_phone_tested": false,
+    "verified_count": 0,
+    "completed_at": "2026-10-16T19:22:48.091938+08:00"
+  }
+}

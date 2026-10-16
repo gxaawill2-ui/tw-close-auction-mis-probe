@@ -10,12 +10,18 @@
     ".github/workflows/twse-mis-probe.yml": {
       "git_blob": "f4e74ee3b3080a9e6ae0aef2f3e1c759384c9ecb",
       "sha256": "7ca847cab185626af7c0ae8a11563e8041581719f98d97de0a305f9842f0441c"
+    },
+    "docs/index.html": {
+      "git_blob": "18cd77f7ce88a29377600b79da162dd59c26e502",
+      "sha256": "9c172a1dac1ff4a3baaa73fab0aa6d615a5c697e42e93ca9d75bdfd935ca1a44"
     }
   },
   "apply_reverse_original_bytes_restored": true,
   "new_journal_removed_after_reverse": true,
   "formal_bridge_has_fugle_key": false,
   "formal_bridge_has_publisher_credentials": false,
+  "formal_site_panel_default_enabled": false,
+  "formal_site_verified_release_default": false,
   "schedules_changed": false,
   "existing_capture_command_changed": false,
   "environment_admission_and_bridge_cloud_write_verified": false

@@ -6,6 +6,6 @@
 
 雙 job：copy 以來源index建立完整雜湊清單；recover 是另一個 Runner，只讀 archive 重新核對全部原始 bytes 雜湊、manifest 和 bundle，不讀七日來源、也不呼叫富果/MIS。只上傳安全的counts/hashes/diagnostics，raw留在私有Worker與記憶體。
 
-本機428項Python與121項Node通過；新增實際workerd測試auth、HMAC、immutable、固定期限，另以本機storage刪除來源測試仍可恢復封存。真實雲端結果待獨立run完成後補入，不以本機合成測試冒充真實備份。
+本機428項Python與121項Node通過；新增實際workerd測試auth、HMAC、immutable、固定期限，另以本機storage刪除來源測試仍可恢復封存。真實雲端copy/recover已於Run38892154976完成；60個物件、14組、250517 bytes全部恢復核對，固定到期11/15 13:06台北，見real-private-archive-proof.json。初版428/121測試為當時里程碑，最終435/124另見STATUS。
 
 30日封存不是永久備份；需在11月到期前按條款匯出或刪除。未建立新付費服務。Free SQLite公開額度5GB；本區硬上限每天10MB*30=300MB，帳號共用量仍應監看。未將私有保存等同對外再散布授權。

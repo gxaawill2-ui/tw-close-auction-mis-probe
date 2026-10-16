@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 110
     environment: stage4-fugle-isolated
+    outputs:
+      private_evidence_created: ${{ steps.observe.outputs.private_evidence_created }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -21,6 +23,7 @@ jobs:
       - name: Validate isolated date and replay gates
         run: python3 -m unittest test_stage7_live
       - name: Observe existing formal artifact only, verify bounded candidates and publish isolated results
+        id: observe
         env:
           GITHUB_TOKEN: ${{ github.token }}
           FUGLE_API_KEY: ${{ secrets.FUGLE_API_KEY }}
@@ -32,4 +35,48 @@ jobs:
         with:
           name: stage7-live-safe-${{ github.run_id }}
           path: stage7-live-safe-report/
+          retention-days: 30
+  archive:
+    needs: isolated
+    if: always() && needs.isolated.outputs.private_evidence_created == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Copy only this acceptance day's captured private evidence
+        env:
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: python3 stage7_archive.py copy --date 2026-10-19
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage7-live-safe-copy-${{ github.run_id }}
+          path: stage7-copy-report/
+          retention-days: 30
+  recover:
+    needs: archive
+    if: success()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: stage7-live-safe-copy-${{ github.run_id }}
+          path: stage7-copy-report
+      - name: Independently rehash this day's private archive without source namespace reads
+        env:
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: python3 stage7_archive.py recover --date 2026-10-19
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage7-live-safe-recovery-${{ github.run_id }}
+          path: stage7-recover-report/
           retention-days: 30

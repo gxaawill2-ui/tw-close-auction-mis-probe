@@ -11,14 +11,15 @@ function fixture(){
   generated_at:'2026-10-16T13:35:00+08:00',version:10,rows,universe_count:2000,screening_calculable_count:1990,screening_unresolved_count:10};
  return {document,body};
 }
-test('UI counts six research candidates, two verified and four pending only with explicit released test configuration',()=>{
+test('UI separates total candidates, research, verified and unknown with explicit released test configuration',()=>{
  const {document,body}=fixture();view.create(document,body,{liveReleased:true});
- assert.equal(document.getElementById('stage3-research').textContent,'6');
+ assert.equal(document.getElementById('stage3-research').textContent,'0');
  assert.equal(document.getElementById('stage3-verified').textContent,'2');
  assert.equal(document.getElementById('stage3-unknown').textContent,'4');
- assert.match(document.getElementById('stage5-summary').textContent,/研究候選 6 檔，完整驗證 2 檔，其餘 4 檔仍待確認/);
+ assert.match(document.getElementById('stage5-summary').textContent,/初篩候選共 6 檔：研究 0 檔、UNKNOWN 4 檔、完整驗證 2 檔/);
  // Actual bootstrap remains unreleased, so supplied flags cannot grant two verified.
  view.create(document,body);assert.equal(document.getElementById('stage3-verified').textContent,'0');
+ assert.equal(document.getElementById('stage3-unknown').textContent,'6');
 });
 test('poll coalesces concurrent reads and records actual browser receipt without accepting older versions',async()=>{
  const {document,body}=fixture(),controller=view.create(document,body),oldFetch=global.fetch;let release,calls=0;
@@ -32,4 +33,15 @@ test('poll coalesces concurrent reads and records actual browser receipt without
   global.fetch=async()=>({ok:true,json:async()=>({...body,version:10})});await controller.poll('http://127.0.0.1/data');
   assert.equal(controller.getState().body.version,11);assert.equal(controller.reads.length,1);
  }finally{global.fetch=oldFetch;}
+});
+
+test('research and UNKNOWN counts do not overlap and rows remain independently visible',()=>{
+ const {document,body}=fixture();
+ body.rows[0]={...body.rows[0],validated:false,verification_status:'RESEARCH_ONLY'};
+ body.rows[1]={...body.rows[1],validated:false,verification_status:'RESEARCH_ONLY'};
+ view.create(document,body);
+ assert.equal(document.getElementById('stage3-research').textContent,'2');
+ assert.equal(document.getElementById('stage3-unknown').textContent,'4');
+ assert.equal(document.getElementById('stage3-verified').textContent,'0');
+ assert.equal(document.querySelectorAll('#stage3-rows tr').length,6);
 });

@@ -1,0 +1,22 @@
+{
+  "scope": "REAL_EXTERNAL_DESKTOP_NOT_PHYSICAL_PHONE",
+  "url": "https://tw-tail-stage4-20261015-test.gxaawill2.workers.dev/?date=2026-10-16",
+  "page_observed_read_time_taipei": "2026-10-16T19:26:06+08:00",
+  "public_version": 1792129307272000,
+  "total_screening_candidates": 3,
+  "research_count": 2,
+  "unknown_candidate_count": 1,
+  "verified_count": 0,
+  "universe_count": 1967,
+  "screening_calculable_count": 1938,
+  "screening_unresolved_count": 29,
+  "volume_sort_codes_desc": [
+    "4609",
+    "1235",
+    "6228"
+  ],
+  "physical_phone_tested": false,
+  "screenshot_sha256": "bc0c3a4063ccbe83ac0bce7383ef860505cac0462e89f825fb763071367e0905",
+  "worker_deploy_commit": "6d8b2f30b1bb2337ed87951a445d45c440508c5c",
+  "worker_version": "6989b3b9-343a-4f12-91da-a49d180db458"
+}

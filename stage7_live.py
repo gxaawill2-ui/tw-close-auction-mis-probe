@@ -106,6 +106,8 @@ def main():
             report.update(status='OTHER_EXISTING_WRITER_PRESERVED',existing_version=prior.get('version'))
             atomic(out/'acceptance.json',report);return report
         probe(v,date);budget=DurableBudget(v,date)
+        if os.getenv('GITHUB_OUTPUT'):
+            with open(os.environ['GITHUB_OUTPUT'],'a') as outputs:outputs.write('private_evidence_created=true\n')
         provider=Source(os.getenv('FUGLE_API_KEY'),root/'fugle',v,require_durable=True,reservation=budget,max_requests=160,min_interval=1.3)
         budget.restore_proofs(provider.directory,universe)
         session=ArtifactSession(date,universe,root/'session',provider,provenance=provenance)

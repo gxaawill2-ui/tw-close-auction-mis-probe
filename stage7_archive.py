@@ -107,6 +107,7 @@ def main():
     out=Path('stage7-'+a.mode+'-report');out.mkdir(exist_ok=True)
     if a.mode=='copy':report=copy_snapshot(vault,archive,a.date)
     elif a.mode=='review':
+        if a.date!='2026-10-16':raise ValueError('SAVED_REFERENCE_DATE_MISMATCH')
         proof=json.loads(Path('reports/2026-10-16-stage7/real-private-archive-proof.json').read_text())['proofs'][0]
         entries=validate_index(archive.read(a.date,'index'))
         if len(entries)!=proof['object_count'] or snapshot_digest(entries)!=proof['manifest_sha256']:raise ValueError('ARCHIVE_SNAPSHOT_CHANGED')
@@ -115,7 +116,7 @@ def main():
         for row in report['results']:print(json.dumps({'safe_field_review':row}),flush=True)
     else:
         report=recover_snapshot(archive,a.date,json.loads(Path(a.manifest).read_text()))
-        atomic(out/'diagnostics.json',diagnostics(archive,a.date))
+        if a.date=='2026-10-16':atomic(out/'diagnostics.json',diagnostics(archive,a.date))
     atomic(out/(a.mode+'.json'),report)
     print(json.dumps({k:v for k,v in report.items() if k!='entries'}),flush=True)
 
