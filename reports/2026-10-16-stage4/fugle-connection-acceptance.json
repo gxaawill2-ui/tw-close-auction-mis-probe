@@ -1,0 +1,79 @@
+{
+  "scope": "AUTHENTICATED_FUGLE_CONNECTION_AND_SCHEMA_ONLY",
+  "trade_date": "2026-10-16",
+  "verified_count": 0,
+  "p_before_proven": false,
+  "p_close_proven": false,
+  "raw_market_data_saved": false,
+  "key_expires_at": "2026-11-14T00:00:00+08:00",
+  "requests": [
+    {
+      "symbol": "2330",
+      "endpoint": "quote",
+      "page_offset": 0,
+      "requested_at": "2026-10-16T02:43:05.143638+00:00",
+      "http_status": 200,
+      "date_matches_today": true,
+      "symbol_matches": true,
+      "actual_last_trade_fields": true,
+      "trial_flag_present": false,
+      "close_flag_present": false,
+      "schema_pass": true,
+      "received_at": "2026-10-16T02:43:05.572177+00:00"
+    },
+    {
+      "symbol": "2330",
+      "endpoint": "trades",
+      "page_offset": 0,
+      "requested_at": "2026-10-16T02:43:05.572190+00:00",
+      "http_status": 200,
+      "date_matches_today": true,
+      "symbol_matches": true,
+      "row_count": 5,
+      "actual_trade_fields": true,
+      "schema_pass": true,
+      "received_at": "2026-10-16T02:43:05.825545+00:00"
+    },
+    {
+      "symbol": "2330",
+      "endpoint": "trades",
+      "page_offset": 5,
+      "requested_at": "2026-10-16T02:43:05.825557+00:00",
+      "http_status": 200,
+      "date_matches_today": true,
+      "symbol_matches": true,
+      "row_count": 5,
+      "actual_trade_fields": true,
+      "schema_pass": true,
+      "received_at": "2026-10-16T02:43:06.095904+00:00"
+    },
+    {
+      "symbol": "6488",
+      "endpoint": "quote",
+      "page_offset": 0,
+      "requested_at": "2026-10-16T02:43:06.095917+00:00",
+      "http_status": 200,
+      "date_matches_today": true,
+      "symbol_matches": true,
+      "actual_last_trade_fields": true,
+      "trial_flag_present": false,
+      "close_flag_present": false,
+      "schema_pass": true,
+      "received_at": "2026-10-16T02:43:06.363419+00:00"
+    },
+    {
+      "symbol": "6488",
+      "endpoint": "trades",
+      "page_offset": 0,
+      "requested_at": "2026-10-16T02:43:06.363436+00:00",
+      "http_status": 200,
+      "date_matches_today": true,
+      "symbol_matches": true,
+      "row_count": 5,
+      "actual_trade_fields": true,
+      "schema_pass": true,
+      "received_at": "2026-10-16T02:43:06.615290+00:00"
+    }
+  ],
+  "status": "PASS"
+}
