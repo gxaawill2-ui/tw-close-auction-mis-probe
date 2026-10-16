@@ -15,13 +15,13 @@
 2. 新增獨立標準函式庫模組 `stage5_capture_journal.py`：僅寫入專用 RUNNER_TEMP 子目錄，raw 與 journal 分別 fsync；時間在 raw 實際保存後記錄。不能寫 docs 或 state。
 3. 正式 workflow：選用的 journal 路徑、固定 Commit 的隔離程式 checkout、背景 shadow。正式 collector 的執行命令與既有 cron 不變。
 
-隔離 shadow 固定程式 Commit：`1eb9c200ba4c9802587fb8935a3c69768dd8031d`。
+隔離 shadow 固定程式 Commit：`c68a913905c6acdf302d7af8377d73f43df4308a`。
 補丁只是提案；實際套用前仍須重新核對最新 main，不可用這份檔案整份覆蓋新版本。
 
 ## 必須另行取得同意的設定
 
 - 允許 main 使用 `stage4-fugle-isolated` Environment；目前只允許指定隔離分支。這會擴大 main 對該 Environment Secret 的存取範圍。
-- 完成同一個測試 Worker 的 writer 憑證交接，將 `STAGE5_PUBLISH_TOKEN`、`STAGE5_DECISION_KEY` 安全保存於指定 Environment。不要更動其他專案或既有正式 relay Secret。
+- 已於使用者13:04同意後完成同一個測試 Worker 的 writer 憑證交接，將 `STAGE5_PUBLISH_TOKEN`、`STAGE5_DECISION_KEY` 安全保存於指定 Environment。不要更動其他專案或既有正式 relay Secret。
 - 先於未啟用狀態驗證上述 Environment admission，才可套用綁定該 Environment 的正式 workflow；否則可能讓正式 job 被環境規則卡住。
 - 只在另一個已確認交易日啟用 `STAGE5_SHADOW_ENABLED`。不能更換今天正在使用的程式、重跑今天正式 MIS，或補造已錯過的邊界。
 
@@ -30,7 +30,7 @@
 - 每批增加兩次本機 fsync；磁碟停頓仍可能拖慢 callback。獨立 GitHub Runner 的合成測試已量測 P95 2.104ms、首批最大 5.11ms，正式正在執行的 runner 尚未量測。寫入失敗的測試已確認不會中止正式擷取。
 - 共用 runner 的背景程式可能在正式 job 結束時被清理；這份最小補丁不能承諾獨立運作到 14:30。要達成完整續跑，須另行審閱私有 journal bridge 與獨立 consumer；其隔離程式已備妥但未啟用、未新增 bridge Secret。
 - Source raw 只能寫私有暫存及授權私有端點，不能落入正式 `results/` 上傳範圍。
-- 測試 Worker 的外部 Runner API 已恢復 HTTP 200，瀏覽器實際更新尚未驗收；publisher 憑證交接及私有雲端寫入／讀回通過前，不應啟用正式串接。
+- 測試 Worker 的外部 Runner API 已恢復 HTTP 200，瀏覽器實際更新尚未驗收；publisher 憑證交接與私有合成寫入／跨Runner讀回已通過；真實私有證據及完整驗證仍在進行，尚不應啟用正式串接。
 - 完整性、同微秒排序及收盤最終性尚未實盤證明；`ALLOW_LIVE_VERIFIED=false` 與 source contract release 維持關閉。這份提案不會放行 VERIFIED。
 
 ## 已執行的提案測試
@@ -50,3 +50,5 @@
 本提案須使用者另行批准後，才可改正式檔案與權限；本輪均未實施。
 
 新增量測：`journal-benchmark-github-runner.json` 保存 Run 38851927830 的 2,000 檔合成測試、10 輪 on/off/on 結果。40 批最終舊 raw 逐位元一致，停用不再寫 journal；沒有 MIS/Fugle 請求。此驗證沒有套用正式補丁。
+
+13:13補丁驗證：在已核對正式blob的暫存副本執行git apply、反向apply，原始bytes完全還原，新模組亦移除。詳patch-rollback-check.json。沒有修改正式檔案。

@@ -22,9 +22,11 @@
     "journal failure keeps formal capture running in proposed code",
     "UI total candidates vs verified vs pending and coalesced polling"
   ],
-  "latest_python_tests": 395,
+  "latest_python_tests": 399,
   "latest_python_failed": 0,
-  "latest_python_completed_at": "2026-10-16T12:44:59+08:00",
+  "latest_python_completed_at": "2026-10-16T13:20:25+08:00",
   "journal_separate_runner_run_id": "38851927830",
-  "latest_scope": "OFFLINE_AND_SYNTHETIC_ONLY"
+  "latest_scope": "OFFLINE_AND_SYNTHETIC_ONLY",
+  "real_cloud_synthetic_publisher_run": "38854028544",
+  "different_runner_recovery_run": "38854197791"
 }

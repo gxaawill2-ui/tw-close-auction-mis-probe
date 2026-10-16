@@ -1,0 +1,18 @@
+{
+  "observed_at": "2026-10-16T13:21:36+08:00",
+  "user_approved_at": "2026-10-16T13:04:36+08:00",
+  "repository": "gxaawill2-ui/tw-close-auction-mis-probe",
+  "environment": "stage4-fugle-isolated",
+  "allowed_branch": "stage4/20261016-fugle-probe",
+  "secret_names_saved": [
+    "STAGE5_PUBLISH_TOKEN",
+    "STAGE5_DECISION_KEY"
+  ],
+  "existing_fugle_key_modified": false,
+  "main_access_expanded": false,
+  "existing_worker_credentials_rotated": false,
+  "plaintext_in_repo_or_logs": false,
+  "local_plaintext_handoff_copy_removed": true,
+  "real_authenticated_acceptance_run": 38854028544,
+  "different_runner_recovery_run": 38854197791
+}

@@ -1,0 +1,17 @@
+{
+  "observed_at": "2026-10-16T13:21:36+08:00",
+  "formal_run_id": 38853538676,
+  "formal_job_id": 116819837674,
+  "formal_universe_count": 1967,
+  "original_fugle_run_id": 38845027079,
+  "original_job_id": 116793492688,
+  "new_private_control_run_id": 38854461494,
+  "new_private_control_job_id": 116822705363,
+  "new_private_control_armed_at": "2026-10-16T13:11:23.605898+08:00",
+  "new_mis_artifact_publisher_run_id": 38854918750,
+  "new_mis_artifact_publisher_job_id": 116824118632,
+  "new_jobs_scope": "ISOLATED_NO_FORMAL_WRITE_OR_MIS_RECAPTURE",
+  "new_true_private_capture_completed": false,
+  "new_true_candidate_publication_completed": false,
+  "verified_count": 0
+}

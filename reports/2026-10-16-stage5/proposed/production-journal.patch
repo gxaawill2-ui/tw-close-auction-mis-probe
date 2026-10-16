@@ -58,7 +58,7 @@
 +        continue-on-error: true
 +        uses: actions/checkout@v4
 +        with:
-+          ref: 1eb9c200ba4c9802587fb8935a3c69768dd8031d
++          ref: c68a913905c6acdf302d7af8377d73f43df4308a
 +          path: .stage5-shadow-code
 +          persist-credentials: false
 +      - name: Start isolated shadow without blocking the formal collector

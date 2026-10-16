@@ -1,3 +1,14 @@
+# 已完成交接與真實雲端驗收（2026-10-16T13:21:36+08:00）
+
+使用者13:04:36明確同意後，已將既有writer pair安全存入指定Environment的兩個Secret。1 branch / 0 tags限制不變；FUGLE_API_KEY未更動，沒有新增main admission。瀏覽器名稱列表已核對，截圖publisher-secrets-saved.jpg不含明文。本機writer明文暫存已清除。
+
+Run38854028544通過真實私有合成canary與真正publisher發布/匿名讀回。Run38854197791在另一Runner成功取回原私有物件、驗證hash與原寫入時間、測試匯出續傳及拒絕匿名私有讀取。詳兩份acceptance/recovery JSON。
+
+今天另有Run38854461494的兩檔少量真實私有觀察，已ARMED，最多新增6次/60秒、全程30次；有獨立第二Runner恢復步驟。現在仍等13:24～13:35真實時點，不能聲稱真實raw保存已PASS。
+原Run38845027079的LocalVault沒有動態補接，新觀察不是它先前暫存的回收。
+
+以下保留交接前的方案和限制供追溯；「待確認」段落是歷史狀態，以本節與CURRENT_HANDOFF為準。
+
 # 私有證據保存與 publisher 交接
 
 ## 已確認的外部 API 修復
