@@ -1,0 +1,44 @@
+{
+  "scope": "MIS_ONLY_REFERENCE_VALUES_NO_FUGLE_RAW",
+  "trade_date": "2026-10-16",
+  "formal_run": "38853538676",
+  "artifact_sha256": "6e0234f6f5f9778b976c14e26cd64e6d795d6dd209357e0052cf34da87ca6413",
+  "rows": [
+    {
+      "ex": "otc",
+      "code": "4609",
+      "P_before": "4.5200",
+      "P_before_trade_time": "12:02:16",
+      "P_close": "5.0000",
+      "P_close_trade_time": "13:30:00",
+      "admitted_research_candidate": true
+    },
+    {
+      "ex": "otc",
+      "code": "6228",
+      "P_before": "17.2000",
+      "P_before_trade_time": "13:09:37",
+      "P_close": "18.4000",
+      "P_close_trade_time": "13:33:00",
+      "admitted_research_candidate": true
+    },
+    {
+      "ex": "tse",
+      "code": "1235",
+      "P_before": "33.0000",
+      "P_before_trade_time": "12:48:21",
+      "P_close": "31.9500",
+      "P_close_trade_time": "13:30:00",
+      "admitted_research_candidate": true
+    },
+    {
+      "ex": "tse",
+      "code": "5546",
+      "P_before": "13.1500",
+      "P_before_trade_time": "13:24:57",
+      "P_close": "13.8000",
+      "P_close_trade_time": "13:33:00",
+      "admitted_research_candidate": false
+    }
+  ]
+}

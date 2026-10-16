@@ -1,0 +1,30 @@
+name: Stage5 restored private source equality diagnostics
+on:
+  push:
+    branches: [stage4/20261016-fugle-probe]
+    paths: [stage5_source_compare.request.json]
+permissions:
+  contents: read
+concurrency:
+  group: stage5-private-source-compare-only
+  cancel-in-progress: false
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Compare saved private sources without provider key or raw output
+        env:
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: python3 stage5_source_compare.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage5-private-source-equalities-${{ github.run_id }}
+          path: stage5-source-compare-report/
+          retention-days: 30

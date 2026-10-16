@@ -15,7 +15,7 @@
 這是本次受控預算，並非已驗收每天能查完所有候選；超出 12 檔 queue 容量或請求預算的股票仍可能無法完成獨立確認。
 
 原始富果回應不得進公開 Repo、公開 Artifact 或公開 Worker。對外 view 僅允許 MIS 衍生研究欄位與非原始診斷；這項過濾不等於已取得任何行情再散布授權。
-當前私有 Worker 因外部 403 無法驗收，今天使用私有 runner 暫存，結束後不可還原；此缺口必須保留在結論中。
+更新：外部 Runner 403/1010 已以誠實專案 User-Agent 排除；測試 Worker 私有寫入及不同 Runner 恢復均已實測成功。兩檔控制10份bundle與三檔候選bundle已恢復。只有11:20啟動的原任務仍採不可追溯回收的LocalVault，不可把兩者混為一談。
 
 官方來源：
 
@@ -35,3 +35,7 @@
 - https://developers.cloudflare.com/workers/platform/limits/
 - https://developers.cloudflare.com/durable-objects/platform/limits/
 - https://developers.cloudflare.com/durable-objects/platform/pricing/
+
+## 13:58續作覆核
+
+再次查閱以上富果Trades/Quote官方文件：文件提供時間排序與流水號欄位，但沒有新增同微秒打破排序、跨端點完整性或分頁快照一致性的明文保證。本輪未解除SourceContract及Worker雙重保護。原始資料只在私有vault；不因單筆歷史樣本吻合即釋出完整性契約。
