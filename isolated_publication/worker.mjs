@@ -1,4 +1,5 @@
 // Entirely separate from the existing relay/Pages. No cron and no GitHub calls.
+import {maybeMISBridge} from './stage5-mis-bridge.mjs';
 const encoder=new TextEncoder();
 export function canonical(value){
  if(Array.isArray(value))return '['+value.map(canonical).join(',')+']';
@@ -84,6 +85,7 @@ function response(status,data,extra={}){
 }
 export default {async fetch(request,env){
  const url=new URL(request.url);
+ const mis=await maybeMISBridge(request,env,{sign,canonical,privateResponse,limitedText});if(mis)return mis;
  if(url.pathname==='/health')return response(200,{scope:'ISOLATED_STAGE3',read_validator_revision:'weak-etag-v2',handoff_revision:env.HANDOFF_REVISION||null,private_evidence_available:true,live_validation_released:env.ALLOW_LIVE_VERIFIED==='true'});
  const privatePath=/^\/private-evidence\/(\d{4}-\d{2}-\d{2})\/(index|[a-f0-9]{64})$/.exec(url.pathname);
  if(privatePath){
@@ -137,11 +139,12 @@ export class SelectionStore{
    const body=await request.json(),bytes=encoder.encode(canonical(body)).length;
    return this.state.blockConcurrencyWhile(async()=>{
     const prior=await storage.get('evidence:'+id);
-    if(prior)return privateResponse(200,{id,sha256:prior.event.sha256,private_written_at:prior.private_written_at,duplicate:true});
+    if(prior){if(!prior.private_written_at){prior.private_written_at=new Date().toISOString();await storage.put('evidence:'+id,prior);}return privateResponse(200,{id,sha256:prior.event.sha256,private_written_at:prior.private_written_at,duplicate:true});}
     const index=await storage.get('index')||{entries:[],bytes:0};
-    if(index.entries.length>=1000||index.bytes+bytes>10000000)return privateResponse(507,{error:'PRIVATE_EVIDENCE_BUDGET'});
-    const saved={...body,private_written_at:new Date().toISOString()};
-    await storage.transaction(async txn=>{await txn.put('evidence:'+id,saved);index.entries.push({id,sha256:body.event.sha256,private_written_at:saved.private_written_at});index.bytes+=bytes;await txn.put('index',index);});
+    if(index.entries.length>=600||index.bytes+bytes>10000000)return privateResponse(507,{error:'PRIVATE_EVIDENCE_BUDGET'});
+    const saved={...body,private_written_at:null};
+    await storage.transaction(async txn=>{await txn.put('evidence:'+id,saved);index.entries.push({id,sha256:body.event.sha256});index.bytes+=bytes;await txn.put('index',index);});
+    saved.private_written_at=new Date().toISOString();await storage.put('evidence:'+id,saved);
     if(!await storage.getAlarm())await storage.setAlarm(Date.now()+7*86400000);
     return privateResponse(200,{id,sha256:body.event.sha256,private_written_at:saved.private_written_at,duplicate:false});
    });

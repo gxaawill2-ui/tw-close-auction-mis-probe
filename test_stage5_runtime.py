@@ -112,5 +112,70 @@ class Stage5Tests(unittest.TestCase):
         with self.assertRaises(ValueError):Vault('a'*64,'b'*64,base='https://wrong.invalid',opener=lambda *a,**k:calls.append(a))
         self.assertEqual(calls,[])
 
+    def test_private_manifest_restores_and_rechecks_each_raw_hash(self):
+        row,bundle=example(page_size=200);at=[f.parsed_time(DAY+'T13:35:00+08:00')]
+        responses=[bundle['quote_before']['raw'],bundle['pages'][0]['raw'],bundle['quote_after']['raw']]
+        class MemoryVault:
+            def __init__(self):self.objects={}
+            def save(self,event,date):
+                ident=hashlib.sha256(canonical(event).encode()).hexdigest()
+                self.objects[ident]={'id':ident,'event':copy.deepcopy(event),'private_written_at':at[0].isoformat()}
+                return {'id':ident,'sha256':event['sha256'],'private_written_at':at[0].isoformat(),'recoverable_after_job':True}
+            def read(self,date,ident):return copy.deepcopy(self.objects[ident])
+        vault=MemoryVault()
+        def wait(seconds):at[0]+=timedelta(seconds=seconds)
+        with tempfile.TemporaryDirectory() as tmp:
+            source=Source('K'*30,tmp,vault,opener=lambda *_,**__:Response(responses.pop(0).encode()),clock=lambda:at[0],wait=wait)
+            captured=source.collect(row,DAY,at[0]+timedelta(minutes=5))
+            self.assertEqual(captured['status'],'COLLECTED_NOT_VALIDATED')
+            ident=captured['private_manifest_receipt']['id']
+            restored=restore_bundle(vault,DAY,ident)
+            self.assertEqual(restored['pages'][0]['raw'],captured['pages'][0]['raw'])
+            manifest=json.loads(vault.objects[ident]['event']['raw'])
+            vault.objects[manifest['page_ids'][0]]['event']['raw']='tampered'
+            with self.assertRaisesRegex(ValueError,'HASH_MISMATCH'):restore_bundle(vault,DAY,ident)
+
+    def test_session_publishes_candidate_then_withdrawal_without_waiting_for_source(self):
+        from stage5_session import Session
+        from test_fast_selection import records
+        from test_close_research import DAY as day, ref
+        from test_convergence import SYMBOL
+        gate=threading.Event();published=[]
+        class FakeSource:
+            def collect(self,*_,**__):gate.wait(1);return {'source':'FUGLE','status':'SOURCE_INCOMPLETE','error':'SOURCE_TEST_INCOMPLETE'}
+        class FakePublisher:
+            def publish(self,view,deadline):published.append(copy.deepcopy(view));return {'status':'TEST_ONLY'}
+        with tempfile.TemporaryDirectory() as tmp:
+            source=FakeSource();source.directory=Path(tmp)/'private';source.directory.mkdir()
+            session=Session(day,[SYMBOL],Path(tmp)/'session',source,FakePublisher(),clock=lambda:f.parsed_time(day+'T13:35:00+08:00'))
+            try:
+                for record in records()[:3]:session.feed(record)
+                self.assertEqual(len(session.last['rows']),1);self.assertEqual(session.last['verified_count'],0)
+                session.tick();self.assertTrue(session.queue.tasks)
+                before=session.last['version']
+                session.feed(ref('close_reference_C',price='105'))
+                self.assertEqual(session.last['rows'],[]);self.assertGreater(session.last['version'],before)
+                self.assertEqual(session.last['retracted'][0]['code'],'2330')
+                gate.set();session.close()
+                self.assertEqual(published[-1]['rows'],[])
+                self.assertTrue(all(v['verified_count']==0 for v in published))
+            finally:gate.set();session.queue.close()
+
+    def test_journal_bridge_reads_existing_fsynced_batch_and_never_calls_market_api(self):
+        from fast_capture_journal import Journal
+        from stage5_journal_bridge import bridge
+        at=[f.parsed_time(DAY+'T13:35:00+08:00')];calls=[]
+        def wait(_):at[0]+=timedelta(hours=1)
+        def open(request,timeout):
+            self.assertIn('/private-mis-journal/',request.full_url);self.assertEqual(timeout,3)
+            body=json.loads(request.data)['body'];calls.append(body)
+            return Response(json.dumps({'id':body['id'],'sha256':body['event']['sha256'],'private_written_at':at[0].isoformat()}).encode())
+        with tempfile.TemporaryDirectory() as tmp:
+            journal=Journal(tmp,clock=lambda:at[0].isoformat())
+            journal.append({'received_at':(at[0]-timedelta(seconds=1)).isoformat(),'phase':'close_reference_A'})
+            result=bridge(journal.events,DAY,token='c'*64,opener=open,clock=lambda:at[0],wait=wait)
+            self.assertEqual(result['written_batches'],1);self.assertEqual(len(calls),1)
+            self.assertNotIn('c'*64,canonical(calls))
+
 
 if __name__=='__main__':unittest.main()

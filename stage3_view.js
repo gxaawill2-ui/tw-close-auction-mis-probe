@@ -15,13 +15,14 @@
  function create(doc,initial,configuration={}){
   // Private bootstrap configuration; never read a release flag from API data.
   const liveReleased=configuration.liveReleased===true;
-  let body=initial,key=null,direction='desc',lastReadVersion=Number(initial.version)||0;const reads=[];
+  let body=initial,key=null,direction='desc',lastReadVersion=Number(initial.version)||0,reading=false;const reads=[];
   function render(next){if(next)body=next;
    const rows=key?order(body.rows,key,direction):body.rows;const set=(id,v)=>doc.getElementById(id).textContent=v;
    const statuses=rows.map(r=>verified(r,body,liveReleased)?'正式驗證':r.verification_status==='UNKNOWN'?'資料不足':'研究候選');
    set('stage3-mode',body.provenance?.kind==='SAME_DAY_SAVED_CAPTURE_ANALYSIS'?'今日已保存資料驗收｜非逐批即時串流':body.mode==='SYNTHETIC'?'合成測試｜不是真實行情':body.mode==='OFFLINE_REPLAY'?'歷史證據重播｜非當時發布':'隔離即時試驗');
    set('stage3-date',body.trade_date);set('stage3-verified',statuses.filter(s=>s==='正式驗證').length);
-   set('stage3-research',statuses.filter(s=>s==='研究候選').length);set('stage3-unknown',statuses.filter(s=>s==='資料不足').length);
+   set('stage3-research',rows.length);set('stage3-unknown',statuses.filter(s=>s==='資料不足').length);
+   const summary=doc.getElementById('stage5-summary');if(summary)summary.textContent=`研究候選 ${rows.length} 檔，完整驗證 ${statuses.filter(s=>s==='正式驗證').length} 檔，其餘 ${rows.length-statuses.filter(s=>s==='正式驗證').length} 檔仍待確認。`;
    set('stage3-screening',`${number(body.screening_calculable_count)}／${number(body.universe_count)}；${number(body.screening_unresolved_count)} 檔無法完整初篩，可能漏選`);
    set('stage3-write',clock(body.public_written_at));set('stage3-generated',clock(body.generated_at));
    set('stage3-audit',(body.final_audit?.scheduled_times||['14:50','15:20','17:50']).join('／')+' 最終官方稽核');
@@ -38,10 +39,12 @@
   doc.getElementById('stage3-sort').addEventListener('change',e=>{key=e.target.value||null;direction='desc';render();});
   doc.getElementById('stage3-direction').addEventListener('click',()=>{direction=direction==='desc'?'asc':'desc';render();});
   async function poll(endpoint){
+   if(reading)return;reading=true;
+   try{
    const url=new URL(endpoint,root.location?.href||'http://localhost');
    if(url.protocol!=='https:'&&!['127.0.0.1','localhost'].includes(url.hostname))throw Error('UNSAFE_ENDPOINT');
    const requestedAt=new Date().toISOString();
-   try{const response=await fetch(url,{cache:'no-store',headers:{Accept:url.hostname==='api.github.com'?'application/vnd.github.raw+json':'application/json'}});if(!response.ok)throw Error('HTTP_'+response.status);
+   try{const response=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(8000),headers:{Accept:url.hostname==='api.github.com'?'application/vnd.github.raw+json':'application/json'}});if(!response.ok)throw Error('HTTP_'+response.status);
     const next=await response.json();if(next.trade_date!==body.trade_date||next.version<=Math.max(lastReadVersion,Number(body.version)||0))return;
     if(next.schema_version!=='STAGE3_SELECTION_V1'||!Number.isSafeInteger(next.version)||!Array.isArray(next.rows))throw Error('INVALID_SCHEMA');
     lastReadVersion=next.version;const observedAt=new Date().toISOString();
@@ -49,6 +52,7 @@
     doc.getElementById('stage3-read').textContent=clock(observedAt);doc.getElementById('stage3-network').textContent='隔離端點已讀取；版本 '+next.version;
     render(next);
    }catch{doc.getElementById('stage3-network').textContent='資料讀取失敗，等待重試；保留上一版並顯示原更新時間。';}
+   }finally{reading=false;}
   }
   render();return {render,poll,reads,getState:()=>({body,key,direction,rows:key?order(body.rows,key,direction):body.rows})};
  }

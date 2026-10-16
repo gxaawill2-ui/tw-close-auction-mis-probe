@@ -2,6 +2,7 @@
 import json
 import urllib.request
 import urllib.error
+import re
 from datetime import datetime, timezone
 BASE='https://tw-tail-stage4-20261015-test.gxaawill2.workers.dev'
 
@@ -25,6 +26,12 @@ def main():
             if isinstance(exc,urllib.error.HTTPError):report[name+'_http_status']=exc.code
             if isinstance(exc,urllib.error.HTTPError):
                 report[name+'_response_headers']={k:v for k,v in exc.headers.items() if k.lower() in ('server','cf-ray','x-deny-reason','x-mitmproxy-blocked-reason')}
+                # The fixed anonymous health endpoint cannot contain private market evidence.
+                if name=='health':
+                    text=exc.read(12000).decode('utf8',errors='replace')
+                    title=re.search(r'<title[^>]*>([^<]{0,200})</title>',text,re.I)
+                    report['cloud_error_page_title']=title.group(1) if title else None
+                    report['cloud_challenge_detected']=any(marker in text.lower() for marker in ('cf-chl-','checking your browser','verify you are human','just a moment'))
             if isinstance(exc,urllib.error.URLError):report[name+'_network_error_type']=type(exc.reason).__name__
     print(json.dumps(report,indent=2))
 

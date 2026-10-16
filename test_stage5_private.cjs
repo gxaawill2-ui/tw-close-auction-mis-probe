@@ -30,3 +30,23 @@ test('routine Cloudflare redeploy preserves stored writer keys; missing handoff 
  await bootstrap(args);assert.deepEqual(calls,[['deploy']]);calls=[];
  await assert.rejects(()=>bootstrap({...args,fetcher:async()=>({json:async()=>({handoff_revision:'stage5-20261016-v1'})})}));assert.deepEqual(calls,[]);
 });
+test('dormant MIS bridge uses write-only credentials, private reads and independent namespace',async()=>{
+ const bridgeToken='c'.repeat(64),{worker,token,key,url}=await require('./stage3_worker_runtime.cjs').startWorker({bridgeToken});
+ try{
+  const {canonical}=await import('./isolated_publication/worker.mjs');
+  const at=new Date(),date=new Date(at.getTime()+8*3600000).toISOString().slice(0,10);
+  const raw=canonical({origin:'MIS_LOCAL_DURABLE_JOURNAL',record:{received_at:new Date(at.getTime()-1000).toISOString()},persisted_at:at.toISOString()});
+  const event={source:'MIS',raw,sha256:crypto.createHash('sha256').update(raw).digest('hex')};
+  const id=crypto.createHash('sha256').update(canonical(event)).digest('hex');
+  const body={trade_date:date,id,scope:'PRIVATE_MIS_JOURNAL',event};
+  const packet=JSON.stringify({body,signature:crypto.createHmac('sha256',bridgeToken).update(canonical(body)).digest('hex')});
+  const route=url+'/private-mis-journal/'+date+'/'+id;
+  assert.equal((await fetch(route,{method:'POST',headers:{Authorization:'Bearer '+token},body:packet})).status,401);
+  const saved=await fetch(route,{method:'POST',headers:{Authorization:'Bearer '+bridgeToken},body:packet});assert.equal(saved.status,200);assert.ok((await saved.json()).private_written_at);
+  assert.equal((await fetch(route,{headers:{Authorization:'Bearer '+bridgeToken}})).status,401);
+  const read=await fetch(route,{headers:{Authorization:'Bearer '+token}});assert.equal((await read.json()).event.raw,raw);
+  assert.equal((await fetch(url+'/private-evidence/'+date+'/'+id,{headers:{Authorization:'Bearer '+bridgeToken}})).status,401);
+  assert.equal((await fetch(url+'/private-evidence/'+date+'/'+id,{headers:{Authorization:'Bearer '+token}})).status,404);
+  assert.equal((await fetch(url+'/publish',{method:'POST',headers:{Authorization:'Bearer '+bridgeToken},body:'{}'})).status,401);
+ }finally{await worker.dispose();}
+});

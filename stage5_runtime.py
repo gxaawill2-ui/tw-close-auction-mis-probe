@@ -91,6 +91,13 @@ class Source:
         self.wait, self.max_requests = wait, max_requests
         self.lock = threading.Lock()
         self.count, self.last, self.stopped = 0, None, False
+        ledger=self.directory/'request-budget.json'
+        if ledger.exists():
+            prior=json.loads(ledger.read_text())
+            if prior.get('trade_date')==self.clock().date().isoformat():
+                count=prior.get('request_count')
+                if not isinstance(count,int) or isinstance(count,bool) or count<0:raise ValueError('INVALID_SOURCE_BUDGET_LEDGER')
+                self.count=count
 
     def request(self, candidate, kind, query, deadline):
         if candidate.get('ex') not in ('tse', 'otc') or not re.fullmatch(r'[1-9]\d{3}', candidate.get('code', '')) or kind not in ('quote', 'trades'):
@@ -116,6 +123,8 @@ class Source:
                 if (deadline - self.clock()).total_seconds() < 14:
                     raise ValueError('SOURCE_DEADLINE_EXHAUSTED')
                 self.count += 1
+                atomic(self.directory/'request-budget.json',{'trade_date':date,'request_count':self.count})
+                os.chmod(self.directory/'request-budget.json',0o600)
                 self.last = self.clock()
                 began = self.last.isoformat()
             req = urllib.request.Request(url, headers={'X-API-KEY': self.key, 'Accept': 'application/json', 'Cache-Control': 'no-cache'})
@@ -147,6 +156,7 @@ class Source:
             'requested_at': began, 'received_at': received, 'persisted_at': self.clock().isoformat(),
             'http_status': status, 'query': query, 'headers': headers, 'symbol': candidate['code'], 'kind': kind}
         receipt = self.vault.save(event, date)
+        if self.clock()>deadline:raise ValueError('SOURCE_RECEIVED_AFTER_DEADLINE')
         payload = json.loads(raw)
         if not isinstance(payload, dict) or payload.get('date') != date or payload.get('symbol') != candidate['code'] or payload.get('exchange') != {'tse':'TWSE','otc':'TPEx'}[candidate['ex']] or payload.get('type') != 'EQUITY':
             raise ValueError('SOURCE_IDENTITY_OR_DATE_MISMATCH')
