@@ -1,6 +1,7 @@
 """Read isolated cloud transport metadata only; never credentials or market bodies."""
 import json
 import urllib.request
+import urllib.error
 from datetime import datetime, timezone
 BASE='https://tw-tail-stage4-20261015-test.gxaawill2.workers.dev'
 
@@ -18,8 +19,11 @@ def main():
                 report[name]={k:handoff.get(k) for k in ('revision','algorithm','sealed','scope')}
                 report['cloud_written_at']=data.get('public_written_at')
                 report['source_commit']=data.get('transport_acceptance',{}).get('commit')
-        except Exception:
+        except Exception as exc:
             report[name+'_error']='CLOUD_READ_UNAVAILABLE'
+            report[name+'_error_type']=type(exc).__name__
+            if isinstance(exc,urllib.error.HTTPError):report[name+'_http_status']=exc.code
+            if isinstance(exc,urllib.error.URLError):report[name+'_network_error_type']=type(exc.reason).__name__
     print(json.dumps(report,indent=2))
 
 
