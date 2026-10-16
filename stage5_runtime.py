@@ -80,10 +80,12 @@ class Vault:
 
 
 class Source:
-    def __init__(self, key, directory, vault, *, max_requests=160, opener=None, clock=None, wait=time.sleep, require_durable=False):
+    def __init__(self, key, directory, vault, *, max_requests=160, opener=None, clock=None, wait=time.sleep, require_durable=False,min_interval=1.3):
         if not isinstance(key, str) or len(key) < 20 or not re.fullmatch(r'[A-Za-z0-9+/_=-]+', key):
             raise ValueError('FUGLE_KEY_NOT_CONFIGURED')
         self.key, self.vault = key, vault
+        if not isinstance(min_interval,(int,float)) or not 1.3<=min_interval<=60:raise ValueError('SOURCE_UNSAFE_RATE_INTERVAL')
+        self.min_interval=min_interval
         self.require_durable=require_durable
         if require_durable and isinstance(vault,LocalVault):raise ValueError('PRIVATE_DURABLE_ARCHIVE_REQUIRED')
         self.directory = safe_output(directory)
@@ -119,7 +121,7 @@ class Source:
                 if self.stopped or self.count >= self.max_requests:
                     raise ValueError('SOURCE_REQUEST_BUDGET_EXHAUSTED')
                 if self.last:
-                    gap = 1.3 - (self.clock() - self.last).total_seconds()
+                    gap = self.min_interval - (self.clock() - self.last).total_seconds()
                     if gap > 0:
                         self.wait(gap)
                 if (deadline - self.clock()).total_seconds() < 14:

@@ -1,0 +1,32 @@
+name: Stage5 bounded real candidate private verification
+on:
+  push:
+    branches: [stage4/20261016-fugle-probe]
+    paths: [stage5_candidate_verifier.request.json]
+permissions:
+  contents: read
+concurrency:
+  group: stage5-20261016-two-candidate-verifier-only
+  cancel-in-progress: false
+jobs:
+  isolated:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: python3 -m unittest test_stage5_candidate_verifier test_stage5_runtime
+      - name: Verify at most two published MIS research candidates privately
+        env:
+          FUGLE_API_KEY: ${{ secrets.FUGLE_API_KEY }}
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: python3 -u stage5_candidate_verifier.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage5-private-candidate-audit-${{ github.run_id }}
+          path: stage5-candidate-verifier-report/
+          retention-days: 30

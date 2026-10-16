@@ -1,0 +1,10 @@
+{
+  "scope": "TWO_PUBLISHED_MIS_RESEARCH_CANDIDATES_PRIVATE_FUGLE_AUDIT",
+  "trade_date": "2026-10-16",
+  "not_before": "2026-10-16T13:37:10+08:00",
+  "maximum_candidates": 2,
+  "maximum_added_requests_per_minute": 6,
+  "maximum_added_requests": 60,
+  "verified_release": false,
+  "formal_modified": false
+}
