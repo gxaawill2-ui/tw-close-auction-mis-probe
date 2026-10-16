@@ -1,0 +1,30 @@
+name: Stage5 true candidate private archive recovery
+on:
+  push:
+    branches: [stage4/20261016-fugle-probe]
+    paths: [stage5_candidate_recovery.request.json]
+permissions:
+  contents: read
+concurrency:
+  group: stage5-20261016-candidate-private-recovery-only
+  cancel-in-progress: false
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Restore only existing private candidate evidence; no Fugle key
+        env:
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: python3 stage5_candidate_recovery.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage5-private-candidate-recovery-${{ github.run_id }}
+          path: stage5-candidate-recovery-report/
+          retention-days: 30
