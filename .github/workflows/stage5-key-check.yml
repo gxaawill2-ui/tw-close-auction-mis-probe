@@ -1,0 +1,24 @@
+name: Stage5 isolated key rotation check
+on:
+  push:
+    branches: [stage4/20261016-fugle-probe]
+    paths: [stage5_key_check.request.json]
+permissions:
+  contents: read
+concurrency:
+  group: stage5-isolated-key-check-only
+  cancel-in-progress: false
+jobs:
+  check:
+    if: github.ref == 'refs/heads/stage4/20261016-fugle-probe'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    environment: stage4-fugle-isolated
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Reuse existing five-call smoke, no raw output
+        env:
+          FUGLE_API_KEY: ${{ secrets.FUGLE_API_KEY }}
+        run: python3 stage4_fugle_smoke.py

@@ -1,0 +1,24 @@
+{
+  "scope": "ISOLATED_CLOUD_PUBLIC_PREFLIGHT",
+  "observed_at": "2026-10-16T03:37:57.336660+00:00",
+  "health_error": "CLOUD_READ_UNAVAILABLE",
+  "health_error_type": "HTTPError",
+  "health_http_status": 403,
+  "health_response_headers": {
+    "Server": "cloudflare",
+    "CF-RAY": "a4b40725f949cc1a-ORD"
+  },
+  "cloud_error_page_title": null,
+  "cloud_challenge_detected": false,
+  "health_network_error_type": "str",
+  "sealed_handoff_error": "CLOUD_READ_UNAVAILABLE",
+  "sealed_handoff_error_type": "HTTPError",
+  "sealed_handoff_http_status": 403,
+  "sealed_handoff_response_headers": {
+    "Server": "cloudflare",
+    "CF-RAY": "a4b407269cf6111c-ORD"
+  },
+  "sealed_handoff_network_error_type": "str",
+  "run_id": 38846474021,
+  "job_id": 116798041886
+}

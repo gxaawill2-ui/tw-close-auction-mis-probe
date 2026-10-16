@@ -1,0 +1,39 @@
+{
+  "scope": "REAL_FUGLE_CONTROL_DIAGNOSTICS_NOT_STRATEGY_CANDIDATES",
+  "trade_date": "2026-10-16",
+  "run_id": 38845027079,
+  "job_id": 116793492688,
+  "source_commit": "2443ce0f4028b25e18cf207b8490e212e7d75c2d",
+  "observation_source": "GITHUB_RENDERED_LIVE_JOB_LOG_IN_CLOUD_BROWSER",
+  "armed_at": "2026-10-16T11:20:40.715917+08:00",
+  "private_storage_mode": "RUNNER_PRIVATE_TEMPORARY_ONLY",
+  "raw_market_data_public": false,
+  "verified_count": 0,
+  "observations": [
+    {
+      "symbol": "2330",
+      "observed_at": "2026-10-16T11:20:46.182651+08:00",
+      "phase": "CONNECTION_AND_PRIVATE_STORAGE",
+      "pages": 1,
+      "rows": 200,
+      "status": "UNKNOWN",
+      "private_archive_recoverable": false,
+      "reasons": ["PRIVATE_ARCHIVE_UNAVAILABLE_RUNNER_COPY_ONLY", "QUOTE_CHANGED_DURING_PAGINATION", "FULL_DAY_COUNT_AND_VOLUME_NOT_PROVEN", "CLOSE_FINALITY_NOT_PROVEN", "PROVIDER_COMPLETENESS_AND_ORDER_CONTRACT_NOT_RELEASED"]
+    },
+    {
+      "symbol": "6488",
+      "observed_at": "2026-10-16T11:20:47.471469+08:00",
+      "phase": "CONNECTION_AND_PRIVATE_STORAGE",
+      "pages": 1,
+      "rows": 200,
+      "status": "UNKNOWN",
+      "private_archive_recoverable": false,
+      "reasons": ["PRIVATE_ARCHIVE_UNAVAILABLE_RUNNER_COPY_ONLY", "QUOTE_CHANGED_DURING_PAGINATION", "SAME_MICROSECOND_ORDER_NOT_DOCUMENTED", "FULL_DAY_COUNT_AND_VOLUME_NOT_PROVEN", "QUOTE_HEAD_CONFLICT", "CLOSE_FINALITY_NOT_PROVEN", "PROVIDER_COMPLETENESS_AND_ORDER_CONTRACT_NOT_RELEASED"]
+    }
+  ],
+  "pre_cutoff_capture_result": null,
+  "close_capture_result": null,
+  "actual_candidate_cloud_write_at": null,
+  "desktop_external_read_at": null,
+  "physical_phone_read_at": null
+}

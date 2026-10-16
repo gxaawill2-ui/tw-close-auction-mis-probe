@@ -1,0 +1,167 @@
+name: TWSE MIS Closing Auction Probe
+run-name: MIS ${{ (github.event_name == 'push' && 'tests') || inputs.mode || (github.event_name == 'schedule' && 'live') || 'dry-run' }} / ${{ inputs.trigger_source || github.event_name }} / ${{ inputs.dispatch_test_id || github.run_number }}
+on:
+  push:
+    paths:
+      - 'probe.py'
+      - 'freshness.py'
+      - 'convergence.py'
+      - 'test_convergence.py'
+      - 'official_retry.py'
+      - 'tradable.py'
+      - 'official_quotes.py'
+      - 'run_control.py'
+      - 'capture_completion.py'
+      - 'test_capture_completion.py'
+      - 'reports/2026-10-08/**'
+      - 'test_freshness.py'
+      - 'test_dispatch.py'
+      - 'test_status.cjs'
+      - 'docs/status.js'
+      - 'docs/**'
+      - 'candidate_publication.py'
+      - 'volume_evidence.py'
+      - 'volume_contract.json'
+      - 'test_candidate_publication.py'
+      - 'test_dashboard.cjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'browser_acceptance.cjs'
+      - '.github/workflows/twse-mis-probe.yml'
+  schedule:
+    - cron: "47 3 * * 1-5"
+    - cron: "7 5 * * 1-5"
+    - cron: "12,17,22 5 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "dry-run only checks connectivity; live obeys strict capture deadlines"
+        required: true
+        default: dry-run
+        type: choice
+        options:
+          - dry-run
+          - live
+          - dispatch-safety
+      trigger_source:
+        description: "Caller declaration only; external setup requires a verified cron-job.org test"
+        required: false
+        default: manual
+        type: choice
+        options:
+          - manual
+          - cron-job.org
+          - cron-job.org-test
+          - dispatch-safety-test
+      dispatch_test_id:
+        description: "Leave empty for live/dry-run; numeric isolated dedup test id only"
+        required: false
+        default: ""
+        type: string
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: twse-mis-live
+  cancel-in-progress: false
+jobs:
+  dashboard-browser:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Install official Chromium and WebKit test browsers
+        run: npx playwright install --with-deps chromium webkit
+      - name: Verify actual desktop, iPhone layout and public Pages
+        run: node browser_acceptance.cjs
+      - name: Save browser acceptance screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dashboard-browser-${{ github.run_id }}
+          path: browser-results/
+          if-no-files-found: warn
+          retention-days: 14
+  probe:
+    environment: stage4-fugle-isolated
+    runs-on: ubuntu-latest
+    timeout-minutes: 125
+    env:
+      TZ: Asia/Taipei
+      MIS_FAST_JOURNAL_DIR: ${{ vars.STAGE5_SHADOW_ENABLED == 'true' && format('{0}/stage5-journal', runner.temp) || '' }}
+      STATUS_ISSUE_NUMBER: "1"
+      GITHUB_TOKEN: ${{ github.token }}
+      PROBE_MODE: ${{ github.event_name == 'schedule' && 'live' || inputs.mode || 'dry-run' }}
+      SCHEDULE_CRON: ${{ github.event.schedule }}
+      TRIGGER_SOURCE: ${{ inputs.trigger_source || 'manual' }}
+      DISPATCH_TEST_ID: ${{ inputs.dispatch_test_id || '' }}
+    steps:
+      - name: Record actual runner start before setup
+        run: |
+          MIS_RUNNER_START=$(date '+%Y-%m-%dT%H:%M:%S.%3N%:z')
+          echo "RUNNER_STARTED_AT=$MIS_RUNNER_START" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify freshness, date gates and no-backfill behavior
+        run: python -m unittest discover -v
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install pinned DOM test dependencies
+        run: npm ci --ignore-scripts
+      - name: Verify dashboard DOM, dates, volumes and diagnostic page
+        run: npm test
+      # PROPOSAL ONLY. Main admission to the environment must be approved first.
+      - name: Checkout pinned isolated shadow code
+        if: github.event_name != 'push' && vars.STAGE5_SHADOW_ENABLED == 'true'
+        continue-on-error: true
+        uses: actions/checkout@v4
+        with:
+          ref: 1eb9c200ba4c9802587fb8935a3c69768dd8031d
+          path: .stage5-shadow-code
+          persist-credentials: false
+      - name: Start isolated shadow without blocking the formal collector
+        if: github.event_name != 'push' && vars.STAGE5_SHADOW_ENABLED == 'true'
+        continue-on-error: true
+        env:
+          FUGLE_API_KEY: ${{ secrets.FUGLE_API_KEY }}
+          STAGE5_PUBLISH_TOKEN: ${{ secrets.STAGE5_PUBLISH_TOKEN }}
+          STAGE5_DECISION_KEY: ${{ secrets.STAGE5_DECISION_KEY }}
+        run: |
+          test -f .stage5-shadow-code/stage5_launcher.py || exit 0
+          mkdir -p "$RUNNER_TEMP/stage5-shadow"
+          chmod 700 "$RUNNER_TEMP/stage5-shadow"
+          python .stage5-shadow-code/stage5_launcher.py "$MIS_FAST_JOURNAL_DIR/fast-capture-journal.jsonl" "$GITHUB_WORKSPACE/results/universe.json" "$(TZ=Asia/Taipei date +%F)" "$RUNNER_TEMP/stage5-shadow" > "$RUNNER_TEMP/stage5-shadow.log" 2>&1 &
+          echo "$!" > "$RUNNER_TEMP/stage5-shadow.pid"
+      - name: Run controlled probe
+        id: probe
+        if: github.event_name != 'push'
+        run: python run_control.py --mode "$PROBE_MODE" --output results
+      - name: Upload raw evidence and reports
+        id: artifact
+        if: always() && github.event_name != 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: mis-probe-${{ github.run_id }}
+          path: |
+            results/
+            mis-probe-*.zip
+          if-no-files-found: error
+          retention-days: 30
+      - name: Preserve specific failure and mark unexpected controller termination
+        if: failure() && github.event_name != 'push'
+        env:
+          ARTIFACT_UPLOAD_OUTCOME: ${{ steps.artifact.outcome }}
+        run: python run_control.py --mode workflow-failure --output results
+

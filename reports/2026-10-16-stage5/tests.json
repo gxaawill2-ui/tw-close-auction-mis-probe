@@ -1,0 +1,25 @@
+{
+  "scope": "AUTOMATED_SYNTHETIC_AND_OFFLINE_TESTS_NOT_DAILY_MARKET_ACCEPTANCE",
+  "completed_at": "2026-10-16T12:19:59.644821+08:00",
+  "python_tests": 392,
+  "python_failed": 0,
+  "node_tests": 117,
+  "node_failed": 0,
+  "yaml_files_parsed": 4,
+  "mis_requests_in_tests": false,
+  "real_verified_count_proven_by_tests": false,
+  "actual_external_desktop_pass": false,
+  "physical_phone_pass": false,
+  "production_changes_applied": false,
+  "tested_behaviors": [
+    "source quota and authentication stop",
+    "no credential forwarding on redirect",
+    "raw evidence privacy and hash recovery",
+    "fair queue and stale result rejection",
+    "first candidate publication and withdrawal without source blocking",
+    "strong/weak ETag and durable version conflicts",
+    "dormant write-only MIS bridge namespace",
+    "journal failure keeps formal capture running in proposed code",
+    "UI total candidates vs verified vs pending and coalesced polling"
+  ]
+}
