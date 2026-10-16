@@ -1,0 +1,134 @@
+{
+  "schema_version": "STAGE3_SELECTION_V1",
+  "trade_date": "2099-01-01",
+  "mode": "SYNTHETIC",
+  "is_synthetic": true,
+  "version": 17921163550673,
+  "generated_at": "2026-10-16T02:05:55.067Z",
+  "rows": [
+    {
+      "code": "0000",
+      "ex": "tse",
+      "name": "合成傳輸測試，非真實股票",
+      "verification_status": "UNKNOWN",
+      "validated": false,
+      "P_before": null,
+      "P_close": null,
+      "tail_return_pct": null,
+      "closing_auction_volume": null,
+      "intraday_total_volume": null,
+      "closing_volume_ratio_pct": null,
+      "updated_at": "2026-10-16T02:05:55.857Z"
+    }
+  ],
+  "verified_count": 0,
+  "research_count": 0,
+  "unknown_candidate_count": 1,
+  "universe_count": 0,
+  "screening_calculable_count": 0,
+  "screening_unresolved_count": 0,
+  "transport_nonce": "742932401194f548f6feae3a",
+  "transport_acceptance": {
+    "scope": "REAL_CLOUDFLARE_SYNTHETIC_TRANSPORT_NOT_REAL_MARKET_OR_MOBILE",
+    "commit": "6ee41f6680f94ea3260dc55e63d751536aeee745",
+    "started_at": "2026-10-16T02:05:55.067Z",
+    "checks_completed_at": "2026-10-16T02:05:55.968Z",
+    "checks": [
+      {
+        "name": "health-keeps-live-release-closed",
+        "status": "PASS"
+      },
+      {
+        "name": "signed-write-server-receipt",
+        "status": "PASS"
+      },
+      {
+        "name": "anonymous-read",
+        "status": "PASS"
+      },
+      {
+        "name": "read-matches-nonce-version-and-sha",
+        "status": "PASS"
+      },
+      {
+        "name": "no-store-and-anonymous-cors",
+        "status": "PASS"
+      },
+      {
+        "name": "etag-current-304",
+        "status": "PASS"
+      },
+      {
+        "name": "etag-weak-current-304",
+        "status": "PASS"
+      },
+      {
+        "name": "etag-list-current-304",
+        "status": "PASS"
+      },
+      {
+        "name": "etag-wildcard-current-304",
+        "status": "PASS"
+      },
+      {
+        "name": "idempotent-write",
+        "status": "PASS"
+      },
+      {
+        "name": "stale-version-rejected",
+        "status": "PASS"
+      },
+      {
+        "name": "same-version-conflict-rejected",
+        "status": "PASS"
+      },
+      {
+        "name": "anonymous-post-denied",
+        "status": "PASS"
+      },
+      {
+        "name": "wrong-token-denied",
+        "status": "PASS"
+      },
+      {
+        "name": "bad-signature-denied",
+        "status": "PASS"
+      },
+      {
+        "name": "large-body-denied",
+        "status": "PASS"
+      },
+      {
+        "name": "invalid-date-denied",
+        "status": "PASS"
+      },
+      {
+        "name": "per-row-update",
+        "status": "PASS"
+      },
+      {
+        "name": "old-etag-does-not-hide-update",
+        "status": "PASS"
+      },
+      {
+        "name": "forged-verified-denied",
+        "status": "PASS"
+      },
+      {
+        "name": "candidate-withdrawal",
+        "status": "PASS"
+      },
+      {
+        "name": "withdrawal-public-read",
+        "status": "PASS"
+      }
+    ],
+    "external_browser_read_at": null,
+    "physical_mobile_latency_ms": null,
+    "writer_keys": "EPHEMERAL_ACCEPTANCE_ONLY_NOT_A_REAL_PUBLISHER_HANDOFF"
+  },
+  "sha256": "452119ea0045ae82914fb9c71ec5b0f5f5a75df4dbb85ec06ec10cba6d9e7ba7",
+  "public_written_at": "2026-10-16T02:05:56.004Z",
+  "server_write_started_at": "2026-10-16T02:05:56.004Z",
+  "publication_scope": "ISOLATED_WORKER"
+}
