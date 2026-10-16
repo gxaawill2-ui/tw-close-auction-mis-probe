@@ -1,0 +1,36 @@
+{
+  "scope": "REAL_ISOLATED_CLOUD_SYNTHETIC_PUBLICATION_AND_PRIVATE_CANARY_NOT_MARKET_OR_BROWSER",
+  "started_at": "2026-10-16T13:06:21.817510+08:00",
+  "run_id": "38854028544",
+  "source_commit": "cb595af36aabbadefffd2fc9ea29a47d7c0906eb",
+  "fugle_requests": 0,
+  "production_modified": false,
+  "external_desktop_verified": false,
+  "physical_phone_verified": false,
+  "private_storage": {
+    "scope": "SYNTHETIC_PRIVATE_STORAGE_NOT_MARKET_ACCEPTANCE",
+    "id": "b00bc9efe21fe9b7573bc81ce7303a7e34a6dd06028c37747b39b7e5d5396f27",
+    "private_written_at": "2026-10-16T05:06:22.209Z",
+    "read_back_at": "2026-10-16T13:06:22.370629+08:00"
+  },
+  "public_write": {
+    "version": 1792127182371000,
+    "sha256": "6458723b30aff891d0184e296db366e459c57e778cf15fb997a07d4d20f6f67e",
+    "public_written_at": "2026-10-16T05:06:22.821Z",
+    "duplicate": false
+  },
+  "anonymous_read_at": "2026-10-16T13:06:23.114016+08:00",
+  "status": "PASS",
+  "etag_revalidation_304": true,
+  "idempotent_write": true,
+  "stale_rejected": true,
+  "process_restart_write_read": true,
+  "finished_at": "2026-10-16T13:06:24.154478+08:00",
+  "final_public_write": {
+    "version": 1792127182371001,
+    "sha256": "9537fc0740ac50f7ced67c31465f74d8044e26b5ef8f46e43f514a48861c12cf",
+    "public_written_at": "2026-10-16T05:06:23.847Z",
+    "duplicate": false
+  },
+  "raw_market_data_published": false
+}
