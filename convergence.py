@@ -130,7 +130,7 @@ def pair(series, date, kind):
     return result
 
 
-def pre_with_c(series, date):
+def _pre_with_c_legacy(series, date):
     """Keep original A/B+retry unchanged; C is optional research evidence only.
 
     C pairs retain trade.t/trade.z/v identity. Relaxing v stays offline shadow.
@@ -185,6 +185,52 @@ def pre_with_c(series, date):
                       reference_classification='ABC_converged_candidate' if abc else label,validated=False)
         return result
     return result
+
+
+def pre_with_c(series,date):
+    original=_pre_with_c_legacy(series,date)
+    if date < PRE_C_START_DATE:return original
+    refs={r.get('phase'):r for r in series if r.get('phase') in ('pre_reference_A','pre_reference_B','pre_reference_C')}
+    # Keep genuine scheduled reference provenance. Never invent A/B.
+    for phase in ('pre_reference_A','pre_reference_B'):
+        row=refs.get(phase);planned=f.parsed_time((row or {}).get('planned_at'))
+        if not planned or planned.astimezone(f.TZ).date().isoformat()!=date or planned.astimezone(f.TZ).strftime('%H:%M:%S')!=reference_times(date)[phase]:
+            return original
+    rows=[];blockers=[]
+    for row in sorted(series,key=lambda x:x.get('received_at') or ''):
+        phase=row.get('phase','')
+        if phase not in (*refs,'pre_targeted_retry'):continue
+        why=rejection(row,date,'pre')
+        if not why and phase in reference_times(date):
+            planned=f.parsed_time(row.get('planned_at'))
+            if planned.astimezone(f.TZ).strftime('%H:%M:%S')!=reference_times(date)[phase]:why='INVALID_REFERENCE_SCHEDULE'
+        if not why:rows.append(row)
+        elif f.fresh_candidate(row,date,MAX_AGE_MS) and not row.get('error') and why not in ('stale_cache','AFTER_REFERENCE_DEADLINE'):
+            blockers.append(row)
+    if not rows:return original
+    if any(b['server_time']<a['server_time'] for a,b in zip(rows,rows[1:])):
+        return {**original,'converged':False,'A':None,'B':None,'reason':'server_time_regression'}
+    latest=rows[-1]
+    if latest['trade_t']<max(r['trade_t'] for r in rows) or f.decimal_value(latest['v'])<max(f.decimal_value(r['v']) for r in rows):
+        return {**original,'converged':False,'A':None,'B':None,'reason':'UNRESOLVED_TRADE_OR_VOLUME_REGRESSION'}
+    if any(r['trade_t']==latest['trade_t'] and f.decimal_value(r['trade_z'])!=f.decimal_value(latest['trade_z']) for r in rows):
+        return {**original,'converged':False,'A':None,'B':None,'reason':'CONFLICTING_PRICE_AT_SAME_TRADE_TIME'}
+    suffix=[]
+    for row in reversed(rows):
+        if f.identity(row)!=f.identity(latest):break
+        suffix.append(row)
+    suffix.reverse()
+    distinct=[r for r in suffix[:-1] if r['server_time']<latest['server_time'] and r['received_at']<latest['received_at']]
+    if any(r['received_at']>=suffix[0]['received_at'] for r in blockers):
+        return {**original,'converged':False,'A':None,'B':None,'reason':'LATER_FRESH_INVALID_PRE_REFERENCE'}
+    if not distinct:
+        # Never preserve an older agreement through a newer valid contradiction.
+        if original['converged'] and f.identity(original['B'])!=f.identity(latest):
+            return {**original,'converged':False,'A':None,'B':None,'reason':'LATER_FRESH_PRE_CONTRADICTION'}
+        return original
+    if original['converged'] and f.identity(original['B'])==f.identity(latest):return original
+    return {**original,'converged':True,'status':'p_before_converged_candidate','A':distinct[-1],'B':latest,'reason':None,
+            'reference_classification':'RETRY_STABLE_converged_candidate','validated':False}
 
 
 def grouped(snapshots, date):
