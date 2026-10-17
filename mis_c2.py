@@ -82,7 +82,7 @@ class C2:
 
 
 
-C2_ENABLED = False  # Explicitly approved activation is a separate one-line patch.
+C2_ENABLED = True  # Explicitly approved activation is a separate one-line patch.
 
 
 def _http_child(symbols,deadline,path):
