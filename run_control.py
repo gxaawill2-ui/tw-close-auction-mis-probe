@@ -446,6 +446,20 @@ def run(mode, output):
             try:
                 candidate_publication_result = candidate_publication.publish_live(
                     output,date,run_id,__import__(__name__),probe)
+                if candidate_publication_result.get('status')=='PUBLISHED':
+                    import mis_c2
+                    try:
+                        supplemental=mis_c2.after_initial_publish(output,date,run_id,__import__(__name__),probe)
+                    except Exception as extra:
+                        supplemental={'status':'SUPPLEMENTAL_FAILED_INITIAL_PRESERVED','error_type':type(extra).__name__}
+                    if supplemental.get('publication',{}).get('status')=='PUBLISHED':
+                        candidate_publication_result={**supplemental['publication'],'initial_published_at':candidate_publication_result.get('published_at')}
+                    (output/'c2-integration.json').write_text(json.dumps(supplemental,ensure_ascii=False,indent=2))
+                    if (output/'run_summary.json').exists():
+                        supplemented=json.loads((output/'run_summary.json').read_text())
+                        supplemented['c2_integration']=supplemental
+                        (output/'run_summary.json').write_text(json.dumps(supplemented,ensure_ascii=False,indent=2))
+
             except Exception as exc:
                 candidate_publication_result = {'status':'FAILED','error':type(exc).__name__+':'+str(exc)}
                 (output/'candidate_publication.json').write_text(json.dumps(candidate_publication_result,ensure_ascii=False,indent=2))
