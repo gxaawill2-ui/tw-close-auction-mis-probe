@@ -1,7 +1,7 @@
 (function(root){
   'use strict';
   const RAW='https://raw.githubusercontent.com/gxaawill2-ui/tw-close-auction-mis-probe/main/';
-  const TYPES=['AB_converged','AC_converged','BC_converged','A_1330_fresh_candidate'];
+  const TYPES=['AB_converged','AC_converged','BC_converged','A_1330_fresh_candidate','TARGETED_converged'];
   function taipei(now){
     const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(now);
     const p=Object.fromEntries(parts.map(x=>[x.type,x.value]));
@@ -17,6 +17,11 @@
     if(data.status!=='RESEARCH_ONLY'||data.validated!==false||!['COMPLETE','PARTIAL'].includes(data.completion_status))throw new Error('研究結果尚未完成');
     const generated=new Date(data.generated_at);
     if(!Number.isFinite(generated.getTime())||taipei(generated).date!==date||generated>now)throw new Error('產生時間不符');
+    if(data.revision!==undefined){
+      if(!Number.isInteger(data.revision)||data.revision<1||!Number.isInteger(data.evidence_sequence)||data.evidence_sequence<1||!(/^[a-f0-9]{64}$/).test(data.content_hash||''))throw new Error('更新版本不完整');
+      for(const key of ['published_at','updated_at'])if(data[key]&&(!Number.isFinite(new Date(data[key]).getTime())||new Date(data[key])>now||taipei(new Date(data[key])).date!==date))throw new Error('更新時間不符');
+      for(const list of [data.unknown_candidate_list||[],data.withdrawals||[]])if(!Array.isArray(list)||list.some(r=>!/^\d{4}$/.test(r.code)))throw new Error('更新名單不完整');
+    }
     const c=data.coverage||{},values=[c.tradable_universe,c.research_calculable,c.unknown];
     if(values.some(x=>!Number.isInteger(x)||x<0)||values[0]<=0||values[1]+values[2]!==values[0])throw new Error('涵蓋資料不完整');
     if(!Array.isArray(data.candidate_list)||data.candidate_count!==data.candidate_list.length||data.candidate_count>values[1])throw new Error('名單筆數不符');
@@ -36,6 +41,21 @@
     }
     return data;
   }
+  function acceptRevision(current,incoming){
+    if(!current)return incoming;
+    if(current.trade_date!==incoming.trade_date||String(current.capture_run_id)!==String(incoming.capture_run_id))throw new Error('來源日期或擷取批次衝突');
+    if(current.revision!==undefined||incoming.revision!==undefined){
+      if(!Number.isInteger(incoming.revision)||incoming.revision<1||!Number.isInteger(incoming.evidence_sequence)||incoming.evidence_sequence<1||!(/^[a-f0-9]{64}$/).test(incoming.content_hash||''))throw new Error('更新版本不完整');
+      if(current.revision!==undefined){
+        if(incoming.revision<current.revision||incoming.evidence_sequence<current.evidence_sequence)throw new Error('拒絕舊版本資料');
+        if(incoming.revision===current.revision&&incoming.content_hash!==current.content_hash)throw new Error('同版資料衝突');
+        if(incoming.revision>current.revision&&incoming.evidence_sequence===current.evidence_sequence)throw new Error('證據序號未更新');
+      }
+    }
+    if(new Date(incoming.generated_at)<new Date(current.generated_at))throw new Error('拒絕較早產生的資料');
+    if(new Date(incoming.updated_at||incoming.generated_at)<new Date(current.updated_at||current.generated_at))throw new Error('拒絕較早更新的資料');
+    return incoming;
+  }
   function model(now,input){
     const t=taipei(now),trade=tradingDay(t.date,input.calendar),live=input.live&&input.live.trade_date===t.date?input.live:null;
     let data=null,error=input.error||'',state,headline,message;
@@ -52,6 +72,13 @@
     else if(live&&['CAPTURE_SUCCESS','CAPTURE_PARTIAL'].includes(live.capture_outcome)){state='PUBLISHING_DELAY';headline='研究結果發布中／尚無當日結果';message='擷取已完成，正在等待公開名單；這不代表今日沒有候選。';}
     else if(trade===null){state='UNKNOWN_CALENDAR';headline='尚無當日結果';message='交易日狀態暫未確認；取得資料後自動更新。';}
     else {state=t.clock<'09:00:00'?'BEFORE_OPEN':'WAITING';headline='今日尚未產生尾盤研究資料';message=t.clock<'09:00:00'?'尚未開盤；尾盤研究名單預計約 13:35 更新。':'尾盤研究名單預計約 13:35 更新。';}
+    if(data&&data.revision!==undefined){
+      const pending=Array.isArray(data.unknown_candidate_list)?data.unknown_candidate_list:[];
+      const removed=Array.isArray(data.withdrawals)?data.withdrawals:[];
+      if(pending.length&&data.candidate_count===0)headline='今日尚無已確認候選，'+pending.length+' 檔待確認';
+      if(pending.length)message+=' 待確認：'+pending.map(r=>r.code).join('、')+'。';
+      if(removed.length)message+=' 已撤回：'+removed.map(r=>r.code+(r.reason==='UNKNOWN'?'（待確認）':'')).join('、')+'。';
+    }
     return {today:t.date,clock:t.clock,isTradingDay:trade,state,headline,message,data,error,
       rows:data?[...data.candidate_list].sort((a,b)=>Math.abs(Number(b.tail_return_pct))-Math.abs(Number(a.tail_return_pct))||a.code.localeCompare(b.code)):[]};
   }
@@ -59,7 +86,7 @@
   function number(value,decimals=2){return value===null||value===undefined?'—':new Intl.NumberFormat('zh-TW',{maximumFractionDigits:decimals}).format(Number(value));}
   function escape(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
   function priceLabel(row){return {MATCH:'收盤價一致',MISMATCH:'收盤價不符',UNAVAILABLE:'官方缺資料',PENDING:'待盤後核對'}[row.official_price_result]||'待盤後核對';}
-  function confidence(row){return row.confidence_level==='HIGH_RESEARCH'?'高 · 研究':'中 · 研究';}
+  function confidence(row){if(row.selection_status==='MIS_CONFIRMED')return 'MIS 多次確認通過';return row.confidence_level==='HIGH_RESEARCH'?'高 · 研究':'中 · 研究';}
   function volume(row,key,unit){return row[key]===null?'— <small>未驗證</small>':number(row[key],3)+(unit?' <small>'+unit+'</small>':'');}
   const SORT_FIELDS={closing_auction_volume:'最後一盤量（張）',intraday_total_volume:'全日盤中量（張）',closing_volume_ratio_pct:'收盤量占比'};
   function sortValue(row,key){
@@ -123,7 +150,7 @@
     set('mobile-sort-direction',sort?.direction==='asc'?'↑ 由小到大':'↓ 由大到小');
     set('empty',view.headline);
   }
-  const api={taipei,tradingDay,validate,model,polling,number,render,sortRows,nextSort,bindSort,RAW};
+  const api={taipei,tradingDay,validate,model,polling,number,render,sortRows,nextSort,bindSort,acceptRevision,RAW};
   if(typeof module!=='undefined'&&module.exports){module.exports=api;return;}
   root.TailDashboard=api;
   let calendar=null,calendarYear=null,lastGood=null,running=false,currentSort=null;
@@ -142,7 +169,7 @@
       if(calendarYear!==t.year||!calendar){calendar=await read('state/calendars/'+t.year+'.json',now);calendarYear=t.year;}
       if(tradingDay(t.date,calendar)!==false){
         data=await read('state/candidates/'+t.date+'.json',now,true);
-        if(data){validate(data,t.date,now);lastGood=data;}else live=await read('state/live/'+t.date+'.json',now,true);
+        if(data){validate(data,t.date,now);data=acceptRevision(lastGood,data);lastGood=data;}else live=await read('state/live/'+t.date+'.json',now,true);
       }
     }catch(e){error=e.message;data=lastGood;}
     finally{const view=model(now,{calendar,data,live,error});display(view);running=false;setTimeout(refresh,polling(new Date()));}

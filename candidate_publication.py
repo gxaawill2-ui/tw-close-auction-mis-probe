@@ -26,6 +26,7 @@ import official_retry
 import volume_evidence
 
 VERSION = 'DAILY_RESEARCH_PUBLICATION_V1'
+REVISIONS_ENABLED = True
 PRICE_FIELDS = ('code','name','market','P_before','P_close','P_before_trade_time','P_close_trade_time',
                 'tail_return_pct','P_before_convergence_type','P_close_convergence_type','confidence_level','validated')
 
@@ -59,7 +60,7 @@ def validate(payload, date):
     keys = set()
     for row in rows:
         key = (row.get('market'),row.get('code'))
-        if key in keys or row.get('validated') is not False or row.get('P_close_convergence_type') not in ('AB_converged','AC_converged','BC_converged','A_1330_fresh_candidate'):
+        if key in keys or row.get('validated') is not False or row.get('P_close_convergence_type') not in ('AB_converged','AC_converged','BC_converged','A_1330_fresh_candidate','TARGETED_converged'):
             raise ValueError('PUBLICATION_INVALID_OR_DUPLICATE_CANDIDATE')
         keys.add(key)
         pre, close = (freshness.decimal_value(row.get(k)) for k in ('P_before','P_close'))
@@ -134,6 +135,8 @@ def build(output, date, run_id, source_mode='LIVE', archive_sha=None):
          'candidate_count':len(rows),'candidate_list':rows,
          'publication_code_sha':os.getenv('GITHUB_SHA'),
          'price_limitation':'P_before is converged MIS research evidence, without independent official pre-13:25 validation.'}
+    import candidate_revisions
+    result=candidate_revisions.prepare(result,selected,snapshots,probes,date,generated)
     result['price_fingerprint'] = fingerprint(result)
     validate(result,date)
     return result
@@ -185,7 +188,7 @@ def enrich(payload, official, checked_at, validation_run_id):
     return result
 
 
-def put(payload, api, now, attempts=3):
+def _put_legacy(payload, api, now, attempts=3):
     date = payload['trade_date']; validate(payload,date)
     path = 'state/candidates/'+date+'.json'
     last_error = None
@@ -226,6 +229,20 @@ def put(payload, api, now, attempts=3):
             last_error=exc
             if attempt+1<attempts:time.sleep(.3*(2**attempt))
     raise RuntimeError('CANDIDATE_PUBLICATION_FAILED:'+type(last_error).__name__+':'+str(last_error))
+
+
+def put(payload,api,now,attempts=3):
+    import candidate_revisions
+    if payload.get('revision_protocol')==candidate_revisions.PROTOCOL:
+        return candidate_revisions.put(payload,api,now,validate,attempts=attempts)
+    # Legacy archive annotation is supported, but cannot overwrite a V2 day.
+    def guarded(path,method='GET',body=None):
+        answer=api(path,method,body) if method!='GET' else api(path)
+        if method=='GET' and answer:
+            saved=json.loads(base64.b64decode(answer['content']))
+            if saved.get('revision_protocol')==candidate_revisions.PROTOCOL:raise ValueError('OLD_PUBLISHER_CANNOT_OVERWRITE_REVISIONS')
+        return answer
+    return _put_legacy(payload,guarded,now,attempts)
 
 
 def publish_live(output,date,run_id,control,probe):
