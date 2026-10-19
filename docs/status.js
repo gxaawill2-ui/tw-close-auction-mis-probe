@@ -65,6 +65,7 @@
     if(live?.candidate_publication?.status==='FAILED')warnings.push('今日候選發布失敗；目前顯示的已發布版本可能尚未包含最新結果。');
     if(data){
       const c=data.coverage;
+      if(data.candidate_list.some(r=>r.official_price_result==='MISMATCH'))warnings.push('有候選收盤價與官方盤後資料不符，請查看資料診斷。');
       // At least 50 stocks AND 5% of the universe: warning threshold only.
       if(c.research_calculable===0||(c.unknown>=50&&c.unknown/c.tradable_universe>=0.05))warnings.push('大量股票尚缺必要證據，候選可能有遺漏；請查看進階資料診斷。');
       if(live&&String(live.run_id)===String(data.capture_run_id)&&Number.isInteger(live.universe_count)&&live.universe_count!==c.tradable_universe)warnings.push('發布名單與正式股票池範圍不一致，請查看資料診斷。');
@@ -148,7 +149,7 @@
       const level=row.confidence_level==='MEDIUM_RESEARCH'?' medium':'',label=priceLabel(row),priceClass=row.official_price_result==='MATCH'?' match':row.official_price_result==='MISMATCH'?' mismatch':'';
       const last=volume(row,'closing_auction_volume','張'),total=volume(row,'intraday_total_volume','張'),ratio=volume(row,'closing_volume_ratio_pct','%');
       const volStatus=row.volume_status==='MIS_EVIDENCE_CONFIRMED'?'成交量：MIS 證據一致':'成交量：未驗證';
-      desktop.push('<tr data-code="'+code+'"><td><span class="stock-name">'+name+'</span><span class="stock-code">'+code+'</span></td><td>'+market+'</td><td class="tail '+color+'">'+tail+'</td><td>'+number(row.P_before,4)+'</td><td>'+number(row.P_close,4)+'</td><td>'+time+delayed+'</td><td>'+last+'</td><td>'+total+'</td><td>'+ratio+'</td><td><span class="badge'+priceClass+'">'+label+'</span></td><td><span class="badge'+level+'">'+confidence(row)+' · '+type+'</span><span class="volume-note">'+volStatus+'</span></td></tr>');
+      desktop.push('<tr data-code="'+code+'"><td><span class="stock-name">'+name+'</span><span class="stock-code">'+code+'</span></td><td>'+market+'</td><td class="tail '+color+'">'+tail+'</td><td>'+number(row.P_before,4)+'</td><td>'+number(row.P_close,4)+'</td><td>'+time+delayed+'</td><td>'+last+'</td><td>'+total+'</td><td>'+ratio+'</td><td class="candidate-check"><span class="badge'+priceClass+'">'+label+'</span></td><td class="candidate-check"><span class="badge'+level+'">'+confidence(row)+' · '+type+'</span><span class="volume-note">'+volStatus+'</span></td></tr>');
       mobile.push('<article class="candidate-card" data-code="'+code+'"><div class="card-heading"><div><h3><span class="stock-code">'+code+'</span>'+name+'</h3><div class="market">'+market+'</div></div><div><div class="tail '+color+'">'+tail+'</div><span class="tail-label">尾盤漲跌幅</span></div></div><div class="card-metrics">'+[['13:25 前價',number(row.P_before,4)],['收盤價',number(row.P_close,4)],['最後成交時間',time+delayed],['最後一盤量',last],['全日盤中量',total],['收盤量占比',ratio]].map(([label,value])=>'<div class="metric"><span>'+label+'</span><strong>'+value+'</strong></div>').join('')+'</div><div class="card-footer"><div class="confidence"><span class="badge'+level+'">'+confidence(row)+' · '+type+'</span></div><span class="badge'+priceClass+'">'+label+'</span></div><div class="card-volume-status">'+volStatus+' · RESEARCH_ONLY</div></article>');
     }
     for(const [id,html] of [['desktop-list',desktop.join('')],['mobile-list',mobile.join('')]]){

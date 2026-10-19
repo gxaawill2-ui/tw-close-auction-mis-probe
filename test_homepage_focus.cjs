@@ -65,3 +65,14 @@ test('the original JSON bytes and all unresolved symbols remain untouched',()=>{
  assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path)).digest('hex'),before);
  assert.equal(real.unresolved_symbols.length,33);assert.equal(real.coverage.unknown,33);
 });
+
+test('per-stock check columns and mobile labels are hidden without dropping underlying data',()=>{
+ const {d,v}=rendered();assert.equal(d.querySelectorAll('th.candidate-check').length,2);
+ assert.equal(d.querySelectorAll('#desktop-list td.candidate-check').length,22);
+ const css=fs.readFileSync('docs/status.css','utf8');assert.match(css,/#candidate-table \.candidate-check,\.candidate-card \.card-footer,\.candidate-card \.card-volume-status\{display:none\}/);
+ assert.equal(v.rows.length,11);assert.ok(v.rows.every(r=>r.official_price_result&&r.confidence_level));assert.match(d.getElementById('message').textContent,/MIS 多次確認通過/);
+});
+test('an official close mismatch still warns even when the individual check label is hidden',()=>{
+ const p=copy(real);p.candidate_list[0].official_price_result='MISMATCH';const {d,v}=rendered(p);
+ assert.equal(v.rows.length,11);assert.equal(d.getElementById('system-warning').hidden,false);assert.match(d.getElementById('system-warning').textContent,/官方盤後資料不符/);
+});

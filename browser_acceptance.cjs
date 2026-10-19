@@ -122,6 +122,11 @@ async function main(){
    if(mobile){
     assert.match(await page.locator('.candidate-card[data-code="3259"]').innerText(),/13:33:00/);
     assert.match(await page.locator('.candidate-card[data-code="3684"]').innerText(),/1,255/);
+   assert.equal(await page.locator('#candidate-table th.candidate-check:visible').count(),0);
+   assert.equal(await page.locator('#candidate-table td.candidate-check:visible').count(),0);
+   assert.equal(await page.locator('.candidate-card .card-footer:visible').count(),0);
+   assert.equal(await page.locator('.candidate-card .card-volume-status:visible').count(),0);
+   assert.equal(await page.locator('#candidate-table th:visible').count(),mobile?0:9);
     assert.match(await page.locator('.candidate-card[data-code="5543"]').innerText(),/75/);
    }
    await page.screenshot({path:path.join(OUT,'dashboard-'+name+'.png'),fullPage:true});
@@ -262,10 +267,10 @@ async function main(){
    await publicPage.goto(PUBLIC);await publicPage.waitForFunction(()=>!document.querySelector('#today').textContent.includes('讀取'));
    if(process.env.REQUIRE_PUBLIC_UI==='true'||process.env.REQUIRE_PUBLIC_EVENTS==='true'){
     for(let attempt=0;attempt<24;attempt++){
-     if(await publicPage.locator('script[src="status.js?v=dashboard2&sort=1&view=candidates1"]').count())break;
+     if(await publicPage.locator('script[src="status.js?v=dashboard2&sort=1&view=checks2"]').count())break;
      await publicPage.waitForTimeout(5000);await publicPage.reload();
     }
-    assert.equal(await publicPage.locator('script[src="status.js?v=dashboard2&sort=1&view=candidates1"]').count(),1);
+    assert.equal(await publicPage.locator('script[src="status.js?v=dashboard2&sort=1&view=checks2"]').count(),1);
     assert.equal(await publicPage.locator('.market-closing').isVisible(),false);
     await publicPage.waitForFunction(()=>window.TailDashboardView&&window.TailDashboardView.state);
     const liveRows=await publicPage.evaluate(()=>window.TailDashboardView.rows);

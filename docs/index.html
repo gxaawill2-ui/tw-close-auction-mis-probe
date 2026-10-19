@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#0d1423">
   <meta name="description" content="自動顯示當日台股尾盤漲跌達 ±3% 的研究股票，附收盤成交時間、最後一盤成交量及全日盤中成交量。">
   <title>台股尾盤 ±3% 自動選股看板</title>
-  <link rel="stylesheet" href="status.css?v=dashboard2&amp;sort=1&amp;view=candidates1">
-  <script defer src="status.js?v=dashboard2&amp;sort=1&amp;view=candidates1"></script>
+  <link rel="stylesheet" href="status.css?v=dashboard2&amp;sort=1&amp;view=checks2">
+  <script defer src="status.js?v=dashboard2&amp;sort=1&amp;view=checks2"></script>
   <script defer src="events.js?v=events4&amp;ui=dashboard2"></script>
   <script defer src="market-closing.js?v=market1"></script>
 </head>
@@ -46,7 +46,7 @@
     <button id="mobile-sort-direction" type="button" aria-label="切換成交量排序方向">↓ 由大到小</button>
   </div>
   <section id="mobile-list" class="mobile-list" aria-label="股票研究卡片"></section>
-  <div id="desktop-wrap" class="desktop-wrap" hidden><table id="candidate-table"><caption class="sr-only">今日尾盤 ±3% 股票，成交量單位為張</caption><thead><tr><th>股票</th><th>市場</th><th>尾盤漲跌</th><th>13:25 前價</th><th>收盤價</th><th>最後成交時間</th><th aria-sort="none"><button type="button" data-sort-key="closing_auction_volume">最後一盤量<br><small>張</small> <span class="sort-arrow" aria-hidden="true">⇅</span></button></th><th aria-sort="none"><button type="button" data-sort-key="intraday_total_volume">全日盤中量<br><small>張</small> <span class="sort-arrow" aria-hidden="true">⇅</span></button></th><th aria-sort="none"><button type="button" data-sort-key="closing_volume_ratio_pct">收盤量占比 <span class="sort-arrow" aria-hidden="true">⇅</span></button></th><th>價格核對</th><th>研究可信程度</th></tr></thead><tbody id="desktop-list"></tbody></table></div>
+  <div id="desktop-wrap" class="desktop-wrap" hidden><table id="candidate-table"><caption class="sr-only">今日尾盤 ±3% 股票，成交量單位為張</caption><thead><tr><th>股票</th><th>市場</th><th>尾盤漲跌</th><th>13:25 前價</th><th>收盤價</th><th>最後成交時間</th><th aria-sort="none"><button type="button" data-sort-key="closing_auction_volume">最後一盤量<br><small>張</small> <span class="sort-arrow" aria-hidden="true">⇅</span></button></th><th aria-sort="none"><button type="button" data-sort-key="intraday_total_volume">全日盤中量<br><small>張</small> <span class="sort-arrow" aria-hidden="true">⇅</span></button></th><th aria-sort="none"><button type="button" data-sort-key="closing_volume_ratio_pct">收盤量占比 <span class="sort-arrow" aria-hidden="true">⇅</span></button></th><th class="candidate-check">價格核對</th><th class="candidate-check">研究可信程度</th></tr></thead><tbody id="desktop-list"></tbody></table></div>
   <p id="empty" class="empty">正在確認當日結果…</p>
   <section class="event-calendar" aria-label="近期重要調整日期">
     <div class="list-heading"><h2>下一個值得觀察的指數／ETF 實質調整日</h2><span id="event-range">未來 30 天</span></div>

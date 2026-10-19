@@ -78,3 +78,6 @@ th[aria-sort="ascending"] .sort-arrow,th[aria-sort="descending"] .sort-arrow{col
 .advanced-diagnostics .coverage{justify-content:flex-start;margin:12px 0;flex-wrap:wrap}
 .advanced-diagnostics .coverage div{text-align:left}.advanced-diagnostics .coverage strong{font-size:16px}
 @media(max-width:900px){.overview-updated{margin-left:0;text-align:left}.advanced-diagnostics{padding:12px 14px}.advanced-diagnostics .coverage div{text-align:center}}
+
+/* Per-stock check metadata stays in the data, outside the main list. */
+#candidate-table .candidate-check,.candidate-card .card-footer,.candidate-card .card-volume-status{display:none}
