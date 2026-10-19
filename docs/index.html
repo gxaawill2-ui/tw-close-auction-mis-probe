@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#0d1423">
   <meta name="description" content="自動顯示當日台股尾盤漲跌達 ±3% 的研究股票，附收盤成交時間、最後一盤成交量及全日盤中成交量。">
   <title>台股尾盤 ±3% 自動選股看板</title>
-  <link rel="stylesheet" href="status.css?v=dashboard2&amp;sort=1">
-  <script defer src="status.js?v=dashboard2&amp;sort=1"></script>
+  <link rel="stylesheet" href="status.css?v=dashboard2&amp;sort=1&amp;view=candidates1">
+  <script defer src="status.js?v=dashboard2&amp;sort=1&amp;view=candidates1"></script>
   <script defer src="events.js?v=events4&amp;ui=dashboard2"></script>
   <script defer src="market-closing.js?v=market1"></script>
 </head>
@@ -22,9 +22,10 @@
   </header>
   <section class="overview" aria-label="今日資料概況">
     <div class="overview-primary"><span>符合 ±3%</span><strong id="candidate-count">—</strong><span>檔研究股票</span></div>
-    <div class="coverage"><div><span>可交易</span><strong id="universe">—</strong></div><div><span>可計算</span><strong id="calculable">—</strong></div><div><span>資料不足</span><strong id="unknown">—</strong></div></div>
+    <p id="updated" class="overview-updated">最近資料更新：—</p>
   </section>
   <section class="status-line" aria-live="polite"><h2 id="headline">正在讀取今日資料</h2><p id="message">打開網頁後自動載入，無須操作。</p></section>
+  <p id="system-warning" class="network" role="alert" hidden></p>
   <p id="network" class="network" role="status"></p>
   <section class="event-today market-closing" aria-label="上市普通股收盤成交金額研究" hidden>
     <h2>今日加權指數尾盤是否爆大量：<span id="market-closing-state">尚未確認</span></h2>
@@ -52,8 +53,14 @@
     <p class="event-note">公告、生效不等於實際換股。預估日期只供觀察；ETF 實際交易可能分多日完成。</p>
     <ul id="event-upcoming" class="event-list"></ul><p id="event-empty" class="event-note"></p>
   <p class="event-note"><a href="fund-events.html">ETF 調整重要程度、理由與完整唯讀清單</a></p></section>
+  <details id="coverage-details" class="advanced-diagnostics">
+    <summary>進階資料診斷</summary>
+    <div class="coverage"><div><span>可交易</span><strong id="universe">—</strong></div><div><span>可計算</span><strong id="calculable">—</strong></div><div><span>資料不足</span><strong id="unknown">—</strong></div></div>
+    <p id="pending-details" class="event-note"></p>
+    <p class="event-note">資料不足僅表示缺少比較基準、收盤確認或其他必要證據，不等於已確認未達 ±3%。逐檔原因與原始證據保留於資料診斷及執行紀錄。</p>
+  </details>
   <footer>
-    <p id="updated">最近資料更新：—</p><p id="generated">研究名單產生時間：—</p>
+    <p id="generated">研究名單產生時間：—</p>
     <p>全日盤中量為一般整股市場開盤至最後收盤撮合，含延後至 13:33 的收盤；排除零股與盤後定價。</p>
     <p>— 代表未驗證。價格與成交量分開核對；13:25 前價仍為 MIS 收斂研究證據。全部為 RESEARCH_ONLY，非買賣訊號。</p>
     <a href="diagnostic.html">資料診斷</a>

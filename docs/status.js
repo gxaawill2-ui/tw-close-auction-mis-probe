@@ -56,6 +56,21 @@
     if(new Date(incoming.updated_at||incoming.generated_at)<new Date(current.updated_at||current.generated_at))throw new Error('拒絕較早更新的資料');
     return incoming;
   }
+  // Display-only warnings. These never select, reject, or rewrite a stock.
+  function systemWarnings(data,live,t){
+    const warnings=[];
+    if((data&&data.capture_outcome==='CAPTURE_FAILED')||(live&&(live.capture_outcome==='CAPTURE_FAILED'||/^failed/.test(live.status||'')||live.status==='missing_incomplete'||live.capture_completion?.core_capture_complete===false)))warnings.push('正式擷取未完整完成，可能影響候選；請查看資料診斷。');
+    if(live?.status==='running'&&t.clock>='13:40:00')warnings.push('正式選股流程逾時仍未完成，不能視為今日無候選。');
+    if(live?.universe_audit_status&&live.universe_audit_status!=='OFFICIAL_SOURCES_DATE_CHECKED')warnings.push('股票池來源不完整，可能漏選。');
+    if(live?.candidate_publication?.status==='FAILED')warnings.push('今日候選發布失敗；目前顯示的已發布版本可能尚未包含最新結果。');
+    if(data){
+      const c=data.coverage;
+      // At least 50 stocks AND 5% of the universe: warning threshold only.
+      if(c.research_calculable===0||(c.unknown>=50&&c.unknown/c.tradable_universe>=0.05))warnings.push('大量股票尚缺必要證據，候選可能有遺漏；請查看進階資料診斷。');
+      if(live&&String(live.run_id)===String(data.capture_run_id)&&Number.isInteger(live.universe_count)&&live.universe_count!==c.tradable_universe)warnings.push('發布名單與正式股票池範圍不一致，請查看資料診斷。');
+    }else if(t.clock>='13:40:00')warnings.push('今日候選尚未成功載入或發布，不能視為今日無候選；請查看資料診斷。');
+    return warnings;
+  }
   function model(now,input){
     const t=taipei(now),trade=tradingDay(t.date,input.calendar),live=input.live&&input.live.trade_date===t.date?input.live:null;
     let data=null,error=input.error||'',state,headline,message;
@@ -64,7 +79,8 @@
     else if(data){
       state=data.completion_status==='PARTIAL'||data.coverage.unknown>0?'PARTIAL':'READY';
       headline=data.candidate_count?'今日 '+data.candidate_count+' 檔符合尾盤 ±3%':'今日無符合 ±3% 的股票';
-      message=state==='PARTIAL'?'已顯示可信研究候選；部分股票資料不足，保留 UNKNOWN。':'今日研究計算已完成。所有候選仍為 RESEARCH_ONLY。';
+      message=data.candidate_count&&data.candidate_list.every(r=>r.selection_status==='MIS_CONFIRMED')?'MIS 多次確認通過；官方盤後核對另列。':'已顯示當日研究結果；官方盤後核對另列。';
+      if(!data.candidate_count&&state==='PARTIAL')headline='今日尚無符合 ±3% 的已確認候選';
       if(data.candidate_count===0&&state==='READY')state='ZERO_CANDIDATES';
     }else if(error){state='UPDATE_FAILED';headline='資料更新失敗／尚無當日結果';message='稍後自動重試；不以昨日資料代替今日。';}
     else if(live&&live.status==='running'){state='CAPTURING';headline='今日尾盤資料擷取中';message='名單產生後自動顯示，無須重新整理。';}
@@ -75,11 +91,11 @@
     if(data&&data.revision!==undefined){
       const pending=Array.isArray(data.unknown_candidate_list)?data.unknown_candidate_list:[];
       const removed=Array.isArray(data.withdrawals)?data.withdrawals:[];
-      if(pending.length&&data.candidate_count===0)headline='今日尚無已確認候選，'+pending.length+' 檔待確認';
-      if(pending.length)message+=' 待確認：'+pending.map(r=>r.code).join('、')+'。';
+      if(pending.length&&data.candidate_count===0)headline='今日尚無符合 ±3% 的已確認候選';
       if(removed.length)message+=' 已撤回：'+removed.map(r=>r.code+(r.reason==='UNKNOWN'?'（待確認）':'')).join('、')+'。';
     }
     return {today:t.date,clock:t.clock,isTradingDay:trade,state,headline,message,data,error,
+      warnings:trade===false?[]:systemWarnings(data,live,t),
       rows:data?[...data.candidate_list].sort((a,b)=>Math.abs(Number(b.tail_return_pct))-Math.abs(Number(a.tail_return_pct))||a.code.localeCompare(b.code)):[]};
   }
   function polling(now){const t=taipei(now);return t.clock>='13:30:00'&&t.clock<'13:40:00'?20000:60000;}
@@ -112,8 +128,12 @@
     const set=(id,text)=>{doc.getElementById(id).textContent=text;};
     set('today',view.today+' · 台北');set('market-state',view.isTradingDay===false?'休市':view.isTradingDay===true?'交易日':'交易日待確認');
     set('headline',view.headline);set('message',view.message);
+    const warning=doc.getElementById('system-warning');
+    if(warning){warning.textContent=(view.warnings||[]).join(' ');warning.hidden=!warning.textContent;}
     set('network',view.error?'資料更新失敗：'+view.error+'。將自動重試；已載入的當日資料保留原更新時間。':'');
     const data=view.data,c=data&&data.coverage;
+    const pending=doc.getElementById('pending-details');
+    if(pending)pending.textContent=data?.unknown_candidate_list?.length?'候選證據待確認：'+data.unknown_candidate_list.map(r=>r.code).join('、')+'。':'';
     set('candidate-count',data?number(data.candidate_count,0):'—');
     for(const [id,key] of [['universe','tradable_universe'],['calculable','research_calculable'],['unknown','unknown']])set(id,c?number(c[key],0):'—');
     const stamp=x=>x?new Intl.DateTimeFormat('zh-TW',{timeZone:'Asia/Taipei',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).format(new Date(x)):'—';
@@ -168,8 +188,12 @@
     try{
       if(calendarYear!==t.year||!calendar){calendar=await read('state/calendars/'+t.year+'.json',now);calendarYear=t.year;}
       if(tradingDay(t.date,calendar)!==false){
-        data=await read('state/candidates/'+t.date+'.json',now,true);
-        if(data){validate(data,t.date,now);data=acceptRevision(lastGood,data);lastGood=data;}else live=await read('state/live/'+t.date+'.json',now,true);
+        const [result,health]=await Promise.allSettled([read('state/candidates/'+t.date+'.json',now,true),read('state/live/'+t.date+'.json',now,true)]);
+        if(health.status==='fulfilled')live=health.value;
+        if(result.status==='rejected')throw result.reason;
+        data=result.value;
+        if(data){validate(data,t.date,now);data=acceptRevision(lastGood,data);lastGood=data;}
+        if(health.status==='rejected')error='執行狀態讀取失敗：'+health.reason.message;
       }
     }catch(e){error=e.message;data=lastGood;}
     finally{const view=model(now,{calendar,data,live,error});display(view);running=false;setTimeout(refresh,polling(new Date()));}

@@ -260,10 +260,10 @@ async function main(){
    await publicPage.goto(PUBLIC);await publicPage.waitForFunction(()=>!document.querySelector('#today').textContent.includes('讀取'));
    if(process.env.REQUIRE_PUBLIC_UI==='true'||process.env.REQUIRE_PUBLIC_EVENTS==='true'){
     for(let attempt=0;attempt<24;attempt++){
-     if(await publicPage.locator('script[src="status.js?v=dashboard2&sort=1"]').count())break;
+     if(await publicPage.locator('script[src="status.js?v=dashboard2&sort=1&view=candidates1"]').count())break;
      await publicPage.waitForTimeout(5000);await publicPage.reload();
     }
-    assert.equal(await publicPage.locator('script[src="status.js?v=dashboard2&sort=1"]').count(),1);
+    assert.equal(await publicPage.locator('script[src="status.js?v=dashboard2&sort=1&view=candidates1"]').count(),1);
     assert.equal(await publicPage.locator('.market-closing').isVisible(),false);
     await publicPage.waitForFunction(()=>window.TailDashboardView&&window.TailDashboardView.state);
     const liveRows=await publicPage.evaluate(()=>window.TailDashboardView.rows);

@@ -69,3 +69,12 @@ button:focus-visible,select:focus-visible{outline:2px solid #aec0ff;outline-offs
 th[aria-sort="ascending"] .sort-arrow,th[aria-sort="descending"] .sort-arrow{color:#8aa8ff}
 .mobile-sort{display:none}.list-heading{gap:12px}.list-heading span{text-align:right}
 @media(max-width:900px){.mobile-sort{display:flex;align-items:center;gap:8px;margin:0 0 12px;font-size:11px;min-width:0}.mobile-sort select,.mobile-sort button{font:inherit;color:#e8f0fc;background:#202d40;border:1px solid var(--line);border-radius:6px;min-height:44px;padding:8px}.mobile-sort select{flex:1;min-width:0;width:0}.mobile-sort button{flex-shrink:0}.list-heading span{max-width:48%;overflow-wrap:anywhere}}
+
+/* Candidate-first overview; coverage stays available in closed diagnostics. */
+.overview-updated{color:var(--muted);font-size:12px;margin-left:20px;text-align:right}
+.advanced-diagnostics{margin-top:24px;padding:14px 18px;border:1px solid var(--line);border-radius:10px;color:var(--muted);font-size:12px}
+.advanced-diagnostics summary{cursor:pointer;min-height:28px;line-height:28px;color:#b7caff}
+.advanced-diagnostics summary:focus-visible{outline:2px solid #aec0ff;outline-offset:3px}
+.advanced-diagnostics .coverage{justify-content:flex-start;margin:12px 0;flex-wrap:wrap}
+.advanced-diagnostics .coverage div{text-align:left}.advanced-diagnostics .coverage strong{font-size:16px}
+@media(max-width:900px){.overview-updated{margin-left:0;text-align:left}.advanced-diagnostics{padding:12px 14px}.advanced-diagnostics .coverage div{text-align:center}}
