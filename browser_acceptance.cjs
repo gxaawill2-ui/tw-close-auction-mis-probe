@@ -229,7 +229,9 @@ async function main(){
    for(const [scenario,date,payload,expected] of [
     ['no-data','2026-10-08T08:00:00+08:00',null,'今日尚未產生尾盤研究資料'],
     ['holiday','2026-10-09T13:35:00+08:00',null,'今日休市'],
-    ['zero','2026-10-08T18:30:00+08:00',{...copy(data),candidate_count:0,candidate_list:[]},'今日無符合 ±3% 的股票'],
+    // Synthetic completed zero and incomplete zero must remain distinct.
+    ['zero','2026-10-08T18:30:00+08:00',{...copy(data),candidate_count:0,candidate_list:[],coverage:{tradable_universe:data.coverage.tradable_universe,research_calculable:data.coverage.tradable_universe,unknown:0},completion_status:'COMPLETE',capture_outcome:'CAPTURE_SUCCESS'},'今日無符合 ±3% 的股票'],
+    ['unconfirmed-zero','2026-10-08T18:30:00+08:00',{...copy(data),candidate_count:0,candidate_list:[]},'今日尚無符合 ±3% 的已確認候選'],
     ['wrong-date','2026-10-08T18:30:00+08:00',{...copy(data),trade_date:'2026-10-07'},'資料更新失敗／尚無當日結果'],
     ['unverified-volume','2026-10-08T18:30:00+08:00',{...copy(data),candidate_list:data.candidate_list.map(r=>({...r,volume_status:'UNVERIFIED',closing_auction_volume:null,intraday_total_volume:null,closing_volume_ratio_pct:null}))},'今日 7 檔符合尾盤 ±3%']
    ]){
