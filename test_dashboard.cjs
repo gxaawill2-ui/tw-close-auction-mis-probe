@@ -1,3 +1,4 @@
+// Isolated history-clock verification: trigger existing push-only CI; this comment is not deployed to main.
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs');
 const {parseHTML}=require('linkedom'),ui=require('./docs/status.js');
 const today=new Date('2026-10-08T18:30:00+08:00');

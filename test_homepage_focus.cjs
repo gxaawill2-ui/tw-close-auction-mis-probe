@@ -2,7 +2,9 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),crypto=require('node:crypto');
 const {parseHTML}=require('linkedom'),ui=require('./docs/status.js');
 const path='state/candidates/2026-10-19.json',bytes=fs.readFileSync(path),real=JSON.parse(bytes),live=JSON.parse(fs.readFileSync('state/live/2026-10-19.json'));
-const calendar=JSON.parse(fs.readFileSync('state/calendars/2026.json')),now=new Date('2026-10-19T16:00:00+08:00');
+// Historical fixture clock: include every valid update on this Taipei trading day.
+// Keep the day fixed so future-day evidence still fails production validation.
+const calendar=JSON.parse(fs.readFileSync('state/calendars/2026.json')),now=new Date('2026-10-19T23:59:59.999+08:00');
 const copy=x=>structuredClone(x),doc=()=>parseHTML(fs.readFileSync('docs/index.html','utf8')).document;
 const view=(data=real,health=live)=>ui.model(now,{calendar,data,live:health});
 function rendered(data=real,health=live){const d=doc(),v=view(data,health);ui.render(d,v);return {d,v};}
@@ -75,4 +77,27 @@ test('per-stock check columns and mobile labels are hidden without dropping unde
 test('an official close mismatch still warns even when the individual check label is hidden',()=>{
  const p=copy(real);p.candidate_list[0].official_price_result='MISMATCH';const {d,v}=rendered(p);
  assert.equal(v.rows.length,11);assert.equal(d.getElementById('system-warning').hidden,false);assert.match(d.getElementById('system-warning').textContent,/官方盤後資料不符/);
+});
+
+test('historical rendering accepts late same-day official updates through the final millisecond',()=>{
+ for(const time of ['17:50:33.938','20:00:00.000','22:43:08.185','23:59:59.999']){
+  const p=copy(real);p.updated_at='2026-10-19T'+time+'+08:00';
+  assert.equal(view(p).rows.length,11,time);assert.equal(view(p).error,'',time);
+ }
+});
+test('future same-day updates still fail at an actual earlier viewing time',()=>{
+ const p=copy(real);p.updated_at='2026-10-19T17:50:00+08:00';
+ const v=ui.model(new Date('2026-10-19T16:00:00+08:00'),{calendar,data:p});
+ assert.equal(v.rows.length,0);assert.equal(v.state,'UPDATE_FAILED');assert.match(v.error,/更新時間不符/);
+});
+test('next-day updates remain invalid for the fixed historical trading day',()=>{
+ const p=copy(real);p.updated_at='2026-10-20T00:00:00+08:00';
+ assert.equal(view(p).rows.length,0);assert.match(view(p).error,/更新時間不符/);
+ const next=copy(real);next.trade_date='2026-10-20';
+ assert.equal(view(next).rows.length,0);assert.match(view(next).error,/日期不符/);
+});
+test('an older update cannot overwrite accepted data even with a higher revision',()=>{
+ const p=copy(real);p.revision++;p.evidence_sequence++;p.content_hash='c'.repeat(64);
+ p.updated_at=new Date(new Date(real.updated_at).getTime()-1).toISOString();
+ assert.throws(()=>ui.acceptRevision(real,p),/拒絕較早更新的資料/);
 });
