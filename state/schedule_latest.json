@@ -3,8 +3,8 @@
   "cron": "12,17,22 5 * * 1-5",
   "run_id": "39404585088",
   "runner_started_at": "2026-10-20T17:58:39.721+08:00",
-  "received_at": "2026-10-20T17:58:49.939+08:00",
-  "updated_at": "2026-10-20T17:58:51.637+08:00",
+  "received_at": "2026-10-20T17:59:00.615+08:00",
+  "updated_at": "2026-10-20T17:59:01.982+08:00",
   "declared_source": "manual",
   "source_verified": false,
   "mode": "live"
