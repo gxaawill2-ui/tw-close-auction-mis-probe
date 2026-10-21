@@ -1,10 +1,10 @@
 {
-  "last_attempt_at": "2026-10-20T20:40:01.769643+08:00",
-  "result": "FAILED",
-  "error_class": "ValueError",
-  "trade_date": "2026-10-20",
-  "scope_status": "UNVERIFIED",
-  "last_successful_attempt_at": "2026-10-19T22:33:38.314190+08:00",
+  "last_attempt_at": "2026-10-21T20:51:36.961635+08:00",
+  "result": "SUCCESS",
+  "error_class": null,
+  "trade_date": "2026-10-21",
+  "scope_status": "PARTIAL_SAVED_MIS; DENOMINATOR_SCOPE_UNVERIFIED",
+  "last_successful_attempt_at": "2026-10-21T20:51:36.961635+08:00",
   "last_failed_attempt_at": "2026-10-20T20:40:01.769643+08:00",
   "note": "Retrieval success is separate from complete same-scope data; no MIS requests are made."
 }
