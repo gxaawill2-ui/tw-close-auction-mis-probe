@@ -229,22 +229,34 @@ def analyze(symbols: list[dict], result: FetchResult) -> dict:
             "duplicate": duplicate, "empty": empty}
 
 
-def snapshot(phase: str, planned: datetime, universe: list[dict], output: Path, deadline: datetime | None = None) -> dict:
+def snapshot(phase: str, planned: datetime, universe: list[dict], output: Path, deadline: datetime | None = None, *, retry_journal: str | None = None) -> dict:
     groups = [universe[i:i + BATCH_SIZE] for i in range(0, len(universe), BATCH_SIZE)]
     started = now_tpe()
     records: list[dict] = []
+    targeted = phase.endswith('_targeted_retry')
+    raw_path = output / ({"preclose": "preclose_raw.jsonl", "close": "close_raw.jsonl",
+                         "delayed_close": "delayed_close_raw.jsonl"}.get(phase, f"{phase}_raw.jsonl"))
+    if targeted and retry_journal:raw_path=output/retry_journal
     with concurrent.futures.ThreadPoolExecutor(max_workers=CONCURRENCY) as pool:
         futures = [(i + 1, group, pool.submit(fetch_mis, group,1,20,deadline)) for i, group in enumerate(groups)]
-        for batch_no, group, future in futures:
+        by_future = {future:(batch_no,group) for batch_no,group,future in futures}
+        ordered = concurrent.futures.as_completed(by_future) if targeted else (f for _,_,f in futures)
+        for future in ordered:
+            batch_no, group = by_future[future]
             result = future.result()
             row = {"phase": phase, "planned_at": iso(planned), "batch_no": batch_no,
                    "expected_count": len(group), "symbols": group, **asdict(result)}
             row.update(analyze(group, result))
             records.append(row)
-    raw_path = output / ({"preclose": "preclose_raw.jsonl", "close": "close_raw.jsonl",
-                         "delayed_close": "delayed_close_raw.jsonl"}.get(phase, f"{phase}_raw.jsonl"))
-    with raw_path.open('a' if phase.endswith('_targeted_retry') else 'w', encoding='utf-8') as file:
-        file.write("".join(json.dumps(x, ensure_ascii=False) + "\n" for x in records))
+            if targeted:
+                # A killed retry worker must retain responses already received;
+                # never wait for a stalled earlier batch before journalling them.
+                with raw_path.open('a', encoding='utf-8') as file:
+                    file.write(json.dumps(row, ensure_ascii=False)+'\n');file.flush();os.fsync(file.fileno())
+    records.sort(key=lambda r:r['batch_no'])
+    if not targeted:
+        with raw_path.open('w', encoding='utf-8') as file:
+            file.write("".join(json.dumps(x, ensure_ascii=False) + "\n" for x in records))
     finished = now_tpe()
     latencies = sorted(x["latency_ms"] for x in records)
     successful = set()
@@ -511,13 +523,11 @@ def live(output: Path) -> int:
                               '13:28:58' if date >= convergence.PRE_C_START_DATE else '13:29:30')
     pre_c = None
     if date >= convergence.PRE_C_START_DATE:
-        # Serial requests keep batch concurrency at 5. End the first retry pass
-        # before the fixed C instant; never let a retry loop consume C's clock.
-        pre_retries = targeted_retries('pre', date, [pre_a, pre_b], universe, output, probe_rows, stop_at='13:28:58')
+        # C is a fixed reference, not optional work behind a retry queue.
         github_issue(issue_body("🟡 RUNNING", date, iso(runner_started), "pre_reference_C", len(universe)))
         pre_c = reference_capture('pre_reference_C', date, universe, output, '13:29:30')
-        pre_retries += targeted_retries('pre', date, [pre_a,pre_b,*pre_retries,pre_c], universe, output,
-                                       probe_rows,round_offset=len(pre_retries))
+        import bounded_pre_retry
+        pre_retries = bounded_pre_retry.capture(date, [pre_a,pre_b,pre_c], output)
     else:
         pre_retries = targeted_retries('pre', date, [pre_a, pre_b], universe, output, probe_rows)
 
