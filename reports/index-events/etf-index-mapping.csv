@@ -2,7 +2,7 @@ etf_code,etf_name,index_name,management_type,mapping_status,source_url,first_see
 0050,元大台灣50,臺灣50指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T10:33:57+08:00
 0051,元大中型100,臺灣中型100指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T10:33:57+08:00
 0052,富邦科技,臺灣資訊科技指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
-0053,元大電子,電子類加權股價指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
+0053,元大科技市值(原:元大電子),電子類加權股價指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
 0054,元大台商50,S&P台商收成指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
 0055,元大MSCI金融,MSCI台灣金融指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T16:45:18+08:00
 0056,元大高股息,臺灣高股息指數,PASSIVE,CONFIRMED,https://openapi.twse.com.tw/v1/opendata/t187ap47_L,2026-10-09T10:33:57+08:00
