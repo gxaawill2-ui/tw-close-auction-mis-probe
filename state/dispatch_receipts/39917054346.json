@@ -1,0 +1,11 @@
+{
+  "event": "workflow_dispatch",
+  "cron": "",
+  "declared_source": "manual",
+  "source_verified": false,
+  "mode": null,
+  "run_id": "39917054346",
+  "runner_started_at": "2026-10-23T15:20:18.058+08:00",
+  "received_at": "2026-10-23T15:20:18.058+08:00",
+  "updated_at": "2026-10-23T15:20:18.373+08:00"
+}
