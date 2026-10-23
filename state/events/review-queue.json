@@ -418,5 +418,17 @@
     "sha256": "ab973b843415b66c32aa2dd62d9aa5a945b690f2d09a9e0972d719a7970c1830",
     "status": "ISSUER_NOTICE_REQUIRES_DATE_REVIEW",
     "seen_at": "2026-10-23T12:51:59+08:00"
+  },
+  {
+    "url": "https://www.capitalfund.com.tw/etf/product/detail/195",
+    "sha256": "70aa93bf16fc5daeb8f40af1705e6386e887663aa9b2aa65d0944fac1752470f",
+    "status": "ISSUER_NOTICE_REQUIRES_DATE_REVIEW",
+    "seen_at": "2026-10-23T17:37:43+08:00"
+  },
+  {
+    "url": "https://www.fhtrust.com.tw/ETF/etf_detail/ETF21",
+    "sha256": "ac39b26cea2a3f1f2e3f3523b285f1daab78b18f4ea03be8f77694dd733f26ce",
+    "status": "ISSUER_NOTICE_REQUIRES_DATE_REVIEW",
+    "seen_at": "2026-10-23T17:37:43+08:00"
   }
 ]
