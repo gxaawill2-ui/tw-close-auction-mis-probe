@@ -1,19 +1,238 @@
 {
   "trade_date": "2026-10-27",
-  "status": "running",
+  "status": "partial",
   "phase": "completed",
   "run_id": "40452866212",
   "runner_started_at": "2026-10-27T13:00:42.490+08:00",
   "python_started_at": "2026-10-27T13:01:17.020+08:00",
   "artifact": "mis-probe-40452866212",
   "error": null,
-  "finished_at": null,
-  "snapshots": {},
-  "official_validation": "unverified",
+  "finished_at": "2026-10-27T13:34:28.370+08:00",
+  "snapshots": {
+    "preclose": {
+      "phase": "preclose",
+      "stock_universe_count": 1979,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-10-27T13:24:50.001+08:00",
+      "last_response_received_at": "2026-10-27T13:25:14.267+08:00",
+      "wall_time_seconds": 24.332,
+      "fastest_batch_ms": 703,
+      "average_batch_ms": 2779.1,
+      "median_batch_ms": 2845.0,
+      "p95_batch_ms": 4264,
+      "slowest_batch_ms": 4972,
+      "success_count": 1979,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 1,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "pre_reference_A": {
+      "phase": "pre_reference_A",
+      "stock_universe_count": 1979,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-10-27T13:27:00.000+08:00",
+      "last_response_received_at": "2026-10-27T13:27:17.235+08:00",
+      "wall_time_seconds": 17.293,
+      "fastest_batch_ms": 994,
+      "average_batch_ms": 2076.6,
+      "median_batch_ms": 1974.5,
+      "p95_batch_ms": 3431,
+      "slowest_batch_ms": 5226,
+      "success_count": 1979,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "pre_reference_B": {
+      "phase": "pre_reference_B",
+      "stock_universe_count": 1979,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-10-27T13:28:15.000+08:00",
+      "last_response_received_at": "2026-10-27T13:28:45.368+08:00",
+      "wall_time_seconds": 30.42,
+      "fastest_batch_ms": 1942,
+      "average_batch_ms": 3681.7,
+      "median_batch_ms": 3331.0,
+      "p95_batch_ms": 5764,
+      "slowest_batch_ms": 7458,
+      "success_count": 1979,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "pre_reference_C": {
+      "phase": "pre_reference_C",
+      "stock_universe_count": 1979,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-10-27T13:29:00.000+08:00",
+      "last_response_received_at": "2026-10-27T13:29:12.211+08:00",
+      "wall_time_seconds": 12.263,
+      "fastest_batch_ms": 804,
+      "average_batch_ms": 1470.8,
+      "median_batch_ms": 1112.5,
+      "p95_batch_ms": 3416,
+      "slowest_batch_ms": 4680,
+      "success_count": 1979,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "close_reference_A": {
+      "phase": "close_reference_A",
+      "stock_universe_count": 1979,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-10-27T13:32:30.000+08:00",
+      "last_response_received_at": "2026-10-27T13:32:47.467+08:00",
+      "wall_time_seconds": 17.523,
+      "fastest_batch_ms": 869,
+      "average_batch_ms": 2139.7,
+      "median_batch_ms": 1935.5,
+      "p95_batch_ms": 3731,
+      "slowest_batch_ms": 4358,
+      "success_count": 1979,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "close_reference_B": {
+      "phase": "close_reference_B",
+      "stock_universe_count": 1979,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-10-27T13:33:20.000+08:00",
+      "last_response_received_at": "2026-10-27T13:33:38.759+08:00",
+      "wall_time_seconds": 18.813,
+      "fastest_batch_ms": 1233,
+      "average_batch_ms": 2191.2,
+      "median_batch_ms": 1976.0,
+      "p95_batch_ms": 3864,
+      "slowest_batch_ms": 6008,
+      "success_count": 1979,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "close_reference_C": {
+      "phase": "close_reference_C",
+      "stock_universe_count": 31,
+      "batch_count": 1,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-10-27T13:34:10.000+08:00",
+      "last_response_received_at": "2026-10-27T13:34:13.826+08:00",
+      "wall_time_seconds": 3.829,
+      "fastest_batch_ms": 3826,
+      "average_batch_ms": 3826,
+      "median_batch_ms": 3826,
+      "p95_batch_ms": 3826,
+      "slowest_batch_ms": 3826,
+      "success_count": 31,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true,
+      "affected_symbols": [
+        "otc:2035",
+        "otc:2073",
+        "otc:2724",
+        "otc:3064",
+        "otc:3067",
+        "otc:3085",
+        "otc:3310",
+        "otc:3332",
+        "otc:3516",
+        "otc:3523",
+        "otc:4139",
+        "otc:4305",
+        "otc:5520",
+        "otc:6170",
+        "otc:6212",
+        "otc:6222",
+        "otc:6236",
+        "otc:6542",
+        "otc:6662",
+        "otc:6874",
+        "otc:7708",
+        "otc:7716",
+        "otc:8342",
+        "otc:8917",
+        "otc:8921",
+        "otc:8928",
+        "tse:3050",
+        "tse:3346",
+        "tse:3593",
+        "tse:6921",
+        "tse:6994"
+      ]
+    },
+    "targeted_retry_rounds": [
+      {
+        "phase": "pre_targeted_retry",
+        "status": "HARD_TIMEOUT",
+        "retry_round": 1,
+        "stock_universe_count": 297,
+        "hard_budget_seconds": 12.0,
+        "forced_termination": true
+      }
+    ]
+  },
+  "official_validation": "PENDING_SCHEDULED_POSTMARKET",
   "capture_claimed": true,
   "capture_owner_run_id": "40452866212",
   "claimed_at": "2026-10-27T13:01:17.216+08:00",
-  "updated_at": "2026-10-27T13:34:23.153+08:00",
+  "updated_at": "2026-10-27T13:34:28.572+08:00",
   "preclose_captured": true,
   "universe_count": 1979,
   "reference_progress": {
@@ -59,5 +278,410 @@
       "returned_count": 31,
       "missing_count": 0
     }
+  },
+  "company_universe_count": 1981,
+  "universe_audit_status": "OFFICIAL_SOURCES_DATE_CHECKED",
+  "exclusion_count": 2,
+  "capture_architecture": "DUAL_SNAPSHOT_RESEARCH_V1",
+  "pre_reference_C_enabled": true,
+  "close_reference_C_enabled": true,
+  "live_close_research_enabled": true,
+  "probe_scheduled_count": 68,
+  "candidate_count": 30,
+  "research_calculable_count": 1949,
+  "candidate_status": "RESEARCH_ONLY",
+  "validated": false,
+  "freshness": {
+    "status": "RESEARCH_ONLY",
+    "p_before_validated_count": 0,
+    "p_close_validated_count": 0,
+    "both_validated_count": 0,
+    "confirmed_candidate_count": 159
+  },
+  "convergence": {
+    "version": "DUAL_SNAPSHOT_RESEARCH_V1",
+    "status": "RESEARCH_ONLY",
+    "universe_count": 1979,
+    "p_before_converged_count": 1949,
+    "p_close_converged_count": 1948,
+    "both_converged_count": 1943,
+    "unknown_count": 36,
+    "stale_batch_count": 40,
+    "server_regression_response_count": 0,
+    "targeted_retry_count": 7,
+    "targeted_http_attempt_count": 7,
+    "true_delayed_close_candidate_count": 0,
+    "delayed_transition_candidate_count": 6,
+    "no_closing_new_trade_count": 248,
+    "research_calculable_count": 1949,
+    "p_before_validated_count": 0,
+    "p_close_validated_count": 0,
+    "both_validated_count": 0,
+    "p_before_original_AB_converged_count": 1682,
+    "p_before_recovered_by_targeted_retry_count": 267,
+    "p_close_original_AB_converged_count": 1948,
+    "p_close_recovered_by_targeted_retry_count": 0,
+    "stale_response_count": 40,
+    "p_before_original_AB_with_retry_converged_count": 1949,
+    "p_before_ABC_converged_count": 0,
+    "p_before_AB_converged_count": 1949,
+    "p_before_AC_converged_count": 0,
+    "p_before_BC_converged_count": 0,
+    "p_before_unresolved_count": 30,
+    "p_before_unresolved_tse_count": 3,
+    "p_before_unresolved_otc_count": 27,
+    "research_close_AB_converged_count": 1948,
+    "research_close_AC_converged_count": 0,
+    "research_close_BC_converged_count": 6,
+    "research_close_A_1330_fresh_candidate_count": 0,
+    "research_close_TARGETED_converged_count": 0,
+    "research_close_delayed_close_candidate_count": 0,
+    "research_close_unresolved_count": 25,
+    "validated": false,
+    "research_candidate_count": 30
+  },
+  "live_research_summary": {
+    "trade_date": "2026-10-27",
+    "status": "RESEARCH_ONLY",
+    "validated": false,
+    "tradable_universe": 1979,
+    "P_before_converged": 1949,
+    "P_close": {
+      "AB_converged": 1948,
+      "AC_converged": 0,
+      "BC_converged": 6,
+      "A_1330_fresh_candidate": 0,
+      "TARGETED_converged": 0,
+      "delayed_close_candidate": 0,
+      "unresolved": 25
+    },
+    "research_calculable_count": 1949,
+    "candidate_count": 30,
+    "candidates": [
+      {
+        "code": "2067",
+        "name": "嘉鋼",
+        "tail_return": "-0.0366088631984585741811175337",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "3609",
+        "name": "三一東林",
+        "tail_return": "0.032258064516129032258064516",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "4154",
+        "name": "樂威科-KY",
+        "tail_return": "0.030434782608695652173913043",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "4528",
+        "name": "江興鍛",
+        "tail_return": "0.030405405405405405405405405",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "6624",
+        "name": "萬年清",
+        "tail_return": "-0.0375",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "6751",
+        "name": "智聯服務",
+        "tail_return": "0.030707610146862483311081442",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "7584",
+        "name": "樂意",
+        "tail_return": "-0.0375586854460093896713615023",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "8437",
+        "name": "大地-KY",
+        "tail_return": "0.048859934853420195439739414",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "8455",
+        "name": "大拓-KY",
+        "tail_return": "0.03125",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "1213",
+        "name": "大飲",
+        "tail_return": "0.052333804809052333804809052",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "1470",
+        "name": "大統新創",
+        "tail_return": "-0.0322580645161290322580645161",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "1516",
+        "name": "川飛",
+        "tail_return": "-0.0366088631984585741811175337",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "1582",
+        "name": "信錦",
+        "tail_return": "0.038737446197991391678622669",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "2204",
+        "name": "中華",
+        "tail_return": "0.039697542533081285444234405",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "2211",
+        "name": "長榮鋼",
+        "tail_return": "0.039119804400977995110024450",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "2247",
+        "name": "汎德永業",
+        "tail_return": "0.046728971962616822429906542",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "2348",
+        "name": "海悅",
+        "tail_return": "0.039829302987197724039829303",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "2438",
+        "name": "翔耀",
+        "tail_return": "0.037333333333333333333333333",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "2534",
+        "name": "宏盛",
+        "tail_return": "-0.0345911949685534591194968553",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "2605",
+        "name": "新興",
+        "tail_return": "-0.0397163120567375886524822695",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "3056",
+        "name": "富華新",
+        "tail_return": "-0.0380228136882129277566539924",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "4572",
+        "name": "駐龍",
+        "tail_return": "-0.0387596899224806201550387597",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "5306",
+        "name": "桂盟",
+        "tail_return": "-0.0309633027522935779816513761",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "5522",
+        "name": "遠雄",
+        "tail_return": "0.039872408293460925039872408",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "6177",
+        "name": "達麗",
+        "tail_return": "0.034028540065861690450054885",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "6768",
+        "name": "志強-KY",
+        "tail_return": "-0.0377952755905511811023622047",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "6890",
+        "name": "來億-KY",
+        "tail_return": "0.038062283737024221453287197",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "7786",
+        "name": "東方風能",
+        "tail_return": "0.0375",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "8341",
+        "name": "日友",
+        "tail_return": "0.039735099337748344370860927",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "9910",
+        "name": "豐泰",
+        "tail_return": "0.038848920863309352517985612",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      }
+    ],
+    "generated_at": "2026-10-27T13:34:15.954+08:00"
+  },
+  "capture_outcome": "CAPTURE_PARTIAL",
+  "capture_completion": {
+    "version": "CAPTURE_COMPLETION_V1",
+    "capture_outcome": "CAPTURE_PARTIAL",
+    "status": "partial",
+    "exit_code": 0,
+    "core_capture_complete": true,
+    "official_validation": "PENDING_SCHEDULED_POSTMARKET",
+    "research_unresolved_count": 30,
+    "phases": {
+      "preclose": {
+        "returned_unique": 1979,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "pre_reference_A": {
+        "returned_unique": 1979,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "pre_reference_B": {
+        "returned_unique": 1979,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "close_reference_A": {
+        "returned_unique": 1979,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "close_reference_B": {
+        "returned_unique": 1979,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "pre_reference_C": {
+        "returned_unique": 1979,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "close_reference_C": {
+        "returned_unique": 31,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      }
+    },
+    "warnings": [
+      {
+        "reason": "RESEARCH_PROBE_ERRORS",
+        "count": 2,
+        "details": [
+          {
+            "planned_at": "2026-10-27T13:24:50.000+08:00",
+            "error": "MIS_EMPTY_BODY",
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:1341",
+              "tse:1410",
+              "tse:2317",
+              "tse:2330",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-27T13:29:50.000+08:00",
+            "error": "MIS_EMPTY_BODY",
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:1341",
+              "tse:1410",
+              "tse:2317",
+              "tse:2330",
+              "tse:2454"
+            ],
+            "empty": []
+          }
+        ]
+      },
+      {
+        "reason": "RESEARCH_UNRESOLVED",
+        "count": 30
+      }
+    ],
+    "errors": [],
+    "artifact_upload_status": "AWAITING_GITHUB_UPLOAD_STEP"
+  },
+  "c2_integration": {
+    "status": "NO_ELIGIBLE_RETRY_OR_TIME",
+    "records": [],
+    "requests": 0,
+    "symbols": [],
+    "last_finished_at": "2026-10-27T13:34:28.332859+08:00"
+  },
+  "candidate_publication": {
+    "status": "PUBLISHED",
+    "idempotent": false,
+    "path": "state/candidates/2026-10-27.json",
+    "revision": 1,
+    "published_at": "2026-10-27T13:34:25.931+08:00",
+    "commit_sha": "94b8f6f95d0754edbb4d2eadbfa7ccc053f60dd6"
   }
 }
