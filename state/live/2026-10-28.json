@@ -1,7 +1,7 @@
 {
   "trade_date": "2026-10-28",
   "status": "running",
-  "phase": "close_reference_C",
+  "phase": "validation",
   "run_id": "40635486748",
   "runner_started_at": "2026-10-28T13:00:44.990+08:00",
   "python_started_at": "2026-10-28T13:01:18.883+08:00",
@@ -13,7 +13,7 @@
   "capture_claimed": true,
   "capture_owner_run_id": "40635486748",
   "claimed_at": "2026-10-28T13:01:19.086+08:00",
-  "updated_at": "2026-10-28T13:33:36.786+08:00",
+  "updated_at": "2026-10-28T13:34:18.042+08:00",
   "preclose_captured": true,
   "universe_count": 1981,
   "reference_progress": {
@@ -50,6 +50,13 @@
       "requested_at": "2026-10-28T13:33:20.000+08:00",
       "received_at": "2026-10-28T13:33:35.709+08:00",
       "returned_count": 1981,
+      "missing_count": 0
+    },
+    "close_reference_C": {
+      "status": "captured",
+      "requested_at": "2026-10-28T13:34:10.000+08:00",
+      "received_at": "2026-10-28T13:34:15.022+08:00",
+      "returned_count": 28,
       "missing_count": 0
     }
   }
