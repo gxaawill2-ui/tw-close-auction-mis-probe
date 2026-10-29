@@ -104,7 +104,7 @@
     "is_major_index_event_day": null,
     "event_types": [],
     "event_ids": [],
-    "event_information_available_as_of": "2026-10-29T13:50:44+08:00",
+    "event_information_available_as_of": "2026-10-29T17:38:00+08:00",
     "candidate_annotations": [
       {
         "code": "5546",
@@ -199,5 +199,5 @@
     ],
     "note": "事件未取得不代表沒有事件；不推斷因果或交易方向。"
   },
-  "updated_at": "2026-10-29T13:50:44+08:00"
+  "updated_at": "2026-10-29T17:38:00+08:00"
 }
