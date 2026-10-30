@@ -1,19 +1,232 @@
 {
   "trade_date": "2026-10-30",
-  "status": "running",
+  "status": "partial",
   "phase": "completed",
   "run_id": "41006005174",
   "runner_started_at": "2026-10-30T13:00:43.896+08:00",
   "python_started_at": "2026-10-30T13:01:19.728+08:00",
   "artifact": "mis-probe-41006005174",
   "error": null,
-  "finished_at": null,
-  "snapshots": {},
-  "official_validation": "unverified",
+  "finished_at": "2026-10-30T13:34:24.952+08:00",
+  "snapshots": {
+    "preclose": {
+      "phase": "preclose",
+      "stock_universe_count": 1979,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-10-30T13:24:50.001+08:00",
+      "last_response_received_at": "2026-10-30T13:25:09.539+08:00",
+      "wall_time_seconds": 19.596,
+      "fastest_batch_ms": 1338,
+      "average_batch_ms": 2398.4,
+      "median_batch_ms": 2276.0,
+      "p95_batch_ms": 3743,
+      "slowest_batch_ms": 3922,
+      "success_count": 1979,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "pre_reference_A": {
+      "phase": "pre_reference_A",
+      "stock_universe_count": 1979,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-10-30T13:27:00.000+08:00",
+      "last_response_received_at": "2026-10-30T13:27:27.184+08:00",
+      "wall_time_seconds": 27.244,
+      "fastest_batch_ms": 875,
+      "average_batch_ms": 3094.8,
+      "median_batch_ms": 2854.0,
+      "p95_batch_ms": 5590,
+      "slowest_batch_ms": 8078,
+      "success_count": 1979,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "pre_reference_B": {
+      "phase": "pre_reference_B",
+      "stock_universe_count": 1979,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-10-30T13:28:15.000+08:00",
+      "last_response_received_at": "2026-10-30T13:28:37.942+08:00",
+      "wall_time_seconds": 22.991,
+      "fastest_batch_ms": 1464,
+      "average_batch_ms": 2784.3,
+      "median_batch_ms": 2602.5,
+      "p95_batch_ms": 4250,
+      "slowest_batch_ms": 4417,
+      "success_count": 1979,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "pre_reference_C": {
+      "phase": "pre_reference_C",
+      "stock_universe_count": 1979,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-10-30T13:29:00.000+08:00",
+      "last_response_received_at": "2026-10-30T13:29:12.572+08:00",
+      "wall_time_seconds": 12.621,
+      "fastest_batch_ms": 739,
+      "average_batch_ms": 1538.6,
+      "median_batch_ms": 1448.5,
+      "p95_batch_ms": 2571,
+      "slowest_batch_ms": 3620,
+      "success_count": 1979,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "close_reference_A": {
+      "phase": "close_reference_A",
+      "stock_universe_count": 1979,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-10-30T13:32:30.000+08:00",
+      "last_response_received_at": "2026-10-30T13:32:47.470+08:00",
+      "wall_time_seconds": 17.521,
+      "fastest_batch_ms": 1287,
+      "average_batch_ms": 2106.5,
+      "median_batch_ms": 1733.0,
+      "p95_batch_ms": 3845,
+      "slowest_batch_ms": 5754,
+      "success_count": 1979,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "close_reference_B": {
+      "phase": "close_reference_B",
+      "stock_universe_count": 1979,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-10-30T13:33:20.000+08:00",
+      "last_response_received_at": "2026-10-30T13:33:41.786+08:00",
+      "wall_time_seconds": 21.83,
+      "fastest_batch_ms": 989,
+      "average_batch_ms": 2609.6,
+      "median_batch_ms": 2433.5,
+      "p95_batch_ms": 3918,
+      "slowest_batch_ms": 6290,
+      "success_count": 1979,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "close_reference_C": {
+      "phase": "close_reference_C",
+      "stock_universe_count": 25,
+      "batch_count": 1,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-10-30T13:34:10.000+08:00",
+      "last_response_received_at": "2026-10-30T13:34:10.971+08:00",
+      "wall_time_seconds": 0.973,
+      "fastest_batch_ms": 971,
+      "average_batch_ms": 971,
+      "median_batch_ms": 971,
+      "p95_batch_ms": 971,
+      "slowest_batch_ms": 971,
+      "success_count": 25,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true,
+      "affected_symbols": [
+        "otc:2035",
+        "otc:2719",
+        "otc:2937",
+        "otc:2941",
+        "otc:2948",
+        "otc:3064",
+        "otc:3085",
+        "otc:3259",
+        "otc:3523",
+        "otc:5520",
+        "otc:5523",
+        "otc:5703",
+        "otc:6212",
+        "otc:6236",
+        "otc:6661",
+        "otc:7584",
+        "otc:7716",
+        "otc:7728",
+        "otc:8342",
+        "otc:8409",
+        "tse:1470",
+        "tse:1538",
+        "tse:5906",
+        "tse:6921",
+        "tse:8101"
+      ]
+    },
+    "targeted_retry_rounds": [
+      {
+        "phase": "pre_targeted_retry",
+        "status": "HARD_TIMEOUT",
+        "retry_round": 1,
+        "stock_universe_count": 188,
+        "hard_budget_seconds": 12.0,
+        "forced_termination": true
+      }
+    ]
+  },
+  "official_validation": "PENDING_SCHEDULED_POSTMARKET",
   "capture_claimed": true,
   "capture_owner_run_id": "41006005174",
   "claimed_at": "2026-10-30T13:01:19.956+08:00",
-  "updated_at": "2026-10-30T13:34:20.026+08:00",
+  "updated_at": "2026-10-30T13:34:25.186+08:00",
   "preclose_captured": true,
   "universe_count": 1979,
   "reference_progress": {
@@ -59,5 +272,466 @@
       "returned_count": 25,
       "missing_count": 0
     }
+  },
+  "company_universe_count": 1984,
+  "universe_audit_status": "OFFICIAL_SOURCES_DATE_CHECKED",
+  "exclusion_count": 5,
+  "capture_architecture": "DUAL_SNAPSHOT_RESEARCH_V1",
+  "pre_reference_C_enabled": true,
+  "close_reference_C_enabled": true,
+  "live_close_research_enabled": true,
+  "probe_scheduled_count": 68,
+  "candidate_count": 13,
+  "research_calculable_count": 1956,
+  "candidate_status": "RESEARCH_ONLY",
+  "validated": false,
+  "freshness": {
+    "status": "RESEARCH_ONLY",
+    "p_before_validated_count": 0,
+    "p_close_validated_count": 0,
+    "both_validated_count": 0,
+    "confirmed_candidate_count": 423
+  },
+  "convergence": {
+    "version": "DUAL_SNAPSHOT_RESEARCH_V1",
+    "status": "RESEARCH_ONLY",
+    "universe_count": 1979,
+    "p_before_converged_count": 1956,
+    "p_close_converged_count": 1954,
+    "both_converged_count": 1954,
+    "unknown_count": 25,
+    "stale_batch_count": 37,
+    "server_regression_response_count": 0,
+    "targeted_retry_count": 5,
+    "targeted_http_attempt_count": 5,
+    "true_delayed_close_candidate_count": 0,
+    "delayed_transition_candidate_count": 2,
+    "no_closing_new_trade_count": 232,
+    "research_calculable_count": 1956,
+    "p_before_validated_count": 0,
+    "p_close_validated_count": 0,
+    "both_validated_count": 0,
+    "p_before_original_AB_converged_count": 1764,
+    "p_before_recovered_by_targeted_retry_count": 165,
+    "p_close_original_AB_converged_count": 1954,
+    "p_close_recovered_by_targeted_retry_count": 0,
+    "stale_response_count": 37,
+    "p_before_original_AB_with_retry_converged_count": 1929,
+    "p_before_ABC_converged_count": 214,
+    "p_before_AB_converged_count": 1715,
+    "p_before_AC_converged_count": 0,
+    "p_before_BC_converged_count": 27,
+    "p_before_unresolved_count": 23,
+    "p_before_unresolved_tse_count": 4,
+    "p_before_unresolved_otc_count": 19,
+    "research_close_AB_converged_count": 1954,
+    "research_close_AC_converged_count": 0,
+    "research_close_BC_converged_count": 2,
+    "research_close_A_1330_fresh_candidate_count": 0,
+    "research_close_TARGETED_converged_count": 0,
+    "research_close_delayed_close_candidate_count": 0,
+    "research_close_unresolved_count": 23,
+    "validated": false,
+    "research_candidate_count": 13
+  },
+  "live_research_summary": {
+    "trade_date": "2026-10-30",
+    "status": "RESEARCH_ONLY",
+    "validated": false,
+    "tradable_universe": 1979,
+    "P_before_converged": 1956,
+    "P_close": {
+      "AB_converged": 1954,
+      "AC_converged": 0,
+      "BC_converged": 2,
+      "A_1330_fresh_candidate": 0,
+      "TARGETED_converged": 0,
+      "delayed_close_candidate": 0,
+      "unresolved": 23
+    },
+    "research_calculable_count": 1956,
+    "candidate_count": 13,
+    "candidates": [
+      {
+        "code": "2221",
+        "name": "大甲",
+        "tail_return": "-0.0388349514563106796116504854",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "3609",
+        "name": "三一東林",
+        "tail_return": "0.063339731285988483685220729",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "3713",
+        "name": "新晶投控",
+        "tail_return": "0.111913357400722021660649819",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "4430",
+        "name": "耀億",
+        "tail_return": "0.044776119402985074626865672",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "6222",
+        "name": "立軒",
+        "tail_return": "-0.032",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "6629",
+        "name": "泰金-KY",
+        "tail_return": "-0.0470588235294117647058823529",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "7782",
+        "name": "光速火箭",
+        "tail_return": "0.033126293995859213250517598",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "8047",
+        "name": "星雲",
+        "tail_return": "0.059615384615384615384615385",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "8085",
+        "name": "福華",
+        "tail_return": "0.032490974729241877256317690",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "1213",
+        "name": "大飲",
+        "tail_return": "0.043909348441926345609065156",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "3018",
+        "name": "隆銘綠能",
+        "tail_return": "0.039665970772442588726513570",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "4943",
+        "name": "康控-KY",
+        "tail_return": "0.046031746031746031746031746",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "7760",
+        "name": "享溫馨",
+        "tail_return": "0.031746031746031746031746032",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      }
+    ],
+    "generated_at": "2026-10-30T13:34:12.584+08:00"
+  },
+  "capture_outcome": "CAPTURE_PARTIAL",
+  "capture_completion": {
+    "version": "CAPTURE_COMPLETION_V1",
+    "capture_outcome": "CAPTURE_PARTIAL",
+    "status": "partial",
+    "exit_code": 0,
+    "core_capture_complete": true,
+    "official_validation": "PENDING_SCHEDULED_POSTMARKET",
+    "research_unresolved_count": 23,
+    "phases": {
+      "preclose": {
+        "returned_unique": 1979,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "pre_reference_A": {
+        "returned_unique": 1979,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "pre_reference_B": {
+        "returned_unique": 1979,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "close_reference_A": {
+        "returned_unique": 1979,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "close_reference_B": {
+        "returned_unique": 1979,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "pre_reference_C": {
+        "returned_unique": 1979,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "close_reference_C": {
+        "returned_unique": 25,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      }
+    },
+    "warnings": [
+      {
+        "reason": "RESEARCH_PROBE_ERRORS",
+        "count": 20,
+        "details": [
+          {
+            "planned_at": "2026-10-30T13:30:00.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:01.000+08:00",
+            "error": "MIS_EMPTY_BODY",
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:1341",
+              "tse:1410",
+              "tse:2317",
+              "tse:2330",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:02.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:03.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:04.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:05.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:06.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:07.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:08.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:09.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:10.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:11.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:12.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:13.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:14.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:15.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:20.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:30.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:30:45.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-10-30T13:32:00.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813"
+            ],
+            "empty": []
+          }
+        ]
+      },
+      {
+        "reason": "RESEARCH_UNRESOLVED",
+        "count": 23
+      }
+    ],
+    "errors": [],
+    "artifact_upload_status": "AWAITING_GITHUB_UPLOAD_STEP"
+  },
+  "c2_integration": {
+    "status": "NO_ELIGIBLE_RETRY_OR_TIME",
+    "records": [],
+    "requests": 0,
+    "symbols": [],
+    "last_finished_at": "2026-10-30T13:34:22.573346+08:00"
+  },
+  "candidate_publication": {
+    "status": "PUBLISHED",
+    "idempotent": false,
+    "path": "state/candidates/2026-10-30.json",
+    "revision": 1,
+    "published_at": "2026-10-30T13:34:20.516+08:00",
+    "commit_sha": "a2ecd17f85d4ee5f22a89ae7f1b0e77d76109c92"
   }
 }
