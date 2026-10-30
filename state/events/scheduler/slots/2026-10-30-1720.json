@@ -15,7 +15,7 @@
   "policy_delay_seconds": 911.0,
   "eligible": true,
   "runner_started_at": "2026-10-30T09:35:50Z",
-  "scan_started_at": null,
+  "scan_started_at": "2026-10-30T17:36:00.517664+08:00",
   "scan_finished_at": null,
   "published_at": null,
   "result": "LEASED",
