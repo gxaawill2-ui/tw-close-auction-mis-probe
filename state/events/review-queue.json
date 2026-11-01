@@ -658,5 +658,11 @@
     "sha256": "a0a9aacfd3333d29514b1ba218ea11f543666ad834c6410897554ffc1795ceb4",
     "status": "ISSUER_NOTICE_REQUIRES_DATE_REVIEW",
     "seen_at": "2026-11-01T08:37:11+08:00"
+  },
+  {
+    "url": "https://www.capitalfund.com.tw/etf/product/detail/195",
+    "sha256": "7093e7af062be38a4339a21711a284c8795dbaa965c2c0e9c10ca96805879523",
+    "status": "ISSUER_NOTICE_REQUIRES_DATE_REVIEW",
+    "seen_at": "2026-11-01T14:07:10+08:00"
   }
 ]
