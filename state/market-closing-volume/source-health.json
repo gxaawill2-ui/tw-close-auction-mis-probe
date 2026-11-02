@@ -1,10 +1,10 @@
 {
-  "last_attempt_at": "2026-11-01T22:12:31.159773+08:00",
-  "result": "SUCCESS",
-  "error_class": null,
-  "trade_date": "2026-11-01",
+  "last_attempt_at": "2026-11-03T00:57:53.924496+08:00",
+  "result": "FAILED",
+  "error_class": "ValueError",
+  "trade_date": "2026-11-03",
   "scope_status": "UNVERIFIED",
   "last_successful_attempt_at": "2026-11-01T22:12:31.159773+08:00",
-  "last_failed_attempt_at": "2026-10-20T20:40:01.769643+08:00",
+  "last_failed_attempt_at": "2026-11-03T00:57:53.924496+08:00",
   "note": "Retrieval success is separate from complete same-scope data; no MIS requests are made."
 }
