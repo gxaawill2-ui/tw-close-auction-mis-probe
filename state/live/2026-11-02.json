@@ -1,19 +1,244 @@
 {
   "trade_date": "2026-11-02",
-  "status": "running",
+  "status": "partial",
   "phase": "completed",
   "run_id": "41391530968",
   "runner_started_at": "2026-11-02T13:00:41.428+08:00",
   "python_started_at": "2026-11-02T13:01:17.015+08:00",
   "artifact": "mis-probe-41391530968",
   "error": null,
-  "finished_at": null,
-  "snapshots": {},
-  "official_validation": "unverified",
+  "finished_at": "2026-11-02T13:34:22.152+08:00",
+  "snapshots": {
+    "preclose": {
+      "phase": "preclose",
+      "stock_universe_count": 1981,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-11-02T13:24:50.001+08:00",
+      "last_response_received_at": "2026-11-02T13:25:22.875+08:00",
+      "wall_time_seconds": 32.919,
+      "fastest_batch_ms": 1511,
+      "average_batch_ms": 3982.1,
+      "median_batch_ms": 3806.5,
+      "p95_batch_ms": 6400,
+      "slowest_batch_ms": 7920,
+      "success_count": 1981,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "pre_reference_A": {
+      "phase": "pre_reference_A",
+      "stock_universe_count": 1981,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-11-02T13:27:00.000+08:00",
+      "last_response_received_at": "2026-11-02T13:27:13.034+08:00",
+      "wall_time_seconds": 13.075,
+      "fastest_batch_ms": 848,
+      "average_batch_ms": 1596.4,
+      "median_batch_ms": 1724.5,
+      "p95_batch_ms": 2217,
+      "slowest_batch_ms": 2370,
+      "success_count": 1981,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "pre_reference_B": {
+      "phase": "pre_reference_B",
+      "stock_universe_count": 1981,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-11-02T13:28:15.000+08:00",
+      "last_response_received_at": "2026-11-02T13:28:44.444+08:00",
+      "wall_time_seconds": 29.481,
+      "fastest_batch_ms": 701,
+      "average_batch_ms": 3495.8,
+      "median_batch_ms": 3402.5,
+      "p95_batch_ms": 4550,
+      "slowest_batch_ms": 4743,
+      "success_count": 1981,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "pre_reference_C": {
+      "phase": "pre_reference_C",
+      "stock_universe_count": 1981,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-11-02T13:29:00.000+08:00",
+      "last_response_received_at": "2026-11-02T13:29:19.825+08:00",
+      "wall_time_seconds": 19.863,
+      "fastest_batch_ms": 857,
+      "average_batch_ms": 2198.5,
+      "median_batch_ms": 2044.0,
+      "p95_batch_ms": 4045,
+      "slowest_batch_ms": 5682,
+      "success_count": 1981,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "close_reference_A": {
+      "phase": "close_reference_A",
+      "stock_universe_count": 1981,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-11-02T13:32:30.000+08:00",
+      "last_response_received_at": "2026-11-02T13:32:45.982+08:00",
+      "wall_time_seconds": 16.018,
+      "fastest_batch_ms": 954,
+      "average_batch_ms": 1867.6,
+      "median_batch_ms": 1838.0,
+      "p95_batch_ms": 2442,
+      "slowest_batch_ms": 3036,
+      "success_count": 1981,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "close_reference_B": {
+      "phase": "close_reference_B",
+      "stock_universe_count": 1981,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-11-02T13:33:20.000+08:00",
+      "last_response_received_at": "2026-11-02T13:33:51.362+08:00",
+      "wall_time_seconds": 31.405,
+      "fastest_batch_ms": 1022,
+      "average_batch_ms": 3794.3,
+      "median_batch_ms": 3645.0,
+      "p95_batch_ms": 7657,
+      "slowest_batch_ms": 10732,
+      "success_count": 1981,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "close_reference_C": {
+      "phase": "close_reference_C",
+      "stock_universe_count": 37,
+      "batch_count": 1,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-11-02T13:34:10.000+08:00",
+      "last_response_received_at": "2026-11-02T13:34:11.849+08:00",
+      "wall_time_seconds": 1.851,
+      "fastest_batch_ms": 1849,
+      "average_batch_ms": 1849,
+      "median_batch_ms": 1849,
+      "p95_batch_ms": 1849,
+      "slowest_batch_ms": 1849,
+      "success_count": 37,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true,
+      "affected_symbols": [
+        "otc:2724",
+        "otc:2937",
+        "otc:3064",
+        "otc:3067",
+        "otc:3085",
+        "otc:3118",
+        "otc:3259",
+        "otc:3629",
+        "otc:4153",
+        "otc:4402",
+        "otc:4550",
+        "otc:5345",
+        "otc:5348",
+        "otc:5514",
+        "otc:5523",
+        "otc:5703",
+        "otc:6198",
+        "otc:6236",
+        "otc:6496",
+        "otc:6661",
+        "otc:6662",
+        "otc:6720",
+        "otc:6730",
+        "otc:6767",
+        "otc:6881",
+        "otc:6899",
+        "otc:7713",
+        "otc:8080",
+        "otc:8102",
+        "otc:8477",
+        "otc:8905",
+        "otc:8917",
+        "otc:8921",
+        "otc:8933",
+        "tse:5906",
+        "tse:6671",
+        "tse:6952"
+      ]
+    },
+    "targeted_retry_rounds": [
+      {
+        "phase": "pre_targeted_retry",
+        "status": "HARD_TIMEOUT",
+        "retry_round": 1,
+        "stock_universe_count": 638,
+        "hard_budget_seconds": 10.130019,
+        "forced_termination": true
+      }
+    ]
+  },
+  "official_validation": "PENDING_SCHEDULED_POSTMARKET",
   "capture_claimed": true,
   "capture_owner_run_id": "41391530968",
   "claimed_at": "2026-11-02T13:01:17.234+08:00",
-  "updated_at": "2026-11-02T13:34:18.395+08:00",
+  "updated_at": "2026-11-02T13:34:22.333+08:00",
   "preclose_captured": true,
   "universe_count": 1981,
   "reference_progress": {
@@ -59,5 +284,428 @@
       "returned_count": 37,
       "missing_count": 0
     }
+  },
+  "company_universe_count": 1986,
+  "universe_audit_status": "OFFICIAL_SOURCES_DATE_CHECKED",
+  "exclusion_count": 5,
+  "capture_architecture": "DUAL_SNAPSHOT_RESEARCH_V1",
+  "pre_reference_C_enabled": true,
+  "close_reference_C_enabled": true,
+  "live_close_research_enabled": true,
+  "probe_scheduled_count": 68,
+  "candidate_count": 7,
+  "research_calculable_count": 1456,
+  "candidate_status": "RESEARCH_ONLY",
+  "validated": false,
+  "freshness": {
+    "status": "RESEARCH_ONLY",
+    "p_before_validated_count": 0,
+    "p_close_validated_count": 0,
+    "both_validated_count": 0,
+    "confirmed_candidate_count": 384
+  },
+  "convergence": {
+    "version": "DUAL_SNAPSHOT_RESEARCH_V1",
+    "status": "RESEARCH_ONLY",
+    "universe_count": 1981,
+    "p_before_converged_count": 1456,
+    "p_close_converged_count": 1944,
+    "both_converged_count": 1454,
+    "unknown_count": 527,
+    "stale_batch_count": 60,
+    "server_regression_response_count": 0,
+    "targeted_retry_count": 13,
+    "targeted_http_attempt_count": 13,
+    "true_delayed_close_candidate_count": 0,
+    "delayed_transition_candidate_count": 2,
+    "no_closing_new_trade_count": 270,
+    "research_calculable_count": 1456,
+    "p_before_validated_count": 0,
+    "p_close_validated_count": 0,
+    "both_validated_count": 0,
+    "p_before_original_AB_converged_count": 1343,
+    "p_before_recovered_by_targeted_retry_count": 113,
+    "p_close_original_AB_converged_count": 1944,
+    "p_close_recovered_by_targeted_retry_count": 0,
+    "stale_response_count": 60,
+    "p_before_original_AB_with_retry_converged_count": 1456,
+    "p_before_ABC_converged_count": 0,
+    "p_before_AB_converged_count": 1456,
+    "p_before_AC_converged_count": 0,
+    "p_before_BC_converged_count": 0,
+    "p_before_unresolved_count": 525,
+    "p_before_unresolved_tse_count": 6,
+    "p_before_unresolved_otc_count": 519,
+    "research_close_AB_converged_count": 1944,
+    "research_close_AC_converged_count": 0,
+    "research_close_BC_converged_count": 2,
+    "research_close_A_1330_fresh_candidate_count": 0,
+    "research_close_TARGETED_converged_count": 0,
+    "research_close_delayed_close_candidate_count": 0,
+    "research_close_unresolved_count": 35,
+    "validated": false,
+    "research_candidate_count": 7
+  },
+  "live_research_summary": {
+    "trade_date": "2026-11-02",
+    "status": "RESEARCH_ONLY",
+    "validated": false,
+    "tradable_universe": 1981,
+    "P_before_converged": 1456,
+    "P_close": {
+      "AB_converged": 1944,
+      "AC_converged": 0,
+      "BC_converged": 2,
+      "A_1330_fresh_candidate": 0,
+      "TARGETED_converged": 0,
+      "delayed_close_candidate": 0,
+      "unresolved": 35
+    },
+    "research_calculable_count": 1456,
+    "candidate_count": 7,
+    "candidates": [
+      {
+        "code": "6228",
+        "name": "全譜",
+        "tail_return": "0.034946236559139784946236559",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "6441",
+        "name": "廣錠",
+        "tail_return": "-0.0339366515837104072398190045",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "6825",
+        "name": "和暢科技",
+        "tail_return": "0.046277665995975855130784708",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "8047",
+        "name": "星雲",
+        "tail_return": "0.070588235294117647058823529",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "8933",
+        "name": "愛地雅",
+        "tail_return": "0.037122969837587006960556845",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "1524",
+        "name": "耿鼎",
+        "tail_return": "0.030888030888030888030888031",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "3432",
+        "name": "台端",
+        "tail_return": "0.051612903225806451612903226",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      }
+    ],
+    "generated_at": "2026-11-02T13:34:13.185+08:00"
+  },
+  "capture_outcome": "CAPTURE_PARTIAL",
+  "capture_completion": {
+    "version": "CAPTURE_COMPLETION_V1",
+    "capture_outcome": "CAPTURE_PARTIAL",
+    "status": "partial",
+    "exit_code": 0,
+    "core_capture_complete": true,
+    "official_validation": "PENDING_SCHEDULED_POSTMARKET",
+    "research_unresolved_count": 525,
+    "phases": {
+      "preclose": {
+        "returned_unique": 1981,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "pre_reference_A": {
+        "returned_unique": 1981,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "pre_reference_B": {
+        "returned_unique": 1981,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "close_reference_A": {
+        "returned_unique": 1981,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "close_reference_B": {
+        "returned_unique": 1981,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "pre_reference_C": {
+        "returned_unique": 1981,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "close_reference_C": {
+        "returned_unique": 37,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      }
+    },
+    "warnings": [
+      {
+        "reason": "RESEARCH_PROBE_ERRORS",
+        "count": 19,
+        "details": [
+          {
+            "planned_at": "2026-11-02T13:30:00.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:30:01.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:30:02.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:30:03.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:30:04.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:30:05.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:30:06.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:30:07.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:30:08.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:30:09.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:30:10.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:30:11.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:30:12.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:30:13.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:30:14.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:30:15.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:30:20.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:31:30.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-02T13:32:00.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2454"
+            ],
+            "empty": []
+          }
+        ]
+      },
+      {
+        "reason": "RESEARCH_UNRESOLVED",
+        "count": 525
+      }
+    ],
+    "errors": [],
+    "artifact_upload_status": "AWAITING_GITHUB_UPLOAD_STEP"
+  },
+  "c2_integration": {
+    "status": "NO_ELIGIBLE_RETRY_OR_TIME",
+    "records": [],
+    "requests": 0,
+    "symbols": [],
+    "last_finished_at": "2026-11-02T13:34:21.516036+08:00"
+  },
+  "candidate_publication": {
+    "status": "PUBLISHED",
+    "idempotent": false,
+    "path": "state/candidates/2026-11-02.json",
+    "revision": 1,
+    "published_at": "2026-11-02T13:34:19.920+08:00",
+    "commit_sha": "f78f7b1569f8c4c5869fa92ca33fb9abf0f869d5"
   }
 }
