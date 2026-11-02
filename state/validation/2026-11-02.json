@@ -1,0 +1,118 @@
+{
+  "trade_date": "2026-11-02",
+  "checked_at": "2026-11-02T14:50:22.699+08:00",
+  "run_id": "41402427704",
+  "status": "PENDING",
+  "source_capture_run_id": "41391530968",
+  "source_capture_artifact_id": 13119121613,
+  "official_validation": "PENDING",
+  "matches": 1084,
+  "mismatches": 1,
+  "unavailable": 896,
+  "official_sources": [
+    {
+      "ex": "tse",
+      "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261102&type=ALLBUT0999&response=json",
+      "checked_at": "2026-11-02T14:50:26.124+08:00",
+      "http_status": 200,
+      "status": "AVAILABLE_SAME_DATE",
+      "row_count": 1389,
+      "response_date": "20261102"
+    },
+    {
+      "ex": "otc",
+      "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F11%2F02&response=json",
+      "checked_at": "2026-11-02T14:50:27.554+08:00",
+      "http_status": 200,
+      "status": "PENDING_EMPTY_TABLE",
+      "row_count": 0,
+      "response_date": "20261102"
+    }
+  ],
+  "freshness": {
+    "p_before_validated_count": 0,
+    "p_close_validated_count": 0,
+    "both_validated_count": 0
+  },
+  "convergence": {
+    "version": "DUAL_SNAPSHOT_RESEARCH_V1",
+    "status": "RESEARCH_ONLY",
+    "universe_count": 1981,
+    "p_before_converged_count": 1456,
+    "p_close_converged_count": 1944,
+    "both_converged_count": 1454,
+    "unknown_count": 527,
+    "stale_batch_count": 60,
+    "server_regression_response_count": 0,
+    "targeted_retry_count": 13,
+    "targeted_http_attempt_count": 13,
+    "true_delayed_close_candidate_count": 0,
+    "delayed_transition_candidate_count": 2,
+    "no_closing_new_trade_count": 270,
+    "research_calculable_count": 1455,
+    "p_before_validated_count": 0,
+    "p_close_validated_count": 0,
+    "both_validated_count": 0,
+    "p_before_original_AB_converged_count": 1343,
+    "p_before_recovered_by_targeted_retry_count": 113,
+    "p_close_original_AB_converged_count": 1944,
+    "p_close_recovered_by_targeted_retry_count": 0,
+    "stale_response_count": 60,
+    "p_before_original_AB_with_retry_converged_count": 1456,
+    "p_before_ABC_converged_count": 0,
+    "p_before_AB_converged_count": 1456,
+    "p_before_AC_converged_count": 0,
+    "p_before_BC_converged_count": 0,
+    "p_before_unresolved_count": 525,
+    "p_before_unresolved_tse_count": 6,
+    "p_before_unresolved_otc_count": 519,
+    "research_close_AB_converged_count": 1944,
+    "research_close_AC_converged_count": 0,
+    "research_close_BC_converged_count": 2,
+    "research_close_A_1330_fresh_candidate_count": 0,
+    "research_close_TARGETED_converged_count": 0,
+    "research_close_delayed_close_candidate_count": 0,
+    "research_close_unresolved_count": 35,
+    "validated": false,
+    "research_candidate_count": 7
+  },
+  "candidate_status": "RESEARCH_ONLY",
+  "candidate_count": 7,
+  "artifact": "mis-validation-41402427704",
+  "candidate_publication": {
+    "status": "PUBLISHED",
+    "idempotent": false,
+    "path": "state/candidates/2026-11-02.json",
+    "revision": 1,
+    "published_at": "2026-11-02T13:34:19.920+08:00",
+    "commit_sha": "8385c38c512ff7e6e4c226e6220dc1d9ebbd2e09"
+  },
+  "publication_observations": [
+    {
+      "checked_at": "2026-11-02T14:50:22.699+08:00",
+      "status": "PENDING",
+      "sources": [
+        {
+          "ex": "tse",
+          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261102&type=ALLBUT0999&response=json",
+          "checked_at": "2026-11-02T14:50:26.124+08:00",
+          "http_status": 200,
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 1389,
+          "response_date": "20261102"
+        },
+        {
+          "ex": "otc",
+          "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F11%2F02&response=json",
+          "checked_at": "2026-11-02T14:50:27.554+08:00",
+          "http_status": 200,
+          "status": "PENDING_EMPTY_TABLE",
+          "row_count": 0,
+          "response_date": "20261102"
+        }
+      ]
+    }
+  ],
+  "publication_timing_note": "Only observed checks bound availability; exact release time is not assumed.",
+  "updated_at": "2026-11-02T14:50:37.881+08:00"
+}
