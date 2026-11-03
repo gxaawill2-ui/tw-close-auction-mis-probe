@@ -18,15 +18,452 @@
   "is_closing_volume_spike": null,
   "provisional_rule_result": null,
   "status": "UNKNOWN",
-  "source_quality": "UNVERIFIED",
-  "missing_stocks": [],
-  "coverage_ratio": null,
+  "source_quality": "PARTIAL_SAVED_MIS; DENOMINATOR_SCOPE_UNVERIFIED",
+  "missing_stocks": [
+    {
+      "code": "1213",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "1233",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "1341",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "1410",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "1413",
+      "market": "TWSE",
+      "reason": "INSUFFICIENT_VOLUME_EVIDENCE"
+    },
+    {
+      "code": "1418",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "1423",
+      "market": "TWSE",
+      "reason": "INSUFFICIENT_VOLUME_EVIDENCE"
+    },
+    {
+      "code": "1435",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "1441",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "1443",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "1453",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "1468",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "1470",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "1521",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "1538",
+      "market": "TWSE",
+      "reason": "INSUFFICIENT_VOLUME_EVIDENCE"
+    },
+    {
+      "code": "1583",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "1725",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "1730",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "1805",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "2008",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "2024",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "2115",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "2237",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "2321",
+      "market": "TWSE",
+      "reason": "INSUFFICIENT_VOLUME_EVIDENCE"
+    },
+    {
+      "code": "2415",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "2432",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "2739",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "2910",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "2945",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "3057",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "3266",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "3432",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "3593",
+      "market": "TWSE",
+      "reason": "INSUFFICIENT_VOLUME_EVIDENCE"
+    },
+    {
+      "code": "4178",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "4190",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "4414",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "4572",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "4581",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "4930",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "4943",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "5906",
+      "market": "TWSE",
+      "reason": "INSUFFICIENT_VOLUME_EVIDENCE"
+    },
+    {
+      "code": "6128",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6641",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6645",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6655",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6722",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6754",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6796",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6807",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6906",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6916",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6918",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6921",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6924",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6934",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6936",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6947",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6952",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6955",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "6994",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "7750",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "7768",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "7791",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "7803",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "7823",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "7835",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "7867",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "8101",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "8201",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "8367",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "8443",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "8482",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "8487",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "8488",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "9926",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    },
+    {
+      "code": "9929",
+      "market": "TWSE",
+      "reason": "UNVERIFIED_FINAL_AUCTION_TIME"
+    }
+  ],
+  "coverage_ratio": 0.9301470588235294,
   "official_reconciliation": {
-    "status": "UNKNOWN"
+    "status": "DENOMINATOR_SCOPE_MISMATCH",
+    "official_close_table_status": "AVAILABLE_SAME_DATE",
+    "note": "MI_INDEX includes odd-lot and after-hours fixed-price; not a regular-board-lot denominator. Full ordinary-equity identity coverage also requires reconciliation."
   },
-  "source_evidence": [],
-  "research_observations": {},
-  "generated_at": "2026-11-03T00:57:53.924496+08:00",
-  "information_available_as_of": "2026-11-03T00:57:53.924496+08:00",
-  "reason": "NOT_FINAL_CLOSE_YET"
+  "source_evidence": [
+    {
+      "source": "SAVED_MIS_ARTIFACT",
+      "sha256": "1a7e4429c626939b51f5cfde38b3661bb9b37df89bd57c136ca0d06aad3dc74d",
+      "observed_at": "2026-11-03T22:58:33.314950+08:00"
+    },
+    {
+      "source_url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261103&type=ALLBUT0999&response=json",
+      "observed_at": "2026-11-03T22:58:33.314950+08:00",
+      "sha256": "66954862de042df3fd179bb9b1704dcc5ab0a5a6eacd617798f00f33d0641cbb",
+      "capture_run_id": "41581347962",
+      "capture_artifact_id": 13207436638
+    }
+  ],
+  "research_observations": {
+    "saved_twse_pool_count": 1088,
+    "verified_closing_stocks": 1012,
+    "verified_closing_subtotal_twd": "52388083690.00",
+    "is_complete_market_total": false,
+    "evidence_path": "state/market-closing-volume/evidence/2026-11-03-a9f860c172eda22c.json",
+    "evidence_sha256": "a9f860c172eda22c6a59d3ec1c969cacad7d73470d332e7b82e51d13fd63ae4e"
+  },
+  "generated_at": "2026-11-03T22:58:36.202736+08:00",
+  "information_available_as_of": "2026-11-03T22:58:36.202736+08:00",
+  "reason": "REGULAR_BOARD_LOT_DENOMINATOR_NOT_VERIFIED",
+  "change_history": [
+    {
+      "schema_version": 1,
+      "timezone": "Asia/Taipei",
+      "trade_date": "2026-11-03",
+      "market_scope": "TWSE_ORDINARY_EQUITY_REGULAR_BOARD_LOT_1330_1333_V1",
+      "market_state": "TRADING",
+      "closing_auction_turnover_twd": null,
+      "daily_turnover_twd": null,
+      "closing_turnover_share_pct": null,
+      "historical_median_share_pct": null,
+      "historical_median_60_share_pct": null,
+      "historical_p90_60_share_pct": null,
+      "relative_multiple": null,
+      "historical_sample_count": 0,
+      "historical_sample_count_60": 0,
+      "threshold_version": "closing-share-candidate-v1",
+      "threshold_status": "PROVISIONAL",
+      "is_closing_volume_spike": null,
+      "provisional_rule_result": null,
+      "status": "UNKNOWN",
+      "source_quality": "UNVERIFIED",
+      "missing_stocks": [],
+      "coverage_ratio": null,
+      "official_reconciliation": {
+        "status": "UNKNOWN"
+      },
+      "source_evidence": [],
+      "research_observations": {},
+      "generated_at": "2026-11-03T00:57:53.924496+08:00",
+      "information_available_as_of": "2026-11-03T00:57:53.924496+08:00",
+      "reason": "NOT_FINAL_CLOSE_YET"
+    }
+  ]
 }
