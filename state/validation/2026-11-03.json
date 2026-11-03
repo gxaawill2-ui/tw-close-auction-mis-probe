@@ -1,7 +1,7 @@
 {
   "trade_date": "2026-11-03",
-  "checked_at": "2026-11-03T17:50:21.630+08:00",
-  "run_id": "41614236520",
+  "checked_at": "2026-11-03T22:41:27.840+08:00",
+  "run_id": "41656125622",
   "status": "SAME_DATE_COMPARISON_ONLY",
   "publication_observations": [
     {
@@ -66,10 +66,34 @@
           "response_date": "20261103"
         }
       ]
+    },
+    {
+      "checked_at": "2026-11-03T22:41:27.840+08:00",
+      "status": "SAME_DATE_COMPARISON_ONLY",
+      "sources": [
+        {
+          "ex": "tse",
+          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261103&type=ALLBUT0999&response=json",
+          "checked_at": "2026-11-03T22:41:32.655+08:00",
+          "http_status": 200,
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 1390,
+          "response_date": "20261103"
+        },
+        {
+          "ex": "otc",
+          "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F11%2F03&response=json",
+          "checked_at": "2026-11-03T22:41:34.442+08:00",
+          "http_status": 200,
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 13569,
+          "response_date": "20261103"
+        }
+      ]
     }
   ],
   "publication_timing_note": "Only observed checks bound availability; exact release time is not assumed.",
-  "updated_at": "2026-11-03T17:52:14.230+08:00",
+  "updated_at": "2026-11-03T22:41:42.893+08:00",
   "source_capture_run_id": "41581347962",
   "source_capture_artifact_id": 13207436638,
   "official_validation": "SAME_DATE_COMPARISON_ONLY",
@@ -80,7 +104,7 @@
     {
       "ex": "tse",
       "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261103&type=ALLBUT0999&response=json",
-      "checked_at": "2026-11-03T17:50:24.237+08:00",
+      "checked_at": "2026-11-03T22:41:32.655+08:00",
       "http_status": 200,
       "status": "AVAILABLE_SAME_DATE",
       "row_count": 1390,
@@ -89,7 +113,7 @@
     {
       "ex": "otc",
       "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F11%2F03&response=json",
-      "checked_at": "2026-11-03T17:50:26.076+08:00",
+      "checked_at": "2026-11-03T22:41:34.442+08:00",
       "http_status": 200,
       "status": "AVAILABLE_SAME_DATE",
       "row_count": 13569,
@@ -145,13 +169,13 @@
   },
   "candidate_status": "RESEARCH_ONLY",
   "candidate_count": 20,
-  "artifact": "mis-validation-41614236520",
+  "artifact": "mis-validation-41656125622",
   "candidate_publication": {
     "status": "PUBLISHED",
     "idempotent": false,
     "path": "state/candidates/2026-11-03.json",
     "revision": 1,
     "published_at": "2026-11-03T13:34:28.025+08:00",
-    "commit_sha": "e650168056332771b964c5ff9ccff703b3da0ec9"
+    "commit_sha": "4586b9127355e5f044efd415f519a976c7d7383f"
   }
 }
