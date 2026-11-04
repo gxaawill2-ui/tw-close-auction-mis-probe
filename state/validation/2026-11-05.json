@@ -1,0 +1,15 @@
+{
+  "trade_date": "2026-11-05",
+  "checked_at": "2026-11-05T01:36:27.205+08:00",
+  "run_id": "41878891379",
+  "status": "PENDING_NO_CAPTURE",
+  "publication_observations": [
+    {
+      "checked_at": "2026-11-05T01:36:27.205+08:00",
+      "status": "PENDING_NO_CAPTURE",
+      "sources": []
+    }
+  ],
+  "publication_timing_note": "Only observed checks bound availability; exact release time is not assumed.",
+  "updated_at": "2026-11-05T01:36:27.638+08:00"
+}
