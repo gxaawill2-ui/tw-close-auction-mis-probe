@@ -1,0 +1,11 @@
+{
+  "run_id": "42308862235",
+  "status": "TEST_ONLY",
+  "scope": "DISPATCH_SAFETY_ONLY_NOT_MARKET_EVIDENCE",
+  "sentinel": "1794005216139",
+  "started_at": "2026-11-07T07:00:41.694+08:00",
+  "capture_claimed": true,
+  "capture_owner_run_id": "42308862235",
+  "claimed_at": "2026-11-07T07:01:11.667+08:00",
+  "updated_at": "2026-11-07T07:01:11.667+08:00"
+}
