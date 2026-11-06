@@ -337,36 +337,69 @@ def dispatch_safety(output):
     return 0
 
 
-def health(output):
-    now = probe.now_tpe();date=now.date().isoformat()
-    try:calendar=calendar_state(now,output)
-    except Exception as exc:
-        print('Calendar check unavailable: '+type(exc).__name__,flush=True)
-        calendar={}
-    record,_ = read_state(live_path(date))
-    if calendar.get('is_trading_day',now.weekday()<5) and now.strftime('%H:%M:%S') >= '13:40:00' and record.get('phase') != 'completed':
-        if not record:
-            record = merge_state(live_path(date),{'trade_date':date,'status':'failed_missing',
-                'phase':'watchdog','error':'No live execution record by the health check; no backfill'})
+def health(output, receipt_error=None):
+    import schedule_health
+    now = probe.now_tpe();date=now.date().isoformat();errors=[]
+    if receipt_error:errors.append(receipt_error)
+    def attempt(stage, call, default=None):
+        try:return call()
+        except Exception as exc:
+            # Only fixed stages/types/status, never secret-bearing exception text.
+            error={'stage':stage,'error_type':type(exc).__name__}
+            if isinstance(exc,urllib.error.HTTPError):error['http_status']=exc.code
+            errors.append(error)
+            return default
+    def saved(path):
+        def load():
+            value=read_state(path)[0]
+            if not isinstance(value,dict):raise ValueError('INVALID_STATE_OBJECT')
+            return value
+        return attempt(path,load,{})
+    calendar=saved('state/calendars/'+str(now.year)+'.json')
+    record=saved(live_path(date))
+    candidates=saved('state/candidates/'+date+'.json')
+    runs=attempt('live_run_lookup',lambda:api(schedule_health.run_query(now)))
+    summary=schedule_health.summarize(now,calendar,record,candidates,runs)
+    result={'mode':'health','checked_at':probe.iso(),'live_state':record,
+            'event':os.getenv('GITHUB_EVENT_NAME'),'cron':os.getenv('SCHEDULE_CRON'),
+            'health':summary,'monitor_errors':errors}
+    def checkpoint():
+        (output/'health.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
+    # Local evidence survives remote receipt/write/Issue timeouts and is uploaded
+    # by the existing health workflow. Monitoring never calls MIS or the collector.
+    checkpoint()
+    if summary['is_trading_day'] is True and now.strftime('%H:%M:%S') >= '13:40:00' and record.get('phase') != 'completed':
+        if not record and not any(e['stage']==live_path(date) for e in errors):
+            attempt('missing_watchdog',lambda:merge_state(live_path(date),{
+                'trade_date':date,'status':'failed_missing','phase':'watchdog',
+                'error':'No live execution record by the health check; no backfill'}))
         elif record.get('status') == 'running':
-            record = merge_state(live_path(date),{'status':'failed_incomplete',
-                'error':'No completion by 13:40 health check','watchdog_at':probe.iso()})
-    publish()
-    result = {'mode':'health','checked_at':probe.iso(),'live_state':record,
-              'event':os.getenv('GITHUB_EVENT_NAME'),'cron':os.getenv('SCHEDULE_CRON')}
-    (output/'health.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
-    print(json.dumps(result,ensure_ascii=False),flush=True)
-    return 0
+            attempt('incomplete_watchdog',lambda:merge_state(live_path(date),{
+                'status':'failed_incomplete','error':'No completion by 13:40 health check',
+                'watchdog_at':probe.iso()}))
+    attempt('save_health',lambda:merge_state('state/health/'+date+'.json',{
+        **summary,'monitor_errors':errors.copy()}))
+    checkpoint()
+    attempt('publish_status_issue',publish)
+    checkpoint()
+    print(json.dumps({'health':summary,'monitor_errors':errors},ensure_ascii=False),flush=True)
+    return 1 if errors else 0
 
 
 def run(mode, output):
     output.mkdir(parents=True,exist_ok=True)
+    if mode == 'health':
+        error=None
+        try:receipt()
+        except Exception as exc:
+            error={'stage':'execution_receipt','error_type':type(exc).__name__}
+            if isinstance(exc,urllib.error.HTTPError):error['http_status']=exc.code
+        return health(output,error)
     receipt()
     if mode == 'dispatch-safety':return dispatch_safety(output)
     if mode == 'validation':
         import official_retry
         return official_retry.run(probe.now_tpe().date().isoformat(),output,__import__(__name__),probe)
-    if mode == 'health':return health(output)
     if mode == 'workflow-failure':
         date=probe.now_tpe().date().isoformat()
         record,_=read_state(live_path(date))
