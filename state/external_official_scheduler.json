@@ -1,6 +1,6 @@
 {
   "provider": "cron-job.org",
-  "status": "AUTHENTICATION_RECHECK_REQUIRED",
+  "status": "CREDENTIAL_UPDATED_AWAITING_OFFICIAL_RUN",
   "verified_date": "2026-10-07",
   "timezone": "Asia/Taipei",
   "weekdays": [
@@ -59,10 +59,44 @@
   "note": "Only missing official jobs were cloned through the authenticated UI, preserving the existing request settings and token without re-entry or extraction. Saved common views confirmed enabled, weekday-only expressions and Asia/Taipei next executions. Inherited advanced request settings confirmed POST, body and four headers. Existing live capture jobs and the successful external Test job were unchanged; no Test was repeated. New recurring jobs have not yet reached their first scheduled execution.",
   "historical_verified_status": "VERIFIED",
   "current_verification": {
-    "observed_date": "2026-11-06",
-    "observed_http_401_job": 8596664,
-    "other_official_jobs_latest": "HTTP_ERROR_SEEN_CODE_NOT_INDEPENDENTLY_READ",
-    "credential_rotation_required": true,
-    "note": "Keep the original three jobs; verify each Authorization setting and HTTP response after renewal."
-  }
+    "observed_date": "2026-11-07",
+    "result": "USER_UPDATED_ORIGINAL_THREE_JOBS_COMMON_CREDENTIAL_SAFE_TEST_VERIFIED",
+    "token_name": "mis-cron-dispatch",
+    "token_expired": false,
+    "metadata_expiration_date": "2026-12-07",
+    "credential_updated_by": "user",
+    "jobs_reloaded_after_user_save": true,
+    "jobs_enabled": true,
+    "timezone": "Asia/Taipei",
+    "safe_external_test": {
+      "job_id": 8581707,
+      "job_enabled": false,
+      "http_status": 204,
+      "duration_seconds": 1.62,
+      "github_run_id": 42308862235,
+      "github_event": "workflow_dispatch",
+      "run_created_at": "2026-11-06T23:00:35Z",
+      "run_conclusion": "success",
+      "mode": "dispatch-safety",
+      "decision": "CLAIMED_TEST_ONLY",
+      "artifact_id": 13547182591,
+      "mis_requests": 0,
+      "daily_live_state_mutated": false,
+      "python_tests": 298,
+      "node_tests": 105
+    },
+    "live_trading_acceptance": "PENDING_NEXT_OFFICIAL_RUN",
+    "individual_production_job_http_tests": "NOT_PERFORMED_TO_AVOID_LIVE_OR_VALIDATION_SIDE_EFFECTS",
+    "note": "Original six jobs and disabled Test saved by user; stored schedules, timezone and nonsecret bodies reloaded. Common credential dispatch proven with original disabled Test only, not each production job. Nov5/6 failure records retained. Token inadvertently included in tool output; user explicitly accepts and requests reuse; no credential value saved to Git.",
+    "official_workflow_dispatch_tested": false
+  },
+  "verification_history": [
+    {
+      "observed_date": "2026-11-06",
+      "observed_http_401_job": 8596664,
+      "other_official_jobs_latest": "HTTP_ERROR_SEEN_CODE_NOT_INDEPENDENTLY_READ",
+      "credential_rotation_required": true,
+      "note": "Keep the original three jobs; verify each Authorization setting and HTTP response after renewal."
+    }
+  ]
 }
