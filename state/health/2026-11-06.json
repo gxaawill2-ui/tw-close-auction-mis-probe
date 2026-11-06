@@ -1,0 +1,17 @@
+{
+  "trade_date": "2026-11-06",
+  "checked_at": "2026-11-06T19:21:28.119773+08:00",
+  "state": "CAPTURE_FAILED",
+  "is_trading_day": true,
+  "trigger_status": "NO_LIVE_RUN_BY_1302",
+  "primary_check_deadline": "2026-11-06T13:02:00+08:00",
+  "live_runs": [],
+  "capture_status": "CAPTURE_FAILED",
+  "publication_status": "NOT_PUBLISHED",
+  "candidate_count": null,
+  "mis_requests": 0,
+  "no_backfill": true,
+  "limitations": "Run creation is not runner start; external HTTP/token status requires provider history. Native health schedule can itself be delayed.",
+  "monitor_errors": [],
+  "updated_at": "2026-11-06T19:21:29.463+08:00"
+}
