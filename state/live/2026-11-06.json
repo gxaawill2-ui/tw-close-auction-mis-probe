@@ -1,0 +1,16 @@
+{
+  "trade_date": "2026-11-06",
+  "status": "missing_incomplete",
+  "phase": "scheduler_authentication_failed",
+  "capture_outcome": "CAPTURE_FAILED",
+  "capture_blocked": true,
+  "run_id": null,
+  "error": "Original external MIS jobs returned HTTP 401; GitHub mis-cron-dispatch token shown expired. No timely MIS live Run or saved capture observed; no backfill permitted.",
+  "incident_recorded_date": "2026-11-06",
+  "evidence_scope": "External HTTP history and GitHub Run metadata only; no market evidence",
+  "candidate_publication": {
+    "status": "NOT_PUBLISHED",
+    "reason": "NO_CAPTURE"
+  },
+  "mis_requests_during_investigation": 0
+}

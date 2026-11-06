@@ -1,6 +1,6 @@
 {
   "provider": "cron-job.org",
-  "status": "VERIFIED",
+  "status": "AUTHENTICATION_FAILED",
   "configured": true,
   "timezone": "Asia/Taipei",
   "weekday_times": [
@@ -61,5 +61,23 @@
   "test_artifact_size_bytes": 1068320,
   "test_created_at": "2026-10-05T11:52:01Z",
   "test_finished_at": "2026-10-05T19:53:26.671+08:00",
-  "verified_at": "2026-10-05T12:01:48.125Z"
+  "verified_at": "2026-10-05T12:01:48.125Z",
+  "historical_verified_status": "VERIFIED",
+  "credential_status": "EXPIRED",
+  "current_verification": {
+    "observed_date": "2026-11-06",
+    "result": "GITHUB_HTTP_401_AND_TOKEN_EXPIRED_UI",
+    "token_name": "mis-cron-dispatch",
+    "token_expired": true,
+    "jobs_enabled": true,
+    "timezone": "Asia/Taipei",
+    "source": "Authenticated cron-job.org history and GitHub fine-grained token settings",
+    "live_job_ids": [
+      8583391,
+      8583409,
+      8583415
+    ],
+    "safe_external_test": "NOT_YET_RETESTED_AFTER_ROTATION",
+    "note": "Original October VERIFIED test remains historical; renewal and one safe Test run are required. No credential value stored."
+  }
 }
