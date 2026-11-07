@@ -4,8 +4,8 @@
     "last_checked_at": "2026-10-09T11:00:24+08:00"
   },
   "https://www.capitalfund.com.tw/etf/product/detail/195": {
-    "sha256": "8217ffb25180ae2200effda3adefff2427f35bef967e80fc338bd835c091c5e5",
-    "last_checked_at": "2026-11-07T17:36:01+08:00"
+    "sha256": "afa2f6d975de12241bcbd50a228dac611746624d0752e92bbf4a5209dacf1ad4",
+    "last_checked_at": "2026-11-07T23:46:03+08:00"
   },
   "https://www.fhtrust.com.tw/ETF/etf_detail/ETF21": {
     "sha256": "bc289f1248fea9b4ca709523f08fbedad2d76cee3dd7e570b8dc421bb0223463",
@@ -17,6 +17,6 @@
   },
   "https://www.twse.com.tw/downloads/en/products/indices/IndexSen20.pdf": {
     "sha256": "ff2c882477fa19e6a12ea2e78d08797e7b9ca15e273386a9fa45efcee9cb6f92",
-    "last_checked_at": "2026-11-07T17:36:01+08:00"
+    "last_checked_at": "2026-11-07T23:46:03+08:00"
   }
 }
