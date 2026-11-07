@@ -1,0 +1,11 @@
+{
+  "event": "workflow_dispatch",
+  "cron": "",
+  "declared_source": "cron-job.org-test",
+  "source_verified": false,
+  "mode": "dispatch-safety",
+  "run_id": "42345263034",
+  "runner_started_at": "2026-11-07T14:03:02.612+08:00",
+  "received_at": "2026-11-07T14:03:31.793+08:00",
+  "updated_at": "2026-11-07T14:03:31.987+08:00"
+}
