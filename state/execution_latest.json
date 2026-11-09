@@ -3,9 +3,9 @@
   "cron": "",
   "declared_source": "manual",
   "source_verified": false,
-  "mode": "live",
-  "run_id": "42566508977",
-  "runner_started_at": "2026-11-09T13:34:38.386+08:00",
-  "received_at": "2026-11-09T13:35:05.027+08:00",
-  "updated_at": "2026-11-09T13:35:08.007+08:00"
+  "mode": null,
+  "run_id": "42575501177",
+  "runner_started_at": "2026-11-09T14:50:18.343+08:00",
+  "received_at": "2026-11-09T14:50:18.343+08:00",
+  "updated_at": "2026-11-09T14:50:25.711+08:00"
 }
