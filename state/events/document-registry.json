@@ -4,12 +4,12 @@
     "last_checked_at": "2026-10-09T11:00:24+08:00"
   },
   "https://www.capitalfund.com.tw/etf/product/detail/195": {
-    "sha256": "b5886419e7a621d81c5d5f7c0d07a8b70af67d72232de2740eb62c80e1c9e1d2",
-    "last_checked_at": "2026-11-10T08:36:01+08:00"
+    "sha256": "16467e2d28db2b1a5533a2ebcec45303145f83ae7c793ab52b4c684ed275c1f0",
+    "last_checked_at": "2026-11-10T15:19:49+08:00"
   },
   "https://www.fhtrust.com.tw/ETF/etf_detail/ETF21": {
     "sha256": "1cd0c0b6a6886747b9a9e0b4987543cacc311ef29a4d44ac1974b3e621189700",
-    "last_checked_at": "2026-11-10T08:36:01+08:00"
+    "last_checked_at": "2026-11-10T15:19:49+08:00"
   },
   "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-twse-taiwan-index-series-ground-rules.pdf": {
     "sha256": "b9019a8a6accfcc7e544f439b068ecd06d11e9c5fc6095308b0aa68bd6df1d25",
@@ -17,6 +17,6 @@
   },
   "https://www.twse.com.tw/downloads/en/products/indices/IndexSen20.pdf": {
     "sha256": "ff2c882477fa19e6a12ea2e78d08797e7b9ca15e273386a9fa45efcee9cb6f92",
-    "last_checked_at": "2026-11-10T08:36:01+08:00"
+    "last_checked_at": "2026-11-10T15:19:49+08:00"
   }
 }
