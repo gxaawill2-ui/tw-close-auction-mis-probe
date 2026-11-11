@@ -1,19 +1,333 @@
 {
   "trade_date": "2026-11-11",
-  "status": "running",
+  "status": "partial",
   "phase": "completed",
   "run_id": "42962877031",
   "runner_started_at": "2026-11-11T13:00:42.243+08:00",
   "python_started_at": "2026-11-11T13:01:20.262+08:00",
   "artifact": "mis-probe-42962877031",
   "error": null,
-  "finished_at": null,
-  "snapshots": {},
-  "official_validation": "unverified",
+  "finished_at": "2026-11-11T13:34:41.746+08:00",
+  "snapshots": {
+    "preclose": {
+      "phase": "preclose",
+      "stock_universe_count": 1982,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-11-11T13:24:50.001+08:00",
+      "last_response_received_at": "2026-11-11T13:25:31.869+08:00",
+      "wall_time_seconds": 41.924,
+      "fastest_batch_ms": 2097,
+      "average_batch_ms": 5142.3,
+      "median_batch_ms": 5189.5,
+      "p95_batch_ms": 7454,
+      "slowest_batch_ms": 8183,
+      "success_count": 1982,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "pre_reference_A": {
+      "phase": "pre_reference_A",
+      "stock_universe_count": 1982,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-11-11T13:27:00.000+08:00",
+      "last_response_received_at": "2026-11-11T13:27:36.638+08:00",
+      "wall_time_seconds": 36.69,
+      "fastest_batch_ms": 2070,
+      "average_batch_ms": 4390.0,
+      "median_batch_ms": 4125.0,
+      "p95_batch_ms": 6855,
+      "slowest_batch_ms": 8824,
+      "success_count": 1982,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "pre_reference_B": {
+      "phase": "pre_reference_B",
+      "stock_universe_count": 1982,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-11-11T13:28:15.000+08:00",
+      "last_response_received_at": "2026-11-11T13:28:55.202+08:00",
+      "wall_time_seconds": 40.253,
+      "fastest_batch_ms": 1702,
+      "average_batch_ms": 4935.2,
+      "median_batch_ms": 5191.0,
+      "p95_batch_ms": 7188,
+      "slowest_batch_ms": 8371,
+      "success_count": 1982,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "pre_reference_C": {
+      "phase": "pre_reference_C",
+      "stock_universe_count": 1982,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-11-11T13:29:00.000+08:00",
+      "last_response_received_at": "2026-11-11T13:29:29.115+08:00",
+      "wall_time_seconds": 29.163,
+      "fastest_batch_ms": 1368,
+      "average_batch_ms": 3395.4,
+      "median_batch_ms": 2948.5,
+      "p95_batch_ms": 6311,
+      "slowest_batch_ms": 8564,
+      "success_count": 1982,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "close_reference_A": {
+      "phase": "close_reference_A",
+      "stock_universe_count": 1982,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-11-11T13:32:30.001+08:00",
+      "last_response_received_at": "2026-11-11T13:33:14.399+08:00",
+      "wall_time_seconds": 44.457,
+      "fastest_batch_ms": 1289,
+      "average_batch_ms": 5308.3,
+      "median_batch_ms": 5473.0,
+      "p95_batch_ms": 8173,
+      "slowest_batch_ms": 10202,
+      "success_count": 1982,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "close_reference_B": {
+      "phase": "close_reference_B",
+      "stock_universe_count": 1982,
+      "batch_count": 40,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-11-11T13:33:20.000+08:00",
+      "last_response_received_at": "2026-11-11T13:33:42.570+08:00",
+      "wall_time_seconds": 22.62,
+      "fastest_batch_ms": 1479,
+      "average_batch_ms": 2498.6,
+      "median_batch_ms": 2231.0,
+      "p95_batch_ms": 4257,
+      "slowest_batch_ms": 5718,
+      "success_count": 1982,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true
+    },
+    "close_reference_C": {
+      "phase": "close_reference_C",
+      "stock_universe_count": 130,
+      "batch_count": 3,
+      "batch_size": 50,
+      "concurrency": 5,
+      "first_request_started_at": "2026-11-11T13:34:10.000+08:00",
+      "last_response_received_at": "2026-11-11T13:34:16.956+08:00",
+      "wall_time_seconds": 6.962,
+      "fastest_batch_ms": 2718,
+      "average_batch_ms": 5010.3,
+      "median_batch_ms": 5357,
+      "p95_batch_ms": 6956,
+      "slowest_batch_ms": 6956,
+      "success_count": 130,
+      "missing_count": 0,
+      "missing_codes": [],
+      "http_errors": 0,
+      "timeouts": 0,
+      "retries": 0,
+      "empty_count": 0,
+      "duplicate_count": 0,
+      "insufficient_batches": [],
+      "symbol_set_equal": true,
+      "affected_symbols": [
+        "otc:2073",
+        "otc:2724",
+        "otc:2751",
+        "otc:3067",
+        "otc:3085",
+        "otc:3095",
+        "otc:3188",
+        "otc:3191",
+        "otc:3205",
+        "otc:3206",
+        "otc:3207",
+        "otc:3211",
+        "otc:3213",
+        "otc:3217",
+        "otc:3218",
+        "otc:3219",
+        "otc:3221",
+        "otc:3224",
+        "otc:3226",
+        "otc:3227",
+        "otc:3228",
+        "otc:3230",
+        "otc:3232",
+        "otc:3234",
+        "otc:3236",
+        "otc:3252",
+        "otc:3259",
+        "otc:3260",
+        "otc:3264",
+        "otc:3265",
+        "otc:3268",
+        "otc:3272",
+        "otc:3276",
+        "otc:3284",
+        "otc:3285",
+        "otc:3287",
+        "otc:3288",
+        "otc:3289",
+        "otc:3290",
+        "otc:3293",
+        "otc:3294",
+        "otc:3297",
+        "otc:3303",
+        "otc:3306",
+        "otc:3310",
+        "otc:3313",
+        "otc:3317",
+        "otc:3322",
+        "otc:3323",
+        "otc:3324",
+        "otc:3325",
+        "otc:3332",
+        "otc:3339",
+        "otc:3349",
+        "otc:3354",
+        "otc:3357",
+        "otc:3360",
+        "otc:3362",
+        "otc:3363",
+        "otc:3372",
+        "otc:3373",
+        "otc:3374",
+        "otc:3379",
+        "otc:3388",
+        "otc:3390",
+        "otc:3402",
+        "otc:3430",
+        "otc:3434",
+        "otc:3438",
+        "otc:3441",
+        "otc:3444",
+        "otc:3455",
+        "otc:3465",
+        "otc:3466",
+        "otc:3467",
+        "otc:3479",
+        "otc:3483",
+        "otc:3484",
+        "otc:3485",
+        "otc:3489",
+        "otc:3490",
+        "otc:3491",
+        "otc:3492",
+        "otc:3498",
+        "otc:3499",
+        "otc:3508",
+        "otc:3511",
+        "otc:3512",
+        "otc:3516",
+        "otc:3520",
+        "otc:3521",
+        "otc:3522",
+        "otc:3523",
+        "otc:3526",
+        "otc:3527",
+        "otc:3529",
+        "otc:3531",
+        "otc:3537",
+        "otc:3540",
+        "otc:3541",
+        "otc:3546",
+        "otc:3548",
+        "otc:3551",
+        "otc:3552",
+        "otc:3555",
+        "otc:3556",
+        "otc:3629",
+        "otc:4406",
+        "otc:4530",
+        "otc:4706",
+        "otc:4728",
+        "otc:5223",
+        "otc:5520",
+        "otc:5601",
+        "otc:5703",
+        "otc:6242",
+        "otc:6542",
+        "otc:6642",
+        "otc:6661",
+        "otc:6662",
+        "otc:6680",
+        "otc:8087",
+        "otc:8342",
+        "otc:8444",
+        "otc:8477",
+        "otc:8929",
+        "tse:1538",
+        "tse:3593",
+        "tse:6655",
+        "tse:7732"
+      ]
+    },
+    "targeted_retry_rounds": [],
+    "c2_supplement": {
+      "batch_count": 1,
+      "symbol_requests": 1,
+      "last_response_received_at": "2026-11-11T13:34:29.692+08:00"
+    }
+  },
+  "official_validation": "PENDING_SCHEDULED_POSTMARKET",
   "capture_claimed": true,
   "capture_owner_run_id": "42962877031",
   "claimed_at": "2026-11-11T13:01:20.590+08:00",
-  "updated_at": "2026-11-11T13:34:26.236+08:00",
+  "updated_at": "2026-11-11T13:34:42.064+08:00",
   "preclose_captured": true,
   "universe_count": 1982,
   "reference_progress": {
@@ -59,5 +373,517 @@
       "returned_count": 130,
       "missing_count": 0
     }
+  },
+  "company_universe_count": 1986,
+  "universe_audit_status": "OFFICIAL_SOURCES_DATE_CHECKED",
+  "exclusion_count": 4,
+  "capture_architecture": "DUAL_SNAPSHOT_RESEARCH_V1",
+  "pre_reference_C_enabled": true,
+  "close_reference_C_enabled": true,
+  "live_close_research_enabled": true,
+  "probe_scheduled_count": 68,
+  "candidate_count": 8,
+  "research_calculable_count": 1952,
+  "candidate_status": "RESEARCH_ONLY",
+  "validated": false,
+  "freshness": {
+    "status": "RESEARCH_ONLY",
+    "p_before_validated_count": 0,
+    "p_close_validated_count": 0,
+    "both_validated_count": 0,
+    "confirmed_candidate_count": 1589
+  },
+  "convergence": {
+    "version": "DUAL_SNAPSHOT_RESEARCH_V1",
+    "status": "RESEARCH_ONLY",
+    "universe_count": 1982,
+    "p_before_converged_count": 1954,
+    "p_close_converged_count": 1852,
+    "both_converged_count": 1848,
+    "unknown_count": 134,
+    "stale_batch_count": 5,
+    "server_regression_response_count": 0,
+    "targeted_retry_count": 1,
+    "targeted_http_attempt_count": 1,
+    "true_delayed_close_candidate_count": 1,
+    "delayed_transition_candidate_count": 6,
+    "no_closing_new_trade_count": 294,
+    "research_calculable_count": 1952,
+    "p_before_validated_count": 0,
+    "p_close_validated_count": 0,
+    "both_validated_count": 0,
+    "p_before_original_AB_converged_count": 1709,
+    "p_before_recovered_by_targeted_retry_count": 0,
+    "p_close_original_AB_converged_count": 1852,
+    "p_close_recovered_by_targeted_retry_count": 0,
+    "stale_response_count": 5,
+    "p_before_original_AB_with_retry_converged_count": 1709,
+    "p_before_ABC_converged_count": 1558,
+    "p_before_AB_converged_count": 150,
+    "p_before_AC_converged_count": 0,
+    "p_before_BC_converged_count": 244,
+    "p_before_unresolved_count": 28,
+    "p_before_unresolved_tse_count": 3,
+    "p_before_unresolved_otc_count": 25,
+    "research_close_AB_converged_count": 1852,
+    "research_close_AC_converged_count": 0,
+    "research_close_BC_converged_count": 103,
+    "research_close_A_1330_fresh_candidate_count": 0,
+    "research_close_TARGETED_converged_count": 1,
+    "research_close_delayed_close_candidate_count": 0,
+    "research_close_unresolved_count": 26,
+    "validated": false,
+    "research_candidate_count": 8
+  },
+  "live_research_summary": {
+    "trade_date": "2026-11-11",
+    "status": "RESEARCH_ONLY",
+    "validated": false,
+    "tradable_universe": 1982,
+    "P_before_converged": 1954,
+    "P_close": {
+      "AB_converged": 1852,
+      "AC_converged": 0,
+      "BC_converged": 103,
+      "A_1330_fresh_candidate": 0,
+      "TARGETED_converged": 1,
+      "delayed_close_candidate": 0,
+      "unresolved": 26
+    },
+    "research_calculable_count": 1952,
+    "candidate_count": 8,
+    "candidates": [
+      {
+        "code": "4706",
+        "name": "大恭",
+        "tail_return": "0.051764705882352941176470588",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "4767",
+        "name": "誠泰科技",
+        "tail_return": "0.036900369003690036900369004",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "6474",
+        "name": "華豫寧",
+        "tail_return": "0.033430232558139534883720930",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "6982",
+        "name": "大井泵浦",
+        "tail_return": "0.049861495844875346260387812",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "8087",
+        "name": "麗升能源",
+        "tail_return": "0.052910052910052910052910053",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "1516",
+        "name": "川飛",
+        "tail_return": "0.033057851239669421487603306",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "6952",
+        "name": "大武山",
+        "tail_return": "-0.0309523809523809523809523810",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      },
+      {
+        "code": "7740",
+        "name": "熙特爾-創",
+        "tail_return": "0.037628278221208665906499430",
+        "confidence_level": "HIGH_RESEARCH",
+        "validated": false
+      }
+    ],
+    "generated_at": "2026-11-11T13:34:35.512388+08:00"
+  },
+  "capture_outcome": "CAPTURE_PARTIAL",
+  "capture_completion": {
+    "version": "CAPTURE_COMPLETION_V1",
+    "capture_outcome": "CAPTURE_PARTIAL",
+    "status": "partial",
+    "exit_code": 0,
+    "core_capture_complete": true,
+    "official_validation": "PENDING_SCHEDULED_POSTMARKET",
+    "research_unresolved_count": 30,
+    "phases": {
+      "preclose": {
+        "returned_unique": 1982,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "pre_reference_A": {
+        "returned_unique": 1982,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "pre_reference_B": {
+        "returned_unique": 1982,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "close_reference_A": {
+        "returned_unique": 1982,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "close_reference_B": {
+        "returned_unique": 1982,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "pre_reference_C": {
+        "returned_unique": 1982,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      },
+      "close_reference_C": {
+        "returned_unique": 130,
+        "missing_count": 0,
+        "missing_symbols": [],
+        "http_or_request_errors": []
+      }
+    },
+    "warnings": [
+      {
+        "reason": "RESEARCH_PROBE_ERRORS",
+        "count": 23,
+        "details": [
+          {
+            "planned_at": "2026-11-11T13:24:52.000+08:00",
+            "error": "MIS_EMPTY_BODY",
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:1341",
+              "tse:1410",
+              "tse:2317",
+              "tse:2330",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:29:59.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2317"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:00.000+08:00",
+            "error": "MIS_EMPTY_BODY",
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:1341",
+              "tse:1410",
+              "tse:2317",
+              "tse:2330",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:01.000+08:00",
+            "error": "MIS_EMPTY_BODY",
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:1341",
+              "tse:1410",
+              "tse:2317",
+              "tse:2330",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:02.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2317"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:03.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2317"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:04.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2317"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:05.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2317"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:06.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2317"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:07.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2317"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:08.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2317"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:09.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2317"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:10.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2317"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:11.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2317"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:12.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2317"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:13.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2317"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:14.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2317"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:15.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2317"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:20.000+08:00",
+            "error": "URLError:<urlopen error [Errno -5] No address associated with hostname>",
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:1341",
+              "tse:1410",
+              "tse:2317",
+              "tse:2330",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:30.000+08:00",
+            "error": "URLError:<urlopen error [Errno -5] No address associated with hostname>",
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:1341",
+              "tse:1410",
+              "tse:2317",
+              "tse:2330",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:30:45.000+08:00",
+            "error": "URLError:<urlopen error [Errno -5] No address associated with hostname>",
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:1341",
+              "tse:1410",
+              "tse:2317",
+              "tse:2330",
+              "tse:2454"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:31:00.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2317"
+            ],
+            "empty": []
+          },
+          {
+            "planned_at": "2026-11-11T13:31:30.000+08:00",
+            "error": null,
+            "missing": [
+              "otc:1240",
+              "otc:1781",
+              "otc:1813",
+              "tse:2317"
+            ],
+            "empty": []
+          }
+        ]
+      },
+      {
+        "reason": "RESEARCH_UNRESOLVED",
+        "count": 30
+      }
+    ],
+    "errors": [],
+    "artifact_upload_status": "AWAITING_GITHUB_UPLOAD_STEP"
+  },
+  "c2": {
+    "completed_at": "2026-11-11T13:34:35.696705+08:00",
+    "supplemental": true
+  },
+  "c2_integration": {
+    "status": "CAPTURED",
+    "requests": 1,
+    "symbols": [
+      "otc:3349"
+    ],
+    "last_finished_at": "2026-11-11T13:34:33.260562+08:00",
+    "publication": {
+      "status": "PUBLISHED",
+      "idempotent": false,
+      "path": "state/candidates/2026-11-11.json",
+      "revision": 2,
+      "published_at": "2026-11-11T13:34:26.867+08:00",
+      "commit_sha": "33a05f9c53bc96a6377eb5bd7f6f1505aa03b445"
+    }
+  },
+  "candidate_publication": {
+    "status": "PUBLISHED",
+    "idempotent": false,
+    "path": "state/candidates/2026-11-11.json",
+    "revision": 2,
+    "published_at": "2026-11-11T13:34:26.867+08:00",
+    "commit_sha": "33a05f9c53bc96a6377eb5bd7f6f1505aa03b445",
+    "initial_published_at": "2026-11-11T13:34:26.867+08:00"
   }
 }
