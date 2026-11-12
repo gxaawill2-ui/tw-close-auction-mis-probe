@@ -1,0 +1,11 @@
+{
+  "trade_date": "2026-11-12",
+  "status": "failed_late_start",
+  "phase": "failed_late_start",
+  "runner_started_at": "2026-11-12T19:53:32.534+08:00",
+  "run_id": "43213013759",
+  "python_started_at": "2026-11-12T19:54:01.501+08:00",
+  "error": "Started after 13:24:45; no backfill permitted",
+  "artifact": "mis-probe-43213013759",
+  "updated_at": "2026-11-12T19:54:01.692+08:00"
+}
