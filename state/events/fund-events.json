@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Taipei",
-  "generated_at": "2026-11-12T08:38:00+08:00",
+  "generated_at": "2026-11-12T15:14:41+08:00",
   "method_version": "observation-priority-v1",
   "coverage_status": "PARTIAL",
   "fund_events": [
@@ -51,7 +51,7 @@
         "https://www.yuantaetfs.com/tradeInfo/pcf/0056"
       ],
       "information_available_as_of": "2026-11-12T01:17:37+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-11-12T01:17:37+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -1567,7 +1567,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T07:50:47.811603+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-10-10T07:50:47.811603+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -1654,7 +1654,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T07:50:47.811603+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-10-10T07:50:47.811603+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -1741,7 +1741,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T07:50:47.811603+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-10-10T07:50:47.811603+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -1828,7 +1828,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T07:50:47.811603+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-10-10T07:50:47.811603+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -1915,7 +1915,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T07:50:47.811603+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-10-10T07:50:47.811603+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -2002,7 +2002,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T07:50:47.811603+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-10-10T07:50:47.811603+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -2089,7 +2089,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T07:50:47.811603+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-10-10T07:50:47.811603+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -2189,7 +2189,7 @@
         "https://www.yuantaetfs.com/tradeInfo/pcf/0050"
       ],
       "information_available_as_of": "2026-11-12T01:17:37+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-11-12T01:17:37+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -3718,7 +3718,7 @@
         "https://www.yuantaetfs.com/tradeInfo/pcf/0051"
       ],
       "information_available_as_of": "2026-11-12T01:17:37+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-11-12T01:17:37+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -5234,7 +5234,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T07:50:47.811603+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-10-10T07:50:47.811603+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -5321,7 +5321,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T07:50:47.811603+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-10-10T07:50:47.811603+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -5408,7 +5408,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T07:50:47.811603+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-10-10T07:50:47.811603+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -5495,7 +5495,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T07:50:47.811603+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-10-10T07:50:47.811603+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -5582,7 +5582,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T07:50:47.811603+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-10-10T07:50:47.811603+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -5685,7 +5685,7 @@
         "https://www.yuantaetfs.com/tradeInfo/pcf/0050"
       ],
       "information_available_as_of": "2026-11-12T01:17:37+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-11-12T01:17:37+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -7289,7 +7289,7 @@
         "https://www.yuantaetfs.com/tradeInfo/pcf/0051"
       ],
       "information_available_as_of": "2026-11-12T01:17:37+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-11-12T01:17:37+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -8877,7 +8877,7 @@
         "https://openapi.twse.com.tw/v1/opendata/t187ap47_L"
       ],
       "information_available_as_of": "2026-10-10T07:50:47.811603+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-10-10T07:50:47.811603+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
@@ -8992,7 +8992,7 @@
         "https://www.yuantaetfs.com/tradeInfo/pcf/0056"
       ],
       "information_available_as_of": "2026-11-12T01:17:37+08:00",
-      "rating_generated_at": "2026-11-12T08:38:00+08:00",
+      "rating_generated_at": "2026-11-12T15:14:41+08:00",
       "first_rated_at": "2026-10-10T07:50:47.811603+08:00",
       "last_updated_at": "2026-11-12T01:17:37+08:00",
       "model_available_since": "2026-10-10T07:46:14+08:00",
