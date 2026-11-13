@@ -90,6 +90,11 @@ class CalendarGateTests(unittest.TestCase):
             with tempfile.TemporaryDirectory() as root,patch.object(c,'read_state',return_value=(state,None)),patch.object(c,'merge_state') as write,patch.object(c,'publish'):
                 c.calendar_startup_failure(Path(root),'2026-11-13','test',NOW.isoformat());write.assert_not_called()
 
+    def test_atomic_failure_write_rechecks_new_capture_owner(self):
+        with patch.object(c,'read_state',return_value=({'capture_claimed':True,'run_id':'new-owner'},'sha')),patch.object(c,'api') as write:
+            result=c.merge_state('state/live/2026-11-13.json',{'status':'failed_calendar'})
+            self.assertEqual(result['run_id'],'new-owner');write.assert_not_called()
+
     def test_real_saved_candidate_files_not_touched(self):
         import candidate_publication
         for day,count in [('2026-10-19',11),('2026-11-03',20)]:

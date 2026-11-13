@@ -54,6 +54,8 @@ def merge_state(path, patch):
             return current
         if patch.get('status') == 'failed_missing' and (current.get('capture_claimed') or current.get('capture_blocked')):
             return current
+        if patch.get('status') == 'failed_calendar' and skip_existing(current):
+            return current
         current.update(patch)
         current['updated_at'] = probe.iso()
         payload = {'message':'Record isolated MIS execution state', 'branch':'main',
