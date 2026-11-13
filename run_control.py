@@ -14,6 +14,7 @@ from pathlib import Path
 
 import probe
 import candidate_publication
+import official_calendar_gate
 
 REPO = 'gxaawill2-ui/tw-close-auction-mis-probe'
 ISSUE = 1
@@ -53,6 +54,8 @@ def merge_state(path, patch):
             return current
         if patch.get('status') == 'failed_missing' and (current.get('capture_claimed') or current.get('capture_blocked')):
             return current
+        if patch.get('status') == 'failed_calendar' and skip_existing(current):
+            return current
         current.update(patch)
         current['updated_at'] = probe.iso()
         payload = {'message':'Record isolated MIS execution state', 'branch':'main',
@@ -77,23 +80,70 @@ def next_weekday(now):
 
 def calendar_state(now, output):
     year=now.year
-    url=f'https://www.twse.com.tw/rwd/zh/holidaySchedule/holidaySchedule?response=json&queryYear={year-1911}'
-    status,raw=probe.get_bytes(url,25)
-    data=json.loads(raw)
-    if status!=200 or data.get('stat')!='ok' or data.get('queryYear')!=year or not data.get('data'):
-        raise RuntimeError('Official market calendar unavailable; no presumed trading day')
-    (output/'official_calendar.json').write_bytes(raw)
-    closed={r[0] for r in data['data'] if '最後交易日' not in r[1] and '開始交易日' not in r[1]}
+    url=official_calendar_gate.url(year)
+    attempts=[]
+    closed=None
+    for number in (1,2):
+        try:
+            status,raw=probe.get_bytes(url,6)
+            (output/f'official_calendar_attempt_{number}.json').write_bytes(raw)
+            if status!=200:raise ValueError('CALENDAR_HTTP_STATUS')
+            closed=official_calendar_gate.closed_dates(json.loads(raw),year)
+            (output/'official_calendar.json').write_bytes(raw)
+            attempts.append({'attempt':number,'status':'VALIDATED','http_status':status})
+            break
+        except Exception as exc:
+            attempts.append({'attempt':number,'status':'FAILED','error_type':type(exc).__name__})
+    fallback=closed is None
+    verified_at=probe.iso()
+    if fallback:
+        try:
+            cache,_=read_state('state/calendars/'+str(year)+'.json')
+            closed=official_calendar_gate.cached_dates(cache,now)
+            verified_at=cache['verified_at']
+            (output/'official_calendar_cache.json').write_text(json.dumps(cache,ensure_ascii=False,indent=2))
+        except Exception as exc:
+            attempts.append({'stage':'cache','status':'REJECTED','error_type':type(exc).__name__})
+            (output/'calendar_gate.json').write_text(json.dumps({'status':'FAILED','attempts':attempts},indent=2))
+            raise RuntimeError('Official market calendar unavailable; no presumed trading day') from None
+    evidence={'status':'CACHED_OFFICIAL_CALENDAR' if fallback else 'LIVE_OFFICIAL_CALENDAR',
+        'attempts':attempts,'checked_at':probe.iso(),'verified_at':verified_at,
+        'source':cache['source'] if fallback else url,'year':year,
+        'limitations':'Annual calendar only; intraday emergency closures not independently monitored.'}
+    (output/'calendar_gate.json').write_text(json.dumps(evidence,ensure_ascii=False,indent=2))
     day=now.date()+timedelta(days=1)
     while day.weekday()>=5 or day.isoformat() in closed:day+=timedelta(days=1)
-    state={'verified_at':probe.iso(),'source':url,'year':year,
+    state={'verified_at':verified_at,'source':evidence['source'],'year':year,
+        'calendar_gate':evidence,
         'next_trade_date':day.isoformat(),'today':now.date().isoformat(),
         'is_trading_day':now.weekday()<5 and now.date().isoformat() not in closed}
     merge_state('state/calendar_latest.json',state)
-    merge_state('state/calendars/'+str(year)+'.json',{'year':year,'closed_dates':sorted(closed),
-        'source':url,'verified_at':state['verified_at'],'status':'OFFICIAL_ANNUAL_CALENDAR',
-        'limitations':'Intraday emergency closures not independently monitored; live runner rechecks official calendar.'})
+    if not fallback:
+        merge_state('state/calendars/'+str(year)+'.json',{'year':year,'closed_dates':sorted(closed),
+            'source':url,'verified_at':state['verified_at'],'status':'OFFICIAL_ANNUAL_CALENDAR',
+            'limitations':'Intraday emergency closures not independently monitored; live runner rechecks official calendar.'})
     return state
+
+
+def calendar_startup_failure(output, date, run_id, started):
+    # Write local evidence first: remote status IO must not erase the incident.
+    failure={'trade_date':date,'run_id':run_id,'status':'failed_calendar',
+        'phase':'calendar_gate_failed','capture_outcome':'CAPTURE_FAILED',
+        'preclose_captured':False,'capture_claimed':False,'capture_blocked':False,
+        'candidate_publication':{'status':'NOT_PUBLISHED'},
+        'runner_started_at':started,'finished_at':probe.iso(),
+        'error':'OFFICIAL_CALENDAR_UNAVAILABLE','mis_requests':0}
+    (output/'run_summary.json').write_text(json.dumps(failure,indent=2))
+    errors=[]
+    try:
+        current,_=read_state(live_path(date))
+        if not current.get('capture_claimed') and not current.get('capture_blocked') and not skip_existing(current):
+            merge_state(live_path(date),failure)
+        publish()
+    except Exception as exc:errors.append(type(exc).__name__)
+    (output/'controller_status.json').write_text(json.dumps({'mode':'live','exit_code':1,'status_errors':errors}))
+    probe.package(output,date)
+    return 1
 
 
 def render(now, record, dry, receipt, calendar=None, armed=None, validation=None, next_armed=None, external=None, execution=None):
@@ -430,7 +480,10 @@ def run(mode, output):
             (output/'run_summary.json').write_text(json.dumps({'status':'failed_late_start','runner_started_at':started}))
             probe.package(output,date)
             return 2
-        calendar=calendar_state(probe.now_tpe(),output)
+        try:
+            calendar=calendar_state(probe.now_tpe(),output)
+        except Exception:
+            return calendar_startup_failure(output,date,run_id,started)
         if not calendar['is_trading_day']:
             (output/'skipped.json').write_text(json.dumps({'status':'official_nontrading_day'}))
             return 0
