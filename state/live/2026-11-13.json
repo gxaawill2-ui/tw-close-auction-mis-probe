@@ -1,0 +1,30 @@
+{
+  "trade_date": "2026-11-13",
+  "status": "failed_calendar",
+  "phase": "calendar_gate_failed",
+  "capture_outcome": "CAPTURE_FAILED",
+  "run_id": "43371127097",
+  "finished_at": "2026-11-13T13:18:49.808+08:00",
+  "preclose_captured": false,
+  "capture_claimed": false,
+  "capture_blocked": true,
+  "candidate_publication": {
+    "status": "NOT_PUBLISHED"
+  },
+  "error": "OFFICIAL_CALENDAR_UNAVAILABLE",
+  "artifact_upload_status": "FAILED",
+  "mis_requests": 0,
+  "incident_diagnosis": {
+    "recorded_after_incident": true,
+    "source": "GitHub Actions job logs",
+    "failed_runs": [
+      43369150372,
+      43370246036,
+      43371127097
+    ],
+    "failure_stage": "calendar_state before claim_capture and probe.live",
+    "original_calendar_response_saved": false,
+    "historical_prices_reconstructed": false,
+    "note": "All three runs stopped at official calendar validation. Today missed all required snapshots; do not backfill. Current replay of old queryYear selector returned 2027; exact original 13:00/13:10/13:18 responses were not saved."
+  }
+}
