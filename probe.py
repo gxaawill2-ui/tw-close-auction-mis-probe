@@ -230,6 +230,9 @@ def analyze(symbols: list[dict], result: FetchResult) -> dict:
 
 
 def snapshot(phase: str, planned: datetime, universe: list[dict], output: Path, deadline: datetime | None = None, *, retry_journal: str | None = None) -> dict:
+    if phase in ('pre_reference_B', 'pre_reference_C'):
+        import bounded_reference
+        return bounded_reference.capture(phase, planned, universe, output, deadline)
     groups = [universe[i:i + BATCH_SIZE] for i in range(0, len(universe), BATCH_SIZE)]
     started = now_tpe()
     records: list[dict] = []
