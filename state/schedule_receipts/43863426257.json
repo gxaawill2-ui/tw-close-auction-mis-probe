@@ -1,0 +1,11 @@
+{
+  "event": "schedule",
+  "cron": "47 3 * * 1-5",
+  "declared_source": "manual",
+  "source_verified": false,
+  "mode": "live",
+  "run_id": "43863426257",
+  "runner_started_at": "2026-11-16T20:05:36.633+08:00",
+  "received_at": "2026-11-16T20:06:08.632+08:00",
+  "updated_at": "2026-11-16T20:06:08.836+08:00"
+}
