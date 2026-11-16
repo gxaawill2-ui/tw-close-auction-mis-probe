@@ -1,7 +1,7 @@
 {
   "trade_date": "2026-11-17",
-  "checked_at": "2026-11-17T01:04:15.003+08:00",
-  "run_id": "43914362979",
+  "checked_at": "2026-11-17T03:53:46.489+08:00",
+  "run_id": "43944054197",
   "status": "PENDING_NO_CAPTURE",
   "publication_observations": [
     {
@@ -13,8 +13,13 @@
       "checked_at": "2026-11-17T01:04:15.003+08:00",
       "status": "PENDING_NO_CAPTURE",
       "sources": []
+    },
+    {
+      "checked_at": "2026-11-17T03:53:46.489+08:00",
+      "status": "PENDING_NO_CAPTURE",
+      "sources": []
     }
   ],
   "publication_timing_note": "Only observed checks bound availability; exact release time is not assumed.",
-  "updated_at": "2026-11-17T01:04:15.525+08:00"
+  "updated_at": "2026-11-17T03:53:46.846+08:00"
 }
