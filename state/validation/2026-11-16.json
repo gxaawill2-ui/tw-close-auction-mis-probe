@@ -1,19 +1,19 @@
 {
   "trade_date": "2026-11-16",
-  "checked_at": "2026-11-16T15:20:23.182+08:00",
-  "run_id": "43823104532",
-  "status": "PENDING",
+  "checked_at": "2026-11-16T17:50:30.557+08:00",
+  "run_id": "43843336656",
+  "status": "SAME_DATE_COMPARISON_ONLY",
   "source_capture_run_id": "43807474835",
   "source_capture_artifact_id": 14200631398,
-  "official_validation": "PENDING",
-  "matches": 1079,
-  "mismatches": 4,
-  "unavailable": 900,
+  "official_validation": "SAME_DATE_COMPARISON_ONLY",
+  "matches": 1944,
+  "mismatches": 13,
+  "unavailable": 26,
   "official_sources": [
     {
       "ex": "tse",
       "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261116&type=ALLBUT0999&response=json",
-      "checked_at": "2026-11-16T15:20:26.836+08:00",
+      "checked_at": "2026-11-16T17:50:33.619+08:00",
       "http_status": 200,
       "status": "AVAILABLE_SAME_DATE",
       "row_count": 1390,
@@ -22,9 +22,11 @@
     {
       "ex": "otc",
       "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F11%2F16&response=json",
-      "checked_at": "2026-11-16T15:20:28.499+08:00",
-      "status": "PENDING_SOURCE_ERROR",
-      "error": "HTTPError:HTTP Error 403: Forbidden"
+      "checked_at": "2026-11-16T17:50:35.070+08:00",
+      "http_status": 200,
+      "status": "AVAILABLE_SAME_DATE",
+      "row_count": 13843,
+      "response_date": "20261116"
     }
   ],
   "freshness": {
@@ -47,7 +49,7 @@
     "true_delayed_close_candidate_count": 2,
     "delayed_transition_candidate_count": 4,
     "no_closing_new_trade_count": 229,
-    "research_calculable_count": 1387,
+    "research_calculable_count": 1381,
     "p_before_validated_count": 0,
     "p_close_validated_count": 0,
     "both_validated_count": 0,
@@ -76,7 +78,7 @@
   },
   "candidate_status": "RESEARCH_ONLY",
   "candidate_count": 23,
-  "artifact": "mis-validation-43823104532",
+  "artifact": "mis-validation-43843336656",
   "candidate_publication": {
     "status": "FAILED",
     "error": "ValueError:SAVED_CAPTURE_INCOMPLETE_OR_CORRUPT:[{\"phase\":\"pre_reference_B\",\"reason\":\"MANDATORY_CAPTURE_NOT_EXECUTED\"},{\"phase\":\"pre_reference_B\",\"reason\":\"MANDATORY_CAPTURE_NOT_EXECUTED\"},{\"phase\":\"pre_reference_B\",\"reason\":\"MANDATORY_CAPTURE_NOT_EXECUTED\"},{\"phase\":\"pre_reference_B\",\"reason\":\"MANDATORY_CAPTURE_NOT_EXECUTED\"},{\"phase\":\"pre_reference_B\",\"reason\":\"MANDATORY_CAPTURE_NOT_EXECUTED\"},{\"phase\":\"pre_reference_B\",\"reason\":\"MANDATORY_CAPTURE_NOT_EXECUTED\"},{\"phase\":\"pre_reference_B\",\"reason\":\"MANDATORY_CAPTURE_NOT_EXECUTED\"},{\"phase\":\"pre_reference_B\",\"reason\":\"MANDATORY_CAPTURE_NOT_EXECUTED\"},{\"phase\":\"pre_reference_B\",\"reason\":\"MANDATORY_CAPTURE_NOT_EXECUTED\"},{\"phase\":\"pre_reference_C\",\"reason\":\"MANDATORY_CAPTURE_NOT_EXECUTED\"},{\"phase\":\"pre_reference_C\",\"reason\":\"MANDATORY_CAPTURE_NOT_EXECUTED\"},{\"phase\":\"pre_reference_C\",\"reason\":\"MANDATORY_CAPTURE_NOT_EXECUTED\"},{\"phase\":\"pre_reference_C\",\"reason\":\"MANDATORY_CAPTURE_NOT_EXECUTED\"},{\"phase\":\"pre_reference_C\",\"reason\":\"MANDATORY_CAPTURE_NOT_EXECUTED\"},{\"phase\":\"pre_reference_C\",\"reason\":\"MANDATORY_CAPTURE_NOT_EXECUTED\"}]"
@@ -127,8 +129,32 @@
           "error": "HTTPError:HTTP Error 403: Forbidden"
         }
       ]
+    },
+    {
+      "checked_at": "2026-11-16T17:50:30.557+08:00",
+      "status": "SAME_DATE_COMPARISON_ONLY",
+      "sources": [
+        {
+          "ex": "tse",
+          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261116&type=ALLBUT0999&response=json",
+          "checked_at": "2026-11-16T17:50:33.619+08:00",
+          "http_status": 200,
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 1390,
+          "response_date": "20261116"
+        },
+        {
+          "ex": "otc",
+          "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F11%2F16&response=json",
+          "checked_at": "2026-11-16T17:50:35.070+08:00",
+          "http_status": 200,
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 13843,
+          "response_date": "20261116"
+        }
+      ]
     }
   ],
   "publication_timing_note": "Only observed checks bound availability; exact release time is not assumed.",
-  "updated_at": "2026-11-16T15:20:33.427+08:00"
+  "updated_at": "2026-11-16T17:50:44.002+08:00"
 }
