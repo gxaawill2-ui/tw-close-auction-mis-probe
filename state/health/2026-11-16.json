@@ -1,0 +1,46 @@
+{
+  "trade_date": "2026-11-16",
+  "checked_at": "2026-11-16T20:25:18.484174+08:00",
+  "state": "CAPTURE_FAILED",
+  "is_trading_day": true,
+  "trigger_status": "RUN_CREATED_BY_1302",
+  "primary_check_deadline": "2026-11-16T13:02:00+08:00",
+  "live_runs": [
+    {
+      "run_id": "43807474835",
+      "created_at": "2026-11-16T13:00:37+08:00",
+      "status": "completed",
+      "conclusion": "failure",
+      "event": "workflow_dispatch"
+    },
+    {
+      "run_id": "43808490068",
+      "created_at": "2026-11-16T13:10:22+08:00",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "event": "workflow_dispatch"
+    },
+    {
+      "run_id": "43809337571",
+      "created_at": "2026-11-16T13:18:10+08:00",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "workflow_dispatch"
+    },
+    {
+      "run_id": "43863426257",
+      "created_at": "2026-11-16T20:05:31+08:00",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "schedule"
+    }
+  ],
+  "capture_status": "CAPTURE_FAILED",
+  "publication_status": "NOT_PUBLISHED",
+  "candidate_count": null,
+  "mis_requests": 0,
+  "no_backfill": true,
+  "limitations": "Run creation is not runner start; external HTTP/token status requires provider history. Native health schedule can itself be delayed.",
+  "monitor_errors": [],
+  "updated_at": "2026-11-16T20:25:20.289+08:00"
+}
