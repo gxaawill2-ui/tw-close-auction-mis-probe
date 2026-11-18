@@ -1,8 +1,8 @@
 {
   "trade_date": "2026-11-18",
-  "checked_at": "2026-11-18T14:50:23.307+08:00",
-  "run_id": "44254278104",
-  "status": "PENDING",
+  "checked_at": "2026-11-18T15:20:34.490+08:00",
+  "run_id": "44258066281",
+  "status": "SAME_DATE_COMPARISON_ONLY",
   "publication_observations": [
     {
       "checked_at": "2026-11-18T00:30:38.656+08:00",
@@ -40,21 +40,45 @@
           "error": "HTTPError:HTTP Error 302: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nFound"
         }
       ]
+    },
+    {
+      "checked_at": "2026-11-18T15:20:34.490+08:00",
+      "status": "SAME_DATE_COMPARISON_ONLY",
+      "sources": [
+        {
+          "ex": "tse",
+          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261118&type=ALLBUT0999&response=json",
+          "checked_at": "2026-11-18T15:20:40.298+08:00",
+          "http_status": 200,
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 1391,
+          "response_date": "20261118"
+        },
+        {
+          "ex": "otc",
+          "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F11%2F18&response=json",
+          "checked_at": "2026-11-18T15:20:40.995+08:00",
+          "http_status": 200,
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 13900,
+          "response_date": "20261118"
+        }
+      ]
     }
   ],
   "publication_timing_note": "Only observed checks bound availability; exact release time is not assumed.",
-  "updated_at": "2026-11-18T14:50:37.074+08:00",
+  "updated_at": "2026-11-18T15:20:56.630+08:00",
   "source_capture_run_id": "44241209532",
   "source_capture_artifact_id": 14401351693,
-  "official_validation": "PENDING",
-  "matches": 1083,
-  "mismatches": 2,
-  "unavailable": 898,
+  "official_validation": "SAME_DATE_COMPARISON_ONLY",
+  "matches": 1942,
+  "mismatches": 10,
+  "unavailable": 31,
   "official_sources": [
     {
       "ex": "tse",
       "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261118&type=ALLBUT0999&response=json",
-      "checked_at": "2026-11-18T14:50:27.290+08:00",
+      "checked_at": "2026-11-18T15:20:40.298+08:00",
       "http_status": 200,
       "status": "AVAILABLE_SAME_DATE",
       "row_count": 1391,
@@ -63,9 +87,11 @@
     {
       "ex": "otc",
       "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F11%2F18&response=json",
-      "checked_at": "2026-11-18T14:50:28.543+08:00",
-      "status": "PENDING_SOURCE_ERROR",
-      "error": "HTTPError:HTTP Error 302: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nFound"
+      "checked_at": "2026-11-18T15:20:40.995+08:00",
+      "http_status": 200,
+      "status": "AVAILABLE_SAME_DATE",
+      "row_count": 13900,
+      "response_date": "20261118"
     }
   ],
   "freshness": {
@@ -88,7 +114,7 @@
     "true_delayed_close_candidate_count": 0,
     "delayed_transition_candidate_count": 5,
     "no_closing_new_trade_count": 279,
-    "research_calculable_count": 1952,
+    "research_calculable_count": 1944,
     "p_before_validated_count": 0,
     "p_close_validated_count": 0,
     "both_validated_count": 0,
@@ -117,13 +143,13 @@
   },
   "candidate_status": "RESEARCH_ONLY",
   "candidate_count": 15,
-  "artifact": "mis-validation-44254278104",
+  "artifact": "mis-validation-44258066281",
   "candidate_publication": {
     "status": "PUBLISHED",
     "idempotent": false,
     "path": "state/candidates/2026-11-18.json",
     "revision": 1,
     "published_at": "2026-11-18T13:34:24.078+08:00",
-    "commit_sha": "65d27b2f50d23bdbc8bd70b9e01ffd230ff861fa"
+    "commit_sha": "5486f58c783a4b05198063f392b3be973100785b"
   }
 }
