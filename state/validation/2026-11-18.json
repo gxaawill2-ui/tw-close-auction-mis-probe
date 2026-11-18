@@ -1,8 +1,8 @@
 {
   "trade_date": "2026-11-18",
-  "checked_at": "2026-11-18T02:46:34.927+08:00",
-  "run_id": "44151428641",
-  "status": "PENDING_NO_CAPTURE",
+  "checked_at": "2026-11-18T14:50:23.307+08:00",
+  "run_id": "44254278104",
+  "status": "PENDING",
   "publication_observations": [
     {
       "checked_at": "2026-11-18T00:30:38.656+08:00",
@@ -18,8 +18,112 @@
       "checked_at": "2026-11-18T02:46:34.927+08:00",
       "status": "PENDING_NO_CAPTURE",
       "sources": []
+    },
+    {
+      "checked_at": "2026-11-18T14:50:23.307+08:00",
+      "status": "PENDING",
+      "sources": [
+        {
+          "ex": "tse",
+          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261118&type=ALLBUT0999&response=json",
+          "checked_at": "2026-11-18T14:50:27.290+08:00",
+          "http_status": 200,
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 1391,
+          "response_date": "20261118"
+        },
+        {
+          "ex": "otc",
+          "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F11%2F18&response=json",
+          "checked_at": "2026-11-18T14:50:28.543+08:00",
+          "status": "PENDING_SOURCE_ERROR",
+          "error": "HTTPError:HTTP Error 302: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nFound"
+        }
+      ]
     }
   ],
   "publication_timing_note": "Only observed checks bound availability; exact release time is not assumed.",
-  "updated_at": "2026-11-18T02:46:35.426+08:00"
+  "updated_at": "2026-11-18T14:50:37.074+08:00",
+  "source_capture_run_id": "44241209532",
+  "source_capture_artifact_id": 14401351693,
+  "official_validation": "PENDING",
+  "matches": 1083,
+  "mismatches": 2,
+  "unavailable": 898,
+  "official_sources": [
+    {
+      "ex": "tse",
+      "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261118&type=ALLBUT0999&response=json",
+      "checked_at": "2026-11-18T14:50:27.290+08:00",
+      "http_status": 200,
+      "status": "AVAILABLE_SAME_DATE",
+      "row_count": 1391,
+      "response_date": "20261118"
+    },
+    {
+      "ex": "otc",
+      "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F11%2F18&response=json",
+      "checked_at": "2026-11-18T14:50:28.543+08:00",
+      "status": "PENDING_SOURCE_ERROR",
+      "error": "HTTPError:HTTP Error 302: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nFound"
+    }
+  ],
+  "freshness": {
+    "p_before_validated_count": 0,
+    "p_close_validated_count": 0,
+    "both_validated_count": 0
+  },
+  "convergence": {
+    "version": "DUAL_SNAPSHOT_RESEARCH_V1",
+    "status": "RESEARCH_ONLY",
+    "universe_count": 1983,
+    "p_before_converged_count": 1954,
+    "p_close_converged_count": 1952,
+    "both_converged_count": 1949,
+    "unknown_count": 34,
+    "stale_batch_count": 2,
+    "server_regression_response_count": 0,
+    "targeted_retry_count": 7,
+    "targeted_http_attempt_count": 7,
+    "true_delayed_close_candidate_count": 0,
+    "delayed_transition_candidate_count": 5,
+    "no_closing_new_trade_count": 279,
+    "research_calculable_count": 1952,
+    "p_before_validated_count": 0,
+    "p_close_validated_count": 0,
+    "both_validated_count": 0,
+    "p_before_original_AB_converged_count": 712,
+    "p_before_recovered_by_targeted_retry_count": 260,
+    "p_close_original_AB_converged_count": 1952,
+    "p_close_recovered_by_targeted_retry_count": 0,
+    "stale_response_count": 2,
+    "p_before_original_AB_with_retry_converged_count": 714,
+    "p_before_ABC_converged_count": 614,
+    "p_before_AB_converged_count": 100,
+    "p_before_AC_converged_count": 854,
+    "p_before_BC_converged_count": 128,
+    "p_before_unresolved_count": 29,
+    "p_before_unresolved_tse_count": 1,
+    "p_before_unresolved_otc_count": 28,
+    "research_close_AB_converged_count": 1952,
+    "research_close_AC_converged_count": 0,
+    "research_close_BC_converged_count": 5,
+    "research_close_A_1330_fresh_candidate_count": 0,
+    "research_close_TARGETED_converged_count": 0,
+    "research_close_delayed_close_candidate_count": 0,
+    "research_close_unresolved_count": 26,
+    "validated": false,
+    "research_candidate_count": 15
+  },
+  "candidate_status": "RESEARCH_ONLY",
+  "candidate_count": 15,
+  "artifact": "mis-validation-44254278104",
+  "candidate_publication": {
+    "status": "PUBLISHED",
+    "idempotent": false,
+    "path": "state/candidates/2026-11-18.json",
+    "revision": 1,
+    "published_at": "2026-11-18T13:34:24.078+08:00",
+    "commit_sha": "65d27b2f50d23bdbc8bd70b9e01ffd230ff861fa"
+  }
 }
