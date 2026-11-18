@@ -1,6 +1,6 @@
 {
   "trade_date": "2026-11-18",
-  "checked_at": "2026-11-18T20:38:27.575992+08:00",
+  "checked_at": "2026-11-18T22:31:42.262899+08:00",
   "state": "PUBLISHED_CANDIDATES",
   "is_trading_day": true,
   "trigger_status": "RUN_CREATED_BY_1302",
@@ -33,6 +33,20 @@
       "status": "completed",
       "conclusion": "success",
       "event": "schedule"
+    },
+    {
+      "run_id": "44317501166",
+      "created_at": "2026-11-18T21:48:37+08:00",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "schedule"
+    },
+    {
+      "run_id": "44318298329",
+      "created_at": "2026-11-18T21:53:13+08:00",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "schedule"
     }
   ],
   "capture_status": "CAPTURE_PARTIAL",
@@ -42,5 +56,5 @@
   "no_backfill": true,
   "limitations": "Run creation is not runner start; external HTTP/token status requires provider history. Native health schedule can itself be delayed.",
   "monitor_errors": [],
-  "updated_at": "2026-11-18T20:38:29.321+08:00"
+  "updated_at": "2026-11-18T22:31:44.357+08:00"
 }
