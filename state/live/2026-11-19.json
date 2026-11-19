@@ -1,7 +1,7 @@
 {
   "trade_date": "2026-11-19",
   "status": "running",
-  "phase": "pre_reference_C",
+  "phase": "close_probe_research",
   "run_id": "44462167938",
   "runner_started_at": "2026-11-19T13:00:46.280+08:00",
   "python_started_at": "2026-11-19T13:01:23.504+08:00",
@@ -13,7 +13,7 @@
   "capture_claimed": true,
   "capture_owner_run_id": "44462167938",
   "claimed_at": "2026-11-19T13:01:23.645+08:00",
-  "updated_at": "2026-11-19T13:28:44.136+08:00",
+  "updated_at": "2026-11-19T13:29:50.319+08:00",
   "preclose_captured": true,
   "universe_count": 1982,
   "reference_progress": {
@@ -30,6 +30,13 @@
       "received_at": "2026-11-19T13:28:43.812+08:00",
       "returned_count": 1082,
       "missing_count": 900
+    },
+    "pre_reference_C": {
+      "status": "partial",
+      "requested_at": "2026-11-19T13:29:00.109+08:00",
+      "received_at": "2026-11-19T13:29:15.052+08:00",
+      "returned_count": 1932,
+      "missing_count": 50
     }
   }
 }
