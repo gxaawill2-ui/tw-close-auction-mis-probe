@@ -1,11 +1,11 @@
 {
-  "verified_at": "2026-11-19T13:01:21.290+08:00",
+  "verified_at": "2026-11-20T13:01:26.400+08:00",
   "source": "https://www.twse.com.tw/rwd/zh/holidaySchedule/holidaySchedule?response=json&date=20260101",
   "year": 2026,
-  "next_trade_date": "2026-11-20",
-  "today": "2026-11-19",
+  "next_trade_date": "2026-11-23",
+  "today": "2026-11-20",
   "is_trading_day": true,
-  "updated_at": "2026-11-19T13:01:21.521+08:00",
+  "updated_at": "2026-11-20T13:01:26.689+08:00",
   "calendar_gate": {
     "status": "LIVE_OFFICIAL_CALENDAR",
     "attempts": [
@@ -15,8 +15,8 @@
         "http_status": 200
       }
     ],
-    "checked_at": "2026-11-19T13:01:21.290+08:00",
-    "verified_at": "2026-11-19T13:01:21.290+08:00",
+    "checked_at": "2026-11-20T13:01:26.400+08:00",
+    "verified_at": "2026-11-20T13:01:26.400+08:00",
     "source": "https://www.twse.com.tw/rwd/zh/holidaySchedule/holidaySchedule?response=json&date=20260101",
     "year": 2026,
     "limitations": "Annual calendar only; intraday emergency closures not independently monitored."
