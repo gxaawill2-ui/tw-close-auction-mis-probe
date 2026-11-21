@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-21T08:37:07+08:00",
+  "generated_at": "2026-11-21T15:10:18+08:00",
   "coverage_status": "PARTIAL",
   "source_total": 27,
   "source_classes": {
@@ -12,9 +12,9 @@
   "new_events": 0,
   "corrected_events": 0,
   "conflicting_events": 0,
-  "pending_review_documents": 189,
+  "pending_review_documents": 190,
   "newly_observed_etfs": 0,
-  "corrected_etfs": 281,
+  "corrected_etfs": 0,
   "confirmed_etf_mappings": 64,
   "new_confirmed_etf_mappings": 0,
   "unconfirmed_etf_mappings": 2,
