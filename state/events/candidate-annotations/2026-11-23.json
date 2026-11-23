@@ -1,0 +1,643 @@
+{
+  "live_as_of": {
+    "trade_date": "2026-11-23",
+    "is_major_index_event_day": null,
+    "event_types": [],
+    "event_ids": [],
+    "event_information_available_as_of": "2026-11-23T13:34:15.991+08:00",
+    "candidate_annotations": [
+      {
+        "code": "8102",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3207",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "2434",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "4739",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6171",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "2321",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6692",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "2941",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3686",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "7814",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6657",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3664",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6431",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6203",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3447",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3115",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "4535",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3499",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3491",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6931",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3018",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "5398",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3290",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "2482",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6751",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "8367",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "7806",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "2424",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6169",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6967",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3372",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      }
+    ],
+    "note": "事件未取得不代表沒有事件；不推斷因果或交易方向。"
+  },
+  "latest_as_of": {
+    "trade_date": "2026-11-23",
+    "is_major_index_event_day": null,
+    "event_types": [],
+    "event_ids": [],
+    "event_information_available_as_of": "2026-11-23T15:41:02+08:00",
+    "candidate_annotations": [
+      {
+        "code": "8102",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3207",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "2434",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "4739",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6171",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "2321",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6692",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "2941",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3686",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "7814",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6657",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3664",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6431",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6203",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3447",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3115",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "4535",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3499",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3491",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6931",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3018",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "5398",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3290",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "2482",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6751",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "8367",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "7806",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "2424",
+        "market": "TWSE",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6169",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "6967",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      },
+      {
+        "code": "3372",
+        "market": "TPEx",
+        "related_index_events": [],
+        "related_etf_events": [],
+        "constituent_change_type": [],
+        "event_confidence": "UNCONFIRMED",
+        "event_source_url": [],
+        "stock_event_relation": "UNKNOWN"
+      }
+    ],
+    "note": "事件未取得不代表沒有事件；不推斷因果或交易方向。"
+  },
+  "updated_at": "2026-11-23T15:41:02+08:00"
+}
