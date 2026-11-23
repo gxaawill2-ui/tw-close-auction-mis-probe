@@ -1,0 +1,17 @@
+{
+  "trade_date": "2026-11-23",
+  "status": "running",
+  "phase": "starting",
+  "run_id": "45115133443",
+  "runner_started_at": "2026-11-23T13:00:45.670+08:00",
+  "python_started_at": "2026-11-23T13:01:31.495+08:00",
+  "artifact": "mis-probe-45115133443",
+  "error": null,
+  "finished_at": null,
+  "snapshots": {},
+  "official_validation": "unverified",
+  "capture_claimed": true,
+  "capture_owner_run_id": "45115133443",
+  "claimed_at": "2026-11-23T13:01:31.681+08:00",
+  "updated_at": "2026-11-23T13:01:31.681+08:00"
+}
