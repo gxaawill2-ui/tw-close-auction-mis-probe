@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-24T08:37:47+08:00",
+  "updated_at": "2026-11-24T17:56:18+08:00",
   "coverage_status": "PARTIAL",
   "etfs": [
     {
@@ -22,7 +22,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -1566,7 +1566,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -3110,7 +3110,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -4654,7 +4654,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -6198,7 +6198,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -7742,7 +7742,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -9286,7 +9286,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -10830,7 +10830,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -12374,7 +12374,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -13918,7 +13918,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -15462,7 +15462,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -17006,7 +17006,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-13T08:37:52+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -18418,7 +18418,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-11-10T08:37:26+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -18910,7 +18910,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-20T17:37:44+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -20091,7 +20091,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-11-03T08:37:24+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -20810,7 +20810,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-11-11T08:37:23+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -21265,7 +21265,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-11-20T08:37:24+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -21423,7 +21423,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-11-19T08:37:38+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -21614,7 +21614,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -23158,7 +23158,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -24702,7 +24702,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -26246,7 +26246,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -27794,7 +27794,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -29338,7 +29338,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -30882,7 +30882,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -32426,7 +32426,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -33970,7 +33970,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -35514,7 +35514,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -37058,7 +37058,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -38602,7 +38602,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -40146,7 +40146,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -41690,7 +41690,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -43234,7 +43234,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -44778,7 +44778,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -46322,7 +46322,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -47866,7 +47866,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -49410,7 +49410,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -50954,7 +50954,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -52498,7 +52498,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -54042,7 +54042,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -55586,7 +55586,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -57130,7 +57130,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -58674,7 +58674,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -60218,7 +60218,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -61762,7 +61762,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -63306,7 +63306,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -64850,7 +64850,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -66394,7 +66394,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -67938,7 +67938,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -69482,7 +69482,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -71026,7 +71026,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -72570,7 +72570,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -74114,7 +74114,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -75658,7 +75658,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -77202,7 +77202,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -78746,7 +78746,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -80290,7 +80290,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -81834,7 +81834,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -83378,7 +83378,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -84922,7 +84922,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -86466,7 +86466,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -88010,7 +88010,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -89554,7 +89554,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -91098,7 +91098,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -92642,7 +92642,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -94186,7 +94186,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -95730,7 +95730,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -97274,7 +97274,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -98818,7 +98818,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -100362,7 +100362,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -101906,7 +101906,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -103450,7 +103450,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -104994,7 +104994,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -106538,7 +106538,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -108082,7 +108082,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -109626,7 +109626,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -111170,7 +111170,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -112714,7 +112714,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -114258,7 +114258,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -115802,7 +115802,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -117346,7 +117346,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -118890,7 +118890,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -120434,7 +120434,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -121978,7 +121978,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -123522,7 +123522,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -125066,7 +125066,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -126610,7 +126610,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -128154,7 +128154,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -129698,7 +129698,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -131242,7 +131242,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -132786,7 +132786,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -134330,7 +134330,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -135874,7 +135874,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -137418,7 +137418,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -138962,7 +138962,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -140506,7 +140506,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -142050,7 +142050,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -143594,7 +143594,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -145138,7 +145138,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -146682,7 +146682,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -148226,7 +148226,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -149770,7 +149770,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -151314,7 +151314,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -152858,7 +152858,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -154402,7 +154402,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -155946,7 +155946,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -157490,7 +157490,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -159034,7 +159034,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -160578,7 +160578,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -162122,7 +162122,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -163666,7 +163666,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -165210,7 +165210,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -166754,7 +166754,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -168298,7 +168298,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -169842,7 +169842,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -171386,7 +171386,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -172930,7 +172930,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -174474,7 +174474,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -176018,7 +176018,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -177562,7 +177562,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -179106,7 +179106,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -180650,7 +180650,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -182194,7 +182194,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -183738,7 +183738,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -185282,7 +185282,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -186826,7 +186826,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -188370,7 +188370,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -189914,7 +189914,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -191458,7 +191458,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -193002,7 +193002,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -194546,7 +194546,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -196090,7 +196090,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -197634,7 +197634,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -199178,7 +199178,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -200722,7 +200722,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -202266,7 +202266,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -203810,7 +203810,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -205354,7 +205354,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -206898,7 +206898,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -208442,7 +208442,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -209986,7 +209986,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -211530,7 +211530,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -213074,7 +213074,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -214618,7 +214618,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -216162,7 +216162,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -217706,7 +217706,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -219250,7 +219250,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -220794,7 +220794,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -222338,7 +222338,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -223882,7 +223882,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -225426,7 +225426,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -226970,7 +226970,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -228514,7 +228514,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -230058,7 +230058,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -231602,7 +231602,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -233146,7 +233146,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -234690,7 +234690,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -236234,7 +236234,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -237778,7 +237778,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -239322,7 +239322,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -240866,7 +240866,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -242410,7 +242410,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -243954,7 +243954,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -245498,7 +245498,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -247042,7 +247042,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -248586,7 +248586,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -250130,7 +250130,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -251674,7 +251674,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -253218,7 +253218,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -254762,7 +254762,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -256306,7 +256306,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -257850,7 +257850,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -259394,7 +259394,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -260938,7 +260938,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -262482,7 +262482,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -264026,7 +264026,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -265570,7 +265570,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -267114,7 +267114,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -268658,7 +268658,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -270202,7 +270202,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -271746,7 +271746,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -273290,7 +273290,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -274834,7 +274834,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -276378,7 +276378,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -277922,7 +277922,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -279466,7 +279466,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -281010,7 +281010,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -282554,7 +282554,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -284098,7 +284098,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -285642,7 +285642,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -287186,7 +287186,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -288730,7 +288730,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -290274,7 +290274,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -291818,7 +291818,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -293362,7 +293362,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -294906,7 +294906,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -296450,7 +296450,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -297994,7 +297994,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -299538,7 +299538,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -301082,7 +301082,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -302626,7 +302626,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -304170,7 +304170,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -305714,7 +305714,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -307258,7 +307258,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -308802,7 +308802,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -310346,7 +310346,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -311890,7 +311890,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -313434,7 +313434,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -314978,7 +314978,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -316522,7 +316522,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -318066,7 +318066,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -319610,7 +319610,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -321154,7 +321154,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -322698,7 +322698,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -324242,7 +324242,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -325786,7 +325786,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -327330,7 +327330,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -328874,7 +328874,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -330418,7 +330418,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -331962,7 +331962,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -333506,7 +333506,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -335050,7 +335050,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -336594,7 +336594,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -338138,7 +338138,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -339682,7 +339682,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -341226,7 +341226,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -342770,7 +342770,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -344314,7 +344314,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -345858,7 +345858,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -347402,7 +347402,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -348946,7 +348946,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -350490,7 +350490,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -352034,7 +352034,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -353578,7 +353578,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -355122,7 +355122,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -356666,7 +356666,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -358210,7 +358210,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -359754,7 +359754,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -361298,7 +361298,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -362842,7 +362842,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -364386,7 +364386,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -365930,7 +365930,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -367474,7 +367474,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": true,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -369018,7 +369018,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -370562,7 +370562,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -372106,7 +372106,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -373650,7 +373650,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -375194,7 +375194,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -376738,7 +376738,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -378282,7 +378282,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -379826,7 +379826,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -381370,7 +381370,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -382914,7 +382914,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -384458,7 +384458,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -386002,7 +386002,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -387546,7 +387546,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -389090,7 +389090,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -390634,7 +390634,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -392178,7 +392178,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-29T08:37:21+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -393062,7 +393062,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-29T08:37:21+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -393950,7 +393950,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-11-19T08:37:38+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -394141,7 +394141,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -395685,7 +395685,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -397229,7 +397229,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -398773,7 +398773,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -400317,7 +400317,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -401861,7 +401861,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -403405,7 +403405,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -404949,7 +404949,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -406493,7 +406493,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -408037,7 +408037,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -409581,7 +409581,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -411125,7 +411125,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -412669,7 +412669,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "CONFIRMED",
       "change_history": [
@@ -414213,7 +414213,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -415757,7 +415757,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -417301,7 +417301,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -418845,7 +418845,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -420389,7 +420389,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -421933,7 +421933,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
@@ -423477,7 +423477,7 @@
       "source_url": "https://openapi.twse.com.tw/v1/opendata/t187ap47_L",
       "first_seen_at": "2026-10-09T16:45:18+08:00",
       "information_available_as_of": "2026-11-24T08:37:47+08:00",
-      "last_checked_at": "2026-11-24T08:37:47+08:00",
+      "last_checked_at": "2026-11-24T17:56:18+08:00",
       "calendar_eligible": false,
       "mapping_status": "NOT_APPLICABLE",
       "change_history": [
