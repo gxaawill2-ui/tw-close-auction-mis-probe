@@ -16,7 +16,7 @@
   "eligible": true,
   "original_slot_not_fulfilled": true,
   "runner_started_at": "2026-11-25T19:25:59Z",
-  "scan_started_at": null,
+  "scan_started_at": "2026-11-26T03:26:11.629666+08:00",
   "scan_finished_at": null,
   "published_at": null,
   "result": "LEASED",
