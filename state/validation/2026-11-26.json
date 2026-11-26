@@ -1,8 +1,8 @@
 {
   "trade_date": "2026-11-26",
-  "checked_at": "2026-11-26T14:50:30.190+08:00",
-  "run_id": "45770967647",
-  "status": "PENDING",
+  "checked_at": "2026-11-26T15:20:29.971+08:00",
+  "run_id": "45774554720",
+  "status": "SAME_DATE_COMPARISON_ONLY",
   "publication_observations": [
     {
       "checked_at": "2026-11-26T01:39:23.848+08:00",
@@ -42,21 +42,45 @@
           "response_date": "20261126"
         }
       ]
+    },
+    {
+      "checked_at": "2026-11-26T15:20:29.971+08:00",
+      "status": "SAME_DATE_COMPARISON_ONLY",
+      "sources": [
+        {
+          "ex": "tse",
+          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261126&type=ALLBUT0999&response=json",
+          "checked_at": "2026-11-26T15:20:34.554+08:00",
+          "http_status": 200,
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 1395,
+          "response_date": "20261126"
+        },
+        {
+          "ex": "otc",
+          "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F11%2F26&response=json",
+          "checked_at": "2026-11-26T15:20:35.961+08:00",
+          "http_status": 200,
+          "status": "AVAILABLE_SAME_DATE",
+          "row_count": 13832,
+          "response_date": "20261126"
+        }
+      ]
     }
   ],
   "publication_timing_note": "Only observed checks bound availability; exact release time is not assumed.",
-  "updated_at": "2026-11-26T14:50:42.880+08:00",
+  "updated_at": "2026-11-26T15:21:45.374+08:00",
   "source_capture_run_id": "45758764133",
   "source_capture_artifact_id": 15090199679,
-  "official_validation": "PENDING",
-  "matches": 1084,
-  "mismatches": 3,
-  "unavailable": 896,
+  "official_validation": "SAME_DATE_COMPARISON_ONLY",
+  "matches": 1954,
+  "mismatches": 5,
+  "unavailable": 24,
   "official_sources": [
     {
       "ex": "tse",
       "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261126&type=ALLBUT0999&response=json",
-      "checked_at": "2026-11-26T14:50:34.432+08:00",
+      "checked_at": "2026-11-26T15:20:34.554+08:00",
       "http_status": 200,
       "status": "AVAILABLE_SAME_DATE",
       "row_count": 1395,
@@ -65,10 +89,10 @@
     {
       "ex": "otc",
       "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQuotes?date=2026%2F11%2F26&response=json",
-      "checked_at": "2026-11-26T14:50:36.166+08:00",
+      "checked_at": "2026-11-26T15:20:35.961+08:00",
       "http_status": 200,
-      "status": "PENDING_EMPTY_TABLE",
-      "row_count": 0,
+      "status": "AVAILABLE_SAME_DATE",
+      "row_count": 13832,
       "response_date": "20261126"
     }
   ],
@@ -121,13 +145,13 @@
   },
   "candidate_status": "RESEARCH_ONLY",
   "candidate_count": 17,
-  "artifact": "mis-validation-45770967647",
+  "artifact": "mis-validation-45774554720",
   "candidate_publication": {
     "status": "PUBLISHED",
     "idempotent": false,
     "path": "state/candidates/2026-11-26.json",
     "revision": 1,
     "published_at": "2026-11-26T13:34:25.418+08:00",
-    "commit_sha": "a70eea8bd2df70d0130cc18f01928f4b39569c71"
+    "commit_sha": "5c5f4aac3b879825be1973555c616d1a44d9861a"
   }
 }
